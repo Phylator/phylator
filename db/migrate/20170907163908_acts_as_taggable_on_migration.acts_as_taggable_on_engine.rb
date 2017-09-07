@@ -6,12 +6,12 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration[5.1]
         end
 
         create_table :taggings do |t|
-            t.references :tag
+            t.references :tag, index: false
 
             # You should make sure that the column created is
             # long enough to store the required class names.
-            t.references :taggable, polymorphic: true
-            t.references :tagger, polymorphic: true
+            t.references :taggable, polymorphic: true, index: false
+            t.references :tagger, polymorphic: true, index: false
 
             # Limit is created to prevent MySQL error on index
             # length for MyISAM table type: http://bit.ly/vgW2Ql
