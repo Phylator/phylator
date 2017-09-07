@@ -1,0 +1,19 @@
+= simple_form_for(@calculation) do |f|
+    = f.error_notification
+
+    .form-inputs
+        - if current_user
+            = f.input :user_id, value: current_user.id, hidden: true
+        = f.input :name, optional: true
+        = f.input :public, as: :boolean
+        = f.input :quantity_name, required: true, placeholder: 'Physical quantity', input_html: { type: :text, class: 'flexdatalist', list: 'quantity', value: Quantity.first.name }
+        %datalist#quantity
+            - Quantity.all.each do |quantity|
+                %option{ value: quantity.name }= quantity.name
+        = f.input :unit_of_measurement_name, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first.name }
+        %datalist#unit_of_measurement
+            - UnitOfMeasurement.all.each do |unit_of_measurement|
+                %option{ value: unit_of_measurement.name }= unit_of_measurement.name
+
+    .form-actions
+        = f.button :submit

@@ -16,3 +16,10 @@
 //= require turbolinks
 //= require ahoy
 //= require_tree .
+
+//= require ./vendor/jquery.flexdatalist
+
+$('.flexdatalist').flexdatalist({
+    selectionRequired: true,
+    minLength: 1
+});
