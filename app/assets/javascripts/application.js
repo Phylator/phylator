@@ -20,6 +20,7 @@
 //= require ./vendor/jquery.flexdatalist
 
 $('.flexdatalist').flexdatalist({
-    selectionRequired: true,
-    minLength: 1
+    minLength: 0,
+    valueProperty: '*',
+    selectionRequired: true
 });

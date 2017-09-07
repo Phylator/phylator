@@ -4,7 +4,7 @@ class CreateEquations < ActiveRecord::Migration[5.1]
 
             t.references :quantity, index: true
 
-            t.text :equation, null: false
+            t.text :equation
 
             t.timestamps
 

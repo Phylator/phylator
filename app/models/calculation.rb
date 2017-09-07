@@ -11,7 +11,7 @@ class Calculation < ApplicationRecord
 
     belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
     belongs_to :quantity, class_name: '::Quantity'
-    belongs_to :user
+    belongs_to :user, optional: true
 
     private
 

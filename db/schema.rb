@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170907174616) do
     t.bigint "calculation_id"
     t.bigint "unit_of_measurement_id"
     t.bigint "quantity_id"
-    t.integer "value", null: false
+    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["calculation_id"], name: "index_calculation_measurements_on_calculation_id"
@@ -52,11 +52,15 @@ ActiveRecord::Schema.define(version: 20170907174616) do
   end
 
   create_table "calculations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "quantity_id"
+    t.bigint "unit_of_measurement_id"
     t.bigint "user_id"
     t.string "name"
     t.boolean "public", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["quantity_id"], name: "index_calculations_on_quantity_id"
+    t.index ["unit_of_measurement_id"], name: "index_calculations_on_unit_of_measurement_id"
     t.index ["user_id"], name: "index_calculations_on_user_id"
   end
 
@@ -71,16 +75,16 @@ ActiveRecord::Schema.define(version: 20170907174616) do
 
   create_table "equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "quantity_id"
-    t.text "equation", null: false
+    t.text "equation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quantity_id"], name: "index_equations_on_quantity_id"
   end
 
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "symbol", null: false
-    t.string "name", null: false
-    t.text "description", null: false
+    t.string "symbol"
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -133,9 +137,9 @@ ActiveRecord::Schema.define(version: 20170907174616) do
 
   create_table "unit_of_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "quantity_id"
-    t.string "symbol", null: false
-    t.string "name", null: false
-    t.string "exchange_rate", null: false
+    t.string "symbol"
+    t.string "name"
+    t.string "exchange_rate"
     t.boolean "base", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

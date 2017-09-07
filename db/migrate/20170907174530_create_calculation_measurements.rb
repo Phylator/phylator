@@ -6,7 +6,7 @@ class CreateCalculationMeasurements < ActiveRecord::Migration[5.1]
             t.references :unit_of_measurement, index: true
             t.references :quantity, index: true
 
-            t.integer :value, null: false
+            t.integer :value
 
             t.timestamps
 

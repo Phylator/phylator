@@ -2,9 +2,9 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
     def change
         create_table :quantities do |t|
 
-            t.string :symbol, null: false, unique: true
-            t.string :name, null: false, unique: true
-            t.text :description, null: false
+            t.string :symbol, unique: true
+            t.string :name, unique: true
+            t.text :description
 
             t.timestamps
 

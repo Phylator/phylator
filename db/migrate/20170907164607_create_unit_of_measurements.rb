@@ -4,9 +4,9 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
 
             t.references :quantity, index: true
 
-            t.string :symbol, null: false, unique: true
-            t.string :name, null: false, unique: true
-            t.string :exchange_rate, null: false
+            t.string :symbol
+            t.string :name
+            t.string :exchange_rate
 
             t.boolean :base, default: false, null: false
 
