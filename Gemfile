@@ -16,10 +16,7 @@ gem 'globalize', github: 'globalize/globalize'
 gem 'ahoy_matey', '~> 1.6'
 gem 'cancancan', '~> 1.17'
 gem 'devise', '~> 4.3'
-gem 'omniauth', '~> 1.6'
-gem 'omniauth-google-oauth2', '~> 0.5'
 gem 'acts-as-taggable-on', '~> 4.0'
-gem 'algoliasearch-rails', '~> 1.20'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
