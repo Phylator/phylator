@@ -4,16 +4,16 @@
     .form-inputs
         - if current_user
             = f.input :user_id, value: current_user.id, hidden: true
-        = f.input :name
         = f.input :public, as: :boolean
-        = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, class: 'flexdatalist', list: 'quantity', value: Quantity.first&.id }
+        = f.input :name
+        = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, class: 'flexdatalist', list: 'quantity', value: Quantity.first.name }
         %datalist#quantity
             - Quantity.all.each do |quantity|
                 %option{ value: quantity.id }= quantity.name
-        = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first&.id }
+        = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first.symbol }
         %datalist#unit_of_measurement
             - UnitOfMeasurement.all.each do |unit_of_measurement|
-                %option{ value: unit_of_measurement.id }= unit_of_measurement.name
+                %option{ value: unit_of_measurement.id }= unit_of_measurement.symbol + (unit_of_measurement.name.present? ? ' (' + unit_of_measurement.name + ')' : '')
 
     .form-actions
         = f.button :submit

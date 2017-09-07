@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20170907174616) do
     t.bigint "quantity_id"
     t.string "symbol"
     t.string "name"
-    t.string "exchange_rate"
+    t.string "exchange_rate", default: "1", null: false
     t.boolean "base", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

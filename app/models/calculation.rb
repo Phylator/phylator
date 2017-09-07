@@ -16,7 +16,7 @@ class Calculation < ApplicationRecord
     private
 
     def calculate
-        self.result.build
+        self.build_result
     end
 
 end

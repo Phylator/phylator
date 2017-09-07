@@ -6,7 +6,7 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
 
             t.string :symbol
             t.string :name
-            t.string :exchange_rate
+            t.string :exchange_rate, default: '1', null: false
 
             t.boolean :base, default: false, null: false
 
