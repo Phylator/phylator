@@ -19,10 +19,6 @@ class CalculationsController < ApplicationController
         @calculation = Calculation.new
     end
 
-    # GET /calculations/1/edit
-    def edit
-    end
-
     # POST /calculations
     # POST /calculations.json
     def create
