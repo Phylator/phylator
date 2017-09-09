@@ -1,5 +1,6 @@
 class Calculation < ApplicationRecord
 
+    before_create :randomize_id
     after_create_commit :calculate
 
     acts_as_taggable
@@ -19,6 +20,12 @@ class Calculation < ApplicationRecord
 
     def calculate
         self.build_result
+    end
+
+    def randomize_id
+        begin
+            self.id = SecureRandom.random_number 9_223_372_036_854_775_807
+        end while self.class.where(id: self.id).exists?
     end
 
 end

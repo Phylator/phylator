@@ -7,6 +7,8 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
             t.text :description
             t.boolean :vector, default: false, null: false
 
+            t.string :slug, null: false, unique: true, index: true
+
             t.timestamps
 
         end

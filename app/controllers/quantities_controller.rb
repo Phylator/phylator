@@ -18,7 +18,7 @@ class QuantitiesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_quantity
-      @quantity = Quantity.find(params[:id])
+      @quantity = Quantity.friendly.find(params[:id])
     end
 
 end

@@ -69,7 +69,7 @@ class CalculationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calculation_params
-        params.require(:calculation).permit(:user_id, :quantity_id, :unit_of_measurement_id, :name, :public)
+        params.require(:calculation).permit(:user_id, :quantity_id, :unit_of_measurement_id, :name, :public, measurements_attributes: [:value, :quantity_id, :unit_of_measurement_id])
     end
 
 end
