@@ -3,8 +3,6 @@ class Calculation < ApplicationRecord
     before_create :randomize_id
     after_create_commit :calculate
 
-    acts_as_taggable
-
     validates :measurements, presence: true
 
     has_one :result, class_name: 'Calculation::Result'

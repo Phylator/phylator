@@ -3,6 +3,8 @@ class CalculationsController < ApplicationController
     before_action :authenticate_user!, except: [:new, :create, :show]
     before_action :set_calculation, only: [:show, :edit, :update, :destroy]
 
+    load_and_authorize_resource param_method: :calculation_params
+
     # GET /calculations
     # GET /calculations.json
     def index

@@ -18,3 +18,4 @@
 //= require_tree .
 
 //= require ./vendor/jquery.flexdatalist
+//= require ./vendor/MathJax
