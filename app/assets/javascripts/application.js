@@ -18,11 +18,3 @@
 //= require_tree .
 
 //= require ./vendor/jquery.flexdatalist
-
-$('input.flexdatalist').flexdatalist();
-
-$('input.flexdatalist.fetchUnits').on( 'change:flexdatalist', function(event, set, options) {
-    alert(set.value);
-    $(this).closest('.flexdatalistUnits').data('data', 'quantities/' + set.value + '/units_of_measurement.json');
-    $('.flexdatalistUnits').flexdatalist('reset');
-});
