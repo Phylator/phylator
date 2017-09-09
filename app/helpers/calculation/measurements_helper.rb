@@ -1,2 +1,0 @@
-module Calculation::MeasurementsHelper
-end

@@ -17,6 +17,7 @@ class CalculationsController < ApplicationController
     # GET /calculations/new
     def new
         @calculation = Calculation.new
+        @calculation.measurements.build
     end
 
     # POST /calculations

@@ -13,6 +13,8 @@ class Calculation < ApplicationRecord
     belongs_to :quantity, class_name: '::Quantity'
     belongs_to :user, optional: true
 
+    accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
+
     private
 
     def calculate

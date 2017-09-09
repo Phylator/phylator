@@ -1,0 +1,5 @@
+.measurement
+    = f.input :value, required: true
+    = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, id: 'quantity1', class: 'flexdatalist', data: { units: '#quantityUnits1', data: 'quantities.json', search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    = f.input :unit_of_measurement_id, disabled: true, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, id: 'quantityUnits1', data: { search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity1', selection_required: 'true', value_property: 'id', min_length: '0' } }
+    = simple_remove_fields 'Remove', f if local_assigns[:destroy]
