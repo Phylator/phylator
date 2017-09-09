@@ -4,7 +4,7 @@ class CreateCalculationResults < ActiveRecord::Migration[5.1]
 
             t.references :calculation, index: true
 
-            t.decimal :value
+            t.text :value
 
             t.timestamps
 

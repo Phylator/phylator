@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
     root 'calculations#new'
 
+    match '*path', to: 'errors#not_found', via: :all
+
 end

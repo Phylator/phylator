@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
 
 
 
+    rescue_from (ActiveRecord::RecordNotFound) { |exception| handle_exception exception, 404 }
+    rescue_from (AbstractController::ActionNotFound) { |exception| handle_exception exception, 404 }
+    rescue_from (ActionController::RoutingError) { |exception| handle_exception exception, 404 }
+    rescue_from (CanCan::AccessDenied) { |exception| handle_exception exception, 403 }
+    rescue_from (TSort::Cyclic) { |exception| handle_exception exception, 400 }
+
+
+
     private
 
 
@@ -47,6 +55,24 @@ class ApplicationController < ActionController::Base
         if request.env['HTTP_ACCEPT_LANGUAGE'].present?
             return nil unless (request.env['HTTP_ACCEPT_LANGUAGE']).scan(/^[a-z]{2}/).first.present? && I18n.available_locales.include?((request.env['HTTP_ACCEPT_LANGUAGE']).scan(/^[a-z]{2}/).first)
             (request.env['HTTP_ACCEPT_LANGUAGE'] || 'en').scan(/^[a-z]{2}/).first
+        end
+    end
+
+
+    def handle_exception ex, status
+        render_error ex, status
+        logger.error ex
+    end
+    def render_error ex, status
+        respond_to do |format|
+            if status == 404
+                format.html { render 'errors/not_found', status: status }
+            elsif status == 403
+                format.html { render 'errors/forbidden', status: status }
+            elsif status == 400
+                format.html { render 'errors/bad_request', status: status }
+            end
+            format.all { render nothing: true, status: status }
         end
     end
 

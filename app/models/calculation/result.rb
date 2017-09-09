@@ -2,7 +2,11 @@ class Calculation::Result < ApplicationRecord
 
     self.table_name = 'calculation_results'
 
-    before_create :calc
+    before_validation :calc
+
+    include Value
+
+    validates :value, presence: true
 
     has_many :equations, through: :belonging_equations
     has_many :belonging_equations, class_name: 'Equation', dependent: :destroy
@@ -17,15 +21,26 @@ class Calculation::Result < ApplicationRecord
         calculator = Dentaku::Calculator.new
 
         # Init variables & convert to base
-        measurements_per_quantity = self.calculation.measurements.group_by(&:quantity_id)
+        measurements_per_quantity = self.calculation.measurements.group_by &:quantity_id
         measurements_per_quantity.each do |quantity_id, measurements|
-            instance_variable_set '@' + ::Quantity.find(quantity_id).symbol, ( measurements.first.unit_of_measurement.base? ? measurements.first.value : calculator.evaluate( measurements.first.value.to_s + measurements.first.unit_of_measurement.to_base ) )
+            measurement = measurements.first
+            symbol = ::Quantity.find(quantity_id).symbol
+            if measurement.unit_of_measurement.base?
+                var = measurement.value
+            else
+                var = calculator.evaluate( measurement.value.to_s + measurement.unit_of_measurement.to_base )
+            end
+            calculator.store "#{symbol}": var
         end
 
         # Convert
         if measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
-            base = instance_variable_get('@' + self.calculation.quantity.symbol)
-            result = ( self.calculation.unit_of_measurement.base? ? base : calculator.evaluate( base.to_s + self.calculation.unit_of_measurement.from_base ) )
+            symbol = self.calculation.quantity.symbol
+            if self.calculation.unit_of_measurement.base?
+                result = calculator.evaluate(symbol)
+            else
+                result = calculator.evaluate( symbol.to_s + self.calculation.unit_of_measurement.from_base )
+            end
         end
 
         self.value = result
