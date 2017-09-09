@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 
     def init
         @quantities = Quantity.all
-        @units_of_measurement = UnitOfMeasurement.all
     end
 
 

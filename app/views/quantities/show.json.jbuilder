@@ -1,1 +1,1 @@
-json.partial! "quantities/quantity", quantity: @quantity
+json.partial! 'quantities/quantity', quantity: @quantity

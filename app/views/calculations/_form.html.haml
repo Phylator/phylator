@@ -4,26 +4,17 @@
     .form-inputs
         - if current_user
             = f.input :user_id, value: current_user.id, hidden: true
-        = f.simple_fields_for :measurements do |m|
-            = m.input :value, required: true
-            = m.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, class: 'flexdatalist', list: 'quantity', value: Quantity.first.name }
-            %datalist#quantity
-                - Quantity.all.each do |quantity|
-                    %option{ value: quantity.id }= quantity.name
-            = m.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first.symbol }
-            %datalist#unit_of_measurement
-                - UnitOfMeasurement.all.each do |unit_of_measurement|
-                    %option{ value: unit_of_measurement.id }= unit_of_measurement.symbol + (unit_of_measurement.name.present? ? ' (' + unit_of_measurement.name + ')' : '')
         = f.input :public, as: :boolean
         = f.input :name
-        = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, class: 'flexdatalist', list: 'quantity', value: Quantity.first.name }
-        %datalist#quantity
-            - Quantity.all.each do |quantity|
-                %option{ value: quantity.id }= quantity.name
-        = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first.symbol }
-        %datalist#unit_of_measurement
-            - UnitOfMeasurement.all.each do |unit_of_measurement|
-                %option{ value: unit_of_measurement.id }= unit_of_measurement.symbol + (unit_of_measurement.name.present? ? ' (' + unit_of_measurement.name + ')' : '')
+        = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, id: 'quantity', class: 'flexdatalist fetchUnits', data: { data: 'quantities.json', search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+        = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { disabled: true, type: :text, class: 'flexdatalist flexdatalistUnits', data: { search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+        -# %datalist#quantity
+        -#     - @quantities.each do |quantity|
+        -#         %option{ value: quantity.id }= quantity.name
+        -# = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist', list: 'unit_of_measurement', value: UnitOfMeasurement.first.symbol }
+        -# %datalist#unit_of_measurement
+        -#     - UnitOfMeasurement.all.each do |unit_of_measurement|
+        -#         %option{ value: unit_of_measurement.id }= unit_of_measurement.symbol + (unit_of_measurement.name.present? ? ' (' + unit_of_measurement.name + ')' : '')
 
     .form-actions
         = f.button :submit

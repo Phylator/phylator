@@ -19,8 +19,10 @@
 
 //= require ./vendor/jquery.flexdatalist
 
-$('.flexdatalist').flexdatalist({
-    minLength: 0,
-    valueProperty: '*',
-    selectionRequired: true
+$('input.flexdatalist.fetchUnits').flexdatalist();
+
+$('input.flexdatalist.fetchUnits').on( 'change:flexdatalist', function(event, set, options) {
+    alert(set.value);
+    $(this).closest('.flexdatalistUnits').data('data', 'quantities/' + set.value + '/units_of_measurement.json');
+    $('.flexdatalistUnits').flexdatalist('reset');
 });
