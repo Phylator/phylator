@@ -19,7 +19,7 @@
 
 //= require ./vendor/jquery.flexdatalist
 
-$('input.flexdatalist.fetchUnits').flexdatalist();
+$('input.flexdatalist').flexdatalist();
 
 $('input.flexdatalist.fetchUnits').on( 'change:flexdatalist', function(event, set, options) {
     alert(set.value);
