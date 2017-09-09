@@ -5,6 +5,7 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
             t.string :symbol, unique: true
             t.string :name, unique: true
             t.text :description
+            t.boolean :vector, default: false, null: false
 
             t.timestamps
 

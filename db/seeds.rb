@@ -23,7 +23,7 @@ time = Quantity.create! symbol: 't', name: 'Time', description: 'The duration of
 time_measurement = UnitOfMeasurement.create! quantity: time, symbol: 's', name: 'second', base: true
 
 # Electric current
-electric_current = Quantity.create! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
+electric_current = Quantity.create! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time', vector: true
 electric_current_measurement = UnitOfMeasurement.create! quantity: electric_current, symbol: 'A', name: 'ampere', base: true
 
 # Temperature
@@ -44,5 +44,5 @@ absement = Quantity.create! symbol: 'A', name: 'Absement', description: 'Measure
 absement_measurement = UnitOfMeasurement.create! quantity: absement, symbol: 'm×s', base: true
 
 # Acceleration
-acceleration = Quantity.create! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time'
+acceleration = Quantity.create! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
 acceleration_measurement = UnitOfMeasurement.create! quantity: acceleration, symbol: 'm×s⁻²', base: true
