@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170907174616) do
     t.string "symbol"
     t.string "name"
     t.text "description"
+    t.boolean "vector", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

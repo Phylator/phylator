@@ -2,7 +2,7 @@ development:
     adapter: mysql2
     encoding: utf8
     pool: 5
-    database: slooob_development
+    database: phylator_development
     username: root
     password: 0402Jonas
     port: 3306
@@ -11,7 +11,7 @@ test:
     adapter: mysql2
     encoding: utf8
     pool: 5
-    database: slooob_test
+    database: phylator_test
     username: root
     password: 0402Jonas
     port: 3306

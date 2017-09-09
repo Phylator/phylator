@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
         current_user.locale
     end
     def location_detected_locale
-        location = current_visit.location
-        return nil unless location.present? && location.country_code.present? && I18n.available_locales.include?(location.country_code)
-        location.country_code.include?("-") ? location.country_code : location.country_code.downcase
+        language = browser.accept_language.first
+        return nil unless language.present? && language.code.present? && I18n.available_locales.include?(language.code)
+        language.code
     end
     def header_detected_locale
         if request.env['HTTP_ACCEPT_LANGUAGE'].present?
