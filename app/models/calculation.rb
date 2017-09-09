@@ -1,7 +1,7 @@
 class Calculation < ApplicationRecord
 
     before_create :randomize_id
-    after_create_commit :calculate
+    after_create_commit :calc
 
     validates :measurements, presence: true
 
@@ -16,8 +16,9 @@ class Calculation < ApplicationRecord
 
     private
 
-    def calculate
-        self.build_result
+    def calc
+        result = self.build_result
+        result.save!
     end
 
     def randomize_id

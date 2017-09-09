@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "calculation_id"
     t.bigint "unit_of_measurement_id"
     t.bigint "quantity_id"
-    t.integer "value"
+    t.decimal "value", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["calculation_id"], name: "index_calculation_measurements_on_calculation_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
 
   create_table "calculation_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "calculation_id"
+    t.decimal "value", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["calculation_id"], name: "index_calculation_results_on_calculation_id"
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "unit_of_measurement_id"
     t.bigint "user_id"
     t.string "name"
+    t.text "description"
     t.boolean "public", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -154,8 +156,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "quantity_id"
     t.string "symbol"
     t.string "name"
-    t.string "exchange_rate", default: "1", null: false
-    t.boolean "base", default: false, null: false
+    t.string "to_base", default: "*1", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quantity_id"], name: "index_unit_of_measurements_on_quantity_id"

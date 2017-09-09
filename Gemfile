@@ -19,6 +19,7 @@ gem 'devise', '~> 4.3'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'browser', '~> 2.5'
 gem 'friendly_id', '~> 5.2'
+gem 'dentaku', '~> 2.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

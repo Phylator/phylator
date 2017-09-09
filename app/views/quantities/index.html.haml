@@ -1,0 +1,17 @@
+%h1 Quantities
+
+%table
+    %thead
+        %tr
+            %th{ colspan: '3' }
+
+    %tbody>
+        - @quantities.each do |quantity|
+            %tr>
+                %td= link_to 'Show', quantity
+                %td= link_to 'Edit', edit_quantity_url quantity
+                %td= link_to 'Destroy', quantity, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Quantity', new_quantity_url

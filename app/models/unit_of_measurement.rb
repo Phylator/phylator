@@ -4,9 +4,17 @@ class UnitOfMeasurement < ApplicationRecord
 
     validates :symbol, presence: true, uniqueness: true
     validates :name, uniqueness: true
-    validates :exchange_rate, presence: true
+    validates :to_base, presence: true
 
     belongs_to :quantity
     has_many :measurements, class_name: 'Calculation::Measurement'
+
+    def base?
+        self.to_base == '*1'
+    end
+
+    def from_base
+        self.to_base.tr('*/', '/*')
+    end
 
 end
