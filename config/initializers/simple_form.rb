@@ -28,11 +28,7 @@ SimpleForm.setup do |config|
         # extensions by default, you can change `b.optional` to `b.use`.
 
         # Calculates maxlength from length validations for string inputs
-        # and/or database column lengths
         b.optional :maxlength
-
-        # Calculate minlength from length validations for string inputs
-        b.optional :minlength
 
         # Calculates pattern from format validations for string inputs
         b.optional :pattern
@@ -44,9 +40,10 @@ SimpleForm.setup do |config|
         b.optional :readonly
 
         ## Inputs
-        b.use :label_input
+        b.use :label
         b.use :hint,  wrap_with: { tag: :span, class: :hint }
         b.use :error, wrap_with: { tag: :span, class: :error }
+        b.use :input
 
         ## full_messages_for
         # If you want to display the full error message for the attribute, you can
@@ -101,7 +98,7 @@ SimpleForm.setup do |config|
     # config.item_wrapper_class = nil
 
     # How the label text should be generated altogether with the required text.
-    # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+    config.label_text = lambda { |label, required, explicit_label| "#{label}" }
 
     # You can define the class to use on all labels. Default is nil.
     # config.label_class = nil
@@ -121,7 +118,7 @@ SimpleForm.setup do |config|
     # in this configuration, which is recommended due to some quirks from different browsers.
     # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
     # change this configuration to true.
-    config.browser_validations = false
+    config.browser_validations = true
 
     # Collection of methods to detect if a file type was given.
     # config.file_methods = [ :mounted_as, :file?, :public_filename ]
@@ -166,4 +163,23 @@ SimpleForm.setup do |config|
 
     # Defines which i18n scope will be used in Simple Form.
     # config.i18n_scope = 'simple_form'
+
+
+
+
+    config.wrappers :checks, class: :input, hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+        b.use :html5
+        b.use :placeholder
+        b.optional :maxlength
+        b.optional :pattern
+        b.optional :min_max
+        b.optional :readonly
+
+        ## Inputs
+        b.use :input
+        b.use :label
+        b.use :hint,  wrap_with: { tag: :span, class: :hint }
+        b.use :error, wrap_with: { tag: :span, class: :error }
+    end
+    config.wrapper_mappings = { boolean: :checks }
 end

@@ -7,7 +7,7 @@
         = f.input :public, as: :boolean
         = f.input :name
         = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, id: 'quantity', class: 'flexdatalist fetchUnits', data: { data: 'quantities.json', search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-        = f.input :unit_of_measurement_id, required: true, placeholder: 'Unit of measurement', input_html: { disabled: true, type: :text, class: 'flexdatalist flexdatalistUnits', data: { search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+        = f.input :unit_of_measurement_id, disabled: true, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, class: 'flexdatalist flexdatalistUnits', data: { search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
         -# %datalist#quantity
         -#     - @quantities.each do |quantity|
         -#         %option{ value: quantity.id }= quantity.name
