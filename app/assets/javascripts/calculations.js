@@ -17,4 +17,5 @@ function calculationsFormAddMeasurement(el, association, content) {
         regexp = new RegExp('new_' + association, 'g');
     el.before(content.replace(regexp, new_id));
     calculationsFormRemoveMeasurement();
+    flexdatalistInit();
 };
