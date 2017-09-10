@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
     devise_for :users
 
+    get 'setup', to: 'welcome#index'
+
     root 'calculations#new'
 
     match '*path', to: 'errors#not_found', via: :all
