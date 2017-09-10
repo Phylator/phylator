@@ -1,15 +1,9 @@
 module ApplicationHelper
 
-    def simple_remove_fields name, f
-        f.input(:_destroy, as: :hidden) + link_to(name, 'javascript:void(0);', class: 'removeMeasurement')
-    end
-
-    def simple_add_fields name, f, association, partial, function
-        new_object = f.object.class.reflect_on_association(association).klass.new
-        fields = f.simple_fields_for(association, new_object, child_index: "new_#{association}") do |builder|
-            render partial, f: builder, destroy: true, id: SecureRandom.hex
-        end
-        link_to(name, 'javascript:void(0);', onClick: "#{function}($(this), \"#{association}\", \"#{escape_javascript(fields)}\")")
+    # Returns class hierarchy in a string
+    # e.g.: class_hierarchy( [params[:controller].split("/").each { |n| n }, action_name] )
+    def class_hierarchy options = [], delimiter = ' '
+        options.map(&:inspect).join(delimiter).gsub('"', '').gsub(',', '').gsub('[', '').gsub(']', '')
     end
 
 end
