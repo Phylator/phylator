@@ -1,0 +1,27 @@
+\:root
+    @each $name, $color in $colors
+        @if type-of($color) == "map"
+            @each $subname, $subsize in $color
+                --color-#{$name}-#{$subname}: $subsize
+        @elseif type-of($color) == "number"
+            --color-#{$name}: $color
+
+@function color( $color-name, $color-variant:null, $true-val:false )
+    @if $true-val == true
+        @if ( $color-variant != null )
+            @return map-get(map-get($colors,$color-name),$color-variant)
+        @else
+            @return map-get($colors,$color-name)
+    @else
+        @if ( $color-variant != null )
+            @return var(--color-#{$color-name}-#{$color-variant})
+        @else
+            @return var(--color-#{$color-name})
+
+
+/* Usage */
+
+// color($name)
+// color($name, $type)
+// color(name, type, false) -> var(--name-type)
+// color(name, type, true) -> value-for-name

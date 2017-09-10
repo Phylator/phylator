@@ -1,0 +1,20 @@
+input[type="checkbox"]
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    width: px(20)
+    height: px(20)
+    padding: 0
+    cursor: pointer
+    border-radius: size(border-radius, sm)
+    transition: border .15s ease-out, background-color .15s ease-out, box-shadow .15s ease-out
+    &:checked
+        background: color(accent, dark)
+        background: url("components/forms/checkbox/check_white.png") no-repeat center center, color(accent, dark)
+        border: none
+        position: relative
+    &:not(:checked)
+        background: white
+        // background: url("components/forms/checkbox/check_light.png") no-repeat center center
+        &:not(:focus)
+            border-color: color(light, light)

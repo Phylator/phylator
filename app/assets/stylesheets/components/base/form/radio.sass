@@ -1,0 +1,26 @@
+input[type="radio"]
+    width: auto
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    width: px(20)
+    height: px(20)
+    padding: 0
+    cursor: pointer
+    border-radius: 50%
+    &:checked
+        background: color(accent, dark)
+        background: image-url("components/forms/checkbox/check_white.png") no-repeat center center, color(accent, dark)
+        border: none
+        position: relative
+    &:not(:checked)
+        background: white
+        // background: url("components/forms/checkbox/check_light.png") no-repeat center center
+        &:not(:focus)
+            border-color: color(light, light)
+    & ~ label
+        margin: 0 0 px(2) px(15)
+
+.radio-wrapper
+    & > label:not(:last-child)
+        margin-right: px(25)

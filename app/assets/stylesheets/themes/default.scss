@@ -1,0 +1,51 @@
+$colors: (
+    accent: (
+        darker: #2840d0,
+        dark: #2d5ee8,
+        base: #2d81e8,
+        light: #76b8f0,
+        lighter: #b6e1f9
+    ),
+    dark: (
+        darker: #242a38,
+        dark: #2d3446,
+        base: #364158,
+        light: #404b61,
+        lighter: #545d71
+    ),
+    light: (
+        darker: #9297a7,
+        dark: #b6b9c2,
+        base: #d7d9df,
+        light: #e7e8ec,
+        lighter: #eff0f2
+    ),
+    blue: (
+        darker: #202e56,
+        dark: #283a6c,
+        base: #394f89,
+        light: #43588f,
+        lighter: #576a9b
+    ),
+    green: (
+        dark: #73d287,
+        base: #88df9b,
+        light: #ade7b9,
+        lighter: #cdf0d4
+    ),
+    yellow: (
+        dark: #fff29c,
+        base: #fff7bd,
+        light: #fffad4
+    ),
+    red: (
+        dark: #e2816a,
+        base: #f19882,
+        light: #f6bcae,
+        lighter: #f9d6cd
+    ),
+    overlay: (
+        dark: transparentize(#242a38, 0.87),
+        light: transparentize(#fff, 0.87)
+    )
+);

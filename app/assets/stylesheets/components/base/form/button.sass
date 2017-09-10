@@ -1,0 +1,118 @@
+a.btn, button, input[type="submit"]
+    display: flex
+    justify-content: center
+    align-items: center
+    font-family: $font-family
+    padding: px(16) px(20) px(18)
+    &.btn
+        padding: px(15) px(20) px(17)
+    font-size: px(14)
+    font-weight: 600
+    line-height: 1
+    background: color(accent, dark)
+    color: white
+    cursor: pointer
+    border: 1px solid color(accent, dark)
+    -webkit-border-radius: size(border-radius, sm)
+    -moz-border-radius: size(border-radius, sm)
+    border-radius: size(border-radius, sm)
+    text-decoration: none !important
+    transition: all .35s ease-out
+    &:hover, &:focus, &:active
+        background: color(accent, darker)
+        border-color: color(accent, darker)
+    &:focus, &:active
+        box-shadow: 0 0 0 px(3.5) rgba(color(accent, dark, true), .35)
+    &.disabled
+        opacity: .35
+        cursor: not-allowed
+        &:hover
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+        &:focus, &:active
+            pointer-events: none
+
+
+    &.wide
+        padding-left: px(45)
+        padding-right: px(45)
+
+
+    &.small
+        padding: px(12) px(18) px(14)
+
+
+    &.secondary
+        background: transparent
+        color: color(accent, dark) !important
+        border-color: color(light, light)
+        &:hover
+            border-color: color(accent, dark)
+
+
+    &.white
+        background: rgba(white, .1)
+        color: white
+        border-color: transparent
+        border-radius: size(border-radius, md)
+        &:hover
+            background: rgba(white, .2)
+            border-color: transparent
+        &:focus, &:active
+            box-shadow: style(box-shadow, sm)
+
+    &.flexible
+        position: relative
+        border-radius: size(border-radius, md)
+        &:hover
+            transform: translate3d(0, px(-1), 0)
+            box-shadow: style(box-shadow, sm)
+
+
+    &.omniauth
+        background: color(accent, base)
+        border-color: color(accent, base)
+        padding-left: px(20)
+        padding-right: px(20)
+        svg
+            margin-right: px(85)
+            width: px(16)
+            height: px(16)
+            path
+                stroke: white
+        span
+            margin-right: px(80)
+        .caption
+            width: 100%
+            text-align: center
+        &:focus, &:hover
+            border-color: color(accent, dark)
+
+
+    &.loader
+        position: relative
+        svg
+            display: none
+            position: absolute
+            width: px(24)
+            height: px(24)
+            line
+                stroke: white
+                stroke-width: 1.5
+        &.loading
+            height: px(50)
+            padding-top: 0
+            padding-bottom: 0
+
+
+    &.icon
+        padding: px(15) px(20) px(17)
+        &.btn
+            padding: px(14) px(22) px(16)
+        & > span
+            position: relative
+            top: px(1)
+            svg
+                margin-right: px(12)
+            .caption
+                position: relative
+                top: px(-2)

@@ -1,0 +1,940 @@
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+:root {
+  --color-accent-darker: $subsize;
+  --color-accent-dark: $subsize;
+  --color-accent-base: $subsize;
+  --color-accent-light: $subsize;
+  --color-accent-lighter: $subsize;
+  --color-dark-darker: $subsize;
+  --color-dark-dark: $subsize;
+  --color-dark-base: $subsize;
+  --color-dark-light: $subsize;
+  --color-dark-lighter: $subsize;
+  --color-light-darker: $subsize;
+  --color-light-dark: $subsize;
+  --color-light-base: $subsize;
+  --color-light-light: $subsize;
+  --color-light-lighter: $subsize;
+  --color-blue-darker: $subsize;
+  --color-blue-dark: $subsize;
+  --color-blue-base: $subsize;
+  --color-blue-light: $subsize;
+  --color-blue-lighter: $subsize;
+  --color-green-dark: $subsize;
+  --color-green-base: $subsize;
+  --color-green-light: $subsize;
+  --color-green-lighter: $subsize;
+  --color-yellow-dark: $subsize;
+  --color-yellow-base: $subsize;
+  --color-yellow-light: $subsize;
+  --color-red-dark: $subsize;
+  --color-red-base: $subsize;
+  --color-red-light: $subsize;
+  --color-red-lighter: $subsize;
+  --color-overlay-dark: $subsize;
+  --color-overlay-light: $subsize;
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-accent: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-dark: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-light: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-blue: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-green: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-yellow: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-red: $color;
+  }
+}
+@elseif type-of($color) == "number" {
+  /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/color.sass */
+  :root {
+    --color-overlay: $color;
+  }
+}
+/* Usage */
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/size.scss */
+:root {
+  --size-border-radius-sm: $subsize
+  ;
+  --size-border-radius-md: $subsize
+  ;
+  --size-border-radius-lg: $subsize
+  ;
+}
+
+/* Usage */
+/* line 9, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/variables/style.scss */
+:root {
+  --style-box-shadow-sm: $subsize
+  ;
+  --style-box-shadow-md: $subsize
+  ;
+  --style-box-shadow-lg: $subsize
+  ;
+}
+
+/* Usage */
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/color.sass */
+.primary {
+  color: var(--color-primary) !important;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/color.sass */
+.secondary {
+  color: var(--color-secondary) !important;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/color.sass */
+.accent {
+  color: var(--color-accent) !important;
+}
+
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/color.sass */
+.washed {
+  background: var(--color-washed) !important;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.normal {
+  font-style: normal;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.italic {
+  font-style: italic;
+}
+
+/* line 12, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.primary-font {
+  font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.secondary-font {
+  font-family: freight-text-pro, serif !important;
+}
+
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.code {
+  font-family: "Inconsolata", "Roboto Mono", "Courier New", monospace !important;
+}
+
+/* line 23, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* line 25, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.downcase {
+  text-transform: downcase;
+}
+
+/* line 32, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.black {
+  font-weight: 800;
+}
+
+/* line 34, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.bold {
+  font-weight: 700;
+}
+
+/* line 36, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.semibold {
+  font-weight: 600;
+}
+
+/* line 38, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.medium {
+  font-weight: 500;
+}
+
+/* line 40, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
+.thin {
+  font-weight: 300;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.hidden {
+  display: none !important;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.hide {
+  display: none;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.transparent {
+  opacity: 0;
+}
+
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.display {
+  display: block !important;
+}
+
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.show {
+  display: block;
+}
+
+/* line 15, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/visibility.sass */
+.intransparent {
+  opacity: 1;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/transform.sass */
+.h-flip {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/transform.sass */
+.v-flip {
+  -moz-transform: scale(1, -1);
+  -webkit-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/select.sass */
+.not-selectable {
+  user-select: none;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/select.sass */
+.selectable {
+  user-select: auto;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/select.sass */
+.autoselect:focus {
+  user-select: all;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/scroll.sass */
+.scrollable {
+  overflow-y: auto;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/scroll.sass */
+.not-scrollable {
+  overflow-y: hidden;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-editable {
+  cursor: text;
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-help {
+  cursor: help;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-move {
+  cursor: move;
+}
+
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-grab {
+  cursor: grab;
+}
+
+/* line 9, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-progress {
+  cursor: progress;
+}
+
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-wait {
+  cursor: wait;
+}
+
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/cursor.sass */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/**
+ * jQuery Flexdatalist basic stylesheet.
+ *
+ * Version:
+ * 2.2.1
+ *
+ * Github:
+ * https://github.com/sergiodlopes/jquery-flexdatalist/
+ *
+ */
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #444;
+  border-top: none;
+  background: #fff;
+  z-index: 100000;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  color: #333;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 27, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 15px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 33, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li span.highlight {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* line 37, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li.active {
+  background: #2B82C9;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* line 42, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li.no-results {
+  font-style: italic;
+  color: #888;
+}
+
+/**
+ * Grouped items
+ */
+/* line 50, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li.group {
+  background: #F3F3F4;
+  color: #666;
+  padding: 8px 8px;
+}
+
+/* line 55, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li .group-name {
+  font-weight: 700;
+}
+
+/* line 58, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-results li .group-item-count {
+  font-size: 85%;
+  color: #777;
+  display: inline-block;
+  padding-left: 10px;
+}
+
+/**
+ * Multiple items
+ */
+/* line 68, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple:before {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* line 73, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  cursor: text;
+}
+
+/* line 81, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple.disabled {
+  background-color: #eee;
+  cursor: default;
+}
+
+/* line 85, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* line 90, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  float: left;
+}
+
+/* line 96, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.input-container,
+.flexdatalist-multiple li.input-container input {
+  border: none;
+  width: 40px;
+  height: auto;
+  padding: 0 0 0 4px;
+  line-height: 24px;
+}
+
+/* line 104, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.value {
+  display: inline-block;
+  padding: 2px 25px 2px 7px;
+  background: #eee;
+  border-radius: 3px;
+  color: #777;
+  line-height: 20px;
+}
+
+/* line 112, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.toggle {
+  cursor: pointer;
+  transition: opacity ease-in-out 300ms;
+}
+
+/* line 116, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.toggle.disabled {
+  text-decoration: line-through;
+  opacity: 0.80;
+}
+
+/* line 121, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.value span.fdl-remove {
+  font-weight: 700;
+  padding: 2px 5px;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.70;
+}
+
+/* line 132, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/jquery.flexdatalist.css */
+.flexdatalist-multiple li.value span.fdl-remove:hover {
+  opacity: 1;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+h1 {
+  font-family: freight-text-pro, serif;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+h2 {
+  font-weight: normal;
+  font-size: 1.875em;
+}
+
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+h3 {
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+h4 {
+  color: var(--color-light-darker);
+  font-weight: normal;
+  font-size: 1em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/paragraph.sass */
+p {
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.75em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a {
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--color-accent-dark);
+  font-weight: 400;
+}
+/* line 6, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a:hover, a:focus {
+  text-decoration: underline;
+}
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.inherit {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+}
+/* line 12, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.inherit:hover {
+  color: var(--color-accent-dark);
+}
+/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.simple {
+  text-decoration: none !important;
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.big {
+  font-weight: 600;
+}
+/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.thick {
+  font-weight: 700;
+}
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a.big:hover, a.big:focus, a.thick:hover, a.thick:focus {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn, button, input[type="submit"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 1em 1.25em 1.125em;
+  font-size: 0.875em;
+  font-weight: 600;
+  line-height: 1;
+  background: var(--color-accent-dark);
+  color: white;
+  cursor: pointer;
+  border: 1px solid var(--color-accent-dark);
+  -webkit-border-radius: var(--sizes-border-radius-sm);
+  -moz-border-radius: var(--sizes-border-radius-sm);
+  border-radius: var(--sizes-border-radius-sm);
+  text-decoration: none !important;
+  transition: all 0.35s ease-out;
+}
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.btn, button.btn, input[type="submit"].btn {
+  padding: 0.9375em 1.25em 1.0625em;
+}
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn:hover, a.btn:focus, a.btn:active, button:hover, button:focus, button:active, input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
+  background: var(--color-accent-darker);
+  border-color: var(--color-accent-darker);
+}
+/* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn:focus, a.btn:active, button:focus, button:active, input[type="submit"]:focus, input[type="submit"]:active {
+  box-shadow: 0 0 0 0.21875em rgba(45, 94, 232, 0.35);
+}
+/* line 26, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.disabled, button.disabled, input[type="submit"].disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+/* line 29, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.disabled:hover, button.disabled:hover, input[type="submit"].disabled:hover {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+/* line 31, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.disabled:focus, a.btn.disabled:active, button.disabled:focus, button.disabled:active, input[type="submit"].disabled:focus, input[type="submit"].disabled:active {
+  pointer-events: none;
+}
+/* line 35, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.wide, button.wide, input[type="submit"].wide {
+  padding-left: 2.8125em;
+  padding-right: 2.8125em;
+}
+/* line 40, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.small, button.small, input[type="submit"].small {
+  padding: 0.75em 1.125em 0.875em;
+}
+/* line 44, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.secondary, button.secondary, input[type="submit"].secondary {
+  background: transparent;
+  color: var(--color-accent-dark) !important;
+  border-color: var(--color-light-light);
+}
+/* line 48, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.secondary:hover, button.secondary:hover, input[type="submit"].secondary:hover {
+  border-color: var(--color-accent-dark);
+}
+/* line 52, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.white, button.white, input[type="submit"].white {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: transparent;
+  border-radius: var(--sizes-border-radius-md);
+}
+/* line 57, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.white:hover, button.white:hover, input[type="submit"].white:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: transparent;
+}
+/* line 60, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.white:focus, a.btn.white:active, button.white:focus, button.white:active, input[type="submit"].white:focus, input[type="submit"].white:active {
+  box-shadow: var(--styles-box-shadow-sm);
+}
+/* line 63, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.flexible, button.flexible, input[type="submit"].flexible {
+  position: relative;
+  border-radius: var(--sizes-border-radius-md);
+}
+/* line 66, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.flexible:hover, button.flexible:hover, input[type="submit"].flexible:hover {
+  transform: translate3d(0, -0.0625em, 0);
+  box-shadow: var(--styles-box-shadow-sm);
+}
+/* line 71, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth, button.omniauth, input[type="submit"].omniauth {
+  background: var(--color-accent-base);
+  border-color: var(--color-accent-base);
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+}
+/* line 76, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth svg, button.omniauth svg, input[type="submit"].omniauth svg {
+  margin-right: 5.3125em;
+  width: 1em;
+  height: 1em;
+}
+/* line 80, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth svg path, button.omniauth svg path, input[type="submit"].omniauth svg path {
+  stroke: white;
+}
+/* line 82, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth span, button.omniauth span, input[type="submit"].omniauth span {
+  margin-right: 5em;
+}
+/* line 84, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth .caption, button.omniauth .caption, input[type="submit"].omniauth .caption {
+  width: 100%;
+  text-align: center;
+}
+/* line 87, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.omniauth:focus, a.btn.omniauth:hover, button.omniauth:focus, button.omniauth:hover, input[type="submit"].omniauth:focus, input[type="submit"].omniauth:hover {
+  border-color: var(--color-accent-dark);
+}
+/* line 91, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.loader, button.loader, input[type="submit"].loader {
+  position: relative;
+}
+/* line 93, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.loader svg, button.loader svg, input[type="submit"].loader svg {
+  display: none;
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+}
+/* line 98, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.loader svg line, button.loader svg line, input[type="submit"].loader svg line {
+  stroke: white;
+  stroke-width: 1.5;
+}
+/* line 101, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.loader.loading, button.loader.loading, input[type="submit"].loader.loading {
+  height: 3.125em;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* line 107, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon, button.icon, input[type="submit"].icon {
+  padding: 0.9375em 1.25em 1.0625em;
+}
+/* line 109, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon.btn, button.icon.btn, input[type="submit"].icon.btn {
+  padding: 0.875em 1.375em 1em;
+}
+/* line 111, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon > span, button.icon > span, input[type="submit"].icon > span {
+  position: relative;
+  top: 0.0625em;
+}
+/* line 114, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon > span svg, button.icon > span svg, input[type="submit"].icon > span svg {
+  margin-right: 0.75em;
+}
+/* line 116, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon > span .caption, button.icon > span .caption, input[type="submit"].icon > span .caption {
+  position: relative;
+  top: -0.125em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.25em;
+  height: 1.25em;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--sizes-border-radius-sm);
+  transition: border 0.15s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
+input[type="checkbox"]:checked {
+  background: var(--color-accent-dark);
+  background: url("components/forms/checkbox/check_white.png") no-repeat center center, var(--color-accent-dark);
+  border: none;
+  position: relative;
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
+input[type="checkbox"]:not(:checked) {
+  background: white;
+}
+/* line 19, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
+input[type="checkbox"]:not(:checked):not(:focus) {
+  border-color: var(--color-light-light);
+}
+
+/* line 3, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/error.sass */
+div.field_with_errors label {
+  display: none;
+}
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/error.sass */
+div.field_with_errors span.error {
+  display: block;
+}
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/error.sass */
+div.field_with_errors input {
+  border-color: var(--color-red-dark);
+}
+/* line 9, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/error.sass */
+div.field_with_errors input:active, div.field_with_errors input:focus {
+  border-color: var(--color-red-dark);
+  box-shadow: 0 0 0 0.21875em rgba(226, 129, 106, 0.35);
+}
+
+/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/error.sass */
+span.error {
+  display: none;
+  color: var(--color-red-dark);
+  font-weight: 600;
+  font-size: 0.875em;
+  line-height: 1;
+  margin-bottom: 0.875em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]) {
+  font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 0.9375em;
+  line-height: 1;
+  color: var(--color-dark-dark);
+  background: white;
+  border: 1px solid var(--color-light-light);
+  border-radius: var(--sizes-border-radius-sm);
+  padding: 0.8125em 0.9375em 0.875em;
+  width: 100%;
+}
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]):active, input:not([type="submit"]):focus {
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 0 0 0.21875em rgba(45, 94, 232, 0.35);
+}
+/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]):active.valid, input:not([type="submit"]):active.green, input:not([type="submit"]):focus.valid, input:not([type="submit"]):focus.green {
+  box-shadow: 0 0 0 0.21875em rgba(115, 210, 135, 0.35);
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]):active.error, input:not([type="submit"]):active.red, input:not([type="submit"]):focus.error, input:not([type="submit"]):focus.red {
+  box-shadow: 0 0 0 0.21875em rgba(226, 129, 106, 0.35);
+}
+/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]).valid, input:not([type="submit"]).green {
+  border-color: var(--color-green-dark);
+}
+/* line 20, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+input:not([type="submit"]).error, input:not([type="submit"]).red {
+  border-color: var(--color-red-dark);
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/label.sass */
+label {
+  display: block;
+  color: var(--color-dark-dark);
+  font-weight: 600;
+  font-size: 0.875em;
+  line-height: 1;
+  margin-bottom: 0.875em;
+}
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/label.sass */
+label.boolean {
+  margin: 0 0 0.1875em 0.9375em;
+}
+/* line 10, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/label.sass */
+label.checkbox {
+  margin: 0;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+input[type="radio"] {
+  width: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.25em;
+  height: 1.25em;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+input[type="radio"]:checked {
+  background: var(--color-accent-dark);
+  background: url(/images/components/forms/checkbox/check_white.png) no-repeat center center, var(--color-accent-dark);
+  border: none;
+  position: relative;
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+input[type="radio"]:not(:checked) {
+  background: white;
+}
+/* line 19, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+input[type="radio"]:not(:checked):not(:focus) {
+  border-color: var(--color-light-light);
+}
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+input[type="radio"] ~ label {
+  margin: 0 0 0.125em 0.9375em;
+}
+
+/* line 25, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/radio.sass */
+.radio-wrapper > label:not(:last-child) {
+  margin-right: 1.5625em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea {
+  font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 0.9375em;
+  color: var(--color-dark-dark);
+  background: white;
+  border: 1px solid var(--color-light-light);
+  border-radius: var(--sizes-border-radius-sm);
+  width: 100%;
+  resize: none;
+  line-height: 1.75;
+  padding: 0.8125em 0.9375em;
+  min-height: 7.8125em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea:active, textarea:focus {
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 0 0 0.21875em rgba(45, 94, 232, 0.35);
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea:active.valid, textarea:active.green, textarea:focus.valid, textarea:focus.green {
+  box-shadow: 0 0 0 0.21875em rgba(115, 210, 135, 0.35);
+}
+/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea:active.error, textarea:active.red, textarea:focus.error, textarea:focus.red {
+  box-shadow: 0 0 0 0.21875em rgba(226, 129, 106, 0.35);
+}
+/* line 20, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea.valid, textarea.green {
+  border-color: var(--color-green-dark);
+}
+/* line 22, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
+textarea.error, textarea.red {
+  border-color: var(--color-red-dark);
+}
+
+/* line 2, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/assets/loader.sass */
+svg.nc-icon.loader * {
+  transition: initial;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  visibility: visible;
+  text-decoration: none;
+  outline: none;
+  transition: all 0.15s ease-out;
+}
+
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+:root {
+  font-size: 15px;
+  font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-dark-dark);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+@media (min-width: 800px) {
+  /* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+  :root {
+    font-size: 16px;
+  }
+}
+
+/* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+html {
+  background: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

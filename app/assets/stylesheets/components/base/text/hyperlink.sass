@@ -1,0 +1,23 @@
+a
+    font-size: inherit
+    line-height: inherit
+    color: color(accent, dark)
+    font-weight: 400
+    &:hover, &:focus
+        text-decoration: underline
+    &.inherit
+        color: inherit
+        font-weight: inherit
+        text-decoration: underline
+        &:hover
+            color: color(accent, dark)
+    &.simple
+        text-decoration: none !important
+    &.big
+        font-weight: 600
+    &.thick
+        font-weight: 700
+    &.big, &.thick
+        &:hover, &:focus
+            text-decoration: none
+            opacity: .8
