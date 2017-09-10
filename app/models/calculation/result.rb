@@ -5,6 +5,7 @@ class Calculation::Result < ApplicationRecord
     before_validation :calc
 
     include Value
+    include MarginOfError
 
     validates :value, presence: true
 

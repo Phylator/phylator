@@ -3,6 +3,7 @@ class Calculation::Measurement < ApplicationRecord
     self.table_name = 'calculation_measurements'
 
     include Value
+    include MarginOfError
 
     validates :value, presence: true
 
