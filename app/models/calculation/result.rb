@@ -77,7 +77,4 @@ class Calculation::Result < ApplicationRecord
 
     end
 
-    def get_equations equation
-    end
-
 end
