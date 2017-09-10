@@ -22,6 +22,7 @@ class Calculation::Result < ApplicationRecord
         # Init variables & convert to base
         measurements_per_quantity = self.calculation.measurements.group_by &:quantity_id
         decimal_places = []
+        decimal_places_errors = []
         symbols = []
         measurements_per_quantity.each do |quantity_id, measurements|
             measurement = measurements.first
@@ -35,7 +36,7 @@ class Calculation::Result < ApplicationRecord
                 margin_of_error = calculator.evaluate( measurement.margin_of_error.to_s + measurement.unit_of_measurement.to_base )
             end
             decimal_places << decimals(var)
-            decimal_places << decimals(margin_of_error)
+            decimal_places_errors << decimals(margin_of_error)
             calculator.store "#{symbol}": var
             calculator.store "#{symbol}_error": margin_of_error
         end
@@ -53,7 +54,7 @@ class Calculation::Result < ApplicationRecord
             ## Resulting errors
             error_equations = {}
             ::Equation.all.each do |equation|
-                error_equations["#{equation.quantity.symbol}_error"] = equation.equation # append '_error'
+                error_equations["#{equation.quantity.symbol}_error"] = equation.equation # append '_error' to each variable in equation
             end
             calculation_errors = calculator.solve equations
             calculation_error = calculation_errors["#{self.calculation.quantity.symbol}_error"]
@@ -67,10 +68,10 @@ class Calculation::Result < ApplicationRecord
         base = self.calculation.unit_of_measurement.base?
         if base
             result = calculator.evaluate("round(#{symbol}, #{decimal_places.min})")
-            resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places.min})")
+            resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
         else
             result = calculator.evaluate( "round(#{symbol}, #{decimal_places.min})" + self.calculation.unit_of_measurement.from_base )
-            resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places.min})" + self.calculation.unit_of_measurement.from_base )
+            resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
         end
 
 
