@@ -4,7 +4,7 @@ class Equation < ApplicationRecord
 
     after_save :associate
 
-    belongs_to :quantity
+    belongs_to :quantity, class_name: '::Quantity'
 
     has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
     has_many :quantities, through: :equation_quantities

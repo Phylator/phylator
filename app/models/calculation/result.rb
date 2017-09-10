@@ -29,7 +29,7 @@ class Calculation::Result < ApplicationRecord
             symbols << symbol
             if measurement.unit_of_measurement.base?
                 var = measurement.value
-                margin_of_error = measurement.margin_of_error || 0
+                margin_of_error = measurement.margin_of_error
             else
                 var = calculator.evaluate( measurement.value.to_s + measurement.unit_of_measurement.to_base )
                 margin_of_error = calculator.evaluate( measurement.margin_of_error.to_s + measurement.unit_of_measurement.to_base )
@@ -40,37 +40,43 @@ class Calculation::Result < ApplicationRecord
             calculator.store "#{symbol}_error": margin_of_error
         end
 
-        if measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
-
-            # Convert
-            symbol = self.calculation.quantity.symbol
-            if self.calculation.unit_of_measurement.base?
-                result = calculator.evaluate(symbol)
-                resulting_error = calculator.evaluate("#{symbol}_error")
-            else
-                result = calculator.evaluate( symbol.to_s + self.calculation.unit_of_measurement.from_base )
-                resulting_error = calculator.evaluate( "#{symbol}_error" + self.calculation.unit_of_measurement.from_base )
-            end
-
-        else
-
-            # Solve equations
+        # Solve equations
+        unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
+            ## Results
             equations = {}
             ::Equation.all.each do |equation|
                 equations[equation.quantity.symbol] = equation.equation
             end
-            results = calculator.solve equations
-            result = results[self.calculation.quantity.symbol]
+            calculation_results = calculator.solve equations
+            calculation_result = calculation_results[self.calculation.quantity.symbol]
 
+            ## Resulting errors
+            error_equations = {}
+            ::Equation.all.each do |equation|
+                error_equations["#{equation.quantity.symbol}_error"] = equation.equation # append '_error'
+            end
+            calculation_errors = calculator.solve equations
+            calculation_error = calculation_errors["#{self.calculation.quantity.symbol}_error"]
+
+            calculator.store "#{self.calculation.quantity.symbol}": calculation_result if calculation_result.present?
+            calculator.store "#{self.calculation.quantity.symbol}_error": calculation_error if calculation_error.present?
+        end
+
+        # Convert
+        symbol = self.calculation.quantity.symbol
+        base = self.calculation.unit_of_measurement.base?
+        if base
+            result = calculator.evaluate("round(#{symbol}, #{decimal_places.min})")
+            resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places.min})")
+        else
+            result = calculator.evaluate( "round(#{symbol}, #{decimal_places.min})" + self.calculation.unit_of_measurement.from_base )
+            resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places.min})" + self.calculation.unit_of_measurement.from_base )
         end
 
 
         if result == :undefined
             self.undefined = true
         else
-            # Round result to lowest decimal places of measurements
-            result = result.round decimal_places.min
-
             self.value = result
             self.margin_of_error = resulting_error
         end
