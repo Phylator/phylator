@@ -1,3 +1,5 @@
-%h1= @calculation.result.value
+%h1= @calculation.result.value.to_s
+
+%h2= '+- ' + @calculation.result.margin_of_error.to_s
 
 = link_to 'Back', calculations_url

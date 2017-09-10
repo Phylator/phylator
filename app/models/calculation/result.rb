@@ -6,6 +6,7 @@ class Calculation::Result < ApplicationRecord
 
     include Value
     include MarginOfError
+    include Decimals
 
     validates :value, presence: true
 
@@ -23,15 +24,21 @@ class Calculation::Result < ApplicationRecord
 
         # Init variables & convert to base
         measurements_per_quantity = self.calculation.measurements.group_by &:quantity_id
+        decimal_places = []
         measurements_per_quantity.each do |quantity_id, measurements|
             measurement = measurements.first
             symbol = ::Quantity.find(quantity_id).symbol
             if measurement.unit_of_measurement.base?
                 var = measurement.value
+                margin_of_error = measurement.margin_of_error || 0
             else
                 var = calculator.evaluate( measurement.value.to_s + measurement.unit_of_measurement.to_base )
+                margin_of_error = calculator.evaluate( measurement.margin_of_error.to_s + measurement.unit_of_measurement.to_base )
             end
+            decimal_places << decimals(var)
+            decimal_places << decimals(margin_of_error)
             calculator.store "#{symbol}": var
+            calculator.store "#{symbol}_error": margin_of_error
         end
 
         # Convert
@@ -39,12 +46,18 @@ class Calculation::Result < ApplicationRecord
             symbol = self.calculation.quantity.symbol
             if self.calculation.unit_of_measurement.base?
                 result = calculator.evaluate(symbol)
+                resulting_error = calculator.evaluate("#{symbol}_error")
             else
                 result = calculator.evaluate( symbol.to_s + self.calculation.unit_of_measurement.from_base )
+                resulting_error = calculator.evaluate( "#{symbol}_error" + self.calculation.unit_of_measurement.from_base )
             end
         end
 
+        # Round result to lowest decimal places of measurements
+        result = result.round decimal_places.min
+
         self.value = result
+        self.margin_of_error = resulting_error
 
     end
 
