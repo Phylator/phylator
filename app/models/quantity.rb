@@ -13,7 +13,7 @@ class Quantity < ApplicationRecord
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
 
-    has_many :belongs_to_equations, through: :belonging_equations, source: :equation
-    has_many :belonging_equations, class_name: '::Equation::Quantity', dependent: :destroy
+    has_many :belongs_to_equations, through: :equation_quantities, source: :equation
+    has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
 
 end
