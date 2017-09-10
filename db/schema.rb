@@ -23,15 +23,6 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name"
   end
 
-  create_table "calculation_equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "result_id"
-    t.bigint "equation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["equation_id"], name: "index_calculation_equations_on_equation_id"
-    t.index ["result_id"], name: "index_calculation_equations_on_result_id"
-  end
-
   create_table "calculation_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "calculation_id"
     t.bigint "unit_of_measurement_id"
@@ -49,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "calculation_id"
     t.text "value"
     t.text "margin_of_error"
+    t.boolean "undefined", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["calculation_id"], name: "index_calculation_results_on_calculation_id"
@@ -99,8 +91,6 @@ ActiveRecord::Schema.define(version: 20170909180710) do
 
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "symbol"
-    t.string "name"
-    t.text "description"
     t.boolean "vector", default: false, null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
@@ -113,8 +103,8 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.text "description", null: false
+    t.string "name"
+    t.text "description"
     t.index ["locale"], name: "index_quantity_translations_on_locale"
     t.index ["quantity_id"], name: "index_quantity_translations_on_quantity_id"
   end
@@ -149,7 +139,7 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
+    t.string "name"
     t.index ["locale"], name: "index_unit_of_measurement_translations_on_locale"
     t.index ["unit_of_measurement_id"], name: "index_f259fbc27d7e027653a37aa7f9212acb0d54a1ef"
   end
@@ -157,7 +147,6 @@ ActiveRecord::Schema.define(version: 20170909180710) do
   create_table "unit_of_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "quantity_id"
     t.string "symbol"
-    t.string "name"
     t.string "to_base", default: "*1", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

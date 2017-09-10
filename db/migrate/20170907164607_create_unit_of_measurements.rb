@@ -5,7 +5,6 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
             t.references :quantity, index: true
 
             t.string :symbol
-            t.string :name
             t.string :to_base, default: '*1', null: false
 
             t.timestamps
@@ -14,7 +13,7 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
 
         reversible do |dir|
             dir.up do
-                UnitOfMeasurement.create_translation_table! name: { type: :string, null: false, unique: true }
+                UnitOfMeasurement.create_translation_table! name: { type: :string, unique: true }
             end
 
             dir.down do

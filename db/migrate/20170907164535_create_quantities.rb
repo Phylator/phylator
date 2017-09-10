@@ -3,8 +3,6 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
         create_table :quantities do |t|
 
             t.string :symbol, unique: true
-            t.string :name, unique: true
-            t.text :description
             t.boolean :vector, default: false, null: false
 
             t.string :slug, null: false, unique: true, index: true
@@ -15,7 +13,7 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
 
         reversible do |dir|
             dir.up do
-                Quantity.create_translation_table! name: { type: :string, null: false, unique: true }, description: { type: :text, null: false }
+                Quantity.create_translation_table! name: { type: :string, unique: true }, description: { type: :text }
             end
 
             dir.down do

@@ -7,42 +7,51 @@ I18n.locale = 'en'
 
 
 # Length
-length = Quantity.create! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
-length_measurement = UnitOfMeasurement.create! quantity: length, symbol: 'm', name: 'metre'
-length_measurement = UnitOfMeasurement.create! quantity: length, symbol: 'km', to_base: '*1000'
-length_measurement = UnitOfMeasurement.create! quantity: length, symbol: 'dm', to_base: '/10'
-length_measurement = UnitOfMeasurement.create! quantity: length, symbol: 'cm', to_base: '/100'
-length_measurement = UnitOfMeasurement.create! quantity: length, symbol: 'µm', to_base: '/1000000'
+length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'm', name: 'metre'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'km', to_base: '*1000'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'dm', to_base: '/10'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'cm', to_base: '/100'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'µm', to_base: '/1000000'
 
 # Mass
-mass = Quantity.create! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'
-mass_measurement = UnitOfMeasurement.create! quantity: mass, symbol: 'kg', name: 'kilogram'
+mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'
+mass_measurement = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'kg', name: 'kilogram'
 
 # Time
-time = Quantity.create! symbol: 't', name: 'Time', description: 'The duration of an event'
-time_measurement = UnitOfMeasurement.create! quantity: time, symbol: 's', name: 'second'
+time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event'
+time_measurement = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 's', name: 'second'
 
 # Electric current
-electric_current = Quantity.create! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
-electric_current_measurement = UnitOfMeasurement.create! quantity: electric_current, symbol: 'A', name: 'ampere'
+electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
+electric_current_measurement = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere'
 
 # Temperature
-temperature = Quantity.create! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
-temperature_measurement = UnitOfMeasurement.create! quantity: temperature, symbol: 'K', name: 'kelvin'
+temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
+temperature_measurement = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: 'K', name: 'kelvin'
 
 # Amount of substance
-amount_of_substance = Quantity.create! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
-amount_of_substance_measurement = UnitOfMeasurement.create! quantity: amount_of_substance, symbol: 'mol', name: 'mole'
+amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
+amount_of_substance_measurement = UnitOfMeasurement.find_or_create_by! quantity: amount_of_substance, symbol: 'mol', name: 'mole'
 
 # Luminous intensity
-luminous_intensity = Quantity.create! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
-luminous_intensity_measurement = UnitOfMeasurement.create! quantity: luminous_intensity, symbol: 'cd', name: 'candela'
+luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
+luminous_intensity_measurement = UnitOfMeasurement.find_or_create_by! quantity: luminous_intensity, symbol: 'cd', name: 'candela'
 
 
 # Absement
-absement = Quantity.create! symbol: 'A', name: 'Absement', description: 'Measure of sustained displacement: the first integral of displacement', vector: true
-absement_measurement = UnitOfMeasurement.create! quantity: absement, symbol: 'm×s'
+absement = Quantity.find_or_create_by! symbol: 'A', name: 'Absement', description: 'Measure of sustained displacement: the first integral of displacement', vector: true
+absement_measurement = UnitOfMeasurement.find_or_create_by! quantity: absement, symbol: 'm×s'
 
 # Acceleration
-acceleration = Quantity.create! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
-acceleration_measurement = UnitOfMeasurement.create! quantity: acceleration, symbol: 'm×s⁻²'
+acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
+acceleration_measurement = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm×s⁻²'
+
+
+
+
+
+# Equations
+
+## Length
+Equation.find_or_create_by! quantity: length, equation: 'm*t'

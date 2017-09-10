@@ -2,12 +2,20 @@ class Equation < ApplicationRecord
 
     validates :equation, presence: true
 
+    after_validation :associate
+
     belongs_to :quantity
 
     has_many :quantities, through: :belonging_quantities
-    has_many :belonging_quantities, class_name: 'Equation::Quantitiy', dependent: :destroy
+    has_many :belonging_quantities, class_name: '::Equation::Quantitiy', dependent: :destroy
 
-    has_many :results, through: :belonging_results
-    has_many :belonging_results, class_name: 'Calculation::Result', dependent: :destroy
+    private
+
+    def associate
+        symbols = self.equation.split(/\W+/)
+        symbols.each do |symbol|
+            self.belonging_quantities.create! quantity_id: Quantity.find_by(symbol: symbol).id
+        end
+    end
 
 end

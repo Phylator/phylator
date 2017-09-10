@@ -7,6 +7,8 @@ class CreateCalculationResults < ActiveRecord::Migration[5.1]
             t.text :value
             t.text :margin_of_error
 
+            t.boolean :undefined, null: false, default: false
+
             t.timestamps
 
         end
