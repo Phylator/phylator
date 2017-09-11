@@ -10,10 +10,10 @@ $styles: (
     @each $name, $style in $styles {
         @if type-of($style) == "map" {
             @each $subname, $subsize in $style {
-                --style-#{$name}-#{$subname}: $subsize
+                --style-#{$name}-#{$subname}: #{$subsize}
             }
         } @elseif type-of($style) == "number" {
-            --style-#{$name}: $style
+            --style-#{$name}: #{$style}
         }
     }
 }

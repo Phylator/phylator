@@ -6,10 +6,10 @@ $sizes: (
     @each $name, $size in $sizes {
         @if type-of($size) == "map" {
             @each $subname, $subsize in $size {
-                --size-#{$name}-#{$subname}: $subsize
+                --size-#{$name}-#{$subname}: #{$subsize}
             }
         } @elseif type-of($size) == "number" {
-            --size-#{$name}: $size
+            --size-#{$name}: #{$size}
         }
     }
 }
