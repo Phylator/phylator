@@ -1,2 +1,24 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.haml
+.slick{ data: { slick: '{ "slidesToShow": 1, "slidesToScroll": 1 }' } }
+
+    #slide1.slide
+        %h1 Specify what to calculate
+        %p Start by selecting what physical quantity in which unit of measurement you want to get.
+
+    #slide2.slide
+        %h1 Enter your measurements
+        %p Then enter all your measurements. Add a margin of error if your result is not precise.
+
+    #slide3.slide
+        %h1 Contributing
+        %p
+            You wish to enhance this app?
+            = link_to 'Phylator', 'https://github.com/jonhue/phylator', target: '_blank'
+            is open source. We'd love it if you would consider contributing.
+
+    #slide4.slide
+        %h1 Keep your calculations close
+        %p Create or sign into your Phylator account to save your calculations and get more benefits.
+
+        .wrapper
+            = link_to 'Signin', new_user_session_url, class: 'btn secondary'
+            = link_to 'Get started', language_url, class: 'btn'

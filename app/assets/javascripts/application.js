@@ -15,7 +15,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require ahoy
-//= require_tree .
 
 //= require ./vendor/jquery.flexdatalist
 //= require ./vendor/slick
+
+//= require_tree .
