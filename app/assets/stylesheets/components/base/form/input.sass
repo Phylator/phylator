@@ -2,20 +2,14 @@ input:not([type="submit"])
     font-family: $font-family
     font-size: px(15)
     line-height: 1
-    color: color(dark, dark)
-    background: white
-    border: 1px solid color(light, light)
+    color: white
+    background: rgba(white, .05)
     border-radius: size(border-radius, sm)
-    padding: px(13) px(15) px(14)
+    border: none
+    padding: px(15) px(17) px(16)
+    // width: px(350)
+    // max-width: 90%
     width: 100%
+    margin-top: px(14)
     &:active, &:focus
-        border-color: color(accent, dark)
-        box-shadow: 0 0 0 px(3.5) rgba(color(accent, dark, true), .35)
-        &.valid, &.green
-            box-shadow: 0 0 0 px(3.5) rgba(color(green, dark, true), .35)
-        &.error, &.red
-            box-shadow: 0 0 0 px(3.5) rgba(color(red, dark, true), .35)
-    &.valid, &.green
-        border-color: color(green, dark)
-    &.error, &.red
-        border-color: color(red, dark)
+        background: rgba(white, .1)

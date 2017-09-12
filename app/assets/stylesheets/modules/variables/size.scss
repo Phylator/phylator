@@ -4,11 +4,11 @@ $sizes: (
 
 :root {
     @each $name, $size in $sizes {
-        @if type-of($size) == "map" {
+        @if type-of($size) == map {
             @each $subname, $subsize in $size {
                 --size-#{$name}-#{$subname}: #{$subsize}
             }
-        } @elseif type-of($size) == "number" {
+        } @else if type-of($size) == number {
             --size-#{$name}: #{$size}
         }
     }
@@ -16,9 +16,9 @@ $sizes: (
 
 @function size($size-name, $size-variant:null) {
     @if ($size-variant != null) {
-        @return var(--sizes-#{$size-name}-#{$size-variant})
+        @return var(--size-#{$size-name}-#{$size-variant})
     } @else {
-        @return var(--sizes-#{$size-name})
+        @return var(--size-#{$size-name})
     }
 }
 

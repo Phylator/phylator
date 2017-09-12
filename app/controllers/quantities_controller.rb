@@ -6,6 +6,7 @@ class QuantitiesController < ApplicationController
     # GET /quantities
     # GET /quantities.json
     def index
+        render layout: 'app'
         @quantities = Quantity.all
     end
 

@@ -13,7 +13,7 @@
     font-family: $font-family !important
     font-weight: 400
     font-style: normal
-    color: color(dark, dark)
+    color: color(light, base)
     -webkit-font-smoothing: antialiased
     text-rendering: optimizeLegibility
     -moz-osx-font-smoothing: grayscale
@@ -22,8 +22,10 @@
         font-size: 16px
 
 html
-    background: white
+    background: color(dark, darker)
     overflow-x: hidden
     overflow-y: auto
     @include bigger-than(mobile)
         display: none
+    body
+        min-height: 100vh

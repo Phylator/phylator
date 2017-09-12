@@ -8,11 +8,11 @@ $styles: (
 
 :root {
     @each $name, $style in $styles {
-        @if type-of($style) == "map" {
+        @if type-of($style) == map {
             @each $subname, $subsize in $style {
                 --style-#{$name}-#{$subname}: #{$subsize}
             }
-        } @elseif type-of($style) == "number" {
+        } @else if type-of($style) == number {
             --style-#{$name}: #{$style}
         }
     }
@@ -20,9 +20,9 @@ $styles: (
 
 @function style($style-name, $style-variant:null) {
     @if ($style-variant != null) {
-        @return var(--styles-#{$style-name}-#{$style-variant})
+        @return var(--style-#{$style-name}-#{$style-variant})
     } @else {
-        @return var(--styles-#{$style-name})
+        @return var(--style-#{$style-name})
     }
 }
 

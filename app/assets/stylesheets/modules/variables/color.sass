@@ -1,10 +1,10 @@
 \:root
     @each $name, $color in $colors
-        @if type-of($color) == "map"
+        @if type-of($color) == map
             @each $subname, $subsize in $color
                 --color-#{$name}-#{$subname}: #{$subsize}
-        @elseif type-of($color) == "number"
-            --color-#{$name}: $color
+        @else if type-of($color) == color
+            --color-#{$name}: #{$color}
 
 @function color( $color-name, $color-variant:null, $true-val:false )
     @if $true-val == true

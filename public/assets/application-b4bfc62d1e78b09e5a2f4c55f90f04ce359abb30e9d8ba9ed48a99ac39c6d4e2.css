@@ -946,13 +946,13 @@ template {
 
 /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h1 {
-  font-family: freight-text-pro, serif;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 3em;
 }
 
-/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+/* line 4, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h2 {
+  font-family: freight-text-pro, serif;
   font-weight: normal;
   font-size: 1.875em;
 }
@@ -1243,33 +1243,17 @@ input:not([type="submit"]) {
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.9375em;
   line-height: 1;
-  color: var(--color-dark-dark);
-  background: white;
-  border: 1px solid var(--color-light-light);
-  border-radius: var(--sizes-border-radius-sm);
+  color: white;
+  background: transparent;
+  border: 3px dashed rgba(255, 255, 255, 0.75);
+  border-radius: var(--sizes-border-radius-lg);
   padding: 0.8125em 0.9375em 0.875em;
   width: 100%;
+  max-width: 21.875em;
 }
-/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
+/* line 12, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
 input:not([type="submit"]):active, input:not([type="submit"]):focus {
-  border-color: var(--color-accent-dark);
-  box-shadow: 0 0 0 0.21875em rgba(45, 94, 232, 0.35);
-}
-/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
-input:not([type="submit"]):active.valid, input:not([type="submit"]):active.green, input:not([type="submit"]):focus.valid, input:not([type="submit"]):focus.green {
-  box-shadow: 0 0 0 0.21875em rgba(115, 210, 135, 0.35);
-}
-/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
-input:not([type="submit"]):active.error, input:not([type="submit"]):active.red, input:not([type="submit"]):focus.error, input:not([type="submit"]):focus.red {
-  box-shadow: 0 0 0 0.21875em rgba(226, 129, 106, 0.35);
-}
-/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
-input:not([type="submit"]).valid, input:not([type="submit"]).green {
-  border-color: var(--color-green-dark);
-}
-/* line 20, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/input.sass */
-input:not([type="submit"]).error, input:not([type="submit"]).red {
-  border-color: var(--color-red-dark);
+  border-color: white;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/label.sass */
@@ -1363,6 +1347,44 @@ textarea.error, textarea.red {
   border-color: var(--color-red-dark);
 }
 
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results {
+  transition: none;
+  border: 0.0625em solid var(--color-light-light);
+  box-shadow: var(--styles-box-shadow-sm);
+  color: inherit;
+  background: var(--color-light-lighter);
+}
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results li {
+  border-bottom: 0.0625em solid var(--color-light-light);
+  padding: 0.75em 0.9375em;
+  font-size: inherit;
+  line-height: 1.5em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results li span.highlight {
+  font-weight: 700;
+  text-decoration: none;
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results li span.item-symbol {
+  font-family: freight-text-pro, serif;
+  color: var(--color-dark-lightest);
+  float: left;
+  width: 1.5625em;
+}
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results li.active {
+  background: var(--color-light-light);
+  color: inherit;
+}
+/* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+.flexdatalist-results li.no-results {
+  font-style: normal;
+  color: var(--color-light-dark);
+}
+
 /* line 2, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/assets/loader.sass */
 svg.nc-icon.loader * {
   transition: initial;
@@ -1386,7 +1408,7 @@ svg.nc-icon.loader * {
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
   font-weight: 400;
   font-style: normal;
-  color: var(--color-dark-dark);
+  color: var(--color-light-light);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
@@ -1401,7 +1423,26 @@ svg.nc-icon.loader * {
 
 /* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
 html {
-  background: white;
+  background: var(--color-dark-darker);
   overflow-x: hidden;
   overflow-y: auto;
+}
+@media (min-width: 800px) {
+  /* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+  html {
+    display: none;
+  }
+}
+/* line 30, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/document/index.sass */
+html body {
+  min-height: 100vh;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new {
+  background: linear-gradient(193deg, var(--color-accent-darker), var(--color-accent-base));
+}
+/* line 4, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new label {
+  display: none;
 }

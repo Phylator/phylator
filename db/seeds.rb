@@ -8,11 +8,11 @@ I18n.locale = 'en'
 
 # Length
 length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
-UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'm', name: 'metre'
-UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'km', to_base: '*1000'
-UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'dm', to_base: '/10'
-UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'cm', to_base: '/100'
-UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'µm', to_base: '/1000000'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'm', name: 'meter'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'km', name: 'kilometer', to_base: '*1000'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'dm', name: 'dezimeter', to_base: '/10'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'cm', name: 'centimeter', to_base: '/100'
+UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'µm', name: 'micrometer', to_base: '/1000000'
 
 # Mass
 mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'

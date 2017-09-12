@@ -18,9 +18,10 @@
 
         = csrf_meta_tags
 
+        = area :head
 
-    %body{ class: class_hierarchy( [params[:controller].split("/").each { |n| n }, action_name] ) }
 
-        %p.notice= notice
-        %p.alert= alert
-        = yield
+    %body{ class: class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ) }
+
+        = area :body do
+            = yield

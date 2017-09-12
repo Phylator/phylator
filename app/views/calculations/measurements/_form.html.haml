@@ -1,7 +1,10 @@
 - local_assigns[:id] = 1 unless local_assigns[:id]
 .measurement
     = f.input :value, as: :integer, required: true, input_html: { step: 'any' }
-    = f.input :margin_of_error, as: :integer, input_html: { step: 'any' }
-    = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, id: 'quantity' + local_assigns[:id].to_s, class: 'flexdatalist', data: { units: '#quantityUnits' + local_assigns[:id].to_s, data: 'quantities.json', search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-    = f.input :unit_of_measurement_id, disabled: true, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, id: 'quantityUnits' + local_assigns[:id].to_s, data: { search_in: 'symbol', text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity' + local_assigns[:id].to_s, selection_required: 'true', value_property: 'id', min_length: '0' } }
+    %p.margin-of-error
+        Add margin of error
+        = f.input :margin_of_error, as: :integer, input_html: { step: 'any' }, wrapper_html: { class: 'hide' }
+    = f.input :quantity_id, required: true, input_html: { type: :text, id: 'quantity' + local_assigns[:id].to_s, class: 'flexdatalist', data: { units: '#quantityUnits' + local_assigns[:id].to_s, data: 'quantities.json', search_in: ['symbol', 'name'], text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    = f.input :unit_of_measurement_id, disabled: true, required: true, input_html: { type: :text, id: 'quantityUnits' + local_assigns[:id].to_s, data: { search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity' + local_assigns[:id].to_s, selection_required: 'true', value_property: 'id', min_length: '0' } }
     = simple_remove_fields 'Remove', f if local_assigns[:destroy]
+    %hr

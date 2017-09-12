@@ -1,14 +1,15 @@
 = simple_form_for(@calculation) do |f|
     = f.error_notification
 
-    .form-inputs
-        - if current_user
-            = f.input :user_id, value: current_user.id, as: :hidden
+    - if current_user
+        = f.input :user_id, value: current_user.id, as: :hidden
+    .quantity
+        = f.input :quantity_id, required: true, label: 'Choose a physical quantity', input_html: { type: :text, autofocus: true, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'quantities.json', search_in: ['symbol', 'name'], text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    .unit
+        = f.input :unit_of_measurement_id, disabled: true, required: true, input_html: { type: :text, id: 'quantityUnits', data: { search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+    .measurements.content-disabled
         = f.simple_fields_for :measurements do |builder|
             = render 'calculations/measurements/form', f: builder
-        = simple_add_fields 'Add', f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'
-        = f.input :quantity_id, required: true, placeholder: 'Physical quantity', input_html: { type: :text, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'quantities.json', search_in: 'name', text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-        = f.input :unit_of_measurement_id, disabled: true, required: true, placeholder: 'Unit of measurement', input_html: { type: :text, id: 'quantityUnits', data: { search_in: 'symbol', text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
-
-    .form-actions
-        = f.button :submit
+        .submit-wrapper
+            = f.button :submit, 'Calculate'
+            = simple_add_fields 'Add measurement', f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'

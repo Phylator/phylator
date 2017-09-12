@@ -1,0 +1,7 @@
+= extends :application do
+    = replace :body do
+
+        %p.notice= notice
+        %p.alert= alert
+        = area :content do
+            = yield

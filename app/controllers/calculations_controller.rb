@@ -8,6 +8,7 @@ class CalculationsController < ApplicationController
     # GET /calculations
     # GET /calculations.json
     def index
+        render layout: 'app'
         @calculations = Calculation.all
     end
 

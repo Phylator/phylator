@@ -15,7 +15,9 @@ function calculationsFormRemoveMeasurement() {
 function calculationsFormAddMeasurement(el, association, content) {
     var new_id = new Date().getTime(),
         regexp = new RegExp('new_' + association, 'g');
-    el.before(content.replace(regexp, new_id));
+    el.parent().before(content.replace(regexp, new_id));
     calculationsFormRemoveMeasurement();
-    flexdatalistInit();
+    flexdatalistInit(el.parent().prev());
+    calculationsNewMarginOfErrorInit();
+    $('input.numeric.integer.required[type="number"]:last-child').focus();
 };

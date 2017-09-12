@@ -18,4 +18,4 @@
 //= require_tree .
 
 //= require ./vendor/jquery.flexdatalist
-//= require ./vendor/anime
+//= require ./vendor/slick
