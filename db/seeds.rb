@@ -55,3 +55,18 @@ acceleration_measurement = UnitOfMeasurement.find_or_create_by! quantity: accele
 
 ## Length
 Equation.find_or_create_by! quantity: length, equation: 'm*t'
+
+
+
+
+# Translations
+
+I18n.locale = 'de'
+
+## Length
+length = Quantity.find_or_create_by! symbol: 'l', name: 'Strecke', description: 'Die eindimensionale Ausdehnung eines Gegenstandes'
+UnitOfMeasurement.find_or_create_by! symbol: 'm', name: 'Meter'
+UnitOfMeasurement.find_or_create_by! symbol: 'km', name: 'Kilometer'
+UnitOfMeasurement.find_or_create_by! symbol: 'dm', name: 'Dezimeter'
+UnitOfMeasurement.find_or_create_by! symbol: 'cm', name: 'Zentimeter'
+UnitOfMeasurement.find_or_create_by! symbol: 'µm', name: 'Mikrometer'
