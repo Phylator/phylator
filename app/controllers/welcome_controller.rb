@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
 
     def index
-        redirect_to root_url if current_user || session.has_key?(:locale)
+        redirect_to root_url if current_user || session[:setup]
+        session[:setup] = true
     end
 
     def language
