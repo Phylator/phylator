@@ -1,24 +1,24 @@
 .slick{ data: { slick: '{ "slidesToShow": 1, "slidesToScroll": 1 }' } }
 
     #slide1.slide
-        %h1 Specify what to calculate
-        %p Start by selecting what physical quantity in which unit of measurement you want to get.
+        %h1= t 'welcome.index.slide1.title'
+        %p= t 'welcome.index.slide1.content'
 
     #slide2.slide
-        %h1 Enter your measurements
-        %p Then enter all your measurements. Add a margin of error if your result is not precise.
+        %h1= t 'welcome.index.slide2.title'
+        %p= t 'welcome.index.slide2.content'
 
     #slide3.slide
-        %h1 Contributing
+        %h1= t 'd.contribute'
         %p
-            You wish to enhance this app?
+            = t 'welcome.index.slide3.content1'
             = link_to 'Phylator', 'https://github.com/jonhue/phylator', target: '_blank'
-            is open source. We'd love it if you would consider contributing.
+            = t 'welcome.index.slide3.content2'
 
     #slide4.slide
-        %h1 Keep your calculations close
-        %p Create or sign into your Phylator account to save your calculations and get more benefits.
+        %h1= t 'welcome.index.slide4.title'
+        %p= t 'welcome.index.slide4.content'
 
         .wrapper
-            = link_to 'Signin', new_user_session_url, class: 'btn secondary'
-            = link_to 'Get started', language_url, class: 'btn'
+            = link_to t('d.signin'), new_user_session_url, class: 'btn secondary'
+            = link_to t('cd.get_started'), language_url, class: 'btn'

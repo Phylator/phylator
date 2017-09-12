@@ -1,6 +1,6 @@
 %p.setup.invisible
-    %span.quantity Quantity
-    %span.in in
-    %span.unit unit
+    %span.quantity= t 'd.quantity'
+    %span.in= t 'd.in'.downcase
+    %span.unit= t('d.unit').downcase
 
 = render 'form', calculation: @calculation

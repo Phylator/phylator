@@ -1,0 +1,7 @@
+en:
+    calculations:
+        form:
+            quantity:
+                label: Wähle eine physikalische Größe
+            measurements:
+                add: Messwert hinzufügen
