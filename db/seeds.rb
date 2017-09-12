@@ -89,47 +89,47 @@ Equation.find_or_create_by! quantity: length, equation: 'm*t'
 # Translations
 
 ## Length
-length.attributes = { name: 'Strecke', description: 'Die eindimensionale Ausdehnung eines Gegenstandes', locale: :de }
-length_meter.attributes = { name: 'Meter', locale: :de }
-length_exameter.attributes = { name: 'Exameter', locale: :de }
-length_petameter.attributes = { name: 'Petameter', locale: :de }
-length_terameter.attributes = { name: 'Terameter', locale: :de }
-length_gigameter.attributes = { name: 'Gigameter', locale: :de }
-length_megameter.attributes = { name: 'Megameter', locale: :de }
-length_kilometer.attributes = { name: 'Kilometer', locale: :de }
-length_hectometer.attributes = { name: 'Hektometer', locale: :de }
-length_decameter.attributes = { name: 'Dekameter', locale: :de }
-length_decimeter.attributes = { name: 'Dezimeter', locale: :de }
-length_centimeter.attributes = { name: 'Zentimeter', locale: :de }
-length_milimeter.attributes = { name: 'Milimeter', locale: :de }
-length_micrometer.attributes = { name: 'Mikrometer', locale: :de }
-length_nanometer.attributes = { name: 'Nanometer', locale: :de }
-length_picometer.attributes = { name: 'Pikometer', locale: :de }
-length_femtometer.attributes = { name: 'Femtometer', locale: :de }
-length_attometer.attributes = { name: 'Attometer', locale: :de }
-length_inch.attributes = { name: 'Zoll', locale: :de }
-length_foot.attributes = { name: 'Fuß', locale: :de }
-length_yard.attributes = { name: 'Yard', locale: :de }
-length_miles.attributes = { name: 'Meilen', locale: :de }
+length.update_attributes name: 'Länge', description: 'Die eindimensionale Ausdehnung eines Gegenstandes', locale: :de
+length_meter.update_attributes name: 'Meter', locale: :de
+length_exameter.update_attributes name: 'Exameter', locale: :de
+length_petameter.update_attributes name: 'Petameter', locale: :de
+length_terameter.update_attributes name: 'Terameter', locale: :de
+length_gigameter.update_attributes name: 'Gigameter', locale: :de
+length_megameter.update_attributes name: 'Megameter', locale: :de
+length_kilometer.update_attributes name: 'Kilometer', locale: :de
+length_hectometer.update_attributes name: 'Hektometer', locale: :de
+length_decameter.update_attributes name: 'Dekameter', locale: :de
+length_decimeter.update_attributes name: 'Dezimeter', locale: :de
+length_centimeter.update_attributes name: 'Zentimeter', locale: :de
+length_milimeter.update_attributes name: 'Milimeter', locale: :de
+length_micrometer.update_attributes name: 'Mikrometer', locale: :de
+length_nanometer.update_attributes name: 'Nanometer', locale: :de
+length_picometer.update_attributes name: 'Pikometer', locale: :de
+length_femtometer.update_attributes name: 'Femtometer', locale: :de
+length_attometer.update_attributes name: 'Attometer', locale: :de
+length_inch.update_attributes name: 'Zoll', locale: :de
+length_foot.update_attributes name: 'Fuß', locale: :de
+length_yard.update_attributes name: 'Yard', locale: :de
+length_miles.update_attributes name: 'Meilen', locale: :de
 
 ## Mass
-mass.attributes = { name: 'Masse', description: 'Ein Maß für Widerstand gegen Beschleunigung', locale: :de }
-mass_kilogram.attributes = { name: 'Kilogramm', locale: :de }
-mass_exagram.attributes = { name: 'Exagramm', locale: :de }
-mass_petagram.attributes = { name: 'Petagramm', locale: :de }
-mass_teragram.attributes = { name: 'Teragramm', locale: :de }
-mass_gigagram.attributes = { name: 'Gigagramm', locale: :de }
-mass_megagram.attributes = { name: 'Megagramm', locale: :de }
-mass_hectogram.attributes = { name: 'Hektogramm', locale: :de }
-mass_decagram.attributes = { name: 'Dekagramm', locale: :de }
-mass_gram.attributes = { name: 'Gramm', locale: :de }
-mass_decigram.attributes = { name: 'Dezigramm', locale: :de }
-mass_centigram.attributes = { name: 'Zentigramm', locale: :de }
-mass_miligram.attributes = { name: 'Miligramm', locale: :de }
-mass_microgram.attributes = { name: 'Mikrogramm', locale: :de }
-mass_nanogram.attributes = { name: 'Nanogramm', locale: :de }
-mass_picogram.attributes = { name: 'Pikogramm', locale: :de }
-mass_femtogram.attributes = { name: 'Femtogramm', locale: :de }
-mass_attogram.attributes = { name: 'Attogramm', locale: :de }
-mass_atomic_mass.attributes = { name: 'Atomare Masse', locale: :de }
-mass_pound.attributes = { name: 'Pfund', locale: :de }
+mass.update_attributes name: 'Masse', description: 'Ein Maß für Widerstand gegen Beschleunigung', locale: :de
+mass_kilogram.update_attributes name: 'Kilogramm', locale: :de
+mass_exagram.update_attributes name: 'Exagramm', locale: :de
+mass_petagram.update_attributes name: 'Petagramm', locale: :de
+mass_teragram.update_attributes name: 'Teragramm', locale: :de
+mass_gigagram.update_attributes name: 'Gigagramm', locale: :de
+mass_megagram.update_attributes name: 'Megagramm', locale: :de
+mass_hectogram.update_attributes name: 'Hektogramm', locale: :de
+mass_decagram.update_attributes name: 'Dekagramm', locale: :de
+mass_gram.update_attributes name: 'Gramm', locale: :de
+mass_decigram.update_attributes name: 'Dezigramm', locale: :de
+mass_centigram.update_attributes name: 'Zentigramm', locale: :de
+mass_miligram.update_attributes name: 'Miligramm', locale: :de
+mass_microgram.update_attributes name: 'Mikrogramm', locale: :de
+mass_nanogram.update_attributes name: 'Nanogramm', locale: :de
+mass_picogram.update_attributes name: 'Pikogramm', locale: :de
+mass_femtogram.update_attributes name: 'Femtogramm', locale: :de
+mass_attogram.update_attributes name: 'Attogramm', locale: :de
+mass_atomic_mass.update_attributes name: 'Atomare Masse', locale: :de
+mass_pound.update_attributes name: 'Pfund', locale: :de
