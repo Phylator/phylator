@@ -4,7 +4,7 @@
     - if current_user
         = f.input :user_id, value: current_user.id, as: :hidden
     .quantity
-        = f.input :quantity_id, required: true, label: t('calculations.form.quantity.label'), input_html: { type: :text, autofocus: true, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'quantities.json?locale=' + I18n.locale, search_in: ['symbol', 'name'], text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+        = f.input :quantity_id, required: true, label: t('calculations.form.quantity.label'), input_html: { type: :text, autofocus: true, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'quantities.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
     .unit
         = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits', data: { search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
     .measurements.content-disabled
