@@ -72,7 +72,7 @@ luminous_intensity_measurement = UnitOfMeasurement.find_or_create_by! quantity: 
 
 # Acceleration
 acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
-acceleration_measurement = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s⁻²', name: 'Meter per second squared'
+acceleration_measurement = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s⁻²', name: 'meter per second squared'
 
 
 

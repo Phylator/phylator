@@ -12658,1596 +12658,6 @@ return t.dispatch("turbolinks:before-render",{data:{newBody:e}})},r.prototype.no
 
   window.ahoy = ahoy;
 }(window));
-(function() {
-  var context = this;
-
-  (function() {
-    (function() {
-      var slice = [].slice;
-
-      this.ActionCable = {
-        INTERNAL: {
-          "message_types": {
-            "welcome": "welcome",
-            "ping": "ping",
-            "confirmation": "confirm_subscription",
-            "rejection": "reject_subscription"
-          },
-          "default_mount_path": "/cable",
-          "protocols": ["actioncable-v1-json", "actioncable-unsupported"]
-        },
-        WebSocket: window.WebSocket,
-        logger: window.console,
-        createConsumer: function(url) {
-          var ref;
-          if (url == null) {
-            url = (ref = this.getConfig("url")) != null ? ref : this.INTERNAL.default_mount_path;
-          }
-          return new ActionCable.Consumer(this.createWebSocketURL(url));
-        },
-        getConfig: function(name) {
-          var element;
-          element = document.head.querySelector("meta[name='action-cable-" + name + "']");
-          return element != null ? element.getAttribute("content") : void 0;
-        },
-        createWebSocketURL: function(url) {
-          var a;
-          if (url && !/^wss?:/i.test(url)) {
-            a = document.createElement("a");
-            a.href = url;
-            a.href = a.href;
-            a.protocol = a.protocol.replace("http", "ws");
-            return a.href;
-          } else {
-            return url;
-          }
-        },
-        startDebugging: function() {
-          return this.debugging = true;
-        },
-        stopDebugging: function() {
-          return this.debugging = null;
-        },
-        log: function() {
-          var messages, ref;
-          messages = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-          if (this.debugging) {
-            messages.push(Date.now());
-            return (ref = this.logger).log.apply(ref, ["[ActionCable]"].concat(slice.call(messages)));
-          }
-        }
-      };
-
-    }).call(this);
-  }).call(context);
-
-  var ActionCable = context.ActionCable;
-
-  (function() {
-    (function() {
-      var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-      ActionCable.ConnectionMonitor = (function() {
-        var clamp, now, secondsSince;
-
-        ConnectionMonitor.pollInterval = {
-          min: 3,
-          max: 30
-        };
-
-        ConnectionMonitor.staleThreshold = 6;
-
-        function ConnectionMonitor(connection) {
-          this.connection = connection;
-          this.visibilityDidChange = bind(this.visibilityDidChange, this);
-          this.reconnectAttempts = 0;
-        }
-
-        ConnectionMonitor.prototype.start = function() {
-          if (!this.isRunning()) {
-            this.startedAt = now();
-            delete this.stoppedAt;
-            this.startPolling();
-            document.addEventListener("visibilitychange", this.visibilityDidChange);
-            return ActionCable.log("ConnectionMonitor started. pollInterval = " + (this.getPollInterval()) + " ms");
-          }
-        };
-
-        ConnectionMonitor.prototype.stop = function() {
-          if (this.isRunning()) {
-            this.stoppedAt = now();
-            this.stopPolling();
-            document.removeEventListener("visibilitychange", this.visibilityDidChange);
-            return ActionCable.log("ConnectionMonitor stopped");
-          }
-        };
-
-        ConnectionMonitor.prototype.isRunning = function() {
-          return (this.startedAt != null) && (this.stoppedAt == null);
-        };
-
-        ConnectionMonitor.prototype.recordPing = function() {
-          return this.pingedAt = now();
-        };
-
-        ConnectionMonitor.prototype.recordConnect = function() {
-          this.reconnectAttempts = 0;
-          this.recordPing();
-          delete this.disconnectedAt;
-          return ActionCable.log("ConnectionMonitor recorded connect");
-        };
-
-        ConnectionMonitor.prototype.recordDisconnect = function() {
-          this.disconnectedAt = now();
-          return ActionCable.log("ConnectionMonitor recorded disconnect");
-        };
-
-        ConnectionMonitor.prototype.startPolling = function() {
-          this.stopPolling();
-          return this.poll();
-        };
-
-        ConnectionMonitor.prototype.stopPolling = function() {
-          return clearTimeout(this.pollTimeout);
-        };
-
-        ConnectionMonitor.prototype.poll = function() {
-          return this.pollTimeout = setTimeout((function(_this) {
-            return function() {
-              _this.reconnectIfStale();
-              return _this.poll();
-            };
-          })(this), this.getPollInterval());
-        };
-
-        ConnectionMonitor.prototype.getPollInterval = function() {
-          var interval, max, min, ref;
-          ref = this.constructor.pollInterval, min = ref.min, max = ref.max;
-          interval = 5 * Math.log(this.reconnectAttempts + 1);
-          return Math.round(clamp(interval, min, max) * 1000);
-        };
-
-        ConnectionMonitor.prototype.reconnectIfStale = function() {
-          if (this.connectionIsStale()) {
-            ActionCable.log("ConnectionMonitor detected stale connection. reconnectAttempts = " + this.reconnectAttempts + ", pollInterval = " + (this.getPollInterval()) + " ms, time disconnected = " + (secondsSince(this.disconnectedAt)) + " s, stale threshold = " + this.constructor.staleThreshold + " s");
-            this.reconnectAttempts++;
-            if (this.disconnectedRecently()) {
-              return ActionCable.log("ConnectionMonitor skipping reopening recent disconnect");
-            } else {
-              ActionCable.log("ConnectionMonitor reopening");
-              return this.connection.reopen();
-            }
-          }
-        };
-
-        ConnectionMonitor.prototype.connectionIsStale = function() {
-          var ref;
-          return secondsSince((ref = this.pingedAt) != null ? ref : this.startedAt) > this.constructor.staleThreshold;
-        };
-
-        ConnectionMonitor.prototype.disconnectedRecently = function() {
-          return this.disconnectedAt && secondsSince(this.disconnectedAt) < this.constructor.staleThreshold;
-        };
-
-        ConnectionMonitor.prototype.visibilityDidChange = function() {
-          if (document.visibilityState === "visible") {
-            return setTimeout((function(_this) {
-              return function() {
-                if (_this.connectionIsStale() || !_this.connection.isOpen()) {
-                  ActionCable.log("ConnectionMonitor reopening stale connection on visibilitychange. visbilityState = " + document.visibilityState);
-                  return _this.connection.reopen();
-                }
-              };
-            })(this), 200);
-          }
-        };
-
-        now = function() {
-          return new Date().getTime();
-        };
-
-        secondsSince = function(time) {
-          return (now() - time) / 1000;
-        };
-
-        clamp = function(number, min, max) {
-          return Math.max(min, Math.min(max, number));
-        };
-
-        return ConnectionMonitor;
-
-      })();
-
-    }).call(this);
-    (function() {
-      var i, message_types, protocols, ref, supportedProtocols, unsupportedProtocol,
-        slice = [].slice,
-        bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-        indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-
-      ref = ActionCable.INTERNAL, message_types = ref.message_types, protocols = ref.protocols;
-
-      supportedProtocols = 2 <= protocols.length ? slice.call(protocols, 0, i = protocols.length - 1) : (i = 0, []), unsupportedProtocol = protocols[i++];
-
-      ActionCable.Connection = (function() {
-        Connection.reopenDelay = 500;
-
-        function Connection(consumer) {
-          this.consumer = consumer;
-          this.open = bind(this.open, this);
-          this.subscriptions = this.consumer.subscriptions;
-          this.monitor = new ActionCable.ConnectionMonitor(this);
-          this.disconnected = true;
-        }
-
-        Connection.prototype.send = function(data) {
-          if (this.isOpen()) {
-            this.webSocket.send(JSON.stringify(data));
-            return true;
-          } else {
-            return false;
-          }
-        };
-
-        Connection.prototype.open = function() {
-          if (this.isActive()) {
-            ActionCable.log("Attempted to open WebSocket, but existing socket is " + (this.getState()));
-            return false;
-          } else {
-            ActionCable.log("Opening WebSocket, current state is " + (this.getState()) + ", subprotocols: " + protocols);
-            if (this.webSocket != null) {
-              this.uninstallEventHandlers();
-            }
-            this.webSocket = new ActionCable.WebSocket(this.consumer.url, protocols);
-            this.installEventHandlers();
-            this.monitor.start();
-            return true;
-          }
-        };
-
-        Connection.prototype.close = function(arg) {
-          var allowReconnect, ref1;
-          allowReconnect = (arg != null ? arg : {
-            allowReconnect: true
-          }).allowReconnect;
-          if (!allowReconnect) {
-            this.monitor.stop();
-          }
-          if (this.isActive()) {
-            return (ref1 = this.webSocket) != null ? ref1.close() : void 0;
-          }
-        };
-
-        Connection.prototype.reopen = function() {
-          var error;
-          ActionCable.log("Reopening WebSocket, current state is " + (this.getState()));
-          if (this.isActive()) {
-            try {
-              return this.close();
-            } catch (error1) {
-              error = error1;
-              return ActionCable.log("Failed to reopen WebSocket", error);
-            } finally {
-              ActionCable.log("Reopening WebSocket in " + this.constructor.reopenDelay + "ms");
-              setTimeout(this.open, this.constructor.reopenDelay);
-            }
-          } else {
-            return this.open();
-          }
-        };
-
-        Connection.prototype.getProtocol = function() {
-          var ref1;
-          return (ref1 = this.webSocket) != null ? ref1.protocol : void 0;
-        };
-
-        Connection.prototype.isOpen = function() {
-          return this.isState("open");
-        };
-
-        Connection.prototype.isActive = function() {
-          return this.isState("open", "connecting");
-        };
-
-        Connection.prototype.isProtocolSupported = function() {
-          var ref1;
-          return ref1 = this.getProtocol(), indexOf.call(supportedProtocols, ref1) >= 0;
-        };
-
-        Connection.prototype.isState = function() {
-          var ref1, states;
-          states = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-          return ref1 = this.getState(), indexOf.call(states, ref1) >= 0;
-        };
-
-        Connection.prototype.getState = function() {
-          var ref1, state, value;
-          for (state in WebSocket) {
-            value = WebSocket[state];
-            if (value === ((ref1 = this.webSocket) != null ? ref1.readyState : void 0)) {
-              return state.toLowerCase();
-            }
-          }
-          return null;
-        };
-
-        Connection.prototype.installEventHandlers = function() {
-          var eventName, handler;
-          for (eventName in this.events) {
-            handler = this.events[eventName].bind(this);
-            this.webSocket["on" + eventName] = handler;
-          }
-        };
-
-        Connection.prototype.uninstallEventHandlers = function() {
-          var eventName;
-          for (eventName in this.events) {
-            this.webSocket["on" + eventName] = function() {};
-          }
-        };
-
-        Connection.prototype.events = {
-          message: function(event) {
-            var identifier, message, ref1, type;
-            if (!this.isProtocolSupported()) {
-              return;
-            }
-            ref1 = JSON.parse(event.data), identifier = ref1.identifier, message = ref1.message, type = ref1.type;
-            switch (type) {
-              case message_types.welcome:
-                this.monitor.recordConnect();
-                return this.subscriptions.reload();
-              case message_types.ping:
-                return this.monitor.recordPing();
-              case message_types.confirmation:
-                return this.subscriptions.notify(identifier, "connected");
-              case message_types.rejection:
-                return this.subscriptions.reject(identifier);
-              default:
-                return this.subscriptions.notify(identifier, "received", message);
-            }
-          },
-          open: function() {
-            ActionCable.log("WebSocket onopen event, using '" + (this.getProtocol()) + "' subprotocol");
-            this.disconnected = false;
-            if (!this.isProtocolSupported()) {
-              ActionCable.log("Protocol is unsupported. Stopping monitor and disconnecting.");
-              return this.close({
-                allowReconnect: false
-              });
-            }
-          },
-          close: function(event) {
-            ActionCable.log("WebSocket onclose event");
-            if (this.disconnected) {
-              return;
-            }
-            this.disconnected = true;
-            this.monitor.recordDisconnect();
-            return this.subscriptions.notifyAll("disconnected", {
-              willAttemptReconnect: this.monitor.isRunning()
-            });
-          },
-          error: function() {
-            return ActionCable.log("WebSocket onerror event");
-          }
-        };
-
-        return Connection;
-
-      })();
-
-    }).call(this);
-    (function() {
-      var slice = [].slice;
-
-      ActionCable.Subscriptions = (function() {
-        function Subscriptions(consumer) {
-          this.consumer = consumer;
-          this.subscriptions = [];
-        }
-
-        Subscriptions.prototype.create = function(channelName, mixin) {
-          var channel, params, subscription;
-          channel = channelName;
-          params = typeof channel === "object" ? channel : {
-            channel: channel
-          };
-          subscription = new ActionCable.Subscription(this.consumer, params, mixin);
-          return this.add(subscription);
-        };
-
-        Subscriptions.prototype.add = function(subscription) {
-          this.subscriptions.push(subscription);
-          this.consumer.ensureActiveConnection();
-          this.notify(subscription, "initialized");
-          this.sendCommand(subscription, "subscribe");
-          return subscription;
-        };
-
-        Subscriptions.prototype.remove = function(subscription) {
-          this.forget(subscription);
-          if (!this.findAll(subscription.identifier).length) {
-            this.sendCommand(subscription, "unsubscribe");
-          }
-          return subscription;
-        };
-
-        Subscriptions.prototype.reject = function(identifier) {
-          var i, len, ref, results, subscription;
-          ref = this.findAll(identifier);
-          results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            subscription = ref[i];
-            this.forget(subscription);
-            this.notify(subscription, "rejected");
-            results.push(subscription);
-          }
-          return results;
-        };
-
-        Subscriptions.prototype.forget = function(subscription) {
-          var s;
-          this.subscriptions = (function() {
-            var i, len, ref, results;
-            ref = this.subscriptions;
-            results = [];
-            for (i = 0, len = ref.length; i < len; i++) {
-              s = ref[i];
-              if (s !== subscription) {
-                results.push(s);
-              }
-            }
-            return results;
-          }).call(this);
-          return subscription;
-        };
-
-        Subscriptions.prototype.findAll = function(identifier) {
-          var i, len, ref, results, s;
-          ref = this.subscriptions;
-          results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            s = ref[i];
-            if (s.identifier === identifier) {
-              results.push(s);
-            }
-          }
-          return results;
-        };
-
-        Subscriptions.prototype.reload = function() {
-          var i, len, ref, results, subscription;
-          ref = this.subscriptions;
-          results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            subscription = ref[i];
-            results.push(this.sendCommand(subscription, "subscribe"));
-          }
-          return results;
-        };
-
-        Subscriptions.prototype.notifyAll = function() {
-          var args, callbackName, i, len, ref, results, subscription;
-          callbackName = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-          ref = this.subscriptions;
-          results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            subscription = ref[i];
-            results.push(this.notify.apply(this, [subscription, callbackName].concat(slice.call(args))));
-          }
-          return results;
-        };
-
-        Subscriptions.prototype.notify = function() {
-          var args, callbackName, i, len, results, subscription, subscriptions;
-          subscription = arguments[0], callbackName = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-          if (typeof subscription === "string") {
-            subscriptions = this.findAll(subscription);
-          } else {
-            subscriptions = [subscription];
-          }
-          results = [];
-          for (i = 0, len = subscriptions.length; i < len; i++) {
-            subscription = subscriptions[i];
-            results.push(typeof subscription[callbackName] === "function" ? subscription[callbackName].apply(subscription, args) : void 0);
-          }
-          return results;
-        };
-
-        Subscriptions.prototype.sendCommand = function(subscription, command) {
-          var identifier;
-          identifier = subscription.identifier;
-          return this.consumer.send({
-            command: command,
-            identifier: identifier
-          });
-        };
-
-        return Subscriptions;
-
-      })();
-
-    }).call(this);
-    (function() {
-      ActionCable.Subscription = (function() {
-        var extend;
-
-        function Subscription(consumer, params, mixin) {
-          this.consumer = consumer;
-          if (params == null) {
-            params = {};
-          }
-          this.identifier = JSON.stringify(params);
-          extend(this, mixin);
-        }
-
-        Subscription.prototype.perform = function(action, data) {
-          if (data == null) {
-            data = {};
-          }
-          data.action = action;
-          return this.send(data);
-        };
-
-        Subscription.prototype.send = function(data) {
-          return this.consumer.send({
-            command: "message",
-            identifier: this.identifier,
-            data: JSON.stringify(data)
-          });
-        };
-
-        Subscription.prototype.unsubscribe = function() {
-          return this.consumer.subscriptions.remove(this);
-        };
-
-        extend = function(object, properties) {
-          var key, value;
-          if (properties != null) {
-            for (key in properties) {
-              value = properties[key];
-              object[key] = value;
-            }
-          }
-          return object;
-        };
-
-        return Subscription;
-
-      })();
-
-    }).call(this);
-    (function() {
-      ActionCable.Consumer = (function() {
-        function Consumer(url) {
-          this.url = url;
-          this.subscriptions = new ActionCable.Subscriptions(this);
-          this.connection = new ActionCable.Connection(this);
-        }
-
-        Consumer.prototype.send = function(data) {
-          return this.connection.send(data);
-        };
-
-        Consumer.prototype.connect = function() {
-          return this.connection.open();
-        };
-
-        Consumer.prototype.disconnect = function() {
-          return this.connection.close({
-            allowReconnect: false
-          });
-        };
-
-        Consumer.prototype.ensureActiveConnection = function() {
-          if (!this.connection.isActive()) {
-            return this.connection.open();
-          }
-        };
-
-        return Consumer;
-
-      })();
-
-    }).call(this);
-  }).call(this);
-
-  if (typeof module === "object" && module.exports) {
-    module.exports = ActionCable;
-  } else if (typeof define === "function" && define.amd) {
-    define(ActionCable);
-  }
-}).call(this);
-// Action Cable provides the framework to deal with WebSockets in Rails.
-// You can generate new channels where WebSocket features live using the `rails generate channel` command.
-//
-
-
-
-
-(function() {
-  this.App || (this.App = {});
-
-  App.cable = ActionCable.createConsumer();
-
-}).call(this);
-document.addEventListener( 'turbolinks:load', function() {
-    calculationsFormRemoveMeasurement();
-});
-
-
-
-function calculationsFormRemoveMeasurement() {
-    $('a.removeMeasurement').click(function() {
-        var el = $(this);
-        el.closest('input[type="hidden"]').value = '1';
-        el.parent().hide();
-    });
-};
-
-function calculationsFormAddMeasurement(el, association, content) {
-    var new_id = new Date().getTime(),
-        regexp = new RegExp('new_' + association, 'g');
-    el.parent().before(content.replace(regexp, new_id));
-    calculationsFormRemoveMeasurement();
-    flexdatalistInit(el.parent().prev());
-    calculationsNewMarginOfErrorInit();
-    $('input.numeric.integer.required[type="number"]:last-child').focus();
-};
-document.addEventListener( 'turbolinks:load', function() {
-    flexdatalistInit();
-});
-
-
-
-function flexdatalistInit(el = $('body')) {
-
-    el.find('input.flexdatalist').flexdatalist();
-
-    el.find('input.flexdatalist[data-units]').on( 'change:flexdatalist', function(event, set, options) {
-        $($(this).data('units')).data( 'data', ( 'quantities/' + set.value + '/units_of_measurement.json' ) ).flexdatalist().attr('disabled', 'false');
-    });
-
-};
-document.addEventListener( 'turbolinks:load', function() {
-    calculationsNewInit();
-    calculationsNewMarginOfErrorInit();
-});
-
-
-
-function calculationsNewInit() {
-
-    function calculationsNewToggleContent() {
-        if ( $('form > .quantity').is(':visible') ) {
-            $('form > .quantity').fadeToggle(250);
-            $('form > .unit').fadeToggle( 250, function() {
-                $('p.setup').toggleClass('invisible');
-                $('.measurements').toggleClass('content-disabled');
-            });
-        } else {
-            $('p.setup').toggleClass('invisible');
-            $('.measurements').toggleClass('content-disabled');
-            setTimeout(function() {
-                $('form > .quantity').fadeToggle(250);
-                $('form > .unit').fadeToggle(250);
-            }, 250);
-        };
-    };
-
-    $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
-        var unit = object['name'],
-            quantity = $('input#quantity').flexdatalist('value');
-        $('p.setup span.quantity').html(quantity);
-        $('p.setup span.unit').html(unit);
-        calculationsNewToggleContent();
-    });
-    $('p.setup').click(function() {
-        calculationsNewToggleContent();
-    });
-
-};
-
-function calculationsNewMarginOfErrorInit() {
-    $('p.margin-of-error').click(function() {
-        $(this).toggle();
-        var el = $(this).parent().find('.calculation_measurements_margin_of_error');
-        el.toggleClass('hide');
-        if ( !el.hasClass('hide') )
-            el.find('input').focus();
-    });
-};
-/**
- * http://animejs.com
- * JavaScript animation engine
- * @version v2.0.2
- * @author Julian Garnier
- * @copyright ©2017 Julian Garnier
- * Released under the MIT license
-**/
-
-
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals (root is window)
-    root.anime = factory();
-  }
-}(this, () => {
-
-  // Defaults
-
-  const defaultInstanceSettings = {
-    update: undefined,
-    begin: undefined,
-    run: undefined,
-    complete: undefined,
-    loop: 1,
-    direction: 'normal',
-    autoplay: true,
-    offset: 0
-  }
-
-  const defaultTweenSettings = {
-    duration: 1000,
-    delay: 0,
-    easing: 'easeOutElastic',
-    elasticity: 500,
-    round: 0
-  }
-
-  const validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skewX', 'skewY'];
-  let transformString;
-
-  // Utils
-
-  function stringContains(str, text) {
-    return str.indexOf(text) > -1;
-  }
-
-  const is = {
-    arr: a => Array.isArray(a),
-    obj: a => stringContains(Object.prototype.toString.call(a), 'Object'),
-    svg: a => a instanceof SVGElement,
-    dom: a => a.nodeType || is.svg(a),
-    str: a => typeof a === 'string',
-    fnc: a => typeof a === 'function',
-    und: a => typeof a === 'undefined',
-    hex: a => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a),
-    rgb: a => /^rgb/.test(a),
-    hsl: a => /^hsl/.test(a),
-    col: a => (is.hex(a) || is.rgb(a) || is.hsl(a))
-  }
-
-  // BezierEasing https://github.com/gre/bezier-easing
-
-  const bezier = (() => {
-
-    const kSplineTableSize = 11;
-    const kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
-
-    function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1 };
-    function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1 };
-    function C (aA1)      { return 3.0 * aA1 };
-
-    function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT };
-    function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1) };
-
-    function binarySubdivide (aX, aA, aB, mX1, mX2) {
-      let currentX, currentT, i = 0;
-      do {
-        currentT = aA + (aB - aA) / 2.0;
-        currentX = calcBezier(currentT, mX1, mX2) - aX;
-        if (currentX > 0.0) { aB = currentT } else { aA = currentT };
-      } while (Math.abs(currentX) > 0.0000001 && ++i < 10);
-      return currentT;
-    }
-
-    function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
-      for (let i = 0; i < 4; ++i) {
-        const currentSlope = getSlope(aGuessT, mX1, mX2);
-        if (currentSlope === 0.0) return aGuessT;
-        const currentX = calcBezier(aGuessT, mX1, mX2) - aX;
-        aGuessT -= currentX / currentSlope;
-      }
-      return aGuessT;
-    }
-
-    function bezier(mX1, mY1, mX2, mY2) {
-
-      if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) return;
-      let sampleValues = new Float32Array(kSplineTableSize);
-
-      if (mX1 !== mY1 || mX2 !== mY2) {
-        for (let i = 0; i < kSplineTableSize; ++i) {
-          sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
-        }
-      }
-
-      function getTForX(aX) {
-
-        let intervalStart = 0.0;
-        let currentSample = 1;
-        const lastSample = kSplineTableSize - 1;
-
-        for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
-          intervalStart += kSampleStepSize;
-        }
-
-        --currentSample;
-
-        const dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
-        const guessForT = intervalStart + dist * kSampleStepSize;
-        const initialSlope = getSlope(guessForT, mX1, mX2);
-
-        if (initialSlope >= 0.001) {
-          return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
-        } else if (initialSlope === 0.0) {
-          return guessForT;
-        } else {
-          return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
-        }
-
-      }
-
-      return x => {
-        if (mX1 === mY1 && mX2 === mY2) return x;
-        if (x === 0) return 0;
-        if (x === 1) return 1;
-        return calcBezier(getTForX(x), mY1, mY2);
-      }
-
-    }
-
-    return bezier;
-
-  })();
-
-  const easings = (() => {
-
-    const names = ['Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Back', 'Elastic'];
-
-    // Elastic easing adapted from jQueryUI http://api.jqueryui.com/easings/
-
-    function elastic(t, p) {
-      return t === 0 || t === 1 ? t :
-      -Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2.0) * Math.asin(1))) * (Math.PI * 2)) / p );
-    }
-
-    // Approximated Penner equations http://matthewlein.com/ceaser/
-
-    const equations = {
-      In: [
-        [0.550, 0.085, 0.680, 0.530], /* InQuad */
-        [0.550, 0.055, 0.675, 0.190], /* InCubic */
-        [0.895, 0.030, 0.685, 0.220], /* InQuart */
-        [0.755, 0.050, 0.855, 0.060], /* InQuint */
-        [0.470, 0.000, 0.745, 0.715], /* InSine */
-        [0.950, 0.050, 0.795, 0.035], /* InExpo */
-        [0.600, 0.040, 0.980, 0.335], /* InCirc */
-        [0.600, -0.280, 0.735, 0.045], /* InBack */
-        elastic /* InElastic */
-      ], Out: [
-        [0.250, 0.460, 0.450, 0.940], /* OutQuad */
-        [0.215, 0.610, 0.355, 1.000], /* OutCubic */
-        [0.165, 0.840, 0.440, 1.000], /* OutQuart */
-        [0.230, 1.000, 0.320, 1.000], /* OutQuint */
-        [0.390, 0.575, 0.565, 1.000], /* OutSine */
-        [0.190, 1.000, 0.220, 1.000], /* OutExpo */
-        [0.075, 0.820, 0.165, 1.000], /* OutCirc */
-        [0.175, 0.885, 0.320, 1.275], /* OutBack */
-        (t, f) => 1 - elastic(1 - t, f) /* OutElastic */
-      ], InOut: [
-        [0.455, 0.030, 0.515, 0.955], /* InOutQuad */
-        [0.645, 0.045, 0.355, 1.000], /* InOutCubic */
-        [0.770, 0.000, 0.175, 1.000], /* InOutQuart */
-        [0.860, 0.000, 0.070, 1.000], /* InOutQuint */
-        [0.445, 0.050, 0.550, 0.950], /* InOutSine */
-        [1.000, 0.000, 0.000, 1.000], /* InOutExpo */
-        [0.785, 0.135, 0.150, 0.860], /* InOutCirc */
-        [0.680, -0.550, 0.265, 1.550], /* InOutBack */
-        (t, f) => t < .5 ? elastic(t * 2, f) / 2 : 1 - elastic(t * -2 + 2, f) / 2 /* InOutElastic */
-      ]
-    }
-
-    let functions = {
-      linear: bezier(0.250, 0.250, 0.750, 0.750)
-    }
-
-    for (let type in equations) {
-      equations[type].forEach((f, i) => {
-        functions['ease'+type+names[i]] = is.fnc(f) ? f : bezier.apply(this, f);
-      });
-    }
-
-    return functions;
-
-  })();
-
-  // Strings
-
-  function stringToHyphens(str) {
-    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-  }
-
-  function selectString(str) {
-    if (is.col(str)) return;
-    try {
-      let nodes = document.querySelectorAll(str);
-      return nodes;
-    } catch(e) {
-      return;
-    }
-  }
-
-  // Arrays
-
-  function arrayLength(arr) {
-    return arr.length;
-  }
-
-  function flattenArray(arr) {
-    return arr.reduce((a, b) => a.concat(is.arr(b) ? flattenArray(b) : b), []);
-  }
-
-  function toArray(o) {
-    if (is.arr(o)) return o;
-    if (is.str(o)) o = selectString(o) || o;
-    if (o instanceof NodeList || o instanceof HTMLCollection) return [].slice.call(o);
-    return [o];
-  }
-
-  function arrayContains(arr, val) {
-    return arr.some(a => a === val);
-  }
-
-  // Objects
-
-  function objectHas(obj, prop) {
-    return obj.hasOwnProperty(prop);
-  }
-
-  function cloneObject(o) {
-    let clone = {};
-    for (let p in o) clone[p] = o[p];
-    return clone;
-  }
-
-  function replaceObjectProps(o1, o2) {
-    let o = cloneObject(o1);
-    for (let p in o1) o[p] = objectHas(o2, p) ? o2[p] : o1[p];
-    return o;
-  }
-
-  function mergeObjects(o1, o2) {
-    let o = cloneObject(o1);
-    for (let p in o2) o[p] = is.und(o1[p]) ? o2[p] : o1[p];
-    return o;
-  }
-
-  // Colors
-
-  function hexToRgb(hexValue) {
-    const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    const hex = hexValue.replace(rgx, (m, r, g, b) => r + r + g + g + b + b );
-    const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    const r = parseInt(rgb[1], 16);
-    const g = parseInt(rgb[2], 16);
-    const b = parseInt(rgb[3], 16);
-    return `rgb(${r},${g},${b})`;
-  }
-
-  function hslToRgb(hslValue) {
-    const hsl = /hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\)/g.exec(hslValue);
-    const h = parseInt(hsl[1]) / 360;
-    const s = parseInt(hsl[2]) / 100;
-    const l = parseInt(hsl[3]) / 100;
-    function hue2rgb(p, q, t) {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1/6) return p + (q - p) * 6 * t;
-      if (t < 1/2) return q;
-      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-      return p;
-    }
-    let r, g, b;
-    if (s == 0) {
-      r = g = b = l;
-    } else {
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-      r = hue2rgb(p, q, h + 1/3);
-      g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1/3);
-    }
-    return `rgb(${r * 255},${g * 255},${b * 255})`;
-  }
-
-  function colorToRgb(val) {
-    if (is.rgb(val)) return val;
-    if (is.hex(val)) return hexToRgb(val);
-    if (is.hsl(val)) return hslToRgb(val);
-  }
-
-  // Units
-
-  function getUnit(val) {
-    const split = /([\+\-]?[0-9#\.]+)(%|px|pt|em|rem|in|cm|mm|ex|pc|vw|vh|deg|rad|turn)?/.exec(val);
-    if (split) return split[2];
-  }
-
-  function getTransformUnit(propName) {
-    if (stringContains(propName, 'translate')) return 'px';
-    if (stringContains(propName, 'rotate') || stringContains(propName, 'skew')) return 'deg';
-  }
-
-  // Values
-
-  function parseFloatValue(val) {
-    return parseFloat(val);
-  }
-
-  function minMaxValue(val, min, max) {
-    return Math.min(Math.max(val, min), max);
-  }
-
-  function getFunctionValue(val, animatable) {
-    if (!is.fnc(val)) return val;
-    return val(animatable.target, animatable.id, animatable.total);
-  }
-
-  function getCSSValue(el, prop) {
-    if (prop in el.style) {
-      return getComputedStyle(el).getPropertyValue(stringToHyphens(prop)) || '0';
-    }
-  }
-
-  function getAnimationType(el, prop) {
-    if (is.dom(el) && arrayContains(validTransforms, prop)) return 'transform';
-    if (is.dom(el) && (el.getAttribute(prop) || (is.svg(el) && el[prop]))) return 'attribute';
-    if (is.dom(el) && (prop !== 'transform' && getCSSValue(el, prop))) return 'css';
-    if (el[prop] != null) return 'object';
-  }
-
-  function getTransformValue(el, propName) {
-    const defaultUnit = getTransformUnit(propName);
-    const defaultVal = stringContains(propName, 'scale') ? 1 : 0 + defaultUnit;
-    const str = el.style.transform;
-    if (!str) return defaultVal;
-    let match = [];
-    let props = [];
-    let values = [];
-    const rgx = /(\w+)\((.+?)\)/g;
-    while (match = rgx.exec(str)) {
-      props.push(match[1]);
-      values.push(match[2]);
-    }
-    const value = values.filter((val, i) => props[i] === propName );
-    return arrayLength(value) ? value[0] : defaultVal;
-  }
-
-  function getOriginalTargetValue(target, propName) {
-    switch (getAnimationType(target, propName)) {
-      case 'transform': return getTransformValue(target, propName);
-      case 'css': return getCSSValue(target, propName);
-      case 'attribute': return target.getAttribute(propName);
-    }
-    return target[propName] || 0;
-  }
-
-  function getRelativeValue(to, from) {
-    const operator = /^(\*=|\+=|-=)/.exec(to);
-    if (!operator) return to;
-    const x = parseFloatValue(from);
-    const y = parseFloatValue(to.replace(operator[0], ''));
-    switch (operator[0][0]) {
-      case '+': return x + y;
-      case '-': return x - y;
-      case '*': return x * y;
-    }
-  }
-
-  function validateValue(val, unit) {
-    if (is.col(val)) return colorToRgb(val);
-    const originalUnit = getUnit(val);
-    const unitLess = originalUnit ? val.substr(0, arrayLength(val) - arrayLength(originalUnit)) : val;
-    return unit ? unitLess + unit : unitLess;
-  }
-
-  // Motion path
-
-  function isPath(val) {
-    return is.obj(val) && objectHas(val, 'totalLength');
-  }
-
-  function setDashoffset(el) {
-    const pathLength = el.getTotalLength();
-    el.setAttribute('stroke-dasharray', pathLength);
-    return pathLength;
-  }
-
-  function getPath(path, percent) {
-    const el = is.str(path) ? selectString(path)[0] : path;
-    const p = percent || 100;
-    return function(prop) {
-      return {
-        el: el,
-        property: prop,
-        totalLength: el.getTotalLength() * (p / 100)
-      }
-    }
-  }
-
-  function getPathProgress(path, progress) {
-    function point(offset = 0) {
-      const l = progress + offset >= 1 ? progress + offset : 0;
-      return path.el.getPointAtLength(l);
-    }
-    const p = point();
-    const p0 = point(-1);
-    const p1 = point(+1);
-    switch (path.property) {
-      case 'x': return p.x;
-      case 'y': return p.y;
-      case 'angle': return Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
-    }
-  }
-
-  // Decompose / recompose functions adapted from Animate Plus https://github.com/bendc/animateplus
-
-  function decomposeValue(val, unit) {
-    const rgx = /-?\d*\.?\d+/g;
-    const value = validateValue((isPath(val) ? val.totalLength : val), unit) + '';
-    return {
-      original: value,
-      numbers: value.match(rgx) ? value.match(rgx).map(Number) : [0],
-      strings: value.split(rgx)
-    }
-  }
-
-  function recomposeValue(numbers, strings) {
-    return strings.reduce((a, b, i) => a + numbers[i - 1] + b);
-  }
-
-  // Animatables
-
-  function parseTargets(targets) {
-    const targetsArray = targets ? (flattenArray(is.arr(targets) ? targets.map(toArray) : toArray(targets))) : [];
-    return targetsArray.filter((item, pos, self) => self.indexOf(item) === pos);
-  }
-
-  function getAnimatables(targets) {
-    const parsed = parseTargets(targets);
-    return parsed.map((t, i) => {
-      return {target: t, id: i, total: arrayLength(parsed)};
-    });
-  }
-
-  // Properties
-
-  function normalizePropertyTweens(prop, tweenSettings) {
-    let settings = cloneObject(tweenSettings);
-    if (is.arr(prop)) {
-      const l = arrayLength(prop);
-      const isFromTo = (l === 2 && !is.obj(prop[0]));
-      if (!isFromTo) {
-        // Duration divided by the number of tweens
-        if (!is.fnc(tweenSettings.duration)) settings.duration = tweenSettings.duration / l;
-      } else {
-        // Transform [from, to] values shorthand to a valid tween value
-        prop = {value: prop};
-      }
-    }
-    return toArray(prop).map((v, i) => {
-      // Default delay value should be applied only on the first tween
-      const delay = !i ? tweenSettings.delay : 0;
-      // Use path object as a tween value
-      let obj = is.obj(v) && !isPath(v) ? v : {value: v};
-      // Set default delay value
-      if (is.und(obj.delay)) obj.delay = delay;
-      return obj;
-    }).map(k => mergeObjects(k, settings));
-  }
-
-  function getProperties(instanceSettings, tweenSettings, params) {
-    let properties = [];
-    const settings = mergeObjects(instanceSettings, tweenSettings);
-    for (let p in params) {
-      if (!objectHas(settings, p) && p !== 'targets') {
-        properties.push({
-          name: p,
-          offset: settings['offset'],
-          tweens: normalizePropertyTweens(params[p], tweenSettings)
-        });
-      }
-    }
-    return properties;
-  }
-
-  // Tweens
-
-  function normalizeTweenValues(tween, animatable) {
-    let t = {};
-    for (let p in tween) {
-      let value = getFunctionValue(tween[p], animatable);
-      if (is.arr(value)) {
-        value = value.map(v => getFunctionValue(v, animatable));
-        if (arrayLength(value) === 1) value = value[0];
-      }
-      t[p] = value;
-    }
-    t.duration = parseFloatValue(t.duration);
-    t.delay = parseFloatValue(t.delay);
-    return t;
-  }
-
-  function normalizeEasing(val) {
-    return is.arr(val) ? bezier.apply(this, val) : easings[val];
-  }
-
-  function normalizeTweens(prop, animatable) {
-    let previousTween;
-    return prop.tweens.map(t => {
-      let tween = normalizeTweenValues(t, animatable);
-      const tweenValue = tween.value;
-      const originalValue = getOriginalTargetValue(animatable.target, prop.name);
-      const previousValue = previousTween ? previousTween.to.original : originalValue;
-      const from = is.arr(tweenValue) ? tweenValue[0] : previousValue;
-      const to = getRelativeValue(is.arr(tweenValue) ? tweenValue[1] : tweenValue, from);
-      const unit = getUnit(to) || getUnit(from) || getUnit(originalValue);
-      tween.isPath = isPath(tweenValue);
-      tween.from = decomposeValue(from, unit);
-      tween.to = decomposeValue(to, unit);
-      tween.start = previousTween ? previousTween.end : prop.offset;
-      tween.end = tween.start + tween.delay + tween.duration;
-      tween.easing = normalizeEasing(tween.easing);
-      tween.elasticity = (1000 - minMaxValue(tween.elasticity, 1, 999)) / 1000;
-      if (is.col(tween.from.original)) tween.round = 1;
-      previousTween = tween;
-      return tween;
-    });
-  }
-
-  // Tween progress
-
-  const setTweenProgress = {
-    css: (t, p, v) => t.style[p] = v,
-    attribute: (t, p, v) => t.setAttribute(p, v),
-    object: (t, p, v) => t[p] = v,
-    transform: (t, p, v, transforms, id) => {
-      if (!transforms[id]) transforms[id] = [];
-      transforms[id].push(`${p}(${v})`);
-    }
-  }
-
-  // Animations
-
-  function createAnimation(animatable, prop) {
-    const animType = getAnimationType(animatable.target, prop.name);
-    if (animType) {
-      const tweens = normalizeTweens(prop, animatable);
-      return {
-        type: animType,
-        property: prop.name,
-        animatable: animatable,
-        tweens: tweens,
-        duration: tweens[arrayLength(tweens) - 1].end,
-        delay: tweens[0].delay
-      }
-    }
-  }
-
-  function getAnimations(animatables, properties) {
-    return flattenArray(animatables.map(animatable => {
-      return properties.map(prop => {
-        return createAnimation(animatable, prop);
-      });
-    })).filter(a => !is.und(a));
-  }
-
-  // Create Instance
-
-  function getInstanceTimings(type, animations, tweenSettings) {
-    const math = (type === 'delay') ? Math.min : Math.max;
-    return arrayLength(animations) ? math.apply(Math, animations.map(anim => anim[type])) : tweenSettings[type];
-  }
-
-  function createNewInstance(params) {
-    const instanceSettings = replaceObjectProps(defaultInstanceSettings, params);
-    const tweenSettings = replaceObjectProps(defaultTweenSettings, params);
-    const animatables = getAnimatables(params.targets);
-    const properties = getProperties(instanceSettings, tweenSettings, params);
-    const animations = getAnimations(animatables, properties);
-    return mergeObjects(instanceSettings, {
-      children: [],
-      animatables: animatables,
-      animations: animations,
-      duration: getInstanceTimings('duration', animations, tweenSettings),
-      delay: getInstanceTimings('delay', animations, tweenSettings)
-    });
-  }
-
-  // Core
-
-  let activeInstances = [];
-  let raf = 0;
-
-  const engine = (() => {
-    function play() { raf = requestAnimationFrame(step); };
-    function step(t) {
-      const activeLength = arrayLength(activeInstances);
-      if (activeLength) {
-        let i = 0;
-        while (i < activeLength) {
-          if (activeInstances[i]) activeInstances[i].tick(t);
-          i++;
-        }
-        play();
-      } else {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
-    }
-    return play;
-  })();
-
-
-  // Public Instance
-
-  function anime(params = {}) {
-
-    let now, startTime, lastTime = 0;
-
-    let resolve = null;
-
-    function makePromise() {
-      return window.Promise && new Promise(_resolve => resolve = _resolve);
-    }
-
-    let promise = makePromise();
-
-    let instance = createNewInstance(params);
-
-    instance.reset = function() {
-      const direction = instance.direction;
-      const loops = instance.loop;
-      instance.currentTime = 0;
-      instance.progress = 0;
-      instance.paused = true;
-      instance.began = false;
-      instance.completed = false;
-      instance.reversed = direction === 'reverse';
-      instance.remaining = direction === 'alternate' && loops === 1 ? 2 : loops;
-      for (let i = arrayLength(instance.children); i--; ){
-        const child = instance.children[i];
-        child.seek(child.offset);
-        child.reset();
-      }
-    }
-
-    function toggleInstanceDirection() {
-      instance.reversed = !instance.reversed;
-    }
-
-    function adjustTime(time) {
-      return instance.reversed ? instance.duration - time : time;
-    }
-
-    function syncInstanceChildren(time) {
-      const children = instance.children;
-      if (time >= instance.currentTime) {
-        for (let i = 0; i < arrayLength(children); i++) children[i].seek(time);
-      } else {
-        for (let i = arrayLength(children); i--;) children[i].seek(time);
-      }
-    }
-
-    function setAnimationsProgress(insTime) {
-      let i = 0;
-      let transforms = {};
-      const animations = instance.animations;
-      while (i < arrayLength(animations)) {
-        const anim = animations[i];
-        const animatable = anim.animatable;
-        const tweens = anim.tweens;
-        const tween = tweens.filter(t => (insTime < t.end))[0] || tweens[arrayLength(tweens) - 1];
-        const isPath = tween.isPath;
-        const round = tween.round;
-        const elapsed = minMaxValue(insTime - tween.start - tween.delay, 0, tween.duration) / tween.duration;
-        const eased = tween.easing(elapsed, tween.elasticity);
-        const progress = recomposeValue(tween.to.numbers.map((number, p) => {
-          const start = isPath ? 0 : tween.from.numbers[p];
-          let value = start + eased * (number - start);
-          if (isPath) value = getPathProgress(tween.value, value);
-          if (round) value = Math.round(value * round) / round;
-          return value;
-        }), tween.to.strings);
-        setTweenProgress[anim.type](animatable.target, anim.property, progress, transforms, animatable.id);
-        anim.currentValue = progress;
-        i++;
-      }
-      if (transforms) {
-        let id; for (id in transforms) {
-          if (!transformString) {
-            const t = 'transform';
-            transformString = (getCSSValue(document.body, t) ? t : `-webkit-${t}`);
-          }
-          instance.animatables[id].target.style[transformString] = transforms[id].join(' ');
-        }
-      }
-      instance.currentTime = insTime;
-      instance.progress = (insTime / instance.duration) * 100;
-    }
-
-    function setCallback(cb) {
-      if (instance[cb]) instance[cb](instance);
-    }
-
-    function countIteration() {
-      if (instance.remaining && instance.remaining !== true) {
-        instance.remaining--;
-      }
-    }
-
-    function setInstanceProgress(engineTime) {
-      const insDuration = instance.duration;
-      const insOffset = instance.offset;
-      const insDelay = instance.delay;
-      const insCurrentTime = instance.currentTime;
-      const insReversed = instance.reversed;
-      const insTime = minMaxValue(adjustTime(engineTime), 0, insDuration);
-      if (instance.children) syncInstanceChildren(insTime);
-      if (insTime > insOffset && insTime < insDuration) {
-        setAnimationsProgress(insTime);
-        if (!instance.began && insTime >= insDelay) {
-          instance.began = true;
-          setCallback('begin');
-        }
-        setCallback('run');
-      } else {
-        if (insTime <= insOffset && insCurrentTime !== 0) {
-          setAnimationsProgress(0);
-          if (insReversed) countIteration();
-        }
-        if (insTime >= insDuration && insCurrentTime !== insDuration) {
-          setAnimationsProgress(insDuration);
-          if (!insReversed) countIteration();
-        }
-      }
-      if (engineTime >= insDuration) {
-        if (instance.remaining) {
-          startTime = now;
-          if (instance.direction === 'alternate') toggleInstanceDirection();
-        } else {
-          instance.pause();
-          if ('Promise' in window) {
-            resolve();
-            promise = makePromise();
-          }
-          if (!instance.completed) {
-            instance.completed = true;
-            setCallback('complete');
-          }
-        }
-        lastTime = 0;
-      }
-      setCallback('update');
-    }
-
-    instance.tick = function(t) {
-      now = t;
-      if (!startTime) startTime = now;
-      const engineTime = (lastTime + now - startTime) * anime.speed;
-      setInstanceProgress(engineTime);
-    }
-
-    instance.seek = function(time) {
-      setInstanceProgress(adjustTime(time));
-    }
-
-    instance.pause = function() {
-      const i = activeInstances.indexOf(instance);
-      if (i > -1) activeInstances.splice(i, 1);
-      instance.paused = true;
-    }
-
-    instance.play = function() {
-      if (!instance.paused) return;
-      instance.paused = false;
-      startTime = 0;
-      lastTime = adjustTime(instance.currentTime);
-      activeInstances.push(instance);
-      if (!raf) engine();
-    }
-
-    instance.reverse = function() {
-      toggleInstanceDirection();
-      startTime = 0;
-      lastTime = adjustTime(instance.currentTime);
-    }
-
-    instance.restart = function() {
-      instance.pause();
-      instance.reset();
-      instance.play();
-    }
-
-    instance.finished = promise;
-
-    instance.reset();
-
-    if (instance.autoplay) instance.play();
-
-    return instance;
-
-  }
-
-  // Remove targets from animation
-
-  function removeTargets(targets) {
-    const targetsArray = parseTargets(targets);
-    for (let i = arrayLength(activeInstances); i--;) {
-      const instance = activeInstances[i];
-      const animations = instance.animations;
-      for (let a = arrayLength(animations); a--;) {
-        if (arrayContains(targetsArray, animations[a].animatable.target)) {
-          animations.splice(a, 1);
-          if (!arrayLength(animations)) instance.pause();
-        }
-      }
-    }
-  }
-
-  // Timeline
-
-  function timeline(params) {
-    let tl = anime(params);
-    tl.pause();
-    tl.duration = 0;
-    tl.add = function(instancesParams) {
-      tl.children.forEach( i => { i.began = true; i.completed = true; });
-      toArray(instancesParams).forEach(insParams => {
-        const tlDuration = tl.duration;
-        const insOffset = insParams.offset;
-        insParams.autoplay = false;
-        insParams.offset = is.und(insOffset) ? tlDuration : getRelativeValue(insOffset, tlDuration);
-        tl.seek(insParams.offset);
-        const ins = anime(insParams);
-        if (ins.duration > tlDuration) tl.duration = ins.duration;
-        ins.began = true;
-        tl.children.push(ins);
-      });
-      tl.reset();
-      tl.seek(0);
-      if (tl.autoplay) tl.restart();
-      return tl;
-    }
-    return tl;
-  }
-
-  anime.version = '2.0.2';
-  anime.speed = 1;
-  anime.running = activeInstances;
-  anime.remove = removeTargets;
-  anime.getValue = getOriginalTargetValue;
-  anime.path = getPath;
-  anime.setDashoffset = setDashoffset;
-  anime.bezier = bezier;
-  anime.easings = easings;
-  anime.timeline = timeline;
-  anime.random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-  return anime;
-
-}));
 /**
  * jQuery Flexdatalist.
  * Autocomplete input fields, with support for datalists.
@@ -16165,6 +14575,4617 @@ jQuery(function ($) {
         return isFlex ? this[0].fvalue.set(value) : jVal.call(this, value);
     };
 })(jQuery);
+/*
+     _ _      _       _
+ ___| (_) ___| | __  (_)___
+/ __| | |/ __| |/ /  | / __|
+\__ \ | | (__|   < _ | \__ \
+|___/_|_|\___|_|\_(_)/ |___/
+                   |__/
+
+ Version: 1.8.0
+  Author: Ken Wheeler
+ Website: http://kenwheeler.github.io
+    Docs: http://kenwheeler.github.io/slick
+    Repo: http://github.com/kenwheeler/slick
+  Issues: http://github.com/kenwheeler/slick/issues
+
+ */
+/* global window, document, define, jQuery, setInterval, clearInterval */
+
+;(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(jQuery);
+    }
+
+}(function($) {
+    'use strict';
+    var Slick = window.Slick || {};
+
+    Slick = (function() {
+
+        var instanceUid = 0;
+
+        function Slick(element, settings) {
+
+            var _ = this, dataSettings;
+
+            _.defaults = {
+                accessibility: true,
+                adaptiveHeight: false,
+                appendArrows: $(element),
+                appendDots: $(element),
+                arrows: true,
+                asNavFor: null,
+                prevArrow: '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+                nextArrow: '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+                autoplay: false,
+                autoplaySpeed: 3000,
+                centerMode: false,
+                centerPadding: '50px',
+                cssEase: 'ease',
+                customPaging: function(slider, i) {
+                    return $('<button type="button" />').text(i + 1);
+                },
+                dots: false,
+                dotsClass: 'slick-dots',
+                draggable: true,
+                easing: 'linear',
+                edgeFriction: 0.35,
+                fade: false,
+                focusOnSelect: false,
+                focusOnChange: false,
+                infinite: true,
+                initialSlide: 0,
+                lazyLoad: 'ondemand',
+                mobileFirst: false,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                pauseOnDotsHover: false,
+                respondTo: 'window',
+                responsive: null,
+                rows: 1,
+                rtl: false,
+                slide: '',
+                slidesPerRow: 1,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                speed: 500,
+                swipe: true,
+                swipeToSlide: false,
+                touchMove: true,
+                touchThreshold: 5,
+                useCSS: true,
+                useTransform: true,
+                variableWidth: false,
+                vertical: false,
+                verticalSwiping: false,
+                waitForAnimate: true,
+                zIndex: 1000
+            };
+
+            _.initials = {
+                animating: false,
+                dragging: false,
+                autoPlayTimer: null,
+                currentDirection: 0,
+                currentLeft: null,
+                currentSlide: 0,
+                direction: 1,
+                $dots: null,
+                listWidth: null,
+                listHeight: null,
+                loadIndex: 0,
+                $nextArrow: null,
+                $prevArrow: null,
+                scrolling: false,
+                slideCount: null,
+                slideWidth: null,
+                $slideTrack: null,
+                $slides: null,
+                sliding: false,
+                slideOffset: 0,
+                swipeLeft: null,
+                swiping: false,
+                $list: null,
+                touchObject: {},
+                transformsEnabled: false,
+                unslicked: false
+            };
+
+            $.extend(_, _.initials);
+
+            _.activeBreakpoint = null;
+            _.animType = null;
+            _.animProp = null;
+            _.breakpoints = [];
+            _.breakpointSettings = [];
+            _.cssTransitions = false;
+            _.focussed = false;
+            _.interrupted = false;
+            _.hidden = 'hidden';
+            _.paused = true;
+            _.positionProp = null;
+            _.respondTo = null;
+            _.rowCount = 1;
+            _.shouldClick = true;
+            _.$slider = $(element);
+            _.$slidesCache = null;
+            _.transformType = null;
+            _.transitionType = null;
+            _.visibilityChange = 'visibilitychange';
+            _.windowWidth = 0;
+            _.windowTimer = null;
+
+            dataSettings = $(element).data('slick') || {};
+
+            _.options = $.extend({}, _.defaults, settings, dataSettings);
+
+            _.currentSlide = _.options.initialSlide;
+
+            _.originalSettings = _.options;
+
+            if (typeof document.mozHidden !== 'undefined') {
+                _.hidden = 'mozHidden';
+                _.visibilityChange = 'mozvisibilitychange';
+            } else if (typeof document.webkitHidden !== 'undefined') {
+                _.hidden = 'webkitHidden';
+                _.visibilityChange = 'webkitvisibilitychange';
+            }
+
+            _.autoPlay = $.proxy(_.autoPlay, _);
+            _.autoPlayClear = $.proxy(_.autoPlayClear, _);
+            _.autoPlayIterator = $.proxy(_.autoPlayIterator, _);
+            _.changeSlide = $.proxy(_.changeSlide, _);
+            _.clickHandler = $.proxy(_.clickHandler, _);
+            _.selectHandler = $.proxy(_.selectHandler, _);
+            _.setPosition = $.proxy(_.setPosition, _);
+            _.swipeHandler = $.proxy(_.swipeHandler, _);
+            _.dragHandler = $.proxy(_.dragHandler, _);
+            _.keyHandler = $.proxy(_.keyHandler, _);
+
+            _.instanceUid = instanceUid++;
+
+            // A simple way to check for HTML strings
+            // Strict HTML recognition (must start with <)
+            // Extracted from jQuery v1.11 source
+            _.htmlExpr = /^(?:\s*(<[\w\W]+>)[^>]*)$/;
+
+
+            _.registerBreakpoints();
+            _.init(true);
+
+        }
+
+        return Slick;
+
+    }());
+
+    Slick.prototype.activateADA = function() {
+        var _ = this;
+
+        _.$slideTrack.find('.slick-active').attr({
+            'aria-hidden': 'false'
+        }).find('a, input, button, select').attr({
+            'tabindex': '0'
+        });
+
+    };
+
+    Slick.prototype.addSlide = Slick.prototype.slickAdd = function(markup, index, addBefore) {
+
+        var _ = this;
+
+        if (typeof(index) === 'boolean') {
+            addBefore = index;
+            index = null;
+        } else if (index < 0 || (index >= _.slideCount)) {
+            return false;
+        }
+
+        _.unload();
+
+        if (typeof(index) === 'number') {
+            if (index === 0 && _.$slides.length === 0) {
+                $(markup).appendTo(_.$slideTrack);
+            } else if (addBefore) {
+                $(markup).insertBefore(_.$slides.eq(index));
+            } else {
+                $(markup).insertAfter(_.$slides.eq(index));
+            }
+        } else {
+            if (addBefore === true) {
+                $(markup).prependTo(_.$slideTrack);
+            } else {
+                $(markup).appendTo(_.$slideTrack);
+            }
+        }
+
+        _.$slides = _.$slideTrack.children(this.options.slide);
+
+        _.$slideTrack.children(this.options.slide).detach();
+
+        _.$slideTrack.append(_.$slides);
+
+        _.$slides.each(function(index, element) {
+            $(element).attr('data-slick-index', index);
+        });
+
+        _.$slidesCache = _.$slides;
+
+        _.reinit();
+
+    };
+
+    Slick.prototype.animateHeight = function() {
+        var _ = this;
+        if (_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+            _.$list.animate({
+                height: targetHeight
+            }, _.options.speed);
+        }
+    };
+
+    Slick.prototype.animateSlide = function(targetLeft, callback) {
+
+        var animProps = {},
+            _ = this;
+
+        _.animateHeight();
+
+        if (_.options.rtl === true && _.options.vertical === false) {
+            targetLeft = -targetLeft;
+        }
+        if (_.transformsEnabled === false) {
+            if (_.options.vertical === false) {
+                _.$slideTrack.animate({
+                    left: targetLeft
+                }, _.options.speed, _.options.easing, callback);
+            } else {
+                _.$slideTrack.animate({
+                    top: targetLeft
+                }, _.options.speed, _.options.easing, callback);
+            }
+
+        } else {
+
+            if (_.cssTransitions === false) {
+                if (_.options.rtl === true) {
+                    _.currentLeft = -(_.currentLeft);
+                }
+                $({
+                    animStart: _.currentLeft
+                }).animate({
+                    animStart: targetLeft
+                }, {
+                    duration: _.options.speed,
+                    easing: _.options.easing,
+                    step: function(now) {
+                        now = Math.ceil(now);
+                        if (_.options.vertical === false) {
+                            animProps[_.animType] = 'translate(' +
+                                now + 'px, 0px)';
+                            _.$slideTrack.css(animProps);
+                        } else {
+                            animProps[_.animType] = 'translate(0px,' +
+                                now + 'px)';
+                            _.$slideTrack.css(animProps);
+                        }
+                    },
+                    complete: function() {
+                        if (callback) {
+                            callback.call();
+                        }
+                    }
+                });
+
+            } else {
+
+                _.applyTransition();
+                targetLeft = Math.ceil(targetLeft);
+
+                if (_.options.vertical === false) {
+                    animProps[_.animType] = 'translate3d(' + targetLeft + 'px, 0px, 0px)';
+                } else {
+                    animProps[_.animType] = 'translate3d(0px,' + targetLeft + 'px, 0px)';
+                }
+                _.$slideTrack.css(animProps);
+
+                if (callback) {
+                    setTimeout(function() {
+
+                        _.disableTransition();
+
+                        callback.call();
+                    }, _.options.speed);
+                }
+
+            }
+
+        }
+
+    };
+
+    Slick.prototype.getNavTarget = function() {
+
+        var _ = this,
+            asNavFor = _.options.asNavFor;
+
+        if ( asNavFor && asNavFor !== null ) {
+            asNavFor = $(asNavFor).not(_.$slider);
+        }
+
+        return asNavFor;
+
+    };
+
+    Slick.prototype.asNavFor = function(index) {
+
+        var _ = this,
+            asNavFor = _.getNavTarget();
+
+        if ( asNavFor !== null && typeof asNavFor === 'object' ) {
+            asNavFor.each(function() {
+                var target = $(this).slick('getSlick');
+                if(!target.unslicked) {
+                    target.slideHandler(index, true);
+                }
+            });
+        }
+
+    };
+
+    Slick.prototype.applyTransition = function(slide) {
+
+        var _ = this,
+            transition = {};
+
+        if (_.options.fade === false) {
+            transition[_.transitionType] = _.transformType + ' ' + _.options.speed + 'ms ' + _.options.cssEase;
+        } else {
+            transition[_.transitionType] = 'opacity ' + _.options.speed + 'ms ' + _.options.cssEase;
+        }
+
+        if (_.options.fade === false) {
+            _.$slideTrack.css(transition);
+        } else {
+            _.$slides.eq(slide).css(transition);
+        }
+
+    };
+
+    Slick.prototype.autoPlay = function() {
+
+        var _ = this;
+
+        _.autoPlayClear();
+
+        if ( _.slideCount > _.options.slidesToShow ) {
+            _.autoPlayTimer = setInterval( _.autoPlayIterator, _.options.autoplaySpeed );
+        }
+
+    };
+
+    Slick.prototype.autoPlayClear = function() {
+
+        var _ = this;
+
+        if (_.autoPlayTimer) {
+            clearInterval(_.autoPlayTimer);
+        }
+
+    };
+
+    Slick.prototype.autoPlayIterator = function() {
+
+        var _ = this,
+            slideTo = _.currentSlide + _.options.slidesToScroll;
+
+        if ( !_.paused && !_.interrupted && !_.focussed ) {
+
+            if ( _.options.infinite === false ) {
+
+                if ( _.direction === 1 && ( _.currentSlide + 1 ) === ( _.slideCount - 1 )) {
+                    _.direction = 0;
+                }
+
+                else if ( _.direction === 0 ) {
+
+                    slideTo = _.currentSlide - _.options.slidesToScroll;
+
+                    if ( _.currentSlide - 1 === 0 ) {
+                        _.direction = 1;
+                    }
+
+                }
+
+            }
+
+            _.slideHandler( slideTo );
+
+        }
+
+    };
+
+    Slick.prototype.buildArrows = function() {
+
+        var _ = this;
+
+        if (_.options.arrows === true ) {
+
+            _.$prevArrow = $(_.options.prevArrow).addClass('slick-arrow');
+            _.$nextArrow = $(_.options.nextArrow).addClass('slick-arrow');
+
+            if( _.slideCount > _.options.slidesToShow ) {
+
+                _.$prevArrow.removeClass('slick-hidden').removeAttr('aria-hidden tabindex');
+                _.$nextArrow.removeClass('slick-hidden').removeAttr('aria-hidden tabindex');
+
+                if (_.htmlExpr.test(_.options.prevArrow)) {
+                    _.$prevArrow.prependTo(_.options.appendArrows);
+                }
+
+                if (_.htmlExpr.test(_.options.nextArrow)) {
+                    _.$nextArrow.appendTo(_.options.appendArrows);
+                }
+
+                if (_.options.infinite !== true) {
+                    _.$prevArrow
+                        .addClass('slick-disabled')
+                        .attr('aria-disabled', 'true');
+                }
+
+            } else {
+
+                _.$prevArrow.add( _.$nextArrow )
+
+                    .addClass('slick-hidden')
+                    .attr({
+                        'aria-disabled': 'true',
+                        'tabindex': '-1'
+                    });
+
+            }
+
+        }
+
+    };
+
+    Slick.prototype.buildDots = function() {
+
+        var _ = this,
+            i, dot;
+
+        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
+
+            _.$slider.addClass('slick-dotted');
+
+            dot = $('<ul />').addClass(_.options.dotsClass);
+
+            for (i = 0; i <= _.getDotCount(); i += 1) {
+                dot.append($('<li />').append(_.options.customPaging.call(this, _, i)));
+            }
+
+            _.$dots = dot.appendTo(_.options.appendDots);
+
+            _.$dots.find('li').first().addClass('slick-active');
+
+        }
+
+    };
+
+    Slick.prototype.buildOut = function() {
+
+        var _ = this;
+
+        _.$slides =
+            _.$slider
+                .children( _.options.slide + ':not(.slick-cloned)')
+                .addClass('slick-slide');
+
+        _.slideCount = _.$slides.length;
+
+        _.$slides.each(function(index, element) {
+            $(element)
+                .attr('data-slick-index', index)
+                .data('originalStyling', $(element).attr('style') || '');
+        });
+
+        _.$slider.addClass('slick-slider');
+
+        _.$slideTrack = (_.slideCount === 0) ?
+            $('<div class="slick-track"/>').appendTo(_.$slider) :
+            _.$slides.wrapAll('<div class="slick-track"/>').parent();
+
+        _.$list = _.$slideTrack.wrap(
+            '<div class="slick-list"/>').parent();
+        _.$slideTrack.css('opacity', 0);
+
+        if (_.options.centerMode === true || _.options.swipeToSlide === true) {
+            _.options.slidesToScroll = 1;
+        }
+
+        $('img[data-lazy]', _.$slider).not('[src]').addClass('slick-loading');
+
+        _.setupInfinite();
+
+        _.buildArrows();
+
+        _.buildDots();
+
+        _.updateDots();
+
+
+        _.setSlideClasses(typeof _.currentSlide === 'number' ? _.currentSlide : 0);
+
+        if (_.options.draggable === true) {
+            _.$list.addClass('draggable');
+        }
+
+    };
+
+    Slick.prototype.buildRows = function() {
+
+        var _ = this, a, b, c, newSlides, numOfSlides, originalSlides,slidesPerSection;
+
+        newSlides = document.createDocumentFragment();
+        originalSlides = _.$slider.children();
+
+        if(_.options.rows > 0) {
+
+            slidesPerSection = _.options.slidesPerRow * _.options.rows;
+            numOfSlides = Math.ceil(
+                originalSlides.length / slidesPerSection
+            );
+
+            for(a = 0; a < numOfSlides; a++){
+                var slide = document.createElement('div');
+                for(b = 0; b < _.options.rows; b++) {
+                    var row = document.createElement('div');
+                    for(c = 0; c < _.options.slidesPerRow; c++) {
+                        var target = (a * slidesPerSection + ((b * _.options.slidesPerRow) + c));
+                        if (originalSlides.get(target)) {
+                            row.appendChild(originalSlides.get(target));
+                        }
+                    }
+                    slide.appendChild(row);
+                }
+                newSlides.appendChild(slide);
+            }
+
+            _.$slider.empty().append(newSlides);
+            _.$slider.children().children().children()
+                .css({
+                    'width':(100 / _.options.slidesPerRow) + '%',
+                    'display': 'inline-block'
+                });
+
+        }
+
+    };
+
+    Slick.prototype.checkResponsive = function(initial, forceUpdate) {
+
+        var _ = this,
+            breakpoint, targetBreakpoint, respondToWidth, triggerBreakpoint = false;
+        var sliderWidth = _.$slider.width();
+        var windowWidth = window.innerWidth || $(window).width();
+
+        if (_.respondTo === 'window') {
+            respondToWidth = windowWidth;
+        } else if (_.respondTo === 'slider') {
+            respondToWidth = sliderWidth;
+        } else if (_.respondTo === 'min') {
+            respondToWidth = Math.min(windowWidth, sliderWidth);
+        }
+
+        if ( _.options.responsive &&
+            _.options.responsive.length &&
+            _.options.responsive !== null) {
+
+            targetBreakpoint = null;
+
+            for (breakpoint in _.breakpoints) {
+                if (_.breakpoints.hasOwnProperty(breakpoint)) {
+                    if (_.originalSettings.mobileFirst === false) {
+                        if (respondToWidth < _.breakpoints[breakpoint]) {
+                            targetBreakpoint = _.breakpoints[breakpoint];
+                        }
+                    } else {
+                        if (respondToWidth > _.breakpoints[breakpoint]) {
+                            targetBreakpoint = _.breakpoints[breakpoint];
+                        }
+                    }
+                }
+            }
+
+            if (targetBreakpoint !== null) {
+                if (_.activeBreakpoint !== null) {
+                    if (targetBreakpoint !== _.activeBreakpoint || forceUpdate) {
+                        _.activeBreakpoint =
+                            targetBreakpoint;
+                        if (_.breakpointSettings[targetBreakpoint] === 'unslick') {
+                            _.unslick(targetBreakpoint);
+                        } else {
+                            _.options = $.extend({}, _.originalSettings,
+                                _.breakpointSettings[
+                                    targetBreakpoint]);
+                            if (initial === true) {
+                                _.currentSlide = _.options.initialSlide;
+                            }
+                            _.refresh(initial);
+                        }
+                        triggerBreakpoint = targetBreakpoint;
+                    }
+                } else {
+                    _.activeBreakpoint = targetBreakpoint;
+                    if (_.breakpointSettings[targetBreakpoint] === 'unslick') {
+                        _.unslick(targetBreakpoint);
+                    } else {
+                        _.options = $.extend({}, _.originalSettings,
+                            _.breakpointSettings[
+                                targetBreakpoint]);
+                        if (initial === true) {
+                            _.currentSlide = _.options.initialSlide;
+                        }
+                        _.refresh(initial);
+                    }
+                    triggerBreakpoint = targetBreakpoint;
+                }
+            } else {
+                if (_.activeBreakpoint !== null) {
+                    _.activeBreakpoint = null;
+                    _.options = _.originalSettings;
+                    if (initial === true) {
+                        _.currentSlide = _.options.initialSlide;
+                    }
+                    _.refresh(initial);
+                    triggerBreakpoint = targetBreakpoint;
+                }
+            }
+
+            // only trigger breakpoints during an actual break. not on initialize.
+            if( !initial && triggerBreakpoint !== false ) {
+                _.$slider.trigger('breakpoint', [_, triggerBreakpoint]);
+            }
+        }
+
+    };
+
+    Slick.prototype.changeSlide = function(event, dontAnimate) {
+
+        var _ = this,
+            $target = $(event.currentTarget),
+            indexOffset, slideOffset, unevenOffset;
+
+        // If target is a link, prevent default action.
+        if($target.is('a')) {
+            event.preventDefault();
+        }
+
+        // If target is not the <li> element (ie: a child), find the <li>.
+        if(!$target.is('li')) {
+            $target = $target.closest('li');
+        }
+
+        unevenOffset = (_.slideCount % _.options.slidesToScroll !== 0);
+        indexOffset = unevenOffset ? 0 : (_.slideCount - _.currentSlide) % _.options.slidesToScroll;
+
+        switch (event.data.message) {
+
+            case 'previous':
+                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;
+                if (_.slideCount > _.options.slidesToShow) {
+                    _.slideHandler(_.currentSlide - slideOffset, false, dontAnimate);
+                }
+                break;
+
+            case 'next':
+                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : indexOffset;
+                if (_.slideCount > _.options.slidesToShow) {
+                    _.slideHandler(_.currentSlide + slideOffset, false, dontAnimate);
+                }
+                break;
+
+            case 'index':
+                var index = event.data.index === 0 ? 0 :
+                    event.data.index || $target.index() * _.options.slidesToScroll;
+
+                _.slideHandler(_.checkNavigable(index), false, dontAnimate);
+                $target.children().trigger('focus');
+                break;
+
+            default:
+                return;
+        }
+
+    };
+
+    Slick.prototype.checkNavigable = function(index) {
+
+        var _ = this,
+            navigables, prevNavigable;
+
+        navigables = _.getNavigableIndexes();
+        prevNavigable = 0;
+        if (index > navigables[navigables.length - 1]) {
+            index = navigables[navigables.length - 1];
+        } else {
+            for (var n in navigables) {
+                if (index < navigables[n]) {
+                    index = prevNavigable;
+                    break;
+                }
+                prevNavigable = navigables[n];
+            }
+        }
+
+        return index;
+    };
+
+    Slick.prototype.cleanUpEvents = function() {
+
+        var _ = this;
+
+        if (_.options.dots && _.$dots !== null) {
+
+            $('li', _.$dots)
+                .off('click.slick', _.changeSlide)
+                .off('mouseenter.slick', $.proxy(_.interrupt, _, true))
+                .off('mouseleave.slick', $.proxy(_.interrupt, _, false));
+
+            if (_.options.accessibility === true) {
+                _.$dots.off('keydown.slick', _.keyHandler);
+            }
+        }
+
+        _.$slider.off('focus.slick blur.slick');
+
+        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {
+            _.$prevArrow && _.$prevArrow.off('click.slick', _.changeSlide);
+            _.$nextArrow && _.$nextArrow.off('click.slick', _.changeSlide);
+
+            if (_.options.accessibility === true) {
+                _.$prevArrow && _.$prevArrow.off('keydown.slick', _.keyHandler);
+                _.$nextArrow && _.$nextArrow.off('keydown.slick', _.keyHandler);
+            }
+        }
+
+        _.$list.off('touchstart.slick mousedown.slick', _.swipeHandler);
+        _.$list.off('touchmove.slick mousemove.slick', _.swipeHandler);
+        _.$list.off('touchend.slick mouseup.slick', _.swipeHandler);
+        _.$list.off('touchcancel.slick mouseleave.slick', _.swipeHandler);
+
+        _.$list.off('click.slick', _.clickHandler);
+
+        $(document).off(_.visibilityChange, _.visibility);
+
+        _.cleanUpSlideEvents();
+
+        if (_.options.accessibility === true) {
+            _.$list.off('keydown.slick', _.keyHandler);
+        }
+
+        if (_.options.focusOnSelect === true) {
+            $(_.$slideTrack).children().off('click.slick', _.selectHandler);
+        }
+
+        $(window).off('orientationchange.slick.slick-' + _.instanceUid, _.orientationChange);
+
+        $(window).off('resize.slick.slick-' + _.instanceUid, _.resize);
+
+        $('[draggable!=true]', _.$slideTrack).off('dragstart', _.preventDefault);
+
+        $(window).off('load.slick.slick-' + _.instanceUid, _.setPosition);
+
+    };
+
+    Slick.prototype.cleanUpSlideEvents = function() {
+
+        var _ = this;
+
+        _.$list.off('mouseenter.slick', $.proxy(_.interrupt, _, true));
+        _.$list.off('mouseleave.slick', $.proxy(_.interrupt, _, false));
+
+    };
+
+    Slick.prototype.cleanUpRows = function() {
+
+        var _ = this, originalSlides;
+
+        if(_.options.rows > 0) {
+            originalSlides = _.$slides.children().children();
+            originalSlides.removeAttr('style');
+            _.$slider.empty().append(originalSlides);
+        }
+
+    };
+
+    Slick.prototype.clickHandler = function(event) {
+
+        var _ = this;
+
+        if (_.shouldClick === false) {
+            event.stopImmediatePropagation();
+            event.stopPropagation();
+            event.preventDefault();
+        }
+
+    };
+
+    Slick.prototype.destroy = function(refresh) {
+
+        var _ = this;
+
+        _.autoPlayClear();
+
+        _.touchObject = {};
+
+        _.cleanUpEvents();
+
+        $('.slick-cloned', _.$slider).detach();
+
+        if (_.$dots) {
+            _.$dots.remove();
+        }
+
+        if ( _.$prevArrow && _.$prevArrow.length ) {
+
+            _.$prevArrow
+                .removeClass('slick-disabled slick-arrow slick-hidden')
+                .removeAttr('aria-hidden aria-disabled tabindex')
+                .css('display','');
+
+            if ( _.htmlExpr.test( _.options.prevArrow )) {
+                _.$prevArrow.remove();
+            }
+        }
+
+        if ( _.$nextArrow && _.$nextArrow.length ) {
+
+            _.$nextArrow
+                .removeClass('slick-disabled slick-arrow slick-hidden')
+                .removeAttr('aria-hidden aria-disabled tabindex')
+                .css('display','');
+
+            if ( _.htmlExpr.test( _.options.nextArrow )) {
+                _.$nextArrow.remove();
+            }
+        }
+
+
+        if (_.$slides) {
+
+            _.$slides
+                .removeClass('slick-slide slick-active slick-center slick-visible slick-current')
+                .removeAttr('aria-hidden')
+                .removeAttr('data-slick-index')
+                .each(function(){
+                    $(this).attr('style', $(this).data('originalStyling'));
+                });
+
+            _.$slideTrack.children(this.options.slide).detach();
+
+            _.$slideTrack.detach();
+
+            _.$list.detach();
+
+            _.$slider.append(_.$slides);
+        }
+
+        _.cleanUpRows();
+
+        _.$slider.removeClass('slick-slider');
+        _.$slider.removeClass('slick-initialized');
+        _.$slider.removeClass('slick-dotted');
+
+        _.unslicked = true;
+
+        if(!refresh) {
+            _.$slider.trigger('destroy', [_]);
+        }
+
+    };
+
+    Slick.prototype.disableTransition = function(slide) {
+
+        var _ = this,
+            transition = {};
+
+        transition[_.transitionType] = '';
+
+        if (_.options.fade === false) {
+            _.$slideTrack.css(transition);
+        } else {
+            _.$slides.eq(slide).css(transition);
+        }
+
+    };
+
+    Slick.prototype.fadeSlide = function(slideIndex, callback) {
+
+        var _ = this;
+
+        if (_.cssTransitions === false) {
+
+            _.$slides.eq(slideIndex).css({
+                zIndex: _.options.zIndex
+            });
+
+            _.$slides.eq(slideIndex).animate({
+                opacity: 1
+            }, _.options.speed, _.options.easing, callback);
+
+        } else {
+
+            _.applyTransition(slideIndex);
+
+            _.$slides.eq(slideIndex).css({
+                opacity: 1,
+                zIndex: _.options.zIndex
+            });
+
+            if (callback) {
+                setTimeout(function() {
+
+                    _.disableTransition(slideIndex);
+
+                    callback.call();
+                }, _.options.speed);
+            }
+
+        }
+
+    };
+
+    Slick.prototype.fadeSlideOut = function(slideIndex) {
+
+        var _ = this;
+
+        if (_.cssTransitions === false) {
+
+            _.$slides.eq(slideIndex).animate({
+                opacity: 0,
+                zIndex: _.options.zIndex - 2
+            }, _.options.speed, _.options.easing);
+
+        } else {
+
+            _.applyTransition(slideIndex);
+
+            _.$slides.eq(slideIndex).css({
+                opacity: 0,
+                zIndex: _.options.zIndex - 2
+            });
+
+        }
+
+    };
+
+    Slick.prototype.filterSlides = Slick.prototype.slickFilter = function(filter) {
+
+        var _ = this;
+
+        if (filter !== null) {
+
+            _.$slidesCache = _.$slides;
+
+            _.unload();
+
+            _.$slideTrack.children(this.options.slide).detach();
+
+            _.$slidesCache.filter(filter).appendTo(_.$slideTrack);
+
+            _.reinit();
+
+        }
+
+    };
+
+    Slick.prototype.focusHandler = function() {
+
+        var _ = this;
+
+        _.$slider
+            .off('focus.slick blur.slick')
+            .on('focus.slick blur.slick', '*', function(event) {
+
+            event.stopImmediatePropagation();
+            var $sf = $(this);
+
+            setTimeout(function() {
+
+                if( _.options.pauseOnFocus ) {
+                    _.focussed = $sf.is(':focus');
+                    _.autoPlay();
+                }
+
+            }, 0);
+
+        });
+    };
+
+    Slick.prototype.getCurrent = Slick.prototype.slickCurrentSlide = function() {
+
+        var _ = this;
+        return _.currentSlide;
+
+    };
+
+    Slick.prototype.getDotCount = function() {
+
+        var _ = this;
+
+        var breakPoint = 0;
+        var counter = 0;
+        var pagerQty = 0;
+
+        if (_.options.infinite === true) {
+            if (_.slideCount <= _.options.slidesToShow) {
+                 ++pagerQty;
+            } else {
+                while (breakPoint < _.slideCount) {
+                    ++pagerQty;
+                    breakPoint = counter + _.options.slidesToScroll;
+                    counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;
+                }
+            }
+        } else if (_.options.centerMode === true) {
+            pagerQty = _.slideCount;
+        } else if(!_.options.asNavFor) {
+            pagerQty = 1 + Math.ceil((_.slideCount - _.options.slidesToShow) / _.options.slidesToScroll);
+        }else {
+            while (breakPoint < _.slideCount) {
+                ++pagerQty;
+                breakPoint = counter + _.options.slidesToScroll;
+                counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;
+            }
+        }
+
+        return pagerQty - 1;
+
+    };
+
+    Slick.prototype.getLeft = function(slideIndex) {
+
+        var _ = this,
+            targetLeft,
+            verticalHeight,
+            verticalOffset = 0,
+            targetSlide,
+            coef;
+
+        _.slideOffset = 0;
+        verticalHeight = _.$slides.first().outerHeight(true);
+
+        if (_.options.infinite === true) {
+            if (_.slideCount > _.options.slidesToShow) {
+                _.slideOffset = (_.slideWidth * _.options.slidesToShow) * -1;
+                coef = -1
+
+                if (_.options.vertical === true && _.options.centerMode === true) {
+                    if (_.options.slidesToShow === 2) {
+                        coef = -1.5;
+                    } else if (_.options.slidesToShow === 1) {
+                        coef = -2
+                    }
+                }
+                verticalOffset = (verticalHeight * _.options.slidesToShow) * coef;
+            }
+            if (_.slideCount % _.options.slidesToScroll !== 0) {
+                if (slideIndex + _.options.slidesToScroll > _.slideCount && _.slideCount > _.options.slidesToShow) {
+                    if (slideIndex > _.slideCount) {
+                        _.slideOffset = ((_.options.slidesToShow - (slideIndex - _.slideCount)) * _.slideWidth) * -1;
+                        verticalOffset = ((_.options.slidesToShow - (slideIndex - _.slideCount)) * verticalHeight) * -1;
+                    } else {
+                        _.slideOffset = ((_.slideCount % _.options.slidesToScroll) * _.slideWidth) * -1;
+                        verticalOffset = ((_.slideCount % _.options.slidesToScroll) * verticalHeight) * -1;
+                    }
+                }
+            }
+        } else {
+            if (slideIndex + _.options.slidesToShow > _.slideCount) {
+                _.slideOffset = ((slideIndex + _.options.slidesToShow) - _.slideCount) * _.slideWidth;
+                verticalOffset = ((slideIndex + _.options.slidesToShow) - _.slideCount) * verticalHeight;
+            }
+        }
+
+        if (_.slideCount <= _.options.slidesToShow) {
+            _.slideOffset = 0;
+            verticalOffset = 0;
+        }
+
+        if (_.options.centerMode === true && _.slideCount <= _.options.slidesToShow) {
+            _.slideOffset = ((_.slideWidth * Math.floor(_.options.slidesToShow)) / 2) - ((_.slideWidth * _.slideCount) / 2);
+        } else if (_.options.centerMode === true && _.options.infinite === true) {
+            _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2) - _.slideWidth;
+        } else if (_.options.centerMode === true) {
+            _.slideOffset = 0;
+            _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2);
+        }
+
+        if (_.options.vertical === false) {
+            targetLeft = ((slideIndex * _.slideWidth) * -1) + _.slideOffset;
+        } else {
+            targetLeft = ((slideIndex * verticalHeight) * -1) + verticalOffset;
+        }
+
+        if (_.options.variableWidth === true) {
+
+            if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+            } else {
+                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);
+            }
+
+            if (_.options.rtl === true) {
+                if (targetSlide[0]) {
+                    targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
+                } else {
+                    targetLeft =  0;
+                }
+            } else {
+                targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
+            }
+
+            if (_.options.centerMode === true) {
+                if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+                } else {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);
+                }
+
+                if (_.options.rtl === true) {
+                    if (targetSlide[0]) {
+                        targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
+                    } else {
+                        targetLeft =  0;
+                    }
+                } else {
+                    targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
+                }
+
+                targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;
+            }
+        }
+
+        return targetLeft;
+
+    };
+
+    Slick.prototype.getOption = Slick.prototype.slickGetOption = function(option) {
+
+        var _ = this;
+
+        return _.options[option];
+
+    };
+
+    Slick.prototype.getNavigableIndexes = function() {
+
+        var _ = this,
+            breakPoint = 0,
+            counter = 0,
+            indexes = [],
+            max;
+
+        if (_.options.infinite === false) {
+            max = _.slideCount;
+        } else {
+            breakPoint = _.options.slidesToScroll * -1;
+            counter = _.options.slidesToScroll * -1;
+            max = _.slideCount * 2;
+        }
+
+        while (breakPoint < max) {
+            indexes.push(breakPoint);
+            breakPoint = counter + _.options.slidesToScroll;
+            counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;
+        }
+
+        return indexes;
+
+    };
+
+    Slick.prototype.getSlick = function() {
+
+        return this;
+
+    };
+
+    Slick.prototype.getSlideCount = function() {
+
+        var _ = this,
+            slidesTraversed, swipedSlide, centerOffset;
+
+        centerOffset = _.options.centerMode === true ? _.slideWidth * Math.floor(_.options.slidesToShow / 2) : 0;
+
+        if (_.options.swipeToSlide === true) {
+            _.$slideTrack.find('.slick-slide').each(function(index, slide) {
+                if (slide.offsetLeft - centerOffset + ($(slide).outerWidth() / 2) > (_.swipeLeft * -1)) {
+                    swipedSlide = slide;
+                    return false;
+                }
+            });
+
+            slidesTraversed = Math.abs($(swipedSlide).attr('data-slick-index') - _.currentSlide) || 1;
+
+            return slidesTraversed;
+
+        } else {
+            return _.options.slidesToScroll;
+        }
+
+    };
+
+    Slick.prototype.goTo = Slick.prototype.slickGoTo = function(slide, dontAnimate) {
+
+        var _ = this;
+
+        _.changeSlide({
+            data: {
+                message: 'index',
+                index: parseInt(slide)
+            }
+        }, dontAnimate);
+
+    };
+
+    Slick.prototype.init = function(creation) {
+
+        var _ = this;
+
+        if (!$(_.$slider).hasClass('slick-initialized')) {
+
+            $(_.$slider).addClass('slick-initialized');
+
+            _.buildRows();
+            _.buildOut();
+            _.setProps();
+            _.startLoad();
+            _.loadSlider();
+            _.initializeEvents();
+            _.updateArrows();
+            _.updateDots();
+            _.checkResponsive(true);
+            _.focusHandler();
+
+        }
+
+        if (creation) {
+            _.$slider.trigger('init', [_]);
+        }
+
+        if (_.options.accessibility === true) {
+            _.initADA();
+        }
+
+        if ( _.options.autoplay ) {
+
+            _.paused = false;
+            _.autoPlay();
+
+        }
+
+    };
+
+    Slick.prototype.initADA = function() {
+        var _ = this,
+                numDotGroups = Math.ceil(_.slideCount / _.options.slidesToShow),
+                tabControlIndexes = _.getNavigableIndexes().filter(function(val) {
+                    return (val >= 0) && (val < _.slideCount);
+                });
+
+        _.$slides.add(_.$slideTrack.find('.slick-cloned')).attr({
+            'aria-hidden': 'true',
+            'tabindex': '-1'
+        }).find('a, input, button, select').attr({
+            'tabindex': '-1'
+        });
+
+        if (_.$dots !== null) {
+            _.$slides.not(_.$slideTrack.find('.slick-cloned')).each(function(i) {
+                var slideControlIndex = tabControlIndexes.indexOf(i);
+
+                $(this).attr({
+                    'role': 'tabpanel',
+                    'id': 'slick-slide' + _.instanceUid + i,
+                    'tabindex': -1
+                });
+
+                if (slideControlIndex !== -1) {
+                   var ariaButtonControl = 'slick-slide-control' + _.instanceUid + slideControlIndex
+                   if ($('#' + ariaButtonControl).length) {
+                     $(this).attr({
+                         'aria-describedby': ariaButtonControl
+                     });
+                   }
+                }
+            });
+
+            _.$dots.attr('role', 'tablist').find('li').each(function(i) {
+                var mappedSlideIndex = tabControlIndexes[i];
+
+                $(this).attr({
+                    'role': 'presentation'
+                });
+
+                $(this).find('button').first().attr({
+                    'role': 'tab',
+                    'id': 'slick-slide-control' + _.instanceUid + i,
+                    'aria-controls': 'slick-slide' + _.instanceUid + mappedSlideIndex,
+                    'aria-label': (i + 1) + ' of ' + numDotGroups,
+                    'aria-selected': null,
+                    'tabindex': '-1'
+                });
+
+            }).eq(_.currentSlide).find('button').attr({
+                'aria-selected': 'true',
+                'tabindex': '0'
+            }).end();
+        }
+
+        for (var i=_.currentSlide, max=i+_.options.slidesToShow; i < max; i++) {
+            _.$slides.eq(i).attr('tabindex', 0);
+        }
+
+        _.activateADA();
+
+    };
+
+    Slick.prototype.initArrowEvents = function() {
+
+        var _ = this;
+
+        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {
+            _.$prevArrow
+               .off('click.slick')
+               .on('click.slick', {
+                    message: 'previous'
+               }, _.changeSlide);
+            _.$nextArrow
+               .off('click.slick')
+               .on('click.slick', {
+                    message: 'next'
+               }, _.changeSlide);
+
+            if (_.options.accessibility === true) {
+                _.$prevArrow.on('keydown.slick', _.keyHandler);
+                _.$nextArrow.on('keydown.slick', _.keyHandler);
+            }
+        }
+
+    };
+
+    Slick.prototype.initDotEvents = function() {
+
+        var _ = this;
+
+        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
+            $('li', _.$dots).on('click.slick', {
+                message: 'index'
+            }, _.changeSlide);
+
+            if (_.options.accessibility === true) {
+                _.$dots.on('keydown.slick', _.keyHandler);
+            }
+        }
+
+        if (_.options.dots === true && _.options.pauseOnDotsHover === true && _.slideCount > _.options.slidesToShow) {
+
+            $('li', _.$dots)
+                .on('mouseenter.slick', $.proxy(_.interrupt, _, true))
+                .on('mouseleave.slick', $.proxy(_.interrupt, _, false));
+
+        }
+
+    };
+
+    Slick.prototype.initSlideEvents = function() {
+
+        var _ = this;
+
+        if ( _.options.pauseOnHover ) {
+
+            _.$list.on('mouseenter.slick', $.proxy(_.interrupt, _, true));
+            _.$list.on('mouseleave.slick', $.proxy(_.interrupt, _, false));
+
+        }
+
+    };
+
+    Slick.prototype.initializeEvents = function() {
+
+        var _ = this;
+
+        _.initArrowEvents();
+
+        _.initDotEvents();
+        _.initSlideEvents();
+
+        _.$list.on('touchstart.slick mousedown.slick', {
+            action: 'start'
+        }, _.swipeHandler);
+        _.$list.on('touchmove.slick mousemove.slick', {
+            action: 'move'
+        }, _.swipeHandler);
+        _.$list.on('touchend.slick mouseup.slick', {
+            action: 'end'
+        }, _.swipeHandler);
+        _.$list.on('touchcancel.slick mouseleave.slick', {
+            action: 'end'
+        }, _.swipeHandler);
+
+        _.$list.on('click.slick', _.clickHandler);
+
+        $(document).on(_.visibilityChange, $.proxy(_.visibility, _));
+
+        if (_.options.accessibility === true) {
+            _.$list.on('keydown.slick', _.keyHandler);
+        }
+
+        if (_.options.focusOnSelect === true) {
+            $(_.$slideTrack).children().on('click.slick', _.selectHandler);
+        }
+
+        $(window).on('orientationchange.slick.slick-' + _.instanceUid, $.proxy(_.orientationChange, _));
+
+        $(window).on('resize.slick.slick-' + _.instanceUid, $.proxy(_.resize, _));
+
+        $('[draggable!=true]', _.$slideTrack).on('dragstart', _.preventDefault);
+
+        $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);
+        $(_.setPosition);
+
+    };
+
+    Slick.prototype.initUI = function() {
+
+        var _ = this;
+
+        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {
+
+            _.$prevArrow.show();
+            _.$nextArrow.show();
+
+        }
+
+        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
+
+            _.$dots.show();
+
+        }
+
+    };
+
+    Slick.prototype.keyHandler = function(event) {
+
+        var _ = this;
+         //Dont slide if the cursor is inside the form fields and arrow keys are pressed
+        if(!event.target.tagName.match('TEXTAREA|INPUT|SELECT')) {
+            if (event.keyCode === 37 && _.options.accessibility === true) {
+                _.changeSlide({
+                    data: {
+                        message: _.options.rtl === true ? 'next' :  'previous'
+                    }
+                });
+            } else if (event.keyCode === 39 && _.options.accessibility === true) {
+                _.changeSlide({
+                    data: {
+                        message: _.options.rtl === true ? 'previous' : 'next'
+                    }
+                });
+            }
+        }
+
+    };
+
+    Slick.prototype.lazyLoad = function() {
+
+        var _ = this,
+            loadRange, cloneRange, rangeStart, rangeEnd;
+
+        function loadImages(imagesScope) {
+
+            $('img[data-lazy]', imagesScope).each(function() {
+
+                var image = $(this),
+                    imageSource = $(this).attr('data-lazy'),
+                    imageSrcSet = $(this).attr('data-srcset'),
+                    imageSizes  = $(this).attr('data-sizes') || _.$slider.attr('data-sizes'),
+                    imageToLoad = document.createElement('img');
+
+                imageToLoad.onload = function() {
+
+                    image
+                        .animate({ opacity: 0 }, 100, function() {
+
+                            if (imageSrcSet) {
+                                image
+                                    .attr('srcset', imageSrcSet );
+
+                                if (imageSizes) {
+                                    image
+                                        .attr('sizes', imageSizes );
+                                }
+                            }
+
+                            image
+                                .attr('src', imageSource)
+                                .animate({ opacity: 1 }, 200, function() {
+                                    image
+                                        .removeAttr('data-lazy data-srcset data-sizes')
+                                        .removeClass('slick-loading');
+                                });
+                            _.$slider.trigger('lazyLoaded', [_, image, imageSource]);
+                        });
+
+                };
+
+                imageToLoad.onerror = function() {
+
+                    image
+                        .removeAttr( 'data-lazy' )
+                        .removeClass( 'slick-loading' )
+                        .addClass( 'slick-lazyload-error' );
+
+                    _.$slider.trigger('lazyLoadError', [ _, image, imageSource ]);
+
+                };
+
+                imageToLoad.src = imageSource;
+
+            });
+
+        }
+
+        if (_.options.centerMode === true) {
+            if (_.options.infinite === true) {
+                rangeStart = _.currentSlide + (_.options.slidesToShow / 2 + 1);
+                rangeEnd = rangeStart + _.options.slidesToShow + 2;
+            } else {
+                rangeStart = Math.max(0, _.currentSlide - (_.options.slidesToShow / 2 + 1));
+                rangeEnd = 2 + (_.options.slidesToShow / 2 + 1) + _.currentSlide;
+            }
+        } else {
+            rangeStart = _.options.infinite ? _.options.slidesToShow + _.currentSlide : _.currentSlide;
+            rangeEnd = Math.ceil(rangeStart + _.options.slidesToShow);
+            if (_.options.fade === true) {
+                if (rangeStart > 0) rangeStart--;
+                if (rangeEnd <= _.slideCount) rangeEnd++;
+            }
+        }
+
+        loadRange = _.$slider.find('.slick-slide').slice(rangeStart, rangeEnd);
+
+        if (_.options.lazyLoad === 'anticipated') {
+            var prevSlide = rangeStart - 1,
+                nextSlide = rangeEnd,
+                $slides = _.$slider.find('.slick-slide');
+
+            for (var i = 0; i < _.options.slidesToScroll; i++) {
+                if (prevSlide < 0) prevSlide = _.slideCount - 1;
+                loadRange = loadRange.add($slides.eq(prevSlide));
+                loadRange = loadRange.add($slides.eq(nextSlide));
+                prevSlide--;
+                nextSlide++;
+            }
+        }
+
+        loadImages(loadRange);
+
+        if (_.slideCount <= _.options.slidesToShow) {
+            cloneRange = _.$slider.find('.slick-slide');
+            loadImages(cloneRange);
+        } else
+        if (_.currentSlide >= _.slideCount - _.options.slidesToShow) {
+            cloneRange = _.$slider.find('.slick-cloned').slice(0, _.options.slidesToShow);
+            loadImages(cloneRange);
+        } else if (_.currentSlide === 0) {
+            cloneRange = _.$slider.find('.slick-cloned').slice(_.options.slidesToShow * -1);
+            loadImages(cloneRange);
+        }
+
+    };
+
+    Slick.prototype.loadSlider = function() {
+
+        var _ = this;
+
+        _.setPosition();
+
+        _.$slideTrack.css({
+            opacity: 1
+        });
+
+        _.$slider.removeClass('slick-loading');
+
+        _.initUI();
+
+        if (_.options.lazyLoad === 'progressive') {
+            _.progressiveLazyLoad();
+        }
+
+    };
+
+    Slick.prototype.next = Slick.prototype.slickNext = function() {
+
+        var _ = this;
+
+        _.changeSlide({
+            data: {
+                message: 'next'
+            }
+        });
+
+    };
+
+    Slick.prototype.orientationChange = function() {
+
+        var _ = this;
+
+        _.checkResponsive();
+        _.setPosition();
+
+    };
+
+    Slick.prototype.pause = Slick.prototype.slickPause = function() {
+
+        var _ = this;
+
+        _.autoPlayClear();
+        _.paused = true;
+
+    };
+
+    Slick.prototype.play = Slick.prototype.slickPlay = function() {
+
+        var _ = this;
+
+        _.autoPlay();
+        _.options.autoplay = true;
+        _.paused = false;
+        _.focussed = false;
+        _.interrupted = false;
+
+    };
+
+    Slick.prototype.postSlide = function(index) {
+
+        var _ = this;
+
+        if( !_.unslicked ) {
+
+            _.$slider.trigger('afterChange', [_, index]);
+
+            _.animating = false;
+
+            if (_.slideCount > _.options.slidesToShow) {
+                _.setPosition();
+            }
+
+            _.swipeLeft = null;
+
+            if ( _.options.autoplay ) {
+                _.autoPlay();
+            }
+
+            if (_.options.accessibility === true) {
+                _.initADA();
+
+                if (_.options.focusOnChange) {
+                    var $currentSlide = $(_.$slides.get(_.currentSlide));
+                    $currentSlide.attr('tabindex', 0).focus();
+                }
+            }
+
+        }
+
+    };
+
+    Slick.prototype.prev = Slick.prototype.slickPrev = function() {
+
+        var _ = this;
+
+        _.changeSlide({
+            data: {
+                message: 'previous'
+            }
+        });
+
+    };
+
+    Slick.prototype.preventDefault = function(event) {
+
+        event.preventDefault();
+
+    };
+
+    Slick.prototype.progressiveLazyLoad = function( tryCount ) {
+
+        tryCount = tryCount || 1;
+
+        var _ = this,
+            $imgsToLoad = $( 'img[data-lazy]', _.$slider ),
+            image,
+            imageSource,
+            imageSrcSet,
+            imageSizes,
+            imageToLoad;
+
+        if ( $imgsToLoad.length ) {
+
+            image = $imgsToLoad.first();
+            imageSource = image.attr('data-lazy');
+            imageSrcSet = image.attr('data-srcset');
+            imageSizes  = image.attr('data-sizes') || _.$slider.attr('data-sizes');
+            imageToLoad = document.createElement('img');
+
+            imageToLoad.onload = function() {
+
+                if (imageSrcSet) {
+                    image
+                        .attr('srcset', imageSrcSet );
+
+                    if (imageSizes) {
+                        image
+                            .attr('sizes', imageSizes );
+                    }
+                }
+
+                image
+                    .attr( 'src', imageSource )
+                    .removeAttr('data-lazy data-srcset data-sizes')
+                    .removeClass('slick-loading');
+
+                if ( _.options.adaptiveHeight === true ) {
+                    _.setPosition();
+                }
+
+                _.$slider.trigger('lazyLoaded', [ _, image, imageSource ]);
+                _.progressiveLazyLoad();
+
+            };
+
+            imageToLoad.onerror = function() {
+
+                if ( tryCount < 3 ) {
+
+                    /**
+                     * try to load the image 3 times,
+                     * leave a slight delay so we don't get
+                     * servers blocking the request.
+                     */
+                    setTimeout( function() {
+                        _.progressiveLazyLoad( tryCount + 1 );
+                    }, 500 );
+
+                } else {
+
+                    image
+                        .removeAttr( 'data-lazy' )
+                        .removeClass( 'slick-loading' )
+                        .addClass( 'slick-lazyload-error' );
+
+                    _.$slider.trigger('lazyLoadError', [ _, image, imageSource ]);
+
+                    _.progressiveLazyLoad();
+
+                }
+
+            };
+
+            imageToLoad.src = imageSource;
+
+        } else {
+
+            _.$slider.trigger('allImagesLoaded', [ _ ]);
+
+        }
+
+    };
+
+    Slick.prototype.refresh = function( initializing ) {
+
+        var _ = this, currentSlide, lastVisibleIndex;
+
+        lastVisibleIndex = _.slideCount - _.options.slidesToShow;
+
+        // in non-infinite sliders, we don't want to go past the
+        // last visible index.
+        if( !_.options.infinite && ( _.currentSlide > lastVisibleIndex )) {
+            _.currentSlide = lastVisibleIndex;
+        }
+
+        // if less slides than to show, go to start.
+        if ( _.slideCount <= _.options.slidesToShow ) {
+            _.currentSlide = 0;
+
+        }
+
+        currentSlide = _.currentSlide;
+
+        _.destroy(true);
+
+        $.extend(_, _.initials, { currentSlide: currentSlide });
+
+        _.init();
+
+        if( !initializing ) {
+
+            _.changeSlide({
+                data: {
+                    message: 'index',
+                    index: currentSlide
+                }
+            }, false);
+
+        }
+
+    };
+
+    Slick.prototype.registerBreakpoints = function() {
+
+        var _ = this, breakpoint, currentBreakpoint, l,
+            responsiveSettings = _.options.responsive || null;
+
+        if ( $.type(responsiveSettings) === 'array' && responsiveSettings.length ) {
+
+            _.respondTo = _.options.respondTo || 'window';
+
+            for ( breakpoint in responsiveSettings ) {
+
+                l = _.breakpoints.length-1;
+
+                if (responsiveSettings.hasOwnProperty(breakpoint)) {
+                    currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
+
+                    // loop through the breakpoints and cut out any existing
+                    // ones with the same breakpoint number, we don't want dupes.
+                    while( l >= 0 ) {
+                        if( _.breakpoints[l] && _.breakpoints[l] === currentBreakpoint ) {
+                            _.breakpoints.splice(l,1);
+                        }
+                        l--;
+                    }
+
+                    _.breakpoints.push(currentBreakpoint);
+                    _.breakpointSettings[currentBreakpoint] = responsiveSettings[breakpoint].settings;
+
+                }
+
+            }
+
+            _.breakpoints.sort(function(a, b) {
+                return ( _.options.mobileFirst ) ? a-b : b-a;
+            });
+
+        }
+
+    };
+
+    Slick.prototype.reinit = function() {
+
+        var _ = this;
+
+        _.$slides =
+            _.$slideTrack
+                .children(_.options.slide)
+                .addClass('slick-slide');
+
+        _.slideCount = _.$slides.length;
+
+        if (_.currentSlide >= _.slideCount && _.currentSlide !== 0) {
+            _.currentSlide = _.currentSlide - _.options.slidesToScroll;
+        }
+
+        if (_.slideCount <= _.options.slidesToShow) {
+            _.currentSlide = 0;
+        }
+
+        _.registerBreakpoints();
+
+        _.setProps();
+        _.setupInfinite();
+        _.buildArrows();
+        _.updateArrows();
+        _.initArrowEvents();
+        _.buildDots();
+        _.updateDots();
+        _.initDotEvents();
+        _.cleanUpSlideEvents();
+        _.initSlideEvents();
+
+        _.checkResponsive(false, true);
+
+        if (_.options.focusOnSelect === true) {
+            $(_.$slideTrack).children().on('click.slick', _.selectHandler);
+        }
+
+        _.setSlideClasses(typeof _.currentSlide === 'number' ? _.currentSlide : 0);
+
+        _.setPosition();
+        _.focusHandler();
+
+        _.paused = !_.options.autoplay;
+        _.autoPlay();
+
+        _.$slider.trigger('reInit', [_]);
+
+    };
+
+    Slick.prototype.resize = function() {
+
+        var _ = this;
+
+        if ($(window).width() !== _.windowWidth) {
+            clearTimeout(_.windowDelay);
+            _.windowDelay = window.setTimeout(function() {
+                _.windowWidth = $(window).width();
+                _.checkResponsive();
+                if( !_.unslicked ) { _.setPosition(); }
+            }, 50);
+        }
+    };
+
+    Slick.prototype.removeSlide = Slick.prototype.slickRemove = function(index, removeBefore, removeAll) {
+
+        var _ = this;
+
+        if (typeof(index) === 'boolean') {
+            removeBefore = index;
+            index = removeBefore === true ? 0 : _.slideCount - 1;
+        } else {
+            index = removeBefore === true ? --index : index;
+        }
+
+        if (_.slideCount < 1 || index < 0 || index > _.slideCount - 1) {
+            return false;
+        }
+
+        _.unload();
+
+        if (removeAll === true) {
+            _.$slideTrack.children().remove();
+        } else {
+            _.$slideTrack.children(this.options.slide).eq(index).remove();
+        }
+
+        _.$slides = _.$slideTrack.children(this.options.slide);
+
+        _.$slideTrack.children(this.options.slide).detach();
+
+        _.$slideTrack.append(_.$slides);
+
+        _.$slidesCache = _.$slides;
+
+        _.reinit();
+
+    };
+
+    Slick.prototype.setCSS = function(position) {
+
+        var _ = this,
+            positionProps = {},
+            x, y;
+
+        if (_.options.rtl === true) {
+            position = -position;
+        }
+        x = _.positionProp == 'left' ? Math.ceil(position) + 'px' : '0px';
+        y = _.positionProp == 'top' ? Math.ceil(position) + 'px' : '0px';
+
+        positionProps[_.positionProp] = position;
+
+        if (_.transformsEnabled === false) {
+            _.$slideTrack.css(positionProps);
+        } else {
+            positionProps = {};
+            if (_.cssTransitions === false) {
+                positionProps[_.animType] = 'translate(' + x + ', ' + y + ')';
+                _.$slideTrack.css(positionProps);
+            } else {
+                positionProps[_.animType] = 'translate3d(' + x + ', ' + y + ', 0px)';
+                _.$slideTrack.css(positionProps);
+            }
+        }
+
+    };
+
+    Slick.prototype.setDimensions = function() {
+
+        var _ = this;
+
+        if (_.options.vertical === false) {
+            if (_.options.centerMode === true) {
+                _.$list.css({
+                    padding: ('0px ' + _.options.centerPadding)
+                });
+            }
+        } else {
+            _.$list.height(_.$slides.first().outerHeight(true) * _.options.slidesToShow);
+            if (_.options.centerMode === true) {
+                _.$list.css({
+                    padding: (_.options.centerPadding + ' 0px')
+                });
+            }
+        }
+
+        _.listWidth = _.$list.width();
+        _.listHeight = _.$list.height();
+
+
+        if (_.options.vertical === false && _.options.variableWidth === false) {
+            _.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);
+            _.$slideTrack.width(Math.ceil((_.slideWidth * _.$slideTrack.children('.slick-slide').length)));
+
+        } else if (_.options.variableWidth === true) {
+            _.$slideTrack.width(5000 * _.slideCount);
+        } else {
+            _.slideWidth = Math.ceil(_.listWidth);
+            _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight(true) * _.$slideTrack.children('.slick-slide').length)));
+        }
+
+        var offset = _.$slides.first().outerWidth(true) - _.$slides.first().width();
+        if (_.options.variableWidth === false) _.$slideTrack.children('.slick-slide').width(_.slideWidth - offset);
+
+    };
+
+    Slick.prototype.setFade = function() {
+
+        var _ = this,
+            targetLeft;
+
+        _.$slides.each(function(index, element) {
+            targetLeft = (_.slideWidth * index) * -1;
+            if (_.options.rtl === true) {
+                $(element).css({
+                    position: 'relative',
+                    right: targetLeft,
+                    top: 0,
+                    zIndex: _.options.zIndex - 2,
+                    opacity: 0
+                });
+            } else {
+                $(element).css({
+                    position: 'relative',
+                    left: targetLeft,
+                    top: 0,
+                    zIndex: _.options.zIndex - 2,
+                    opacity: 0
+                });
+            }
+        });
+
+        _.$slides.eq(_.currentSlide).css({
+            zIndex: _.options.zIndex - 1,
+            opacity: 1
+        });
+
+    };
+
+    Slick.prototype.setHeight = function() {
+
+        var _ = this;
+
+        if (_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+            _.$list.css('height', targetHeight);
+        }
+
+    };
+
+    Slick.prototype.setOption =
+    Slick.prototype.slickSetOption = function() {
+
+        /**
+         * accepts arguments in format of:
+         *
+         *  - for changing a single option's value:
+         *     .slick("setOption", option, value, refresh )
+         *
+         *  - for changing a set of responsive options:
+         *     .slick("setOption", 'responsive', [{}, ...], refresh )
+         *
+         *  - for updating multiple values at once (not responsive)
+         *     .slick("setOption", { 'option': value, ... }, refresh )
+         */
+
+        var _ = this, l, item, option, value, refresh = false, type;
+
+        if( $.type( arguments[0] ) === 'object' ) {
+
+            option =  arguments[0];
+            refresh = arguments[1];
+            type = 'multiple';
+
+        } else if ( $.type( arguments[0] ) === 'string' ) {
+
+            option =  arguments[0];
+            value = arguments[1];
+            refresh = arguments[2];
+
+            if ( arguments[0] === 'responsive' && $.type( arguments[1] ) === 'array' ) {
+
+                type = 'responsive';
+
+            } else if ( typeof arguments[1] !== 'undefined' ) {
+
+                type = 'single';
+
+            }
+
+        }
+
+        if ( type === 'single' ) {
+
+            _.options[option] = value;
+
+
+        } else if ( type === 'multiple' ) {
+
+            $.each( option , function( opt, val ) {
+
+                _.options[opt] = val;
+
+            });
+
+
+        } else if ( type === 'responsive' ) {
+
+            for ( item in value ) {
+
+                if( $.type( _.options.responsive ) !== 'array' ) {
+
+                    _.options.responsive = [ value[item] ];
+
+                } else {
+
+                    l = _.options.responsive.length-1;
+
+                    // loop through the responsive object and splice out duplicates.
+                    while( l >= 0 ) {
+
+                        if( _.options.responsive[l].breakpoint === value[item].breakpoint ) {
+
+                            _.options.responsive.splice(l,1);
+
+                        }
+
+                        l--;
+
+                    }
+
+                    _.options.responsive.push( value[item] );
+
+                }
+
+            }
+
+        }
+
+        if ( refresh ) {
+
+            _.unload();
+            _.reinit();
+
+        }
+
+    };
+
+    Slick.prototype.setPosition = function() {
+
+        var _ = this;
+
+        _.setDimensions();
+
+        _.setHeight();
+
+        if (_.options.fade === false) {
+            _.setCSS(_.getLeft(_.currentSlide));
+        } else {
+            _.setFade();
+        }
+
+        _.$slider.trigger('setPosition', [_]);
+
+    };
+
+    Slick.prototype.setProps = function() {
+
+        var _ = this,
+            bodyStyle = document.body.style;
+
+        _.positionProp = _.options.vertical === true ? 'top' : 'left';
+
+        if (_.positionProp === 'top') {
+            _.$slider.addClass('slick-vertical');
+        } else {
+            _.$slider.removeClass('slick-vertical');
+        }
+
+        if (bodyStyle.WebkitTransition !== undefined ||
+            bodyStyle.MozTransition !== undefined ||
+            bodyStyle.msTransition !== undefined) {
+            if (_.options.useCSS === true) {
+                _.cssTransitions = true;
+            }
+        }
+
+        if ( _.options.fade ) {
+            if ( typeof _.options.zIndex === 'number' ) {
+                if( _.options.zIndex < 3 ) {
+                    _.options.zIndex = 3;
+                }
+            } else {
+                _.options.zIndex = _.defaults.zIndex;
+            }
+        }
+
+        if (bodyStyle.OTransform !== undefined) {
+            _.animType = 'OTransform';
+            _.transformType = '-o-transform';
+            _.transitionType = 'OTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;
+        }
+        if (bodyStyle.MozTransform !== undefined) {
+            _.animType = 'MozTransform';
+            _.transformType = '-moz-transform';
+            _.transitionType = 'MozTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.MozPerspective === undefined) _.animType = false;
+        }
+        if (bodyStyle.webkitTransform !== undefined) {
+            _.animType = 'webkitTransform';
+            _.transformType = '-webkit-transform';
+            _.transitionType = 'webkitTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;
+        }
+        if (bodyStyle.msTransform !== undefined) {
+            _.animType = 'msTransform';
+            _.transformType = '-ms-transform';
+            _.transitionType = 'msTransition';
+            if (bodyStyle.msTransform === undefined) _.animType = false;
+        }
+        if (bodyStyle.transform !== undefined && _.animType !== false) {
+            _.animType = 'transform';
+            _.transformType = 'transform';
+            _.transitionType = 'transition';
+        }
+        _.transformsEnabled = _.options.useTransform && (_.animType !== null && _.animType !== false);
+    };
+
+
+    Slick.prototype.setSlideClasses = function(index) {
+
+        var _ = this,
+            centerOffset, allSlides, indexOffset, remainder;
+
+        allSlides = _.$slider
+            .find('.slick-slide')
+            .removeClass('slick-active slick-center slick-current')
+            .attr('aria-hidden', 'true');
+
+        _.$slides
+            .eq(index)
+            .addClass('slick-current');
+
+        if (_.options.centerMode === true) {
+
+            var evenCoef = _.options.slidesToShow % 2 === 0 ? 1 : 0;
+
+            centerOffset = Math.floor(_.options.slidesToShow / 2);
+
+            if (_.options.infinite === true) {
+
+                if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {
+                    _.$slides
+                        .slice(index - centerOffset + evenCoef, index + centerOffset + 1)
+                        .addClass('slick-active')
+                        .attr('aria-hidden', 'false');
+
+                } else {
+
+                    indexOffset = _.options.slidesToShow + index;
+                    allSlides
+                        .slice(indexOffset - centerOffset + 1 + evenCoef, indexOffset + centerOffset + 2)
+                        .addClass('slick-active')
+                        .attr('aria-hidden', 'false');
+
+                }
+
+                if (index === 0) {
+
+                    allSlides
+                        .eq(allSlides.length - 1 - _.options.slidesToShow)
+                        .addClass('slick-center');
+
+                } else if (index === _.slideCount - 1) {
+
+                    allSlides
+                        .eq(_.options.slidesToShow)
+                        .addClass('slick-center');
+
+                }
+
+            }
+
+            _.$slides
+                .eq(index)
+                .addClass('slick-center');
+
+        } else {
+
+            if (index >= 0 && index <= (_.slideCount - _.options.slidesToShow)) {
+
+                _.$slides
+                    .slice(index, index + _.options.slidesToShow)
+                    .addClass('slick-active')
+                    .attr('aria-hidden', 'false');
+
+            } else if (allSlides.length <= _.options.slidesToShow) {
+
+                allSlides
+                    .addClass('slick-active')
+                    .attr('aria-hidden', 'false');
+
+            } else {
+
+                remainder = _.slideCount % _.options.slidesToShow;
+                indexOffset = _.options.infinite === true ? _.options.slidesToShow + index : index;
+
+                if (_.options.slidesToShow == _.options.slidesToScroll && (_.slideCount - index) < _.options.slidesToShow) {
+
+                    allSlides
+                        .slice(indexOffset - (_.options.slidesToShow - remainder), indexOffset + remainder)
+                        .addClass('slick-active')
+                        .attr('aria-hidden', 'false');
+
+                } else {
+
+                    allSlides
+                        .slice(indexOffset, indexOffset + _.options.slidesToShow)
+                        .addClass('slick-active')
+                        .attr('aria-hidden', 'false');
+
+                }
+
+            }
+
+        }
+
+        if (_.options.lazyLoad === 'ondemand' || _.options.lazyLoad === 'anticipated') {
+            _.lazyLoad();
+        }
+    };
+
+    Slick.prototype.setupInfinite = function() {
+
+        var _ = this,
+            i, slideIndex, infiniteCount;
+
+        if (_.options.fade === true) {
+            _.options.centerMode = false;
+        }
+
+        if (_.options.infinite === true && _.options.fade === false) {
+
+            slideIndex = null;
+
+            if (_.slideCount > _.options.slidesToShow) {
+
+                if (_.options.centerMode === true) {
+                    infiniteCount = _.options.slidesToShow + 1;
+                } else {
+                    infiniteCount = _.options.slidesToShow;
+                }
+
+                for (i = _.slideCount; i > (_.slideCount -
+                        infiniteCount); i -= 1) {
+                    slideIndex = i - 1;
+                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                        .attr('data-slick-index', slideIndex - _.slideCount)
+                        .prependTo(_.$slideTrack).addClass('slick-cloned');
+                }
+                for (i = 0; i < infiniteCount  + _.slideCount; i += 1) {
+                    slideIndex = i;
+                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                        .attr('data-slick-index', slideIndex + _.slideCount)
+                        .appendTo(_.$slideTrack).addClass('slick-cloned');
+                }
+                _.$slideTrack.find('.slick-cloned').find('[id]').each(function() {
+                    $(this).attr('id', '');
+                });
+
+            }
+
+        }
+
+    };
+
+    Slick.prototype.interrupt = function( toggle ) {
+
+        var _ = this;
+
+        if( !toggle ) {
+            _.autoPlay();
+        }
+        _.interrupted = toggle;
+
+    };
+
+    Slick.prototype.selectHandler = function(event) {
+
+        var _ = this;
+
+        var targetElement =
+            $(event.target).is('.slick-slide') ?
+                $(event.target) :
+                $(event.target).parents('.slick-slide');
+
+        var index = parseInt(targetElement.attr('data-slick-index'));
+
+        if (!index) index = 0;
+
+        if (_.slideCount <= _.options.slidesToShow) {
+
+            _.slideHandler(index, false, true);
+            return;
+
+        }
+
+        _.slideHandler(index);
+
+    };
+
+    Slick.prototype.slideHandler = function(index, sync, dontAnimate) {
+
+        var targetSlide, animSlide, oldSlide, slideLeft, targetLeft = null,
+            _ = this, navTarget;
+
+        sync = sync || false;
+
+        if (_.animating === true && _.options.waitForAnimate === true) {
+            return;
+        }
+
+        if (_.options.fade === true && _.currentSlide === index) {
+            return;
+        }
+
+        if (sync === false) {
+            _.asNavFor(index);
+        }
+
+        targetSlide = index;
+        targetLeft = _.getLeft(targetSlide);
+        slideLeft = _.getLeft(_.currentSlide);
+
+        _.currentLeft = _.swipeLeft === null ? slideLeft : _.swipeLeft;
+
+        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.getDotCount() * _.options.slidesToScroll)) {
+            if (_.options.fade === false) {
+                targetSlide = _.currentSlide;
+                if (dontAnimate !== true && _.slideCount > _.options.slidesToShow) {
+                    _.animateSlide(slideLeft, function() {
+                        _.postSlide(targetSlide);
+                    });
+                } else {
+                    _.postSlide(targetSlide);
+                }
+            }
+            return;
+        } else if (_.options.infinite === false && _.options.centerMode === true && (index < 0 || index > (_.slideCount - _.options.slidesToScroll))) {
+            if (_.options.fade === false) {
+                targetSlide = _.currentSlide;
+                if (dontAnimate !== true && _.slideCount > _.options.slidesToShow) {
+                    _.animateSlide(slideLeft, function() {
+                        _.postSlide(targetSlide);
+                    });
+                } else {
+                    _.postSlide(targetSlide);
+                }
+            }
+            return;
+        }
+
+        if ( _.options.autoplay ) {
+            clearInterval(_.autoPlayTimer);
+        }
+
+        if (targetSlide < 0) {
+            if (_.slideCount % _.options.slidesToScroll !== 0) {
+                animSlide = _.slideCount - (_.slideCount % _.options.slidesToScroll);
+            } else {
+                animSlide = _.slideCount + targetSlide;
+            }
+        } else if (targetSlide >= _.slideCount) {
+            if (_.slideCount % _.options.slidesToScroll !== 0) {
+                animSlide = 0;
+            } else {
+                animSlide = targetSlide - _.slideCount;
+            }
+        } else {
+            animSlide = targetSlide;
+        }
+
+        _.animating = true;
+
+        _.$slider.trigger('beforeChange', [_, _.currentSlide, animSlide]);
+
+        oldSlide = _.currentSlide;
+        _.currentSlide = animSlide;
+
+        _.setSlideClasses(_.currentSlide);
+
+        if ( _.options.asNavFor ) {
+
+            navTarget = _.getNavTarget();
+            navTarget = navTarget.slick('getSlick');
+
+            if ( navTarget.slideCount <= navTarget.options.slidesToShow ) {
+                navTarget.setSlideClasses(_.currentSlide);
+            }
+
+        }
+
+        _.updateDots();
+        _.updateArrows();
+
+        if (_.options.fade === true) {
+            if (dontAnimate !== true) {
+
+                _.fadeSlideOut(oldSlide);
+
+                _.fadeSlide(animSlide, function() {
+                    _.postSlide(animSlide);
+                });
+
+            } else {
+                _.postSlide(animSlide);
+            }
+            _.animateHeight();
+            return;
+        }
+
+        if (dontAnimate !== true && _.slideCount > _.options.slidesToShow) {
+            _.animateSlide(targetLeft, function() {
+                _.postSlide(animSlide);
+            });
+        } else {
+            _.postSlide(animSlide);
+        }
+
+    };
+
+    Slick.prototype.startLoad = function() {
+
+        var _ = this;
+
+        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {
+
+            _.$prevArrow.hide();
+            _.$nextArrow.hide();
+
+        }
+
+        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
+
+            _.$dots.hide();
+
+        }
+
+        _.$slider.addClass('slick-loading');
+
+    };
+
+    Slick.prototype.swipeDirection = function() {
+
+        var xDist, yDist, r, swipeAngle, _ = this;
+
+        xDist = _.touchObject.startX - _.touchObject.curX;
+        yDist = _.touchObject.startY - _.touchObject.curY;
+        r = Math.atan2(yDist, xDist);
+
+        swipeAngle = Math.round(r * 180 / Math.PI);
+        if (swipeAngle < 0) {
+            swipeAngle = 360 - Math.abs(swipeAngle);
+        }
+
+        if ((swipeAngle <= 45) && (swipeAngle >= 0)) {
+            return (_.options.rtl === false ? 'left' : 'right');
+        }
+        if ((swipeAngle <= 360) && (swipeAngle >= 315)) {
+            return (_.options.rtl === false ? 'left' : 'right');
+        }
+        if ((swipeAngle >= 135) && (swipeAngle <= 225)) {
+            return (_.options.rtl === false ? 'right' : 'left');
+        }
+        if (_.options.verticalSwiping === true) {
+            if ((swipeAngle >= 35) && (swipeAngle <= 135)) {
+                return 'down';
+            } else {
+                return 'up';
+            }
+        }
+
+        return 'vertical';
+
+    };
+
+    Slick.prototype.swipeEnd = function(event) {
+
+        var _ = this,
+            slideCount,
+            direction;
+
+        _.dragging = false;
+        _.swiping = false;
+
+        if (_.scrolling) {
+            _.scrolling = false;
+            return false;
+        }
+
+        _.interrupted = false;
+        _.shouldClick = ( _.touchObject.swipeLength > 10 ) ? false : true;
+
+        if ( _.touchObject.curX === undefined ) {
+            return false;
+        }
+
+        if ( _.touchObject.edgeHit === true ) {
+            _.$slider.trigger('edge', [_, _.swipeDirection() ]);
+        }
+
+        if ( _.touchObject.swipeLength >= _.touchObject.minSwipe ) {
+
+            direction = _.swipeDirection();
+
+            switch ( direction ) {
+
+                case 'left':
+                case 'down':
+
+                    slideCount =
+                        _.options.swipeToSlide ?
+                            _.checkNavigable( _.currentSlide + _.getSlideCount() ) :
+                            _.currentSlide + _.getSlideCount();
+
+                    _.currentDirection = 0;
+
+                    break;
+
+                case 'right':
+                case 'up':
+
+                    slideCount =
+                        _.options.swipeToSlide ?
+                            _.checkNavigable( _.currentSlide - _.getSlideCount() ) :
+                            _.currentSlide - _.getSlideCount();
+
+                    _.currentDirection = 1;
+
+                    break;
+
+                default:
+
+
+            }
+
+            if( direction != 'vertical' ) {
+
+                _.slideHandler( slideCount );
+                _.touchObject = {};
+                _.$slider.trigger('swipe', [_, direction ]);
+
+            }
+
+        } else {
+
+            if ( _.touchObject.startX !== _.touchObject.curX ) {
+
+                _.slideHandler( _.currentSlide );
+                _.touchObject = {};
+
+            }
+
+        }
+
+    };
+
+    Slick.prototype.swipeHandler = function(event) {
+
+        var _ = this;
+
+        if ((_.options.swipe === false) || ('ontouchend' in document && _.options.swipe === false)) {
+            return;
+        } else if (_.options.draggable === false && event.type.indexOf('mouse') !== -1) {
+            return;
+        }
+
+        _.touchObject.fingerCount = event.originalEvent && event.originalEvent.touches !== undefined ?
+            event.originalEvent.touches.length : 1;
+
+        _.touchObject.minSwipe = _.listWidth / _.options
+            .touchThreshold;
+
+        if (_.options.verticalSwiping === true) {
+            _.touchObject.minSwipe = _.listHeight / _.options
+                .touchThreshold;
+        }
+
+        switch (event.data.action) {
+
+            case 'start':
+                _.swipeStart(event);
+                break;
+
+            case 'move':
+                _.swipeMove(event);
+                break;
+
+            case 'end':
+                _.swipeEnd(event);
+                break;
+
+        }
+
+    };
+
+    Slick.prototype.swipeMove = function(event) {
+
+        var _ = this,
+            edgeWasHit = false,
+            curLeft, swipeDirection, swipeLength, positionOffset, touches, verticalSwipeLength;
+
+        touches = event.originalEvent !== undefined ? event.originalEvent.touches : null;
+
+        if (!_.dragging || _.scrolling || touches && touches.length !== 1) {
+            return false;
+        }
+
+        curLeft = _.getLeft(_.currentSlide);
+
+        _.touchObject.curX = touches !== undefined ? touches[0].pageX : event.clientX;
+        _.touchObject.curY = touches !== undefined ? touches[0].pageY : event.clientY;
+
+        _.touchObject.swipeLength = Math.round(Math.sqrt(
+            Math.pow(_.touchObject.curX - _.touchObject.startX, 2)));
+
+        verticalSwipeLength = Math.round(Math.sqrt(
+            Math.pow(_.touchObject.curY - _.touchObject.startY, 2)));
+
+        if (!_.options.verticalSwiping && !_.swiping && verticalSwipeLength > 4) {
+            _.scrolling = true;
+            return false;
+        }
+
+        if (_.options.verticalSwiping === true) {
+            _.touchObject.swipeLength = verticalSwipeLength;
+        }
+
+        swipeDirection = _.swipeDirection();
+
+        if (event.originalEvent !== undefined && _.touchObject.swipeLength > 4) {
+            _.swiping = true;
+            event.preventDefault();
+        }
+
+        positionOffset = (_.options.rtl === false ? 1 : -1) * (_.touchObject.curX > _.touchObject.startX ? 1 : -1);
+        if (_.options.verticalSwiping === true) {
+            positionOffset = _.touchObject.curY > _.touchObject.startY ? 1 : -1;
+        }
+
+
+        swipeLength = _.touchObject.swipeLength;
+
+        _.touchObject.edgeHit = false;
+
+        if (_.options.infinite === false) {
+            if ((_.currentSlide === 0 && swipeDirection === 'right') || (_.currentSlide >= _.getDotCount() && swipeDirection === 'left')) {
+                swipeLength = _.touchObject.swipeLength * _.options.edgeFriction;
+                _.touchObject.edgeHit = true;
+            }
+        }
+
+        if (_.options.vertical === false) {
+            _.swipeLeft = curLeft + swipeLength * positionOffset;
+        } else {
+            _.swipeLeft = curLeft + (swipeLength * (_.$list.height() / _.listWidth)) * positionOffset;
+        }
+        if (_.options.verticalSwiping === true) {
+            _.swipeLeft = curLeft + swipeLength * positionOffset;
+        }
+
+        if (_.options.fade === true || _.options.touchMove === false) {
+            return false;
+        }
+
+        if (_.animating === true) {
+            _.swipeLeft = null;
+            return false;
+        }
+
+        _.setCSS(_.swipeLeft);
+
+    };
+
+    Slick.prototype.swipeStart = function(event) {
+
+        var _ = this,
+            touches;
+
+        _.interrupted = true;
+
+        if (_.touchObject.fingerCount !== 1 || _.slideCount <= _.options.slidesToShow) {
+            _.touchObject = {};
+            return false;
+        }
+
+        if (event.originalEvent !== undefined && event.originalEvent.touches !== undefined) {
+            touches = event.originalEvent.touches[0];
+        }
+
+        _.touchObject.startX = _.touchObject.curX = touches !== undefined ? touches.pageX : event.clientX;
+        _.touchObject.startY = _.touchObject.curY = touches !== undefined ? touches.pageY : event.clientY;
+
+        _.dragging = true;
+
+    };
+
+    Slick.prototype.unfilterSlides = Slick.prototype.slickUnfilter = function() {
+
+        var _ = this;
+
+        if (_.$slidesCache !== null) {
+
+            _.unload();
+
+            _.$slideTrack.children(this.options.slide).detach();
+
+            _.$slidesCache.appendTo(_.$slideTrack);
+
+            _.reinit();
+
+        }
+
+    };
+
+    Slick.prototype.unload = function() {
+
+        var _ = this;
+
+        $('.slick-cloned', _.$slider).remove();
+
+        if (_.$dots) {
+            _.$dots.remove();
+        }
+
+        if (_.$prevArrow && _.htmlExpr.test(_.options.prevArrow)) {
+            _.$prevArrow.remove();
+        }
+
+        if (_.$nextArrow && _.htmlExpr.test(_.options.nextArrow)) {
+            _.$nextArrow.remove();
+        }
+
+        _.$slides
+            .removeClass('slick-slide slick-active slick-visible slick-current')
+            .attr('aria-hidden', 'true')
+            .css('width', '');
+
+    };
+
+    Slick.prototype.unslick = function(fromBreakpoint) {
+
+        var _ = this;
+        _.$slider.trigger('unslick', [_, fromBreakpoint]);
+        _.destroy();
+
+    };
+
+    Slick.prototype.updateArrows = function() {
+
+        var _ = this,
+            centerOffset;
+
+        centerOffset = Math.floor(_.options.slidesToShow / 2);
+
+        if ( _.options.arrows === true &&
+            _.slideCount > _.options.slidesToShow &&
+            !_.options.infinite ) {
+
+            _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');
+            _.$nextArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');
+
+            if (_.currentSlide === 0) {
+
+                _.$prevArrow.addClass('slick-disabled').attr('aria-disabled', 'true');
+                _.$nextArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');
+
+            } else if (_.currentSlide >= _.slideCount - _.options.slidesToShow && _.options.centerMode === false) {
+
+                _.$nextArrow.addClass('slick-disabled').attr('aria-disabled', 'true');
+                _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');
+
+            } else if (_.currentSlide >= _.slideCount - 1 && _.options.centerMode === true) {
+
+                _.$nextArrow.addClass('slick-disabled').attr('aria-disabled', 'true');
+                _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');
+
+            }
+
+        }
+
+    };
+
+    Slick.prototype.updateDots = function() {
+
+        var _ = this;
+
+        if (_.$dots !== null) {
+
+            _.$dots
+                .find('li')
+                    .removeClass('slick-active')
+                    .end();
+
+            _.$dots
+                .find('li')
+                .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))
+                .addClass('slick-active');
+
+        }
+
+    };
+
+    Slick.prototype.visibility = function() {
+
+        var _ = this;
+
+        if ( _.options.autoplay ) {
+
+            if ( document[_.hidden] ) {
+
+                _.interrupted = true;
+
+            } else {
+
+                _.interrupted = false;
+
+            }
+
+        }
+
+    };
+
+    $.fn.slick = function() {
+        var _ = this,
+            opt = arguments[0],
+            args = Array.prototype.slice.call(arguments, 1),
+            l = _.length,
+            i,
+            ret;
+        for (i = 0; i < l; i++) {
+            if (typeof opt == 'object' || typeof opt == 'undefined')
+                _[i].slick = new Slick(_[i], opt);
+            else
+                ret = _[i].slick[opt].apply(_[i].slick, args);
+            if (typeof ret != 'undefined') return ret;
+        }
+        return _;
+    };
+
+}));
+(function() {
+  var context = this;
+
+  (function() {
+    (function() {
+      var slice = [].slice;
+
+      this.ActionCable = {
+        INTERNAL: {
+          "message_types": {
+            "welcome": "welcome",
+            "ping": "ping",
+            "confirmation": "confirm_subscription",
+            "rejection": "reject_subscription"
+          },
+          "default_mount_path": "/cable",
+          "protocols": ["actioncable-v1-json", "actioncable-unsupported"]
+        },
+        WebSocket: window.WebSocket,
+        logger: window.console,
+        createConsumer: function(url) {
+          var ref;
+          if (url == null) {
+            url = (ref = this.getConfig("url")) != null ? ref : this.INTERNAL.default_mount_path;
+          }
+          return new ActionCable.Consumer(this.createWebSocketURL(url));
+        },
+        getConfig: function(name) {
+          var element;
+          element = document.head.querySelector("meta[name='action-cable-" + name + "']");
+          return element != null ? element.getAttribute("content") : void 0;
+        },
+        createWebSocketURL: function(url) {
+          var a;
+          if (url && !/^wss?:/i.test(url)) {
+            a = document.createElement("a");
+            a.href = url;
+            a.href = a.href;
+            a.protocol = a.protocol.replace("http", "ws");
+            return a.href;
+          } else {
+            return url;
+          }
+        },
+        startDebugging: function() {
+          return this.debugging = true;
+        },
+        stopDebugging: function() {
+          return this.debugging = null;
+        },
+        log: function() {
+          var messages, ref;
+          messages = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+          if (this.debugging) {
+            messages.push(Date.now());
+            return (ref = this.logger).log.apply(ref, ["[ActionCable]"].concat(slice.call(messages)));
+          }
+        }
+      };
+
+    }).call(this);
+  }).call(context);
+
+  var ActionCable = context.ActionCable;
+
+  (function() {
+    (function() {
+      var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+      ActionCable.ConnectionMonitor = (function() {
+        var clamp, now, secondsSince;
+
+        ConnectionMonitor.pollInterval = {
+          min: 3,
+          max: 30
+        };
+
+        ConnectionMonitor.staleThreshold = 6;
+
+        function ConnectionMonitor(connection) {
+          this.connection = connection;
+          this.visibilityDidChange = bind(this.visibilityDidChange, this);
+          this.reconnectAttempts = 0;
+        }
+
+        ConnectionMonitor.prototype.start = function() {
+          if (!this.isRunning()) {
+            this.startedAt = now();
+            delete this.stoppedAt;
+            this.startPolling();
+            document.addEventListener("visibilitychange", this.visibilityDidChange);
+            return ActionCable.log("ConnectionMonitor started. pollInterval = " + (this.getPollInterval()) + " ms");
+          }
+        };
+
+        ConnectionMonitor.prototype.stop = function() {
+          if (this.isRunning()) {
+            this.stoppedAt = now();
+            this.stopPolling();
+            document.removeEventListener("visibilitychange", this.visibilityDidChange);
+            return ActionCable.log("ConnectionMonitor stopped");
+          }
+        };
+
+        ConnectionMonitor.prototype.isRunning = function() {
+          return (this.startedAt != null) && (this.stoppedAt == null);
+        };
+
+        ConnectionMonitor.prototype.recordPing = function() {
+          return this.pingedAt = now();
+        };
+
+        ConnectionMonitor.prototype.recordConnect = function() {
+          this.reconnectAttempts = 0;
+          this.recordPing();
+          delete this.disconnectedAt;
+          return ActionCable.log("ConnectionMonitor recorded connect");
+        };
+
+        ConnectionMonitor.prototype.recordDisconnect = function() {
+          this.disconnectedAt = now();
+          return ActionCable.log("ConnectionMonitor recorded disconnect");
+        };
+
+        ConnectionMonitor.prototype.startPolling = function() {
+          this.stopPolling();
+          return this.poll();
+        };
+
+        ConnectionMonitor.prototype.stopPolling = function() {
+          return clearTimeout(this.pollTimeout);
+        };
+
+        ConnectionMonitor.prototype.poll = function() {
+          return this.pollTimeout = setTimeout((function(_this) {
+            return function() {
+              _this.reconnectIfStale();
+              return _this.poll();
+            };
+          })(this), this.getPollInterval());
+        };
+
+        ConnectionMonitor.prototype.getPollInterval = function() {
+          var interval, max, min, ref;
+          ref = this.constructor.pollInterval, min = ref.min, max = ref.max;
+          interval = 5 * Math.log(this.reconnectAttempts + 1);
+          return Math.round(clamp(interval, min, max) * 1000);
+        };
+
+        ConnectionMonitor.prototype.reconnectIfStale = function() {
+          if (this.connectionIsStale()) {
+            ActionCable.log("ConnectionMonitor detected stale connection. reconnectAttempts = " + this.reconnectAttempts + ", pollInterval = " + (this.getPollInterval()) + " ms, time disconnected = " + (secondsSince(this.disconnectedAt)) + " s, stale threshold = " + this.constructor.staleThreshold + " s");
+            this.reconnectAttempts++;
+            if (this.disconnectedRecently()) {
+              return ActionCable.log("ConnectionMonitor skipping reopening recent disconnect");
+            } else {
+              ActionCable.log("ConnectionMonitor reopening");
+              return this.connection.reopen();
+            }
+          }
+        };
+
+        ConnectionMonitor.prototype.connectionIsStale = function() {
+          var ref;
+          return secondsSince((ref = this.pingedAt) != null ? ref : this.startedAt) > this.constructor.staleThreshold;
+        };
+
+        ConnectionMonitor.prototype.disconnectedRecently = function() {
+          return this.disconnectedAt && secondsSince(this.disconnectedAt) < this.constructor.staleThreshold;
+        };
+
+        ConnectionMonitor.prototype.visibilityDidChange = function() {
+          if (document.visibilityState === "visible") {
+            return setTimeout((function(_this) {
+              return function() {
+                if (_this.connectionIsStale() || !_this.connection.isOpen()) {
+                  ActionCable.log("ConnectionMonitor reopening stale connection on visibilitychange. visbilityState = " + document.visibilityState);
+                  return _this.connection.reopen();
+                }
+              };
+            })(this), 200);
+          }
+        };
+
+        now = function() {
+          return new Date().getTime();
+        };
+
+        secondsSince = function(time) {
+          return (now() - time) / 1000;
+        };
+
+        clamp = function(number, min, max) {
+          return Math.max(min, Math.min(max, number));
+        };
+
+        return ConnectionMonitor;
+
+      })();
+
+    }).call(this);
+    (function() {
+      var i, message_types, protocols, ref, supportedProtocols, unsupportedProtocol,
+        slice = [].slice,
+        bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+        indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+      ref = ActionCable.INTERNAL, message_types = ref.message_types, protocols = ref.protocols;
+
+      supportedProtocols = 2 <= protocols.length ? slice.call(protocols, 0, i = protocols.length - 1) : (i = 0, []), unsupportedProtocol = protocols[i++];
+
+      ActionCable.Connection = (function() {
+        Connection.reopenDelay = 500;
+
+        function Connection(consumer) {
+          this.consumer = consumer;
+          this.open = bind(this.open, this);
+          this.subscriptions = this.consumer.subscriptions;
+          this.monitor = new ActionCable.ConnectionMonitor(this);
+          this.disconnected = true;
+        }
+
+        Connection.prototype.send = function(data) {
+          if (this.isOpen()) {
+            this.webSocket.send(JSON.stringify(data));
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        Connection.prototype.open = function() {
+          if (this.isActive()) {
+            ActionCable.log("Attempted to open WebSocket, but existing socket is " + (this.getState()));
+            return false;
+          } else {
+            ActionCable.log("Opening WebSocket, current state is " + (this.getState()) + ", subprotocols: " + protocols);
+            if (this.webSocket != null) {
+              this.uninstallEventHandlers();
+            }
+            this.webSocket = new ActionCable.WebSocket(this.consumer.url, protocols);
+            this.installEventHandlers();
+            this.monitor.start();
+            return true;
+          }
+        };
+
+        Connection.prototype.close = function(arg) {
+          var allowReconnect, ref1;
+          allowReconnect = (arg != null ? arg : {
+            allowReconnect: true
+          }).allowReconnect;
+          if (!allowReconnect) {
+            this.monitor.stop();
+          }
+          if (this.isActive()) {
+            return (ref1 = this.webSocket) != null ? ref1.close() : void 0;
+          }
+        };
+
+        Connection.prototype.reopen = function() {
+          var error;
+          ActionCable.log("Reopening WebSocket, current state is " + (this.getState()));
+          if (this.isActive()) {
+            try {
+              return this.close();
+            } catch (error1) {
+              error = error1;
+              return ActionCable.log("Failed to reopen WebSocket", error);
+            } finally {
+              ActionCable.log("Reopening WebSocket in " + this.constructor.reopenDelay + "ms");
+              setTimeout(this.open, this.constructor.reopenDelay);
+            }
+          } else {
+            return this.open();
+          }
+        };
+
+        Connection.prototype.getProtocol = function() {
+          var ref1;
+          return (ref1 = this.webSocket) != null ? ref1.protocol : void 0;
+        };
+
+        Connection.prototype.isOpen = function() {
+          return this.isState("open");
+        };
+
+        Connection.prototype.isActive = function() {
+          return this.isState("open", "connecting");
+        };
+
+        Connection.prototype.isProtocolSupported = function() {
+          var ref1;
+          return ref1 = this.getProtocol(), indexOf.call(supportedProtocols, ref1) >= 0;
+        };
+
+        Connection.prototype.isState = function() {
+          var ref1, states;
+          states = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+          return ref1 = this.getState(), indexOf.call(states, ref1) >= 0;
+        };
+
+        Connection.prototype.getState = function() {
+          var ref1, state, value;
+          for (state in WebSocket) {
+            value = WebSocket[state];
+            if (value === ((ref1 = this.webSocket) != null ? ref1.readyState : void 0)) {
+              return state.toLowerCase();
+            }
+          }
+          return null;
+        };
+
+        Connection.prototype.installEventHandlers = function() {
+          var eventName, handler;
+          for (eventName in this.events) {
+            handler = this.events[eventName].bind(this);
+            this.webSocket["on" + eventName] = handler;
+          }
+        };
+
+        Connection.prototype.uninstallEventHandlers = function() {
+          var eventName;
+          for (eventName in this.events) {
+            this.webSocket["on" + eventName] = function() {};
+          }
+        };
+
+        Connection.prototype.events = {
+          message: function(event) {
+            var identifier, message, ref1, type;
+            if (!this.isProtocolSupported()) {
+              return;
+            }
+            ref1 = JSON.parse(event.data), identifier = ref1.identifier, message = ref1.message, type = ref1.type;
+            switch (type) {
+              case message_types.welcome:
+                this.monitor.recordConnect();
+                return this.subscriptions.reload();
+              case message_types.ping:
+                return this.monitor.recordPing();
+              case message_types.confirmation:
+                return this.subscriptions.notify(identifier, "connected");
+              case message_types.rejection:
+                return this.subscriptions.reject(identifier);
+              default:
+                return this.subscriptions.notify(identifier, "received", message);
+            }
+          },
+          open: function() {
+            ActionCable.log("WebSocket onopen event, using '" + (this.getProtocol()) + "' subprotocol");
+            this.disconnected = false;
+            if (!this.isProtocolSupported()) {
+              ActionCable.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+              return this.close({
+                allowReconnect: false
+              });
+            }
+          },
+          close: function(event) {
+            ActionCable.log("WebSocket onclose event");
+            if (this.disconnected) {
+              return;
+            }
+            this.disconnected = true;
+            this.monitor.recordDisconnect();
+            return this.subscriptions.notifyAll("disconnected", {
+              willAttemptReconnect: this.monitor.isRunning()
+            });
+          },
+          error: function() {
+            return ActionCable.log("WebSocket onerror event");
+          }
+        };
+
+        return Connection;
+
+      })();
+
+    }).call(this);
+    (function() {
+      var slice = [].slice;
+
+      ActionCable.Subscriptions = (function() {
+        function Subscriptions(consumer) {
+          this.consumer = consumer;
+          this.subscriptions = [];
+        }
+
+        Subscriptions.prototype.create = function(channelName, mixin) {
+          var channel, params, subscription;
+          channel = channelName;
+          params = typeof channel === "object" ? channel : {
+            channel: channel
+          };
+          subscription = new ActionCable.Subscription(this.consumer, params, mixin);
+          return this.add(subscription);
+        };
+
+        Subscriptions.prototype.add = function(subscription) {
+          this.subscriptions.push(subscription);
+          this.consumer.ensureActiveConnection();
+          this.notify(subscription, "initialized");
+          this.sendCommand(subscription, "subscribe");
+          return subscription;
+        };
+
+        Subscriptions.prototype.remove = function(subscription) {
+          this.forget(subscription);
+          if (!this.findAll(subscription.identifier).length) {
+            this.sendCommand(subscription, "unsubscribe");
+          }
+          return subscription;
+        };
+
+        Subscriptions.prototype.reject = function(identifier) {
+          var i, len, ref, results, subscription;
+          ref = this.findAll(identifier);
+          results = [];
+          for (i = 0, len = ref.length; i < len; i++) {
+            subscription = ref[i];
+            this.forget(subscription);
+            this.notify(subscription, "rejected");
+            results.push(subscription);
+          }
+          return results;
+        };
+
+        Subscriptions.prototype.forget = function(subscription) {
+          var s;
+          this.subscriptions = (function() {
+            var i, len, ref, results;
+            ref = this.subscriptions;
+            results = [];
+            for (i = 0, len = ref.length; i < len; i++) {
+              s = ref[i];
+              if (s !== subscription) {
+                results.push(s);
+              }
+            }
+            return results;
+          }).call(this);
+          return subscription;
+        };
+
+        Subscriptions.prototype.findAll = function(identifier) {
+          var i, len, ref, results, s;
+          ref = this.subscriptions;
+          results = [];
+          for (i = 0, len = ref.length; i < len; i++) {
+            s = ref[i];
+            if (s.identifier === identifier) {
+              results.push(s);
+            }
+          }
+          return results;
+        };
+
+        Subscriptions.prototype.reload = function() {
+          var i, len, ref, results, subscription;
+          ref = this.subscriptions;
+          results = [];
+          for (i = 0, len = ref.length; i < len; i++) {
+            subscription = ref[i];
+            results.push(this.sendCommand(subscription, "subscribe"));
+          }
+          return results;
+        };
+
+        Subscriptions.prototype.notifyAll = function() {
+          var args, callbackName, i, len, ref, results, subscription;
+          callbackName = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+          ref = this.subscriptions;
+          results = [];
+          for (i = 0, len = ref.length; i < len; i++) {
+            subscription = ref[i];
+            results.push(this.notify.apply(this, [subscription, callbackName].concat(slice.call(args))));
+          }
+          return results;
+        };
+
+        Subscriptions.prototype.notify = function() {
+          var args, callbackName, i, len, results, subscription, subscriptions;
+          subscription = arguments[0], callbackName = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+          if (typeof subscription === "string") {
+            subscriptions = this.findAll(subscription);
+          } else {
+            subscriptions = [subscription];
+          }
+          results = [];
+          for (i = 0, len = subscriptions.length; i < len; i++) {
+            subscription = subscriptions[i];
+            results.push(typeof subscription[callbackName] === "function" ? subscription[callbackName].apply(subscription, args) : void 0);
+          }
+          return results;
+        };
+
+        Subscriptions.prototype.sendCommand = function(subscription, command) {
+          var identifier;
+          identifier = subscription.identifier;
+          return this.consumer.send({
+            command: command,
+            identifier: identifier
+          });
+        };
+
+        return Subscriptions;
+
+      })();
+
+    }).call(this);
+    (function() {
+      ActionCable.Subscription = (function() {
+        var extend;
+
+        function Subscription(consumer, params, mixin) {
+          this.consumer = consumer;
+          if (params == null) {
+            params = {};
+          }
+          this.identifier = JSON.stringify(params);
+          extend(this, mixin);
+        }
+
+        Subscription.prototype.perform = function(action, data) {
+          if (data == null) {
+            data = {};
+          }
+          data.action = action;
+          return this.send(data);
+        };
+
+        Subscription.prototype.send = function(data) {
+          return this.consumer.send({
+            command: "message",
+            identifier: this.identifier,
+            data: JSON.stringify(data)
+          });
+        };
+
+        Subscription.prototype.unsubscribe = function() {
+          return this.consumer.subscriptions.remove(this);
+        };
+
+        extend = function(object, properties) {
+          var key, value;
+          if (properties != null) {
+            for (key in properties) {
+              value = properties[key];
+              object[key] = value;
+            }
+          }
+          return object;
+        };
+
+        return Subscription;
+
+      })();
+
+    }).call(this);
+    (function() {
+      ActionCable.Consumer = (function() {
+        function Consumer(url) {
+          this.url = url;
+          this.subscriptions = new ActionCable.Subscriptions(this);
+          this.connection = new ActionCable.Connection(this);
+        }
+
+        Consumer.prototype.send = function(data) {
+          return this.connection.send(data);
+        };
+
+        Consumer.prototype.connect = function() {
+          return this.connection.open();
+        };
+
+        Consumer.prototype.disconnect = function() {
+          return this.connection.close({
+            allowReconnect: false
+          });
+        };
+
+        Consumer.prototype.ensureActiveConnection = function() {
+          if (!this.connection.isActive()) {
+            return this.connection.open();
+          }
+        };
+
+        return Consumer;
+
+      })();
+
+    }).call(this);
+  }).call(this);
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = ActionCable;
+  } else if (typeof define === "function" && define.amd) {
+    define(ActionCable);
+  }
+}).call(this);
+// Action Cable provides the framework to deal with WebSockets in Rails.
+// You can generate new channels where WebSocket features live using the `rails generate channel` command.
+//
+
+
+
+
+(function() {
+  this.App || (this.App = {});
+
+  App.cable = ActionCable.createConsumer();
+
+}).call(this);
+document.addEventListener( 'turbolinks:load', function() {
+    calculationsFormRemoveMeasurement();
+});
+
+
+
+function calculationsFormRemoveMeasurement() {
+    $('a.removeMeasurement').click(function() {
+        var el = $(this);
+        el.closest('input[type="hidden"]').value = '1';
+        el.parent().hide();
+    });
+};
+
+function calculationsFormAddMeasurement(el, association, content) {
+    var new_id = new Date().getTime(),
+        regexp = new RegExp('new_' + association, 'g');
+    el.parent().before(content.replace(regexp, new_id));
+    calculationsFormRemoveMeasurement();
+    flexdatalistInit(el.parent().prev());
+    calculationsNewMarginOfErrorInit();
+    $('input.numeric.integer.required[type="number"]:last-child').focus();
+};
+document.addEventListener( 'turbolinks:load', function() {
+    flexdatalistInit();
+});
+
+
+
+function flexdatalistInit(el = $('body')) {
+
+    el.find('input.flexdatalist').flexdatalist();
+
+    el.find('input.flexdatalist[data-units]').on( 'change:flexdatalist', function(event, set, options) {
+        $($(this).data('units')).data( 'data', ( 'quantities/' + set.value + '/units_of_measurement.json?locale=' + $('html').attr('lang') ) ).flexdatalist().attr('disabled', 'false');
+    });
+
+};
+document.addEventListener( 'turbolinks:load', function() {
+    calculationsNewInit();
+    calculationsNewMarginOfErrorInit();
+});
+
+
+
+function calculationsNewInit() {
+
+    function calculationsNewToggleContent() {
+        if ( $('form > .quantity').is(':visible') ) {
+            $('form > .quantity').fadeToggle(250);
+            $('form > .unit').fadeToggle( 250, function() {
+                $('p.setup').toggleClass('invisible');
+                $('.measurements').toggleClass('content-disabled');
+            });
+        } else {
+            $('p.setup').toggleClass('invisible');
+            $('.measurements').toggleClass('content-disabled');
+            setTimeout(function() {
+                $('form > .quantity').fadeToggle(250);
+                $('form > .unit').fadeToggle(250);
+            }, 250);
+        };
+    };
+
+    $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
+        var unitName = object['name'],
+            quantityId = $('input#quantity').flexdatalist('value');
+        $.getJSON( '/quantities.json?locale=' + $('html').attr('lang'), { get_param: 'value' }, function(data) {
+            var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
+                quantityName = quantity[0].name;
+            $('p.setup span.quantity').html(quantityName);
+            $('p.setup span.unit').html(unitName);
+            calculationsNewToggleContent();
+        });
+    });
+    $('p.setup').click(function() {
+        calculationsNewToggleContent();
+    });
+
+};
+
+function calculationsNewMarginOfErrorInit() {
+    $('p.margin-of-error').click(function() {
+        $(this).toggle();
+        var el = $(this).parent().find('.calculation_measurements_margin_of_error');
+        el.toggleClass('hide');
+        if ( !el.hasClass('hide') )
+            el.find('input').focus();
+    });
+};
+document.addEventListener( 'turbolinks:load', function() {
+    welcomeIndexInit();
+});
+
+
+
+function welcomeIndexInit() {
+    $('.slick').slick({ infinite: false, mobileFirst: true, dots: true, arrows: false });
+};
+/**
+ * http://animejs.com
+ * JavaScript animation engine
+ * @version v2.0.2
+ * @author Julian Garnier
+ * @copyright ©2017 Julian Garnier
+ * Released under the MIT license
+**/
+
+
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.anime = factory();
+  }
+}(this, () => {
+
+  // Defaults
+
+  const defaultInstanceSettings = {
+    update: undefined,
+    begin: undefined,
+    run: undefined,
+    complete: undefined,
+    loop: 1,
+    direction: 'normal',
+    autoplay: true,
+    offset: 0
+  }
+
+  const defaultTweenSettings = {
+    duration: 1000,
+    delay: 0,
+    easing: 'easeOutElastic',
+    elasticity: 500,
+    round: 0
+  }
+
+  const validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skewX', 'skewY'];
+  let transformString;
+
+  // Utils
+
+  function stringContains(str, text) {
+    return str.indexOf(text) > -1;
+  }
+
+  const is = {
+    arr: a => Array.isArray(a),
+    obj: a => stringContains(Object.prototype.toString.call(a), 'Object'),
+    svg: a => a instanceof SVGElement,
+    dom: a => a.nodeType || is.svg(a),
+    str: a => typeof a === 'string',
+    fnc: a => typeof a === 'function',
+    und: a => typeof a === 'undefined',
+    hex: a => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a),
+    rgb: a => /^rgb/.test(a),
+    hsl: a => /^hsl/.test(a),
+    col: a => (is.hex(a) || is.rgb(a) || is.hsl(a))
+  }
+
+  // BezierEasing https://github.com/gre/bezier-easing
+
+  const bezier = (() => {
+
+    const kSplineTableSize = 11;
+    const kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+    function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1 };
+    function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1 };
+    function C (aA1)      { return 3.0 * aA1 };
+
+    function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT };
+    function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1) };
+
+    function binarySubdivide (aX, aA, aB, mX1, mX2) {
+      let currentX, currentT, i = 0;
+      do {
+        currentT = aA + (aB - aA) / 2.0;
+        currentX = calcBezier(currentT, mX1, mX2) - aX;
+        if (currentX > 0.0) { aB = currentT } else { aA = currentT };
+      } while (Math.abs(currentX) > 0.0000001 && ++i < 10);
+      return currentT;
+    }
+
+    function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+      for (let i = 0; i < 4; ++i) {
+        const currentSlope = getSlope(aGuessT, mX1, mX2);
+        if (currentSlope === 0.0) return aGuessT;
+        const currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+        aGuessT -= currentX / currentSlope;
+      }
+      return aGuessT;
+    }
+
+    function bezier(mX1, mY1, mX2, mY2) {
+
+      if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1)) return;
+      let sampleValues = new Float32Array(kSplineTableSize);
+
+      if (mX1 !== mY1 || mX2 !== mY2) {
+        for (let i = 0; i < kSplineTableSize; ++i) {
+          sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+        }
+      }
+
+      function getTForX(aX) {
+
+        let intervalStart = 0.0;
+        let currentSample = 1;
+        const lastSample = kSplineTableSize - 1;
+
+        for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
+          intervalStart += kSampleStepSize;
+        }
+
+        --currentSample;
+
+        const dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
+        const guessForT = intervalStart + dist * kSampleStepSize;
+        const initialSlope = getSlope(guessForT, mX1, mX2);
+
+        if (initialSlope >= 0.001) {
+          return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
+        } else if (initialSlope === 0.0) {
+          return guessForT;
+        } else {
+          return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
+        }
+
+      }
+
+      return x => {
+        if (mX1 === mY1 && mX2 === mY2) return x;
+        if (x === 0) return 0;
+        if (x === 1) return 1;
+        return calcBezier(getTForX(x), mY1, mY2);
+      }
+
+    }
+
+    return bezier;
+
+  })();
+
+  const easings = (() => {
+
+    const names = ['Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Back', 'Elastic'];
+
+    // Elastic easing adapted from jQueryUI http://api.jqueryui.com/easings/
+
+    function elastic(t, p) {
+      return t === 0 || t === 1 ? t :
+      -Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2.0) * Math.asin(1))) * (Math.PI * 2)) / p );
+    }
+
+    // Approximated Penner equations http://matthewlein.com/ceaser/
+
+    const equations = {
+      In: [
+        [0.550, 0.085, 0.680, 0.530], /* InQuad */
+        [0.550, 0.055, 0.675, 0.190], /* InCubic */
+        [0.895, 0.030, 0.685, 0.220], /* InQuart */
+        [0.755, 0.050, 0.855, 0.060], /* InQuint */
+        [0.470, 0.000, 0.745, 0.715], /* InSine */
+        [0.950, 0.050, 0.795, 0.035], /* InExpo */
+        [0.600, 0.040, 0.980, 0.335], /* InCirc */
+        [0.600, -0.280, 0.735, 0.045], /* InBack */
+        elastic /* InElastic */
+      ], Out: [
+        [0.250, 0.460, 0.450, 0.940], /* OutQuad */
+        [0.215, 0.610, 0.355, 1.000], /* OutCubic */
+        [0.165, 0.840, 0.440, 1.000], /* OutQuart */
+        [0.230, 1.000, 0.320, 1.000], /* OutQuint */
+        [0.390, 0.575, 0.565, 1.000], /* OutSine */
+        [0.190, 1.000, 0.220, 1.000], /* OutExpo */
+        [0.075, 0.820, 0.165, 1.000], /* OutCirc */
+        [0.175, 0.885, 0.320, 1.275], /* OutBack */
+        (t, f) => 1 - elastic(1 - t, f) /* OutElastic */
+      ], InOut: [
+        [0.455, 0.030, 0.515, 0.955], /* InOutQuad */
+        [0.645, 0.045, 0.355, 1.000], /* InOutCubic */
+        [0.770, 0.000, 0.175, 1.000], /* InOutQuart */
+        [0.860, 0.000, 0.070, 1.000], /* InOutQuint */
+        [0.445, 0.050, 0.550, 0.950], /* InOutSine */
+        [1.000, 0.000, 0.000, 1.000], /* InOutExpo */
+        [0.785, 0.135, 0.150, 0.860], /* InOutCirc */
+        [0.680, -0.550, 0.265, 1.550], /* InOutBack */
+        (t, f) => t < .5 ? elastic(t * 2, f) / 2 : 1 - elastic(t * -2 + 2, f) / 2 /* InOutElastic */
+      ]
+    }
+
+    let functions = {
+      linear: bezier(0.250, 0.250, 0.750, 0.750)
+    }
+
+    for (let type in equations) {
+      equations[type].forEach((f, i) => {
+        functions['ease'+type+names[i]] = is.fnc(f) ? f : bezier.apply(this, f);
+      });
+    }
+
+    return functions;
+
+  })();
+
+  // Strings
+
+  function stringToHyphens(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  }
+
+  function selectString(str) {
+    if (is.col(str)) return;
+    try {
+      let nodes = document.querySelectorAll(str);
+      return nodes;
+    } catch(e) {
+      return;
+    }
+  }
+
+  // Arrays
+
+  function arrayLength(arr) {
+    return arr.length;
+  }
+
+  function flattenArray(arr) {
+    return arr.reduce((a, b) => a.concat(is.arr(b) ? flattenArray(b) : b), []);
+  }
+
+  function toArray(o) {
+    if (is.arr(o)) return o;
+    if (is.str(o)) o = selectString(o) || o;
+    if (o instanceof NodeList || o instanceof HTMLCollection) return [].slice.call(o);
+    return [o];
+  }
+
+  function arrayContains(arr, val) {
+    return arr.some(a => a === val);
+  }
+
+  // Objects
+
+  function objectHas(obj, prop) {
+    return obj.hasOwnProperty(prop);
+  }
+
+  function cloneObject(o) {
+    let clone = {};
+    for (let p in o) clone[p] = o[p];
+    return clone;
+  }
+
+  function replaceObjectProps(o1, o2) {
+    let o = cloneObject(o1);
+    for (let p in o1) o[p] = objectHas(o2, p) ? o2[p] : o1[p];
+    return o;
+  }
+
+  function mergeObjects(o1, o2) {
+    let o = cloneObject(o1);
+    for (let p in o2) o[p] = is.und(o1[p]) ? o2[p] : o1[p];
+    return o;
+  }
+
+  // Colors
+
+  function hexToRgb(hexValue) {
+    const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    const hex = hexValue.replace(rgx, (m, r, g, b) => r + r + g + g + b + b );
+    const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const r = parseInt(rgb[1], 16);
+    const g = parseInt(rgb[2], 16);
+    const b = parseInt(rgb[3], 16);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function hslToRgb(hslValue) {
+    const hsl = /hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\)/g.exec(hslValue);
+    const h = parseInt(hsl[1]) / 360;
+    const s = parseInt(hsl[2]) / 100;
+    const l = parseInt(hsl[3]) / 100;
+    function hue2rgb(p, q, t) {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    }
+    let r, g, b;
+    if (s == 0) {
+      r = g = b = l;
+    } else {
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+    }
+    return `rgb(${r * 255},${g * 255},${b * 255})`;
+  }
+
+  function colorToRgb(val) {
+    if (is.rgb(val)) return val;
+    if (is.hex(val)) return hexToRgb(val);
+    if (is.hsl(val)) return hslToRgb(val);
+  }
+
+  // Units
+
+  function getUnit(val) {
+    const split = /([\+\-]?[0-9#\.]+)(%|px|pt|em|rem|in|cm|mm|ex|pc|vw|vh|deg|rad|turn)?/.exec(val);
+    if (split) return split[2];
+  }
+
+  function getTransformUnit(propName) {
+    if (stringContains(propName, 'translate')) return 'px';
+    if (stringContains(propName, 'rotate') || stringContains(propName, 'skew')) return 'deg';
+  }
+
+  // Values
+
+  function parseFloatValue(val) {
+    return parseFloat(val);
+  }
+
+  function minMaxValue(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+  }
+
+  function getFunctionValue(val, animatable) {
+    if (!is.fnc(val)) return val;
+    return val(animatable.target, animatable.id, animatable.total);
+  }
+
+  function getCSSValue(el, prop) {
+    if (prop in el.style) {
+      return getComputedStyle(el).getPropertyValue(stringToHyphens(prop)) || '0';
+    }
+  }
+
+  function getAnimationType(el, prop) {
+    if (is.dom(el) && arrayContains(validTransforms, prop)) return 'transform';
+    if (is.dom(el) && (el.getAttribute(prop) || (is.svg(el) && el[prop]))) return 'attribute';
+    if (is.dom(el) && (prop !== 'transform' && getCSSValue(el, prop))) return 'css';
+    if (el[prop] != null) return 'object';
+  }
+
+  function getTransformValue(el, propName) {
+    const defaultUnit = getTransformUnit(propName);
+    const defaultVal = stringContains(propName, 'scale') ? 1 : 0 + defaultUnit;
+    const str = el.style.transform;
+    if (!str) return defaultVal;
+    let match = [];
+    let props = [];
+    let values = [];
+    const rgx = /(\w+)\((.+?)\)/g;
+    while (match = rgx.exec(str)) {
+      props.push(match[1]);
+      values.push(match[2]);
+    }
+    const value = values.filter((val, i) => props[i] === propName );
+    return arrayLength(value) ? value[0] : defaultVal;
+  }
+
+  function getOriginalTargetValue(target, propName) {
+    switch (getAnimationType(target, propName)) {
+      case 'transform': return getTransformValue(target, propName);
+      case 'css': return getCSSValue(target, propName);
+      case 'attribute': return target.getAttribute(propName);
+    }
+    return target[propName] || 0;
+  }
+
+  function getRelativeValue(to, from) {
+    const operator = /^(\*=|\+=|-=)/.exec(to);
+    if (!operator) return to;
+    const x = parseFloatValue(from);
+    const y = parseFloatValue(to.replace(operator[0], ''));
+    switch (operator[0][0]) {
+      case '+': return x + y;
+      case '-': return x - y;
+      case '*': return x * y;
+    }
+  }
+
+  function validateValue(val, unit) {
+    if (is.col(val)) return colorToRgb(val);
+    const originalUnit = getUnit(val);
+    const unitLess = originalUnit ? val.substr(0, arrayLength(val) - arrayLength(originalUnit)) : val;
+    return unit ? unitLess + unit : unitLess;
+  }
+
+  // Motion path
+
+  function isPath(val) {
+    return is.obj(val) && objectHas(val, 'totalLength');
+  }
+
+  function setDashoffset(el) {
+    const pathLength = el.getTotalLength();
+    el.setAttribute('stroke-dasharray', pathLength);
+    return pathLength;
+  }
+
+  function getPath(path, percent) {
+    const el = is.str(path) ? selectString(path)[0] : path;
+    const p = percent || 100;
+    return function(prop) {
+      return {
+        el: el,
+        property: prop,
+        totalLength: el.getTotalLength() * (p / 100)
+      }
+    }
+  }
+
+  function getPathProgress(path, progress) {
+    function point(offset = 0) {
+      const l = progress + offset >= 1 ? progress + offset : 0;
+      return path.el.getPointAtLength(l);
+    }
+    const p = point();
+    const p0 = point(-1);
+    const p1 = point(+1);
+    switch (path.property) {
+      case 'x': return p.x;
+      case 'y': return p.y;
+      case 'angle': return Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
+    }
+  }
+
+  // Decompose / recompose functions adapted from Animate Plus https://github.com/bendc/animateplus
+
+  function decomposeValue(val, unit) {
+    const rgx = /-?\d*\.?\d+/g;
+    const value = validateValue((isPath(val) ? val.totalLength : val), unit) + '';
+    return {
+      original: value,
+      numbers: value.match(rgx) ? value.match(rgx).map(Number) : [0],
+      strings: value.split(rgx)
+    }
+  }
+
+  function recomposeValue(numbers, strings) {
+    return strings.reduce((a, b, i) => a + numbers[i - 1] + b);
+  }
+
+  // Animatables
+
+  function parseTargets(targets) {
+    const targetsArray = targets ? (flattenArray(is.arr(targets) ? targets.map(toArray) : toArray(targets))) : [];
+    return targetsArray.filter((item, pos, self) => self.indexOf(item) === pos);
+  }
+
+  function getAnimatables(targets) {
+    const parsed = parseTargets(targets);
+    return parsed.map((t, i) => {
+      return {target: t, id: i, total: arrayLength(parsed)};
+    });
+  }
+
+  // Properties
+
+  function normalizePropertyTweens(prop, tweenSettings) {
+    let settings = cloneObject(tweenSettings);
+    if (is.arr(prop)) {
+      const l = arrayLength(prop);
+      const isFromTo = (l === 2 && !is.obj(prop[0]));
+      if (!isFromTo) {
+        // Duration divided by the number of tweens
+        if (!is.fnc(tweenSettings.duration)) settings.duration = tweenSettings.duration / l;
+      } else {
+        // Transform [from, to] values shorthand to a valid tween value
+        prop = {value: prop};
+      }
+    }
+    return toArray(prop).map((v, i) => {
+      // Default delay value should be applied only on the first tween
+      const delay = !i ? tweenSettings.delay : 0;
+      // Use path object as a tween value
+      let obj = is.obj(v) && !isPath(v) ? v : {value: v};
+      // Set default delay value
+      if (is.und(obj.delay)) obj.delay = delay;
+      return obj;
+    }).map(k => mergeObjects(k, settings));
+  }
+
+  function getProperties(instanceSettings, tweenSettings, params) {
+    let properties = [];
+    const settings = mergeObjects(instanceSettings, tweenSettings);
+    for (let p in params) {
+      if (!objectHas(settings, p) && p !== 'targets') {
+        properties.push({
+          name: p,
+          offset: settings['offset'],
+          tweens: normalizePropertyTweens(params[p], tweenSettings)
+        });
+      }
+    }
+    return properties;
+  }
+
+  // Tweens
+
+  function normalizeTweenValues(tween, animatable) {
+    let t = {};
+    for (let p in tween) {
+      let value = getFunctionValue(tween[p], animatable);
+      if (is.arr(value)) {
+        value = value.map(v => getFunctionValue(v, animatable));
+        if (arrayLength(value) === 1) value = value[0];
+      }
+      t[p] = value;
+    }
+    t.duration = parseFloatValue(t.duration);
+    t.delay = parseFloatValue(t.delay);
+    return t;
+  }
+
+  function normalizeEasing(val) {
+    return is.arr(val) ? bezier.apply(this, val) : easings[val];
+  }
+
+  function normalizeTweens(prop, animatable) {
+    let previousTween;
+    return prop.tweens.map(t => {
+      let tween = normalizeTweenValues(t, animatable);
+      const tweenValue = tween.value;
+      const originalValue = getOriginalTargetValue(animatable.target, prop.name);
+      const previousValue = previousTween ? previousTween.to.original : originalValue;
+      const from = is.arr(tweenValue) ? tweenValue[0] : previousValue;
+      const to = getRelativeValue(is.arr(tweenValue) ? tweenValue[1] : tweenValue, from);
+      const unit = getUnit(to) || getUnit(from) || getUnit(originalValue);
+      tween.isPath = isPath(tweenValue);
+      tween.from = decomposeValue(from, unit);
+      tween.to = decomposeValue(to, unit);
+      tween.start = previousTween ? previousTween.end : prop.offset;
+      tween.end = tween.start + tween.delay + tween.duration;
+      tween.easing = normalizeEasing(tween.easing);
+      tween.elasticity = (1000 - minMaxValue(tween.elasticity, 1, 999)) / 1000;
+      if (is.col(tween.from.original)) tween.round = 1;
+      previousTween = tween;
+      return tween;
+    });
+  }
+
+  // Tween progress
+
+  const setTweenProgress = {
+    css: (t, p, v) => t.style[p] = v,
+    attribute: (t, p, v) => t.setAttribute(p, v),
+    object: (t, p, v) => t[p] = v,
+    transform: (t, p, v, transforms, id) => {
+      if (!transforms[id]) transforms[id] = [];
+      transforms[id].push(`${p}(${v})`);
+    }
+  }
+
+  // Animations
+
+  function createAnimation(animatable, prop) {
+    const animType = getAnimationType(animatable.target, prop.name);
+    if (animType) {
+      const tweens = normalizeTweens(prop, animatable);
+      return {
+        type: animType,
+        property: prop.name,
+        animatable: animatable,
+        tweens: tweens,
+        duration: tweens[arrayLength(tweens) - 1].end,
+        delay: tweens[0].delay
+      }
+    }
+  }
+
+  function getAnimations(animatables, properties) {
+    return flattenArray(animatables.map(animatable => {
+      return properties.map(prop => {
+        return createAnimation(animatable, prop);
+      });
+    })).filter(a => !is.und(a));
+  }
+
+  // Create Instance
+
+  function getInstanceTimings(type, animations, tweenSettings) {
+    const math = (type === 'delay') ? Math.min : Math.max;
+    return arrayLength(animations) ? math.apply(Math, animations.map(anim => anim[type])) : tweenSettings[type];
+  }
+
+  function createNewInstance(params) {
+    const instanceSettings = replaceObjectProps(defaultInstanceSettings, params);
+    const tweenSettings = replaceObjectProps(defaultTweenSettings, params);
+    const animatables = getAnimatables(params.targets);
+    const properties = getProperties(instanceSettings, tweenSettings, params);
+    const animations = getAnimations(animatables, properties);
+    return mergeObjects(instanceSettings, {
+      children: [],
+      animatables: animatables,
+      animations: animations,
+      duration: getInstanceTimings('duration', animations, tweenSettings),
+      delay: getInstanceTimings('delay', animations, tweenSettings)
+    });
+  }
+
+  // Core
+
+  let activeInstances = [];
+  let raf = 0;
+
+  const engine = (() => {
+    function play() { raf = requestAnimationFrame(step); };
+    function step(t) {
+      const activeLength = arrayLength(activeInstances);
+      if (activeLength) {
+        let i = 0;
+        while (i < activeLength) {
+          if (activeInstances[i]) activeInstances[i].tick(t);
+          i++;
+        }
+        play();
+      } else {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }
+    return play;
+  })();
+
+
+  // Public Instance
+
+  function anime(params = {}) {
+
+    let now, startTime, lastTime = 0;
+
+    let resolve = null;
+
+    function makePromise() {
+      return window.Promise && new Promise(_resolve => resolve = _resolve);
+    }
+
+    let promise = makePromise();
+
+    let instance = createNewInstance(params);
+
+    instance.reset = function() {
+      const direction = instance.direction;
+      const loops = instance.loop;
+      instance.currentTime = 0;
+      instance.progress = 0;
+      instance.paused = true;
+      instance.began = false;
+      instance.completed = false;
+      instance.reversed = direction === 'reverse';
+      instance.remaining = direction === 'alternate' && loops === 1 ? 2 : loops;
+      for (let i = arrayLength(instance.children); i--; ){
+        const child = instance.children[i];
+        child.seek(child.offset);
+        child.reset();
+      }
+    }
+
+    function toggleInstanceDirection() {
+      instance.reversed = !instance.reversed;
+    }
+
+    function adjustTime(time) {
+      return instance.reversed ? instance.duration - time : time;
+    }
+
+    function syncInstanceChildren(time) {
+      const children = instance.children;
+      if (time >= instance.currentTime) {
+        for (let i = 0; i < arrayLength(children); i++) children[i].seek(time);
+      } else {
+        for (let i = arrayLength(children); i--;) children[i].seek(time);
+      }
+    }
+
+    function setAnimationsProgress(insTime) {
+      let i = 0;
+      let transforms = {};
+      const animations = instance.animations;
+      while (i < arrayLength(animations)) {
+        const anim = animations[i];
+        const animatable = anim.animatable;
+        const tweens = anim.tweens;
+        const tween = tweens.filter(t => (insTime < t.end))[0] || tweens[arrayLength(tweens) - 1];
+        const isPath = tween.isPath;
+        const round = tween.round;
+        const elapsed = minMaxValue(insTime - tween.start - tween.delay, 0, tween.duration) / tween.duration;
+        const eased = tween.easing(elapsed, tween.elasticity);
+        const progress = recomposeValue(tween.to.numbers.map((number, p) => {
+          const start = isPath ? 0 : tween.from.numbers[p];
+          let value = start + eased * (number - start);
+          if (isPath) value = getPathProgress(tween.value, value);
+          if (round) value = Math.round(value * round) / round;
+          return value;
+        }), tween.to.strings);
+        setTweenProgress[anim.type](animatable.target, anim.property, progress, transforms, animatable.id);
+        anim.currentValue = progress;
+        i++;
+      }
+      if (transforms) {
+        let id; for (id in transforms) {
+          if (!transformString) {
+            const t = 'transform';
+            transformString = (getCSSValue(document.body, t) ? t : `-webkit-${t}`);
+          }
+          instance.animatables[id].target.style[transformString] = transforms[id].join(' ');
+        }
+      }
+      instance.currentTime = insTime;
+      instance.progress = (insTime / instance.duration) * 100;
+    }
+
+    function setCallback(cb) {
+      if (instance[cb]) instance[cb](instance);
+    }
+
+    function countIteration() {
+      if (instance.remaining && instance.remaining !== true) {
+        instance.remaining--;
+      }
+    }
+
+    function setInstanceProgress(engineTime) {
+      const insDuration = instance.duration;
+      const insOffset = instance.offset;
+      const insDelay = instance.delay;
+      const insCurrentTime = instance.currentTime;
+      const insReversed = instance.reversed;
+      const insTime = minMaxValue(adjustTime(engineTime), 0, insDuration);
+      if (instance.children) syncInstanceChildren(insTime);
+      if (insTime > insOffset && insTime < insDuration) {
+        setAnimationsProgress(insTime);
+        if (!instance.began && insTime >= insDelay) {
+          instance.began = true;
+          setCallback('begin');
+        }
+        setCallback('run');
+      } else {
+        if (insTime <= insOffset && insCurrentTime !== 0) {
+          setAnimationsProgress(0);
+          if (insReversed) countIteration();
+        }
+        if (insTime >= insDuration && insCurrentTime !== insDuration) {
+          setAnimationsProgress(insDuration);
+          if (!insReversed) countIteration();
+        }
+      }
+      if (engineTime >= insDuration) {
+        if (instance.remaining) {
+          startTime = now;
+          if (instance.direction === 'alternate') toggleInstanceDirection();
+        } else {
+          instance.pause();
+          if ('Promise' in window) {
+            resolve();
+            promise = makePromise();
+          }
+          if (!instance.completed) {
+            instance.completed = true;
+            setCallback('complete');
+          }
+        }
+        lastTime = 0;
+      }
+      setCallback('update');
+    }
+
+    instance.tick = function(t) {
+      now = t;
+      if (!startTime) startTime = now;
+      const engineTime = (lastTime + now - startTime) * anime.speed;
+      setInstanceProgress(engineTime);
+    }
+
+    instance.seek = function(time) {
+      setInstanceProgress(adjustTime(time));
+    }
+
+    instance.pause = function() {
+      const i = activeInstances.indexOf(instance);
+      if (i > -1) activeInstances.splice(i, 1);
+      instance.paused = true;
+    }
+
+    instance.play = function() {
+      if (!instance.paused) return;
+      instance.paused = false;
+      startTime = 0;
+      lastTime = adjustTime(instance.currentTime);
+      activeInstances.push(instance);
+      if (!raf) engine();
+    }
+
+    instance.reverse = function() {
+      toggleInstanceDirection();
+      startTime = 0;
+      lastTime = adjustTime(instance.currentTime);
+    }
+
+    instance.restart = function() {
+      instance.pause();
+      instance.reset();
+      instance.play();
+    }
+
+    instance.finished = promise;
+
+    instance.reset();
+
+    if (instance.autoplay) instance.play();
+
+    return instance;
+
+  }
+
+  // Remove targets from animation
+
+  function removeTargets(targets) {
+    const targetsArray = parseTargets(targets);
+    for (let i = arrayLength(activeInstances); i--;) {
+      const instance = activeInstances[i];
+      const animations = instance.animations;
+      for (let a = arrayLength(animations); a--;) {
+        if (arrayContains(targetsArray, animations[a].animatable.target)) {
+          animations.splice(a, 1);
+          if (!arrayLength(animations)) instance.pause();
+        }
+      }
+    }
+  }
+
+  // Timeline
+
+  function timeline(params) {
+    let tl = anime(params);
+    tl.pause();
+    tl.duration = 0;
+    tl.add = function(instancesParams) {
+      tl.children.forEach( i => { i.began = true; i.completed = true; });
+      toArray(instancesParams).forEach(insParams => {
+        const tlDuration = tl.duration;
+        const insOffset = insParams.offset;
+        insParams.autoplay = false;
+        insParams.offset = is.und(insOffset) ? tlDuration : getRelativeValue(insOffset, tlDuration);
+        tl.seek(insParams.offset);
+        const ins = anime(insParams);
+        if (ins.duration > tlDuration) tl.duration = ins.duration;
+        ins.began = true;
+        tl.children.push(ins);
+      });
+      tl.reset();
+      tl.seek(0);
+      if (tl.autoplay) tl.restart();
+      return tl;
+    }
+    return tl;
+  }
+
+  anime.version = '2.0.2';
+  anime.speed = 1;
+  anime.running = activeInstances;
+  anime.remove = removeTargets;
+  anime.getValue = getOriginalTargetValue;
+  anime.path = getPath;
+  anime.setDashoffset = setDashoffset;
+  anime.bezier = bezier;
+  anime.easings = easings;
+  anime.timeline = timeline;
+  anime.random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return anime;
+
+}));
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -16177,6 +19198,7 @@ jQuery(function ($) {
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 

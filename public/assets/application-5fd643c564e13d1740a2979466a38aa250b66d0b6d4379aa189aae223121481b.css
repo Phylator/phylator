@@ -85,7 +85,7 @@
 
 /* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
 .secondary-font {
-  font-family: kepler-std-display, grad, freight-text-pro, serif !important;
+  font-family: kepler-std, grad, freight-text-pro, serif !important;
 }
 
 /* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/modules/classes/font.sass */
@@ -897,27 +897,153 @@ template {
   display: none;
 }
 
+/* Slider */
+/* line 2, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 31, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-list:focus {
+  outline: none;
+}
+
+/* line 35, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 41, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 51, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 61, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: '';
+}
+
+/* line 68, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-track:after {
+  clear: both;
+}
+
+/* line 72, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+/* line 77, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+/* line 85, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+[dir='rtl'] .slick-slide {
+  float: right;
+}
+
+/* line 89, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slide img {
+  display: block;
+}
+
+/* line 93, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slide.slick-loading img {
+  display: none;
+}
+
+/* line 97, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+
+/* line 101, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+/* line 105, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+/* line 109, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+/* line 117, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/vendor/slick.css */
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
 /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h1 {
   font-weight: 300;
-  font-size: 1.5em;
+  font-size: 1.375em;
   line-height: 1.5;
+  color: white;
+  margin: 0;
 }
 
-/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h2 {
-  font-family: kepler-std-display, grad, freight-text-pro, serif;
+  font-family: kepler-std, grad, freight-text-pro, serif;
   font-weight: normal;
   font-size: 1.875em;
 }
 
-/* line 9, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h3 {
   font-weight: normal;
   font-size: 1.5em;
 }
 
-/* line 12, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
+/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/header.sass */
 h4 {
   color: var(--color-light-darker);
   font-weight: normal;
@@ -929,6 +1055,7 @@ p {
   font-weight: normal;
   font-size: 1em;
   line-height: 1.75em;
+  color: var(--color-light-darker);
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
@@ -936,37 +1063,11 @@ a {
   font-size: inherit;
   line-height: inherit;
   color: var(--color-accent-dark);
-  font-weight: 400;
-}
-/* line 6, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a:hover, a:focus {
-  text-decoration: underline;
-}
-/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.inherit {
-  color: inherit;
-  font-weight: inherit;
-  text-decoration: underline;
-}
-/* line 12, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.inherit:hover {
-  color: var(--color-accent-dark);
-}
-/* line 14, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.simple {
-  text-decoration: none !important;
-}
-/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.big {
   font-weight: 600;
-}
-/* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.thick {
-  font-weight: 700;
-}
-/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
-a.big:hover, a.big:focus, a.thick:hover, a.thick:focus {
   text-decoration: none;
+}
+/* line 7, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
+a:hover, a:focus {
   opacity: 0.8;
 }
 
@@ -1209,18 +1310,19 @@ textarea.error, textarea.red {
 }
 /* line 18, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
 .flexdatalist-results li span.item-symbol {
-  font-family: kepler-std-display, grad, freight-text-pro, serif;
+  font-family: kepler-std, grad, freight-text-pro, serif;
   color: var(--color-dark-lighter);
   float: left;
   min-width: 1.25em;
   margin-right: 0.625em;
+  line-height: 1.7;
 }
-/* line 24, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+/* line 25, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
 .flexdatalist-results li.active {
   background: var(--color-dark-dark);
   color: inherit;
 }
-/* line 27, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
+/* line 28, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
 .flexdatalist-results li.no-results {
   font-style: normal;
   color: var(--color-dark-lighter);
@@ -1279,6 +1381,11 @@ html body {
   min-height: 100vh;
 }
 
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/components/utilities/math_jax.sass */
+#MathJax_Message {
+  display: none !important;
+}
+
 /* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new {
   display: flex;
@@ -1291,7 +1398,7 @@ html body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: kepler-std-display, grad, freight-text-pro, serif;
+  font-family: kepler-std, grad, freight-text-pro, serif;
   font-size: 1.125em;
   font-style: italic;
   width: 100%;
@@ -1315,24 +1422,28 @@ html body {
   padding: 0 0.3125em;
 }
 /* line 28, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new p.setup span.quantity, .calculations.new p.setup span.unit {
+  margin-bottom: -0.0625em;
+}
+/* line 30, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form {
   padding: 3.125em 0 2.1875em;
   width: 100%;
   max-width: 85%;
 }
-/* line 30, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 32, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form.pushed-down {
   padding-top: 6.5625em;
 }
-/* line 34, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 36, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form div:not(.content-disabled):not(.submit-wrapper):last-child {
   margin-bottom: 2.1875em;
 }
-/* line 37, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 39, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .content-disabled label, .calculations.new form .content-disabled a, .calculations.new form .content-disabled input[type="submit"], .calculations.new form .content-disabled p, .calculations.new form .content-disabled hr {
   display: none;
 }
-/* line 39, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 41, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .content-disabled input {
   cursor: not-allowed;
   pointer-events: none;
@@ -1340,18 +1451,18 @@ html body {
   background: rgba(0, 0, 0, 0.1);
   color: transparent;
 }
-/* line 46, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 48, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .submit-wrapper {
   margin-top: 3.75em;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
 }
-/* line 51, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 53, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .submit-wrapper a.btn {
   margin-right: 1.5625em;
 }
-/* line 54, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 56, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .measurement p.margin-of-error {
   color: var(--color-dark-lighter);
   font-size: 0.875em;
@@ -1360,13 +1471,102 @@ html body {
   text-align: center;
   margin-bottom: 3.125em;
 }
-/* line 61, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 63, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .measurement .input {
   margin: 1.5625em 0;
 }
-/* line 63, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 65, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .measurement hr {
   margin: 2.8125em auto;
   width: 1.5625em;
   border: 0.125em solid rgba(255, 255, 255, 0.05);
+}
+
+/* line 4, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-list .slide {
+  height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10vh;
+}
+/* line 11, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-list .slide h1 {
+  margin-bottom: 1.25em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-list .slide p {
+  text-align: center;
+  max-width: 75%;
+}
+/* line 16, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-list .slide .wrapper {
+  margin-top: 1.5625em;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+/* line 21, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-list .slide .wrapper .secondary {
+  margin-left: 1.5625em;
+}
+/* line 23, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  list-style: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3.125em;
+}
+/* line 33, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-dots > li > button {
+  display: block;
+  width: 0.0625em;
+  height: 0.0625em;
+  padding: 0.25em;
+  margin: 0.625em;
+  cursor: pointer;
+  color: transparent;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border: none;
+}
+/* line 44, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+.welcome.index > .slick > .slick-dots > li.slick-active > button {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/language.sass */
+.welcome.language {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* line 5, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/language.sass */
+.welcome.language h1 {
+  width: 85%;
+  margin: 1.125em 0 1.375em;
+}
+/* line 8, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/language.sass */
+.welcome.language > .languages {
+  width: 85%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/language.sass */
+.welcome.language > .languages > a.language {
+  padding: 0.75em 1em 0.875em;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--size-border-radius-sm);
+  color: var(--color-light-base);
+  text-decoration: none !important;
+}
+/* line 19, c:/Users/Jonas/apps/phylator/app/assets/stylesheets/packages/welcome/language.sass */
+.welcome.language > .languages > a.language:active, .welcome.language > .languages > a.language:focus {
+  background: rgba(255, 255, 255, 0.1);
 }
