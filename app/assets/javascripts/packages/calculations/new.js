@@ -25,12 +25,13 @@ function calculationsNewInit() {
     };
 
     $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
-        var unit = object['name'],
+        var unitName = object['name'],
             quantityId = $('input#quantity').flexdatalist('value');
         $.getJSON( '/quantities.json?locale=' + $('html').attr('lang'), { get_param: 'value' }, function(data) {
-            var quantity = data[quantityId - 1].name;
-            $('p.setup span.quantity').html(quantity);
-            $('p.setup span.unit').html(unit);
+            var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
+                quantityName = quantity[0].name;
+            $('p.setup span.quantity').html(quantityName);
+            $('p.setup span.unit').html(unitName);
             calculationsNewToggleContent();
         });
     });
