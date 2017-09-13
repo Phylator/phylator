@@ -12,6 +12,14 @@ class Calculation::Result < ApplicationRecord
 
     belongs_to :calculation, class_name: '::Calculation'
 
+    def value_decimals
+        decimals self.value
+    end
+
+    def margin_of_error_decimals
+        decimals self.margin_of_error
+    end
+
     private
 
     def calc

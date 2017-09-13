@@ -1,0 +1,35 @@
+.calculations.show
+    padding: px(30)
+    padding-top: px(80)
+    .wrapper
+        display: flex
+        align-items: center
+        svg
+            margin-left: px(25)
+            path, circle
+                fill: color(dark, lighter)
+        .delete svg
+            path, circle
+                fill: color(red, darker)
+    & > .wrapper
+        margin-top: px(75)
+        justify-content: space-between
+        align-items: flex-start
+        & > .wrapper
+            margin-top: px(7)
+
+    & > p span
+        &:not(:first-child)
+            margin-left: px(10)
+        &:not(:last-child)
+            margin-right: px(10)
+
+    p.margin
+        margin: px(15) 0
+
+    & > h2
+        max-width: 100%
+        span
+            font-size: .75em
+            font-weight: normal
+            color: color(dark, lighter)
