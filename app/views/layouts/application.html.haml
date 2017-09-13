@@ -23,5 +23,7 @@
 
     %body{ class: class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ) }
 
+        %p.notice= notice
+        %p.alert= alert
         = area :body do
             = yield

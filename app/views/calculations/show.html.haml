@@ -1,7 +1,8 @@
+= link_to url_for(:back), class: 'back' do
+    = asset 'components/back.svg'
+
 - unless @calculation.result.undefined
     %h1= @calculation.result.value.to_s
     %h2= '+- ' + @calculation.result.margin_of_error.to_s
 - else
     %h1 undefined
-
-= link_to 'Back', calculations_url
