@@ -12,9 +12,11 @@ function calculationsNewInit() {
             $('form > .quantity').fadeToggle(250);
             $('form > .unit').fadeToggle( 250, function() {
                 $('p.setup').toggleClass('invisible');
+                $('nav.app').toggleClass('invisible');
                 $('.measurements').toggleClass('content-disabled');
             });
         } else {
+            $('nav.app').toggleClass('invisible');
             $('p.setup').toggleClass('invisible');
             $('.measurements').toggleClass('content-disabled');
             setTimeout(function() {

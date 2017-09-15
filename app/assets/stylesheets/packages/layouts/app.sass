@@ -10,13 +10,18 @@ nav.app
 	height: px(70)
 	background: color(dark, dark)
 	box-shadow: style(box-shadow, lg)
+	transition-duration: .25s
+	&.invisible
+		bottom: px(-70)
 	& > a
 		opacity: .5
 		padding: 0 px(25)
 		text-align: center
+		&:nth-child(3)
+			opacity: 1
 
 
-body.calculations nav.app > a:first-child
+body.calculations.index nav.app > a:first-child
 	opacity: 1
 body.quantities nav.app > a:nth-child(2)
 	opacity: 1

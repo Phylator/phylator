@@ -1,5 +1,5 @@
 %h1= t 'welcome.language.title'
 
 .languages
-    = link_to 'English', root_url(locale: 'en'), class: 'language'
-    = link_to 'Deutsch', root_url(locale: 'de'), class: 'language'
+    = link_to 'English', url_for(:back) + '?locale=en', class: 'language'
+    = link_to 'Deutsch', url_for(:back) + '?locale=de', class: 'language'

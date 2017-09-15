@@ -167,12 +167,10 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "locale", default: "en", null: false
-    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["slug"], name: "index_users_on_slug"
   end
 
   create_table "visits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

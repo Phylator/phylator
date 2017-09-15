@@ -3,7 +3,9 @@ class WelcomeController < ApplicationController
     before_action :authenticate_user!, only: [:drafts]
 
     def index
-        redirect_to root_url if current_user || session[:setup]
+        unless params[:stay]
+            redirect_to root_url if current_user || session[:setup]
+        end
         session[:setup] = true
     end
 

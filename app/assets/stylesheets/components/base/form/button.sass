@@ -30,6 +30,14 @@ a.btn, button, input[type="submit"]
             pointer-events: none
 
 
+    &.warn
+        background: color(red, darker)
+        border-color: color(red, darker)
+        &:hover, &:focus, &:active
+            background: darken(color(red, darker, true), .25)
+            border-color: darken(color(red, darker, true), .25)
+
+
     &.secondary
         background: transparent
         color: color(light, base) !important

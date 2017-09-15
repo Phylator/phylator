@@ -20,5 +20,5 @@
         %p= t 'welcome.index.slide4.content'
 
         .wrapper
-            = link_to t('d.signin'), new_user_session_url, class: 'btn secondary'
-            = link_to t('cd.get_started'), language_url, class: 'btn'
+            = link_to t('d.signin'), new_user_session_url, class: 'btn secondary' unless current_user
+            = link_to t('cd.get_started'), (current_user ? root_url : language_url), class: 'btn'

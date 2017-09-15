@@ -33,8 +33,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
 
             t.string :locale, default: 'en', null: false
 
-            t.string :slug, null: false, unique: true, index: true
-
 
             t.timestamps null: false
         end
