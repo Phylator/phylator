@@ -21,7 +21,7 @@ class CalculationsController < ApplicationController
     def new
         @calculation = Calculation.new
         @calculation.measurements.build
-        render layout: 'app'
+        render layout: (current_user ? 'app' : 'application')
     end
 
     # POST /calculations
