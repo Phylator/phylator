@@ -60,7 +60,7 @@ class CalculationsController < ApplicationController
     def destroy
         @calculation.destroy
         respond_to do |format|
-            format.html { redirect_to calculations_url, notice: 'Calculation was successfully destroyed.' }
+            format.html { redirect_to root_url, notice: 'Calculation was successfully destroyed.' }
             format.json { head :no_content }
         end
     end
