@@ -34,3 +34,21 @@
             font-size: .75em
             font-weight: normal
             color: color(dark, lighter)
+
+    & > .share
+        .modal-content-wrapper
+            padding: px(22) px(25) px(25)
+            h3
+                margin-bottom: px(15)
+            .wrapper
+                display: grid
+                grid-template-columns: 1fr 1fr
+                grid-gap: px(20)
+                & > a
+                    padding: px(12) px(16) px(14)
+                    background: rgba(white, .05)
+                    border-radius: size(border-radius, sm)
+                    color: color(light, base)
+                    text-decoration: none !important
+                    &:active, &:focus
+                        background: rgba(white, .1)

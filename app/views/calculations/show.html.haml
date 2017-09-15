@@ -17,9 +17,22 @@
     %h1= @calculation.name || 'Add a name'
     .wrapper
         .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg'
+        .md-trigger= asset 'icons/share-26.svg'
         = link_to calculation_url(@calculation), data: { confirm: 'Are you sure?' }, method: :delete, class: 'delete' do
             = asset 'icons/trash-round.svg'
 %p.margin= @calculation.description || 'Add some details'
+
+#modal.share
+    .modal-content-wrapper
+        %h3 Share
+        .wrapper
+            = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
+            = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
+            = link_to 'Google +', "https://plus.google.com/share?url=#{request.original_url}", target: '_blank'
+            = link_to 'Email', "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}", target: '_blank'
+
+-# .modal.signup
+-#     Aydfg
 
 
 -# %span
