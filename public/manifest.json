@@ -1,9 +1,0 @@
-{
-    "short_name": "Phylator",
-    "name": "Phylator",
-    "start_url": "/",
-    "background_color": "#2840d0",
-    "theme_color": "#2840d0",
-    "display": "standalone",
-    "orientation": "portrait"
-}
