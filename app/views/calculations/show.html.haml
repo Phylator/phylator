@@ -7,26 +7,42 @@
 = link_to (current_user ? calculations_url : url_for(:back)), class: 'back' do
     = asset 'components/back.svg'
 
-- if @calculation.result.undefined
-    %h2 Undefined
-- else
-    %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
-        = @calculation.result.pretty_value
-        %span= @calculation.unit_of_measurement.symbol
+.tools
+    .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
+    .md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
+    = link_to calculation_url(@calculation), data: { confirm: 'Are you sure?' }, method: :delete, class: 'delete' do
+        = asset 'icons/trash-round.svg'
 
-%p
-    %span= link_to @calculation.quantity.name, quantity_url(@calculation.quantity)
-    ·
-    %span= timeago @calculation.created_at
 
-.wrapper
-    %h1= @calculation.name || 'Add a name'
-    .wrapper
-        .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg'
-        .md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-        = link_to calculation_url(@calculation), data: { confirm: 'Are you sure?' }, method: :delete, class: 'delete' do
-            = asset 'icons/trash-round.svg'
-%p.margin= @calculation.description || 'Add some details'
+
+.head-wrapper
+    - if @calculation.result.undefined
+        %h2 Undefined
+    - else
+        %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
+            = @calculation.result.pretty_value
+            %span= @calculation.unit_of_measurement.symbol
+    %p
+        %span= link_to @calculation.quantity.name, quantity_url(@calculation.quantity)
+        ·
+        %span= timeago @calculation.created_at
+
+- unless current_user
+    .account-wrapper{ class: ('invisible' if notice) }
+        .flex-wrapper
+            = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
+            = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+
+.content-wrapper
+    - if current_user
+        .md-trigger{ data: { modal: '.edit' } }
+            %h3= @calculation.name || 'Add some details'
+            %p= @calculation.description if @calculation.description
+
+
+
+
+
 
 .modal.share
     .modal-content-wrapper
@@ -44,6 +60,14 @@
         .flex-wrapper
             = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
             = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+
+.modal.edit
+    .modal-content-wrapper
+        = simple_form_for(@calculation) do |f|
+            = f.input :name, label: 'Title'
+            = f.input :description
+            .flex-wrapper
+                = f.button :submit, 'Save'
 
 
 -# %span
