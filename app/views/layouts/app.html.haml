@@ -1,0 +1,16 @@
+= extends :application do
+    = replace :body do
+
+        %nav.app
+            = link_to calculations_url, class: 'calculations' do
+                = asset 'icons/calculator.svg'
+            = link_to quantities_url, class: 'quantities' do
+                = asset 'icons/quantity.svg'
+            = link_to root_url, class: 'new' do
+                = asset 'icons/simple-add.svg'
+            = link_to drafts_url, class: 'drafts' do
+                = asset 'icons/pencil.svg'
+            = link_to edit_user_registration_url, class: 'account' do
+                = asset 'icons/single-02.svg'
+        = area :content do
+            = yield

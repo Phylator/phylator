@@ -1,0 +1,15 @@
+= simple_form_for(@calculation) do |f|
+    = f.error_notification
+
+    - if current_user
+        = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+    .quantity
+        = f.input :quantity_id, required: true, label: t('calculations.form.quantity.label'), input_html: { type: :text, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'quantities.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'name', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    .unit
+        = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits', data: { search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+    .measurements.content-disabled
+        = f.simple_fields_for :measurements do |builder|
+            = render 'calculations/measurements/form', f: builder
+        .submit-wrapper
+            = f.button :submit, t('d.calculate')
+            = simple_add_fields t('calculations.form.measurements.add'), f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'

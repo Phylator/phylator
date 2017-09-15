@@ -1,0 +1,27 @@
+= link_to url_for(:back), class: 'back' do
+    = asset 'components/back.svg'
+
+
+
+.head-wrapper
+    %h2= @quantity.symbol
+    %p= @quantity.name
+
+.content-wrapper
+    %p= @quantity.description
+
+    %h3 Equations
+    .cards
+        - @quantity.equations.each do |equation|
+            .card
+                .wrapper
+                    = '`' + @quantity.symbol + '=' + equation.equation + '`'
+
+    %h3 Units of measurement
+    .cards
+        - @quantity.unit_of_measurements.order(:name).each do |unit_of_measurement|
+            .card
+                .wrapper
+                    %h2.small= unit_of_measurement.symbol
+                    %p.small
+                        %span= unit_of_measurement.name

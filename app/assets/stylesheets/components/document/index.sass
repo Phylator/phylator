@@ -1,0 +1,31 @@
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    opacity: 1
+    visibility: visible
+    text-decoration: none
+    outline: none
+    transition: all .15s ease-out
+
+\:root
+    font-size: 15px
+    font-family: $font-family !important
+    font-weight: 400
+    font-style: normal
+    color: color(light, base)
+    -webkit-font-smoothing: antialiased
+    text-rendering: optimizeLegibility
+    -moz-osx-font-smoothing: grayscale
+    font-smooth: always
+    @include bigger-than(mobile)
+        font-size: 16px
+
+html
+    background: color(dark, darker)
+    overflow-x: hidden
+    overflow-y: auto
+    @include bigger-than(mobile)
+        display: none
+    body
+        min-height: 100vh

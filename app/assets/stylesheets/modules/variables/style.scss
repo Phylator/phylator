@@ -1,0 +1,33 @@
+$styles: (
+    box-shadow: (
+        sm: 0 .0625em .3125em 0 rgba(color(dark, darker, true), .05),
+        md: 0 .25em .9375em 0 rgba(color(dark, darker, true), .05),
+        lg: 0 .4375em 2.5em 0 rgba(color(dark, darker, true), .05)
+    )
+);
+
+:root {
+    @each $name, $style in $styles {
+        @if type-of($style) == map {
+            @each $subname, $subsize in $style {
+                --style-#{$name}-#{$subname}: #{$subsize}
+            }
+        } @else if type-of($style) == number {
+            --style-#{$name}: #{$style}
+        }
+    }
+}
+
+@function style($style-name, $style-variant:null) {
+    @if ($style-variant != null) {
+        @return var(--style-#{$style-name}-#{$style-variant})
+    } @else {
+        @return var(--style-#{$style-name})
+    }
+}
+
+
+/* Usage */
+
+// style($name)
+// style($name, $type)

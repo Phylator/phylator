@@ -1,0 +1,15 @@
+en:
+    welcome:
+        index:
+            slide1:
+                title: Specify what to calculate
+                content: Start by selecting what physical quantity in which unit of measurement you want to get.
+            slide2:
+                title: Enter your measurements
+                content: Then enter all your measurements. Add a margin of error if your result is not accurate.
+            slide3:
+                content1: You wish to enhance this app?
+                content2: is open source. We'd love it if you would consider contributing.
+            slide4:
+                title: Keep your calculations close
+                content: Create or sign into your Phylator account to save your calculations and get more benefits.

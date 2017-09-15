@@ -1,0 +1,30 @@
+.flexdatalist-results
+    transition: none
+    border: none
+    box-shadow: style(box-shadow, sm)
+    border-radius: size(border-radius, sm)
+    color: inherit
+    background: color(dark, dark)
+    margin-top: px(10)
+    li
+        border-bottom: none
+        padding: px(12) px(15)
+        font-size: inherit
+        line-height: px(24)
+        span
+            &.highlight
+                font-weight: 700
+                text-decoration: none
+            &.item-symbol
+                font-family: $font-family-secondary
+                color: color(dark, lighter)
+                float: left
+                min-width: px(20)
+                margin-right: px(10)
+                line-height: 1.7
+        &.active
+            background: color(dark, dark)
+            color: inherit
+        &.no-results
+            font-style: normal
+            color: color(dark, lighter)

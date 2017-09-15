@@ -1,0 +1,33 @@
+$sizes: (
+    border-radius: (sm: .125em, md: .1875em, lg: .3125em)
+);
+
+:root {
+    @each $name, $size in $sizes {
+        @if type-of($size) == map {
+            @each $subname, $subsize in $size {
+                --size-#{$name}-#{$subname}: #{$subsize}
+            }
+        } @else if type-of($size) == number {
+            --size-#{$name}: #{$size}
+        }
+    }
+}
+
+@function size($size-name, $size-variant:null) {
+    @if ($size-variant != null) {
+        @return var(--size-#{$size-name}-#{$size-variant})
+    } @else {
+        @return var(--size-#{$size-name})
+    }
+}
+
+@function px($px, $element-font-size:16) {
+    @return $px/$element-font-size+em
+}
+
+
+/* Usage */
+
+// size($name)
+// size($name, $type)

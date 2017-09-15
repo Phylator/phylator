@@ -1,0 +1,7 @@
+en:
+    calculations:
+        form:
+            quantity:
+                label: Choose a physical quantity
+            measurements:
+                add: Add measurement

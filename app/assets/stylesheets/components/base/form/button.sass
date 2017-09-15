@@ -1,0 +1,47 @@
+a.btn, button, input[type="submit"]
+    display: flex
+    justify-content: center
+    align-items: center
+    font-family: $font-family
+    padding: px(18) px(22) px(19)
+    font-size: px(14)
+    font-weight: bold
+    line-height: 1
+    background: color(accent, dark)
+    color: white
+    cursor: pointer
+    border: 1px solid color(accent, dark)
+    -webkit-border-radius: size(border-radius, sm)
+    -moz-border-radius: size(border-radius, sm)
+    border-radius: size(border-radius, sm)
+    text-decoration: none !important
+    transition: all .35s ease-out
+    box-shadow: style(box-shadow, sm)
+    &:hover, &:focus, &:active
+        background: color(accent, darker)
+        border-color: color(accent, darker)
+    &.disabled
+        background: rgba(black, .1)
+        cursor: not-allowed
+        pointer-events: none
+        &:hover
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+        &:focus, &:active
+            pointer-events: none
+
+
+    &.warn
+        background: color(red, darker)
+        border-color: color(red, darker)
+        &:hover, &:focus, &:active
+            background: darken(color(red, darker, true), .25)
+            border-color: darken(color(red, darker, true), .25)
+
+
+    &.secondary
+        background: transparent
+        color: color(light, base) !important
+        border-color: color(dark, dark)
+        box-shadow: none
+        &:hover
+            background: color(dark, dark)
