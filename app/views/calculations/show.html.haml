@@ -4,33 +4,27 @@
 - if @calculation.result.undefined
     %h2 Undefined
 - else
-    %h2
-        - if @calculation.result.value.to_s.size > 12
-            = "%e" % @calculation.result.value.to_s
-        - else
-            = @calculation.result.value.to_s
+    %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
+        = @calculation.result.pretty_value
         %span= @calculation.unit_of_measurement.symbol
+
 %p
     %span= link_to @calculation.quantity.name, quantity_url(@calculation.quantity)
-    - if @calculation.result.margin_of_error != 0
-        ·
-        %span
-            = '+-'
-            - if @calculation.result.margin_of_error.to_s.size > 12
-                = "%e" % @calculation.result.margin_of_error.to_s
-            - else
-                = @calculation.result.margin_of_error.to_s
+    ·
+    %span= timeago @calculation.created_at
 
 .wrapper
     %h1= @calculation.name || 'Add a name'
     .wrapper
-        .copy= asset 'icons/ungroup.svg'
-        - if @calculation.public
-            = link_to calculation_url(@calculation, public: false), method: :post, remote: true do
-                = asset 'icons/eye-19.svg'
-        - else
-            = link_to calculation_url(@calculation, public: true), method: :post, remote: true do
-                = asset 'icons/eye-ban-20.svg'
+        .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg'
         = link_to calculation_url(@calculation), data: { confirm: 'Are you sure?' }, method: :delete, class: 'delete' do
             = asset 'icons/trash-round.svg'
 %p.margin= @calculation.description || 'Add some details'
+
+
+-# %span
+-#     = '+-'
+-#     - if @calculation.result.margin_of_error.to_s.size > 12
+-#         = "%e" % @calculation.result.margin_of_error.to_s
+-#     - else
+-#         = @calculation.result.margin_of_error.to_s

@@ -9,16 +9,11 @@ class Quantity < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :description, presence: true
 
-    belongs_to :quantity, optional: true
-
     has_many :unit_of_measurements
     has_many :equations
-    has_many :quantities
     has_many :measurements, class_name: 'Calculation::Measurement'
 
     has_many :belongs_to_equations, through: :equation_quantities, source: :equation
     has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
-
-    scope :base, -> { where.not(quantity_id: nil) }
 
 end

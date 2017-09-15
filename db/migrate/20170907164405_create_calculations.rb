@@ -8,7 +8,6 @@ class CreateCalculations < ActiveRecord::Migration[5.1]
 
             t.string :name
             t.text :description
-            t.boolean :public, default: true, null: false
 
             t.timestamps
 

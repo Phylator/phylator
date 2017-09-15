@@ -1,16 +1,15 @@
 %h1 Calculations
 
-%table
-    %thead
-        %tr
-            %th{ colspan: '3' }
-
-    %tbody
-        - @calculations.each do |calculation|
-            %tr>
-                %td= link_to 'Show', calculation
-                %td= link_to 'Destroy', calculation, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Calculation', root_url
+.cards
+    - @calculations.each do |calculation|
+        = link_to calculation, class: 'card' do
+            .wrapper
+                %h2.small
+                    = calculation.result.pretty_value
+                    %span= calculation.unit_of_measurement.symbol
+                %p.small
+                    - if calculation.name
+                        %span= calculation.name
+                        ·
+                    %span= timeago calculation.created_at
+            = asset 'components/list/item-open.svg'

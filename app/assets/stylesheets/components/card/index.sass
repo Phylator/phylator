@@ -1,0 +1,31 @@
+.cards
+    margin: px(25) 0
+    & > .card
+        margin: px(15) 0
+        padding: px(20) px(25)
+        display: flex
+        justify-content: space-between
+        align-items: center
+        text-decoration: none !important
+        border-radius: size(border-radius, sm)
+        background: color(dark, dark)
+        box-shadow: style(box-shadow, sm)
+        h2
+            margin-bottom: px(2)
+            span
+                font-size: .75em
+                font-weight: normal
+                color: color(light, darker)
+        svg polygon
+            fill: color(dark, lighter)
+        &:hover
+            background: color(dark, base)
+            box-shadow: style(box-shadow, lg)
+            svg polygon
+                fill: white
+
+        & > p span
+            &:not(:first-child)
+                margin-left: px(10)
+            &:not(:last-child)
+                margin-right: px(10)

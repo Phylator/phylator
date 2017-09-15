@@ -12,6 +12,22 @@ class Calculation::Result < ApplicationRecord
 
     belongs_to :calculation, class_name: '::Calculation'
 
+    def pretty_value
+        if self.value.to_s.size > 12
+            "%e" % self.value.to_s
+        else
+            self.value.to_s
+        end
+    end
+
+    def pretty_margin_of_error
+        if self.margin_of_error.to_s.size > 12
+            "%e" % self.margin_of_error.to_s
+        else
+            self.margin_of_error.to_s
+        end
+    end
+
     def value_decimals
         decimals self.value
     end

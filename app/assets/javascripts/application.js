@@ -18,5 +18,9 @@
 
 //= require ./vendor/jquery.flexdatalist
 //= require ./vendor/slick
+//= require ./vendor/timeago
+//= require ./vendor/clipboard
+//= require ./vendor/iziToast
+//= require ./vendor/iziModal
 
 //= require_tree .
