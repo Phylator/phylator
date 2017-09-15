@@ -15,10 +15,15 @@
             = link_to 'Phylator', 'https://github.com/jonhue/phylator', target: '_blank'
             = t 'welcome.index.slide3.content2'
 
-    #slide4.slide
-        %h1= t 'welcome.index.slide4.title'
-        %p= t 'welcome.index.slide4.content'
+        - if current_user
+            .wrapper
+                = link_to t('cd.get_started'), root_url, class: 'btn'
 
-        .wrapper
-            = link_to t('d.signin'), new_user_session_url, class: 'btn secondary' unless current_user
-            = link_to t('cd.get_started'), (current_user ? root_url : language_url), class: 'btn'
+    - unless current_user
+        #slide4.slide
+            %h1= t 'welcome.index.slide4.title'
+            %p= t 'welcome.index.slide4.content'
+
+            .wrapper
+                = link_to t('d.signin'), new_user_session_url, class: 'btn secondary'
+                = link_to t('cd.get_started'), language_url, class: 'btn'
