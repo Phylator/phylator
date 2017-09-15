@@ -2,7 +2,7 @@ class Quantity < ApplicationRecord
 
     # acts_as_taggable
     extend FriendlyId
-    friendly_id [:symbol, [:symbol, :id]], use: :slugged
+    friendly_id :slug_candidates, use: :slugged
     translates :name, :description
 
     validates :symbol, presence: true, uniqueness: true
@@ -15,5 +15,11 @@ class Quantity < ApplicationRecord
 
     has_many :belongs_to_equations, through: :equation_quantities, source: :equation
     has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
+
+    private
+
+    def slug_candidates
+        [:symbol, [:symbol, :id]]
+    end
 
 end

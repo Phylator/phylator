@@ -8,8 +8,7 @@
                     = calculation.result.pretty_value
                     %span= calculation.unit_of_measurement.symbol
                 %p.small
-                    - if calculation.name
-                        %span= calculation.name
-                        ·
+                    %span= calculation.name || calculation.quantity.name
+                    ·
                     %span= timeago calculation.created_at
             = asset 'components/list/item-open.svg'

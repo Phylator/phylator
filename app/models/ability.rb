@@ -8,14 +8,12 @@ class Ability
 
         # Calculations
         can :manage, Calculation, user_id: user.id
-        can [:read, :create], Calculation, public: true
+        can [:read, :create], Calculation
         ## Measurements
         can :manage, Calculation::Measurement do |measurement|
             measurement.calculation.user_id == user.id ? true : false
         end
-        can [:read, :create], Calculation::Measurement do |measurement|
-            measurement.calculation.public
-        end
+        can [:read, :create], Calculation::Measurement
 
     end
 

@@ -9,7 +9,7 @@ class CalculationsController < ApplicationController
     # GET /calculations.json
     def index
         render layout: 'app'
-        @calculations = Calculation.all
+        @calculations = current_user.calculations.order('created_at desc')
     end
 
     # GET /calculations/1
@@ -28,6 +28,7 @@ class CalculationsController < ApplicationController
     # POST /calculations.json
     def create
         @calculation = Calculation.new(calculation_params)
+        @calculation.user = current_user if current_user
 
         respond_to do |format|
             if @calculation.save

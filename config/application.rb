@@ -15,9 +15,13 @@ module Phylator
         # Application configuration should go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded.
 
-        Rails.application.config.to_prepare do
+        config.to_prepare do
             Devise::RegistrationsController.layout proc { |controller| action_name == 'edit' ? 'app' : 'application' }
         end
+
+        config.action_dispatch.default_headers = {
+            'X-Frame-Options' => 'ALLOWALL'
+        }
 
     end
 end

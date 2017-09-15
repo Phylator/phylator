@@ -5,11 +5,15 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function componentsModalInit() {
-    $('#modal').iziModal({
+    $('.modal').iziModal({
         width: '85%'
     });
     $('.md-trigger').click(function(event) {
         event.preventDefault();
-        $('#modal').iziModal('open');
+        $('.modal' + $(this).data('modal')).iziModal('open');
     });
+};
+
+function componentsModalOpen(el) {
+    $(el).iziModal('open');
 };

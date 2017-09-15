@@ -12,19 +12,24 @@ class Calculation::Result < ApplicationRecord
 
     belongs_to :calculation, class_name: '::Calculation'
 
+    def trim num
+        i, f = num.to_i, num.to_f
+        i == f ? i : f
+    end
+
     def pretty_value
         if self.value.to_s.size > 12
-            "%e" % self.value.to_s
+            "%e" % trim(self.value).to_s
         else
-            self.value.to_s
+            trim(self.value).to_s
         end
     end
 
     def pretty_margin_of_error
         if self.margin_of_error.to_s.size > 12
-            "%e" % self.margin_of_error.to_s
+            "%e" % trim(self.margin_of_error).to_s
         else
-            self.margin_of_error.to_s
+            trim(self.margin_of_error).to_s
         end
     end
 

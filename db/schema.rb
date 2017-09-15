@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "user_id"
     t.string "name"
     t.text "description"
-    t.boolean "public", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quantity_id"], name: "index_calculations_on_quantity_id"
@@ -90,13 +89,11 @@ ActiveRecord::Schema.define(version: 20170909180710) do
   end
 
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "quantity_id"
     t.string "symbol"
     t.boolean "vector", default: false, null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["quantity_id"], name: "index_quantities_on_quantity_id"
     t.index ["slug"], name: "index_quantities_on_slug"
   end
 

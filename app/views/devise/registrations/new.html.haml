@@ -4,6 +4,7 @@
     = f.error_notification
 
     .form-inputs
+        = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
         = f.input :email, required: true, autofocus: true
         = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
 
