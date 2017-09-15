@@ -1,4 +1,4 @@
-= link_to url_for(:back), class: 'back' do
+= link_to (current_user ? calculations_url : url_for(:back)), class: 'back' do
     = asset 'components/back.svg'
 
 - if @calculation.result.undefined
