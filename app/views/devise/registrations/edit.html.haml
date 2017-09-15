@@ -2,14 +2,14 @@
 %p= current_user.email
 
 .list
+    = link_to setup_url(stay: true), class: 'tour list-item' do
+        %h3 Take a tour
+        = asset 'components/list/item-open.svg'
     = link_to language_url, class: 'language list-item' do
         %h3 Change language
         = asset 'components/list/item-open.svg'
     = link_to destroy_user_session_path, method: :delete, class: 'logout list-item' do
         %h3 Logout
-        = asset 'components/list/item-open.svg'
-    = link_to setup_url(stay: true), class: 'tour list-item' do
-        %h3 Take a tour
         = asset 'components/list/item-open.svg'
 
 %hr

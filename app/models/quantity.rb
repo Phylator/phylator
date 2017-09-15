@@ -2,7 +2,7 @@ class Quantity < ApplicationRecord
 
     acts_as_taggable
     extend FriendlyId
-    friendly_id :symbol, use: :slugged
+    friendly_id [:symbol, [:symbol, :id]], use: :slugged
     translates :name, :description
 
     validates :symbol, presence: true, uniqueness: true
