@@ -28,10 +28,11 @@
         %span= timeago @calculation.created_at
 
 - unless current_user
-    .account-wrapper{ class: ('invisible' if notice) }
-        .flex-wrapper
-            = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
-            = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+    - if notice
+        .account-wrapper{ class: ('invisible' if notice) }
+            .flex-wrapper
+                = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
+                = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
 
 .content-wrapper
     - if current_user
