@@ -10,14 +10,14 @@
 .content-wrapper
     %p= @quantity.description
 
-    %h3 Equations
+    %h3= t 'd.p.equations'
     .cards
         - @quantity.equations.each do |equation|
             .card
                 .wrapper
                     = '`' + @quantity.symbol + '=' + equation.equation + '`'
 
-    %h3 Units of measurement
+    %h3= t 'd.p.units_of_measurement'
     .cards
         - @quantity.unit_of_measurements.order(:name).each do |unit_of_measurement|
             .card

@@ -1,4 +1,4 @@
-%h1 Calculations
+%h1= t 'd.p.calculations'
 
 .cards
     - if current_user.calculations.any?
@@ -16,6 +16,6 @@
     - else
         = link_to root_url, class: 'card' do
             .wrapper
-                %h3 It's empty here
-                %p.small Start by creating your first calculation
+                %h3= t 'calculations.index.empty.title'
+                %p.small= t 'calculations.index.empty.content'
             = asset 'components/list/item-open.svg'

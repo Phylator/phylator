@@ -1,6 +1,12 @@
 de:
     cd:
+        are_you_sure?: Bist du dir sicher?
+        current_password: Aktuelles Passwort
+        forgot_your_password?: Passwort vergessen?
         get_started: Auf geht's
         unit_of_measurement: Maßeinheit
         margin_of_error: Messfehler
+        new_password: Neues Passwort
+        physical_quantities: Physikalische Größen
         physical_quantity: Physikalische Größe
+        remember_me: Erinnere dich an mich

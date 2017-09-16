@@ -10,14 +10,14 @@
 .tools
     .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
     .md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-    = link_to calculation_url(@calculation), data: { confirm: 'Are you sure?' }, method: :delete, class: 'delete' do
+    = link_to calculation_url(@calculation), data: { confirm: t('cd.are_you_sure?') }, method: :delete, class: 'delete' do
         = asset 'icons/trash-round.svg'
 
 
 
 .head-wrapper
     - if @calculation.result.undefined
-        %h2 Undefined
+        %h2= t 'd.undefined'
     - else
         %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
@@ -31,13 +31,13 @@
     - if notice
         .account-wrapper{ class: ('invisible' if notice) }
             .flex-wrapper
-                = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
-                = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+                = link_to t('d.signup'), new_user_registration_url(calculation: @calculation.id), class: 'btn'
+                = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
 
 .content-wrapper
     - if current_user
         .md-trigger{ data: { modal: '.edit' } }
-            %h3= @calculation.name || 'Add some details'
+            %h3= @calculation.name || t('calculations.show.details.add')
             %p= @calculation.description if @calculation.description
 
 
@@ -47,28 +47,28 @@
 
 .modal.share
     .modal-content-wrapper
-        %h3 Share
+        %h3= t 'd.share'
         .wrapper
             = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
             = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
             = link_to 'Google +', "https://plus.google.com/share?url=#{request.original_url}", target: '_blank'
-            = link_to 'Email', "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}"
+            = link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}"
 
 .modal.signup
     .modal-content-wrapper
-        %h3 Save this calculation
-        %p After logging in you have access to all your calculations as well as the entire database of quantities, units & equations.
+        %h3= t 'calculations.show.save.title'
+        %p= t 'calculations.show.save.content'
         .flex-wrapper
-            = link_to 'Signup', new_user_registration_url(calculation: @calculation.id), class: 'btn'
-            = link_to 'Login', new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+            = link_to t('d.signup'), new_user_registration_url(calculation: @calculation.id), class: 'btn'
+            = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
 
 .modal.edit
     .modal-content-wrapper
         = simple_form_for(@calculation) do |f|
-            = f.input :name, label: 'Title'
-            = f.input :description
+            = f.input :name, label: t('d.title')
+            = f.input :description, label: t('d.description')
             .flex-wrapper
-                = f.button :submit, 'Save'
+                = f.button :submit, t('d.save')
 
 
 -# %span

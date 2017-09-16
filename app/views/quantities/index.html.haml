@@ -1,4 +1,4 @@
-%h1 Physical quantities
+%h1= t 'cd.physical_quantities'
 
 .cards
     - @quantities.each do |quantity|
@@ -9,5 +9,5 @@
                     %span= quantity.name
                     - if quantity.vector
                         ·
-                        %span Vector
+                        %span= t 'd.vector'
             = asset 'components/list/item-open.svg'

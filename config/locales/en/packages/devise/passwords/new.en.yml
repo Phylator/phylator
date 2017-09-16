@@ -1,0 +1,6 @@
+en:
+    devise:
+        passwords:
+            new:
+                form:
+                    submit: Send instructions
