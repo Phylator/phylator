@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
 
-    before_create :associate_calculation
+    before_action :associate_calculation
 
     def associate_calculation
         c = Calculation.find(current_user.calculation_id)
