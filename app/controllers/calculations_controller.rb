@@ -9,7 +9,6 @@ class CalculationsController < ApplicationController
     # GET /calculations.json
     def index
         render layout: 'app'
-        @calculations = current_user.calculations.order('created_at desc')
     end
 
     # GET /calculations/1

@@ -1,14 +1,21 @@
 %h1 Calculations
 
 .cards
-    - @calculations.each do |calculation|
-        = link_to calculation, class: 'card' do
+    - if current_user.calculations.any?
+        - current_user.calculations.order('created_at desc').each do |calculation|
+            = link_to calculation, class: 'card' do
+                .wrapper
+                    %h2.small
+                        = calculation.result.pretty_value
+                        %span= calculation.unit_of_measurement.symbol
+                    %p.small
+                        %span= calculation.name || calculation.quantity.name
+                        ·
+                        %span= timeago calculation.created_at
+                = asset 'components/list/item-open.svg'
+    - else
+        = link_to root_url, class: 'card' do
             .wrapper
-                %h2.small
-                    = calculation.result.pretty_value
-                    %span= calculation.unit_of_measurement.symbol
-                %p.small
-                    %span= calculation.name || calculation.quantity.name
-                    ·
-                    %span= timeago calculation.created_at
+                %h3 It's empty here
+                %p.small Start by creating your first calculation
             = asset 'components/list/item-open.svg'
