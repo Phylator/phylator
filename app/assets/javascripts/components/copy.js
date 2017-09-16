@@ -9,7 +9,7 @@ function componentsCopyInit() {
 
     clipboard.on( 'success', function(e) {
         iziToast.success({
-            title: 'Copied!',
+            title: $('p#copyText').text(),
             backgroundColor: '#73d287'
         });
 
