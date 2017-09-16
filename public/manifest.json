@@ -3,7 +3,7 @@
     "name": "Phylator",
     "start_url": "/",
     "background_color": "#242a38",
-    "theme_color": "#2840d0",
+    "theme_color": "#242a38",
     "display": "standalone",
     "orientation": "portrait"
 }
