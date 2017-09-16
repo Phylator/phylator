@@ -1,8 +1,11 @@
 class SessionsController < Devise::SessionsController
 
-    def create
-        super
-        Calculation.find(self.calculation_id).user_id = self.id
+    before_create :associate_calculation
+
+    def associate_calculation
+        c = Calculation.find(current_user.calculation_id)
+        c.user_id = current_user.id
+        c.save!
     end
 
 end
