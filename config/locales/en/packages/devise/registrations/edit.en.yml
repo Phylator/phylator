@@ -1,8 +1,0 @@
-en:
-    devise:
-        registrations:
-            edit:
-                title: Account
-                list:
-                    tour: Take a tour
-                    language: Change language

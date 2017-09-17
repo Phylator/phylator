@@ -1,8 +1,0 @@
-de:
-    devise:
-        registrations:
-            edit:
-                title: Account
-                list:
-                    tour: Nehme eine Tour
-                    language: Sprache ändern
