@@ -76,6 +76,8 @@ end
 group :production, :staging do
     gem 'pg', '~> 0.21'
     gem 'rack-timeout', '~> 0.4'
+
+    gem 'webpacker' # fixing precompilation error
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
