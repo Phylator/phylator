@@ -13,7 +13,7 @@ function iframeInit() {
         $(':root').css({ 'font-size': '17px' });
         setTimeout(function() {
             $('body').fadeIn(500);
-        });
+        }, 500);
     };
 
 };

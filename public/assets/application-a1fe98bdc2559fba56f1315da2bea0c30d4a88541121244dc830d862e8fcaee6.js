@@ -21176,23 +21176,25 @@ function flexdatalistInit(el = $('body')) {
     });
 
 };
-// document.addEventListener( 'turbolinks:load', function() {
-//     iframeInit();
-// });
-//
-//
-//
-// function iframeInit() {
-//
-//     var inIframe = ( window.location != window.parent.location ) ? true : false;
-//
-//     if ( inIframe === true ) {
-//         $('body').addClass('disabledTransitions');
-//         $(':root').css({ 'font-size': '18px' });
-//         $('body').removeClass('disabledTransitions');
-//     };
-//
-// };
+document.addEventListener( 'turbolinks:render', function() {
+    iframeInit();
+});
+
+
+
+function iframeInit() {
+
+    var inIframe = ( window.location != window.parent.location ) ? true : false;
+
+    if ( inIframe === true ) {
+        $('body').hide();
+        $(':root').css({ 'font-size': '17px' });
+        setTimeout(function() {
+            $('body').fadeIn(500);
+        }, 500);
+    };
+
+};
 document.addEventListener( 'turbolinks:load', function() {
     calculationsNewInit();
     calculationsNewMarginOfErrorInit();
