@@ -6,18 +6,12 @@ document.addEventListener( 'turbolinks:load', function() {
 
 function iframeInit() {
 
-    if ( inIframe() === true ) {
+    var inIframe = ( window.location != window.parent.location ) ? true : false;
+
+    if ( inIframe === true ) {
         $('body').addClass('disabledTransitions');
         $(':root').css( 'font-size': '18px' );
         $('body').removeClass('disabledTransitions');
     };
 
 };
-
-function inIframe() {
-    try {
-        return window.self !== window.top;
-    } catch (e) {
-        return true;
-    }
-}
