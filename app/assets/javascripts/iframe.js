@@ -10,7 +10,7 @@ function iframeInit() {
 
     if ( inIframe === true ) {
         $('body').addClass('disabledTransitions');
-        $(':root').css({ 'font-size': '18px' });
+        $(':root').css({ 'font-size': '17px' });
         $('body').removeClass('disabledTransitions');
     };
 
