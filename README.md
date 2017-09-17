@@ -1,24 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
+Steps that are necessary to get the
 application up and running.
 
-Things you may want to cover:
+---
 
-* Ruby version
+**Ruby version:** 2.3.3
 
-* System dependencies
+**System dependencies:** none
 
-* Configuration
+**Configuration:** none
 
-* Database creation
+---
 
-* Database initialization
+### Database creation
 
-* How to run the test suite
+```
+rails db:create
+rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+### Database initialization
 
-* ...
+```
+rails db:seed
+```
+
+---
+
+### How to run the test suite
+
+*No test suite yet.*
+
+---
+
+### Development instructions
+
+```
+$ rails assets:precompile
+
+$ rails assets:clean
+
+$ rails s
+```
+
+---
+
+### Deployment instructions
+
+#### 1) Feature
+* Create a feature branch when introducing a new feature.
+#### 2) Master
+* Test!
+* Deploy changes.
