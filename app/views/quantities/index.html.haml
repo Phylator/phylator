@@ -1,0 +1,13 @@
+%h1= t 'cd.physical_quantities'
+
+.cards
+    - @quantities.each do |quantity|
+        = link_to quantity, class: 'card' do
+            .wrapper
+                %h2.small= quantity.symbol
+                %p.small
+                    %span= quantity.name
+                    - if quantity.vector
+                        ·
+                        %span= t 'd.vector'
+            = asset 'components/list/item-open.svg'

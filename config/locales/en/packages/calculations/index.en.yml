@@ -1,0 +1,6 @@
+en:
+    calculations:
+        index:
+            empty:
+                title: It's empty here ...
+                content: Start by creating your first calculation

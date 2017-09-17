@@ -1,0 +1,8 @@
+en:
+    calculations:
+        show:
+            details:
+                add: Add some details
+            save:
+                title: Save this calculation
+                content: After logging in you have access to all your calculations as well as the entire database of quantities, units & equations.
