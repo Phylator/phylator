@@ -54,4 +54,5 @@ $ rails s
 * Create a feature branch when introducing a new feature.
 #### 2) Master
 * Test!
+* Precompile Assets
 * Deploy changes.
