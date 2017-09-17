@@ -10,7 +10,7 @@ function iframeInit() {
 
     if ( inIframe === true ) {
         $('body').hide();
-        $(':root').css({ 'font-size': '17px' });
+        $(':root').css({ 'font-size': '18px' });
         setTimeout(function() {
             $('body').fadeIn(500);
         }, 500);
