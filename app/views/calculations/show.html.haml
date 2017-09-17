@@ -9,9 +9,8 @@
 
 .tools
     .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
-    .md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-    = link_to calculation_url(@calculation), data: { confirm: t('cd.are_you_sure?') }, method: :delete, class: 'delete' do
-        = asset 'icons/trash-round.svg'
+    .share.md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
+    .delete.md-trigger{ data: { modal: '.delete' } }= asset 'icons/trash-round.svg'
 
 
 
@@ -69,6 +68,10 @@
             = f.input :description, label: t('d.description')
             .flex-wrapper
                 = f.button :submit, t('d.save')
+
+.modal.delete
+    .modal-content-wrapper
+        = link_to calculation_url(@calculation), method: :delete, class: 'btn warn'
 
 
 -# %span

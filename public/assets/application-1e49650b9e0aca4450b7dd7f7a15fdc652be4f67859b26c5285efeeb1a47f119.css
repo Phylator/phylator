@@ -4281,7 +4281,7 @@ input[type="checkbox"] {
 /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
 input[type="checkbox"]:checked {
   background: rgba(255, 255, 255, 0.1);
-  background: url("components/forms/checkbox/check_white.png") no-repeat center center, rgba(255, 255, 255, 0.1);
+  background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, rgba(255, 255, 255, 0.1);
   border: none;
   position: relative;
 }
@@ -4493,15 +4493,13 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-@media (min-width: 800px) {
-  /* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
-  html {
-    display: none;
-  }
-}
 /* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body {
   min-height: 100vh;
+}
+/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+html body.disabledTransitions * {
+  transition: none !important;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/utilities/math_jax.sass */
@@ -4565,23 +4563,31 @@ html body {
   color: var(--color-light-darker);
 }
 /* line 19, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card h3 {
+  margin-bottom: 0.3125em;
+}
+/* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card svg {
+  margin-left: 0.9375em;
+}
+/* line 23, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card svg polygon {
   fill: var(--color-dark-lighter);
 }
-/* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 25, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card:hover {
   background: var(--color-dark-base);
   box-shadow: var(--style-box-shadow-lg);
 }
-/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 28, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card:hover svg polygon {
   fill: white;
 }
-/* line 28, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:first-child) {
   margin-left: 0.3125em;
 }
-/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:last-child) {
   margin-right: 0.3125em;
 }
@@ -4626,6 +4632,10 @@ html body {
 /* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
 .tools .delete svg path, .tools .delete svg circle {
   fill: var(--color-red-darker);
+}
+/* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > * {
+  cursor: pointer;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
@@ -4898,6 +4908,10 @@ body.devise nav.app > a:last-child {
   display: flex;
   flex-direction: row-reverse;
 }
+/* line 93, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show > .modal.delete .modal-content-wrapper {
+  padding: 1.875em 0;
+}
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
 .quantities.index {
@@ -4932,6 +4946,7 @@ body.devise nav.app > a:last-child {
 
 /* line 4, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-list .slide {
+  cursor: grab;
   height: 100vh;
   display: flex !important;
   flex-direction: column;
@@ -4939,27 +4954,27 @@ body.devise nav.app > a:last-child {
   align-items: center;
   padding-bottom: 10vh;
 }
-/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 12, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-list .slide h1 {
   margin-bottom: 1.25em;
 }
-/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-list .slide p {
   text-align: center;
   max-width: 75%;
 }
-/* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-list .slide .wrapper {
   margin-top: 1.5625em;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
 }
-/* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 22, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-list .slide .wrapper .secondary {
   margin-left: 1.5625em;
 }
-/* line 23, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-dots {
   display: flex !important;
   justify-content: center;
@@ -4970,7 +4985,7 @@ body.devise nav.app > a:last-child {
   bottom: 0;
   padding: 3.125em;
 }
-/* line 33, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-dots > li > button {
   display: block;
   width: 0.0625em;
@@ -4983,7 +4998,7 @@ body.devise nav.app > a:last-child {
   border-radius: 50%;
   border: none;
 }
-/* line 44, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
+/* line 45, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-dots > li.slick-active > button {
   background: rgba(255, 255, 255, 0.7);
 }
