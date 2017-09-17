@@ -22,7 +22,7 @@
             = @calculation.result.pretty_value
             %span= @calculation.unit_of_measurement.symbol
     %p
-        %span= link_to @calculation.quantity.name, quantity_url(@calculation.quantity)
+        %span= link_to @calculation.quantity.name, @calculation.quantity
         ·
         %span= timeago @calculation.created_at
 
@@ -34,10 +34,25 @@
                 = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
 
 .content-wrapper
-    - if current_user
+    - if can? :update, @calculation
         .md-trigger{ data: { modal: '.edit' } }
             %h3= @calculation.name || t('calculations.show.details.add')
             %p= @calculation.description if @calculation.description
+
+    %h3= t 'd.p.units_of_measurement'
+    .cards
+        - @calculation.measurements.each do |measurement|
+            = link_to request.base_url + '/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card' do
+                .wrapper
+                    %h2.small
+                        = measurement.pretty_value
+                        %span= measurement.unit_of_measurement.symbol
+                    %p.small
+                        %span= measurement.name || measurement.quantity.name
+                        - if measurement.name
+                            ·
+                            %span= measurement.quantity.name
+                = asset 'components/list/item-open.svg'
 
 
 
@@ -71,7 +86,7 @@
 
 .modal.delete
     .modal-content-wrapper
-        = link_to t('d.delete'), calculation_url(@calculation), method: :delete, class: 'btn warn'
+        = link_to t('d.delete') + '?', calculation_url(@calculation), method: :delete, class: 'btn warn'
 
 
 -# %span

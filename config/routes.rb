@@ -4,7 +4,7 @@ Rails.application.routes.draw do
         get 'units_of_measurement', to: 'unit_of_measurements#index'
     end
     resources :calculations, except: [:new, :edit] do
-        resources :measurements, only: [:show]
+        resources :measurements, only: [:show], controller: 'calculations/measurements'
     end
 
     devise_for :users, skip: [:sessions, :registrations], controllers: { sessions: 'sessions_controller', registrations: 'registrations_controller' }

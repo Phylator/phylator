@@ -1,4 +1,4 @@
-.calculations.show:not(.measurements)
+.calculations.measurements.show
     & > .head-wrapper
         position: relative
         z-index: 1
@@ -14,25 +14,6 @@
                 margin-left: px(10)
             &:not(:last-child)
                 margin-right: px(10)
-    & > .account-wrapper
-        position: relative
-        top: 0
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        padding: px(30)
-        background: darken(color(dark, darker, true), .75)
-        transition-duration: .25s
-        &.invisible
-            top: px(-100)
-            & ~ .content-wrapper
-                top: px(-100)
-        .flex-wrapper
-            display: flex
-            align-items: center
-            a:first-child
-                margin-right: px(25)
     & > .content-wrapper
         position: relative
         top: 0
@@ -65,23 +46,6 @@
                         &:active, &:focus
                             background: rgba(white, .1)
 
-        &.signup
-            max-width: px(600) !important
-            .modal-content-wrapper
-                display: flex
-                flex-direction: column
-                justify-content: center
-                align-items: center
-                padding: px(50) px(35) px(55)
-                p
-                    text-align: center
-                    margin: px(20) 0 px(35)
-                .flex-wrapper
-                    display: flex
-                    align-items: center
-                    a:first-child
-                        margin-right: px(25)
-
         &.edit
             max-width: px(600) !important
             .modal-content-wrapper
@@ -91,8 +55,3 @@
                 .flex-wrapper
                     display: flex
                     flex-direction: row-reverse
-
-        &.delete
-            max-width: px(200) !important
-            .modal-content-wrapper
-                padding: 0

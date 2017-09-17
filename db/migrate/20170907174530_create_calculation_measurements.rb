@@ -9,6 +9,9 @@ class CreateCalculationMeasurements < ActiveRecord::Migration[5.1]
             t.text :value
             t.text :margin_of_error
 
+            t.string :name
+            t.text :description
+
             t.timestamps
 
         end

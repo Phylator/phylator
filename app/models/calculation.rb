@@ -14,12 +14,13 @@ class Calculation < ApplicationRecord
 
     accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
 
-    private
-
     def calc
+        self.result.destroy if self.result
         result = self.build_result
         result.save!
     end
+
+    private
 
     def randomize_id
         begin

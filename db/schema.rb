@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20170909180710) do
     t.bigint "quantity_id"
     t.text "value"
     t.text "margin_of_error"
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["calculation_id"], name: "index_calculation_measurements_on_calculation_id"
