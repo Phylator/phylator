@@ -1,4 +1,4 @@
-document.addEventListener( 'turbolinks:render', function() {
+document.addEventListener( 'turbolinks:load', function() {
     iframeInit();
 });
 
@@ -10,7 +10,7 @@ function iframeInit() {
 
     if ( inIframe === true ) {
         $('body').hide();
-        $(':root').css({ 'font-size': '18px' });
+        $(':root').css({ 'font-size': '17px' });
         setTimeout(function() {
             $('body').fadeIn(500);
         }, 500);
