@@ -39,7 +39,7 @@
             %h3= @calculation.name || t('calculations.show.details.add')
             %p= @calculation.description if @calculation.description
 
-    %h3= t 'd.p.units_of_measurement'
+    %h3= t 'd.p.measurements'
     .cards
         - @calculation.measurements.each do |measurement|
             = link_to request.base_url + '/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card' do
