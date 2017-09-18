@@ -81,6 +81,7 @@ class Calculation::Result < ApplicationRecord
             equations = {}
             ::Equation.all.each do |equation|
                 equations[equation.quantity.symbol] = equation.equation
+                self.calculation.equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
             end
             calculation_results = calculator.solve equations
             calculation_result = calculation_results[self.calculation.quantity.symbol]
@@ -90,7 +91,7 @@ class Calculation::Result < ApplicationRecord
             ::Equation.all.each do |equation|
                 error_equations["#{equation.quantity.symbol}_error"] = equation.equation # append '_error' to each variable in equation
             end
-            calculation_errors = calculator.solve equations
+            calculation_errors = calculator.solve error_equations
             calculation_error = calculation_errors["#{self.calculation.quantity.symbol}_error"]
 
             calculator.store "#{self.calculation.quantity.symbol}": calculation_result if calculation_result.present?

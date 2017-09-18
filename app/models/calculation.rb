@@ -8,6 +8,9 @@ class Calculation < ApplicationRecord
     has_one :result, class_name: 'Calculation::Result'
     has_many :measurements, class_name: 'Calculation::Measurement'
 
+    has_many :calculation_equations, class_name: 'Equation'
+    has_many :equations, through: :calculation_equations
+
     belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
     belongs_to :quantity, class_name: '::Quantity'
     belongs_to :user, optional: true
