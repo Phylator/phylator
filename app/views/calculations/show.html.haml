@@ -54,6 +54,13 @@
                             %span= measurement.quantity.name
                 = asset 'components/list/item-open.svg'
 
+    %h3= t 'd.p.equations'
+    .cards
+        - @calculation.equations.each do |equation|
+            .card
+                .wrapper
+                    = '`' + equation.quantity.symbol + '=' + equation.equation + '`'
+
 
 
 
