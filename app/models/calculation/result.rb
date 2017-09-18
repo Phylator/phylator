@@ -7,6 +7,7 @@ class Calculation::Result < ApplicationRecord
     include Value
     include MarginOfError
     include Decimals
+    extend ActionView::Helpers::NumberHelper
 
     validates :value, presence: true
 
@@ -17,11 +18,15 @@ class Calculation::Result < ApplicationRecord
         i == f ? i : f
     end
 
+    def delimiter num
+        num.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+    end
+
     def pretty_value
         if self.value.to_s.size > 12
             "%e" % trim(self.value).to_s
         else
-            trim(self.value).to_s
+            delimiter(trim(self.value))
         end
     end
 
@@ -29,7 +34,7 @@ class Calculation::Result < ApplicationRecord
         if self.margin_of_error.to_s.size > 12
             "%e" % trim(self.margin_of_error).to_s
         else
-            trim(self.margin_of_error).to_s
+            delimiter(trim(self.margin_of_error))
         end
     end
 
