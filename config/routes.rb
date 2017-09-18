@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'setup', to: 'welcome#index'
     get 'language', to: 'welcome#language'
     get 'drafts', to: 'welcome#drafts'
+    get 'privacy', to: 'welcome#privacy'
 
     root 'calculations#new'
 

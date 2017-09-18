@@ -16,4 +16,7 @@ class WelcomeController < ApplicationController
         render layout: 'app'
     end
 
+    def privacy
+    end
+
 end
