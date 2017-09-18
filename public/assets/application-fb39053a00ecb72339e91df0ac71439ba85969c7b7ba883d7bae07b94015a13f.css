@@ -4254,7 +4254,7 @@ input:not([type="submit"]) {
   font-size: 0.9375em;
   line-height: 1;
   color: white;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-dark-dark);
   border-radius: var(--size-border-radius-sm);
   border: none;
   padding: 0.9375em 1.0625em 1em;
@@ -4263,7 +4263,7 @@ input:not([type="submit"]) {
 }
 /* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/input.sass */
 input:not([type="submit"]):active, input:not([type="submit"]):focus {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-dark-base);
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
@@ -4280,19 +4280,19 @@ input[type="checkbox"] {
 }
 /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
 input[type="checkbox"]:checked {
-  background: rgba(255, 255, 255, 0.1);
-  background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, rgba(255, 255, 255, 0.1);
+  background: var(--color-dark-base);
+  background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, var(--color-dark-base);
   border: none;
   position: relative;
 }
 /* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
 input[type="checkbox"]:not(:checked) {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-dark-dark);
   box-shadow: var(--style-box-shadow-sm);
 }
 /* line 20, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/checkbox.sass */
 input[type="checkbox"]:not(:checked):not(:focus) {
-  border-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-dark-dark);
 }
 
 /* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/error.sass */
@@ -4380,7 +4380,7 @@ textarea {
   font-size: 0.9375em;
   line-height: 1.75;
   color: white;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-dark-dark);
   border-radius: var(--size-border-radius-sm);
   border: none;
   padding: 0.8125em 0.9375em;
@@ -4391,7 +4391,7 @@ textarea {
 }
 /* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/textarea.sass */
 textarea:active, textarea:focus {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-dark-base);
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
@@ -4440,7 +4440,7 @@ textarea:active, textarea:focus {
 hr {
   margin: 2.8125em auto;
   width: 1.5625em;
-  border: 0.125em solid rgba(255, 255, 255, 0.05);
+  border: 0.125em solid var(--color-dark-dark);
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/hint.sass */
@@ -4606,6 +4606,11 @@ html body.disabledTransitions * {
 .iziModal {
   background: var(--color-dark-dark);
   box-shadow: var(--style-box-shadow-md);
+}
+
+/* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+.md-trigger {
+  cursor: pointer;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
@@ -4784,7 +4789,7 @@ body.devise nav.app > a:last-child {
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .head-wrapper {
+.calculations.show:not(.measurements) > .head-wrapper {
   position: relative;
   z-index: 1;
   display: flex;
@@ -4796,15 +4801,15 @@ body.devise nav.app > a:last-child {
   background: var(--color-dark-dark);
 }
 /* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .head-wrapper p span:not(:first-child) {
+.calculations.show:not(.measurements) > .head-wrapper p span:not(:first-child) {
   margin-left: 0.625em;
 }
 /* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .head-wrapper p span:not(:last-child) {
+.calculations.show:not(.measurements) > .head-wrapper p span:not(:last-child) {
   margin-right: 0.625em;
 }
 /* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .account-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper {
   position: relative;
   top: 0;
   display: flex;
@@ -4816,105 +4821,200 @@ body.devise nav.app > a:last-child {
   transition-duration: 0.25s;
 }
 /* line 27, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .account-wrapper.invisible {
+.calculations.show:not(.measurements) > .account-wrapper.invisible {
   top: -6.25em;
 }
 /* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .account-wrapper.invisible ~ .content-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper.invisible ~ .content-wrapper {
   top: -6.25em;
 }
 /* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .account-wrapper .flex-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper {
   display: flex;
   align-items: center;
 }
 /* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .account-wrapper .flex-wrapper a:first-child {
+.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper a:first-child {
   margin-right: 1.5625em;
 }
 /* line 36, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .content-wrapper {
+.calculations.show:not(.measurements) > .content-wrapper {
   position: relative;
   top: 0;
   padding: 2.1875em 1.875em;
   transition-duration: 0.25s;
 }
 /* line 41, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .content-wrapper h3:not(:first-child) {
+.calculations.show:not(.measurements) > .content-wrapper h3:not(:first-child) {
   margin-top: 2.8125em;
 }
 /* line 43, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .content-wrapper p {
+.calculations.show:not(.measurements) > .content-wrapper p {
   margin-top: 0.625em;
 }
-/* line 50, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.share .modal-content-wrapper {
+/* line 49, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share {
+  max-width: 37.5em !important;
+}
+/* line 51, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper {
   padding: 1.375em 1.5625em 1.5625em;
 }
-/* line 52, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.share .modal-content-wrapper h3 {
+/* line 53, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper h3 {
   margin-bottom: 0.9375em;
 }
-/* line 54, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.share .modal-content-wrapper .wrapper {
+/* line 55, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.25em;
 }
-/* line 58, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.share .modal-content-wrapper .wrapper > a {
+/* line 59, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a {
   padding: 0.75em 1em 0.875em;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-dark-dark);
   border-radius: var(--size-border-radius-sm);
   color: var(--color-light-base);
   text-decoration: none !important;
 }
-/* line 64, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.share .modal-content-wrapper .wrapper > a:active, .calculations.show > .modal.share .modal-content-wrapper .wrapper > a:focus {
-  background: rgba(255, 255, 255, 0.1);
+/* line 65, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:active, .calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:focus {
+  background: var(--color-dark-base);
 }
 /* line 68, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.signup .modal-content-wrapper {
+.calculations.show:not(.measurements) > .modal.signup {
+  max-width: 37.5em !important;
+}
+/* line 70, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 3.125em 2.1875em 3.4375em;
 }
-/* line 74, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.signup .modal-content-wrapper p {
+/* line 76, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper p {
   text-align: center;
   margin: 1.25em 0 2.1875em;
 }
-/* line 77, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.signup .modal-content-wrapper .flex-wrapper {
+/* line 79, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper {
   display: flex;
   align-items: center;
 }
-/* line 80, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.signup .modal-content-wrapper .flex-wrapper a:first-child {
+/* line 82, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper a:first-child {
   margin-right: 1.5625em;
 }
-/* line 84, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.edit .modal-content-wrapper {
+/* line 85, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.edit {
+  max-width: 37.5em !important;
+}
+/* line 87, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper {
   padding: 1.875em 2.1875em 2.1875em;
 }
-/* line 86, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.edit .modal-content-wrapper .input {
+/* line 89, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .input {
   margin-bottom: 1.25em;
 }
-/* line 88, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.edit .modal-content-wrapper .flex-wrapper {
+/* line 91, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .flex-wrapper {
   display: flex;
   flex-direction: row-reverse;
 }
-/* line 92, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.delete {
-  max-width: 12.5em;
+/* line 95, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.delete {
+  max-width: 12.5em !important;
 }
-/* line 94, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show > .modal.delete .modal-content-wrapper {
+/* line 97, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
+.calculations.show:not(.measurements) > .modal.delete .modal-content-wrapper {
   padding: 0;
+}
+
+/* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .head-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 40vh;
+  width: 100%;
+  padding: 2.1875em 1.875em;
+  background: var(--color-dark-dark);
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .head-wrapper p span:not(:first-child) {
+  margin-left: 0.625em;
+}
+/* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .head-wrapper p span:not(:last-child) {
+  margin-right: 0.625em;
+}
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .content-wrapper {
+  position: relative;
+  top: 0;
+  padding: 2.1875em 1.875em;
+  transition-duration: 0.25s;
+}
+/* line 22, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .content-wrapper h3:not(:first-child) {
+  margin-top: 2.8125em;
+}
+/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .content-wrapper p {
+  margin-top: 0.625em;
+}
+/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share {
+  max-width: 37.5em !important;
+}
+/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share .modal-content-wrapper {
+  padding: 1.375em 1.5625em 1.5625em;
+}
+/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share .modal-content-wrapper h3 {
+  margin-bottom: 0.9375em;
+}
+/* line 36, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share .modal-content-wrapper .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25em;
+}
+/* line 40, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share .modal-content-wrapper .wrapper > a {
+  padding: 0.75em 1em 0.875em;
+  background: var(--color-dark-dark);
+  border-radius: var(--size-border-radius-sm);
+  color: var(--color-light-base);
+  text-decoration: none !important;
+}
+/* line 46, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.share .modal-content-wrapper .wrapper > a:active, .calculations.measurements.show > .modal.share .modal-content-wrapper .wrapper > a:focus {
+  background: var(--color-dark-base);
+}
+/* line 49, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.edit {
+  max-width: 37.5em !important;
+}
+/* line 51, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.edit .modal-content-wrapper {
+  padding: 1.875em 2.1875em 2.1875em;
+}
+/* line 53, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.edit .modal-content-wrapper .input {
+  margin-bottom: 1.25em;
+}
+/* line 55, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/measurements/show.sass */
+.calculations.measurements.show > .modal.edit .modal-content-wrapper .flex-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
@@ -5038,14 +5138,14 @@ body.devise nav.app > a:last-child {
 /* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/language.sass */
 .welcome.language > .languages > a.language {
   padding: 0.75em 1em 0.875em;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-dark-dark);
   border-radius: var(--size-border-radius-sm);
   color: var(--color-light-base);
   text-decoration: none !important;
 }
 /* line 19, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/language.sass */
 .welcome.language > .languages > a.language:active, .welcome.language > .languages > a.language:focus {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-dark-base);
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/shared/links.sass */

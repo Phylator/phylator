@@ -9,13 +9,13 @@ input[type="checkbox"]
     border-radius: size(border-radius, sm)
     transition: border .15s ease-out, background-color .15s ease-out, box-shadow .15s ease-out
     &:checked
-        background: rgba(white, .1)
-        background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, rgba(white, .1)
+        background: color(dark, base)
+        background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, color(dark, base)
         border: none
         position: relative
     &:not(:checked)
-        background: rgba(white, .05)
+        background: color(dark, dark)
         box-shadow: style(box-shadow, sm)
         // background: url("components/forms/checkbox/check_light.png") no-repeat center center
         &:not(:focus)
-            border-color: rgba(white, .05)
+            border-color: color(dark, dark)
