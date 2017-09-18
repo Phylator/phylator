@@ -19,3 +19,11 @@ input[type="checkbox"]
         // background: url("components/forms/checkbox/check_light.png") no-repeat center center
         &:not(:focus)
             border-color: color(dark, dark)
+
+
+.modal input[type="checkbox"]
+    &:checked
+        background: color(dark, light)
+        background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, color(dark, light)
+    &:not(:checked)
+        background: color(dark, base)
