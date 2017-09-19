@@ -16,7 +16,7 @@
 
 .head-wrapper
     - if @calculation.result.undefined
-        %h2= t 'd.undefined'
+        %h2.red= t 'calculations.show.no_solution_found'
     - else
         %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value

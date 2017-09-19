@@ -1,6 +1,7 @@
 de:
     calculations:
         show:
+            no_solution_found: Keine Lösung gefunden
             details:
                 add: Füge details hinzu
             save:
