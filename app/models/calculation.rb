@@ -2,6 +2,7 @@ class Calculation < ApplicationRecord
 
     before_create :randomize_id
     after_create_commit :calc
+    before_save :re_calc, on: :update
 
     validates :measurements, presence: true
 
@@ -24,6 +25,10 @@ class Calculation < ApplicationRecord
     end
 
     private
+
+    def re_calc
+        self.calc if self.unit_of_measurement_id_changed?
+    end
 
     def randomize_id
         begin

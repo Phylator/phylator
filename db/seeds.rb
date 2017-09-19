@@ -100,9 +100,9 @@ time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year',
 # Equations
 
 ## Length
-Equation.find_or_create_by! quantity: length, equation: 'm * t'
-Equation.find_or_create_by! quantity: mass, equation: 'l / t'
-Equation.find_or_create_by! quantity: time, equation: 'l / m'
+# Equation.find_or_create_by! quantity: length, equation: 'm * t'
+# Equation.find_or_create_by! quantity: mass, equation: 'l / t'
+# Equation.find_or_create_by! quantity: time, equation: 'l / m'
 
 
 

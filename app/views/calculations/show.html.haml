@@ -36,8 +36,18 @@
 .content-wrapper
     - if can? :update, @calculation
         .md-trigger{ data: { modal: '.edit' } }
-            %h3= @calculation.name || t('calculations.show.details.add')
+            - if @calculation.name.nil? || @calculation.name == ''
+                %h3= t('calculations.show.details.add')
+            - else
+                %h3= @calculation.name
             %p= @calculation.description if @calculation.description
+
+    - if current_user.id == @calculation.user_id
+        %h3= t('cd.convert_to') + ' ...'
+        = simple_form_for(@calculation) do |f|
+            -# = f.input :unit_of_measurement_id, required: true, label: false
+            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, class: 'flexdatalist', data: { data: 'quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+
 
     %h3= t 'd.p.measurements'
     .cards

@@ -21090,6 +21090,22 @@ function calculationsFormAddMeasurement(el, association, content) {
     $('input.numeric.integer.required[type="number"]:last-child').focus();
 };
 document.addEventListener( 'turbolinks:load', function() {
+    componentsAlertInit();
+});
+
+
+
+function componentsAlertInit() {
+    var el = $('p#alert');
+
+    if ( el.text().length > 0 ) {
+        iziToast.error({
+            title: el.text(),
+            backgroundColor: '#ec626e'
+        });
+    };
+};
+document.addEventListener( 'turbolinks:load', function() {
     componentsCopyInit();
 });
 
@@ -21188,7 +21204,7 @@ function iframeInit() {
 
     if ( inIframe === true ) {
         $('body').hide();
-        $(':root').css({ 'font-size': '17px' });
+        $(':root').css({ 'font-size': '18px' });
         setTimeout(function() {
             $('body').fadeIn(500);
         }, 500);
@@ -21256,8 +21272,12 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function calculationsShowInit() {
-    $('body').click(function() {
+    $('body.calculations.show').click(function() {
         $('.account-wrapper').removeClass('invisible');
+    });
+
+    $('body.calculations.show input.flexdatalist').on( 'flexdatalist:change', function() {
+        $(this).closest('form').submit();
     });
 };
 document.addEventListener( 'turbolinks:load', function() {

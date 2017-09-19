@@ -1,6 +1,7 @@
 en:
     cd:
         are_you_sure?: Are you sure?
+        convert_to: Convert to
         copied_to_clipboard: Copied to clipboard
         current_password: Current password
         forgot_your_password?: Forgot your password?

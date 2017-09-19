@@ -1,6 +1,7 @@
 de:
     cd:
         are_you_sure?: Bist du dir sicher?
+        convert_to: Umrechnen in
         copied_to_clipboard: In Zwischenablage kopiert
         current_password: Aktuelles Passwort
         forgot_your_password?: Passwort vergessen?

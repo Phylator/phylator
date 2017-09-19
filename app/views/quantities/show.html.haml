@@ -10,12 +10,13 @@
 .content-wrapper
     %p= @quantity.description
 
-    %h3= t 'd.p.equations'
-    .cards
-        - @quantity.equations.each do |equation|
-            .card
-                .wrapper
-                    = '`' + @quantity.symbol + '=' + equation.equation + '`'
+    - if @quantity.equations.any?
+        %h3= t 'd.p.equations'
+        .cards
+            - @quantity.equations.each do |equation|
+                .card
+                    .wrapper
+                        = '`' + @quantity.symbol + '=' + equation.equation + '`'
 
     %h3= t 'd.p.units_of_measurement'
     .cards

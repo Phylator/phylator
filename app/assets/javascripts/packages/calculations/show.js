@@ -5,7 +5,11 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function calculationsShowInit() {
-    $('body').click(function() {
+    $('body.calculations.show').click(function() {
         $('.account-wrapper').removeClass('invisible');
+    });
+
+    $('body.calculations.show input.flexdatalist').on( 'flexdatalist:change', function() {
+        $(this).closest('form').submit();
     });
 };
