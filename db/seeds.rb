@@ -2,6 +2,12 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 
+# Demo
+user = User.create! email: 'demo@example.com', password: 'password'
+user.encrypted_password
+
+
+
 
 # Length
 length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
