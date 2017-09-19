@@ -1,6 +1,6 @@
 class Calculations::MeasurementsController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:show]
     before_action :set_measurement, only: [:show, :update]
 
     load_and_authorize_resource param_method: :measurement_params
