@@ -60,11 +60,11 @@ time_femtosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 
 time_attosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'as', name: 'attosecond', to_base: '/1000000000000000000'
 time_zeptosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zs', name: 'zeptosecond', to_base: '/1000000000000000000000'
 time_yoctosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'ys', name: 'yoctosecond', to_base: '/1000000000000000000000000'
-time_minute = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'min', name: 'minute', to_base: '/60'
-time_hour = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'h', name: 'hour', to_base: '/3600'
-time_day = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'd', name: 'day', to_base: '/86400'
-time_week = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'week', name: 'week', to_base: '/604800'
-time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year', name: 'year', to_base: '/31557600'
+time_minute = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'min', name: 'minute', to_base: '*60'
+time_hour = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'h', name: 'hour', to_base: '*3600'
+time_day = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'd', name: 'day', to_base: '*86400'
+time_week = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'week', name: 'week', to_base: '*604800'
+time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year', name: 'year', to_base: '*31557600'
 
 # # Electric current
 # electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
