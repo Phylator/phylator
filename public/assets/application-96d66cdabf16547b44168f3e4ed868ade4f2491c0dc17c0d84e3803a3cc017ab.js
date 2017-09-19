@@ -21090,6 +21090,22 @@ function calculationsFormAddMeasurement(el, association, content) {
     $('input.numeric.integer.required[type="number"]:last-child').focus();
 };
 document.addEventListener( 'turbolinks:load', function() {
+    componentsAlertInit();
+});
+
+
+
+function componentsAlertInit() {
+    var el = $('p#alert');
+
+    if ( el.text().length > 0 ) {
+        iziToast.error({
+            title: el.text(),
+            backgroundColor: '#ec626e'
+        });
+    };
+};
+document.addEventListener( 'turbolinks:load', function() {
     componentsCopyInit();
 });
 
@@ -21176,7 +21192,7 @@ function flexdatalistInit(el = $('body')) {
     });
 
 };
-document.addEventListener( 'turbolinks:render', function() {
+document.addEventListener( 'turbolinks:load', function() {
     iframeInit();
 });
 

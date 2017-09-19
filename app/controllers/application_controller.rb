@@ -68,9 +68,9 @@ class ApplicationController < ActionController::Base
             if status == 404
                 format.html { render 'errors/not_found', status: status }
             elsif status == 403
-                format.html { render 'errors/forbidden', status: status }
+                format.html { redirect_back(fallback_location: root_url, alert: 'No permission') }
             elsif status == 400
-                format.html { render 'errors/bad_request', status: status }
+                format.html { redirect_back(fallback_location: root_url, alert: 'Unable to solve calculation') }
             end
             format.all { render nothing: true, status: status }
         end
