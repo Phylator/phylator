@@ -2,7 +2,7 @@ class Calculation < ApplicationRecord
 
     before_create :randomize_id
     after_create_commit :calc
-    # before_save :re_calc, on: :update
+    before_update :re_calc
 
     validates :measurements, presence: true
 

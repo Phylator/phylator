@@ -69,6 +69,11 @@
   background: var(--color-light-lighter) !important;
 }
 
+/* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/modules/classes/color.sass */
+.red {
+  color: var(--color-red-darker);
+}
+
 /* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/modules/classes/font.sass */
 .normal {
   font-style: normal;
@@ -4651,24 +4656,24 @@ html body.disabledTransitions * {
   align-items: center;
 }
 /* line 8, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools svg {
-  margin: 0 0.9375em;
+.tools > div {
+  cursor: pointer;
 }
 /* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools svg path, .tools svg circle {
+.tools > div:not(:last-child) {
+  margin-right: 1.875em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div svg path, .tools > div svg circle {
   fill: var(--color-dark-lighter);
 }
-/* line 12, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools .delete svg {
+/* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div.delete svg {
   margin-right: 0;
 }
-/* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools .delete svg path, .tools .delete svg circle {
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div.delete svg path, .tools > div.delete svg circle {
   fill: var(--color-red-darker);
-}
-/* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools > * {
-  cursor: pointer;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
@@ -4844,7 +4849,7 @@ body.devise nav.app > a:last-child {
   justify-content: center;
   align-items: center;
   padding: 1.875em;
-  background: #232836;
+  background: #222835;
   transition-duration: 0.25s;
 }
 /* line 27, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
