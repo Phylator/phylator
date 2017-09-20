@@ -6,7 +6,6 @@
     visibility: visible
     text-decoration: none
     outline: none
-    transition: all .15s ease-out
 
 \:root
     font-size: 15px
@@ -29,5 +28,5 @@ html
     //     display: none
     body
         min-height: 100vh
-        &.disabledTransitions *
-            transition: none !important
+        &:not(.disabledTransitions) *
+            transition: all .15s ease-out
