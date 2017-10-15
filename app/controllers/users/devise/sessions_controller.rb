@@ -4,7 +4,6 @@ class Users::Devise::SessionsController < Devise::SessionsController
         self.resource = warden.authenticate! auth_options
         set_flash_message! :notice, :signed_in
         sign_in resource_name, resource
-        raise calculation_param.inspect
         if calculation_param != ''
             calculation = ::Calculation.find calculation_param
             calculation.update! user_id: current_user.id if calculation.user_id.nil?

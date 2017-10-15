@@ -45,7 +45,7 @@
     - if current_user && current_user.id == @calculation.user_id
         %h3= t('cd.convert_to') + ' ...'
         = simple_form_for @calculation do |f|
-            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, class: 'flexdatalist', data: { data: '/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 
     %h3= t 'd.p.measurements'
@@ -57,10 +57,10 @@
                         = measurement.pretty_value
                         %span= measurement.unit_of_measurement.symbol
                     %p.small
-                        %span= measurement.name || measurement.quantity.name
-                        - if measurement.name
+                        - unless measurement.name.nil? || measurement.name == ''
+                            %span= measurement.name
                             ·
-                            %span= measurement.quantity.name
+                        %span= measurement.quantity.name
                 = asset 'components/list/item-open.svg'
 
     - if @calculation.equations.any?

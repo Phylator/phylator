@@ -7,17 +7,16 @@ Rails.application.routes.draw do
         resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
     end
 
-    devise_for :users, skip: [:sessions, :registrations], controllers: { sessions: 'users/devise/sessions', registrations: 'users/devise/registrations' }
-    as :user do
-        ### Sessions
-        get 'login', to: 'devise/sessions#new', as: :new_user_session
-        post 'login', to: 'devise/sessions#create', as: :user_session
-        delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
-        ### Registrations
-        get 'account', to: 'devise/registrations#edit', as: :edit_user_registration
-        get 'signup', to: 'devise/registrations#new', as: :new_user_registration
-        post 'signup', to: 'devise/registrations#create', as: :user_registration
-    end
+    devise_for :users, path: '', controllers: {
+        sessions: 'users/devise/sessions',
+        registrations: 'users/devise/registrations'
+    }, path_names: {
+        sign_in: 'login',
+        sign_up: 'signup',
+        sign_out: 'logout',
+        password: 'forgot',
+        edit: 'account'
+    }
 
     get 'setup', to: 'welcome#index'
     get 'language', to: 'welcome#language'

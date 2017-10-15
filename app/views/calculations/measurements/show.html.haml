@@ -19,7 +19,10 @@
 .content-wrapper
     - if can? :update, @measurement
         .md-trigger{ data: { modal: '.edit' } }
-            %h3= @measurement.name || t('calculations.measurements.show.details.add')
+            - if @measurement.name.nil? || @measurement.name == ''
+                %h3= t('calculations.measurements.show.details.add')
+            - else
+                %h3= @measurement.name
             %p= @measurement.description if @measurement.description
 
 
