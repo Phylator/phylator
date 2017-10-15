@@ -5,11 +5,11 @@
   --color-accent-base: #2d81e8;
   --color-accent-light: #76b8f0;
   --color-accent-lighter: #b6e1f9;
-  --color-dark-darker: #242a38;
-  --color-dark-dark: #2d3446;
-  --color-dark-base: #364158;
-  --color-dark-light: #404b61;
-  --color-dark-lighter: #545d71;
+  --color-dark-darker: #2d3446;
+  --color-dark-dark: #384155;
+  --color-dark-base: #434e65;
+  --color-dark-light: #505d77;
+  --color-dark-lighter: #606e88;
   --color-light-darker: #9297a7;
   --color-light-dark: #b6b9c2;
   --color-light-base: #d7d9df;
@@ -32,7 +32,7 @@
   --color-red-base: #f19882;
   --color-red-light: #f6bcae;
   --color-red-lighter: #f9d6cd;
-  --color-overlay-dark: rgba(36, 42, 56, 0.13);
+  --color-overlay-dark: rgba(45, 52, 70, 0.13);
   --color-overlay-light: rgba(255, 255, 255, 0.13);
 }
 
@@ -50,11 +50,11 @@
 /* Usage */
 /* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/modules/variables/style.scss */
 :root {
-  --style-box-shadow-sm: 0 0.0625em 0.3125em 0 rgba(36, 42, 56, 0.05)
+  --style-box-shadow-sm: 0 0.0625em 0.3125em 0 rgba(45, 52, 70, 0.05)
   ;
-  --style-box-shadow-md: 0 0.25em 0.9375em 0 rgba(36, 42, 56, 0.05)
+  --style-box-shadow-md: 0 0.25em 0.9375em 0 rgba(45, 52, 70, 0.05)
   ;
-  --style-box-shadow-lg: 0 0.4375em 2.5em 0 rgba(36, 42, 56, 0.05)
+  --style-box-shadow-lg: 0 0.4375em 2.5em 0 rgba(45, 52, 70, 0.05)
   ;
 }
 
@@ -4429,7 +4429,7 @@ textarea:active, textarea:focus {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
 .flexdatalist-results {
-  transition: none;
+  transition: none !important;
   border: none;
   box-shadow: var(--style-box-shadow-sm);
   border-radius: var(--size-border-radius-sm);
@@ -4498,10 +4498,9 @@ svg.nc-icon.loader * {
   visibility: visible;
   text-decoration: none;
   outline: none;
-  transition: all 0.15s ease-out;
 }
 
-/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 :root {
   font-size: 15px;
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
@@ -4514,25 +4513,25 @@ svg.nc-icon.loader * {
   font-smooth: always;
 }
 @media (min-width: 800px) {
-  /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+  /* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
   :root {
     font-size: 16px;
   }
 }
 
-/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 23, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html {
   background: var(--color-dark-darker);
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body {
   min-height: 100vh;
 }
-/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
-html body.disabledTransitions * {
-  transition: none !important;
+/* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+html body:not(.disabledTransitions) * {
+  transition: all 0.15s ease-out;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/utilities/math_jax.sass */
@@ -4656,24 +4655,24 @@ html body.disabledTransitions * {
   align-items: center;
 }
 /* line 8, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools svg {
-  margin: 0 0.9375em;
+.tools > div {
+  cursor: pointer;
 }
 /* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools svg path, .tools svg circle {
+.tools > div:not(:last-child) {
+  margin-right: 1.875em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div svg path, .tools > div svg circle {
   fill: var(--color-dark-lighter);
 }
-/* line 12, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools .delete svg {
+/* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div.delete svg {
   margin-right: 0;
 }
-/* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools .delete svg path, .tools .delete svg circle {
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
+.tools > div.delete svg path, .tools > div.delete svg circle {
   fill: var(--color-red-darker);
-}
-/* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/tools/index.sass */
-.tools > * {
-  cursor: pointer;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
@@ -4748,7 +4747,7 @@ body.devise nav.app > a:last-child {
   font-style: italic;
   width: 100%;
   height: 3.75em;
-  background: #242a38;
+  background: #2d3446;
   position: fixed;
   top: 0;
   left: 0;
@@ -4849,7 +4848,7 @@ body.devise nav.app > a:last-child {
   justify-content: center;
   align-items: center;
   padding: 1.875em;
-  background: #222835;
+  background: #2b3243;
   transition-duration: 0.25s;
 }
 /* line 27, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
