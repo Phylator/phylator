@@ -4429,7 +4429,7 @@ textarea:active, textarea:focus {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
 .flexdatalist-results {
-  transition: none;
+  transition: none !important;
   border: none;
   box-shadow: var(--style-box-shadow-sm);
   border-radius: var(--size-border-radius-sm);
@@ -5258,12 +5258,13 @@ body.devise nav.app > a:last-child {
 .devise.registrations.edit form .form-actions {
   display: flex;
   flex-direction: row-reverse;
+  margin: 2.1875em 0;
 }
-/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
+/* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
 .devise.registrations.edit form .form-actions a {
   margin-right: 1.5625em;
 }
-/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
+/* line 12, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
 .devise.registrations.edit p {
   margin: 0.3125em 0;
 }
