@@ -1,5 +1,5 @@
 {
-  "name": "phylator",
-  "private": true,
-  "dependencies": {}
+    "name": "phylator",
+    "private": true,
+    "dependencies": {}
 }
