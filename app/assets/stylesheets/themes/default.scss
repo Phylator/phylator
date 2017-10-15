@@ -1,3 +1,11 @@
+//     dark: (
+//         darker: #242a38,
+//         dark: #2d3446,
+//         base: #364158,
+//         light: #404b61,
+//         lighter: #545d71
+//     ),
+
 $colors: (
     accent: (
         darker: #2840d0,
@@ -7,11 +15,11 @@ $colors: (
         lighter: #b6e1f9
     ),
     dark: (
-        darker: #242a38,
-        dark: #2d3446,
-        base: #364158,
-        light: #404b61,
-        lighter: #545d71
+        darker: #2d3446,
+        dark: #384155,
+        base: #434e65,
+        light: #505d77,
+        lighter: #606e88
     ),
     light: (
         darker: #9297a7,
@@ -46,7 +54,7 @@ $colors: (
         lighter: #f9d6cd
     ),
     overlay: (
-        dark: transparentize(#242a38, 0.87),
+        dark: transparentize(#2d3446, 0.87),
         light: transparentize(#fff, 0.87)
     )
 );
