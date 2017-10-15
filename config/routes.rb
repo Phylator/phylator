@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         resources :measurements, only: [:show], controller: 'calculations/measurements'
     end
 
-    devise_for :users, skip: [:sessions, :registrations], controllers: { sessions: 'sessions_controller', registrations: 'registrations_controller' }
+    devise_for :users, skip: [:sessions, :registrations], controllers: { sessions: 'users/devise/sessions', registrations: 'users/devise/registrations' }
     as :user do
         ### Sessions
         get 'login', to: 'devise/sessions#new', as: :new_user_session
