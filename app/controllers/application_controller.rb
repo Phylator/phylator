@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
     before_action :init
     before_action :set_locale
 
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
 
 
     rescue_from (ActiveRecord::RecordNotFound) { |exception| handle_exception exception, 404 }

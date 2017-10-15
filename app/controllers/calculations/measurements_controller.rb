@@ -15,7 +15,7 @@ class Calculations::MeasurementsController < ApplicationController
     def update
         respond_to do |format|
             if @measurement.update(measurement_params)
-                format.html { redirect_to @measurement, notice: 'Measurement was successfully updated.' }
+                format.html { redirect_to calculation_measurement_url(@measurement.calculation.id, @measurement.id), notice: 'Measurement was successfully updated.' }
                 format.json { render :show, status: :ok, location: @measurement }
             else
                 format.html { render :edit }
@@ -33,7 +33,7 @@ class Calculations::MeasurementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measurement_params
-        params.require(:measurement).permit(:user_id, :quantity_id, :unit_of_measurement_id, :value, :margin_of_error, :name, :description)
+        params.require(:calculation_measurement).permit(:user_id, :quantity_id, :unit_of_measurement_id, :value, :margin_of_error, :name, :description)
     end
 
 end
