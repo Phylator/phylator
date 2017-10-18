@@ -116,7 +116,7 @@ area = Quantity.find_or_create_by! symbol: 'A', name: 'Area', description: 'Exte
 area_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area, symbol: 'm²', name: 'square meter'
 
 # Area density
-area_density = Quantity.find_or_create_by! symbol: 'ρᴀ', name: 'Area density', description: 'Mass per unit area'
+area_density = Quantity.find_or_create_by! symbol: 'ρ<sub>A</sub>', name: 'Area density', description: 'Mass per unit area'
 area_density_kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area_density, symbol: 'kg m⁻²', name: 'kilogram per square meter'
 
 # Capacitance
@@ -136,7 +136,7 @@ electric_charge = Quantity.find_or_create_by! symbol: 'Q', name: 'Electric charg
 electric_charge_coulomb = UnitOfMeasurement.find_or_create_by! quantity: electric_charge, symbol: 'C', name: 'coulomb'
 
 # Electric charge density
-electric_charge_density = Quantity.find_or_create_by! symbol: 'ρᴄ', name: 'Electric charge density', description: 'Electric charge per unit volume'
+electric_charge_density = Quantity.find_or_create_by! symbol: 'ρ<sub>Q</sub>', name: 'Electric charge density', description: 'Electric charge per unit volume'
 electric_charge_density_coulomb_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_charge_density, symbol: 'C m⁻³', name: 'coulomb per cubic meter'
 
 # Electric displacement
@@ -172,7 +172,7 @@ energy = Quantity.find_or_create_by! symbol: 'E', name: 'Energy', description: '
 energy_joule = UnitOfMeasurement.find_or_create_by! quantity: energy, symbol: 'J', name: 'joule'
 
 # Energy density
-energy_density = Quantity.find_or_create_by! symbol: 'ρᴇ', name: 'Energy density', description: 'Energy per unit volume'
+energy_density = Quantity.find_or_create_by! symbol: 'ρ<sub>E</sub>', name: 'Energy density', description: 'Energy per unit volume'
 energy_density_joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: energy_density, symbol: 'J m⁻³', name: 'joule per cubic meter'
 
 # Entropy
@@ -192,15 +192,15 @@ heat = Quantity.find_or_create_by! symbol: 'Q', name: 'Heat', description: 'Ther
 heat_joule = UnitOfMeasurement.find_or_create_by! quantity: heat, symbol: 'J', name: 'joule'
 
 # Heat capacity
-heat_capacity = Quantity.find_or_create_by! symbol: 'Cₚ', name: 'Heat capacity', description: 'Energy per unit temperature change'
+heat_capacity = Quantity.find_or_create_by! symbol: 'C<sub>p</sub>', name: 'Heat capacity', description: 'Energy per unit temperature change'
 heat_capacity_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: heat_capacity, symbol: 'J K⁻¹', name: 'joule per kelvin'
 
 # Heat flux density
-heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕQ', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area' ##### Q should be an index #####
+heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕ<sub>Q</sub>', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area' ##### Q should be an index #####
 heat_flux_density_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: heat_flux_density, symbol: 'W m⁻²', name: 'watt per square meter'
 
 # Illuminance
-illuminance = Quantity.find_or_create_by! symbol: 'Eᴠ', name: 'Illuminance', description: 'Luminous flux per unit surface area'
+illuminance = Quantity.find_or_create_by! symbol: 'E<sub>v</sub>', name: 'Illuminance', description: 'Luminous flux per unit surface area'
 illuminance_lux = UnitOfMeasurement.find_or_create_by! quantity: illuminance, symbol: 'lx', name: 'lux'
 
 # Impedance

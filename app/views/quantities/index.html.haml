@@ -4,7 +4,7 @@
     - @quantities.order(:name).each do |quantity|
         = link_to quantity, class: 'card' do
             .wrapper
-                %h2.small= quantity.symbol
+                %h2.small= quantity.sym
                 %p.small
                     %span= quantity.name
                     - if quantity.vector

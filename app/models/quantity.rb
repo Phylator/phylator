@@ -16,10 +16,14 @@ class Quantity < ApplicationRecord
     has_many :belongs_to_equations, through: :equation_quantities, source: :equation
     has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
 
+    def sym
+        self.symbol.html_safe
+    end
+
     private
 
     def slug_candidates
-        [:symbol, [:symbol, :id]]
+        [:sym, [:sym, :id]]
     end
 
 end

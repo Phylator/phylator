@@ -4,7 +4,7 @@
 
 
 .head-wrapper
-    %h2= @quantity.symbol
+    %h2= @quantity.sym
     %p= @quantity.name
 
 .content-wrapper
@@ -19,7 +19,7 @@
             - @quantity.equations.each do |equation|
                 .card
                     .wrapper
-                        = '`' + @quantity.symbol + '=' + equation.equation + '`'
+                        = '`' + @quantity.sym + '=' + equation.equation + '`'
 
     %h3= t 'd.p.units_of_measurement'
     .cards
