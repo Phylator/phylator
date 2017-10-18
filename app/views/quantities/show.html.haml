@@ -8,7 +8,10 @@
     %p= @quantity.name
 
 .content-wrapper
-    %p= @quantity.description
+    %p
+        = @quantity.description
+        - if @quantity.vector
+            = t 'quantities.show.vector'
 
     - if @quantity.equations.any?
         %h3= t 'd.p.equations'

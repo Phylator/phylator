@@ -72,26 +72,264 @@ time_day = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'd', nam
 time_week = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'week', name: 'week', to_base: '*604800'
 time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year', name: 'year', to_base: '*31557600'
 
-# # Electric current
-# electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
-# electric_current_measurement = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere'
-#
-# # Temperature
-# temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
-# temperature_measurement = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: 'K', name: 'kelvin'
-#
-# # Amount of substance
-# amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
-# amount_of_substance_measurement = UnitOfMeasurement.find_or_create_by! quantity: amount_of_substance, symbol: 'mol', name: 'mole'
-#
-# # Luminous intensity
-# luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
-# luminous_intensity_measurement = UnitOfMeasurement.find_or_create_by! quantity: luminous_intensity, symbol: 'cd', name: 'candela'
+# Electric current
+electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
+electric_current_ampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere'
+electric_current_miliampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'mA', name: 'milisecond', to_base: '/1000'
+electric_current_microampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'µA', name: 'microsecond', to_base: '/1000000'
+electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'nA', name: 'nanosecond', to_base: '/1000000000'
+electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'pA', name: 'picosecond', to_base: '/1000000000000'
+electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'fA', name: 'femtosecond', to_base: '/1000000000000000'
+electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'aA', name: 'attosecond', to_base: '/1000000000000000000'
+electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zA', name: 'zeptosecond', to_base: '/1000000000000000000000'
+electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'yA', name: 'yoctosecond', to_base: '/1000000000000000000000000'
+
+# Temperature
+temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
+temperature_kelvin = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: 'K', name: 'kelvin'
+temperature_celcius = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: '°C', name: 'celcius', to_base: '+273.15'
+temperature_fahrenheit = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: '°F', name: 'fahrenheit', to_base: '*(5/9)+459.67*(5/9)'
+
+# Amount of substance
+amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
+amount_of_substance_mole = UnitOfMeasurement.find_or_create_by! quantity: amount_of_substance, symbol: 'mol', name: 'mole'
+
+# Luminous intensity
+luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
+luminous_intensity_candela = UnitOfMeasurement.find_or_create_by! quantity: luminous_intensity, symbol: 'cd', name: 'candela'
 
 
-# # Acceleration
-# acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
-# acceleration_measurement = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s⁻²', name: 'meter per second squared'
+# Acceleration
+acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
+acceleration_meter_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s⁻²', name: 'meter per square second'
+
+# Angular acceleration
+angular_acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time'
+angular_acceleration_rad_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: angular_acceleration, symbol: 'rad s⁻²', name: 'rad per square second'
+
+# Angular velocity
+angular_velocity = Quantity.find_or_create_by! symbol: 'ω', name: 'Angular velocity', description: 'The angle incremented in a plane by a segment connecting an object and a reference point per unit time'
+angular_velocity_rad_per_second = UnitOfMeasurement.find_or_create_by! quantity: angular_velocity, symbol: 'rad s⁻¹', name: 'rad per second'
+
+# Area
+area = Quantity.find_or_create_by! symbol: 'A', name: 'Area', description: 'Extent of a surface'
+area_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area, symbol: 'm²', name: 'square meter'
+
+# Area density
+area_density = Quantity.find_or_create_by! symbol: 'ρᴀ', name: 'Area density', description: 'Mass per unit area'
+area_density_kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area_density, symbol: 'kg m⁻²', name: 'kilogram per square meter'
+
+# Capacitance
+capacitance = Quantity.find_or_create_by! symbol: 'C', name: 'Capacitance', description: 'Stored charge per unit electric potential'
+capacitance_farad = UnitOfMeasurement.find_or_create_by! quantity: capacitance, symbol: 'F', name: 'farad'
+
+# Chemical potential
+chemical_potential = Quantity.find_or_create_by! symbol: 'μ', name: 'Chemical potential', description: 'Energy per unit change in amount of substance'
+chemical_potential_joule_per_mole = UnitOfMeasurement.find_or_create_by! quantity: chemical_potential, symbol: 'J mol⁻¹', name: 'joule per mole'
+
+# Current density
+current_density = Quantity.find_or_create_by! symbol: 'J', name: 'Current density', description: 'Electric current per unit cross-section area', vector: true
+current_density_ampere_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: current_density, symbol: 'A m⁻²', name: 'ampere per square meter'
+
+# Electric charge
+electric_charge = Quantity.find_or_create_by! symbol: 'Q', name: 'Electric charge', description: 'The force per unit electric field strength'
+electric_charge_coulomb = UnitOfMeasurement.find_or_create_by! quantity: electric_charge, symbol: 'C', name: 'coulomb'
+
+# Electric charge density
+electric_charge_density = Quantity.find_or_create_by! symbol: 'ρᴄ', name: 'Electric charge density', description: 'Electric charge per unit volume'
+electric_charge_density_coulomb_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_charge_density, symbol: 'C m⁻³', name: 'coulomb per cubic meter'
+
+# Electric displacement
+electric_displacement = Quantity.find_or_create_by! symbol: 'D', name: 'Electric displacement', description: 'Strength of the electric displacement', vector: true
+electric_displacement_coulomb_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_displacement, symbol: 'C m⁻²', name: 'coulomb per square meter'
+
+# Electric field strength
+electric_field_strength = Quantity.find_or_create_by! symbol: 'E', name: 'Electric field strength', description: 'Strength of the electric field', vector: true
+electric_field_strength_volt_per_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_field_strength, symbol: 'V m⁻¹', name: 'volt per meter'
+
+# Electrical conductance
+electrical_conductance = Quantity.find_or_create_by! symbol: 'G', name: 'Electrical conductance', description: 'Measure for how easily current flows through a material'
+electrical_conductance_siemens = UnitOfMeasurement.find_or_create_by! quantity: electrical_conductance, symbol: 'S', name: 'siemens'
+
+# Electrical conductivity
+electrical_conductivity = Quantity.find_or_create_by! symbol: 'σ', name: 'Electrical conductivity', description: "Measure of a material's ability to conduct an electric current"
+electrical_conductivity_siemens_per_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_conductivity, symbol: 'S m⁻¹', name: 'siemens per meter'
+
+# Electric potential
+electric_potential = Quantity.find_or_create_by! symbol: 'V', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point'
+electric_potential_volt = UnitOfMeasurement.find_or_create_by! quantity: electric_potential, symbol: 'V', name: 'volt'
+
+# Electrical resistance
+electrical_resistance = Quantity.find_or_create_by! symbol: 'R', name: 'Electrical resistance', description: 'Electric potential per unit electric current'
+electrical_resistance_ohm = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistance, symbol: 'Ω', name: 'ohm'
+
+# Electrical resistivity
+electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance'
+electrical_resistivity_ohm_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistivity, symbol: 'Ω m', name: 'ohm meter'
+
+# Energy
+energy = Quantity.find_or_create_by! symbol: 'E', name: 'Energy', description: 'Capacity of a body or system to do work'
+energy_joule = UnitOfMeasurement.find_or_create_by! quantity: energy, symbol: 'J', name: 'joule'
+
+# Energy density
+energy_density = Quantity.find_or_create_by! symbol: 'ρᴇ', name: 'Energy density', description: 'Energy per unit volume'
+energy_density_joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: energy_density, symbol: 'J m⁻³', name: 'joule per cubic meter'
+
+# Entropy
+entropy = Quantity.find_or_create_by! symbol: 'S', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system'
+entropy_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: entropy, symbol: 'J K⁻¹', name: 'joule per kelvin'
+
+# Force
+force = Quantity.find_or_create_by! symbol: 'F', name: 'Force', description: 'Transfer of momentum per unit time', vector: true
+force_newton = UnitOfMeasurement.find_or_create_by! quantity: force, symbol: 'N', name: 'newton'
+
+# Frequency
+frequency = Quantity.find_or_create_by! symbol: 'f', name: 'Frequency', description: 'Number of (periodic) occurrences per unit time'
+frequency_hertz = UnitOfMeasurement.find_or_create_by! quantity: frequency, symbol: 'Hz', name: 'hertz'
+
+# Heat
+heat = Quantity.find_or_create_by! symbol: 'Q', name: 'Heat', description: 'Thermal energy'
+heat_joule = UnitOfMeasurement.find_or_create_by! quantity: heat, symbol: 'J', name: 'joule'
+
+# Heat capacity
+heat_capacity = Quantity.find_or_create_by! symbol: 'Cₚ', name: 'Heat capacity', description: 'Energy per unit temperature change'
+heat_capacity_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: heat_capacity, symbol: 'J K⁻¹', name: 'joule per kelvin'
+
+# Heat flux density
+heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕQ', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area' ##### Q should be an index #####
+heat_flux_density_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: heat_flux_density, symbol: 'W m⁻²', name: 'watt per square meter'
+
+# Illuminance
+illuminance = Quantity.find_or_create_by! symbol: 'Eᴠ', name: 'Illuminance', description: 'Luminous flux per unit surface area'
+illuminance_lux = UnitOfMeasurement.find_or_create_by! quantity: illuminance, symbol: 'lx', name: 'lux'
+
+# Impedance
+impedance = Quantity.find_or_create_by! symbol: 'Z', name: 'Impedance', description: 'Resistance to an alternating current of a given frequency, including effect on phase'
+impedance_ohm = UnitOfMeasurement.find_or_create_by! quantity: impedance, symbol: 'Ω', name: 'ohm'
+
+# Impulse
+impulse = Quantity.find_or_create_by! symbol: 'Δp', name: 'Impulse', description: 'Transferred momentum', vector: true
+impulse_newton_second = UnitOfMeasurement.find_or_create_by! quantity: impulse, symbol: 'N s', name: 'newton second'
+
+# Inductance
+inductance = Quantity.find_or_create_by! symbol: 'L', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit'
+inductance_henry = UnitOfMeasurement.find_or_create_by! quantity: inductance, symbol: 'H', name: 'henry'
+
+# Intensity
+intensity = Quantity.find_or_create_by! symbol: 'I', name: 'Intensity', description: 'Power per unit cross sectional area'
+intensity_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: intensity, symbol: 'W m⁻²', name: 'watt per square meter'
+
+# Luminous flux
+luminous_flux = Quantity.find_or_create_by! symbol: 'F', name: 'Luminous flux', description: 'Perceived power of a light source'
+luminous_flux_lumen = UnitOfMeasurement.find_or_create_by! quantity: luminous_flux, symbol: 'lm', name: 'lumen'
+
+# Magnetic field strength
+magnetic_field_strength = Quantity.find_or_create_by! symbol: 'H', name: 'Magnetic field strength', description: 'Strength of a magnetic field', vector: true
+magnetic_field_strength_ampere_per_meter = UnitOfMeasurement.find_or_create_by! quantity: magnetic_field_strength, symbol: 'A m⁻¹', name: 'ampere per meter'
+
+# Magnetic flux
+magnetic_flux = Quantity.find_or_create_by! symbol: 'Φ', name: 'Magnetic flux', description: 'Measure of magnetism, taking account of the strength and the extent of a magnetic field'
+magnetic_flux_weber = UnitOfMeasurement.find_or_create_by! quantity: magnetic_flux, symbol: 'Wb', name: 'weber'
+
+# Magnetic flux density
+magnetic_flux_density = Quantity.find_or_create_by! symbol: 'B', name: 'Magnetic flux density', description: 'Measure for the strength of the magnetic field'
+magnetic_flux_density_tesla = UnitOfMeasurement.find_or_create_by! quantity: magnetic_flux_density, symbol: 'T', name: 'tesla'
+
+# Magnetization
+magnetization = Quantity.find_or_create_by! symbol: 'M', name: 'Magnetization', description: 'Amount of magnetic moment per unit volume', vector: true
+magnetization_ampere_per_meter = UnitOfMeasurement.find_or_create_by! quantity: magnetization, symbol: 'A m⁻¹', name: 'ampere per meter'
+
+# Density
+density = Quantity.find_or_create_by! symbol: 'ρ', name: 'Density', description: 'Mass per unit volume'
+density_kilogram_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: density, symbol: 'kg m⁻³', name: 'kilogram per cubic meter'
+
+# Molar concentration
+molar_concentration = Quantity.find_or_create_by! symbol: 'C', name: 'Molar concentration', description: 'Amount of substance per unit volume'
+molar_concentration_mole_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: molar_concentration, symbol: 'mol m⁻³', name: 'mole per cubic meter'
+
+# Molar heat capacity
+molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance'
+molar_heat_capacity_joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! quantity: molar_heat_capacity, symbol: 'J K⁻¹ mol⁻¹', name: 'joule per kelvin mole'
+
+# Moment of inertia
+moment_of_inertia = Quantity.find_or_create_by! symbol: 'I', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration'
+moment_of_inertia_kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: moment_of_inertia, symbol: 'kg m⁻²', name: 'kilogram per square meter'
+
+# Momentum
+momentum = Quantity.find_or_create_by! symbol: 'p', name: 'Momentum', description: "Product of an object's mass and velocity", vector: true
+momentum_newton_second = UnitOfMeasurement.find_or_create_by! quantity: momentum, symbol: 'N s', name: 'newton second'
+
+# Permeability
+permeability = Quantity.find_or_create_by! symbol: 'μ', name: 'Permeability', description: 'Measure for how the magnetization of material is affected by the application of an external magnetic field'
+permeability_henry_per_meter = UnitOfMeasurement.find_or_create_by! quantity: permeability, symbol: 'H m⁻¹', name: 'henry per meter'
+
+# Permittivity
+permittivity = Quantity.find_or_create_by! symbol: 'ε', name: 'Permittivity', description: 'Measure for how the polarization of a material is affected by the application of an external electric field'
+permittivity_farad_per_meter = UnitOfMeasurement.find_or_create_by! quantity: permittivity, symbol: 'F m⁻¹', name: 'farad per meter'
+
+# Plain angle
+plain_angle = Quantity.find_or_create_by! symbol: 'θ', name: 'Plain angle', description: 'Ratio of circular arc length to radius'
+plain_angle_radian = UnitOfMeasurement.find_or_create_by! quantity: plain_angle, symbol: 'rad', name: 'radian'
+
+# Power
+power = Quantity.find_or_create_by! symbol: 'P', name: 'Power', description: 'Rate of transfer of energy per unit time'
+power_watt = UnitOfMeasurement.find_or_create_by! quantity: power, symbol: 'W', name: 'watt'
+
+# Pressure
+pressure = Quantity.find_or_create_by! symbol: 'p', name: 'Pressure', description: 'Force per unit area'
+pressure_pascal = UnitOfMeasurement.find_or_create_by! quantity: pressure, symbol: 'Pa', name: 'pascal'
+
+# Reaction rate
+reaction_rate = Quantity.find_or_create_by! symbol: 'r', name: 'Reaction rate', description: 'Rate of a chemical reaction for unit time'
+reaction_rate_mole_per_cubic_meter_second = UnitOfMeasurement.find_or_create_by! quantity: reaction_rate, symbol: 'mol m⁻³ s⁻¹', name: 'molde per cubic meter second'
+
+# Speed
+speed = Quantity.find_or_create_by! symbol: 'v', name: 'Speed', description: 'Moved distance per unit time: the first time derivative of position'
+speed_meter_per_second = UnitOfMeasurement.find_or_create_by! quantity: speed, symbol: 'm s⁻¹', name: 'meter per second'
+
+# Spin
+spin = Quantity.find_or_create_by! symbol: 'S', name: 'Spin', description: 'Quantum-mechanically defined angular momentum of a particle'
+spin_kilogram_square_meter_per_second = UnitOfMeasurement.find_or_create_by! quantity: spin, symbol: 'kg m² s⁻¹', name: 'kilogram square meter per second'
+
+# Stress
+stress = Quantity.find_or_create_by! symbol: 'p', name: 'Stress', description: 'Force per unit oriented surface area'
+stress_pascal = UnitOfMeasurement.find_or_create_by! quantity: stress, symbol: 'Pa', name: 'pascal'
+
+# Surface tension
+surface_tension = Quantity.find_or_create_by! symbol: 'γ', name: 'Surface tension', description: 'Energy change per unit change in surface area'
+surface_tension_joule_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: surface_tension, symbol: 'J m⁻²', name: 'joule per square meter'
+
+# Thermal conductivity
+thermal_conductivity = Quantity.find_or_create_by! symbol: 'k', name: 'Thermal conductivity', description: 'Measure for the ease with which a material conducts heat'
+thermal_conductivity_watt_per_meter_kelvin = UnitOfMeasurement.find_or_create_by! quantity: thermal_conductivity, symbol: 'W m⁻¹ K⁻¹', name: 'watt per meter kelvin'
+
+# Torque
+torque = Quantity.find_or_create_by! symbol: 'τ', name: 'Torque', description: 'Product of a force and the perpendicular distance of the force from the point about which it is exerted'
+torque_newton_meter = UnitOfMeasurement.find_or_create_by! quantity: torque, symbol: 'N m', name: 'newton meter'
+
+# Velocity
+velocity = Quantity.find_or_create_by! symbol: 'v', name: 'Velocity', description: 'Speed and direction of an object', vector: true
+velocity_meter_per_second = UnitOfMeasurement.find_or_create_by! quantity: velocity, symbol: 'm s⁻¹', name: 'meter per second'
+
+# Volume
+volume = Quantity.find_or_create_by! symbol: 'V', name: 'Volume', description: 'Three dimensional extent of an object'
+volume_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: volume, symbol: 'm³', name: 'cubic meter'
+
+# Wavelength
+wavelength = Quantity.find_or_create_by! symbol: 'λ', name: 'Wavelength', description: 'Perpendicular distance between repeating units of a wave'
+wavelength_meter = UnitOfMeasurement.find_or_create_by! quantity: wavelength, symbol: 'm', name: 'meter'
+
+# Wavenumber
+wavenumber = Quantity.find_or_create_by! symbol: 'k', name: 'Wavenumber', description: 'Repetency or spacial frequency: the number of cycles per unit distance'
+wavenumber_per_meter = UnitOfMeasurement.find_or_create_by! quantity: wavenumber, symbol: 'm⁻¹', name: 'per meter'
+
+# Weight
+weight = Quantity.find_or_create_by! symbol: 'w', name: 'Weight', description: 'Gravitational force on an object'
+weight_newton = UnitOfMeasurement.find_or_create_by! quantity: weight, symbol: 'N', name: 'newton'
+
+# Work
+work = Quantity.find_or_create_by! symbol: 'W', name: 'Work', description: 'Transferred energy'
+work_joule = UnitOfMeasurement.find_or_create_by! quantity: work, symbol: 'J', name: 'joule'
 
 
 
@@ -171,3 +409,262 @@ time_hour.update_attributes name: 'Stunde', locale: :de
 time_day.update_attributes name: 'Tag', locale: :de
 time_week.update_attributes name: 'Woche', locale: :de
 time_year.update_attributes name: 'Jahr', locale: :de
+
+## Electric current
+electric_current.update_attributes name: 'Stromstärke', description: 'Durchflussrate der elektrischen Ladung pro Zeiteinheit', locale: :de
+electric_current_ampere.update_attributes name: 'Ampere', locale: :de
+electric_current_miliampere.update_attributes name: 'Miliampere', locale: :de
+electric_current_microampere.update_attributes name: 'Mikroampere', locale: :de
+electric_current_nanoampere.update_attributes name: 'Nanoampere', locale: :de
+electric_current_picoampere.update_attributes name: 'Pikoampere', locale: :de
+electric_current_femtoampere.update_attributes name: 'Femtoampere', locale: :de
+electric_current_attoampere.update_attributes name: 'Attoampere', locale: :de
+electric_current_zeptoampere.update_attributes name: 'Zeptoampere', locale: :de
+electric_current_yoctoampere.update_attributes name: 'Yoktoampere', locale: :de
+
+## Temperature
+temperature.update_attributes name: 'Temperatur', description: 'Durchschnittliche kinetische Energie pro Freiheitsgrad eines Systems', locale: :de
+temperature_kelvin.update_attributes name: 'Kelvin', locale: :de
+temperature_celcius.update_attributes name: 'Celcius', locale: :de
+temperature_fahrenheit.update_attributes name: 'Fahrenheit', locale: :de
+
+## Amount of substance
+amount_of_substance.update_attributes name: 'Stoffmenge', description: 'Anzahl der Partikel im Vergleich zur Anzahl der Atome in 0,012 kg 12C', locale: :de
+amount_of_substance_mole.update_attributes name: 'Mol', locale: :de
+
+## Luminous intensity
+luminous_intensity.update_attributes name: 'Lichtstärke', description: 'Wellenlängengewichtete Leistung des emittierten Lichts pro Raumwinkeleinheit', locale: :de
+luminous_intensity_candela.update_attributes name: 'Candela', locale: :de
+
+
+## Acceleration
+acceleration.update_attributes name: 'Beschleunigung', description: 'Änderung der Geschwindigkeit pro Zeiteinheit', locale: :de
+acceleration_meter_per_square_second.update_attributes name: 'Meter pro Quadratsekunde', locale: :de
+
+## Angular acceleration
+angular_acceleration.update_attributes name: 'Winkelbeschleunigung', description: 'Änderung der Winkelgeschwindigkeit pro Zeiteinheit', locale: :de
+angular_acceleration_rad_per_square_second.update_attributes name: 'Rad pro Quadratsekunde', locale: :de
+
+## Angular velocity
+angular_velocity.update_attributes name: 'Winkelgeschwindigkeit', description: 'Der Winkel, der in einer Ebene durch ein Segment erhöht wird, das ein Objekt und einen Referenzpunkt pro Zeiteinheit verbindet', locale: :de
+angular_velocity_rad_per_second.update_attributes name: 'Rad pro Sekunde', locale: :de
+
+## Area
+area.update_attributes name: 'Fläche', description: 'Ausmaß einer Oberfläche', locale: :de
+area_square_meter.update_attributes name: 'Quadratmeter', locale: :de
+
+## Area density
+area_density.update_attributes name: 'Massenbelegung', description: 'Masse pro Flächeneinheit', locale: :de
+area_density_kilogram_per_square_meter.update_attributes name: 'Kilogramm pro Quadratmeter', locale: :de
+
+## Capacitance
+capacitance.update_attributes name: 'Kapazität', description: 'Gespeicherte Ladung pro elektrischem Potential', locale: :de
+capacitance_farad.update_attributes name: 'Farad', locale: :de
+
+## Chemical potential
+chemical_potential.update_attributes name: 'Chemisches Potential', description: 'Energie pro Einheitsänderung der Stoffmenge', locale: :de
+chemical_potential_joule_per_mole.update_attributes name: 'Joule pro Mol', locale: :de
+
+## Current density
+current_density.update_attributes name: 'Elektrische Stromdichte', description: 'Elektrischer Strom pro Querschnittsfläche', locale: :de
+current_density_ampere_per_square_meter.update_attributes name: 'Ampere pro Quadratmeter', locale: :de
+
+## Electric charge
+electric_charge.update_attributes name: 'Elektrische Ladung', description: 'Die Kraft pro Einheit der elektrischen Feldstärke', locale: :de
+electric_charge_coulomb.update_attributes name: 'Coulomb', locale: :de
+
+## Electric charge density
+electric_charge_density.update_attributes name: 'Elektrische Ladungsdichte', description: 'Die Kraft pro Einheit der elektrischen Feldstärke', locale: :de
+electric_charge_density_coulomb_per_cubic_meter.update_attributes name: 'Coulomb pro Kubikmeter', locale: :de
+
+## Electric displacement
+electric_displacement.update_attributes name: 'Dielektrische Verschiebung', description: 'Stärke der elektrischen Verschiebung', locale: :de
+electric_displacement_coulomb_per_square_meter.update_attributes name: 'Coulomb pro Quadratmeter', locale: :de
+
+## Electric field strength
+electric_field_strength.update_attributes name: 'Elektrische Feldstärke', description: 'Stärke des elektrischen Feldes', locale: :de
+electric_field_strength_volt_per_meter.update_attributes name: 'Volt pro Meter', locale: :de
+
+## Electrical conductance
+electrical_conductance.update_attributes name: 'Elektrischer Materialwiderstand', description: 'Maß der Leichtigkeit, mit der Strom durch ein Material fließt', locale: :de
+electrical_conductance_siemens.update_attributes name: 'Siemens', locale: :de
+
+## Electrical conductivity
+electrical_conductivity.update_attributes name: 'Elektrische Leitfähigkeit', description: 'Maß der Fähigkeit eines Materials, elektrischen Strom zu leiten', locale: :de
+electrical_conductivity_siemens_per_meter.update_attributes name: 'Siemens pro Meter', locale: :de
+
+## Electric potential
+electric_potential.update_attributes name: 'Elektrische Spannung', description: 'Energie, die benötigt wird, um eine Einheitsladung von einem Referenzpunkt durch ein elektrisches Feld zu bewegen', locale: :de
+electric_potential_volt.update_attributes name: 'Volt', locale: :de
+
+## Electrical resistance
+electrical_resistance.update_attributes name: 'Elektrischer Widerstand', description: 'Elektrisches Potential pro elektrischem Strom', locale: :de
+electrical_resistance_ohm.update_attributes name: 'Ohm', locale: :de
+
+## Electrical resistivity
+electrical_resistivity.update_attributes name: 'Elektrischer Mengenwiderstand', description: 'Mengeneigenschaftsäquivalent des elektrischen Widerstandes', locale: :de
+electrical_resistivity_ohm_meter.update_attributes name: 'Ohmmeter', locale: :de
+
+## Energy
+energy.update_attributes name: 'Energie', description: 'Arbeitskapazität eines Körpers oder Systems', locale: :de
+energy_joule.update_attributes name: 'Joule', locale: :de
+
+## Energy density
+energy_density.update_attributes name: 'Energiedichte', description: 'Energie pro Volumeneinheit', locale: :de
+energy_density_joule_per_cubic_meter.update_attributes name: 'Joule pro Kubikmeter', locale: :de
+
+## Entropy
+entropy.update_attributes name: 'Entropie', description: 'Logarithmisches Maß für die Anzahl der verfügbaren Zustände eines Systems', locale: :de
+entropy_joule_per_kelvin.update_attributes name: 'Joule pro Kelvin', locale: :de
+
+## Force
+force.update_attributes name: 'Kraft', description: 'Übertragung eines Impulses pro Zeiteinheit', locale: :de
+force_newton.update_attributes name: 'Newton', locale: :de
+
+## Frequency
+frequency.update_attributes name: 'Frequenz', description: 'Anzahl von (periodischen) Ereignissen pro Zeiteinheit', locale: :de
+frequency_hertz.update_attributes name: 'Hertz', locale: :de
+
+## Heat
+heat.update_attributes name: 'Wärmemenge', description: 'Wärmeenergie', locale: :de
+heat_joule.update_attributes name: 'Joule', locale: :de
+
+## Heat capacity
+heat_capacity.update_attributes name: 'Wärmekapazität', description: 'Energie pro Temperaturänderung', locale: :de
+heat_capacity_joule_per_kelvin.update_attributes name: 'Joule pro Kelvin', locale: :de
+
+## Heat flux density
+heat_flux_density.update_attributes name: 'Wärmestromdichte', description: 'Wärmefluss pro Zeiteinheit und Flächeneinheit', locale: :de
+heat_flux_density_watt_per_square_meter.update_attributes name: 'Watt pro Quadratmeter', locale: :de
+
+## Illuminance
+illuminance.update_attributes name: 'Beleuchtungsstärke', description: 'Lichtstrom pro Flächeneinheit', locale: :de
+illuminance_lux.update_attributes name: 'Lux', locale: :de
+
+## Impedance
+impedance.update_attributes name: 'Impedanz', description: 'Widerstand gegen einen Wechselstrom einer bestimmten Frequenz, einschließlich der Auswirkung auf die Phase', locale: :de
+impedance_ohm.update_attributes name: 'Ohm', locale: :de
+
+## Impulse
+impulse.update_attributes name: 'Impuls', description: 'Übertragene Dynamik', locale: :de
+impulse_newton_second.update_attributes name: 'Newtonsekunde', locale: :de
+
+## Inductance
+inductance.update_attributes name: 'Induktivität', description: 'Magnetischer Fluss, der pro Einheitsstrom durch eine Schaltung erzeugt wird', locale: :de
+inductance_henry.update_attributes name: 'Henry', locale: :de
+
+## Intensity
+intensity.update_attributes name: 'Intensität', description: 'Leistung pro Querschnittseinheit', locale: :de
+intensity_watt_per_square_meter.update_attributes name: 'Watt pro Quadratmeter', locale: :de
+
+## Luminous flux
+luminous_flux.update_attributes name: 'Lichtstrom', description: 'Wahrgenommene Kraft einer Lichtquelle', locale: :de
+luminous_flux_lumen.update_attributes name: 'Lumen', locale: :de
+
+## Magnetic field strength
+magnetic_field_strength.update_attributes name: 'Magnetische Feldstärke', description: 'Stärke eines Magnetfeldes', locale: :de
+magnetic_field_strength_ampere_per_meter.update_attributes name: 'Ampere pro Meter', locale: :de
+
+## Magnetic flux
+magnetic_flux.update_attributes name: 'Magnetischer Fluss', description: 'Maß des Magnetismus unter Berücksichtigung der Stärke und des Ausmaßes eines Magnetfeldes', locale: :de
+magnetic_flux_weber.update_attributes name: 'Weber', locale: :de
+
+## Magnetic flux density
+magnetic_flux_density.update_attributes name: 'Magnetische Flussdichte', description: 'Maß für die Stärke des Magnetfeldes', locale: :de
+magnetic_flux_density_tesla.update_attributes name: 'Tesla', locale: :de
+
+## Magnetization
+magnetization.update_attributes name: 'Magnetisierung', description: 'Menge des magnetischen Momentes pro Volumeneinheit', locale: :de
+magnetization_ampere_per_meter.update_attributes name: 'Ampere pro Meter', locale: :de
+
+## Density
+density.update_attributes name: 'Dichte', description: 'Masse pro Volumeneinheit', locale: :de
+density_kilogram_per_cubic_meter.update_attributes name: 'Kilogramm pro Kubikmeter', locale: :de
+
+## Molar concentration
+molar_concentration.update_attributes name: 'Stoffmengenkonzentration', description: 'Menge einer Substanz pro Volumeneinheit', locale: :de
+molar_concentration_mole_per_cubic_meter.update_attributes name: 'Mol pro Kubikmeter', locale: :de
+
+## Molar heat capacity
+molar_heat_capacity.update_attributes name: 'Wärmekapazität', description: 'Wärmekapazität eines Materials pro Stoffmenge einer Substanz', locale: :de
+molar_heat_capacity_joule_per_kelvin_mole.update_attributes name: 'Joule pro Kelvinmol', locale: :de
+
+## Moment of inertia
+moment_of_inertia.update_attributes name: 'Trägheitsmoment', description: 'Trägheit eines Objekts in Bezug auf die Winkelbeschleunigung', locale: :de
+moment_of_inertia_kilogram_per_square_meter.update_attributes name: 'Kilogramm pro Quadratmeter', locale: :de
+
+## Momentum
+momentum.update_attributes name: 'Momentum', description: 'Produkt der Masse und Geschwindigkeit eines Objekts', locale: :de
+momentum_newton_second.update_attributes name: 'Newtonsekunde', locale: :de
+
+## Permeability
+permeability.update_attributes name: 'Magnetische Permeabilität', description: 'Maß für den Einfluss eines externen Magnetfeldes auf die Magnetisierung eines Materials', locale: :de
+permeability_henry_per_meter.update_attributes name: 'Henry pro Meter', locale: :de
+
+## Permittivity
+permittivity.update_attributes name: 'Permittivität', description: 'Maß für den Einfluss eines externen Magnetfeldes auf die Polarisation eines Materials', locale: :de
+permittivity_farad_per_meter.update_attributes name: 'Farad pro Meter', locale: :de
+
+## Plain angle
+plain_angle.update_attributes name: 'Winkel', description: 'Verhältnis von Kreisbogenlänge zu Radius', locale: :de
+plain_angle_radian.update_attributes name: 'Radiant', locale: :de
+
+## Power
+power.update_attributes name: 'Leistung', description: 'Übertragungsrate von Energie pro Zeiteinheit', locale: :de
+power_watt.update_attributes name: 'Watt', locale: :de
+
+## Pressure
+pressure.update_attributes name: 'Druck', description: 'Kraft pro Flächeneinheit', locale: :de
+pressure_pascal.update_attributes name: 'Pascal', locale: :de
+
+## Reaction rate
+reaction_rate.update_attributes name: 'Reaktionsgeschwindigkeit', description: 'Geschwindigkeit einer chemischen Reaktion', locale: :de
+reaction_rate_mole_per_cubic_meter_second.update_attributes name: 'Mol pro Kubikmetersekunde', locale: :de
+
+## Speed
+speed.update_attributes name: 'Geschwindigkeitsbetrag', description: 'Zurückgelegte Distanz pro Zeiteinheit. Die erste Ableitung der Position.', locale: :de
+speed.update_attributes name: 'Meter pro Sekunde', locale: :de
+
+## Spin
+spin.update_attributes name: 'Drehimpuls', description: 'Quantenmechanisch definierter Drehimpuls eines Teilchens', locale: :de
+spin_kilogram_square_meter_per_second.update_attributes name: 'Kilogramm-Quadratmeter pro Sekunde', locale: :de
+
+## Stress
+stress.update_attributes name: 'Mechanische Spannung', description: 'Kraft pro Einheitsorientierter Oberfläche', locale: :de
+stress_pascal.update_attributes name: 'Pascal', locale: :de
+
+## Surface tension
+surface_tension.update_attributes name: 'Oberflächenspannung', description: 'Energieänderung pro Flächeneinheit', locale: :de
+surface_tension_joule_per_square_meter.update_attributes name: 'Joule pro Quadratmeter', locale: :de
+
+## Thermal conductivity
+thermal_conductivity.update_attributes name: 'Wärmeleitfähigkeit', description: 'Maß für die Leichtigkeit, mit der ein Material Wärme leitet', locale: :de
+thermal_conductivity_watt_per_meter_kelvin.update_attributes name: 'Watt pro Meterkelvin', locale: :de
+
+## Torque
+torque.update_attributes name: 'Drehmoment', description: 'Produkt einer Kraft und der senkrechte Abstand der Kraft von dem Punkt, um den sich das Objekt dreht', locale: :de
+torque_newton_meter.update_attributes name: 'Newtonmeter', locale: :de
+
+## Velocity
+velocity.update_attributes name: 'Geschwindigkeit', description: 'Geschwindigkeit und Richtung eines Objekts', locale: :de
+velocity_meter_per_second.update_attributes name: 'Meter pro Sekunde', locale: :de
+
+## Volume
+volume.update_attributes name: 'Volumen', description: 'Dreidimensionale Ausdehnung eines Objekts', locale: :de
+volume_cubic_meter.update_attributes name: 'Kubikmeter', locale: :de
+
+## Wavelength
+wavelength.update_attributes name: 'Wellenlänge', description: 'Senkrechter Abstand zwischen sich wiederholenden Einheiten einer Welle', locale: :de
+wavelength_meter.update_attributes name: 'Meter', locale: :de
+
+## Wavenumber
+wavenumber.update_attributes name: 'Wellenlänge', description: 'Repetitions- oder räumliche Frequenz. Die Anzahl der Zyklen pro Entfernungseinheit.', locale: :de
+wavenumber_per_meter.update_attributes name: 'Pro Meter', locale: :de
+
+## Weight
+weight.update_attributes name: 'Gewichtskraft', description: 'Gravitationskraft auf ein Objekt', locale: :de
+weight_newton.update_attributes name: 'Newton', locale: :de
+
+## Work
+work.update_attributes name: 'Arbeit', description: 'Übertragene Energie', locale: :de
+work_joule.update_attributes name: 'Joule', locale: :de
