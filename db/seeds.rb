@@ -81,7 +81,7 @@ electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: ele
 electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'pA', name: 'picoampere', to_base: '/1000000000000'
 electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'fA', name: 'femtoampere', to_base: '/1000000000000000'
 electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'aA', name: 'attoampere', to_base: '/1000000000000000000'
-electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: timelectric_currente, symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
+electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
 electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
 
 # Temperature
