@@ -26,7 +26,7 @@ class Quantity < ApplicationRecord
     private
 
     def slug_candidates
-        [:pure_sym, :name]
+        [:name]
     end
 
 end
