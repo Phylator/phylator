@@ -3,8 +3,8 @@
 
 
 # Demo
-user = User.create! email: 'demo@example.com', password: 'password'
-user.encrypted_password
+user = User.create email: 'demo@example.com', password: 'password'
+user&.encrypted_password
 
 
 
@@ -104,7 +104,7 @@ acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', de
 acceleration_meter_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s<sup>-2</sup>', name: 'meter per square second', base: true
 
 # Angular acceleration
-angular_acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time'
+angular_acceleration = Quantity.find_or_create_by! symbol: 'a<sub>α</sub>', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time'
 angular_acceleration_rad_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: angular_acceleration, symbol: 'rad s<sup>-2</sup>', name: 'rad per square second', base: true
 
 # Angular velocity
@@ -124,7 +124,7 @@ capacitance = Quantity.find_or_create_by! symbol: 'C', name: 'Capacitance', desc
 capacitance_farad = UnitOfMeasurement.find_or_create_by! quantity: capacitance, symbol: 'F', name: 'farad', base: true
 
 # Chemical potential
-chemical_potential = Quantity.find_or_create_by! symbol: 'μ', name: 'Chemical potential', description: 'Energy per unit change in amount of substance'
+chemical_potential = Quantity.find_or_create_by! symbol: 'μ<sub>ch</sub>', name: 'Chemical potential', description: 'Energy per unit change in amount of substance'
 chemical_potential_joule_per_mole = UnitOfMeasurement.find_or_create_by! quantity: chemical_potential, symbol: 'J mol<sup>-1</sup>', name: 'joule per mole', base: true
 
 # Current density
@@ -156,7 +156,7 @@ electrical_conductivity = Quantity.find_or_create_by! symbol: 'σ', name: 'Elect
 electrical_conductivity_siemens_per_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_conductivity, symbol: 'S m<sup>-1</sup>', name: 'siemens per meter', base: true
 
 # Electric potential
-electric_potential = Quantity.find_or_create_by! symbol: 'V', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point'
+electric_potential = Quantity.find_or_create_by! symbol: 'U', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point'
 electric_potential_volt = UnitOfMeasurement.find_or_create_by! quantity: electric_potential, symbol: 'V', name: 'volt', base: true
 
 # Electrical resistance
@@ -164,11 +164,11 @@ electrical_resistance = Quantity.find_or_create_by! symbol: 'R', name: 'Electric
 electrical_resistance_ohm = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistance, symbol: 'Ω', name: 'ohm', base: true
 
 # Electrical resistivity
-electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance'
+electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ<sub>el</sub>', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance'
 electrical_resistivity_ohm_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistivity, symbol: 'Ω m', name: 'ohm meter', base: true
 
 # Energy
-energy = Quantity.find_or_create_by! symbol: 'E', name: 'Energy', description: 'Capacity of a body or system to do work'
+energy = Quantity.find_or_create_by! symbol: 'E<sub>i</sub>', name: 'Energy', description: 'Capacity of a body or system to do work'
 energy_joule = UnitOfMeasurement.find_or_create_by! quantity: energy, symbol: 'J', name: 'joule', base: true
 
 # Energy density
@@ -176,7 +176,7 @@ energy_density = Quantity.find_or_create_by! symbol: 'ρ<sub>E</sub>', name: 'En
 energy_density_joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: energy_density, symbol: 'J m<sup>-3</sup>', name: 'joule per cubic meter', base: true
 
 # Entropy
-entropy = Quantity.find_or_create_by! symbol: 'S', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system'
+entropy = Quantity.find_or_create_by! symbol: 'S<sub>sys</sub>', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system'
 entropy_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: entropy, symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
 
 # Force
@@ -188,7 +188,7 @@ frequency = Quantity.find_or_create_by! symbol: 'f', name: 'Frequency', descript
 frequency_hertz = UnitOfMeasurement.find_or_create_by! quantity: frequency, symbol: 'Hz', name: 'hertz', base: true
 
 # Heat
-heat = Quantity.find_or_create_by! symbol: 'Q', name: 'Heat', description: 'Thermal energy'
+heat = Quantity.find_or_create_by! symbol: 'Q<sub>th</sub>', name: 'Heat', description: 'Thermal energy'
 heat_joule = UnitOfMeasurement.find_or_create_by! quantity: heat, symbol: 'J', name: 'joule', base: true
 
 # Heat capacity
@@ -212,15 +212,15 @@ impulse = Quantity.find_or_create_by! symbol: 'Δp', name: 'Impulse', descriptio
 impulse_newton_second = UnitOfMeasurement.find_or_create_by! quantity: impulse, symbol: 'N s', name: 'newton second', base: true
 
 # Inductance
-inductance = Quantity.find_or_create_by! symbol: 'L', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit'
+inductance = Quantity.find_or_create_by! symbol: 'L<sub>m</sub>', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit'
 inductance_henry = UnitOfMeasurement.find_or_create_by! quantity: inductance, symbol: 'H', name: 'henry', base: true
 
 # Intensity
-intensity = Quantity.find_or_create_by! symbol: 'I', name: 'Intensity', description: 'Power per unit cross sectional area'
+intensity = Quantity.find_or_create_by! symbol: 'I<sub>P</sub>', name: 'Intensity', description: 'Power per unit cross sectional area'
 intensity_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: intensity, symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
 
 # Luminous flux
-luminous_flux = Quantity.find_or_create_by! symbol: 'F', name: 'Luminous flux', description: 'Perceived power of a light source'
+luminous_flux = Quantity.find_or_create_by! symbol: 'F<sub>ph</sub>', name: 'Luminous flux', description: 'Perceived power of a light source'
 luminous_flux_lumen = UnitOfMeasurement.find_or_create_by! quantity: luminous_flux, symbol: 'lm', name: 'lumen', base: true
 
 # Magnetic field strength
@@ -244,15 +244,15 @@ density = Quantity.find_or_create_by! symbol: 'ρ', name: 'Density', description
 density_kilogram_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: density, symbol: 'kg m<sup>-3</sup>', name: 'kilogram per cubic meter', base: true
 
 # Molar concentration
-molar_concentration = Quantity.find_or_create_by! symbol: 'C', name: 'Molar concentration', description: 'Amount of substance per unit volume'
+molar_concentration = Quantity.find_or_create_by! symbol: 'C<sub>mol</sub>', name: 'Molar concentration', description: 'Amount of substance per unit volume'
 molar_concentration_mole_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: molar_concentration, symbol: 'mol m<sup>-3</sup>', name: 'mole per cubic meter', base: true
 
 # Molar heat capacity
-molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance'
+molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c<sub>mol</sub>', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance'
 molar_heat_capacity_joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! quantity: molar_heat_capacity, symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole', base: true
 
 # Moment of inertia
-moment_of_inertia = Quantity.find_or_create_by! symbol: 'I', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration'
+moment_of_inertia = Quantity.find_or_create_by! symbol: 'I<sub>m</sub>', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration'
 moment_of_inertia_kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: moment_of_inertia, symbol: 'kg m<sup>-2</sup>', name: 'kilogram per square meter', base: true
 
 # Momentum
@@ -276,7 +276,7 @@ power = Quantity.find_or_create_by! symbol: 'P', name: 'Power', description: 'Ra
 power_watt = UnitOfMeasurement.find_or_create_by! quantity: power, symbol: 'W', name: 'watt', base: true
 
 # Pressure
-pressure = Quantity.find_or_create_by! symbol: 'p', name: 'Pressure', description: 'Force per unit area'
+pressure = Quantity.find_or_create_by! symbol: 'p<sub>f</sub>', name: 'Pressure', description: 'Force per unit area'
 pressure_pascal = UnitOfMeasurement.find_or_create_by! quantity: pressure, symbol: 'Pa', name: 'pascal', base: true
 
 # Reaction rate
@@ -284,7 +284,7 @@ reaction_rate = Quantity.find_or_create_by! symbol: 'r', name: 'Reaction rate', 
 reaction_rate_mole_per_cubic_meter_second = UnitOfMeasurement.find_or_create_by! quantity: reaction_rate, symbol: 'mol m<sup>-3</sup> s<sup>-1</sup>', name: 'molde per cubic meter second', base: true
 
 # Speed
-speed = Quantity.find_or_create_by! symbol: 'v', name: 'Speed', description: 'Moved distance per unit time: the first time derivative of position'
+speed = Quantity.find_or_create_by! symbol: 'v<sub>abs</sub>', name: 'Speed', description: 'Moved distance per unit time: the first time derivative of position'
 speed_meter_per_second = UnitOfMeasurement.find_or_create_by! quantity: speed, symbol: 'm s<sup>-1</sup>', name: 'meter per second', base: true
 
 # Spin
@@ -292,7 +292,7 @@ spin = Quantity.find_or_create_by! symbol: 'S', name: 'Spin', description: 'Quan
 spin_kilogram_square_meter_per_second = UnitOfMeasurement.find_or_create_by! quantity: spin, symbol: 'kg m<sup>2</sup> s<sup>-1</sup>', name: 'kilogram square meter per second', base: true
 
 # Stress
-stress = Quantity.find_or_create_by! symbol: 'p', name: 'Stress', description: 'Force per unit oriented surface area'
+stress = Quantity.find_or_create_by! symbol: 'p<sub>p</sub>', name: 'Stress', description: 'Force per unit oriented surface area'
 stress_pascal = UnitOfMeasurement.find_or_create_by! quantity: stress, symbol: 'Pa', name: 'pascal', base: true
 
 # Surface tension
@@ -320,7 +320,7 @@ wavelength = Quantity.find_or_create_by! symbol: 'λ', name: 'Wavelength', descr
 wavelength_meter = UnitOfMeasurement.find_or_create_by! quantity: wavelength, symbol: 'm', name: 'meter', base: true
 
 # Wavenumber
-wavenumber = Quantity.find_or_create_by! symbol: 'k', name: 'Wavenumber', description: 'Repetency or spacial frequency: the number of cycles per unit distance'
+wavenumber = Quantity.find_or_create_by! symbol: 'k<sub>λ</sub>', name: 'Wavenumber', description: 'Repetency or spacial frequency: the number of cycles per unit distance'
 wavenumber_per_meter = UnitOfMeasurement.find_or_create_by! quantity: wavenumber, symbol: 'm<sup>-1</sup>', name: 'per meter', base: true
 
 # Weight
@@ -337,10 +337,9 @@ work_joule = UnitOfMeasurement.find_or_create_by! quantity: work, symbol: 'J', n
 
 # Equations
 
-## Length
-# Equation.find_or_create_by! quantity: length, equation: 'm * t'
-# Equation.find_or_create_by! quantity: mass, equation: 'l / t'
-# Equation.find_or_create_by! quantity: time, equation: 'l / m'
+Equation.find_or_create_by! quantity: force, equation: 'm * a'
+# Equation.find_or_create_by! quantity: mass, equation: 'F / a'
+# Equation.find_or_create_by! quantity: acceleration, equation: 'F / m'
 
 
 

@@ -31,10 +31,10 @@ class CalculationsController < ApplicationController
 
         respond_to do |format|
             if @calculation.save
-                format.html { redirect_to @calculation, notice: 'Calculation was successfully created.' }
+                format.html { redirect_to @calculation }
                 format.json { render :show, status: :created, location: @calculation }
             else
-                format.html { render :new }
+                format.html { redirect_to root_url, alert: 'Calculation was unsuccessfull' }
                 format.json { render json: @calculation.errors, status: :unprocessable_entity }
             end
         end
@@ -73,7 +73,7 @@ class CalculationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calculation_params
-        params.require(:calculation).permit(:user_id, :quantity_id, :unit_of_measurement_id, :name, :description, measurements_attributes: [:value, :margin_of_error, :quantity_id, :unit_of_measurement_id])
+        params.require(:calculation).permit(:user_id, :quantity_id, :unit_of_measurement_id, :name, :description, measurements_attributes: [:value, :margin_of_error, :quantity_id, :unit_of_measurement_id, :_destroy])
     end
 
 end

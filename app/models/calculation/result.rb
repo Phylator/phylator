@@ -60,7 +60,7 @@ class Calculation::Result < ApplicationRecord
         symbols = []
         measurements_per_quantity.each do |quantity_id, measurements|
             measurement = measurements.first
-            symbol = ::Quantity.find(quantity_id).symbol
+            symbol = ::Quantity.find(quantity_id).pure_sym
             symbols << symbol
             if measurement.unit_of_measurement.base?
                 var = measurement.value
@@ -80,26 +80,26 @@ class Calculation::Result < ApplicationRecord
             ## Results
             equations = {}
             ::Equation.all.each do |equation|
-                equations[equation.quantity.symbol] = equation.equation
+                equations[equation.quantity.pure_sym] = equation.equation
                 self.calculation.equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
             end
             calculation_results = calculator.solve equations
-            calculation_result = calculation_results[self.calculation.quantity.symbol]
+            calculation_result = calculation_results[self.calculation.quantity.sym]
 
             ## Resulting errors
             error_equations = {}
             ::Equation.all.each do |equation|
-                error_equations["#{equation.quantity.symbol}_error"] = equation.equation # append '_error' to each variable in equation
+                error_equations["#{equation.quantity.sym}_error"] = equation.equation # append '_error' to each variable in equation
             end
             calculation_errors = calculator.solve error_equations
-            calculation_error = calculation_errors["#{self.calculation.quantity.symbol}_error"]
+            calculation_error = calculation_errors["#{self.calculation.quantity.sym}_error"]
 
-            calculator.store "#{self.calculation.quantity.symbol}": calculation_result if calculation_result.present?
-            calculator.store "#{self.calculation.quantity.symbol}_error": calculation_error if calculation_error.present?
+            calculator.store "#{self.calculation.quantity.sym}": calculation_result if calculation_result.present?
+            calculator.store "#{self.calculation.quantity.sym}_error": calculation_error if calculation_error.present?
         end
 
         # Convert
-        symbol = self.calculation.quantity.symbol
+        symbol = self.calculation.quantity.sym
         base = self.calculation.unit_of_measurement.base?
         if base
             result = calculator.evaluate("round(#{symbol}, #{decimal_places.min})")
