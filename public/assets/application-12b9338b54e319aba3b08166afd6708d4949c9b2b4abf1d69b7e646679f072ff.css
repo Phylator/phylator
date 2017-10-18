@@ -4178,6 +4178,11 @@ p.small {
   font-size: 0.875em;
 }
 
+/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/text/paragraph.sass */
+sub, sup {
+  font-size: 0.5em;
+}
+
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/text/hyperlink.sass */
 a {
   font-size: inherit;
@@ -4450,7 +4455,7 @@ textarea:active, textarea:focus {
   text-decoration: none;
 }
 /* line 18, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/flexdatalist.sass */
-.flexdatalist-results li span.item-symbol {
+.flexdatalist-results li span.item-sym {
   font-family: kepler-std, grad, freight-text-pro, serif;
   color: var(--color-dark-lighter);
   float: left;
@@ -4626,7 +4631,7 @@ html body:not(.disabledTransitions) * {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/toast/index.sass */
 .iziToast-progressbar div {
-  transition: none;
+  transition: none !important;
 }
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/copy/index.sass */
@@ -4681,6 +4686,7 @@ nav.app {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 10;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -4690,37 +4696,37 @@ nav.app {
   box-shadow: var(--style-box-shadow-lg);
   transition-duration: 0.25s;
 }
-/* line 14, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 nav.app.invisible {
   bottom: -4.375em;
 }
-/* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 nav.app > a {
   opacity: 0.5;
   padding: 0 1.5625em;
   text-align: center;
 }
-/* line 20, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 nav.app > a:nth-child(3) {
   opacity: 1;
 }
 
-/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 25, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 body.calculations.index nav.app > a:first-child {
   opacity: 1;
 }
 
-/* line 26, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 27, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 body.quantities nav.app > a:nth-child(2) {
   opacity: 1;
 }
 
-/* line 28, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 body.drafts nav.app > a:nth-child(4) {
   opacity: 1;
 }
 
-/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
+/* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
 body.devise nav.app > a:last-child {
   opacity: 1;
 }
@@ -5258,12 +5264,13 @@ body.devise nav.app > a:last-child {
 .devise.registrations.edit form .form-actions {
   display: flex;
   flex-direction: row-reverse;
+  margin: 2.1875em 0;
 }
-/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
+/* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
 .devise.registrations.edit form .form-actions a {
   margin-right: 1.5625em;
 }
-/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
+/* line 12, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/registrations/edit.sass */
 .devise.registrations.edit p {
   margin: 0.3125em 0;
 }
