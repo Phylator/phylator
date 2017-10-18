@@ -19,11 +19,14 @@ class Quantity < ApplicationRecord
     def sym
         self.symbol.html_safe
     end
+    def pure_sym
+        self.symbol.sub('<sub>', '').sub('</sub>', '')
+    end
 
     private
 
     def slug_candidates
-        [:sym, [:sym, :id]]
+        [:pure_sym, :name]
     end
 
 end

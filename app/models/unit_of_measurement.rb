@@ -9,6 +9,10 @@ class UnitOfMeasurement < ApplicationRecord
     belongs_to :quantity
     has_many :measurements, class_name: 'Calculation::Measurement'
 
+    def sym
+        self.symbol.html_safe
+    end
+
     def base?
         self.to_base == '*1'
     end

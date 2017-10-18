@@ -26,6 +26,6 @@
         - @quantity.unit_of_measurements.order(:name).each do |unit_of_measurement|
             .card
                 .wrapper
-                    %h2.small= unit_of_measurement.symbol
+                    %h2.small= unit_of_measurement.sym
                     %p.small
                         %span= unit_of_measurement.name

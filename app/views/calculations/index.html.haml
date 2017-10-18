@@ -7,7 +7,7 @@
                 .wrapper
                     %h2.small
                         = calculation.result.pretty_value
-                        %span= calculation.unit_of_measurement.symbol
+                        %span= calculation.unit_of_measurement.sym
                     %p.small
                         - if calculation.name.nil? || calculation.name == ''
                             %span= calculation.quantity.name

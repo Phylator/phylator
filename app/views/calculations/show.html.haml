@@ -20,7 +20,7 @@
     - else
         %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
-            %span= @calculation.unit_of_measurement.symbol
+            %span= @calculation.unit_of_measurement.sym
     %p
         %span= link_to @calculation.quantity.name, @calculation.quantity
         ·
@@ -45,7 +45,7 @@
     - if current_user && current_user.id == @calculation.user_id
         %h3= t('cd.convert_to') + ' ...'
         = simple_form_for @calculation do |f|
-            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['symbol', 'name'], text_property: 'symbol', visible_properties: ['symbol', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 
     %h3= t 'd.p.measurements'
@@ -55,7 +55,7 @@
                 .wrapper
                     %h2.small
                         = measurement.pretty_value
-                        %span= measurement.unit_of_measurement.symbol
+                        %span= measurement.unit_of_measurement.sym
                     %p.small
                         - unless measurement.name.nil? || measurement.name == ''
                             %span= measurement.name
