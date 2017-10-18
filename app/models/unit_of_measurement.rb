@@ -14,7 +14,7 @@ class UnitOfMeasurement < ApplicationRecord
     end
 
     def base?
-        self.to_base == '*1'
+        self.base
     end
 
     def from_base

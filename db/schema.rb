@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20170918165810) do
   create_table "unit_of_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "quantity_id"
     t.string "symbol"
+    t.boolean "base", default: false, null: false
     t.string "to_base", default: "*1", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -23,8 +23,8 @@
 
     %h3= t 'd.p.units_of_measurement'
     .cards
-        - @quantity.unit_of_measurements.order(:name).each do |unit_of_measurement|
-            .card
+        - @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc).each do |unit_of_measurement|
+            .card{ class: ('highlighted' if unit_of_measurement.base) }
                 .wrapper
                     %h2.small= unit_of_measurement.sym
                     %p.small
