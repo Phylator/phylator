@@ -9,7 +9,7 @@ end
 gem 'jquery-rails', '~> 4.3'
 gem 'haml', '~> 5.0'
 gem 'metamagic', '~> 3.1'
-gem 'sentry-raven', '~> 2.6'
+gem 'sentry-raven', '~> 2.7'
 gem 'simple_form', '~> 3.5'
 gem 'i18n', '~> 0.8'
 gem 'globalize', github: 'globalize/globalize'
@@ -59,7 +59,7 @@ group :development do
     gem 'web-console', '~> 3.5'
 
     # Errors
-    gem 'better_errors', '~> 2.3'
+    gem 'better_errors', '~> 2.4'
     gem 'binding_of_caller', '~> 0.7'
 
     # Security
