@@ -622,7 +622,7 @@ reaction_rate_mole_per_cubic_meter_second.update_attributes name: 'Mol pro Kubik
 
 ## Speed
 speed.update_attributes name: 'Geschwindigkeitsbetrag', description: 'Zurückgelegte Distanz pro Zeiteinheit. Die erste Ableitung der Position.', locale: :de
-speed.update_attributes name: 'Meter pro Sekunde', locale: :de
+speed_meter_per_second.update_attributes name: 'Meter pro Sekunde', locale: :de
 
 ## Spin
 spin.update_attributes name: 'Drehimpuls', description: 'Quantenmechanisch definierter Drehimpuls eines Teilchens', locale: :de
