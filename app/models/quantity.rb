@@ -5,7 +5,7 @@ class Quantity < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
     translates :name, :description
 
-    validates :symbol, presence: true, uniqueness: true
+    validates :symbol, presence: true, uniqueness: { scope: [:symbol, :name] }
     validates :name, presence: true, uniqueness: true
     validates :description, presence: true
 

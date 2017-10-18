@@ -75,14 +75,14 @@ time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year',
 # Electric current
 electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
 electric_current_ampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere'
-electric_current_miliampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'mA', name: 'milisecond', to_base: '/1000'
-electric_current_microampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'µA', name: 'microsecond', to_base: '/1000000'
-electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'nA', name: 'nanosecond', to_base: '/1000000000'
-electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'pA', name: 'picosecond', to_base: '/1000000000000'
-electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'fA', name: 'femtosecond', to_base: '/1000000000000000'
-electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'aA', name: 'attosecond', to_base: '/1000000000000000000'
-electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zA', name: 'zeptosecond', to_base: '/1000000000000000000000'
-electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'yA', name: 'yoctosecond', to_base: '/1000000000000000000000000'
+electric_current_miliampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'mA', name: 'miliampere', to_base: '/1000'
+electric_current_microampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'µA', name: 'microampere', to_base: '/1000000'
+electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'nA', name: 'nanoampere', to_base: '/1000000000'
+electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'pA', name: 'picoampere', to_base: '/1000000000000'
+electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'fA', name: 'femtoampere', to_base: '/1000000000000000'
+electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'aA', name: 'attoampere', to_base: '/1000000000000000000'
+electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
+electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
 
 # Temperature
 temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
@@ -658,7 +658,7 @@ wavelength.update_attributes name: 'Wellenlänge', description: 'Senkrechter Abs
 wavelength_meter.update_attributes name: 'Meter', locale: :de
 
 ## Wavenumber
-wavenumber.update_attributes name: 'Wellenlänge', description: 'Repetitions- oder räumliche Frequenz. Die Anzahl der Zyklen pro Entfernungseinheit.', locale: :de
+wavenumber.update_attributes name: 'Wellenzahl', description: 'Repetitions- oder räumliche Frequenz. Die Anzahl der Zyklen pro Entfernungseinheit.', locale: :de
 wavenumber_per_meter.update_attributes name: 'Pro Meter', locale: :de
 
 ## Weight

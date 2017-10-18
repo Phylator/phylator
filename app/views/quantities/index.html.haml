@@ -1,7 +1,7 @@
 %h1= t 'cd.physical_quantities'
 
 .cards
-    - @quantities.each do |quantity|
+    - @quantities.order(:name).each do |quantity|
         = link_to quantity, class: 'card' do
             .wrapper
                 %h2.small= quantity.symbol

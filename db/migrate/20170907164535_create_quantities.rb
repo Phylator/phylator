@@ -13,7 +13,7 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
 
         reversible do |dir|
             dir.up do
-                Quantity.create_translation_table! name: { type: :string, unique: true }, description: { type: :text }
+                Quantity.create_translation_table! name: { type: :string }, description: { type: :text }
             end
 
             dir.down do
