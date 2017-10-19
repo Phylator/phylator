@@ -29,7 +29,7 @@ function calculationsNewInit() {
     $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
         var unitName = object['name'],
             quantityId = $('input#quantity').flexdatalist('value');
-        $.getJSON( '/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
+        $.getJSON( '/app/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
             var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
                 quantityName = quantity[0].name;
             $('p.setup span.quantity').html(quantityName);

@@ -34,7 +34,7 @@ class CalculationsController < ApplicationController
                 format.html { redirect_to @calculation, notice: 'Calculation successfull' }
                 format.json { render :show, status: :created, location: @calculation }
             else
-                format.html { redirect_to root_url, alert: 'Could not solve calculation' }
+                format.html { redirect_to app_root_url, alert: 'Could not solve calculation' }
                 format.json { render json: @calculation.errors, status: :unprocessable_entity }
             end
         end
@@ -59,7 +59,7 @@ class CalculationsController < ApplicationController
     def destroy
         @calculation.destroy
         respond_to do |format|
-            format.html { redirect_to (current_user ? calculations_url : root_url), notice: 'Calculation deleted' }
+            format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: 'Calculation deleted' }
             format.json { head :no_content }
         end
     end

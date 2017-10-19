@@ -1,5 +1,7 @@
 class Constant < ApplicationRecord
 
+    before_save :evaluate_value
+
     include Value
 
     # acts_as_taggable
@@ -29,6 +31,13 @@ class Constant < ApplicationRecord
 
     def slug_candidates
         [:pure_sym, :name]
+    end
+
+    def evaluate_value
+        if self.value_changed?
+            calculator = Dentaku::Calculator.new
+            self.value = calculator.evaluate self.value
+        end
     end
 
 end

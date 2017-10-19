@@ -4,7 +4,7 @@
             %script{ type: 'text/javascript' }
                 window.onload = function() { componentsModalOpen('.modal.signup'); };
 
-= link_to (current_user ? calculations_url : root_url), class: 'back' do
+= link_to (current_user ? calculations_url : app_root_url), class: 'back' do
     = asset 'components/back.svg'
 
 .tools
@@ -45,7 +45,7 @@
     - if current_user && current_user.id == @calculation.user_id
         %h3= t('cd.convert_to') + ' ...'
         = simple_form_for @calculation do |f|
-            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+            = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 
     %h3= t 'd.p.measurements'

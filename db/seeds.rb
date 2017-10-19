@@ -151,10 +151,10 @@ yoctoampere.connected_quantities.find_or_create_by! quantity: electric_current
 temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
 kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base: true
 kelvin.connected_quantities.find_or_create_by! quantity: temperature
-celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
-celcius.connected_quantities.find_or_create_by! quantity: temperature
-fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', f_base: '*(9/5)-459.67' ##### UPDATE CONVERSIONS ######
-fahrenheit.connected_quantities.find_or_create_by! quantity: temperature
+degree_celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
+degree_celcius.connected_quantities.find_or_create_by! quantity: temperature
+degree_fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', f_base: '*(9/5)-459.67' ##### UPDATE CONVERSIONS ######
+degree_fahrenheit.connected_quantities.find_or_create_by! quantity: temperature
 
 # Amount of substance
 amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
@@ -474,18 +474,100 @@ joule.connected_quantities.find_or_create_by! quantity: work
 # Constants
 
 ## Vacuum speed of light
-vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', value: BigDecimal.new('2.99792458E8'), unit_of_measurement: meter_per_second
+vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', value: BigDecimal.new('2.99792458*10^8'), unit_of_measurement: meter_per_second
 vacuum_speed_of_light.update_attributes name: 'Lichtegeschwindigkeit im Vakuum', locale: :de
 
 ## Newtonian constant of gravitation
 cubic_meter_per_kilogram_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>', name: 'cubic meter per kilogram square second'
-newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', value: BigDecimal.new('6.673E-11'), unit_of_measurement: cubic_meter_per_kilogram_square_second
+cubic_meter_per_kilogram_square_second.update_attributes name: 'Kubikmeter pro Kilogrammquadratsekunde', locale: :de
+newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', value: '6.673*10^-11', unit_of_measurement: cubic_meter_per_kilogram_square_second
 newtonian_constant_of_gravitation.update_attributes name: 'Gravitationskonstante', locale: :de
 
 ## Planck constant
 joule_second = UnitOfMeasurement.find_or_create_by! symbol: 'J s', name: 'joule second'
-planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', value: BigDecimal.new('6.626069E-34'), unit_of_measurement: joule_second
+joule_second.update_attributes name: 'Joulesekunde', locale: :de
+planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', value: '6.626069*10^-34', unit_of_measurement: joule_second
 planck_constant.update_attributes name: 'Plancksches Wirkungsquantum', locale: :de
+
+## Magnetic constant
+newton_per_square_ampere = UnitOfMeasurement.find_or_create_by! symbol: 'N A<sup>-2</sup>', name: 'newton per square ampere'
+newton_per_square_ampere.update_attributes name: 'Newton pro Quadratampere', locale: :de
+magnetic_constant = Constant.find_or_create_by! symbol: 'μ<sub>0</sub>', name: 'Magnetic constant', value: "4*#{Math::PI.to_s}*10^-7", unit_of_measurement: newton_per_square_ampere
+magnetic_constant.update_attributes name: 'Magnetische Feldkonstante', locale: :de
+
+## Electric constant
+electric_constant = Constant.find_or_create_by! symbol: 'ε<sub>0</sub>', name: 'Electric constant', value: '8.854188*10^-12', unit_of_measurement: farad_per_meter
+electric_constant.update_attributes name: 'Elektrische Feldkonstante', locale: :de
+
+## Absolute zero
+absolute_zero = Constant.find_or_create_by! symbol: 'T<sub>a</sub>', name: 'Absolute zero', value: '0', unit_of_measurement: kelvin
+absolute_zero.update_attributes name: 'Absoluter Nullpunkt', locale: :de
+
+## Unified atomic mass unit
+unified_atomic_mass_unit = Constant.find_or_create_by! symbol: 'u', name: 'Unified atomic mass unit', value: '1.660540*10^-27', unit_of_measurement: kilogram
+unified_atomic_mass_unit.update_attributes name: 'Atomare Masseeinheit', locale: :de
+
+## Avogadro constant
+per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol<sup>-1</sup>', name: 'per mole'
+per_mole.update_attributes name: 'Pro Mol', locale: :de
+avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Avogadro constant', value: '6.022142*10^23', unit_of_measurement: per_mole
+avogadro_constant.update_attributes name: 'Avogadro-Konstante', locale: :de
+
+## Boltzmann constant
+boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', value: '1.380650*10^-23', unit_of_measurement: joule_per_kelvin
+boltzmann_constant.update_attributes name: 'Boltzmann-Konstante', locale: :de
+
+## Compton wavelength of an electron
+compton_wavelength_of_an_electron = Constant.find_or_create_by! symbol: 'λ<sub>C</sub>', name: 'Compton wavelength of an electron', value: '2.426310^-12', unit_of_measurement: meter
+compton_wavelength_of_an_electron.update_attributes name: 'Compton-Wellenlänge des Elektrons', locale: :de
+
+## Faraday constant
+ampere_second_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'A s mol<sup>-1</sup>', name: 'ampere second per mole'
+ampere_second_per_mole.update_attributes name: 'Amperesekunde pro Mol', locale: :de
+faraday_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Faraday constant', value: '9.648534*10^4', unit_of_measurement: ampere_second_per_mole
+faraday_constant.update_attributes name: 'Faraday-Konstante', locale: :de
+
+## Loschmidt constant
+per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>-3</sup>', name: 'per cubic meter'
+per_cubic_meter.update_attributes name: 'Pro Kubikmeter', locale: :de
+loschmidt_constant = Constant.find_or_create_by! symbol: 'N<sub>L</sub>', name: 'Loschmidt constant', value: '2.686778*10^25', unit_of_measurement: per_cubic_meter
+loschmidt_constant.update_attributes name: 'Loschmidt-Konstante', locale: :de
+
+## Rydberg constant
+rydberg_constant = Constant.find_or_create_by! symbol: 'R<sub>H</sub>', name: 'Rydberg constant', value: '1.097373*10^7', unit_of_measurement: per_meter
+rydberg_constant.update_attributes name: 'Rydberg-Konstante', locale: :de
+
+## Rydberg frequency
+rydberg_frequency = Constant.find_or_create_by! symbol: 'R<sub>y</sub>', name: 'Rydberg frequency', value: '3.289841*10^15', unit_of_measurement: hertz
+rydberg_frequency.update_attributes name: 'Rydberg-Frequenz', locale: :de
+
+## Stefan-Boltzmann constant
+watt_per_square_meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup> K<sup>-4</sup>', name: 'watt per square meter kelvin'
+watt_per_square_meter_kelvin.update_attributes name: 'Watt pro Quadratmeterkelvin', locale: :de
+stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ', name: 'Stefan-Boltzmann constant', value: '5.670400*10^-8', unit_of_measurement: watt_per_square_meter_kelvin
+stefan_boltzmann_constant.update_attributes name: 'Stefan-Boltzmann-Konstante', locale: :de
+
+## Gas constant
+joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole'
+joule_per_kelvin_mole.update_attributes name: 'Joule pro Kelvinmol', locale: :de
+gas_constant = Constant.find_or_create_by! symbol: 'R<sub>0</sub>', name: 'Gas constant', value: '8.314472', unit_of_measurement: joule_per_kelvin_mole
+gas_constant.update_attributes name: 'Universelle Gaskonstante', locale: :de
+
+## Wien displacement law constant
+meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'm K', name: 'meter kelvin'
+meter_kelvin.update_attributes name: 'Meterkelvin', locale: :de
+wien_displacement_law_constant = Constant.find_or_create_by! symbol: 'b<sub>energy</sub>', name: 'Wien displacement law constant', value: '2.897769*10^-3', unit_of_measurement: meter_kelvin
+wien_displacement_law_constant.update_attributes name: 'Wiensche Konstante', locale: :de
+
+## Molar volume of an ideal gas
+liter_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'l mol<sup>-1</sup>', name: 'liter per mole'
+liter_per_mole.update_attributes name: 'Liter pro Mol', locale: :de
+molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub>', name: 'Molar volume of an ideal gas', value: '22.414', unit_of_measurement: liter_per_mole
+molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
+
+## Standard acceleration of gravity
+molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', value: '9.80665*10^-2', unit_of_measurement: meter_per_square_second
+molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
 
 
 

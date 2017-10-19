@@ -21203,11 +21203,9 @@ function iframeInit() {
     var inIframe = ( window.location != window.parent.location ) ? true : false;
 
     if ( inIframe === true ) {
-        $('body').hide();
+        $('body').addClass('disabledTransitions');
         $(':root').css({ 'font-size': '18px' });
-        setTimeout(function() {
-            $('body').fadeIn(500);
-        }, 500);
+        $('body').removeClass('disabledTransitions');
     };
 
 };
@@ -21242,7 +21240,7 @@ function calculationsNewInit() {
     $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
         var unitName = object['name'],
             quantityId = $('input#quantity').flexdatalist('value');
-        $.getJSON( '/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
+        $.getJSON( '/app/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
             var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
                 quantityName = quantity[0].name;
             $('p.setup span.quantity').html(quantityName);
@@ -21276,7 +21274,8 @@ function calculationsShowInit() {
         $('.account-wrapper').removeClass('invisible');
     });
 
-    $('body.calculations.show input.flexdatalist').on( 'flexdatalist:change', function() {
+    // $('body.calculations.show input.flexdatalist').on( 'flexdatalist:change', function() {
+    $('body.calculations.show input.flexdatalist').change(function() {
         $(this).closest('form').submit();
     });
 };

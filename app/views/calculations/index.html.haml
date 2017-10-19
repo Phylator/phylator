@@ -17,7 +17,7 @@
                         %span= timeago calculation.created_at
                 = asset 'components/list/item-open.svg'
     - else
-        = link_to root_url, class: 'card' do
+        = link_to app_root_url, class: 'card' do
             .wrapper
                 %h3= t 'calculations.index.empty.title'
                 %p.small= t 'calculations.index.empty.content'
