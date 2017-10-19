@@ -8,7 +8,6 @@ class QuantitiesController < ApplicationController
     def index
         render layout: 'app'
         @quantities = Quantity.all
-        @constants = Constant.all
     end
 
     # GET /quantities/1

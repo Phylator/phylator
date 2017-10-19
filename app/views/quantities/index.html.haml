@@ -16,7 +16,7 @@
 %h1= t 'cd.physical_constants'
 
 .cards
-    - @constants.with_translations(I18n.locale).order(:name).each do |constant|
+    - Constant.with_translations(I18n.locale).order(:name).each do |constant|
         = link_to constant, class: 'card' do
             .wrapper
                 %h2.small= constant.sym
