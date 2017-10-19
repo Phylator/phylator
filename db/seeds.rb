@@ -13,244 +13,349 @@ user&.encrypted_password
 length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
 meter = UnitOfMeasurement.find_or_create_by! symbol: 'm', name: 'meter', base: true
 meter.connected_quantities.build quantity: length
-exameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'Em', name: 'exameter', to_base: '*1000000000000000000'
-petameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'Pm', name: 'petameter', to_base: '*1000000000000000'
-terameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'Tm', name: 'terameter', to_base: '*1000000000000'
-gigameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'Gm', name: 'gigameter', to_base: '*1000000000'
-megameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'Mm', name: 'megameter', to_base: '*1000000'
-kilometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'km', name: 'kilometer', to_base: '*1000'
-hectometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'hm', name: 'hectometer', to_base: '*100'
-decameter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'dam', name: 'decameter', to_base: '*10'
-decimeter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'dm', name: 'decimeter', to_base: '/10'
-centimeter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'cm', name: 'centimeter', to_base: '/100'
-milimeter = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'mm', name: 'milimeter', to_base: '/1000'
-micrometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'µm', name: 'micrometer', to_base: '/1000000'
-nanometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'nm', name: 'nanometer', to_base: '/1000000000'
-picometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'pm', name: 'picometer', to_base: '/1000000000000'
-femtometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'fm', name: 'femtometer', to_base: '/1000000000000000'
-attometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'am', name: 'attometer', to_base: '/1000000000000000000'
-zeptometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'zm', name: 'zeptometer', to_base: '/1000000000000000000000'
-yoctometer = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'ym', name: 'yoctometer', to_base: '/1000000000000000000000000'
-inch = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'in', name: 'inch', to_base: '/0.254'
-foot = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'ft', name: 'foot', to_base: '/3.048'
-yard = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'yd', name: 'yard', to_base: '/9.144'
-miles = UnitOfMeasurement.find_or_create_by! quantity: length, symbol: 'mi', name: 'miles', to_base: '/16093.44'
+exameter = UnitOfMeasurement.find_or_create_by! symbol: 'Em', name: 'exameter', to_base: '*1000000000000000000'
+exameter.connected_quantities.build quantity: length
+petameter = UnitOfMeasurement.find_or_create_by! symbol: 'Pm', name: 'petameter', to_base: '*1000000000000000'
+petameter.connected_quantities.build quantity: length
+terameter = UnitOfMeasurement.find_or_create_by! symbol: 'Tm', name: 'terameter', to_base: '*1000000000000'
+terameter.connected_quantities.build quantity: length
+gigameter = UnitOfMeasurement.find_or_create_by! symbol: 'Gm', name: 'gigameter', to_base: '*1000000000'
+gigameter.connected_quantities.build quantity: length
+megameter = UnitOfMeasurement.find_or_create_by! symbol: 'Mm', name: 'megameter', to_base: '*1000000'
+megameter.connected_quantities.build quantity: length
+kilometer = UnitOfMeasurement.find_or_create_by! symbol: 'km', name: 'kilometer', to_base: '*1000'
+kilometer.connected_quantities.build quantity: length
+hectometer = UnitOfMeasurement.find_or_create_by! symbol: 'hm', name: 'hectometer', to_base: '*100'
+hectometer.connected_quantities.build quantity: length
+decameter = UnitOfMeasurement.find_or_create_by! symbol: 'dam', name: 'decameter', to_base: '*10'
+decameter.connected_quantities.build quantity: length
+decimeter = UnitOfMeasurement.find_or_create_by! symbol: 'dm', name: 'decimeter', to_base: '/10'
+decimeter.connected_quantities.build quantity: length
+centimeter = UnitOfMeasurement.find_or_create_by! symbol: 'cm', name: 'centimeter', to_base: '/100'
+centimeter.connected_quantities.build quantity: length
+milimeter = UnitOfMeasurement.find_or_create_by! symbol: 'mm', name: 'milimeter', to_base: '/1000'
+milimeter.connected_quantities.build quantity: length
+micrometer = UnitOfMeasurement.find_or_create_by! symbol: 'µm', name: 'micrometer', to_base: '/1000000'
+micrometer.connected_quantities.build quantity: length
+nanometer = UnitOfMeasurement.find_or_create_by! symbol: 'nm', name: 'nanometer', to_base: '/1000000000'
+nanometer.connected_quantities.build quantity: length
+picometer = UnitOfMeasurement.find_or_create_by! symbol: 'pm', name: 'picometer', to_base: '/1000000000000'
+picometer.connected_quantities.build quantity: length
+femtometer = UnitOfMeasurement.find_or_create_by! symbol: 'fm', name: 'femtometer', to_base: '/1000000000000000'
+femtometer.connected_quantities.build quantity: length
+attometer = UnitOfMeasurement.find_or_create_by! symbol: 'am', name: 'attometer', to_base: '/1000000000000000000'
+attometer.connected_quantities.build quantity: length
+zeptometer = UnitOfMeasurement.find_or_create_by! symbol: 'zm', name: 'zeptometer', to_base: '/1000000000000000000000'
+zeptometer.connected_quantities.build quantity: length
+yoctometer = UnitOfMeasurement.find_or_create_by! symbol: 'ym', name: 'yoctometer', to_base: '/1000000000000000000000000'
+yoctometer.connected_quantities.build quantity: length
+inch = UnitOfMeasurement.find_or_create_by! symbol: 'in', name: 'inch', to_base: '/0.254'
+inch.connected_quantities.build quantity: length
+foot = UnitOfMeasurement.find_or_create_by! symbol: 'ft', name: 'foot', to_base: '/3.048'
+foot.connected_quantities.build quantity: length
+yard = UnitOfMeasurement.find_or_create_by! symbol: 'yd', name: 'yard', to_base: '/9.144'
+yard.connected_quantities.build quantity: length
+miles = UnitOfMeasurement.find_or_create_by! symbol: 'mi', name: 'miles', to_base: '/16093.44'
+miles.connected_quantities.build quantity: length
 
 # Mass
 mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'
-mass_kilogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'kg', name: 'kilogram', base: true
-mass_exagram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'Eg', name: 'exagram', to_base: '*1000000000000000'
-mass_petagram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'Pg', name: 'petagram', to_base: '*1000000000000'
-mass_teragram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'Tg', name: 'teragram', to_base: '*1000000000'
-mass_gigagram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'Gg', name: 'gigagram', to_base: '*1000000'
-mass_megagram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'Mg', name: 'megagram', to_base: '*1000'
-mass_gram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'g', name: 'gram', to_base: '/1000'
-mass_miligram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'mg', name: 'miligram', to_base: '/1000000'
-mass_microgram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'µg', name: 'microgram', to_base: '/1000000000'
-mass_nanogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'ng', name: 'nanogram', to_base: '/10000000000000'
-mass_picogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'pg', name: 'picogram', to_base: '/1000000000000000'
-mass_femtogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'fg', name: 'femtogram', to_base: '/1000000000000000000'
-mass_attogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'ag', name: 'attogram', to_base: '/1000000000000000000000'
-mass_zeptogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'zg', name: 'zeptogram', to_base: '/1000000000000000000000000'
-mass_yoctogram = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'yg', name: 'yoctogram', to_base: '/1000000000000000000000000000'
-mass_atomic_mass = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'u', name: 'atomic mass', to_base: '/0.000000000000000000000000166054'
-mass_pound = UnitOfMeasurement.find_or_create_by! quantity: mass, symbol: 'lbs', name: 'pound', to_base: '/4.53592'
+kilogram = UnitOfMeasurement.find_or_create_by! symbol: 'kg', name: 'kilogram', base: true
+kilogram.connected_quantities.build quantity: mass
+exagram = UnitOfMeasurement.find_or_create_by! symbol: 'Eg', name: 'exagram', to_base: '*1000000000000000'
+exagram.connected_quantities.build quantity: mass
+petagram = UnitOfMeasurement.find_or_create_by! symbol: 'Pg', name: 'petagram', to_base: '*1000000000000'
+petagram.connected_quantities.build quantity: mass
+teragram = UnitOfMeasurement.find_or_create_by! symbol: 'Tg', name: 'teragram', to_base: '*1000000000'
+teragram.connected_quantities.build quantity: mass
+gigagram = UnitOfMeasurement.find_or_create_by! symbol: 'Gg', name: 'gigagram', to_base: '*1000000'
+gigagram.connected_quantities.build quantity: mass
+megagram = UnitOfMeasurement.find_or_create_by! symbol: 'Mg', name: 'megagram', to_base: '*1000'
+megagram.connected_quantities.build quantity: mass
+gram = UnitOfMeasurement.find_or_create_by! symbol: 'g', name: 'gram', to_base: '/1000'
+gram.connected_quantities.build quantity: mass
+miligram = UnitOfMeasurement.find_or_create_by! symbol: 'mg', name: 'miligram', to_base: '/1000000'
+miligram.connected_quantities.build quantity: mass
+microgram = UnitOfMeasurement.find_or_create_by! symbol: 'µg', name: 'microgram', to_base: '/1000000000'
+microgram.connected_quantities.build quantity: mass
+nanogram = UnitOfMeasurement.find_or_create_by! symbol: 'ng', name: 'nanogram', to_base: '/10000000000000'
+nanogram.connected_quantities.build quantity: mass
+picogram = UnitOfMeasurement.find_or_create_by! symbol: 'pg', name: 'picogram', to_base: '/1000000000000000'
+picogram.connected_quantities.build quantity: mass
+femtogram = UnitOfMeasurement.find_or_create_by! symbol: 'fg', name: 'femtogram', to_base: '/1000000000000000000'
+femtogram.connected_quantities.build quantity: mass
+attogram = UnitOfMeasurement.find_or_create_by! symbol: 'ag', name: 'attogram', to_base: '/1000000000000000000000'
+attogram.connected_quantities.build quantity: mass
+zeptogram = UnitOfMeasurement.find_or_create_by! symbol: 'zg', name: 'zeptogram', to_base: '/1000000000000000000000000'
+zeptogram.connected_quantities.build quantity: mass
+yoctogram = UnitOfMeasurement.find_or_create_by! symbol: 'yg', name: 'yoctogram', to_base: '/1000000000000000000000000000'
+yoctogram.connected_quantities.build quantity: mass
+atomic_mass = UnitOfMeasurement.find_or_create_by! symbol: 'u', name: 'atomic mass', to_base: '/0.000000000000000000000000166054'
+atomic_mass.connected_quantities.build quantity: mass
+pound = UnitOfMeasurement.find_or_create_by! symbol: 'lbs', name: 'pound', to_base: '/4.53592'
+pound.connected_quantities.build quantity: mass
 
 # Time
 time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event'
-time_second = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 's', name: 'second', base: true
-time_milisecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'ms', name: 'milisecond', to_base: '/1000'
-time_microsecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'µs', name: 'microsecond', to_base: '/1000000'
-time_nanosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'ns', name: 'nanosecond', to_base: '/1000000000'
-time_picosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'ps', name: 'picosecond', to_base: '/1000000000000'
-time_femtosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'fs', name: 'femtosecond', to_base: '/1000000000000000'
-time_attosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'as', name: 'attosecond', to_base: '/1000000000000000000'
-time_zeptosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zs', name: 'zeptosecond', to_base: '/1000000000000000000000'
-time_yoctosecond = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'ys', name: 'yoctosecond', to_base: '/1000000000000000000000000'
-time_minute = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'min', name: 'minute', to_base: '*60'
-time_hour = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'h', name: 'hour', to_base: '*3600'
-time_day = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'd', name: 'day', to_base: '*86400'
-time_week = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'week', name: 'week', to_base: '*604800'
-time_year = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'year', name: 'year', to_base: '*31557600'
+second = UnitOfMeasurement.find_or_create_by! symbol: 's', name: 'second', base: true
+second.connected_quantities.build quantity: time
+milisecond = UnitOfMeasurement.find_or_create_by! symbol: 'ms', name: 'milisecond', to_base: '/1000'
+milisecond.connected_quantities.build quantity: time
+microsecond = UnitOfMeasurement.find_or_create_by! symbol: 'µs', name: 'microsecond', to_base: '/1000000'
+microsecond.connected_quantities.build quantity: time
+nanosecond = UnitOfMeasurement.find_or_create_by! symbol: 'ns', name: 'nanosecond', to_base: '/1000000000'
+nanosecond.connected_quantities.build quantity: time
+picosecond = UnitOfMeasurement.find_or_create_by! symbol: 'ps', name: 'picosecond', to_base: '/1000000000000'
+picosecond.connected_quantities.build quantity: time
+femtosecond = UnitOfMeasurement.find_or_create_by! symbol: 'fs', name: 'femtosecond', to_base: '/1000000000000000'
+femtosecond.connected_quantities.build quantity: time
+attosecond = UnitOfMeasurement.find_or_create_by! symbol: 'as', name: 'attosecond', to_base: '/1000000000000000000'
+attosecond.connected_quantities.build quantity: time
+zeptosecond = UnitOfMeasurement.find_or_create_by! symbol: 'zs', name: 'zeptosecond', to_base: '/1000000000000000000000'
+zeptosecond.connected_quantities.build quantity: time
+yoctosecond = UnitOfMeasurement.find_or_create_by! symbol: 'ys', name: 'yoctosecond', to_base: '/1000000000000000000000000'
+yoctosecond.connected_quantities.build quantity: time
+minute = UnitOfMeasurement.find_or_create_by! symbol: 'min', name: 'minute', to_base: '*60'
+minute.connected_quantities.build quantity: time
+hour = UnitOfMeasurement.find_or_create_by! symbol: 'h', name: 'hour', to_base: '*3600'
+hour.connected_quantities.build quantity: time
+day = UnitOfMeasurement.find_or_create_by! symbol: 'd', name: 'day', to_base: '*86400'
+day.connected_quantities.build quantity: time
+week = UnitOfMeasurement.find_or_create_by! symbol: 'week', name: 'week', to_base: '*604800'
+week.connected_quantities.build quantity: time
+year = UnitOfMeasurement.find_or_create_by! symbol: 'year', name: 'year', to_base: '*31557600'
+year.connected_quantities.build quantity: time
 
 # Electric current
 electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
-electric_current_ampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere', base: true
-electric_current_miliampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'mA', name: 'miliampere', to_base: '/1000'
-electric_current_microampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'µA', name: 'microampere', to_base: '/1000000'
-electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'nA', name: 'nanoampere', to_base: '/1000000000'
-electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'pA', name: 'picoampere', to_base: '/1000000000000'
-electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'fA', name: 'femtoampere', to_base: '/1000000000000000'
-electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'aA', name: 'attoampere', to_base: '/1000000000000000000'
-electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
-electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: time, symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
+ampere = UnitOfMeasurement.find_or_create_by! symbol: 'A', name: 'ampere', base: true
+ampere.connected_quantities.build quantity: electric_current
+miliampere = UnitOfMeasurement.find_or_create_by! symbol: 'mA', name: 'miliampere', to_base: '/1000'
+miliampere.connected_quantities.build quantity: electric_current
+microampere = UnitOfMeasurement.find_or_create_by! symbol: 'µA', name: 'microampere', to_base: '/1000000'
+microampere.connected_quantities.build quantity: electric_current
+nanoampere = UnitOfMeasurement.find_or_create_by! symbol: 'nA', name: 'nanoampere', to_base: '/1000000000'
+nanoampere.connected_quantities.build quantity: electric_current
+picoampere = UnitOfMeasurement.find_or_create_by! symbol: 'pA', name: 'picoampere', to_base: '/1000000000000'
+picoampere.connected_quantities.build quantity: electric_current
+femtoampere = UnitOfMeasurement.find_or_create_by! symbol: 'fA', name: 'femtoampere', to_base: '/1000000000000000'
+femtoampere.connected_quantities.build quantity: electric_current
+attoampere = UnitOfMeasurement.find_or_create_by! symbol: 'aA', name: 'attoampere', to_base: '/1000000000000000000'
+attoampere.connected_quantities.build quantity: electric_current
+zeptoampere = UnitOfMeasurement.find_or_create_by! symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
+zeptoampere.connected_quantities.build quantity: electric_current
+yoctoampere = UnitOfMeasurement.find_or_create_by! symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
+yoctoampere.connected_quantities.build quantity: electric_current
 
 # Temperature
 temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
-temperature_kelvin = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: 'K', name: 'kelvin', base: true
-temperature_celcius = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: '°C', name: 'celcius', to_base: '+273.15'
-temperature_fahrenheit = UnitOfMeasurement.find_or_create_by! quantity: temperature, symbol: '°F', name: 'fahrenheit', to_base: '*(5/9)+459.67*(5/9)'
+kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base: true
+kelvin.connected_quantities.build quantity: temperature
+celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'celcius', to_base: '+273.15'
+celcius.connected_quantities.build quantity: temperature
+fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'fahrenheit', to_base: '*(5/9)+459.67*(5/9)', from_base: '*(5/9)+459.67*(5/9)' ##### UPDATE CONVERSIONS ######
+fahrenheit.connected_quantities.build quantity: temperature
 
 # Amount of substance
 amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
-amount_of_substance_mole = UnitOfMeasurement.find_or_create_by! quantity: amount_of_substance, symbol: 'mol', name: 'mole', base: true
+mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol', name: 'mole', base: true
+mole.connected_quantities.build quantity: amount_of_substance
 
 # Luminous intensity
 luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
-luminous_intensity_candela = UnitOfMeasurement.find_or_create_by! quantity: luminous_intensity, symbol: 'cd', name: 'candela', base: true
+candela = UnitOfMeasurement.find_or_create_by! symbol: 'cd', name: 'candela', base: true
+candela.connected_quantities.build quantity: luminous_intensity
 
 
 # Acceleration
 acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
-acceleration_meter_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: acceleration, symbol: 'm s<sup>-2</sup>', name: 'meter per square second', base: true
+meter_per_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm s<sup>-2</sup>', name: 'meter per square second', base: true
+meter_per_square_second.connected_quantities.build quantity: acceleration
 
 # Angular acceleration
 angular_acceleration = Quantity.find_or_create_by! symbol: 'a<sub>α</sub>', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time'
-angular_acceleration_rad_per_square_second = UnitOfMeasurement.find_or_create_by! quantity: angular_acceleration, symbol: 'rad s<sup>-2</sup>', name: 'rad per square second', base: true
+rad_per_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'rad s<sup>-2</sup>', name: 'rad per square second', base: true
+rad_per_square_second.connected_quantities.build quantity: angular_acceleration
 
 # Angular velocity
 angular_velocity = Quantity.find_or_create_by! symbol: 'ω', name: 'Angular velocity', description: 'The angle incremented in a plane by a segment connecting an object and a reference point per unit time'
-angular_velocity_rad_per_second = UnitOfMeasurement.find_or_create_by! quantity: angular_velocity, symbol: 'rad s<sup>-1</sup>', name: 'rad per second', base: true
+rad_per_second = UnitOfMeasurement.find_or_create_by! symbol: 'rad s<sup>-1</sup>', name: 'rad per second', base: true
+rad_per_second.connected_quantities.build quantity: angular_velocity
 
 # Area
 area = Quantity.find_or_create_by! symbol: 'A', name: 'Area', description: 'Extent of a surface'
-area_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area, symbol: 'm²', name: 'square meter', base: true
+square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm²', name: 'square meter', base: true
+square_meter.connected_quantities.build quantity: area
 
 # Area density
 area_density = Quantity.find_or_create_by! symbol: 'ρ<sub>A</sub>', name: 'Area density', description: 'Mass per unit area'
-area_density_kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: area_density, symbol: 'kg m<sup>-2</sup>', name: 'kilogram per square meter', base: true
+kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'kg m<sup>-2</sup>', name: 'kilogram per square meter', base: true
+kilogram_per_square_meter.connected_quantities.build quantity: area_density
 
 # Capacitance
 capacitance = Quantity.find_or_create_by! symbol: 'C', name: 'Capacitance', description: 'Stored charge per unit electric potential'
-capacitance_farad = UnitOfMeasurement.find_or_create_by! quantity: capacitance, symbol: 'F', name: 'farad', base: true
+farad = UnitOfMeasurement.find_or_create_by! symbol: 'F', name: 'farad', base: true
+farad.connected_quantities.build quantity: capacitance
 
 # Chemical potential
 chemical_potential = Quantity.find_or_create_by! symbol: 'μ<sub>ch</sub>', name: 'Chemical potential', description: 'Energy per unit change in amount of substance'
-chemical_potential_joule_per_mole = UnitOfMeasurement.find_or_create_by! quantity: chemical_potential, symbol: 'J mol<sup>-1</sup>', name: 'joule per mole', base: true
+joule_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J mol<sup>-1</sup>', name: 'joule per mole', base: true
+joule_per_mole.connected_quantities.build quantity: chemical_potential
 
 # Current density
 current_density = Quantity.find_or_create_by! symbol: 'J', name: 'Current density', description: 'Electric current per unit cross-section area', vector: true
-current_density_ampere_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: current_density, symbol: 'A m<sup>-2</sup>', name: 'ampere per square meter', base: true
+ampere_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'A m<sup>-2</sup>', name: 'ampere per square meter', base: true
+ampere_per_square_meter.connected_quantities.build quantity: current_density
 
 # Electric charge
 electric_charge = Quantity.find_or_create_by! symbol: 'Q', name: 'Electric charge', description: 'The force per unit electric field strength'
-electric_charge_coulomb = UnitOfMeasurement.find_or_create_by! quantity: electric_charge, symbol: 'C', name: 'coulomb', base: true
+coulomb = UnitOfMeasurement.find_or_create_by! symbol: 'C', name: 'coulomb', base: true
+coulomb.connected_quantities.build quantity: electric_charge
 
 # Electric charge density
 electric_charge_density = Quantity.find_or_create_by! symbol: 'ρ<sub>Q</sub>', name: 'Electric charge density', description: 'Electric charge per unit volume'
-electric_charge_density_coulomb_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_charge_density, symbol: 'C m<sup>-3</sup>', name: 'coulomb per cubic meter', base: true
+coulomb_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'C m<sup>-3</sup>', name: 'coulomb per cubic meter', base: true
+coulomb_per_cubic_meter.connected_quantities.build quantity: electric_charge_density
 
 # Electric displacement
 electric_displacement = Quantity.find_or_create_by! symbol: 'D', name: 'Electric displacement', description: 'Strength of the electric displacement', vector: true
-electric_displacement_coulomb_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_displacement, symbol: 'C m<sup>-2</sup>', name: 'coulomb per square meter', base: true
+coulomb_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'C m<sup>-2</sup>', name: 'coulomb per square meter', base: true
+coulomb_per_square_meter.connected_quantities.build quantity: electric_displacement
 
 # Electric field strength
 electric_field_strength = Quantity.find_or_create_by! symbol: 'E', name: 'Electric field strength', description: 'Strength of the electric field', vector: true
-electric_field_strength_volt_per_meter = UnitOfMeasurement.find_or_create_by! quantity: electric_field_strength, symbol: 'V m<sup>-1</sup>', name: 'volt per meter', base: true
+volt_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'V m<sup>-1</sup>', name: 'volt per meter', base: true
+volt_per_meter.connected_quantities.build quantity: electric_field_strength
 
 # Electrical conductance
 electrical_conductance = Quantity.find_or_create_by! symbol: 'G', name: 'Electrical conductance', description: 'Measure for how easily current flows through a material'
-electrical_conductance_siemens = UnitOfMeasurement.find_or_create_by! quantity: electrical_conductance, symbol: 'S', name: 'siemens', base: true
+siemens = UnitOfMeasurement.find_or_create_by! symbol: 'S', name: 'siemens', base: true
+siemens.connected_quantities.build quantity: electrical_conductance
 
 # Electrical conductivity
 electrical_conductivity = Quantity.find_or_create_by! symbol: 'σ', name: 'Electrical conductivity', description: "Measure of a material's ability to conduct an electric current"
-electrical_conductivity_siemens_per_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_conductivity, symbol: 'S m<sup>-1</sup>', name: 'siemens per meter', base: true
+siemens_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'S m<sup>-1</sup>', name: 'siemens per meter', base: true
+siemens_per_meter.connected_quantities.build quantity: electrical_conductivity
 
 # Electric potential
 electric_potential = Quantity.find_or_create_by! symbol: 'U', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point'
-electric_potential_volt = UnitOfMeasurement.find_or_create_by! quantity: electric_potential, symbol: 'V', name: 'volt', base: true
+volt = UnitOfMeasurement.find_or_create_by! symbol: 'V', name: 'volt', base: true
+volt.connected_quantities.build quantity: electric_potential
 
 # Electrical resistance
 electrical_resistance = Quantity.find_or_create_by! symbol: 'R', name: 'Electrical resistance', description: 'Electric potential per unit electric current'
-electrical_resistance_ohm = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistance, symbol: 'Ω', name: 'ohm', base: true
+ohm = UnitOfMeasurement.find_or_create_by! symbol: 'Ω', name: 'ohm', base: true
+ohm.connected_quantities.build quantity: electrical_resistance
 
 # Electrical resistivity
 electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ<sub>el</sub>', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance'
-electrical_resistivity_ohm_meter = UnitOfMeasurement.find_or_create_by! quantity: electrical_resistivity, symbol: 'Ω m', name: 'ohm meter', base: true
+ohm_meter = UnitOfMeasurement.find_or_create_by! symbol: 'Ω m', name: 'ohm meter', base: true
+ohm_meter.connected_quantities.build quantity: electrical_resistivity
 
 # Energy
 energy = Quantity.find_or_create_by! symbol: 'E<sub>i</sub>', name: 'Energy', description: 'Capacity of a body or system to do work'
-energy_joule = UnitOfMeasurement.find_or_create_by! quantity: energy, symbol: 'J', name: 'joule', base: true
+joule = UnitOfMeasurement.find_or_create_by! symbol: 'J', name: 'joule', base: true
+joule.connected_quantities.build quantity: energy
 
 # Energy density
 energy_density = Quantity.find_or_create_by! symbol: 'ρ<sub>E</sub>', name: 'Energy density', description: 'Energy per unit volume'
-energy_density_joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: energy_density, symbol: 'J m<sup>-3</sup>', name: 'joule per cubic meter', base: true
+joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'J m<sup>-3</sup>', name: 'joule per cubic meter', base: true
+joule_per_cubic_meter.connected_quantities.build quantity: energy_density
 
 # Entropy
 entropy = Quantity.find_or_create_by! symbol: 'S<sub>sys</sub>', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system'
-entropy_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: entropy, symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
+joule_per_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
+joule_per_kelvin.connected_quantities.build quantity: entropy
 
 # Force
 force = Quantity.find_or_create_by! symbol: 'F', name: 'Force', description: 'Transfer of momentum per unit time', vector: true
-force_newton = UnitOfMeasurement.find_or_create_by! quantity: force, symbol: 'N', name: 'newton', base: true
+newton = UnitOfMeasurement.find_or_create_by! symbol: 'N', name: 'newton', base: true
+newton.connected_quantities.build quantity: force
 
 # Frequency
 frequency = Quantity.find_or_create_by! symbol: 'f', name: 'Frequency', description: 'Number of (periodic) occurrences per unit time'
-frequency_hertz = UnitOfMeasurement.find_or_create_by! quantity: frequency, symbol: 'Hz', name: 'hertz', base: true
+hertz = UnitOfMeasurement.find_or_create_by! symbol: 'Hz', name: 'hertz', base: true
+hertz.connected_quantities.build quantity: frequency
 
 # Heat
 heat = Quantity.find_or_create_by! symbol: 'Q<sub>th</sub>', name: 'Heat', description: 'Thermal energy'
-heat_joule = UnitOfMeasurement.find_or_create_by! quantity: heat, symbol: 'J', name: 'joule', base: true
+joule = UnitOfMeasurement.find_or_create_by! symbol: 'J', name: 'joule', base: true
+joule.connected_quantities.build quantity: heat
 
 # Heat capacity
 heat_capacity = Quantity.find_or_create_by! symbol: 'C<sub>p</sub>', name: 'Heat capacity', description: 'Energy per unit temperature change'
-heat_capacity_joule_per_kelvin = UnitOfMeasurement.find_or_create_by! quantity: heat_capacity, symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
+joule_per_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
+joule_per_kelvin.connected_quantities.build quantity: heat_capacity
 
 # Heat flux density
-heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕ<sub>Q</sub>', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area' ##### Q should be an index #####
-heat_flux_density_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: heat_flux_density, symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
+heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕ<sub>Q</sub>', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area'
+watt_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
+watt_per_square_meter.connected_quantities.build quantity: heat_flux_density
 
 # Illuminance
 illuminance = Quantity.find_or_create_by! symbol: 'E<sub>v</sub>', name: 'Illuminance', description: 'Luminous flux per unit surface area'
-illuminance_lux = UnitOfMeasurement.find_or_create_by! quantity: illuminance, symbol: 'lx', name: 'lux', base: true
+lux = UnitOfMeasurement.find_or_create_by! symbol: 'lx', name: 'lux', base: true
+lux.connected_quantities.build quantity: illuminance
 
 # Impedance
 impedance = Quantity.find_or_create_by! symbol: 'Z', name: 'Impedance', description: 'Resistance to an alternating current of a given frequency, including effect on phase'
-impedance_ohm = UnitOfMeasurement.find_or_create_by! quantity: impedance, symbol: 'Ω', name: 'ohm', base: true
+ohm = UnitOfMeasurement.find_or_create_by! symbol: 'Ω', name: 'ohm', base: true
+ohm.connected_quantities.build quantity: impedance
 
 # Impulse
 impulse = Quantity.find_or_create_by! symbol: 'Δp', name: 'Impulse', description: 'Transferred momentum', vector: true
-impulse_newton_second = UnitOfMeasurement.find_or_create_by! quantity: impulse, symbol: 'N s', name: 'newton second', base: true
+newton_second = UnitOfMeasurement.find_or_create_by! symbol: 'N s', name: 'newton second', base: true
+newton_second.connected_quantities.build quantity: impulse
 
 # Inductance
 inductance = Quantity.find_or_create_by! symbol: 'L<sub>m</sub>', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit'
-inductance_henry = UnitOfMeasurement.find_or_create_by! quantity: inductance, symbol: 'H', name: 'henry', base: true
+henry = UnitOfMeasurement.find_or_create_by! symbol: 'H', name: 'henry', base: true
+henry.connected_quantities.build quantity: inductance
 
 # Intensity
 intensity = Quantity.find_or_create_by! symbol: 'I<sub>P</sub>', name: 'Intensity', description: 'Power per unit cross sectional area'
-intensity_watt_per_square_meter = UnitOfMeasurement.find_or_create_by! quantity: intensity, symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
+watt_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
+watt_per_square_meter.connected_quantities.build quantity: intensity
 
 # Luminous flux
 luminous_flux = Quantity.find_or_create_by! symbol: 'F<sub>ph</sub>', name: 'Luminous flux', description: 'Perceived power of a light source'
-luminous_flux_lumen = UnitOfMeasurement.find_or_create_by! quantity: luminous_flux, symbol: 'lm', name: 'lumen', base: true
+lumen = UnitOfMeasurement.find_or_create_by! symbol: 'lm', name: 'lumen', base: true
+lumen.connected_quantities.build quantity: luminous_flux
 
 # Magnetic field strength
 magnetic_field_strength = Quantity.find_or_create_by! symbol: 'H', name: 'Magnetic field strength', description: 'Strength of a magnetic field', vector: true
-magnetic_field_strength_ampere_per_meter = UnitOfMeasurement.find_or_create_by! quantity: magnetic_field_strength, symbol: 'A m<sup>-1</sup>', name: 'ampere per meter', base: true
+ampere_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'A m<sup>-1</sup>', name: 'ampere per meter', base: true
+ampere_per_meter.connected_quantities.build quantity: magnetic_field_strength
 
 # Magnetic flux
 magnetic_flux = Quantity.find_or_create_by! symbol: 'Φ', name: 'Magnetic flux', description: 'Measure of magnetism, taking account of the strength and the extent of a magnetic field'
-magnetic_flux_weber = UnitOfMeasurement.find_or_create_by! quantity: magnetic_flux, symbol: 'Wb', name: 'weber', base: true
+weber = UnitOfMeasurement.find_or_create_by! symbol: 'Wb', name: 'weber', base: true
+weber.connected_quantities.build quantity: magnetic_flux
 
 # Magnetic flux density
 magnetic_flux_density = Quantity.find_or_create_by! symbol: 'B', name: 'Magnetic flux density', description: 'Measure for the strength of the magnetic field'
-magnetic_flux_density_tesla = UnitOfMeasurement.find_or_create_by! quantity: magnetic_flux_density, symbol: 'T', name: 'tesla', base: true
+tesla = UnitOfMeasurement.find_or_create_by! symbol: 'T', name: 'tesla', base: true
+tesla.connected_quantities.build quantity: magnetic_flux_density
 
 # Magnetization
 magnetization = Quantity.find_or_create_by! symbol: 'M', name: 'Magnetization', description: 'Amount of magnetic moment per unit volume', vector: true
-magnetization_ampere_per_meter = UnitOfMeasurement.find_or_create_by! quantity: magnetization, symbol: 'A m<sup>-1</sup>', name: 'ampere per meter', base: true
+ampere_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'A m<sup>-1</sup>', name: 'ampere per meter', base: true
+ampere_per_meter.connected_quantities.build quantity: magnetization
 
 # Density
 density = Quantity.find_or_create_by! symbol: 'ρ', name: 'Density', description: 'Mass per unit volume'
-density_kilogram_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: density, symbol: 'kg m<sup>-3</sup>', name: 'kilogram per cubic meter', base: true
+kilogram_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'kg m<sup>-3</sup>', name: 'kilogram per cubic meter', base: true
+kilogram_per_cubic_meter.connected_quantities.build quantity: density
 
 # Molar concentration
 molar_concentration = Quantity.find_or_create_by! symbol: 'C<sub>mol</sub>', name: 'Molar concentration', description: 'Amount of substance per unit volume'
-molar_concentration_mole_per_cubic_meter = UnitOfMeasurement.find_or_create_by! quantity: molar_concentration, symbol: 'mol m<sup>-3</sup>', name: 'mole per cubic meter', base: true
+mole_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'mol m<sup>-3</sup>', name: 'mole per cubic meter', base: true
+mole_per_cubic_meter.connected_quantities.build quantity: molar_concentration
 
 # Molar heat capacity
 molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c<sub>mol</sub>', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance'
-molar_heat_capacity_joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! quantity: molar_heat_capacity, symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole', base: true
+joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole', base: true
+joule_per_kelvin_mole.connected_quantities.build quantity: molar_heat_capacity
 
 # Moment of inertia
 moment_of_inertia = Quantity.find_or_create_by! symbol: 'I<sub>m</sub>', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration'

@@ -5,6 +5,7 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
             t.string :symbol
             t.boolean :base, default: false, null: false
             t.string :to_base, default: '*1', null: false
+            t.string :from_base
 
             t.timestamps
 
