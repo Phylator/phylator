@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019050440) do
+ActiveRecord::Schema.define(version: 20171019100413) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -68,6 +68,28 @@ ActiveRecord::Schema.define(version: 20171019050440) do
     t.index ["quantity_id"], name: "index_calculations_on_quantity_id"
     t.index ["unit_of_measurement_id"], name: "index_calculations_on_unit_of_measurement_id"
     t.index ["user_id"], name: "index_calculations_on_user_id"
+  end
+
+  create_table "constant_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "constant_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.index ["constant_id"], name: "index_constant_translations_on_constant_id"
+    t.index ["locale"], name: "index_constant_translations_on_locale"
+  end
+
+  create_table "constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "unit_of_measurement_id"
+    t.string "symbol"
+    t.text "value", null: false
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_constants_on_slug"
+    t.index ["unit_of_measurement_id"], name: "index_constants_on_unit_of_measurement_id"
   end
 
   create_table "equation_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -164,13 +186,12 @@ ActiveRecord::Schema.define(version: 20171019050440) do
   end
 
   create_table "unit_of_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "quantity_id"
     t.string "symbol"
     t.boolean "base", default: false, null: false
     t.string "to_base", default: "*1", null: false
+    t.string "from_base"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["quantity_id"], name: "index_unit_of_measurements_on_quantity_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

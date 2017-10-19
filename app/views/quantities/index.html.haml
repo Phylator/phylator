@@ -11,3 +11,15 @@
                         ·
                         %span= t 'd.vector'
             = asset 'components/list/item-open.svg'
+
+
+%h1= t 'cd.physical_constants'
+
+.cards
+    - @constants.with_translations(I18n.locale).order(:name).each do |constant|
+        = link_to constant, class: 'card' do
+            .wrapper
+                %h2.small= constant.sym
+                %p.small
+                    %span= constant.name
+            = asset 'components/list/item-open.svg'

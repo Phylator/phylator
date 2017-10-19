@@ -7,7 +7,8 @@ class UnitOfMeasurement < ApplicationRecord
     validates :to_base, presence: true
 
     has_many :quantities, through: :connected_quantities
-    has_many :connected_quantities, class_name: 'UnitOfMeasurement::Quantity', source: :quantity
+    has_many :connected_quantities, class_name: 'UnitOfMeasurement::Quantity', source: :quantity, dependent: :destroy
+    has_many :constants
     has_many :measurements, class_name: 'Calculation::Measurement'
 
     def sym

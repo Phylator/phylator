@@ -1,0 +1,24 @@
+= link_to url_for(:back), class: 'back' do
+    = asset 'components/back.svg'
+
+.tools
+    .copy{ data: { clipboard_text: @constant.value.to_s } }= asset 'icons/ungroup.svg'
+
+
+
+.head-wrapper
+    %h2.copy{ data: { clipboard_text: @constant.value.to_s } }
+        = @constant.pretty_value
+        %span= @constant.unit_of_measurement.sym
+
+.content-wrapper
+    %p
+        = @constant.description
+
+    %h3= t 'd.unit_of_measurement'
+    .cards
+        .card
+            .wrapper
+                %h2.small= @constant.unit_of_measurement.sym
+                %p.small
+                    %span= @constant.unit_of_measurement.name

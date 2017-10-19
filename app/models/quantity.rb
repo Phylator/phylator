@@ -5,12 +5,13 @@ class Quantity < ApplicationRecord
     friendly_id :slug_candidates, use: :slugged
     translates :name, :description
 
-    validates :symbol, presence: true, uniqueness: true
-    validates :name, presence: true, uniqueness: true
+    include Uniqueness
+    validates :symbol, presence: true
+    validates :name, presence: true
     validates :description, presence: true
 
     has_many :unit_of_measurements, through: :connected_unit_of_measurements
-    has_many :connected_unit_of_measurements, class_name: 'UnitOfMeasurement::Quantity', source: :unit_of_measurement
+    has_many :connected_unit_of_measurements, class_name: 'UnitOfMeasurement::Quantity', source: :unit_of_measurement, dependent: :destroy
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
 

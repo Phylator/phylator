@@ -18,5 +18,6 @@ en:
         undefined: Undefinded
         update: Update
         unit: Unit
+        unit_of_measurement: Unit of measurement
         value: Value
         vector: Vector
