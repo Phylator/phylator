@@ -7,7 +7,7 @@ class Quantity < ApplicationRecord
 
     include Uniqueness
     validates :symbol, presence: true
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :description, presence: true
 
     has_many :connected_unit_of_measurements, class_name: 'UnitOfMeasurement::Quantity', source: :unit_of_measurement, dependent: :destroy
