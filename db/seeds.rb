@@ -524,7 +524,7 @@ compton_wavelength_of_an_electron.update_attributes name: 'Compton-Wellenlänge 
 ## Faraday constant
 ampere_second_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'A s mol<sup>-1</sup>', name: 'ampere second per mole'
 ampere_second_per_mole.update_attributes name: 'Amperesekunde pro Mol', locale: :de
-faraday_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Faraday constant', value: '9.648534*10^4', unit_of_measurement: ampere_second_per_mole
+faraday_constant = Constant.find_or_create_by! symbol: 'F<sub>A</sub>', name: 'Faraday constant', value: '9.648534*10^4', unit_of_measurement: ampere_second_per_mole
 faraday_constant.update_attributes name: 'Faraday-Konstante', locale: :de
 
 ## Loschmidt constant
