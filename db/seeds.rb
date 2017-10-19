@@ -544,7 +544,7 @@ rydberg_frequency.update_attributes name: 'Rydberg-Frequenz', locale: :de
 ## Stefan-Boltzmann constant
 watt_per_square_meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup> K<sup>-4</sup>', name: 'watt per square meter kelvin'
 watt_per_square_meter_kelvin.update_attributes name: 'Watt pro Quadratmeterkelvin', locale: :de
-stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ', name: 'Stefan-Boltzmann constant', value: '5.670400*10^-8', unit_of_measurement: watt_per_square_meter_kelvin
+stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ<sub>B</sub>', name: 'Stefan-Boltzmann constant', value: '5.670400*10^-8', unit_of_measurement: watt_per_square_meter_kelvin
 stefan_boltzmann_constant.update_attributes name: 'Stefan-Boltzmann-Konstante', locale: :de
 
 ## Gas constant
