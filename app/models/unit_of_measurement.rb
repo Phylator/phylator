@@ -2,11 +2,12 @@ class UnitOfMeasurement < ApplicationRecord
 
     translates :name
 
-    validates :symbol, presence: true
-    validates :name, presence: true
+    validates :symbol, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: true
     validates :to_base, presence: true
 
-    belongs_to :quantity
+    has_many :quantities, through: :connected_quantities
+    has_many :connected_quantities, class_name: 'UnitOfMeasurement::Quantity', source: :quantity
     has_many :measurements, class_name: 'Calculation::Measurement'
 
     def sym

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918165810) do
+ActiveRecord::Schema.define(version: 20171019050440) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(version: 20170918165810) do
     t.string "name", collation: "utf8_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "unit_of_measurement_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "quantity_id"
+    t.bigint "unit_of_measurement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quantity_id"], name: "index_unit_of_measurement_quantities_on_quantity_id"
+    t.index ["unit_of_measurement_id"], name: "index_unit_of_measurement_quantities_on_unit_of_measurement_id"
   end
 
   create_table "unit_of_measurement_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

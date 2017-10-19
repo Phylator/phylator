@@ -2,8 +2,6 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
     def change
         create_table :unit_of_measurements do |t|
 
-            t.references :quantity, index: true
-
             t.string :symbol
             t.boolean :base, default: false, null: false
             t.string :to_base, default: '*1', null: false
