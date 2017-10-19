@@ -21,67 +21,87 @@ class Calculation::Result < ApplicationRecord
         calculator = Dentaku::Calculator.new
 
         # Init variables & convert to base
+        ## Group measurements by quantity
         measurements_per_quantity = self.calculation.measurements.group_by &:quantity_id
+        ## Initialize arrays
         decimal_places = []
-        decimal_places_errors = []
-        symbols = []
+        # decimal_places_errors = []
+        # symbols = []
         measurements_per_quantity.each do |quantity_id, measurements|
+            ## Pick first measurement for quantity
             measurement = measurements.first
+            var = measurement.value
+            # margin_of_error = measurement.margin_of_error
+            ## Get symbol for quantity
             symbol = ::Quantity.find(quantity_id).pure_sym
-            symbols << symbol
-            if measurement.unit_of_measurement.base?
-                var = measurement.value
-                margin_of_error = measurement.margin_of_error
-            else
-                var = calculator.evaluate( measurement.value.to_s + measurement.unit_of_measurement.to_base )
-                margin_of_error = calculator.evaluate( measurement.margin_of_error.to_s + measurement.unit_of_measurement.to_base )
-            end
+            # symbols << symbol
+            ## Store decimal places of measurement
             decimal_places << decimals(var)
-            decimal_places_errors << decimals(margin_of_error)
+            # decimal_places_errors << decimals(margin_of_error)
+            ## Convert measurement to base unit
+            unless measurement.unit_of_measurement.base?
+                var = calculator.evaluate var.to_s + measurement.unit_of_measurement.to_base
+                # margin_of_error = calculator.evaluate( margin_of_error.to_s + measurement.unit_of_measurement.to_base )
+            end
+            ## Store variable in calculator
+            calculator.store "#{symbol}": var.to_f
+            # calculator.store "#{symbol}_error": margin_of_error
+        end
+
+        # Add constants
+        Constant.all.each do |constant|
+            symbol = constant.pure_sym
+            var = constant.value
             calculator.store "#{symbol}": var
-            calculator.store "#{symbol}_error": margin_of_error
         end
 
         # Solve equations
+        ## Solve equations unless unit conversion is requested
         unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
-            ## Results
+            ## Add equations
             equations = {}
             ::Equation.all.each do |equation|
                 equations[equation.quantity.pure_sym] = equation.equation
-                self.calculation.equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
+                ## Associate equation with calculation if used
+                # self.calculation.equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
             end
+            ## Solve equations
             calculation_results = calculator.solve equations
-            calculation_result = calculation_results[self.calculation.quantity.sym]
+            calculation_result = calculation_results[self.calculation.quantity.pure_sym]
 
-            ## Resulting errors
-            error_equations = {}
-            ::Equation.all.each do |equation|
-                error_equations["#{equation.quantity.sym}_error"] = equation.equation # append '_error' to each variable in equation
-            end
-            calculation_errors = calculator.solve error_equations
-            calculation_error = calculation_errors["#{self.calculation.quantity.sym}_error"]
+            # ## Resulting errors
+            # error_equations = {}
+            # ::Equation.all.each do |equation|
+            #     error_equations["#{equation.quantity.sym}_error"] = equation.equation # append '_error' to each variable in equation
+            # end
+            # calculation_errors = calculator.solve error_equations
+            # calculation_error = calculation_errors["#{self.calculation.quantity.sym}_error"]
 
-            calculator.store "#{self.calculation.quantity.sym}": calculation_result if calculation_result.present?
-            calculator.store "#{self.calculation.quantity.sym}_error": calculation_error if calculation_error.present?
+            ## Store result to calculator
+            calculator.store "#{self.calculation.quantity.pure_sym}": calculation_result if calculation_result.present?
+            # calculator.store "#{self.calculation.quantity.sym}_error": calculation_error if calculation_error.present?
         end
 
-        # Convert
-        symbol = self.calculation.quantity.sym
-        base = self.calculation.unit_of_measurement.base?
-        if base
-            result = calculator.evaluate("round(#{symbol}, #{decimal_places.min})")
-            resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
+        # Convert result to requested unit
+        symbol = self.calculation.quantity.pure_sym
+        precision = decimal_places.min
+        if self.calculation.unit_of_measurement.base?
+            ## Base unit requested: Round result
+            result = calculator.evaluate "round(#{symbol}, #{precision})"
+            # resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
         else
-            result = calculator.evaluate( "round(#{symbol}, #{decimal_places.min})" + self.calculation.unit_of_measurement.from_base )
-            resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
+            ## Other unit requested: Round result & convert
+            result = calculator.evaluate "round(#{symbol}, #{precision})" + self.calculation.unit_of_measurement.from_base
+            # resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
         end
 
 
+        # Store result
         if result == :undefined
             self.undefined = true
         else
             self.value = result
-            self.margin_of_error = resulting_error
+            # self.margin_of_error = resulting_error
         end
 
     end
