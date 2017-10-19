@@ -20,7 +20,7 @@ class UnitOfMeasurement < ApplicationRecord
     end
 
     def from_base
-        self.from_base || self.to_base.tr('*/', '/*')
+        self.f_base || self.to_base.tr('*/', '/*')
     end
 
 end

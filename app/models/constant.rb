@@ -10,7 +10,6 @@ class Constant < ApplicationRecord
     include Uniqueness
     validates :symbol, presence: true
     validates :name, presence: true
-    validates :description, presence: true
     validates :value, presence: true
     validates :unit_of_measurement, presence: true
 

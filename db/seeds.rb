@@ -153,7 +153,7 @@ kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base:
 kelvin.connected_quantities.build quantity: temperature
 celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
 celcius.connected_quantities.build quantity: temperature
-fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', from_base: '*(5/9)+459.67*(5/9)' ##### UPDATE CONVERSIONS ######
+fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', f_base: '*(9/5)-459.67' ##### UPDATE CONVERSIONS ######
 fahrenheit.connected_quantities.build quantity: temperature
 
 # Amount of substance

@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20171019100413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.text "description"
     t.index ["constant_id"], name: "index_constant_translations_on_constant_id"
     t.index ["locale"], name: "index_constant_translations_on_locale"
   end
@@ -189,7 +188,7 @@ ActiveRecord::Schema.define(version: 20171019100413) do
     t.string "symbol"
     t.boolean "base", default: false, null: false
     t.string "to_base", default: "*1", null: false
-    t.string "from_base"
+    t.string "f_base"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
