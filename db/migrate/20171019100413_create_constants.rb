@@ -15,7 +15,7 @@ class CreateConstants < ActiveRecord::Migration[5.1]
 
         reversible do |dir|
             dir.up do
-                Constant.create_translation_table! name: { type: :string }, description: { type: :text }
+                Constant.create_translation_table! name: { type: :string }
             end
 
             dir.down do

@@ -19,27 +19,6 @@ class Constant < ApplicationRecord
 
     belongs_to :unit_of_measurement
 
-    def trim num
-        i, f = num.to_i, num.to_f
-        i == f ? i : f
-    end
-
-    def delimiter num
-        num.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-    end
-
-    def pretty_value
-        if self.value.to_s.size > 12
-            "%e" % trim(self.value).to_s
-        else
-            delimiter(trim(self.value))
-        end
-    end
-
-    def value_decimals
-        decimals self.value
-    end
-
     def sym
         self.symbol.html_safe
     end

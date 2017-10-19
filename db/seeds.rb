@@ -151,9 +151,9 @@ yoctoampere.connected_quantities.build quantity: electric_current
 temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
 kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base: true
 kelvin.connected_quantities.build quantity: temperature
-celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'celcius', to_base: '+273.15'
+celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
 celcius.connected_quantities.build quantity: temperature
-fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'fahrenheit', to_base: '*(5/9)+459.67*(5/9)', from_base: '*(5/9)+459.67*(5/9)' ##### UPDATE CONVERSIONS ######
+fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', from_base: '*(5/9)+459.67*(5/9)' ##### UPDATE CONVERSIONS ######
 fahrenheit.connected_quantities.build quantity: temperature
 
 # Amount of substance
@@ -464,18 +464,18 @@ joule.connected_quantities.build quantity: work
 # Constants
 
 ## Vacuum speed of light
-vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', description: 'Transferred energy', value: BigDecimal.new('2.99792458E8'), unit_of_measurement: meter_per_second
-vacuum_speed_of_light.update_attributes name: 'Lichtegeschwindigkeit im Vakuum', description: '', locale: :de
+vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', value: BigDecimal.new('2.99792458E8'), unit_of_measurement: meter_per_second
+vacuum_speed_of_light.update_attributes name: 'Lichtegeschwindigkeit im Vakuum', locale: :de
 
 ## Newtonian constant of gravitation
 cubic_meter_per_kilogram_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>', name: 'cubic meter per kilogram square second'
-newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>0</sub>', name: 'Newtonian constant of gravitation', description: 'Transferred energy', value: BigDecimal.new('6.673E-11'), unit_of_measurement: cubic_meter_per_kilogram_square_second
-newtonian_constant_of_gravitation.update_attributes name: 'Gravitationskonstante', description: '', locale: :de
+newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', value: BigDecimal.new('6.673E-11'), unit_of_measurement: cubic_meter_per_kilogram_square_second
+newtonian_constant_of_gravitation.update_attributes name: 'Gravitationskonstante', locale: :de
 
 ## Planck constant
 joule_second = UnitOfMeasurement.find_or_create_by! symbol: 'J s', name: 'joule second'
-planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', description: 'Transferred energy', value: BigDecimal.new('6.626069E-34'), unit_of_measurement: joule_second
-planck_constant.update_attributes name: 'Plancksches Wirkungsquantum', description: '', locale: :de
+planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', value: BigDecimal.new('6.626069E-34'), unit_of_measurement: joule_second
+planck_constant.update_attributes name: 'Plancksches Wirkungsquantum', locale: :de
 
 
 
@@ -570,8 +570,8 @@ yoctoampere.update_attributes name: 'Yoktoampere', locale: :de
 ## Temperature
 temperature.update_attributes name: 'Temperatur', description: 'Durchschnittliche kinetische Energie pro Freiheitsgrad eines Systems', locale: :de
 kelvin.update_attributes name: 'Kelvin', locale: :de
-celcius.update_attributes name: 'Celcius', locale: :de
-fahrenheit.update_attributes name: 'Fahrenheit', locale: :de
+celcius.update_attributes name: 'Grad Celcius', locale: :de
+fahrenheit.update_attributes name: 'Grad Fahrenheit', locale: :de
 
 ## Amount of substance
 amount_of_substance.update_attributes name: 'Stoffmenge', description: 'Anzahl der Partikel im Vergleich zur Anzahl der Atome in 0,012 kg 12C', locale: :de

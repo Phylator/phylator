@@ -1,4 +1,4 @@
-= link_to url_for(:back), class: 'back' do
+= link_to '', class: 'back preventdefault', onclick: 'history.back();' do
     = asset 'components/back.svg'
 
 .tools
@@ -13,7 +13,7 @@
 
 .content-wrapper
     %p
-        = @constant.description
+        = @constant.name
 
     %h3= t 'd.unit_of_measurement'
     .cards
