@@ -514,7 +514,7 @@ avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: '
 avogadro_constant.update_attributes name: 'Avogadro-Konstante', locale: :de
 
 ## Boltzmann constant
-boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', value: '1.380650*10^-23', unit_of_measurement: joule_per_kelvin
+boltzmann_constant = Constant.find_or_create_by! symbol: 'k<sub>B</sub>', name: 'Boltzmann constant', value: '1.380650*10^-23', unit_of_measurement: joule_per_kelvin
 boltzmann_constant.update_attributes name: 'Boltzmann-Konstante', locale: :de
 
 ## Compton wavelength of an electron
