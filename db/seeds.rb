@@ -662,8 +662,8 @@ yoctoampere.update_attributes name: 'Yoktoampere', locale: :de
 ## Temperature
 temperature.update_attributes name: 'Temperatur', description: 'Durchschnittliche kinetische Energie pro Freiheitsgrad eines Systems', locale: :de
 kelvin.update_attributes name: 'Kelvin', locale: :de
-celcius.update_attributes name: 'Grad Celcius', locale: :de
-fahrenheit.update_attributes name: 'Grad Fahrenheit', locale: :de
+degree_celcius.update_attributes name: 'Grad Celcius', locale: :de
+degree_fahrenheit.update_attributes name: 'Grad Fahrenheit', locale: :de
 
 ## Amount of substance
 amount_of_substance.update_attributes name: 'Stoffmenge', description: 'Anzahl der Partikel im Vergleich zur Anzahl der Atome in 0,012 kg 12C', locale: :de
