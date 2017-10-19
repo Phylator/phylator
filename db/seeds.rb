@@ -128,6 +128,7 @@ year.connected_quantities.build quantity: time
 
 # Electric current
 electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
+<<<<<<< HEAD
 ampere = UnitOfMeasurement.find_or_create_by! symbol: 'A', name: 'ampere', base: true
 ampere.connected_quantities.build quantity: electric_current
 miliampere = UnitOfMeasurement.find_or_create_by! symbol: 'mA', name: 'miliampere', to_base: '/1000'
@@ -146,6 +147,17 @@ zeptoampere = UnitOfMeasurement.find_or_create_by! symbol: 'zA', name: 'zeptoamp
 zeptoampere.connected_quantities.build quantity: electric_current
 yoctoampere = UnitOfMeasurement.find_or_create_by! symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
 yoctoampere.connected_quantities.build quantity: electric_current
+=======
+electric_current_ampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'A', name: 'ampere', base: true
+electric_current_miliampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'mA', name: 'miliampere', to_base: '/1000'
+electric_current_microampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'µA', name: 'microampere', to_base: '/1000000'
+electric_current_nanoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'nA', name: 'nanoampere', to_base: '/1000000000'
+electric_current_picoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'pA', name: 'picoampere', to_base: '/1000000000000'
+electric_current_femtoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'fA', name: 'femtoampere', to_base: '/1000000000000000'
+electric_current_attoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'aA', name: 'attoampere', to_base: '/1000000000000000000'
+electric_current_zeptoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'zA', name: 'zeptoampere', to_base: '/1000000000000000000000'
+electric_current_yoctoampere = UnitOfMeasurement.find_or_create_by! quantity: electric_current, symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
+>>>>>>> 4fa4cfad840f41eb509a5889a092118a0516bd3e
 
 # Temperature
 temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
