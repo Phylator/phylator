@@ -21188,7 +21188,7 @@ function flexdatalistInit(el = $('body')) {
     el.find('input.flexdatalist').flexdatalist();
 
     el.find('input.flexdatalist[data-units]').on( 'change:flexdatalist', function(event, set, options) {
-        $($(this).data('units')).data( 'data', ( 'quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text() ) ).flexdatalist().attr('disabled', 'false');
+        $($(this).data('units')).data( 'data', ( 'app/quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text() ) ).flexdatalist().attr('disabled', 'false');
     });
 
 };
@@ -21203,8 +21203,7 @@ function iframeInit() {
     var inIframe = ( window.location != window.parent.location ) ? true : false;
 
     if ( inIframe === true ) {
-        $('body').addClass('disabledTransitions');
-        $(':root').css({ 'font-size': '18px' });
+        $('body').addClass('disabledTransitions');$(':root').css({ 'font-size': '18px' });
         $('body').removeClass('disabledTransitions');
     };
 
@@ -21240,7 +21239,7 @@ function calculationsNewInit() {
     $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
         var unitName = object['name'],
             quantityId = $('input#quantity').flexdatalist('value');
-        $.getJSON( '/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
+        $.getJSON( '/app/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
             var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
                 quantityName = quantity[0].name;
             $('p.setup span.quantity').html(quantityName);

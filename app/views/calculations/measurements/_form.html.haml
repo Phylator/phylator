@@ -1,9 +1,9 @@
 - local_assigns[:id] = 1 unless local_assigns[:id]
 .measurement
     = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
-    %p.margin-of-error
-        = t 'calculations.measurements.form.margin_of_error.add'
-        = f.input :margin_of_error, as: :integer, label: t('cd.margin_of_error'), input_html: { step: 'any' }, wrapper_html: { class: 'hide' }
+    -# %p.margin-of-error
+    -#     = t 'calculations.measurements.form.margin_of_error.add'
+    -#     = f.input :margin_of_error, as: :integer, label: t('cd.margin_of_error'), input_html: { step: 'any' }, wrapper_html: { class: 'hide' }
     = f.input :quantity_id, required: true, label: t('cd.physical_quantity'), input_html: { type: :text, id: 'quantity' + local_assigns[:id].to_s, class: 'flexdatalist', data: { units: '#quantityUnits' + local_assigns[:id].to_s, data: 'app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
     = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits' + local_assigns[:id].to_s, data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity' + local_assigns[:id].to_s, selection_required: 'true', value_property: 'id', min_length: '0' } }
     = simple_remove_fields t('d.remove'), f if local_assigns[:destroy]

@@ -63,6 +63,18 @@
                         %span= measurement.quantity.name
                 = asset 'components/list/item-open.svg'
 
+
+    - if @calculation.constants.any?
+        %h3= t 'cd.physical_constants'
+        .cards
+            - @calculation.constants.each do |constant|
+                = link_to constant, class: 'card' do
+                    .wrapper
+                        %h2.small= constant.sym
+                        %p.small
+                            %span= constant.name
+                    = asset 'components/list/item-open.svg'
+
     - if @calculation.equations.any?
         %h3= t 'd.p.equations'
         .cards

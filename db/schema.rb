@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019100413) do
+ActiveRecord::Schema.define(version: 20171020201807) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20171019100413) do
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["user_id", "name"], name: "index_ahoy_events_on_user_id_and_name"
     t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name"
+  end
+
+  create_table "calculation_constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "calculation_id"
+    t.bigint "constant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calculation_id"], name: "index_calculation_constants_on_calculation_id"
+    t.index ["constant_id"], name: "index_calculation_constants_on_constant_id"
   end
 
   create_table "calculation_equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -11,6 +11,8 @@ class Calculation < ApplicationRecord
 
     has_many :calculation_equations, class_name: 'Equation', source: :equations, dependent: :destroy
     has_many :equations, through: :calculation_equations
+    has_many :calculation_constant, class_name: 'Constant', source: :constants, dependent: :destroy
+    has_many :constants, through: :calculation_constant
 
     belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
     belongs_to :quantity, class_name: '::Quantity'

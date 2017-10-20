@@ -47,7 +47,7 @@ class Calculation::Result < ApplicationRecord
         end
 
         # Add constants
-        Constant.all.each do |constant|
+        ::Constant.all.each do |constant|
             symbol = constant.pure_sym
             var = constant.value
             calculator.store "#{symbol}": var
@@ -61,7 +61,16 @@ class Calculation::Result < ApplicationRecord
             ::Equation.all.each do |equation|
                 equations[equation.quantity.pure_sym] = equation.equation
                 ## Associate equation with calculation if used
-                self.calculation.calculation_equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
+                if calculator.dependencies(equation.equation).size == 0
+                    self.calculation.calculation_equations.create! equation: equation
+                    ## Associate physical constant with calculation if used
+                    ::Constant.all.each do |constant|
+                        symbol = constant.pure_sym
+                        if equation.equation.include? symbol
+                            self.calculation.calculation_constants.create! constant: constant
+                        end
+                    end
+                end
             end
             ## Solve equations
             calculation_results = calculator.solve equations
