@@ -1,0 +1,4 @@
+en:
+    calculations:
+        destroy:
+            success: Calculation deleted

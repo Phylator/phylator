@@ -24,4 +24,4 @@
 
     .form-actions
         = f.button :submit, t('d.update')
-        = link_to t('d.delete'), registration_path(resource_name), data: { confirm: t('cd.are_you_sure?') }, method: :delete, class: 'btn warn'
+        = link_to t('d.delete'), registration_path(resource_name), data: { confirm: t('devise.registrations.edit.delete') }, method: :delete, class: 'btn warn'

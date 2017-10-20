@@ -1,0 +1,5 @@
+de:
+    calculations:
+        create:
+            success: Berechnung erfolgreich
+            error: Berechnung nicht lösbar

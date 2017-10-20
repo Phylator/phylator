@@ -1,6 +1,5 @@
 de:
     cd:
-        are_you_sure?: Bist du dir sicher?
         convert_to: Umrechnen in
         copied_to_clipboard: In Zwischenablage kopiert
         current_password: Aktuelles Passwort
@@ -9,6 +8,8 @@ de:
         unit_of_measurement: Maßeinheit
         margin_of_error: Messfehler
         new_password: Neues Passwort
+        no_permission: Nicht autorisiert
+        page_not_accessible: Seite nicht aufrufbar
         physical_constants: Naturkonstanten
         physical_quantities: Physikalische Größen
         physical_quantity: Physikalische Größe

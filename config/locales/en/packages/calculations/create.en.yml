@@ -1,0 +1,5 @@
+en:
+    calculations:
+        create:
+            success: Calculation successfull
+            error: Could not solve calculation

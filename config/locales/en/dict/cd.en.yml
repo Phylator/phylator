@@ -1,6 +1,5 @@
 en:
     cd:
-        are_you_sure?: Are you sure?
         convert_to: Convert to
         copied_to_clipboard: Copied to clipboard
         current_password: Current password
@@ -9,6 +8,8 @@ en:
         unit_of_measurement: Unit of measurement
         margin_of_error: Margin of error
         new_password: New password
+        no_permission: No permission
+        page_not_accessible: Page not accessible
         physical_constants: Physical constants
         physical_quantities: Physical quantities
         physical_quantity: Physical quantity

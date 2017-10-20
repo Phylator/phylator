@@ -31,10 +31,10 @@ class CalculationsController < ApplicationController
 
         respond_to do |format|
             if @calculation.save
-                format.html { redirect_to @calculation, notice: 'Calculation successfull' }
+                format.html { redirect_to @calculation, notice: I18n.t('calculations.create.success') }
                 format.json { render :show, status: :created, location: @calculation }
             else
-                format.html { redirect_to app_root_url, alert: 'Could not solve calculation' }
+                format.html { redirect_to app_root_url, alert: I18n.t('calculations.create.error') }
                 format.json { render json: @calculation.errors, status: :unprocessable_entity }
             end
         end
@@ -45,7 +45,7 @@ class CalculationsController < ApplicationController
     def update
         respond_to do |format|
             if @calculation.update calculation_params
-                format.html { redirect_to @calculation, notice: 'Calculation updated' }
+                format.html { redirect_to @calculation, notice: I18n.t('calculations.update.success') }
                 format.json { render :show, status: :ok, location: @calculation }
             else
                 format.html { render :edit }
@@ -59,7 +59,7 @@ class CalculationsController < ApplicationController
     def destroy
         @calculation.destroy
         respond_to do |format|
-            format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: 'Calculation deleted' }
+            format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: I18n.t('calculations.destroy.success') }
             format.json { head :no_content }
         end
     end

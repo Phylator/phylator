@@ -15,7 +15,7 @@ class Calculations::MeasurementsController < ApplicationController
     def update
         respond_to do |format|
             if @measurement.update(measurement_params)
-                format.html { redirect_to calculation_measurement_url(@measurement.calculation.id, @measurement.id), notice: 'Measurement was successfully updated.' }
+                format.html { redirect_to calculation_measurement_url(@measurement.calculation.id, @measurement.id), notice: I18n.t('calculations.measurements.update.success') }
                 format.json { render :show, status: :ok, location: @measurement }
             else
                 format.html { render :edit }
