@@ -19,7 +19,7 @@ gem 'devise', '~> 4.3'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'browser', '~> 2.5'
 gem 'friendly_id', '~> 5.2'
-gem 'dentaku', '~> 2.0'
+gem 'dentaku', github: 'rubysolo/dentaku'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -66,7 +66,7 @@ group :development do
     gem 'brakeman', '~> 3.7', require: false
 
     # Code
-    gem 'rubocop', '~> 0.49', require: false
+    gem 'rubocop', '~> 0.51', require: false
 
     # Database
     gem 'mysql2', '~> 0.4'
