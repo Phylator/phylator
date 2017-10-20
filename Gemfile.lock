@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/rubysolo/dentaku.git
-  revision: 02513331456a2486a342c34b332a7080457ee29e
+  revision: e0922b44f7e1b64e3e6976cb06cc532886eb6717
   specs:
     dentaku (3.0.0)
 
@@ -162,6 +162,11 @@ GEM
       ast (~> 2.2)
     pg (0.21.0-x86-mingw32)
     powerpack (0.1.1)
+    pry (0.11.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
@@ -296,6 +301,7 @@ DEPENDENCIES
   metamagic (~> 3.1)
   mysql2 (~> 0.4)
   pg (~> 0.21)
+  pry-rails (~> 0.3.6)
   puma (~> 3.7)
   rack-timeout (~> 0.4)
   rails (~> 5.1)

@@ -10,8 +10,8 @@ class Quantity < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :description, presence: true
 
-    has_many :connected_unit_of_measurements, class_name: 'UnitOfMeasurement::Quantity', source: :unit_of_measurement, dependent: :destroy
-    has_many :unit_of_measurements, through: :connected_unit_of_measurements
+    has_many :quantity_unit_of_measurements, class_name: 'UnitOfMeasurement::Quantity', source: :unit_of_measurement, dependent: :destroy
+    has_many :unit_of_measurements, through: :quantity_unit_of_measurements
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
 

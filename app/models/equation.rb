@@ -6,7 +6,7 @@ class Equation < ApplicationRecord
 
     belongs_to :quantity, class_name: '::Quantity'
 
-    has_many :equation_quantities, class_name: 'Quantity', dependent: :destroy
+    has_many :equation_quantities, class_name: 'Quantity', source: :quantity, dependent: :destroy
     has_many :quantities, through: :equation_quantities
 
     has_many :calculation_equations, class_name: '::Calculation::Equation'

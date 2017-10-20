@@ -6,8 +6,8 @@ class UnitOfMeasurement < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :to_base, presence: true
 
-    has_many :connected_quantities, class_name: 'UnitOfMeasurement::Quantity', source: :quantity, dependent: :destroy
-    has_many :quantities, through: :connected_quantities
+    has_many :unit_of_measurement_quantities, class_name: 'UnitOfMeasurement::Quantity', source: :quantity, dependent: :destroy
+    has_many :quantities, through: :unit_of_measurement_quantities
     has_many :constants
     has_many :measurements, class_name: 'Calculation::Measurement'
 

@@ -20,6 +20,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'browser', '~> 2.5'
 gem 'friendly_id', '~> 5.2'
 gem 'dentaku', github: 'rubysolo/dentaku'
+gem 'pry-rails', '~> 0.3.6'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

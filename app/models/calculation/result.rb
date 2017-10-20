@@ -6,8 +6,6 @@ class Calculation::Result < ApplicationRecord
 
     include Value
     include MarginOfError
-    include Decimals
-    extend ActionView::Helpers::NumberHelper
 
     validates :value, presence: true
 
@@ -63,7 +61,7 @@ class Calculation::Result < ApplicationRecord
             ::Equation.all.each do |equation|
                 equations[equation.quantity.pure_sym] = equation.equation
                 ## Associate equation with calculation if used
-                # self.calculation.equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
+                self.calculation.calculation_equations.create!(equation: equation) if calculator.dependencies(equation.equation).size == 0
             end
             ## Solve equations
             calculation_results = calculator.solve equations

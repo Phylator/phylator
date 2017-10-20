@@ -51,7 +51,7 @@
     %h3= t 'd.p.measurements'
     .cards
         - @calculation.measurements.each do |measurement|
-            = link_to request.base_url + '/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card' do
+            = link_to request.base_url + '/app/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card' do
                 .wrapper
                     %h2.small
                         = measurement.pretty_value
@@ -66,7 +66,7 @@
     - if @calculation.equations.any?
         %h3= t 'd.p.equations'
         .cards
-            - @calculation.equations.each do |equation|
+            - @calculation.equations.uniq.each do |equation|
                 .card
                     .wrapper
                         = '`' + equation.quantity.sym + '=' + equation.equation + '`'

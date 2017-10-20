@@ -15,31 +15,6 @@ class Calculation::Measurement < ApplicationRecord
     belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
     belongs_to :quantity, class_name: '::Quantity'
 
-    def trim num
-        i, f = num.to_i, num.to_f
-        i == f ? i : f
-    end
-
-    def delimiter num
-        num.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-    end
-
-    def pretty_value
-        if self.value.to_s.size > 12
-            "%e" % trim(self.value).to_s
-        else
-            delimiter(trim(self.value))
-        end
-    end
-
-    def pretty_margin_of_error
-        if self.margin_of_error.to_s.size > 12
-            "%e" % trim(self.margin_of_error).to_s
-        else
-            delimiter(trim(self.margin_of_error))
-        end
-    end
-
     private
 
     def defaults
