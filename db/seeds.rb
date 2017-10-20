@@ -566,8 +566,28 @@ molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub
 molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
 
 ## Standard acceleration of gravity
-molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', value: '9.80665*10^-2', unit_of_measurement: meter_per_square_second
-molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
+standard_acceleration_of_gravity = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', value: '9.80665*10^-2', unit_of_measurement: meter_per_square_second
+standard_acceleration_of_gravity.update_attributes name: 'Normfallbeschleunigung', locale: :de
+
+## Standard temperature
+standard_temperature = Constant.find_or_create_by! symbol: 'T<sub>0</sub>', name: 'Standard temperature', value: '273.15', unit_of_measurement: kelvin
+standard_temperature.update_attributes name: 'Normtemperatur', locale: :de
+
+## Elementary charge
+elementary_charge = Constant.find_or_create_by! symbol: 'e', name: 'Elementary charge', value: '1.60217646*10^-19', unit_of_measurement: coulomb
+elementary_charge.update_attributes name: 'Elementarladung', locale: :de
+
+## Electron mass
+electron_mass = Constant.find_or_create_by! symbol: 'm<sub>e</sub>', name: 'Electron mass', value: '9.10938188*10^-31', unit_of_measurement: kilogram
+electron_mass.update_attributes name: 'Ruhemasse eines Elektrons', locale: :de
+
+## Neutron mass
+neutron_mass = Constant.find_or_create_by! symbol: 'm<sub>n</sub>', name: 'Neutron mass', value: '1.67492716*10^-27', unit_of_measurement: kilogram
+neutron_mass.update_attributes name: 'Ruhemasse eines Neutrons', locale: :de
+
+## Proton mass
+proton_mass = Constant.find_or_create_by! symbol: 'm<sub>p</sub>', name: 'Proton mass', value: '1.67262158*10^-27', unit_of_measurement: kilogram
+proton_mass.update_attributes name: 'Ruhemasse eines Protons', locale: :de
 
 
 
