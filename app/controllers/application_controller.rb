@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit :sign_in, keys: [:calculation_id]
     end
 
+    def after_sign_in_path_for resource
+        stored_location_for(resource) || app_root_url
+    end
+
 
 
     private
