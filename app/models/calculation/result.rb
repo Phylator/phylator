@@ -82,26 +82,26 @@ class Calculation::Result < ApplicationRecord
             # calculator.store "#{self.calculation.quantity.sym}_error": calculation_error if calculation_error.present?
         end
 
-        # Convert result to requested unit
-        symbol = self.calculation.quantity.pure_sym
-        precision = decimal_places.min
-        if self.calculation.unit_of_measurement.base?
-            ## Base unit requested: Round result
-            result = calculator.evaluate "round(#{symbol}, #{precision})"
-            # resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
-        else
-            ## Other unit requested: Round result & convert
-            result = calculator.evaluate "round(#{symbol}, #{precision})" + self.calculation.unit_of_measurement.from_base
-            # resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
-        end
+        unless calculation_result == :undefined
+            # Convert result to requested unit
+            symbol = self.calculation.quantity.pure_sym
+            precision = decimal_places.min
+            if self.calculation.unit_of_measurement.base?
+                ## Base unit requested: Round result
+                result = calculator.evaluate "round(#{symbol}, #{precision})"
+                # resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
+            else
+                ## Other unit requested: Round result & convert
+                result = calculator.evaluate "round(#{symbol}, #{precision})" + self.calculation.unit_of_measurement.from_base
+                # resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
+            end
 
 
-        # Store result
-        if result == :undefined
-            self.undefined = true
-        else
+            # Store result
             self.value = result
             # self.margin_of_error = resulting_error
+        else
+            self.undefined = true
         end
 
     end

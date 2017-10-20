@@ -4503,9 +4503,10 @@ svg.nc-icon.loader * {
   visibility: visible;
   text-decoration: none;
   outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-/* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 :root {
   font-size: 15px;
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
@@ -4518,23 +4519,23 @@ svg.nc-icon.loader * {
   font-smooth: always;
 }
 @media (min-width: 800px) {
-  /* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+  /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
   :root {
     font-size: 16px;
   }
 }
 
-/* line 23, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html {
   background: var(--color-dark-darker);
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body {
   min-height: 100vh;
 }
-/* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body:not(.disabledTransitions) * {
   transition: all 0.15s ease-out;
 }
@@ -4620,11 +4621,15 @@ html body:not(.disabledTransitions) * {
 .cards > .card:hover svg polygon {
   fill: white;
 }
-/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card.highlighted {
+  background: var(--color-dark-light);
+}
+/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:first-child) {
   margin-left: 0.3125em;
 }
-/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 36, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:last-child) {
   margin-right: 0.3125em;
 }
@@ -4826,7 +4831,7 @@ body.devise nav.app > a:last-child {
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .head-wrapper {
+.calculations.show:not(.measurements) > .head-wrapper, .constants.show > .head-wrapper {
   position: relative;
   z-index: 1;
   display: flex;
@@ -4838,15 +4843,15 @@ body.devise nav.app > a:last-child {
   background: var(--color-dark-dark);
 }
 /* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .head-wrapper p span:not(:first-child) {
+.calculations.show:not(.measurements) > .head-wrapper p span:not(:first-child), .constants.show > .head-wrapper p span:not(:first-child) {
   margin-left: 0.625em;
 }
 /* line 15, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .head-wrapper p span:not(:last-child) {
+.calculations.show:not(.measurements) > .head-wrapper p span:not(:last-child), .constants.show > .head-wrapper p span:not(:last-child) {
   margin-right: 0.625em;
 }
 /* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .account-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper, .constants.show > .account-wrapper {
   position: relative;
   top: 0;
   display: flex;
@@ -4858,62 +4863,62 @@ body.devise nav.app > a:last-child {
   transition-duration: 0.25s;
 }
 /* line 27, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .account-wrapper.invisible {
+.calculations.show:not(.measurements) > .account-wrapper.invisible, .constants.show > .account-wrapper.invisible {
   top: -6.25em;
 }
 /* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .account-wrapper.invisible ~ .content-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper.invisible ~ .content-wrapper, .constants.show > .account-wrapper.invisible ~ .content-wrapper {
   top: -6.25em;
 }
 /* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper {
+.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper, .constants.show > .account-wrapper .flex-wrapper {
   display: flex;
   align-items: center;
 }
 /* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper a:first-child {
+.calculations.show:not(.measurements) > .account-wrapper .flex-wrapper a:first-child, .constants.show > .account-wrapper .flex-wrapper a:first-child {
   margin-right: 1.5625em;
 }
 /* line 36, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .content-wrapper {
+.calculations.show:not(.measurements) > .content-wrapper, .constants.show > .content-wrapper {
   position: relative;
   top: 0;
   padding: 2.1875em 1.875em;
   transition-duration: 0.25s;
 }
 /* line 41, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .content-wrapper h3:not(:first-child) {
+.calculations.show:not(.measurements) > .content-wrapper h3:not(:first-child), .constants.show > .content-wrapper h3:not(:first-child) {
   margin-top: 2.8125em;
 }
 /* line 43, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .content-wrapper p {
+.calculations.show:not(.measurements) > .content-wrapper p, .constants.show > .content-wrapper p {
   margin-top: 0.625em;
 }
 /* line 48, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal {
+.calculations.show:not(.measurements) > .modal, .constants.show > .modal {
   background: var(--color-dark-dark);
 }
 /* line 50, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share {
+.calculations.show:not(.measurements) > .modal.share, .constants.show > .modal.share {
   max-width: 37.5em !important;
   width: 85% !important;
 }
 /* line 53, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper {
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper, .constants.show > .modal.share .modal-content-wrapper {
   padding: 1.375em 1.5625em 1.5625em;
 }
 /* line 55, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper h3 {
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper h3, .constants.show > .modal.share .modal-content-wrapper h3 {
   margin-bottom: 0.9375em;
 }
 /* line 57, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper {
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper, .constants.show > .modal.share .modal-content-wrapper .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.25em;
 }
 /* line 61, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a {
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a, .constants.show > .modal.share .modal-content-wrapper .wrapper > a {
   padding: 0.75em 1em 0.875em;
   background: var(--color-dark-base);
   border-radius: var(--size-border-radius-sm);
@@ -4921,16 +4926,16 @@ body.devise nav.app > a:last-child {
   text-decoration: none !important;
 }
 /* line 67, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:active, .calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:focus {
+.calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:active, .calculations.show:not(.measurements) > .modal.share .modal-content-wrapper .wrapper > a:focus, .constants.show > .modal.share .modal-content-wrapper .wrapper > a:active, .constants.show > .modal.share .modal-content-wrapper .wrapper > a:focus {
   background: var(--color-dark-light);
 }
 /* line 70, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.signup {
+.calculations.show:not(.measurements) > .modal.signup, .constants.show > .modal.signup {
   max-width: 37.5em !important;
   width: 85% !important;
 }
 /* line 73, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper {
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper, .constants.show > .modal.signup .modal-content-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -4938,43 +4943,43 @@ body.devise nav.app > a:last-child {
   padding: 3.125em 2.1875em 3.4375em;
 }
 /* line 79, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper p {
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper p, .constants.show > .modal.signup .modal-content-wrapper p {
   text-align: center;
   margin: 1.25em 0 2.1875em;
 }
 /* line 82, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper {
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper, .constants.show > .modal.signup .modal-content-wrapper .flex-wrapper {
   display: flex;
   align-items: center;
 }
 /* line 85, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper a:first-child {
+.calculations.show:not(.measurements) > .modal.signup .modal-content-wrapper .flex-wrapper a:first-child, .constants.show > .modal.signup .modal-content-wrapper .flex-wrapper a:first-child {
   margin-right: 1.5625em;
 }
 /* line 88, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.edit {
+.calculations.show:not(.measurements) > .modal.edit, .constants.show > .modal.edit {
   max-width: 37.5em !important;
   width: 85% !important;
 }
 /* line 91, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper {
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper, .constants.show > .modal.edit .modal-content-wrapper {
   padding: 1.875em 2.1875em 2.1875em;
 }
 /* line 93, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .input {
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .input, .constants.show > .modal.edit .modal-content-wrapper .input {
   margin-bottom: 1.25em;
 }
 /* line 95, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .flex-wrapper {
+.calculations.show:not(.measurements) > .modal.edit .modal-content-wrapper .flex-wrapper, .constants.show > .modal.edit .modal-content-wrapper .flex-wrapper {
   display: flex;
   flex-direction: row-reverse;
 }
 /* line 99, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.delete {
+.calculations.show:not(.measurements) > .modal.delete, .constants.show > .modal.delete {
   max-width: 12.5em !important;
 }
 /* line 101, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .modal.delete .modal-content-wrapper {
+.calculations.show:not(.measurements) > .modal.delete .modal-content-wrapper, .constants.show > .modal.delete .modal-content-wrapper {
   padding: 0;
 }
 
@@ -5070,6 +5075,10 @@ body.devise nav.app > a:last-child {
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
 .quantities.index {
   padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index .cards ~ h1 {
+  margin-top: 2.1875em;
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/show.sass */
