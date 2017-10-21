@@ -33,9 +33,6 @@ class Calculation::Result < ApplicationRecord
             ## Get symbol for quantity
             symbol = ::Quantity.find(quantity_id).pure_sym
             # symbols << symbol
-            ## Store decimal places of measurement
-            decimal_places << decimals(var)
-            # decimal_places_errors << decimals(margin_of_error)
             ## Convert measurement to base unit
             unless measurement.unit_of_measurement.base?
                 var = calculator.evaluate var.to_s + measurement.unit_of_measurement.to_base
@@ -56,12 +53,30 @@ class Calculation::Result < ApplicationRecord
         # Solve equations
         ## Solve equations unless unit conversion is requested
         unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
-            ## Add equations
-            equations = {}
-            ::Equation.all.each do |equation|
-                equations[equation.quantity.pure_sym] = equation.equation
-                ## Associate equation with calculation if used
+            # ## Add equations
+            # equations = {}
+            # ::Equation.all.each do |equation|
+            #     equations[equation.quantity.pure_sym] = equation.equation
+            #     ## Associate equation with calculation if used
+            #     if calculator.dependencies(equation.equation).size == 0
+            #         self.calculation.calculation_equations.create! equation: equation
+            #         ## Associate physical constant with calculation if used
+            #         ::Constant.all.each do |constant|
+            #             symbol = constant.pure_sym
+            #             if equation.equation.include? symbol
+            #                 self.calculation.calculation_constants.create! constant: constant
+            #             end
+            #         end
+            #     end
+            # end
+            # ## Solve equations
+            # calculation_results = calculator.solve equations
+            # calculation_result = calculation_results[self.calculation.quantity.pure_sym]
+
+            calculation_result = :undefined
+            ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
                 if calculator.dependencies(equation.equation).size == 0
+                    ## Associate equation with calculation if used
                     self.calculation.calculation_equations.create! equation: equation
                     ## Associate physical constant with calculation if used
                     ::Constant.all.each do |constant|
@@ -70,11 +85,10 @@ class Calculation::Result < ApplicationRecord
                             self.calculation.calculation_constants.create! constant: constant
                         end
                     end
+                    calculation_result = calculator.evaluate equation.equation
+                    break
                 end
             end
-            ## Solve equations
-            calculation_results = calculator.solve equations
-            calculation_result = calculation_results[self.calculation.quantity.pure_sym]
 
             # ## Resulting errors
             # error_equations = {}
@@ -93,13 +107,11 @@ class Calculation::Result < ApplicationRecord
             # Convert result to requested unit
             symbol = self.calculation.quantity.pure_sym
             precision = decimal_places.min
+            ## Convert to requested unit
             if self.calculation.unit_of_measurement.base?
-                ## Base unit requested: Round result
-                result = calculator.evaluate "round(#{symbol}, #{precision})"
-                # resulting_error = calculator.evaluate("round(#{symbol}_error, #{decimal_places_errors.min})")
+                result = calculation_result
             else
-                ## Other unit requested: Round result & convert
-                result = calculator.evaluate "round(#{symbol}, #{precision})" + self.calculation.unit_of_measurement.from_base
+                result = calculator.evaluate symbol + self.calculation.unit_of_measurement.from_base
                 # resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
             end
 
