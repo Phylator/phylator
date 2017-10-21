@@ -15,15 +15,17 @@ class Quantity < ApplicationRecord
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
 
-    has_many :belongs_to_equations, through: :equation_quantities, source: :equation
-    has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
+    belongs_to :parent_quantity, class_name: 'Quantity', foreign_key: 'parent_quantity_id', required: false
+    has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'
 
     def sym
         self.symbol.html_safe
     end
     def pure_sym
-        self.symbol.sub('<sub>', '').sub('</sub>', '')
+        self.symbol.sub('<sub>', '_{').sub('</sub>', '}')
     end
+
+    scope :base, -> { where(parent_quantity: nil) }
 
     private
 

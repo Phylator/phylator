@@ -100,15 +100,6 @@ ActiveRecord::Schema.define(version: 20171020201807) do
     t.index ["unit_of_measurement_id"], name: "index_constants_on_unit_of_measurement_id"
   end
 
-  create_table "equation_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "equation_id"
-    t.bigint "quantity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["equation_id"], name: "index_equation_quantities_on_equation_id"
-    t.index ["quantity_id"], name: "index_equation_quantities_on_quantity_id"
-  end
-
   create_table "equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "quantity_id"
     t.text "equation"
@@ -130,11 +121,13 @@ ActiveRecord::Schema.define(version: 20171020201807) do
   end
 
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "parent_quantity_id"
     t.string "symbol"
     t.boolean "vector", default: false, null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_quantity_id"], name: "index_quantities_on_parent_quantity_id"
     t.index ["slug"], name: "index_quantities_on_slug"
   end
 

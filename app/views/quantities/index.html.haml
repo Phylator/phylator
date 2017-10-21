@@ -1,7 +1,7 @@
 %h1= t 'cd.physical_quantities'
 
 .cards
-    - @quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+    - @quantities.base.with_translations(I18n.locale).order(:name).each do |quantity|
         = link_to quantity, class: 'card' do
             .wrapper
                 %h2.small= quantity.sym

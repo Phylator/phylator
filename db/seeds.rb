@@ -3,7 +3,7 @@
 
 
 # Demo
-user = User.create email: 'demo@example.com', password: 'password'
+user = User.create email: 'demo@phylator.com', password: 'password'
 user&.encrypted_password
 
 
@@ -57,6 +57,31 @@ yard = UnitOfMeasurement.find_or_create_by! symbol: 'yd', name: 'yard', to_base:
 yard.unit_of_measurement_quantities.find_or_create_by! quantity: length
 miles = UnitOfMeasurement.find_or_create_by! symbol: 'mi', name: 'miles', to_base: '/16093.44'
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: length
+## Distance traveled
+distance_traveled = Quantity.find_or_create_by! symbol: 's', name: 'Distance traveled', description: 'Distance an object traveled', parent_quantity: length
+meter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+exameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+petameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+terameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+gigameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+megameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+kilometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+hectometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+decameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+decimeter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+centimeter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+milimeter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+micrometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+nanometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+picometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+femtometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+attometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+zeptometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+yoctometer.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+inch.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+foot.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+yard.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
+miles.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 
 # Mass
 mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'
@@ -422,6 +447,9 @@ newton_meter.unit_of_measurement_quantities.find_or_create_by! quantity: torque
 # Velocity
 velocity = Quantity.find_or_create_by! symbol: 'v', name: 'Velocity', description: 'Speed and direction of an object', vector: true
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: velocity
+## Initial velocity
+initial_velocity = Quantity.find_or_create_by! symbol: 'v<sub>initial</sub>', name: 'Initial velocity', description: 'Initial speed and direction of an object', parent_quantity: velocity, vector: true
+meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: initial_velocity
 
 # Volume
 volume = Quantity.find_or_create_by! symbol: 'V', name: 'Volume', description: 'Three dimensional extent of an object'
@@ -643,9 +671,60 @@ proton_mass.update_attributes name: 'Ruhemasse eines Protons', locale: :de
 
 # Equations
 
+Equation.find_or_create_by! quantity: acceleration, equation: 'F / m'
 Equation.find_or_create_by! quantity: force, equation: 'm * a'
 Equation.find_or_create_by! quantity: mass, equation: 'F / a'
-Equation.find_or_create_by! quantity: acceleration, equation: 'F / m'
+
+Equation.find_or_create_by! quantity: mass, equation: 'p / v'
+Equation.find_or_create_by! quantity: momentum, equation: 'm * v'
+Equation.find_or_create_by! quantity: velocity, equation: 'p / m'
+
+Equation.find_or_create_by! quantity: velocity, equation: 'v_{initial} + a * t'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v - v_{initial} ) / t'
+Equation.find_or_create_by! quantity: time, equation: '( v - v_{initial} ) / a'
+
+Equation.find_or_create_by! quantity: velocity, equation: 'sqrt( v_{initial}^2 + 2 * a * s )'
+Equation.find_or_create_by! quantity: initial_velocity, equation: 'sqrt( v^2 - 2 * a * s )'
+Equation.find_or_create_by! quantity: distance_traveled, equation: '( v^2 - v_{initial}^2 ) / ( 2 * a )'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_{initial}^2 ) / ( 2 * s )'
+
+Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_{initial} * t + 1/2 * a * t^2'
+Equation.find_or_create_by! quantity: initial_velocity, equation: '( s - 1/2 * a * t^2 ) / t'
+Equation.find_or_create_by! quantity: acceleration, equation: '(2 * ( s - u * t )) / t^2'
+# Equation.find_or_create_by! quantity: time, equation: '...'
+
+Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_{initial}'
+Equation.find_or_create_by! quantity: initial_velocity, equation: '( m * v - Δp ) / m'
+Equation.find_or_create_by! quantity: velocity, equation: '( Δp + m * v_{initial} ) / m'
+# Equation.find_or_create_by! quantity: mass, equation: '...'
+
+Equation.find_or_create_by! quantity: work, equation: 'F * s'
+Equation.find_or_create_by! quantity: distance_traveled, equation: 'W / F'
+Equation.find_or_create_by! quantity: force, equation: 'W / s'
+
+Equation.find_or_create_by! quantity: power, equation: 'W / t'
+Equation.find_or_create_by! quantity: work, equation: 'P * t'
+Equation.find_or_create_by! quantity: time, equation: 'W / P'
+
+Equation.find_or_create_by! quantity: power, equation: 'E / t'
+Equation.find_or_create_by! quantity: energy, equation: 'P * t'
+Equation.find_or_create_by! quantity: time, equation: 'E / P'
+
+Equation.find_or_create_by! quantity: density, equation: 'm * V'
+Equation.find_or_create_by! quantity: mass, equation: 'ρ / V'
+Equation.find_or_create_by! quantity: volume, equation: 'ρ / m'
+
+Equation.find_or_create_by! quantity: pressure, equation: 'F / A'
+Equation.find_or_create_by! quantity: force, equation: 'p_{f} * A'
+Equation.find_or_create_by! quantity: area, equation: 'F / p_{f}'
+
+Equation.find_or_create_by! quantity: electric_potential, equation: 'I * R'
+Equation.find_or_create_by! quantity: electric_current, equation: 'U / R'
+Equation.find_or_create_by! quantity: electrical_resistance, equation: 'U / I'
+
+Equation.find_or_create_by! quantity: power, equation: 'I * U'
+Equation.find_or_create_by! quantity: electric_current, equation: 'P / U'
+Equation.find_or_create_by! quantity: electric_potential, equation: 'P / I'
 
 
 
@@ -677,6 +756,9 @@ inch.update_attributes name: 'Zoll', locale: :de
 foot.update_attributes name: 'Fuß', locale: :de
 yard.update_attributes name: 'Yard', locale: :de
 miles.update_attributes name: 'Meilen', locale: :de
+### Distance traveled
+distance_traveled.update_attributes name: 'Zurückgelegte Strecke', description: 'Von einem Objekt zurückgelegte Strecke', locale: :de
+meter.update_attributes name: 'Meter', locale: :de
 
 ## Mass
 mass.update_attributes name: 'Masse', description: 'Ein Maß für Widerstand gegen Beschleunigung', locale: :de
@@ -957,6 +1039,9 @@ meter_per_second.update_attributes name: 'Meter pro Sekunde', locale: :de
 ## Volume
 volume.update_attributes name: 'Volumen', description: 'Dreidimensionale Ausdehnung eines Objekts', locale: :de
 cubic_meter.update_attributes name: 'Kubikmeter', locale: :de
+### Initial velocity
+initial_velocity.update_attributes name: 'Anfangsgeschwindigkeit', description: 'Anfangsgeschwindigkeit und Richtung eines Objekts', locale: :de
+meter_per_second.update_attributes name: 'Meter pro Sekunde', locale: :de
 
 ## Wavelength
 wavelength.update_attributes name: 'Wellenlänge', description: 'Senkrechter Abstand zwischen sich wiederholenden Einheiten einer Welle', locale: :de

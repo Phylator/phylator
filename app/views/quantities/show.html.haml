@@ -19,7 +19,21 @@
             - @quantity.equations.each do |equation|
                 .card
                     .wrapper
-                        = '`' + @quantity.sym + '=' + equation.equation + '`'
+                        = '`' + @quantity.pure_sym + '=' + equation.equation + '`'
+
+    - if @quantity.child_quantities.any?
+        %h3= t 'cd.physical_quantities'
+        .cards
+            - @quantity.child_quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+                = link_to quantity, class: 'card' do
+                    .wrapper
+                        %h2.small= quantity.sym
+                        %p.small
+                            %span= quantity.name
+                            - if quantity.vector
+                                ·
+                                %span= t 'd.vector'
+                    = asset 'components/list/item-open.svg'
 
     %h3= t 'd.p.units_of_measurement'
     .cards

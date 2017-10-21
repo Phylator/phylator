@@ -29,13 +29,13 @@ class Constant < ApplicationRecord
         self.symbol.html_safe
     end
     def pure_sym
-        self.symbol.sub('<sub>', '').sub('</sub>', '')
+        self.symbol.sub('<sub>', '_{').sub('</sub>', '}')
     end
 
     private
 
     def slug_candidates
-        [:pure_sym, :name]
+        [:name]
     end
 
     def evaluate_value
