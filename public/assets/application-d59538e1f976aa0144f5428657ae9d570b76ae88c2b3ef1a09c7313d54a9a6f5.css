@@ -4736,6 +4736,19 @@ body.devise nav.app > a:last-child {
   opacity: 1;
 }
 
+/* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/errors/not_found.sass */
+.errors.not_found {
+  padding: 2.1875em 1.5625em 6.25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* line 7, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/errors/not_found.sass */
+.errors.not_found p {
+  margin-top: 0.9375em;
+}
+
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
 .calculations.index {
   padding: 2.1875em 1.5625em 6.25em;
@@ -5210,6 +5223,31 @@ body.devise nav.app > a:last-child {
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/privacy.sass */
 .welcome.privacy {
   padding: 2.1875em 1.875em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product {
+  padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product p {
+  margin-top: 0.9375em;
+}
+/* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product #nativegap {
+  position: fixed;
+  bottom: 1.875em;
+  right: 1.875em;
+}
+/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links {
+  margin: 2.8125em 0;
+  display: flex;
+  align-items: center;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links a.btn:not(:first-child) {
+  margin-left: 1.5625em;
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/shared/links.sass */
