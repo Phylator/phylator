@@ -4503,9 +4503,10 @@ svg.nc-icon.loader * {
   visibility: visible;
   text-decoration: none;
   outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-/* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 :root {
   font-size: 15px;
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
@@ -4518,23 +4519,23 @@ svg.nc-icon.loader * {
   font-smooth: always;
 }
 @media (min-width: 800px) {
-  /* line 10, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+  /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
   :root {
     font-size: 16px;
   }
 }
 
-/* line 23, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html {
   background: var(--color-dark-darker);
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 29, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 30, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body {
   min-height: 100vh;
 }
-/* line 31, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 32, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body:not(.disabledTransitions) * {
   transition: all 0.15s ease-out;
 }
@@ -4735,6 +4736,19 @@ body.devise nav.app > a:last-child {
   opacity: 1;
 }
 
+/* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/errors/not_found.sass */
+.errors.not_found {
+  padding: 2.1875em 1.5625em 6.25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* line 7, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/errors/not_found.sass */
+.errors.not_found p {
+  margin-top: 0.9375em;
+}
+
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
 .calculations.index {
   padding: 2.1875em 1.5625em 6.25em;
@@ -4890,7 +4904,7 @@ body.devise nav.app > a:last-child {
   margin-top: 2.8125em;
 }
 /* line 43, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .content-wrapper p, .constants.show > .content-wrapper p {
+.calculations.show:not(.measurements) > .content-wrapper p:not(:first-child), .constants.show > .content-wrapper p:not(:first-child) {
   margin-top: 0.625em;
 }
 /* line 48, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
@@ -5209,6 +5223,31 @@ body.devise nav.app > a:last-child {
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/privacy.sass */
 .welcome.privacy {
   padding: 2.1875em 1.875em;
+}
+
+/* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product {
+  padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product p {
+  margin-top: 0.9375em;
+}
+/* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product #nativegap {
+  position: absolute;
+  top: 1.875em;
+  right: 1.875em;
+}
+/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links {
+  margin: 2.8125em 0;
+  display: flex;
+  align-items: center;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links a.btn:not(:first-child) {
+  margin-left: 1.5625em;
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/shared/links.sass */
