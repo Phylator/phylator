@@ -474,119 +474,167 @@ joule.unit_of_measurement_quantities.find_or_create_by! quantity: work
 # Constants
 
 ## Vacuum speed of light
-vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', value: BigDecimal.new('2.99792458*10^8'), unit_of_measurement: meter_per_second
+vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', unit_of_measurement: meter_per_second
+vacuum_speed_of_light.set_value = '2.99792458*10^8'
+vacuum_speed_of_light.save!
 vacuum_speed_of_light.update_attributes name: 'Lichtegeschwindigkeit im Vakuum', locale: :de
 
 ## Newtonian constant of gravitation
 cubic_meter_per_kilogram_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>', name: 'cubic meter per kilogram square second'
 cubic_meter_per_kilogram_square_second.update_attributes name: 'Kubikmeter pro Kilogrammquadratsekunde', locale: :de
-newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', value: '6.673*10^-11', unit_of_measurement: cubic_meter_per_kilogram_square_second
+newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', unit_of_measurement: cubic_meter_per_kilogram_square_second
+newtonian_constant_of_gravitation.set_value = '6.673*10^-11'
+newtonian_constant_of_gravitation.save!
 newtonian_constant_of_gravitation.update_attributes name: 'Gravitationskonstante', locale: :de
 
 ## Planck constant
 joule_second = UnitOfMeasurement.find_or_create_by! symbol: 'J s', name: 'joule second'
 joule_second.update_attributes name: 'Joulesekunde', locale: :de
-planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', value: '6.626069*10^-34', unit_of_measurement: joule_second
+planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', unit_of_measurement: joule_second
+planck_constant.set_value = '6.626069*10^-34'
+planck_constant.save!
 planck_constant.update_attributes name: 'Plancksches Wirkungsquantum', locale: :de
 
 ## Magnetic constant
 newton_per_square_ampere = UnitOfMeasurement.find_or_create_by! symbol: 'N A<sup>-2</sup>', name: 'newton per square ampere'
 newton_per_square_ampere.update_attributes name: 'Newton pro Quadratampere', locale: :de
-magnetic_constant = Constant.find_or_create_by! symbol: 'μ<sub>0</sub>', name: 'Magnetic constant', value: "4*#{Math::PI.to_s}*10^-7", unit_of_measurement: newton_per_square_ampere
+magnetic_constant = Constant.find_or_create_by! symbol: 'μ<sub>0</sub>', name: 'Magnetic constant', unit_of_measurement: newton_per_square_ampere
+magnetic_constant.set_value = "4*#{Math::PI.to_s}*10^-7"
+magnetic_constant.save!
 magnetic_constant.update_attributes name: 'Magnetische Feldkonstante', locale: :de
 
 ## Electric constant
-electric_constant = Constant.find_or_create_by! symbol: 'ε<sub>0</sub>', name: 'Electric constant', value: '8.854188*10^-12', unit_of_measurement: farad_per_meter
+electric_constant = Constant.find_or_create_by! symbol: 'ε<sub>0</sub>', name: 'Electric constant', unit_of_measurement: farad_per_meter
+electric_constant.set_value = '8.854188*10^-12'
+electric_constant.save!
 electric_constant.update_attributes name: 'Elektrische Feldkonstante', locale: :de
 
 ## Absolute zero
-absolute_zero = Constant.find_or_create_by! symbol: 'T<sub>a</sub>', name: 'Absolute zero', value: '0', unit_of_measurement: kelvin
+absolute_zero = Constant.find_or_create_by! symbol: 'T<sub>a</sub>', name: 'Absolute zero', unit_of_measurement: kelvin
+absolute_zero.set_value = '0'
+absolute_zero.save!
 absolute_zero.update_attributes name: 'Absoluter Nullpunkt', locale: :de
 
 ## Unified atomic mass unit
-unified_atomic_mass_unit = Constant.find_or_create_by! symbol: 'u', name: 'Unified atomic mass unit', value: '1.660540*10^-27', unit_of_measurement: kilogram
+unified_atomic_mass_unit = Constant.find_or_create_by! symbol: 'u', name: 'Unified atomic mass unit', unit_of_measurement: kilogram
+unified_atomic_mass_unit.set_value = '1.660540*10^-27'
+unified_atomic_mass_unit.save!
 unified_atomic_mass_unit.update_attributes name: 'Atomare Masseeinheit', locale: :de
 
 ## Avogadro constant
 per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol<sup>-1</sup>', name: 'per mole'
 per_mole.update_attributes name: 'Pro Mol', locale: :de
-avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Avogadro constant', value: '6.022142*10^23', unit_of_measurement: per_mole
+avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Avogadro constant', unit_of_measurement: per_mole
+avogadro_constant.set_value = '6.022142*10^23'
+avogadro_constant.save!
 avogadro_constant.update_attributes name: 'Avogadro-Konstante', locale: :de
 
 ## Boltzmann constant
-boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', value: '1.380650*10^-23', unit_of_measurement: joule_per_kelvin
+boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', unit_of_measurement: joule_per_kelvin
+boltzmann_constant.set_value = '1.380650*10^-23'
+boltzmann_constant.save!
 boltzmann_constant.update_attributes name: 'Boltzmann-Konstante', locale: :de
 
 ## Compton wavelength of an electron
-compton_wavelength_of_an_electron = Constant.find_or_create_by! symbol: 'λ<sub>C</sub>', name: 'Compton wavelength of an electron', value: '2.426310^-12', unit_of_measurement: meter
+compton_wavelength_of_an_electron = Constant.find_or_create_by! symbol: 'λ<sub>C</sub>', name: 'Compton wavelength of an electron', unit_of_measurement: meter
+compton_wavelength_of_an_electron.set_value = '2.426310^-12'
+compton_wavelength_of_an_electron.save!
 compton_wavelength_of_an_electron.update_attributes name: 'Compton-Wellenlänge des Elektrons', locale: :de
 
 ## Faraday constant
 ampere_second_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'A s mol<sup>-1</sup>', name: 'ampere second per mole'
 ampere_second_per_mole.update_attributes name: 'Amperesekunde pro Mol', locale: :de
-faraday_constant = Constant.find_or_create_by! symbol: 'F<sub>A</sub>', name: 'Faraday constant', value: '9.648534*10^4', unit_of_measurement: ampere_second_per_mole
+faraday_constant = Constant.find_or_create_by! symbol: 'F<sub>A</sub>', name: 'Faraday constant', unit_of_measurement: ampere_second_per_mole
+faraday_constant.set_value = '9.648534*10^4'
+faraday_constant.save!
 faraday_constant.update_attributes name: 'Faraday-Konstante', locale: :de
 
 ## Loschmidt constant
 per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>-3</sup>', name: 'per cubic meter'
 per_cubic_meter.update_attributes name: 'Pro Kubikmeter', locale: :de
-loschmidt_constant = Constant.find_or_create_by! symbol: 'N<sub>L</sub>', name: 'Loschmidt constant', value: '2.686778*10^25', unit_of_measurement: per_cubic_meter
+loschmidt_constant = Constant.find_or_create_by! symbol: 'N<sub>L</sub>', name: 'Loschmidt constant', unit_of_measurement: per_cubic_meter
+loschmidt_constant.set_value = '2.686778*10^25'
+loschmidt_constant.save!
 loschmidt_constant.update_attributes name: 'Loschmidt-Konstante', locale: :de
 
 ## Rydberg constant
-rydberg_constant = Constant.find_or_create_by! symbol: 'R<sub>H</sub>', name: 'Rydberg constant', value: '1.097373*10^7', unit_of_measurement: per_meter
+rydberg_constant = Constant.find_or_create_by! symbol: 'R<sub>H</sub>', name: 'Rydberg constant', unit_of_measurement: per_meter
+rydberg_constant.set_value = '1.097373*10^7'
+rydberg_constant.save!
 rydberg_constant.update_attributes name: 'Rydberg-Konstante', locale: :de
 
 ## Rydberg frequency
-rydberg_frequency = Constant.find_or_create_by! symbol: 'R<sub>y</sub>', name: 'Rydberg frequency', value: '3.289841*10^15', unit_of_measurement: hertz
+rydberg_frequency = Constant.find_or_create_by! symbol: 'R<sub>y</sub>', name: 'Rydberg frequency', unit_of_measurement: hertz
+rydberg_frequency.set_value = '3.289841*10^15'
+rydberg_frequency.save!
 rydberg_frequency.update_attributes name: 'Rydberg-Frequenz', locale: :de
 
 ## Stefan-Boltzmann constant
 watt_per_square_meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup> K<sup>-4</sup>', name: 'watt per square meter kelvin'
 watt_per_square_meter_kelvin.update_attributes name: 'Watt pro Quadratmeterkelvin', locale: :de
-stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ<sub>B</sub>', name: 'Stefan-Boltzmann constant', value: '5.670400*10^-8', unit_of_measurement: watt_per_square_meter_kelvin
+stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ<sub>B</sub>', name: 'Stefan-Boltzmann constant', unit_of_measurement: watt_per_square_meter_kelvin
+stefan_boltzmann_constant.set_value = '5.670400*10^-8'
+stefan_boltzmann_constant.save!
 stefan_boltzmann_constant.update_attributes name: 'Stefan-Boltzmann-Konstante', locale: :de
 
 ## Gas constant
 joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole'
 joule_per_kelvin_mole.update_attributes name: 'Joule pro Kelvinmol', locale: :de
-gas_constant = Constant.find_or_create_by! symbol: 'R<sub>0</sub>', name: 'Gas constant', value: '8.314472', unit_of_measurement: joule_per_kelvin_mole
+gas_constant = Constant.find_or_create_by! symbol: 'R<sub>0</sub>', name: 'Gas constant', unit_of_measurement: joule_per_kelvin_mole
+gas_constant.set_value = '8.314472'
+gas_constant.save!
 gas_constant.update_attributes name: 'Universelle Gaskonstante', locale: :de
 
 ## Wien displacement law constant
 meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'm K', name: 'meter kelvin'
 meter_kelvin.update_attributes name: 'Meterkelvin', locale: :de
-wien_displacement_law_constant = Constant.find_or_create_by! symbol: 'b<sub>energy</sub>', name: 'Wien displacement law constant', value: '2.897769*10^-3', unit_of_measurement: meter_kelvin
+wien_displacement_law_constant = Constant.find_or_create_by! symbol: 'b<sub>energy</sub>', name: 'Wien displacement law constant', unit_of_measurement: meter_kelvin
+wien_displacement_law_constant.set_value = '2.897769*10^-3'
+wien_displacement_law_constant.save!
 wien_displacement_law_constant.update_attributes name: 'Wiensche Konstante', locale: :de
 
 ## Molar volume of an ideal gas
 liter_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'l mol<sup>-1</sup>', name: 'liter per mole'
 liter_per_mole.update_attributes name: 'Liter pro Mol', locale: :de
-molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub>', name: 'Molar volume of an ideal gas', value: '22.414', unit_of_measurement: liter_per_mole
+molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub>', name: 'Molar volume of an ideal gas', unit_of_measurement: liter_per_mole
+molar_volume_of_an_ideal_gas.set_value = '22.414'
+molar_volume_of_an_ideal_gas.save!
 molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
 
 ## Standard acceleration of gravity
-standard_acceleration_of_gravity = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', value: '9.80665*10^-2', unit_of_measurement: meter_per_square_second
+standard_acceleration_of_gravity = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', unit_of_measurement: meter_per_square_second
+standard_acceleration_of_gravity.set_value = '9.80665*10^-2'
+standard_acceleration_of_gravity.save!
 standard_acceleration_of_gravity.update_attributes name: 'Normfallbeschleunigung', locale: :de
 
 ## Standard temperature
-standard_temperature = Constant.find_or_create_by! symbol: 'T<sub>0</sub>', name: 'Standard temperature', value: '273.15', unit_of_measurement: kelvin
+standard_temperature = Constant.find_or_create_by! symbol: 'T<sub>0</sub>', name: 'Standard temperature', unit_of_measurement: kelvin
+standard_temperature.set_value = '273.15'
+standard_temperature.save!
 standard_temperature.update_attributes name: 'Normtemperatur', locale: :de
 
 ## Elementary charge
-elementary_charge = Constant.find_or_create_by! symbol: 'e', name: 'Elementary charge', value: '1.60217646*10^-19', unit_of_measurement: coulomb
+elementary_charge = Constant.find_or_create_by! symbol: 'e', name: 'Elementary charge', unit_of_measurement: coulomb
+elementary_charge.set_value = '1.60217646*10^-19'
+elementary_charge.save!
 elementary_charge.update_attributes name: 'Elementarladung', locale: :de
 
 ## Electron mass
-electron_mass = Constant.find_or_create_by! symbol: 'm<sub>e</sub>', name: 'Electron mass', value: '9.10938188*10^-31', unit_of_measurement: kilogram
+electron_mass = Constant.find_or_create_by! symbol: 'm<sub>e</sub>', name: 'Electron mass', unit_of_measurement: kilogram
+electron_mass.set_value = '9.10938188*10^-31'
+electron_mass.save!
 electron_mass.update_attributes name: 'Ruhemasse eines Elektrons', locale: :de
 
 ## Neutron mass
-neutron_mass = Constant.find_or_create_by! symbol: 'm<sub>n</sub>', name: 'Neutron mass', value: '1.67492716*10^-27', unit_of_measurement: kilogram
+neutron_mass = Constant.find_or_create_by! symbol: 'm<sub>n</sub>', name: 'Neutron mass', unit_of_measurement: kilogram
+neutron_mass.set_value = '1.67492716*10^-27'
+neutron_mass.save!
 neutron_mass.update_attributes name: 'Ruhemasse eines Neutrons', locale: :de
 
 ## Proton mass
-proton_mass = Constant.find_or_create_by! symbol: 'm<sub>p</sub>', name: 'Proton mass', value: '1.67262158*10^-27', unit_of_measurement: kilogram
+proton_mass = Constant.find_or_create_by! symbol: 'm<sub>p</sub>', name: 'Proton mass', unit_of_measurement: kilogram
+proton_mass.set_value = '1.67262158*10^-27'
+proton_mass.save!
 proton_mass.update_attributes name: 'Ruhemasse eines Protons', locale: :de
 
 

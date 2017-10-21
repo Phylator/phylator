@@ -12,7 +12,7 @@ class Constant < ApplicationRecord
     include Uniqueness
     validates :symbol, presence: true
     validates :name, presence: true
-    validates :value, presence: true
+    # validates :value, presence: true
     validates :unit_of_measurement, presence: true
 
     has_many :calculation_constants, class_name: '::Calculation::Constant'
@@ -22,6 +22,8 @@ class Constant < ApplicationRecord
     # has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
 
     belongs_to :unit_of_measurement
+
+    cattr_accessor :set_value
 
     def sym
         self.symbol.html_safe
@@ -37,10 +39,8 @@ class Constant < ApplicationRecord
     end
 
     def evaluate_value
-        if self.value_changed?
-            calculator = Dentaku::Calculator.new
-            self.value = calculator.evaluate self.value
-        end
+        calculator = Dentaku::Calculator.new
+        self.value = calculator.evaluate self.set_value
     end
 
 end
