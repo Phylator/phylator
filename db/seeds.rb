@@ -679,23 +679,23 @@ Equation.find_or_create_by! quantity: mass, equation: 'p / v'
 Equation.find_or_create_by! quantity: momentum, equation: 'm * v'
 Equation.find_or_create_by! quantity: velocity, equation: 'p / m'
 
-Equation.find_or_create_by! quantity: velocity, equation: 'v_{initial} + a * t'
-Equation.find_or_create_by! quantity: acceleration, equation: '( v - v_{initial} ) / t'
-Equation.find_or_create_by! quantity: time, equation: '( v - v_{initial} ) / a'
+Equation.find_or_create_by! quantity: velocity, equation: 'v_initial + a * t'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v - v_initial ) / t'
+Equation.find_or_create_by! quantity: time, equation: '( v - v_initial ) / a'
 
-Equation.find_or_create_by! quantity: velocity, equation: 'sqrt( v_{initial}^2 + 2 * a * s )'
+Equation.find_or_create_by! quantity: velocity, equation: 'sqrt( v_initial^2 + 2 * a * s )'
 Equation.find_or_create_by! quantity: initial_velocity, equation: 'sqrt( v^2 - 2 * a * s )'
-Equation.find_or_create_by! quantity: distance_traveled, equation: '( v^2 - v_{initial}^2 ) / ( 2 * a )'
-Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_{initial}^2 ) / ( 2 * s )'
+Equation.find_or_create_by! quantity: distance_traveled, equation: '( v^2 - v_initial^2 ) / ( 2 * a )'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_initial^2 ) / ( 2 * s )'
 
-Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_{initial} * t + 1/2 * a * t^2'
+Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_initial * t + 1/2 * a * t^2'
 Equation.find_or_create_by! quantity: initial_velocity, equation: '( s - 1/2 * a * t^2 ) / t'
 Equation.find_or_create_by! quantity: acceleration, equation: '(2 * ( s - u * t )) / t^2'
 # Equation.find_or_create_by! quantity: time, equation: '...'
 
-Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_{initial}'
-Equation.find_or_create_by! quantity: initial_velocity, equation: '( m * v - Δp ) / m'
-Equation.find_or_create_by! quantity: velocity, equation: '( Δp + m * v_{initial} ) / m'
+Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_initial'
+# Equation.find_or_create_by! quantity: initial_velocity, equation: '( m * v - Δp ) / m' ##### issue with Δp #####
+# Equation.find_or_create_by! quantity: velocity, equation: '( Δp + m * v_initial ) / m' ##### issue with Δp #####
 # Equation.find_or_create_by! quantity: mass, equation: '...'
 
 Equation.find_or_create_by! quantity: work, equation: 'F * s'
@@ -715,8 +715,8 @@ Equation.find_or_create_by! quantity: mass, equation: 'ρ / V'
 Equation.find_or_create_by! quantity: volume, equation: 'ρ / m'
 
 Equation.find_or_create_by! quantity: pressure, equation: 'F / A'
-Equation.find_or_create_by! quantity: force, equation: 'p_{f} * A'
-Equation.find_or_create_by! quantity: area, equation: 'F / p_{f}'
+Equation.find_or_create_by! quantity: force, equation: 'p_f * A'
+Equation.find_or_create_by! quantity: area, equation: 'F / p_f'
 
 Equation.find_or_create_by! quantity: electric_potential, equation: 'I * R'
 Equation.find_or_create_by! quantity: electric_current, equation: 'U / R'

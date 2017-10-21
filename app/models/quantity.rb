@@ -22,7 +22,7 @@ class Quantity < ApplicationRecord
         self.symbol.html_safe
     end
     def pure_sym
-        self.symbol.sub('<sub>', '_{').sub('</sub>', '}')
+        self.symbol.sub('<sub>', '_').sub('</sub>', '')
     end
 
     scope :base, -> { where(parent_quantity: nil) }
