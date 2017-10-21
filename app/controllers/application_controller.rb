@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     rescue_from (AbstractController::ActionNotFound) { |exception| handle_exception exception, 404 }
     rescue_from (ActionController::RoutingError) { |exception| handle_exception exception, 404 }
     rescue_from (CanCan::AccessDenied) { |exception| handle_exception exception, 403 }
-    rescue_from (TSort::Cyclic) { |exception| handle_exception exception, 400 }
+    # rescue_from (TSort::Cyclic) { |exception| handle_exception exception, 400 }
 
 
 

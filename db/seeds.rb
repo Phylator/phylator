@@ -711,8 +711,8 @@ Equation.find_or_create_by! quantity: energy, equation: 'P * t'
 Equation.find_or_create_by! quantity: time, equation: 'E / P'
 
 Equation.find_or_create_by! quantity: density, equation: 'm * V'
-Equation.find_or_create_by! quantity: mass, equation: 'ρ / V'
-Equation.find_or_create_by! quantity: volume, equation: 'ρ / m'
+# Equation.find_or_create_by! quantity: mass, equation: 'ρ / V' ##### issue with ρ #####
+# Equation.find_or_create_by! quantity: volume, equation: 'ρ / m' ##### issue with ρ #####
 
 Equation.find_or_create_by! quantity: pressure, equation: 'F / A'
 Equation.find_or_create_by! quantity: force, equation: 'p_f * A'
