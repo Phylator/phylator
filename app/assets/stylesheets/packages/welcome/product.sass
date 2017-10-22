@@ -4,11 +4,15 @@
         font-family: 'europa' !important
         font-weight: bold
     h1
-        font-size: px(48)
+        font-size: px(30)
+        @include bigger-than(small)
+            font-size: px(48)
         @include bigger-than(mobile)
             font-size: px(64)
     h2
-        font-size: px(30)
+        font-size: px(24)
+        @include bigger-than(small)
+            font-size: px(30)
         opacity: .7
     h3
         font-size: px(24)
@@ -62,7 +66,7 @@
                 align-items: flex-end
                 margin-right: px(75)
             h1
-                margin: px(5) 0 px(3)
+                margin: px(5) 0 px(5)
                 @include bigger-than(medium)
                     margin: px(25) 0 px(5)
             & > a.btn
