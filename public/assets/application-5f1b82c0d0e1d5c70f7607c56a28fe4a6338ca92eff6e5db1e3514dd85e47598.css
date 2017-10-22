@@ -4368,34 +4368,35 @@ label.boolean {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"] {
-  width: auto;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.5625em;
+  height: 1.5625em;
   padding: 0;
   cursor: pointer;
   border-radius: 50%;
+  transition: border 0.15s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:checked {
   background: var(--color-accent-dark);
-  background: url(/images/components/forms/checkbox/check_white.png) no-repeat center center, var(--color-accent-dark);
+  background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, var(--color-accent-dark);
   border: none;
   position: relative;
 }
 /* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:not(:checked) {
-  background: white;
+  background: var(--color-dark-dark);
+  box-shadow: var(--style-box-shadow-sm);
 }
 /* line 19, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:not(:checked):not(:focus) {
-  border-color: var(--color-light-light);
+  border-color: var(--color-dark-dark);
 }
 /* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"] ~ label {
-  margin: 0 0 0.125em 0.9375em;
+  margin-bottom: 0.3125em;
 }
 
 /* line 25, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
@@ -5235,8 +5236,8 @@ body.devise nav.app > a:last-child {
 }
 /* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
 .welcome.product #nativegap {
-  position: absolute;
-  top: 1.875em;
+  position: fixed;
+  bottom: 1.875em;
   right: 1.875em;
 }
 /* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
