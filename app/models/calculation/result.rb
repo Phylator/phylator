@@ -16,7 +16,7 @@ class Calculation::Result < ApplicationRecord
     def calc
 
         # Init calculator
-        calculator = Dentaku::Calculator.new
+        calculator = Dentaku::Calculator.new case_sensitive: true
 
         # Init variables & convert to base
         ## Group measurements by quantity

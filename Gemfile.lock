@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/Phylator/dentaku.git
+  revision: 1755aedc7e60254e687087076fa2f194899c622c
+  specs:
+    dentaku (3.0.0)
+
+GIT
   remote: https://github.com/globalize/globalize.git
   revision: 11f47cfee50d0442988b4e52f45eae4fce12f4e9
   specs:
@@ -6,12 +12,6 @@ GIT
       activemodel (>= 4.2, < 5.2)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
-
-GIT
-  remote: https://github.com/rubysolo/dentaku.git
-  revision: 8c246674022f19c31e1fdb470ff94869edc93a31
-  specs:
-    dentaku (3.0.0)
 
 GEM
   remote: https://rubygems.org/
