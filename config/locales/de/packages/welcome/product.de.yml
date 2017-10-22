@@ -5,17 +5,17 @@ de:
                 title: Ein Taschenrechner für Physik
                 content: einfach und leistungsfähig
             features:
-                calculate: |
-                    Berechne,
-                    was immer dir in
+                calculate_html:
+                    Berechne,</br>
+                    was immer dir in</br>
                     die Gedanken kommt.
-                walkthrough: |
-                    Phylator
-                    zeigt dir den
+                walkthrough_html:
+                    Phylator</br>
+                    zeigt dir den</br>
                     Lösungsweg.
-                explore: |
-                    + Physikalische Größen
-                    & Naturkonstanten
+                explore_html:
+                    + Physikalische Größen</br>
+                    & Naturkonstanten</br>
                     = zum entdecken
             open_source:
                 title: We are open-source

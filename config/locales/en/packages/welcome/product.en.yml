@@ -5,17 +5,17 @@ en:
                 title: A calculator for physics
                 content: simple but powerful
             features:
-                calculate: |
-                    Calculate
-                    whatever comes
+                calculate_html:
+                    Calculate</br>
+                    whatever comes</br>
                     to your mind.
-                walkthrough: |
-                    Phylator
-                    walks you through
+                walkthrough_html:
+                    Phylator</br>
+                    walks you through</br>
                     your calculation.
-                explore: |
-                    + Physical quantities
-                    & Physical constants
+                explore_html:
+                    + Physical quantities</br>
+                    & Physical constants</br>
                     = to explore
             open_source:
                 title: We are open-source
