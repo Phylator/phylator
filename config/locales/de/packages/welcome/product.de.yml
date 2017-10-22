@@ -1,0 +1,22 @@
+de:
+    welcome:
+        product:
+            main:
+                title: Ein Taschenrechner für Physik
+                content: einfach und leistungsfähig
+            features:
+                calculate: |
+                    Berechne,
+                    was immer dir in
+                    die Gedanken kommt.
+                walkthrough: |
+                    Phylator
+                    zeigt dir den
+                    Lösungsweg.
+                explore: |
+                    + Physikalische Größen
+                    & Naturkonstanten
+                    = zum entdecken
+            open_source:
+                title: We are open-source
+                content: Phylator is what it has become because of the people who work on this project. You can make your own spark!

@@ -1,9 +1,94 @@
 .welcome.product
-    padding: px(60)
+    background: linear-gradient(color(dark, darker), color(dark, accent))
+    h1, h2, h3, h4, a:not(.btn)
+        font-family: 'europa' !important
+        font-weight: bold
+    h1
+        font-size: px(64)
+    h2
+        font-size: px(30)
+        opacity: .75
+    h3
+        font-size: px(24)
+    a:not(.btn)
+        color: color(dark, lighter)
+        text-decoration: none
+    a.btn.icon:hover svg
+        path, circle, rect
+            fill: white
+    .links
+        display: flex
+        align-items: center
+        a:not(:last-child)
+            margin-right: px(50)
+            &.btn
+                margin-right: px(20)
+    .header, .main, .features, .open-source, .footer
+        margin: 0 px(60)
     .header
         display: flex
         justify-content: space-between
         align-items: center
+        margin-top: px(60)
+        margin-bottom: px(110)
+    .center-wrapper
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+    .main
+        margin: 0 auto
+        display: flex
+        .wrapper
+            text-align: left
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+            margin-right: px(75)
+            h1
+                margin: px(25) 0 px(5)
+            & > a.btn
+                margin: px(80) 0 px(35)
+    .continue
+        cursor: pointer
+        transform: rotate(90deg)
+        margin: px(50) 0
+    .features
+        display: flex
+        margin: px(50) 0
+        & > div
+            display: flex
+            flex-direction: column
+            align-items: center
+            &:not(:first-child)
+                margin-left: px(110)
+            &:first-child
+                margin-top: px(50)
+            &:last-child
+                margin-top: px(100)
+            h3
+                margin-top: px(35)
+    .open-source
+        display: flex
+        flex-direction: column
+        align-items: center
+        margin: px(150) 0 px(75)
+        p
+            margin: px(15) 0 px(35)
+            max-width: px(250)
+            text-align: center
+    .footer
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        align-items: center
+        margin-top: px(110)
+        padding-bottom: px(60)
+        h4
+            margin-top: px(5)
+        & > a
+            justify-self: center
+        & > div:last-child
+            justify-self: end
     // p
     //     margin-top: px(15)
     // #nativegap

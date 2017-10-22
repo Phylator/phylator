@@ -21188,7 +21188,7 @@ function flexdatalistInit(el = $('body')) {
     el.find('input.flexdatalist').flexdatalist();
 
     el.find('input.flexdatalist[data-units]').on( 'change:flexdatalist', function(event, set, options) {
-        $($(this).data('units')).data( 'data', ( 'quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text() ) ).flexdatalist().attr('disabled', 'false');
+        $($(this).data('units')).data( 'data', ( 'app/quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text() ) ).flexdatalist().attr('disabled', 'false');
     });
 
 };
@@ -21203,8 +21203,7 @@ function iframeInit() {
     var inIframe = ( window.location != window.parent.location ) ? true : false;
 
     if ( inIframe === true ) {
-        $('body').addClass('disabledTransitions');
-        $(':root').css({ 'font-size': '18px' });
+        $('body').addClass('disabledTransitions');$(':root').css({ 'font-size': '18px' });
         $('body').removeClass('disabledTransitions');
     };
 
@@ -21287,6 +21286,26 @@ document.addEventListener( 'turbolinks:load', function() {
 
 function welcomeIndexInit() {
     $('.slick').slick({ infinite: false, mobileFirst: true, dots: true, arrows: false });
+};
+document.addEventListener( 'turbolinks:load', function() {
+    if ($('body.welcome.product').length != 0) {
+        welcomeProductInit();
+        welcomeProductScroll();
+    };
+});
+
+
+
+function welcomeProductInit() {
+    AOS.init();
+};
+
+function welcomeProductScroll() {
+    $('.continue').click(function() {
+        $('html, body').animate({
+            scrollTop: $('.continue').offset().top + 50
+        }, 1000);
+    });
 };
 /**
  * http://animejs.com

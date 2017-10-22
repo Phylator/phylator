@@ -5,6 +5,7 @@
   --color-accent-base: #2d81e8;
   --color-accent-light: #76b8f0;
   --color-accent-lighter: #b6e1f9;
+  --color-dark-accent: #2A374B;
   --color-dark-darker: #2d3446;
   --color-dark-dark: #384155;
   --color-dark-base: #434e65;
@@ -50,11 +51,11 @@
 /* Usage */
 /* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/modules/variables/style.scss */
 :root {
-  --style-box-shadow-sm: 0 0.0625em 0.3125em 0 rgba(45, 52, 70, 0.05)
+  --style-box-shadow-sm: 0 0 0 0 rgba(45, 52, 70, 0.1)
   ;
-  --style-box-shadow-md: 0 0.25em 0.9375em 0 rgba(45, 52, 70, 0.05)
+  --style-box-shadow-md: 0 0.25em 0.9375em 0 rgba(45, 52, 70, 0.1)
   ;
-  --style-box-shadow-lg: 0 0.4375em 2.5em 0 rgba(45, 52, 70, 0.05)
+  --style-box-shadow-lg: 0 0.4375em 2.5em 0 rgba(45, 52, 70, 0.1)
   ;
 }
 
@@ -4257,6 +4258,10 @@ a.btn.secondary, button.secondary, input[type="submit"].secondary {
 a.btn.secondary:hover, button.secondary:hover, input[type="submit"].secondary:hover {
   background: var(--color-dark-dark);
 }
+/* line 50, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/button.sass */
+a.btn.icon, button.icon, input[type="submit"].icon {
+  padding: 0.75em 0.9375em 0.875em;
+}
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/input.sass */
 input:not([type="submit"]) {
@@ -4368,34 +4373,35 @@ label.boolean {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"] {
-  width: auto;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.5625em;
+  height: 1.5625em;
   padding: 0;
   cursor: pointer;
   border-radius: 50%;
+  transition: border 0.15s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 /* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:checked {
   background: var(--color-accent-dark);
-  background: url(/images/components/forms/checkbox/check_white.png) no-repeat center center, var(--color-accent-dark);
+  background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, var(--color-accent-dark);
   border: none;
   position: relative;
 }
 /* line 16, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:not(:checked) {
-  background: white;
+  background: var(--color-dark-dark);
+  box-shadow: var(--style-box-shadow-sm);
 }
 /* line 19, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"]:not(:checked):not(:focus) {
-  border-color: var(--color-light-light);
+  border-color: var(--color-dark-dark);
 }
 /* line 21, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
 input[type="radio"] ~ label {
-  margin: 0 0 0.125em 0.9375em;
+  margin-bottom: 0.3125em;
 }
 
 /* line 25, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/components/base/form/radio.sass */
@@ -5227,27 +5233,153 @@ body.devise nav.app > a:last-child {
 
 /* line 1, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
 .welcome.product {
-  padding: 2.1875em 1.5625em 6.25em;
+  background: linear-gradient(var(--color-dark-darker), var(--color-dark-accent));
 }
 /* line 3, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
-.welcome.product p {
-  margin-top: 0.9375em;
+.welcome.product h1, .welcome.product h2, .welcome.product h3, .welcome.product h4, .welcome.product a:not(.btn) {
+  font-family: "europa" !important;
+  font-weight: bold;
 }
-/* line 5, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
-.welcome.product #nativegap {
-  position: absolute;
-  bottom: 1.875em;
-  right: 1.875em;
+/* line 6, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product h1 {
+  font-size: 4em;
 }
-/* line 9, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+/* line 8, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product h2 {
+  font-size: 1.875em;
+  opacity: 0.75;
+}
+/* line 11, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product h3 {
+  font-size: 1.5em;
+}
+/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product a:not(.btn) {
+  color: var(--color-dark-lighter);
+  text-decoration: none;
+}
+/* line 17, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product a.btn.icon:hover svg path, .welcome.product a.btn.icon:hover svg circle, .welcome.product a.btn.icon:hover svg rect {
+  fill: white;
+}
+/* line 19, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
 .welcome.product .links {
-  margin: 2.8125em 0;
   display: flex;
   align-items: center;
 }
-/* line 13, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
-.welcome.product .links a.btn:not(:first-child) {
-  margin-left: 1.5625em;
+/* line 22, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links a:not(:last-child) {
+  margin-right: 3.125em;
+}
+/* line 24, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .links a:not(:last-child).btn {
+  margin-right: 1.25em;
+}
+/* line 26, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .header, .welcome.product .main, .welcome.product .features, .welcome.product .open-source, .welcome.product .footer {
+  margin: 0 3.75em;
+}
+/* line 28, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3.75em;
+  margin-bottom: 6.875em;
+}
+/* line 34, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .center-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* line 39, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .main {
+  margin: 0 auto;
+  display: flex;
+}
+/* line 42, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .main .wrapper {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 4.6875em;
+}
+/* line 48, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .main .wrapper h1 {
+  margin: 1.5625em 0 0.3125em;
+}
+/* line 50, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .main .wrapper > a.btn {
+  margin: 5em 0 2.1875em;
+}
+/* line 52, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .continue {
+  cursor: pointer;
+  transform: rotate(90deg);
+  margin: 3.125em 0;
+}
+/* line 56, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features {
+  display: flex;
+  margin: 3.125em 0;
+}
+/* line 59, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* line 63, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features > div:not(:first-child) {
+  margin-left: 6.875em;
+}
+/* line 65, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features > div:first-child {
+  margin-top: 3.125em;
+}
+/* line 67, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features > div:last-child {
+  margin-top: 6.25em;
+}
+/* line 69, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .features > div h3 {
+  margin-top: 2.1875em;
+}
+/* line 71, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .open-source {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 9.375em 0 4.6875em;
+}
+/* line 76, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .open-source p {
+  margin: 0.9375em 0 2.1875em;
+  max-width: 15.625em;
+  text-align: center;
+}
+/* line 80, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 6.875em;
+  padding-bottom: 3.75em;
+}
+/* line 86, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .footer h4 {
+  margin-top: 0.3125em;
+}
+/* line 88, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .footer > a {
+  justify-self: center;
+}
+/* line 90, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/product.sass */
+.welcome.product .footer > div:last-child {
+  justify-self: end;
 }
 
 /* line 2, c:/Users/Jonas/apps/phylator/phylator/app/assets/stylesheets/packages/devise/shared/links.sass */

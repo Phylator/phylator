@@ -3,9 +3,10 @@ en:
         convert_to: Convert to
         copied_to_clipboard: Copied to clipboard
         current_password: Current password
+        follow_on_twitter: Follow @%{username} on Twitter
         forgot_your_password?: Forgot your password?
         get_started: Get started
-        unit_of_measurement: Unit of measurement
+        launch_app: Launch app
         margin_of_error: Margin of error
         new_password: New password
         no_permission: No permission
@@ -13,4 +14,7 @@ en:
         physical_constants: Physical constants
         physical_quantities: Physical quantities
         physical_quantity: Physical quantity
+        privacy_policy: Privacy policy
         remember_me: Remember me
+        unit_of_measurement: Unit of measurement
+        view_on_github: View on GitHub

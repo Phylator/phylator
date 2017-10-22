@@ -1,0 +1,22 @@
+en:
+    welcome:
+        product:
+            main:
+                title: A calculator for physics
+                content: simple but powerful
+            features:
+                calculate: |
+                    Calculate
+                    whatever comes
+                    to your mind.
+                walkthrough: |
+                    Phylator
+                    walks you through
+                    your calculation.
+                explore: |
+                    + Physical quantities
+                    & Physical constants
+                    = to explore
+            open_source:
+                title: We are open-source
+                content: Phylator is what it has become because of the people who work on this project. You can make your own spark!
