@@ -14,7 +14,7 @@ function welcomeProductInit() {
 function welcomeProductScroll() {
     $('.continue').click(function() {
         $('html, body').animate({
-            scrollTop: $('.continue').offset().top + 50
+            scrollTop: $('.continue').offset().top + 75
         }, 1000);
     });
 };

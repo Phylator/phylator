@@ -4,10 +4,12 @@
         font-family: 'europa' !important
         font-weight: bold
     h1
-        font-size: px(64)
+        font-size: px(48)
+        @include bigger-than(mobile)
+            font-size: px(64)
     h2
         font-size: px(30)
-        opacity: .75
+        opacity: .7
     h3
         font-size: px(24)
     a:not(.btn)
@@ -24,44 +26,71 @@
             &.btn
                 margin-right: px(20)
     .header, .main, .features, .open-source, .footer
-        margin: 0 px(60)
+        margin: 0 px(40)
+        @include bigger-than(mobile)
+            margin: 0 px(60)
     .header
         display: flex
         justify-content: space-between
         align-items: center
-        margin-top: px(60)
-        margin-bottom: px(110)
+        margin-top: px(40)
+        margin-bottom: px(50)
+        @include bigger-than(mobile)
+            margin-top: px(60)
+            margin-bottom: px(110)
+        .links a:first-child
+            display: none
+            @include bigger-than(mobile)
+                display: block
     .center-wrapper
         width: 100%
         display: flex
         flex-direction: column
         align-items: center
     .main
-        margin: 0 auto
+        margin: 0 px(40) px(50)
+        @include bigger-than(mobile)
+            margin: 0 px(60) px(50)
+        @include bigger-than(large)
+            margin: 0 px(60)
         display: flex
         .wrapper
-            text-align: left
             display: flex
             flex-direction: column
-            align-items: flex-end
-            margin-right: px(75)
+            align-items: flex-start
+            @include bigger-than(large)
+                align-items: flex-end
+                margin-right: px(75)
             h1
-                margin: px(25) 0 px(5)
+                margin: px(5) 0 px(3)
+                @include bigger-than(medium)
+                    margin: px(25) 0 px(5)
             & > a.btn
                 margin: px(80) 0 px(35)
+        .img-wrapper
+            display: none
+            @include bigger-than(large)
+                display: block
     .continue
         cursor: pointer
         transform: rotate(90deg)
         margin: px(50) 0
+        display: none
+        @include bigger-than(large)
+            display: flex
     .features
-        display: flex
-        margin: px(50) 0
+        display: none
+        @include bigger-than(large)
+            display: flex
+        margin: px(50) 0 px(100)
         & > div
             display: flex
             flex-direction: column
             align-items: center
             &:not(:first-child)
-                margin-left: px(110)
+                margin-left: px(50)
+                @include bigger-than(desktop)
+                    margin-left: px(110)
             &:first-child
                 margin-top: px(50)
             &:last-child
@@ -72,23 +101,42 @@
         display: flex
         flex-direction: column
         align-items: center
-        margin: px(150) 0 px(75)
+        margin: px(50) 0 px(75)
+        @include bigger-than(large)
+            margin: px(100) 0 px(75)
         p
             margin: px(15) 0 px(35)
             max-width: px(250)
             text-align: center
     .footer
-        display: grid
-        grid-template-columns: 1fr 1fr 1fr
+        display: flex
+        justify-content: space-between
+        @include bigger-than(large)
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
         align-items: center
         margin-top: px(110)
-        padding-bottom: px(60)
+        padding-bottom: px(40)
+        @include bigger-than(mobile)
+            padding-bottom: px(60)
+        .identity
+            display: none
+            @include bigger-than(large)
+                display: block
         h4
             margin-top: px(5)
         & > a
             justify-self: center
         & > div:last-child
             justify-self: end
+            a:not(.btn)
+                margin: 0
+                @include bigger-than(mobile)
+                    margin-right: px(50)
+            a.btn
+                display: none
+                @include bigger-than(mobile)
+                    display: block
     // p
     //     margin-top: px(15)
     // #nativegap
