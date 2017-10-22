@@ -1,12 +1,50 @@
-%h1 Phylator
-%p A simple but powerful calculator for physics.
+.header
+    .identity
+        = link_to root_url do
+            = asset 'logo.svg'
+    .links
+        = link_to 'Follow @Phylator on Twitter', 'https://twitter.com/Phylator', target: '_blank'
+        - if current_user
+            = link_to 'Account', edit_user_registration_url, class: 'btn secondary'
+        - else
+            = link_to 'Login', new_user_session_url, class: 'btn secondary'
 
-.links
-    = link_to 'Launch', app_root_url, class: 'btn'
-    = link_to 'Android', 'https://play.google.com/store/apps/details?id=com.herokuapp.phylator', class: 'btn secondary', target: '_blank'
-    = link_to 'iOS', '', class: 'btn secondary', target: '_blank'
-    = link_to 'Windows 10', 'https://www.microsoft.com/store/apps/9p2s8l446bhc', class: 'btn secondary', target: '_blank'
-    = link_to 'Chrome', '', class: 'btn secondary', target: '_blank'
+.main
+    .wrapper
+        %h1 A calculator for physics
+        %h2 simple but powerful
+        = link_to 'Launch app', (current_user ? app_root_url : setup_url), class: 'btn'
+        .flex-wrapper
+            = link_to 'https://play.google.com/store/apps/details?id=com.herokuapp.phylator', class: 'btn secondary', target: '_blank' do
+                = asset 'android.svg'
+            = link_to '', class: 'btn secondary', target: '_blank' do
+                = asset 'ios.svg'
+            = link_to 'https://www.microsoft.com/store/apps/9p2s8l446bhc', class: 'btn secondary', target: '_blank' do
+                = asset 'windows.svg'
+            = link_to '', class: 'btn secondary', target: '_blank' do
+                = asset 'chrome.svg'
+    = image_tag 'packages/welcome/product/main@2x.png', width: '343px'
 
-#nativegap
-    = asset 'icons/nativegap.svg'
+.continue
+    = asset 'scroll.svg'
+
+.features
+    .calculate
+        = image_tag 'packages/welcome/product/calculate@2x.png', width: '343px'
+    .walkthrough
+        = image_tag 'packages/welcome/product/walkthrough@2x.png', width: '343px'
+    .explore
+        = image_tag 'packages/welcome/product/explore@2x.png', width: '343px'
+
+.footer
+    .identity
+        %h3 Phylator
+        %h4 A calculator for physics.
+    = asset 'nativegap.svg'
+    .links
+        = link_to 'Privacy Policy', privacy_url
+        - if current_user
+            = link_to 'Account', edit_user_registration_url, class: 'btn secondary'
+        - else
+            = link_to 'Login', new_user_session_url, class: 'btn secondary'
+        = link_to 'Launch app', (current_user ? app_root_url : setup_url), class: 'btn'
