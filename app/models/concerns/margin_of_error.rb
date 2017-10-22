@@ -15,7 +15,11 @@ module MarginOfError
     def pretty_margin_of_error
         if self.margin_of_error.to_s.size > 12
             x = trim(self.margin_of_error).to_f.to_s
-            x[1] == '.' ? '%.10f' % x : "%e" % x
+            if x[1] == '.'
+                '%.10f' % x
+            else
+                "%e" % x
+            end
         else
             delimiter(trim(self.margin_of_error))
         end
