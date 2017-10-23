@@ -19,7 +19,7 @@ gem 'devise', '~> 4.3'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'browser', '~> 2.5'
 gem 'friendly_id', '~> 5.2'
-gem 'dentaku', github: 'Phylator/dentaku'
+gem 'dentaku', github: 'rubysolo/dentaku'
 gem 'pry-rails', '~> 0.3.6'
 
 
