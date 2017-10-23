@@ -448,7 +448,7 @@ newton_meter.unit_of_measurement_quantities.find_or_create_by! quantity: torque
 velocity = Quantity.find_or_create_by! symbol: 'v', name: 'Velocity', description: 'Speed and direction of an object', vector: true
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: velocity
 ## Initial velocity
-initial_velocity = Quantity.find_or_create_by! symbol: 'v<sub>initial</sub>', name: 'Initial velocity', description: 'Initial speed and direction of an object', parent_quantity: velocity, vector: true
+initial_velocity = Quantity.find_or_create_by! symbol: 'v<sub>init</sub>', name: 'Initial velocity', description: 'Initial speed and direction of an object', parent_quantity: velocity, vector: true
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: initial_velocity
 
 # Volume
