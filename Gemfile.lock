@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/rubysolo/dentaku.git
-  revision: 9b6ffabf72ca7264bfbd5cf6f47327b908bee606
+  revision: 2906c55b032f7785cee04a5426a5753cb11ef805
   specs:
     dentaku (3.0.0)
 
@@ -118,7 +118,7 @@ GEM
     friendly_id (5.2.3)
       activerecord (>= 4.0.0)
     geocoder (1.4.4)
-    globalid (0.4.0)
+    globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
       temple (>= 0.8.0)
@@ -200,7 +200,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.1.0)
+    rake (12.2.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -255,7 +255,7 @@ GEM
     turbolinks-source (5.0.3)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2017.2)
+    tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)

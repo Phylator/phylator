@@ -29,7 +29,7 @@ class Constant < ApplicationRecord
         self.symbol.html_safe
     end
     def pure_sym
-        self.symbol.sub('<sub>', '_').sub('</sub>', '')
+        self.symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
     end
 
     private

@@ -53,30 +53,17 @@ class Calculation::Result < ApplicationRecord
         # Solve equations
         ## Solve equations unless unit conversion is requested
         unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
-            # ## Add equations
-            # equations = {}
-            # ::Equation.all.each do |equation|
-            #     equations[equation.quantity.pure_sym] = equation.equation
-            #     ## Associate equation with calculation if used
-            #     if calculator.dependencies(equation.equation).size == 0
-            #         self.calculation.calculation_equations.create! equation: equation
-            #         ## Associate physical constant with calculation if used
-            #         ::Constant.all.each do |constant|
-            #             symbol = constant.pure_sym
-            #             if equation.equation.include? symbol
-            #                 self.calculation.calculation_constants.create! constant: constant
-            #             end
-            #         end
-            #     end
-            # end
-            # ## Solve equations
-            # calculation_results = calculator.solve equations
-            # calculation_result = calculation_results[self.calculation.quantity.pure_sym]
-
+            ## Add equations
             calculation_result = :undefined
+            equations = {}
+            ::Quantity.all.each do |quantity|
+                equations[quantity.pure_sym] = []
+            end
+            # ::Equation.all.each do |equation|
             ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
+                equations[equation.quantity.pure_sym] << equation.equation
+                ## Associate equation with calculation if used
                 if calculator.dependencies(equation.equation).size == 0
-                    ## Associate equation with calculation if used
                     self.calculation.calculation_equations.create! equation: equation
                     ## Associate physical constant with calculation if used
                     ::Constant.all.each do |constant|
@@ -85,10 +72,32 @@ class Calculation::Result < ApplicationRecord
                             self.calculation.calculation_constants.create! constant: constant
                         end
                     end
-                    calculation_result = calculator.evaluate equation.equation
-                    break
                 end
             end
+            ## UNNECESSARY
+            equations.each do |key, value|
+                equations.delete(key) if value == []
+            end
+            ## Solve equations
+            calculation_results = calculator.solve equations
+            calculation_result = calculation_results[self.calculation.quantity.pure_sym].map {|x| BigDecimal(x) rescue nil }.compact.first
+
+            # calculation_result = :undefined
+            # ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
+            #     if calculator.dependencies(equation.equation).size == 0
+            #         ## Associate equation with calculation if used
+            #         self.calculation.calculation_equations.create! equation: equation
+            #         ## Associate physical constant with calculation if used
+            #         ::Constant.all.each do |constant|
+            #             symbol = constant.pure_sym
+            #             if equation.equation.include? symbol
+            #                 self.calculation.calculation_constants.create! constant: constant
+            #             end
+            #         end
+            #         calculation_result = calculator.evaluate equation.equation
+            #         break
+            #     end
+            # end
 
             # ## Resulting errors
             # error_equations = {}

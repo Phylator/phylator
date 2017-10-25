@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     rescue_from (ActionController::RoutingError) { |exception| handle_exception exception, 404 }
     rescue_from (CanCan::AccessDenied) { |exception| handle_exception exception, 403 }
     rescue_from (TSort::Cyclic) { |exception| handle_exception exception, 400 }
+    rescue_from (Math::DomainError) { |exception| handle_exception exception, 500 }
 
 
 
@@ -91,6 +92,8 @@ class ApplicationController < ActionController::Base
                 format.html { redirect_back(fallback_location: app_root_url, alert: I18n.t('cd.no_permission')) }
             elsif status == 400
                 format.html { redirect_back(fallback_location: app_root_url, alert: I18n.t('calculations.create.error')) }
+            elsif status == 500
+                format.html { redirect_back(fallback_location: app_root_url, alert: I18n.t('calculations.create.math_domain')) }
             end
             format.all { render nothing: true, status: status }
         end
