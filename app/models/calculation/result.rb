@@ -59,7 +59,7 @@ class Calculation::Result < ApplicationRecord
             ::Quantity.all.each do |quantity|
                 equations[quantity.pure_sym] = []
             end
-            # ::Equation.all.each do |equation|
+            # ::Equation.all.each do |equation| ##### LEADING TO: TSort exception #####
             ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.equation
                 ## Associate equation with calculation if used
