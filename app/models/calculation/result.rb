@@ -54,7 +54,6 @@ class Calculation::Result < ApplicationRecord
         ## Solve equations unless unit conversion is requested
         unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
             ## Add equations
-            calculation_result = :undefined
             equations = {}
             ::Quantity.all.each do |quantity|
                 equations[quantity.pure_sym] = []
@@ -80,7 +79,7 @@ class Calculation::Result < ApplicationRecord
             end
             ## Solve equations
             calculation_results = calculator.solve equations
-            calculation_result = calculation_results[self.calculation.quantity.pure_sym].map {|x| BigDecimal(x) rescue nil }.compact.first
+            calculation_result = calculation_results[self.calculation.quantity.pure_sym]&.map {|x| BigDecimal(x) rescue nil }.compact.first || :undefined
 
             # calculation_result = :undefined
             # ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+    namespace :platforms do
+        get 'chrome', to: 'chrome#index'
+    end
+
     scope 'app' do
         resources :quantities, only: [:index, :show] do
             get 'units_of_measurement', to: 'unit_of_measurements#index'
