@@ -1,4 +1,4 @@
-class ErrorsController < ApplicationController
+class Platforms::ChromeController < ApplicationController
 
     def index
         session[:scaling] = 'initial'
