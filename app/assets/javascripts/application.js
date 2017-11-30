@@ -14,13 +14,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require ahoy
+//= require turboboost/turboboost
 
-//= require ./vendor/jquery.flexdatalist
-//= require ./vendor/jquery.shave
-//= require ./vendor/slick
-//= require ./vendor/timeago
-//= require ./vendor/clipboard
-//= require ./vendor/iziToast
-//= require ./vendor/iziModal
-
-//= require_tree .
+//= require_tree ./vendor
+//= require_tree ./components
+//= require_tree ./packages

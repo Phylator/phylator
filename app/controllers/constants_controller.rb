@@ -6,6 +6,7 @@ class ConstantsController < ApplicationController
     # GET /constants/1
     # GET /constants/1.json
     def show
+        @animation = 'fadeinright'
     end
 
     private

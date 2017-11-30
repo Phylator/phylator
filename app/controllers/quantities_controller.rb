@@ -6,6 +6,7 @@ class QuantitiesController < ApplicationController
     # GET /quantities
     # GET /quantities.json
     def index
+        @animation = 'fadein'
         render layout: 'app'
         @quantities = Quantity.all
     end
@@ -13,6 +14,7 @@ class QuantitiesController < ApplicationController
     # GET /quantities/1
     # GET /quantities/1.json
     def show
+        @animation = 'fadeinright'
     end
 
     private

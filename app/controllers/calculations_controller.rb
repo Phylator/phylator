@@ -8,16 +8,19 @@ class CalculationsController < ApplicationController
     # GET /calculations
     # GET /calculations.json
     def index
+        @animation = 'fadein'
         render layout: 'app'
     end
 
     # GET /calculations/1
     # GET /calculations/1.json
     def show
+        @animation = 'fadeinright'
     end
 
     # GET /calculations/new
     def new
+        @animation = 'fadein'
         @calculation = Calculation.new
         @calculation.measurements.build
         render layout: (current_user ? 'app' : 'application')

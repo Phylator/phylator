@@ -8,6 +8,7 @@ class Calculations::MeasurementsController < ApplicationController
     # GET calculations/1/measurements/1
     # GET calculations/1/measurements/1.json
     def show
+        @animation = 'fadeinright'
     end
 
     # PATCH/PUT /calculations/1

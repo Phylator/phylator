@@ -1,16 +1,16 @@
 = extends :application do
     = replace :body do
 
-        %nav.app
-            = link_to calculations_url, class: 'calculations' do
+        %nav.app{ data: { turbolinks_animate_persist: 'nav' } }
+            = link_to calculations_url, class: 'calculations', data: { turbolinks_animate_type: 'nav' } do
                 = asset 'icons/calculator.svg'
-            = link_to quantities_url, class: 'quantities' do
+            = link_to quantities_url, class: 'quantities', data: { turbolinks_animate_type: 'nav' } do
                 = asset 'icons/quantity.svg'
-            = link_to app_root_url, class: 'new' do
+            = link_to app_root_url, class: 'new', data: { turbolinks_animate_type: 'nav' } do
                 = asset 'icons/simple-add.svg'
-            = link_to drafts_url, class: 'drafts' do
+            = link_to drafts_url, class: 'drafts', data: { turbolinks_animate_type: 'nav' } do
                 = asset 'icons/pencil.svg'
-            = link_to edit_user_registration_url, class: 'account' do
+            = link_to edit_user_registration_url, class: 'account', data: { turbolinks_animate_type: 'nav' } do
                 = asset 'icons/single-02.svg'
         = area :content do
             = yield

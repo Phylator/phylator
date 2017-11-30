@@ -7,7 +7,7 @@
             %script{ type: 'text/javascript' }
                 window.onload = function() { componentsModalOpen('.modal.signup'); };
 
-= link_to (current_user ? calculations_url : app_root_url), class: 'back' do
+= link_to (current_user ? calculations_url : app_root_url), class: 'back', data: { turbolinks_animate_appear: 'fadein' } do
     = asset 'components/back.svg'
 
 .tools
@@ -25,7 +25,7 @@
             = @calculation.result.pretty_value
             %span= @calculation.unit_of_measurement.sym
     %p
-        %span= link_to @calculation.quantity.name, @calculation.quantity
+        %span= link_to @calculation.quantity.name, @calculation.quantity, data: { turbolinks_animate_animation: 'fadeout' }
         ·
         %span= timeago @calculation.created_at
 
@@ -54,7 +54,7 @@
     %h3= t 'd.p.measurements'
     .cards
         - @calculation.measurements.each do |measurement|
-            = link_to request.base_url + '/app/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card' do
+            = link_to request.base_url + '/app/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                 .wrapper
                     %h2.small
                         = measurement.pretty_value

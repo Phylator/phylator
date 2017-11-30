@@ -1,4 +1,4 @@
-= simple_form_for(@calculation) do |f|
+= simple_form_for @calculation, turboboost: true do |f|
     = f.error_notification
 
     - if current_user

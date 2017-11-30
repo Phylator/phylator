@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     before_action :set_locale
 
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :set_animation, if: :devise_controller?
 
 
 
@@ -27,6 +28,10 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit :sign_up, keys: [:calculation_id]
         devise_parameter_sanitizer.permit :sign_in, keys: [:calculation_id]
+    end
+
+    def set_animation
+        @animation = 'fadein'
     end
 
     def after_sign_in_path_for resource
