@@ -1,11 +1,8 @@
-- append :head do
-    %meta{ name: 'turbolinks-cache-control', content: 'no-cache' }
-
 - unless current_user
     - if notice
         - append :head do
             %script{ type: 'text/javascript' }
-                window.onload = function() { componentsModalOpen('.modal.signup'); };
+                $(document).on( 'turbolinks:load', function() { componentsModalOpen('.modal.signup'); });
 
 = link_to (current_user ? calculations_url : app_root_url), class: 'back', data: { turbolinks_animate_appear: 'fadein' } do
     = asset 'components/back.svg'
