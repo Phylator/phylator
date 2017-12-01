@@ -12,7 +12,7 @@
         = @measurement.pretty_value
         %span= @measurement.unit_of_measurement.sym
     %p
-        %span= link_to @measurement.quantity.name, quantity_url(@measurement.quantity)
+        %span= link_to @measurement.quantity.name, quantity_url(@measurement.quantity), data: { turbolinks_animate_animation: 'fadeout' }
         ·
         %span= timeago @measurement.created_at
 

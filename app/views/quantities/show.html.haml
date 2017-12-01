@@ -25,7 +25,7 @@
         %h3= t 'cd.physical_quantities'
         .cards
             - @quantity.child_quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-                = link_to quantity, class: 'card' do
+                = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small= quantity.sym
                         %p.small
