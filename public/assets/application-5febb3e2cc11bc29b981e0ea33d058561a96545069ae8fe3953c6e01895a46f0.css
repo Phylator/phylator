@@ -6,6 +6,7 @@
   --color-accent-light: #76b8f0;
   --color-accent-lighter: #b6e1f9;
   --color-dark-accent: #2A374B;
+  --color-dark-darkest: #252b39;
   --color-dark-darker: #2d3446;
   --color-dark-dark: #384155;
   --color-dark-base: #434e65;
@@ -6043,27 +6044,37 @@ html body:not(.disabledTransitions) * {
   margin-left: 0.9375em;
 }
 /* line 23, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
-.cards > .card svg polygon {
+.cards > .card svg polygon, .cards > .card svg path {
   fill: var(--color-dark-lighter);
 }
-/* line 25, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 26, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card .wrapper svg {
+  margin-left: 0;
+  margin-right: 0.375em;
+}
+/* line 29, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card:hover {
   background: var(--color-dark-base);
   box-shadow: var(--style-box-shadow-lg);
 }
-/* line 28, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
-.cards > .card:hover svg polygon {
+/* line 33, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card:hover > svg polygon, .cards > .card:hover > svg path {
   fill: white;
 }
-/* line 30, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 35, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card.highlighted {
   background: var(--color-dark-light);
 }
-/* line 34, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 38, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card p {
+  display: flex;
+  align-items: center;
+}
+/* line 42, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:first-child) {
   margin-left: 0.3125em;
 }
-/* line 36, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 44, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:last-child) {
   margin-right: 0.3125em;
 }
@@ -6083,8 +6094,15 @@ html body:not(.disabledTransitions) * {
   background: var(--color-dark-dark);
   box-shadow: var(--style-box-shadow-md);
 }
+/* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+.iziModal .modal-loader-wrapper {
+  height: 15.625em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* line 5, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+/* line 10, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
 .md-trigger {
   cursor: pointer;
 }
@@ -6161,7 +6179,7 @@ body.quantities nav.app > a:nth-child(2) {
 }
 
 /* line 29, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/layouts/app.sass */
-body.drafts nav.app > a:nth-child(4) {
+body.categories nav.app > a:nth-child(4) {
   opacity: 1;
 }
 
@@ -6334,7 +6352,7 @@ body.devise nav.app > a:last-child {
   transition-duration: 0.25s;
 }
 /* line 41, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
-.calculations.show:not(.measurements) > .content-wrapper h3:not(:first-child), .constants.show > .content-wrapper h3:not(:first-child) {
+.calculations.show:not(.measurements) > .content-wrapper > h3:not(:first-child), .constants.show > .content-wrapper > h3:not(:first-child) {
   margin-top: 2.8125em;
 }
 /* line 43, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
@@ -6519,12 +6537,25 @@ body.devise nav.app > a:last-child {
   flex-direction: row-reverse;
 }
 
-/* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index {
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index .ad {
+  background: var(--color-dark-darkest);
+  padding: 1.875em;
+  margin-bottom: 2.1875em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index .ad p {
+  margin: 0.5em 0 1.875em;
+}
+/* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper {
   padding: 2.1875em 1.5625em 6.25em;
 }
-/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index .cards ~ h1 {
+/* line 13, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper .cards ~ h1 {
   margin-top: 2.1875em;
 }
 
@@ -6550,8 +6581,96 @@ body.devise nav.app > a:last-child {
   padding: 2.1875em 1.875em;
 }
 /* line 17, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/show.sass */
-.quantities.show > .content-wrapper h3 {
+.quantities.show > .content-wrapper > h3 {
   margin-top: 2.8125em;
+}
+
+/* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
+.categories.index {
+  padding: 2.1875em 1.5625em 6.25em;
+}
+
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
+.categories.show > .head-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 40vh;
+  width: 100%;
+  padding: 2.1875em;
+  background: var(--color-dark-dark);
+}
+/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
+.categories.show > .head-wrapper h1 {
+  font-size: 1.875em;
+  margin-right: 0.3125em;
+}
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
+.categories.show > .content-wrapper {
+  padding: 2.1875em 1.875em;
+}
+/* line 14, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
+.categories.show > .content-wrapper > h3 {
+  margin-top: 2.8125em;
+}
+
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .head-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 40vh;
+  width: 100%;
+  padding: 2.1875em;
+  background: var(--color-dark-dark);
+}
+/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .head-wrapper h1 {
+  font-size: 1.875em;
+  margin-right: 0.3125em;
+}
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .content-wrapper {
+  padding: 2.1875em 1.875em;
+}
+/* line 14, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .content-wrapper > p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* line 18, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .content-wrapper > p a.btn ~ span {
+  margin-top: 1.5625em;
+}
+/* line 20, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .content-wrapper > h3 {
+  margin-top: 2.8125em;
+}
+/* line 24, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper {
+  padding: 1.5625em;
+}
+/* line 26, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .input {
+  margin-top: 1.5625em;
+}
+/* line 28, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .form-row {
+  margin-bottom: 1.875em;
+}
+/* line 30, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .flex-wrapper.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+/* line 33, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper p {
+  margin: 0.625em 0 1.875em;
+}
+/* line 35, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
@@ -6611,16 +6730,6 @@ body.devise nav.app > a:last-child {
 /* line 45, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
 .welcome.index > .slick > .slick-dots > li.slick-active > button {
   background: rgba(255, 255, 255, 0.7);
-}
-
-/* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/drafts.sass */
-.welcome.drafts {
-  padding: 2.1875em 1.5625em 6.25em;
-}
-/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/drafts.sass */
-.welcome.drafts p {
-  width: 85%;
-  margin-top: 1.25em;
 }
 
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/language.sass */
