@@ -5,6 +5,7 @@
 
 .head-wrapper
     %h1= @pack.name
+    %p= @pack.category.name
 
 - unless @pack.purchased? current_user
     .buy-wrapper
