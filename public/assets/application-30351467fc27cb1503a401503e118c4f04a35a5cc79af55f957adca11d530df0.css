@@ -6,7 +6,7 @@
   --color-accent-light: #76b8f0;
   --color-accent-lighter: #b6e1f9;
   --color-dark-accent: #2A374B;
-  --color-dark-darkest: #282f41;
+  --color-dark-darkest: #252b39;
   --color-dark-darker: #2d3446;
   --color-dark-dark: #384155;
   --color-dark-base: #434e65;
@@ -6094,8 +6094,19 @@ html body:not(.disabledTransitions) * {
   background: var(--color-dark-dark);
   box-shadow: var(--style-box-shadow-md);
 }
+/* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+.iziModal .modal-content-wrapper {
+  transition: none;
+}
+/* line 6, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+.iziModal .modal-loader-wrapper {
+  height: 15.625em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* line 5, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/modal/index.sass */
 .md-trigger {
   cursor: pointer;
 }
@@ -6317,7 +6328,7 @@ body.devise nav.app > a:last-child {
   justify-content: center;
   align-items: center;
   padding: 1.875em;
-  background: #2b3243;
+  background: var(--color-dark-darkest);
   transition-duration: 0.25s;
 }
 /* line 27, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
@@ -6621,22 +6632,47 @@ body.devise nav.app > a:last-child {
   margin-right: 0.3125em;
 }
 /* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
-.packs.show > .content-wrapper {
-  padding: 2.1875em 1.875em;
-}
-/* line 14, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
-.packs.show > .content-wrapper > p {
+.packs.show > .buy-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-dark-darkest);
+  padding: 1.875em;
 }
 /* line 18, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
-.packs.show > .content-wrapper > p a.btn ~ span {
-  margin-top: 1.5625em;
+.packs.show > .content-wrapper {
+  padding: 2.1875em 1.875em;
 }
 /* line 20, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
 .packs.show > .content-wrapper > h3 {
   margin-top: 2.8125em;
+}
+/* line 24, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper {
+  padding: 1.5625em;
+}
+/* line 26, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .input {
+  margin-top: 1.5625em;
+}
+/* line 28, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .form-row {
+  margin-bottom: 1.875em;
+}
+/* line 30, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .flex-wrapper.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+/* line 33, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper p {
+  margin: 0.625em 0 1.875em;
+}
+/* line 35, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/packs/show.sass */
+.packs.show > .modal.buy .modal-content-wrapper .centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */

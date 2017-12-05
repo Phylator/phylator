@@ -21515,7 +21515,7 @@ if (typeof window !== 'undefined') {
 }));
 /**!
  * @fileOverview turbolinks-animate.js - Animations extending Turbolinks
- * @version 1.3.3
+ * @version 1.3.4
  * @license
  * MIT License
  *
@@ -21544,7 +21544,7 @@ $.fn.extend({
     turbolinksAnimate: function(options) {
         var defaults = {
             animation: 'fadein',
-            duration: '0.5s',
+            duration: '0.3s',
             delay: false,
             reversedDisappearing: true,
             mobileMedia: '500',
@@ -21585,20 +21585,22 @@ function turbolinksAnimateInit( el, options ) {
 
 
 function turbolinksAnimateAppear() {
-    turbolinksAnimateReset();
-    turbolinksAnimateOptions();
-
-    Turbolinks.clearCache() // fix for cache issues
-    turbolinksAnimateAnimateElements(false);
+    turbolinksAnimateToggle(false);
     delete turbolinksAnimateData['appear'];
 };
 
 function turbolinksAnimateDisappear() {
-    turbolinksAnimateReset();
-    turbolinksAnimateOptions();
+    turbolinksAnimateToggle(true);
+};
 
-    Turbolinks.clearCache() // fix for cache issues
-    turbolinksAnimateAnimateElements(true);
+function turbolinksAnimateToggle(disappears) {
+    if ( turbolinksAnimateData['animation'] != 'false' ) {
+        turbolinksAnimateReset();
+        turbolinksAnimateOptions();
+
+        Turbolinks.clearCache() // fix for cache issues
+        turbolinksAnimateAnimateElements(disappears);
+    };
 };
 
 
@@ -21779,6 +21781,93 @@ function componentsModalOpen(el) {
     $(el).iziModal('open');
 };
 document.addEventListener( 'turbolinks:load', function() {
+    if ( $('body.packs.show').length != 0 ) {
+        componentsStripeInit();
+    };
+});
+
+
+
+function componentsStripeInit() {
+
+    var stripe = Stripe('pk_test_eOpXmFh05CQjWwo87etVRjbc'),
+        elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+        base: {
+            color: '#fff',
+            lineHeight: '1.35',
+            fontFamily: 'brandon-grotesque, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#9297a7'
+            }
+        },
+            invalid: {
+            color: '#f19882',
+            iconColor: '#f19882'
+        }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create( 'card', { style: style } );
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener( 'change', function(event) {
+        var displayError = $('#card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    // Handle form submission
+    var form = $('form#purchase-form');
+    form.submit(function(event) {
+        event.preventDefault();
+
+        $('.modal.buy .modal-content-wrapper').fadeOut( 250, function() {
+            $('.modal.buy .modal-loader-wrapper').hide().removeClass('hidden').fadeIn(250);
+
+            var options = {
+                name: document.getElementById('name').value,
+                receipt_email: document.getElementById('receipt_email').value,
+            };
+
+            stripe.createToken(card, options).then(function(result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = $('#card-errors');
+                    errorElement.textContent = result.error.message;
+
+                    $('.modal.buy .modal-loader-wrapper').fadeOut( 250, function() {
+                        $('.modal.buy .modal-content-wrapper').fadeIn(250);
+                    });
+                } else {
+                    // Send the token to your server
+                    $('form#purchase input#token').val(result.token['id']);
+                    $('form#purchase-form').addClass('hidden');
+                    $('.modal.buy .modal-content-wrapper > h2').addClass('hidden');
+                    $('form#purchase .wrapper').removeClass('hidden');
+                    $('form#purchase input#receipt_email').val(options['receipt_email']);
+
+                    $('.modal.buy .modal-loader-wrapper').fadeOut( 250, function() {
+                        $('.modal.buy .modal-content-wrapper').fadeIn(250);
+                    });
+                }
+            });
+        });
+    });
+
+};
+document.addEventListener( 'turbolinks:load', function() {
     componentsTimeagoInit();
 });
 
@@ -21809,7 +21898,7 @@ function componentsTimeagoInit() {
     $('.timeago').timeago();
 };
 $(document).on( 'turbolinks:load', function() {
-    $('body.turbolinks-animate').turbolinksAnimate({ 'duration': '0.35s' });
+    $('body.turbolinks-animate').turbolinksAnimate({ 'duration': '0.25s' });
     turbolinksAnimateAppear();
 });
 $(document).on( 'turbolinks:request-start', function() {
