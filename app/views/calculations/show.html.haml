@@ -44,7 +44,7 @@
 
     - if current_user && current_user.id == @calculation.user_id
         %h3= t('cd.convert_to') + ' ...'
-        = simple_form_for @calculation do |f|
+        = simple_form_for @calculation, turboboost: true do |f|
             = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 

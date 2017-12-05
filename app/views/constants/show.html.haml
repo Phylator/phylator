@@ -19,7 +19,7 @@
     .cards
         = link_to @constant.pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
             .wrapper
-                %h1.small= number_to_currency @constant.pack.price
+                %h3= @constant.pack.category.name
                 %p.small
                     %span= @constant.pack.name
             = asset 'components/list/item-open.svg'

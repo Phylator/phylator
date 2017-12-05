@@ -16,11 +16,11 @@ class Category < ApplicationRecord
         end
 
         if purchased_packs == self.packs.count
-            'Purchased'
+            0
         elsif purchased_packs > 0
-            'Partially purchased'
+            1
         else
-            'Not purchased yet'
+            2
         end
     end
 

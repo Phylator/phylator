@@ -1,0 +1,4 @@
+en:
+    packs:
+        show:
+            buy: Buy for %{price}

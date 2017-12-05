@@ -4,13 +4,19 @@
     - @categories.with_translations(I18n.locale).order(:name).each do |category|
         = link_to category, class: 'card' do
             .wrapper
-                %h1.small= category.name
+                %h3= category.name
                 %p.small
-                    - if category.purchased?(current_user) == 'Purchased'
+                    - if category.purchased?(current_user) == 0
                         = asset 'icons/purchased.svg'
-                    - elsif category.purchased?(current_user) == 'Partially purchased'
+                    - elsif category.purchased?(current_user) == 1
                         = asset 'icons/partially_purchased.svg'
-                    - elsif category.purchased?(current_user) == 'Not purchased yet'
+                    - else
                         = asset 'icons/not_purchased.svg'
-                    %span= category.purchased? current_user
+                    %span
+                        - if category.purchased?(current_user) == 0
+                            = t 'categories.index.added'
+                        - elsif category.purchased?(current_user) == 1
+                            = t 'categories.index.partially_added'
+                        - else
+                            = t 'categories.index.not_added'
             = asset 'components/list/item-open.svg'

@@ -5,7 +5,7 @@ class Pack < ApplicationRecord
     translates :name, :description
 
     validates :price, presence: true, numericality: true
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true
     validates :description, presence: true
 
     has_many :purchases
@@ -14,7 +14,7 @@ class Pack < ApplicationRecord
     belongs_to :category
 
     def purchased? user
-        return true if self.purchases.where(user_id: user.id).any?
+        return true if self.purchases.where(user_id: user.id).any? || self.price == 0
         false
     end
 

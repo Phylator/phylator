@@ -15,9 +15,9 @@
 
     %h3= t 'd.pack'
     .cards
-        = link_to @quantity.pack.category, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+        = link_to @quantity.pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
             .wrapper
-                %h1.small= @quantity.pack.category.name
+                %h3= @quantity.pack.category.name
                 %p.small
                     %span= @quantity.pack.name
             = asset 'components/list/item-open.svg'
@@ -33,7 +33,7 @@
     - if @quantity.child_quantities.any?
         %h3= t 'cd.physical_quantities'
         .cards
-            - @quantity.child_quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+            - (@quantity.child_quantities.with_translations(I18n.locale).purchased(current_user).base + @quantity.child_quantities.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
                 = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small= quantity.sym

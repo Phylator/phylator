@@ -1,0 +1,28 @@
+= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
+    = asset 'components/back.svg'
+
+
+
+.head-wrapper
+    %h1= @category.name
+
+.content-wrapper
+    %p
+        = @category.description
+
+    %h3= t 'd.p.packs'
+    .cards
+        - @category.packs.each do |pack|
+            = link_to pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                .wrapper
+                    %h3= pack.name
+                    %p.small
+                        - if pack.purchased?(current_user)
+                            = asset 'icons/purchased.svg'
+                        - else
+                            = asset 'icons/not_purchased.svg'
+                        %span
+                            = pack.purchased?(current_user) ? t('categories.show.added') : t('categories.show.not_added')
+                            ⋅
+                            = pack.price == 0 ? 'Free' : number_to_currency(pack.price)
+                = asset 'components/list/item-open.svg'
