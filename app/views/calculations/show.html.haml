@@ -107,7 +107,7 @@
 
 .modal.edit
     .modal-content-wrapper
-        = simple_form_for(@calculation) do |f|
+        = simple_form_for @calculation, turboboost: true do |f|
             = f.input :name, label: t('d.title')
             = f.input :description, label: t('d.description')
             .flex-wrapper
