@@ -10,7 +10,8 @@
 .tools
     .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
     .share.md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-    .delete.md-trigger{ data: { modal: '.delete' } }= asset 'icons/trash-round.svg'
+    - if can? :destroy, @calculation
+        .delete.md-trigger{ data: { modal: '.delete' } }= asset 'icons/trash-round.svg'
 
 
 

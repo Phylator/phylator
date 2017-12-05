@@ -19,7 +19,7 @@
     .cards
         - @pack.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
             - if @pack.purchased? current_user
-                = link_to quantity, class: 'card' do
+                = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small= quantity.sym
                         %p.small
@@ -42,7 +42,7 @@
     .cards
         - @pack.constants.with_translations(I18n.locale).order(:name).each do |constant|
             - if @pack.purchased? current_user
-                = link_to constant, class: 'card' do
+                = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small= constant.sym
                         %p.small
