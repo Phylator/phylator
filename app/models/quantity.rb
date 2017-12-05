@@ -28,5 +28,6 @@ class Quantity < ApplicationRecord
     end
 
     scope :base, -> { where(parent_quantity: nil) }
+    scope :purchased, -> { all }
 
 end

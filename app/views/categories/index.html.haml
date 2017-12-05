@@ -6,5 +6,11 @@
             .wrapper
                 %h2.small= category.name
                 %p.small
-                    %span= category.purchased?.capitalize
+                    - if category.purchased?(current_user) == 'Purchased'
+                        = asset 'icons/purchased.svg'
+                    - elsif category.purchased?(current_user) == 'Partially purchased'
+                        = asset 'icons/partially_purchased.svg'
+                    - elsif category.purchased?(current_user) == 'Not purchased yet'
+                        = asset 'icons/not_purchased.svg'
+                    %span= category.purchased?(current_user).capitalize
             = asset 'components/list/item-open.svg'

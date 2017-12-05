@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
 
     def index
         @animation = 'fadein'
-        render layout: 'app'
         @categories = Category.all
+        render layout: 'app'
     end
 
     def show

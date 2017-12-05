@@ -33,6 +33,8 @@ class Constant < ApplicationRecord
     def pure_sym
         self.symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
     end
+    
+    scope :purchased, -> { all }
 
     private
 

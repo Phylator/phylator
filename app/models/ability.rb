@@ -14,6 +14,14 @@ class Ability
             measurement.calculation.user_id == user.id ? true : false
         end
         can [:read, :create], Calculation::Measurement
+        ## Quantities
+        can :read, Quantity do |quantity|
+            true
+        end
+        ## Constants
+        can :read, Constant do |constant|
+            true
+        end
 
         # Categories & Packs
         can :read, Category

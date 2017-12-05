@@ -20,18 +20,26 @@
             margin-bottom: px(5)
         svg
             margin-left: px(15)
-            polygon
+            polygon, path
                 fill: color(dark, lighter)
+        .wrapper
+            svg
+                margin-left: 0
+                margin-right: px(6)
         &:hover
             background: color(dark, base)
             box-shadow: style(box-shadow, lg)
-            svg polygon
-                fill: white
+            & > svg
+                polygon, path
+                    fill: white
         &.highlighted
             background: color(dark, light)
 
-        p span
-            &:not(:first-child)
-                margin-left: px(5)
-            &:not(:last-child)
-                margin-right: px(5)
+        p
+            display: flex
+            align-items: center
+            span
+                &:not(:first-child)
+                    margin-left: px(5)
+                &:not(:last-child)
+                    margin-right: px(5)
