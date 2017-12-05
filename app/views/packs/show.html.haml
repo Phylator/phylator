@@ -18,23 +18,42 @@
     %h3= t 'cd.physical_quantities'
     .cards
         - @pack.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            .card
-                .wrapper
-                    %h2.small= quantity.sym
-                    %p.small
-                        %span= quantity.name
-                        - if quantity.vector
-                            ·
-                            %span= t 'd.vector'
+            - if @pack.purchased? current_user
+                = link_to quantity, class: 'card' do
+                    .wrapper
+                        %h2.small= quantity.sym
+                        %p.small
+                            %span= quantity.name
+                            - if quantity.vector
+                                ·
+                                %span= t 'd.vector'
+                    = asset 'components/list/item-open.svg'
+            - else
+                .card
+                    .wrapper
+                        %h2.small= quantity.sym
+                        %p.small
+                            %span= quantity.name
+                            - if quantity.vector
+                                ·
+                                %span= t 'd.vector'
 
     %h3= t 'cd.physical_constants'
     .cards
         - @pack.constants.with_translations(I18n.locale).order(:name).each do |constant|
-            .card
-                .wrapper
-                    %h2.small= constant.sym
-                    %p.small
-                        %span= constant.name
+            - if @pack.purchased? current_user
+                = link_to constant, class: 'card' do
+                    .wrapper
+                        %h2.small= constant.sym
+                        %p.small
+                            %span= constant.name
+                    = asset 'components/list/item-open.svg'
+            - else
+                .card
+                    .wrapper
+                        %h2.small= constant.sym
+                        %p.small
+                            %span= constant.name
 
 
 
