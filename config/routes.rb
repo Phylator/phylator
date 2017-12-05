@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'packs/index'
-
-  get 'packs/show'
-
     namespace :platforms do
         get 'chrome', to: 'chrome#index'
     end
