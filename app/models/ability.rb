@@ -16,11 +16,11 @@ class Ability
         can [:read, :create], Calculation::Measurement
         ## Quantities
         can :read, Quantity do |quantity|
-            true
+            true if quantity.pack.price == 0 || quantity.pack.purchases.where(user_id: user.id).any?
         end
         ## Constants
         can :read, Constant do |constant|
-            true
+            true if constant.pack.price == 0 || constant.pack.purchases.where(user_id: user.id).any?
         end
 
         # Categories & Packs

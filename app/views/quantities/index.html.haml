@@ -1,7 +1,7 @@
 %h1= t 'cd.physical_quantities'
 
 .cards
-    - @quantities.base.with_translations(I18n.locale).order(:name).each do |quantity|
+    - (Quantity.with_translations(I18n.locale).purchased(current_user).base + Quantity.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
         = link_to quantity, class: 'card' do
             .wrapper
                 %h2.small= quantity.sym
@@ -16,7 +16,7 @@
 %h1= t 'cd.physical_constants'
 
 .cards
-    - Constant.with_translations(I18n.locale).order(:name).each do |constant|
+    - (Constant.with_translations(I18n.locale).purchased(current_user) + Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |constant|
         = link_to constant, class: 'card' do
             .wrapper
                 %h2.small= constant.sym

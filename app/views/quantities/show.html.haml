@@ -17,7 +17,7 @@
     .cards
         = link_to @quantity.pack.category, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
             .wrapper
-                %h2.small= @quantity.pack.category.name
+                %h1.small= @quantity.pack.category.name
                 %p.small
                     %span= @quantity.pack.name
             = asset 'components/list/item-open.svg'

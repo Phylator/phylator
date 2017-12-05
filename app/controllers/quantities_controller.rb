@@ -8,13 +8,13 @@ class QuantitiesController < ApplicationController
     def index
         @animation = 'fadein'
         render layout: 'app'
-        @quantities = Quantity.all
     end
 
     # GET /quantities/1
     # GET /quantities/1.json
     def show
         @animation = 'fadeinright'
+        authorize! :read, @quantity
     end
 
     private

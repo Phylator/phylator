@@ -4,7 +4,7 @@
     - @categories.with_translations(I18n.locale).order(:name).each do |category|
         = link_to category, class: 'card' do
             .wrapper
-                %h2.small= category.name
+                %h1.small= category.name
                 %p.small
                     - if category.purchased?(current_user) == 'Purchased'
                         = asset 'icons/purchased.svg'
@@ -12,5 +12,5 @@
                         = asset 'icons/partially_purchased.svg'
                     - elsif category.purchased?(current_user) == 'Not purchased yet'
                         = asset 'icons/not_purchased.svg'
-                    %span= category.purchased?(current_user).capitalize
+                    %span= category.purchased? current_user
             = asset 'components/list/item-open.svg'
