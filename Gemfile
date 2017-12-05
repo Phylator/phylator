@@ -22,6 +22,8 @@ gem 'friendly_id', '~> 5.2'
 gem 'dentaku', github: 'rubysolo/dentaku'
 gem 'pry-rails', '~> 0.3.6'
 gem 'turboboost', github: 'waymondo/turboboost'
+gem 'stripe', '~> 3.8'
+gem 'config', '~> 1.6'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

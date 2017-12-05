@@ -2,3 +2,8 @@ de:
     packs:
         show:
             buy: Kaufen (%{price})
+            modals:
+                buy:
+                    title: Expansion Pack kaufen
+                    next: Weiter
+                    success: Bezahldetails erfolgreich verifiziert

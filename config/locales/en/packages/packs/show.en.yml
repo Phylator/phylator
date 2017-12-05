@@ -2,3 +2,8 @@ en:
     packs:
         show:
             buy: Buy for %{price}
+            modals:
+                buy:
+                    title: Buy expansion pack
+                    next: Next
+                    success: Payment details validated successfully

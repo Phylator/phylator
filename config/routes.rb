@@ -16,6 +16,8 @@ Rails.application.routes.draw do
         resources :categories, only: [:index, :show]
         resources :packs, only: [:show]
 
+        resources :purchases, only: [:create]
+
         devise_for :users, path: '', controllers: {
             sessions: 'users/devise/sessions',
             registrations: 'users/devise/registrations'

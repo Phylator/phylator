@@ -1,0 +1,5 @@
+de:
+    purchases:
+        create:
+            description: "%{pack} Expansion Pack"
+            success: "%{pack} Expansion Pack erfolgreich hinzugefügt"
