@@ -12,22 +12,22 @@ user&.encrypted_password
 # Packs & Categories
 mechanics = Category.find_or_create_by! name: 'Mechanics', description: 'Description'
 mechanics_basics = Pack.find_or_create_by! category: mechanics, name: 'Basics', description: 'Description', price: 0
-kinematics = Pack.find_or_create_by! category: mechanics, name: 'Kinematics', description: 'Description', price: 1.99
-dynamics = Pack.find_or_create_by! category: mechanics, name: 'Dynamics', description: 'Description', price: 1.99
+kinematics = Pack.find_or_create_by! category: mechanics, name: 'Kinematics', description: 'Description', price: 1
+dynamics = Pack.find_or_create_by! category: mechanics, name: 'Dynamics', description: 'Description', price: 1
 thermodynamics = Category.find_or_create_by! name: 'Thermodynamics', description: 'Description'
 thermodynamics_basics = Pack.find_or_create_by! category: thermodynamics, name: 'Basics', description: 'Description', price: 0
-thermodynamics_advanced = Pack.find_or_create_by! category: thermodynamics, name: 'Advanced', description: 'Description', price: 1.99
+thermodynamics_advanced = Pack.find_or_create_by! category: thermodynamics, name: 'Advanced', description: 'Description', price: 2
 electromagnetism = Category.find_or_create_by! name: 'Electromagnetism', description: 'Description'
 electromagnetism_basics = Pack.find_or_create_by! category: electromagnetism, name: 'Basics', description: 'Description', price: 0
-electricity = Pack.find_or_create_by! category: electromagnetism, name: 'Electricity', description: 'Description', price: 1.99
-magnetism = Pack.find_or_create_by! category: electromagnetism, name: 'Magnetism', description: 'Description', price: 1.99
-optics = Pack.find_or_create_by! category: electromagnetism, name: 'Optics', description: 'Description', price: 1.99
+electricity = Pack.find_or_create_by! category: electromagnetism, name: 'Electricity', description: 'Description', price: 4
+magnetism = Pack.find_or_create_by! category: electromagnetism, name: 'Magnetism', description: 'Description', price: 2
+optics = Pack.find_or_create_by! category: electromagnetism, name: 'Optics', description: 'Description', price: 2
 quantum_mechanics = Category.find_or_create_by! name: 'Quantum mechanics', description: 'Description'
 relativity = Pack.find_or_create_by! category: quantum_mechanics, name: 'Relativity', description: 'Description', price: 0
-quantum_mechanics_basics = Pack.find_or_create_by! category: quantum_mechanics, name: 'Basics', description: 'Description', price: 1.99
+quantum_mechanics_basics = Pack.find_or_create_by! category: quantum_mechanics, name: 'Basics', description: 'Description', price: 1
 chemical_physics = Category.find_or_create_by! name: 'Chemical physics', description: 'Description'
-chemical_physics_basics = Pack.find_or_create_by! category: chemical_physics, name: 'Basics', description: 'Description', price: 1.99
-chemical_physics_advanced = Pack.find_or_create_by! category: chemical_physics, name: 'Advanced', description: 'Description', price: 1.99
+chemical_physics_basics = Pack.find_or_create_by! category: chemical_physics, name: 'Basics', description: 'Description', price: 2
+chemical_physics_advanced = Pack.find_or_create_by! category: chemical_physics, name: 'Advanced', description: 'Description', price: 2
 
 
 
@@ -767,7 +767,7 @@ electromagnetism_basics.update_attributes name: 'Basis', description: 'Beschreib
 electricity.update_attributes name: 'Elektrizität', description: 'Beschreibung', locale: :de
 magnetism.update_attributes name: 'Magnetismus', description: 'Beschreibung', locale: :de
 optics.update_attributes name: 'Optik', description: 'Beschreibung', locale: :de
-quantum_mechanics.update_attributes name: 'Quantenmachanik', description: 'Beschreibung', locale: :de
+quantum_mechanics.update_attributes name: 'Quantenmechanik', description: 'Beschreibung', locale: :de
 relativity.update_attributes name: 'Relativität', description: 'Beschreibung', locale: :de
 quantum_mechanics_basics.update_attributes name: 'Basis', description: 'Beschreibung', locale: :de
 chemical_physics.update_attributes name: 'Chemische Physik', description: 'Beschreibung', locale: :de
