@@ -14,6 +14,21 @@
 
 %hr
 
+- if current_user.purchases.any?
+
+    %h1= t 'd.p.purchases'
+
+    .cards
+        - current_user.purchases.each do |purchase|
+            = link_to purchase.pack, class: 'card' do
+                .wrapper
+                    %h2.small= number_to_currency purchase.amount
+                    %p.small
+                        %span= purchase.pack.name
+                = asset 'components/list/item-open.svg'
+
+    %hr
+
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     = f.error_notification
 

@@ -15,6 +15,10 @@ class Ability
         end
         can [:read, :create], Calculation::Measurement
 
+        # Categories & Packs
+        can :read, Category
+        can :read, Pack
+
     end
 
 end

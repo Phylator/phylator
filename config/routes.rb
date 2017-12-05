@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'packs/index'
+
+  get 'packs/show'
+
     namespace :platforms do
         get 'chrome', to: 'chrome#index'
     end
@@ -12,6 +16,9 @@ Rails.application.routes.draw do
         resources :calculations, except: [:new, :edit] do
             resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end
+
+        resources :categories, only: [:index, :show]
+        resources :packs, only: [:show]
 
         devise_for :users, path: '', controllers: {
             sessions: 'users/devise/sessions',
@@ -26,7 +33,6 @@ Rails.application.routes.draw do
 
         get 'setup', to: 'welcome#index'
         get 'language', to: 'welcome#language'
-        get 'drafts', to: 'welcome#drafts'
 
         root 'calculations#new', as: :app_root
     end

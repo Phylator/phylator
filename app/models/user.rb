@@ -4,10 +4,11 @@ class User < ApplicationRecord
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
-        
+
     before_create :randomize_id
 
     has_many :calculations
+    has_many :purchases
     attr_accessor :calculation_id
 
     private

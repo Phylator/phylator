@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020201807) do
+ActiveRecord::Schema.define(version: 20171205060818) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -79,6 +79,24 @@ ActiveRecord::Schema.define(version: 20171020201807) do
     t.index ["user_id"], name: "index_calculations_on_user_id"
   end
 
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_categories_on_slug"
+  end
+
+  create_table "category_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "category_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.index ["category_id"], name: "index_category_translations_on_category_id"
+    t.index ["locale"], name: "index_category_translations_on_locale"
+  end
+
   create_table "constant_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "constant_id", null: false
     t.string "locale", null: false
@@ -90,12 +108,14 @@ ActiveRecord::Schema.define(version: 20171020201807) do
   end
 
   create_table "constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "pack_id"
     t.bigint "unit_of_measurement_id"
     t.string "symbol"
     t.text "value", null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pack_id"], name: "index_constants_on_pack_id"
     t.index ["slug"], name: "index_constants_on_slug"
     t.index ["unit_of_measurement_id"], name: "index_constants_on_unit_of_measurement_id"
   end
@@ -120,13 +140,46 @@ ActiveRecord::Schema.define(version: 20171020201807) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "pack_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "pack_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.index ["locale"], name: "index_pack_translations_on_locale"
+    t.index ["pack_id"], name: "index_pack_translations_on_pack_id"
+  end
+
+  create_table "packs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "category_id"
+    t.decimal "price", precision: 8, scale: 2
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_packs_on_category_id"
+    t.index ["slug"], name: "index_packs_on_slug"
+  end
+
+  create_table "purchases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "pack_id"
+    t.decimal "amount", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pack_id"], name: "index_purchases_on_pack_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "pack_id"
     t.bigint "parent_quantity_id"
     t.string "symbol"
     t.boolean "vector", default: false, null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pack_id"], name: "index_quantities_on_pack_id"
     t.index ["parent_quantity_id"], name: "index_quantities_on_parent_quantity_id"
     t.index ["slug"], name: "index_quantities_on_slug"
   end

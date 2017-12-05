@@ -2,7 +2,7 @@ class Quantity < ApplicationRecord
 
     # acts_as_taggable
     extend FriendlyId
-    friendly_id :slug_candidates, use: :slugged
+    friendly_id :name, use: :slugged
     translates :name, :description
 
     include Uniqueness
@@ -15,6 +15,8 @@ class Quantity < ApplicationRecord
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
 
+    belongs_to :pack
+
     belongs_to :parent_quantity, class_name: 'Quantity', foreign_key: 'parent_quantity_id', required: false
     has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'
 
@@ -26,11 +28,5 @@ class Quantity < ApplicationRecord
     end
 
     scope :base, -> { where(parent_quantity: nil) }
-
-    private
-
-    def slug_candidates
-        [:name]
-    end
 
 end

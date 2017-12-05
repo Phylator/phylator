@@ -2,6 +2,7 @@ class CreateConstants < ActiveRecord::Migration[5.1]
     def change
         create_table :constants do |t|
 
+            t.references :pack, index: true
             t.references :unit_of_measurement, index: true
 
             t.string :symbol, unique: true

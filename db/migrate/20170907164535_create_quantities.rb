@@ -2,6 +2,7 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
     def change
         create_table :quantities do |t|
 
+            t.references :pack, index: true
             t.references :parent_quantity, index: true
 
             t.string :symbol, unique: true

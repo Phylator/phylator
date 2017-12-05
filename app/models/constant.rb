@@ -18,6 +18,8 @@ class Constant < ApplicationRecord
     has_many :calculation_constants, class_name: '::Calculation::Constant'
     has_many :calculations, through: :calculation_constants
 
+    belongs_to :pack
+
     # has_many :belongs_to_equations, through: :equation_quantities, source: :equation
     # has_many :equation_quantities, class_name: 'Equation::Quantity', dependent: :destroy
 

@@ -1,7 +1,5 @@
 class WelcomeController < ApplicationController
 
-    before_action :authenticate_user!, only: [:drafts]
-
     def index
         @animation = 'fadein'
         unless params[:stay]
@@ -12,11 +10,6 @@ class WelcomeController < ApplicationController
 
     def language
         @animation = 'fadein'
-    end
-
-    def drafts
-        @animation = 'fadein'
-        render layout: 'app'
     end
 
     def privacy

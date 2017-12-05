@@ -15,6 +15,15 @@
     %p
         = @constant.name
 
+    %h3= t 'd.pack'
+    .cards
+        = link_to @constant.pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+            .wrapper
+                %h2.small= number_to_currency @constant.pack.price
+                %p.small
+                    %span= @constant.pack.name
+            = asset 'components/list/item-open.svg'
+
     %h3= t 'd.unit_of_measurement'
     .cards
         .card

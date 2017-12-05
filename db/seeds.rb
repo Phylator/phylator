@@ -9,8 +9,31 @@ user&.encrypted_password
 
 
 
-# Length
-length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object'
+# Packs & Categories
+mechanics = Category.find_or_create_by! name: 'Mechanics', description: 'Description'
+mechanics_basics = Pack.find_or_create_by! category: mechanics, name: 'Mechanics (Basics)', description: 'Description', price: 0
+kinematics = Pack.find_or_create_by! category: mechanics, name: 'Kinematics', description: 'Description', price: 1.99
+dynamics = Pack.find_or_create_by! category: mechanics, name: 'Dynamics', description: 'Description', price: 1.99
+thermodynamics = Category.find_or_create_by! name: 'Thermodynamics', description: 'Description'
+thermodynamics_basics = Pack.find_or_create_by! category: thermodynamics, name: 'Thermodynamics (Basics)', description: 'Description', price: 0
+thermodynamics_advanced = Pack.find_or_create_by! category: thermodynamics, name: 'Thermodynamics (Advanced)', description: 'Description', price: 1.99
+electromagnetism = Category.find_or_create_by! name: 'Electromagnetism', description: 'Description'
+electromagnetism_basics = Pack.find_or_create_by! category: electromagnetism, name: 'Electromagnetism (Basics)', description: 'Description', price: 0
+electricity = Pack.find_or_create_by! category: electromagnetism, name: 'Electricity', description: 'Description', price: 1.99
+magnetism = Pack.find_or_create_by! category: electromagnetism, name: 'Magnetism', description: 'Description', price: 1.99
+optics = Pack.find_or_create_by! category: electromagnetism, name: 'Optics', description: 'Description', price: 1.99
+quantum_mechanics = Category.find_or_create_by! name: 'Quantum mechanics', description: 'Description'
+relativity = Pack.find_or_create_by! category: quantum_mechanics, name: 'Relativity', description: 'Description', price: 0
+quantum_mechanics_basics = Pack.find_or_create_by! category: quantum_mechanics, name: 'Quantum mechanics (Basics)', description: 'Description', price: 1.99
+chemical_physics = Category.find_or_create_by! name: 'Chemical physics', description: 'Description'
+chemical_physics_basics = Pack.find_or_create_by! category: chemical_physics, name: 'Chemical physics (Basics)', description: 'Description', price: 1.99
+chemical_physics_advanced = Pack.find_or_create_by! category: chemical_physics, name: 'Chemical physics (Advanced)', description: 'Description', price: 1.99
+
+
+
+
+# Length (Mechanics)
+length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object', pack: mechanics_basics
 meter = UnitOfMeasurement.find_or_create_by! symbol: 'm', name: 'meter', base: true
 meter.unit_of_measurement_quantities.find_or_create_by! quantity: length
 exameter = UnitOfMeasurement.find_or_create_by! symbol: 'Em', name: 'exameter', to_base: '*1000000000000000000'
@@ -57,8 +80,8 @@ yard = UnitOfMeasurement.find_or_create_by! symbol: 'yd', name: 'yard', to_base:
 yard.unit_of_measurement_quantities.find_or_create_by! quantity: length
 miles = UnitOfMeasurement.find_or_create_by! symbol: 'mi', name: 'miles', to_base: '/16093.44'
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: length
-## Distance traveled
-distance_traveled = Quantity.find_or_create_by! symbol: 's', name: 'Distance traveled', description: 'Distance an object traveled', parent_quantity: length
+## Distance traveled (Mechanics)
+distance_traveled = Quantity.find_or_create_by! symbol: 's', name: 'Distance traveled', description: 'Distance an object traveled', pack: mechanics_basics, parent_quantity: length
 meter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 exameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 petameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
@@ -83,8 +106,8 @@ foot.unit_of_measurement_quantities.find_or_create_by! quantity: distance_travel
 yard.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 
-# Mass
-mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration'
+# Mass (Mechanics)
+mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration', pack: mechanics_basics
 kilogram = UnitOfMeasurement.find_or_create_by! symbol: 'kg', name: 'kilogram', base: true
 kilogram.unit_of_measurement_quantities.find_or_create_by! quantity: mass
 exagram = UnitOfMeasurement.find_or_create_by! symbol: 'Eg', name: 'exagram', to_base: '*1000000000000000'
@@ -120,8 +143,8 @@ atomic_mass.unit_of_measurement_quantities.find_or_create_by! quantity: mass
 pound = UnitOfMeasurement.find_or_create_by! symbol: 'lbs', name: 'pound', to_base: '/4.53592'
 pound.unit_of_measurement_quantities.find_or_create_by! quantity: mass
 
-# Time
-time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event'
+# Time (Mechanics)
+time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event', pack: mechanics_basics
 second = UnitOfMeasurement.find_or_create_by! symbol: 's', name: 'second', base: true
 second.unit_of_measurement_quantities.find_or_create_by! quantity: time
 milisecond = UnitOfMeasurement.find_or_create_by! symbol: 'ms', name: 'milisecond', to_base: '/1000'
@@ -151,8 +174,8 @@ week.unit_of_measurement_quantities.find_or_create_by! quantity: time
 year = UnitOfMeasurement.find_or_create_by! symbol: 'year', name: 'year', to_base: '*31557600'
 year.unit_of_measurement_quantities.find_or_create_by! quantity: time
 
-# Electric current
-electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time'
+# Electric current (Electromagnetism)
+electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time', pack: electromagnetism_basics
 ampere = UnitOfMeasurement.find_or_create_by! symbol: 'A', name: 'ampere', base: true
 ampere.unit_of_measurement_quantities.find_or_create_by! quantity: electric_current
 miliampere = UnitOfMeasurement.find_or_create_by! symbol: 'mA', name: 'miliampere', to_base: '/1000'
@@ -172,8 +195,8 @@ zeptoampere.unit_of_measurement_quantities.find_or_create_by! quantity: electric
 yoctoampere = UnitOfMeasurement.find_or_create_by! symbol: 'yA', name: 'yoctoampere', to_base: '/1000000000000000000000000'
 yoctoampere.unit_of_measurement_quantities.find_or_create_by! quantity: electric_current
 
-# Temperature
-temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system'
+# Temperature (Thermodynamics)
+temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system', pack: thermodynamics_basics
 kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base: true
 kelvin.unit_of_measurement_quantities.find_or_create_by! quantity: temperature
 degree_celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
@@ -181,283 +204,283 @@ degree_celcius.unit_of_measurement_quantities.find_or_create_by! quantity: tempe
 degree_fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'degree fahrenheit', to_base: '*(5/9)+459.67*(5/9)', f_base: '*(9/5)-459.67' ##### UPDATE CONVERSIONS ######
 degree_fahrenheit.unit_of_measurement_quantities.find_or_create_by! quantity: temperature
 
-# Amount of substance
-amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C'
+# Amount of substance (Chemical physics)
+amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C', pack: chemical_physics_basics
 mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol', name: 'mole', base: true
 mole.unit_of_measurement_quantities.find_or_create_by! quantity: amount_of_substance
 
-# Luminous intensity
-luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle'
+# Luminous intensity (Electromagnetism)
+luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle', pack: optics
 candela = UnitOfMeasurement.find_or_create_by! symbol: 'cd', name: 'candela', base: true
 candela.unit_of_measurement_quantities.find_or_create_by! quantity: luminous_intensity
 
 
-# Acceleration
-acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true
+# Acceleration (Mechanics)
+acceleration = Quantity.find_or_create_by! symbol: 'a', name: 'Acceleration', description: 'Change of the speed or velocity per unit time', vector: true, pack: mechanics_basics
 meter_per_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm s<sup>-2</sup>', name: 'meter per square second', base: true
 meter_per_square_second.unit_of_measurement_quantities.find_or_create_by! quantity: acceleration
 
-# Angular acceleration
-angular_acceleration = Quantity.find_or_create_by! symbol: 'a<sub>α</sub>', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time'
+# Angular acceleration (Mechanics)
+angular_acceleration = Quantity.find_or_create_by! symbol: 'a<sub>α</sub>', name: 'Angular acceleration', description: 'Change in angular speed or velocity per unit time', pack: kinematics
 rad_per_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'rad s<sup>-2</sup>', name: 'rad per square second', base: true
 rad_per_square_second.unit_of_measurement_quantities.find_or_create_by! quantity: angular_acceleration
 
-# Angular velocity
-angular_velocity = Quantity.find_or_create_by! symbol: 'ω', name: 'Angular velocity', description: 'The angle incremented in a plane by a segment connecting an object and a reference point per unit time'
+# Angular velocity (Mechanics)
+angular_velocity = Quantity.find_or_create_by! symbol: 'ω', name: 'Angular velocity', description: 'The angle incremented in a plane by a segment connecting an object and a reference point per unit time', pack: kinematics
 rad_per_second = UnitOfMeasurement.find_or_create_by! symbol: 'rad s<sup>-1</sup>', name: 'rad per second', base: true
 rad_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: angular_velocity
 
-# Area
-area = Quantity.find_or_create_by! symbol: 'A', name: 'Area', description: 'Extent of a surface'
+# Area (Mechanics)
+area = Quantity.find_or_create_by! symbol: 'A', name: 'Area', description: 'Extent of a surface', pack: mechanics_basics
 square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm²', name: 'square meter', base: true
 square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: area
 
-# Area density
-area_density = Quantity.find_or_create_by! symbol: 'ρ<sub>A</sub>', name: 'Area density', description: 'Mass per unit area'
+# Area density (Chemical physics)
+area_density = Quantity.find_or_create_by! symbol: 'ρ<sub>A</sub>', name: 'Area density', description: 'Mass per unit area', pack: chemical_physics_advanced
 kilogram_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'kg m<sup>-2</sup>', name: 'kilogram per square meter', base: true
 kilogram_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: area_density
 
-# Capacitance
-capacitance = Quantity.find_or_create_by! symbol: 'C', name: 'Capacitance', description: 'Stored charge per unit electric potential'
+# Capacitance (Electromagnetism)
+capacitance = Quantity.find_or_create_by! symbol: 'C', name: 'Capacitance', description: 'Stored charge per unit electric potential', pack: electricity
 farad = UnitOfMeasurement.find_or_create_by! symbol: 'F', name: 'farad', base: true
 farad.unit_of_measurement_quantities.find_or_create_by! quantity: capacitance
 
-# Chemical potential
-chemical_potential = Quantity.find_or_create_by! symbol: 'μ<sub>ch</sub>', name: 'Chemical potential', description: 'Energy per unit change in amount of substance'
+# Chemical potential (Chemical physics)
+chemical_potential = Quantity.find_or_create_by! symbol: 'μ<sub>ch</sub>', name: 'Chemical potential', description: 'Energy per unit change in amount of substance', pack: chemical_physics_advanced
 joule_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J mol<sup>-1</sup>', name: 'joule per mole', base: true
 joule_per_mole.unit_of_measurement_quantities.find_or_create_by! quantity: chemical_potential
 
-# Current density
-current_density = Quantity.find_or_create_by! symbol: 'J', name: 'Current density', description: 'Electric current per unit cross-section area', vector: true
+# Current density (Electromagnetism)
+current_density = Quantity.find_or_create_by! symbol: 'J', name: 'Current density', description: 'Electric current per unit cross-section area', vector: true, pack: electricity
 ampere_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'A m<sup>-2</sup>', name: 'ampere per square meter', base: true
 ampere_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: current_density
 
-# Electric charge
-electric_charge = Quantity.find_or_create_by! symbol: 'Q', name: 'Electric charge', description: 'The force per unit electric field strength'
+# Electric charge (Electromagnetism)
+electric_charge = Quantity.find_or_create_by! symbol: 'Q', name: 'Electric charge', description: 'The force per unit electric field strength', pack: electromagnetism_basics
 coulomb = UnitOfMeasurement.find_or_create_by! symbol: 'C', name: 'coulomb', base: true
 coulomb.unit_of_measurement_quantities.find_or_create_by! quantity: electric_charge
 
-# Electric charge density
-electric_charge_density = Quantity.find_or_create_by! symbol: 'ρ<sub>Q</sub>', name: 'Electric charge density', description: 'Electric charge per unit volume'
+# Electric charge density (Electromagnetism)
+electric_charge_density = Quantity.find_or_create_by! symbol: 'ρ<sub>Q</sub>', name: 'Electric charge density', description: 'Electric charge per unit volume', pack: electricity
 coulomb_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'C m<sup>-3</sup>', name: 'coulomb per cubic meter', base: true
 coulomb_per_cubic_meter.unit_of_measurement_quantities.find_or_create_by! quantity: electric_charge_density
 
-# Electric displacement
-electric_displacement = Quantity.find_or_create_by! symbol: 'D', name: 'Electric displacement', description: 'Strength of the electric displacement', vector: true
+# Electric displacement (Electromagnetism)
+electric_displacement = Quantity.find_or_create_by! symbol: 'D', name: 'Electric displacement', description: 'Strength of the electric displacement', vector: true, pack: electricity
 coulomb_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'C m<sup>-2</sup>', name: 'coulomb per square meter', base: true
 coulomb_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: electric_displacement
 
-# Electric field strength
-electric_field_strength = Quantity.find_or_create_by! symbol: 'E', name: 'Electric field strength', description: 'Strength of the electric field', vector: true
+# Electric field strength (Electromagnetism)
+electric_field_strength = Quantity.find_or_create_by! symbol: 'E', name: 'Electric field strength', description: 'Strength of the electric field', vector: true, pack: electricity
 volt_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'V m<sup>-1</sup>', name: 'volt per meter', base: true
 volt_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: electric_field_strength
 
-# Electrical conductance
-electrical_conductance = Quantity.find_or_create_by! symbol: 'G', name: 'Electrical conductance', description: 'Measure for how easily current flows through a material'
+# Electrical conductance (Electromagnetism)
+electrical_conductance = Quantity.find_or_create_by! symbol: 'G', name: 'Electrical conductance', description: 'Measure for how easily current flows through a material', pack: electricity
 siemens = UnitOfMeasurement.find_or_create_by! symbol: 'S', name: 'siemens', base: true
 siemens.unit_of_measurement_quantities.find_or_create_by! quantity: electrical_conductance
 
-# Electrical conductivity
-electrical_conductivity = Quantity.find_or_create_by! symbol: 'σ', name: 'Electrical conductivity', description: "Measure of a material's ability to conduct an electric current"
+# Electrical conductivity (Electromagnetism)
+electrical_conductivity = Quantity.find_or_create_by! symbol: 'σ', name: 'Electrical conductivity', description: "Measure of a material's ability to conduct an electric current", pack: electricity
 siemens_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'S m<sup>-1</sup>', name: 'siemens per meter', base: true
 siemens_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: electrical_conductivity
 
-# Electric potential
-electric_potential = Quantity.find_or_create_by! symbol: 'U', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point'
+# Electric potential (Electromagnetism)
+electric_potential = Quantity.find_or_create_by! symbol: 'U', name: 'Electric potential', description: 'Energy required to move a unit charge through an electric field from a reference point', pack: electromagnetism_basics
 volt = UnitOfMeasurement.find_or_create_by! symbol: 'V', name: 'volt', base: true
 volt.unit_of_measurement_quantities.find_or_create_by! quantity: electric_potential
 
-# Electrical resistance
-electrical_resistance = Quantity.find_or_create_by! symbol: 'R', name: 'Electrical resistance', description: 'Electric potential per unit electric current'
+# Electrical resistance (Electromagnetism)
+electrical_resistance = Quantity.find_or_create_by! symbol: 'R', name: 'Electrical resistance', description: 'Electric potential per unit electric current', pack: electricity
 ohm = UnitOfMeasurement.find_or_create_by! symbol: 'Ω', name: 'ohm', base: true
 ohm.unit_of_measurement_quantities.find_or_create_by! quantity: electrical_resistance
 
-# Electrical resistivity
-electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ<sub>el</sub>', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance'
+# Electrical resistivity (Electromagnetism)
+electrical_resistivity = Quantity.find_or_create_by! symbol: 'ρ<sub>el</sub>', name: 'Electrical resistivity', description: 'Bulk property equivalent of electrical resistance', pack: electricity
 ohm_meter = UnitOfMeasurement.find_or_create_by! symbol: 'Ω m', name: 'ohm meter', base: true
 ohm_meter.unit_of_measurement_quantities.find_or_create_by! quantity: electrical_resistivity
 
-# Energy
-energy = Quantity.find_or_create_by! symbol: 'E<sub>i</sub>', name: 'Energy', description: 'Capacity of a body or system to do work'
+# Energy (Mechanics)
+energy = Quantity.find_or_create_by! symbol: 'E<sub>i</sub>', name: 'Energy', description: 'Capacity of a body or system to do work', pack: mechanics_basics
 joule = UnitOfMeasurement.find_or_create_by! symbol: 'J', name: 'joule', base: true
 joule.unit_of_measurement_quantities.find_or_create_by! quantity: energy
 
-# Energy density
-energy_density = Quantity.find_or_create_by! symbol: 'ρ<sub>E</sub>', name: 'Energy density', description: 'Energy per unit volume'
+# Energy density (Chemical physics)
+energy_density = Quantity.find_or_create_by! symbol: 'ρ<sub>E</sub>', name: 'Energy density', description: 'Energy per unit volume', pack: chemical_physics_advanced
 joule_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'J m<sup>-3</sup>', name: 'joule per cubic meter', base: true
 joule_per_cubic_meter.unit_of_measurement_quantities.find_or_create_by! quantity: energy_density
 
-# Entropy
-entropy = Quantity.find_or_create_by! symbol: 'S<sub>sys</sub>', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system'
+# Entropy (Thermodynamics)
+entropy = Quantity.find_or_create_by! symbol: 'S<sub>sys</sub>', name: 'Entropy', description: 'Logarithmic measure of the number of available states of a system', pack: thermodynamics_advanced
 joule_per_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup>', name: 'joule per kelvin', base: true
 joule_per_kelvin.unit_of_measurement_quantities.find_or_create_by! quantity: entropy
 
-# Force
-force = Quantity.find_or_create_by! symbol: 'F', name: 'Force', description: 'Transfer of momentum per unit time', vector: true
+# Force (Mechanics)
+force = Quantity.find_or_create_by! symbol: 'F', name: 'Force', description: 'Transfer of momentum per unit time', vector: true, pack: mechanics_basics
 newton = UnitOfMeasurement.find_or_create_by! symbol: 'N', name: 'newton', base: true
 newton.unit_of_measurement_quantities.find_or_create_by! quantity: force
 
-# Frequency
-frequency = Quantity.find_or_create_by! symbol: 'f', name: 'Frequency', description: 'Number of (periodic) occurrences per unit time'
+# Frequency (Mechanics)
+frequency = Quantity.find_or_create_by! symbol: 'f', name: 'Frequency', description: 'Number of (periodic) occurrences per unit time', pack: mechanics_basics
 hertz = UnitOfMeasurement.find_or_create_by! symbol: 'Hz', name: 'hertz', base: true
 hertz.unit_of_measurement_quantities.find_or_create_by! quantity: frequency
 
-# Heat
-heat = Quantity.find_or_create_by! symbol: 'Q<sub>th</sub>', name: 'Heat', description: 'Thermal energy'
+# Heat (Thermodynamics)
+heat = Quantity.find_or_create_by! symbol: 'Q<sub>th</sub>', name: 'Heat', description: 'Thermal energy', pack: thermodynamics_basics
 joule.unit_of_measurement_quantities.find_or_create_by! quantity: heat
 
-# Heat capacity
-heat_capacity = Quantity.find_or_create_by! symbol: 'C<sub>p</sub>', name: 'Heat capacity', description: 'Energy per unit temperature change'
+# Heat capacity (Thermodynamics)
+heat_capacity = Quantity.find_or_create_by! symbol: 'C<sub>p</sub>', name: 'Heat capacity', description: 'Energy per unit temperature change', pack: thermodynamics_advanced
 joule_per_kelvin.unit_of_measurement_quantities.find_or_create_by! quantity: heat_capacity
 
-# Heat flux density
-heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕ<sub>Q</sub>', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area'
+# Heat flux density (Thermodynamics)
+heat_flux_density = Quantity.find_or_create_by! symbol: 'ϕ<sub>Q</sub>', name: 'Heat flux density', description: 'Heat flow per unit time per unit surface area', pack: thermodynamics_advanced
 watt_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup>', name: 'watt per square meter', base: true
 watt_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: heat_flux_density
 
-# Illuminance
-illuminance = Quantity.find_or_create_by! symbol: 'E<sub>v</sub>', name: 'Illuminance', description: 'Luminous flux per unit surface area'
+# Illuminance (Electromagnetism)
+illuminance = Quantity.find_or_create_by! symbol: 'E<sub>v</sub>', name: 'Illuminance', description: 'Luminous flux per unit surface area', pack: optics
 lux = UnitOfMeasurement.find_or_create_by! symbol: 'lx', name: 'lux', base: true
 lux.unit_of_measurement_quantities.find_or_create_by! quantity: illuminance
 
-# Impedance
-impedance = Quantity.find_or_create_by! symbol: 'Z', name: 'Impedance', description: 'Resistance to an alternating current of a given frequency, including effect on phase'
+# Impedance (Electromagnetism)
+impedance = Quantity.find_or_create_by! symbol: 'Z', name: 'Impedance', description: 'Resistance to an alternating current of a given frequency, including effect on phase', pack: electricity
 ohm.unit_of_measurement_quantities.find_or_create_by! quantity: impedance
 
-# Impulse
-impulse = Quantity.find_or_create_by! symbol: 'Δp', name: 'Impulse', description: 'Transferred momentum', vector: true
+# Impulse (Mechanics)
+impulse = Quantity.find_or_create_by! symbol: 'Δp', name: 'Impulse', description: 'Transferred momentum', vector: true, pack: dynamics
 newton_second = UnitOfMeasurement.find_or_create_by! symbol: 'N s', name: 'newton second', base: true
 newton_second.unit_of_measurement_quantities.find_or_create_by! quantity: impulse
 
-# Inductance
-inductance = Quantity.find_or_create_by! symbol: 'L<sub>m</sub>', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit'
+# Inductance (Electromagnetism)
+inductance = Quantity.find_or_create_by! symbol: 'L<sub>m</sub>', name: 'Inductance', description: 'Magnetic flux generated per unit current through a circuit', pack: magnetism
 henry = UnitOfMeasurement.find_or_create_by! symbol: 'H', name: 'henry', base: true
 henry.unit_of_measurement_quantities.find_or_create_by! quantity: inductance
 
-# Intensity
-intensity = Quantity.find_or_create_by! symbol: 'I<sub>P</sub>', name: 'Intensity', description: 'Power per unit cross sectional area'
+# Intensity (Electromagnetism)
+intensity = Quantity.find_or_create_by! symbol: 'I<sub>P</sub>', name: 'Intensity', description: 'Power per unit cross sectional area', pack: electricity
 watt_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: intensity
 
-# Luminous flux
-luminous_flux = Quantity.find_or_create_by! symbol: 'F<sub>ph</sub>', name: 'Luminous flux', description: 'Perceived power of a light source'
+# Luminous flux (Electromagnetism)
+luminous_flux = Quantity.find_or_create_by! symbol: 'F<sub>ph</sub>', name: 'Luminous flux', description: 'Perceived power of a light source', pack: optics
 lumen = UnitOfMeasurement.find_or_create_by! symbol: 'lm', name: 'lumen', base: true
 lumen.unit_of_measurement_quantities.find_or_create_by! quantity: luminous_flux
 
-# Magnetic field strength
-magnetic_field_strength = Quantity.find_or_create_by! symbol: 'H', name: 'Magnetic field strength', description: 'Strength of a magnetic field', vector: true
+# Magnetic field strength (Electromagnetism)
+magnetic_field_strength = Quantity.find_or_create_by! symbol: 'H', name: 'Magnetic field strength', description: 'Strength of a magnetic field', vector: true, pack: magnetism
 ampere_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'A m<sup>-1</sup>', name: 'ampere per meter', base: true
 ampere_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: magnetic_field_strength
 
-# Magnetic flux
-magnetic_flux = Quantity.find_or_create_by! symbol: 'Φ', name: 'Magnetic flux', description: 'Measure of magnetism, taking account of the strength and the extent of a magnetic field'
+# Magnetic flux (Electromagnetism)
+magnetic_flux = Quantity.find_or_create_by! symbol: 'Φ', name: 'Magnetic flux', description: 'Measure of magnetism, taking account of the strength and the extent of a magnetic field', pack: magnetism
 weber = UnitOfMeasurement.find_or_create_by! symbol: 'Wb', name: 'weber', base: true
 weber.unit_of_measurement_quantities.find_or_create_by! quantity: magnetic_flux
 
-# Magnetic flux density
-magnetic_flux_density = Quantity.find_or_create_by! symbol: 'B', name: 'Magnetic flux density', description: 'Measure for the strength of the magnetic field'
+# Magnetic flux density (Electromagnetism)
+magnetic_flux_density = Quantity.find_or_create_by! symbol: 'B', name: 'Magnetic flux density', description: 'Measure for the strength of the magnetic field', pack: magnetism
 tesla = UnitOfMeasurement.find_or_create_by! symbol: 'T', name: 'tesla', base: true
 tesla.unit_of_measurement_quantities.find_or_create_by! quantity: magnetic_flux_density
 
-# Magnetization
-magnetization = Quantity.find_or_create_by! symbol: 'M', name: 'Magnetization', description: 'Amount of magnetic moment per unit volume', vector: true
+# Magnetization (Electromagnetism)
+magnetization = Quantity.find_or_create_by! symbol: 'M', name: 'Magnetization', description: 'Amount of magnetic moment per unit volume', vector: true, pack: magnetism
 ampere_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: magnetization
 
-# Density
-density = Quantity.find_or_create_by! symbol: 'ρ', name: 'Density', description: 'Mass per unit volume'
+# Density (Chemical physics)
+density = Quantity.find_or_create_by! symbol: 'ρ', name: 'Density', description: 'Mass per unit volume', pack: chemical_physics_basics
 kilogram_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'kg m<sup>-3</sup>', name: 'kilogram per cubic meter', base: true
 kilogram_per_cubic_meter.unit_of_measurement_quantities.find_or_create_by! quantity: density
 
-# Molar concentration
-molar_concentration = Quantity.find_or_create_by! symbol: 'C<sub>mol</sub>', name: 'Molar concentration', description: 'Amount of substance per unit volume'
+# Molar concentration (Chemical physics)
+molar_concentration = Quantity.find_or_create_by! symbol: 'C<sub>mol</sub>', name: 'Molar concentration', description: 'Amount of substance per unit volume', pack: chemical_physics_advanced
 mole_per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'mol m<sup>-3</sup>', name: 'mole per cubic meter', base: true
 mole_per_cubic_meter.unit_of_measurement_quantities.find_or_create_by! quantity: molar_concentration
 
-# Molar heat capacity
-molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c<sub>mol</sub>', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance'
+# Molar heat capacity (Chemical physics)
+molar_heat_capacity = Quantity.find_or_create_by! symbol: 'c<sub>mol</sub>', name: 'Molar heat capacity', description: 'Heat capacity of a material per unit amount of substance', pack: chemical_physics_advanced
 joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole', base: true
 joule_per_kelvin_mole.unit_of_measurement_quantities.find_or_create_by! quantity: molar_heat_capacity
 
-# Moment of inertia
-moment_of_inertia = Quantity.find_or_create_by! symbol: 'I<sub>m</sub>', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration'
+# Moment of inertia (Mechanics)
+moment_of_inertia = Quantity.find_or_create_by! symbol: 'I<sub>m</sub>', name: 'Moment of inertia', description: 'Inertia of an object with respect to angular acceleration', pack: kinematics
 kilogram_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: moment_of_inertia
 
-# Momentum
-momentum = Quantity.find_or_create_by! symbol: 'p', name: 'Momentum', description: "Product of an object's mass and velocity", vector: true
+# Momentum (Mechanics)
+momentum = Quantity.find_or_create_by! symbol: 'p', name: 'Momentum', description: "Product of an object's mass and velocity", vector: true, pack: dynamics
 newton_second.unit_of_measurement_quantities.find_or_create_by! quantity: momentum
 
-# Permeability
-permeability = Quantity.find_or_create_by! symbol: 'μ', name: 'Permeability', description: 'Measure for how the magnetization of material is affected by the application of an external magnetic field'
+# Permeability (Electromagnetism)
+permeability = Quantity.find_or_create_by! symbol: 'μ', name: 'Permeability', description: 'Measure for how the magnetization of material is affected by the application of an external magnetic field', pack: magnetism
 henry_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'H m<sup>-1</sup>', name: 'henry per meter', base: true
 henry_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: permeability
 
-# Permittivity
-permittivity = Quantity.find_or_create_by! symbol: 'ε', name: 'Permittivity', description: 'Measure for how the polarization of a material is affected by the application of an external electric field'
+# Permittivity (Electromagnetism)
+permittivity = Quantity.find_or_create_by! symbol: 'ε', name: 'Permittivity', description: 'Measure for how the polarization of a material is affected by the application of an external electric field', pack: electricity
 farad_per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'F m<sup>-1</sup>', name: 'farad per meter', base: true
 farad_per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: permittivity
 
-# Plain angle
-plain_angle = Quantity.find_or_create_by! symbol: 'θ', name: 'Plain angle', description: 'Ratio of circular arc length to radius'
+# Plain angle (Mechanics)
+plain_angle = Quantity.find_or_create_by! symbol: 'θ', name: 'Plain angle', description: 'Ratio of circular arc length to radius', pack: mechanics_basics
 radian = UnitOfMeasurement.find_or_create_by! symbol: 'rad', name: 'radian', base: true
 radian.unit_of_measurement_quantities.find_or_create_by! quantity: plain_angle
 
-# Power
-power = Quantity.find_or_create_by! symbol: 'P', name: 'Power', description: 'Rate of transfer of energy per unit time'
+# Power (Electromagnetism)
+power = Quantity.find_or_create_by! symbol: 'P', name: 'Power', description: 'Rate of transfer of energy per unit time', pack: electromagnetism_basics
 watt = UnitOfMeasurement.find_or_create_by! symbol: 'W', name: 'watt', base: true
 watt.unit_of_measurement_quantities.find_or_create_by! quantity: power
 
-# Pressure
-pressure = Quantity.find_or_create_by! symbol: 'p<sub>f</sub>', name: 'Pressure', description: 'Force per unit area'
+# Pressure (Thermodynamics)
+pressure = Quantity.find_or_create_by! symbol: 'p<sub>f</sub>', name: 'Pressure', description: 'Force per unit area', pack: thermodynamics_advanced
 pascal = UnitOfMeasurement.find_or_create_by! symbol: 'Pa', name: 'pascal', base: true
 pascal.unit_of_measurement_quantities.find_or_create_by! quantity: pressure
 
-# Reaction rate
-reaction_rate = Quantity.find_or_create_by! symbol: 'r', name: 'Reaction rate', description: 'Rate of a chemical reaction for unit time'
+# Reaction rate (Chemical physics)
+reaction_rate = Quantity.find_or_create_by! symbol: 'r', name: 'Reaction rate', description: 'Rate of a chemical reaction for unit time', pack: chemical_physics_advanced
 mole_per_cubic_meter_second = UnitOfMeasurement.find_or_create_by! symbol: 'mol m<sup>-3</sup> s<sup>-1</sup>', name: 'molde per cubic meter second', base: true
 mole_per_cubic_meter_second.unit_of_measurement_quantities.find_or_create_by! quantity: reaction_rate
 
-# Speed
-speed = Quantity.find_or_create_by! symbol: 'v<sub>abs</sub>', name: 'Speed', description: 'Moved distance per unit time: the first time derivative of position'
+# Speed (Mechanics)
+speed = Quantity.find_or_create_by! symbol: 'v<sub>abs</sub>', name: 'Speed', description: 'Moved distance per unit time: the first time derivative of position', pack: mechanics_basics
 meter_per_second = UnitOfMeasurement.find_or_create_by! symbol: 'm s<sup>-1</sup>', name: 'meter per second', base: true
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: speed
 
-# Spin
-spin = Quantity.find_or_create_by! symbol: 'S', name: 'Spin', description: 'Quantum-mechanically defined angular momentum of a particle'
+# Spin (Quantum mechanics)
+spin = Quantity.find_or_create_by! symbol: 'S', name: 'Spin', description: 'Quantum-mechanically defined angular momentum of a particle', pack: quantum_mechanics_basics
 kilogram_square_meter_per_second = UnitOfMeasurement.find_or_create_by! symbol: 'kg m<sup>2</sup> s<sup>-1</sup>', name: 'kilogram square meter per second', base: true
 kilogram_square_meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: spin
 
-# Stress
-stress = Quantity.find_or_create_by! symbol: 'p<sub>p</sub>', name: 'Stress', description: 'Force per unit oriented surface area'
+# Stress (Quantum mechanics)
+stress = Quantity.find_or_create_by! symbol: 'p<sub>p</sub>', name: 'Stress', description: 'Force per unit oriented surface area', pack: relativity
 pascal.unit_of_measurement_quantities.find_or_create_by! quantity: stress
 
-# Surface tension
-surface_tension = Quantity.find_or_create_by! symbol: 'γ', name: 'Surface tension', description: 'Energy change per unit change in surface area'
+# Surface tension (Chemical physics)
+surface_tension = Quantity.find_or_create_by! symbol: 'γ', name: 'Surface tension', description: 'Energy change per unit change in surface area', pack: chemical_physics_basics
 joule_per_square_meter = UnitOfMeasurement.find_or_create_by! symbol: 'J m<sup>-2</sup>', name: 'joule per square meter', base: true
 joule_per_square_meter.unit_of_measurement_quantities.find_or_create_by! quantity: surface_tension
 
-# Thermal conductivity
-thermal_conductivity = Quantity.find_or_create_by! symbol: 'k<sub>th</sub>', name: 'Thermal conductivity', description: 'Measure for the ease with which a material conducts heat'
+# Thermal conductivity (Thermodynamics)
+thermal_conductivity = Quantity.find_or_create_by! symbol: 'k<sub>th</sub>', name: 'Thermal conductivity', description: 'Measure for the ease with which a material conducts heat', pack: thermodynamics_advanced
 watt_per_meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-1</sup> K<sup>-1</sup>', name: 'watt per meter kelvin', base: true
 watt_per_meter_kelvin.unit_of_measurement_quantities.find_or_create_by! quantity: thermal_conductivity
 
-# Torque
-torque = Quantity.find_or_create_by! symbol: 'τ', name: 'Torque', description: 'Product of a force and the perpendicular distance of the force from the point about which it is exerted'
+# Torque (Mechanics)
+torque = Quantity.find_or_create_by! symbol: 'τ', name: 'Torque', description: 'Product of a force and the perpendicular distance of the force from the point about which it is exerted', pack: dynamics
 newton_meter = UnitOfMeasurement.find_or_create_by! symbol: 'N m', name: 'newton meter', base: true
 newton_meter.unit_of_measurement_quantities.find_or_create_by! quantity: torque
 
-# Velocity
-velocity = Quantity.find_or_create_by! symbol: 'v', name: 'Velocity', description: 'Speed and direction of an object', vector: true
+# Velocity (Mechanics)
+velocity = Quantity.find_or_create_by! symbol: 'v', name: 'Velocity', description: 'Speed and direction of an object', vector: true, pack: mechanics_basics
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: velocity
-## Initial velocity
-initial_velocity = Quantity.find_or_create_by! symbol: 'v<sub>init</sub>', name: 'Initial velocity', description: 'Initial speed and direction of an object', parent_quantity: velocity, vector: true
+## Initial velocity (Mechanics)
+initial_velocity = Quantity.find_or_create_by! symbol: 'v<sub>init</sub>', name: 'Initial velocity', description: 'Initial speed and direction of an object', parent_quantity: velocity, vector: true, pack: mechanics_basics
 meter_per_second.unit_of_measurement_quantities.find_or_create_by! quantity: initial_velocity
 
-# Volume
-volume = Quantity.find_or_create_by! symbol: 'V', name: 'Volume', description: 'Three dimensional extent of an object'
+# Volume (Thermodynamics)
+volume = Quantity.find_or_create_by! symbol: 'V', name: 'Volume', description: 'Three dimensional extent of an object', pack: thermodynamics_basics
 cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>3</sup>', name: 'cubic meter', base: true
 cubic_meter.unit_of_measurement_quantities.find_or_create_by! quantity: volume
 
-# Wavelength
-wavelength = Quantity.find_or_create_by! symbol: 'λ', name: 'Wavelength', description: 'Perpendicular distance between repeating units of a wave'
+# Wavelength (Thermodynamics)
+wavelength = Quantity.find_or_create_by! symbol: 'λ', name: 'Wavelength', description: 'Perpendicular distance between repeating units of a wave', pack: thermodynamics_basics
 meter.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
 exameter.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
 petameter.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
@@ -482,17 +505,17 @@ foot.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
 yard.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: wavelength
 
-# Wavenumber
-wavenumber = Quantity.find_or_create_by! symbol: 'k<sub>λ</sub>', name: 'Wavenumber', description: 'Repetency or spacial frequency: the number of cycles per unit distance'
+# Wavenumber (Thermodynamics)
+wavenumber = Quantity.find_or_create_by! symbol: 'k<sub>λ</sub>', name: 'Wavenumber', description: 'Repetency or spacial frequency: the number of cycles per unit distance', pack: thermodynamics_basics
 per_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>-1</sup>', name: 'per meter', base: true
 per_meter.unit_of_measurement_quantities.find_or_create_by! quantity: wavenumber
 
-# Weight
-weight = Quantity.find_or_create_by! symbol: 'w', name: 'Weight', description: 'Gravitational force on an object'
+# Weight (Mechanics)
+weight = Quantity.find_or_create_by! symbol: 'w', name: 'Weight', description: 'Gravitational force on an object', pack: mechanics_basics
 newton.unit_of_measurement_quantities.find_or_create_by! quantity: weight
 
-# Work
-work = Quantity.find_or_create_by! symbol: 'W', name: 'Work', description: 'Transferred energy'
+# Work (Mechanics)
+work = Quantity.find_or_create_by! symbol: 'W', name: 'Work', description: 'Transferred energy', pack: mechanics_basics
 joule.unit_of_measurement_quantities.find_or_create_by! quantity: work
 
 
@@ -501,166 +524,166 @@ joule.unit_of_measurement_quantities.find_or_create_by! quantity: work
 
 # Constants
 
-## Vacuum speed of light
-vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', unit_of_measurement: meter_per_second
+## Vacuum speed of light (Quantum mechanics)
+vacuum_speed_of_light = Constant.find_or_create_by! symbol: 'c<sub>0</sub>', name: 'Vacuum speed of light', unit_of_measurement: meter_per_second, pack: relativity
 vacuum_speed_of_light.set_value = '2.99792458*10^8'
 vacuum_speed_of_light.save!
 vacuum_speed_of_light.update_attributes name: 'Lichtegeschwindigkeit im Vakuum', locale: :de
 
-## Newtonian constant of gravitation
+## Newtonian constant of gravitation (Mechanics)
 cubic_meter_per_kilogram_square_second = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>', name: 'cubic meter per kilogram square second'
 cubic_meter_per_kilogram_square_second.update_attributes name: 'Kubikmeter pro Kilogrammquadratsekunde', locale: :de
-newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', unit_of_measurement: cubic_meter_per_kilogram_square_second
+newtonian_constant_of_gravitation = Constant.find_or_create_by! symbol: 'G<sub>N</sub>', name: 'Newtonian constant of gravitation', unit_of_measurement: cubic_meter_per_kilogram_square_second, pack: mechanics_basics
 newtonian_constant_of_gravitation.set_value = '6.673*10^-11'
 newtonian_constant_of_gravitation.save!
 newtonian_constant_of_gravitation.update_attributes name: 'Gravitationskonstante', locale: :de
 
-## Planck constant
+## Planck constant (Quantum mechanics)
 joule_second = UnitOfMeasurement.find_or_create_by! symbol: 'J s', name: 'joule second'
 joule_second.update_attributes name: 'Joulesekunde', locale: :de
-planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', unit_of_measurement: joule_second
+planck_constant = Constant.find_or_create_by! symbol: 'h', name: 'Planck constant', unit_of_measurement: joule_second, pack: quantum_mechanics_basics
 planck_constant.set_value = '6.626069*10^-34'
 planck_constant.save!
 planck_constant.update_attributes name: 'Plancksches Wirkungsquantum', locale: :de
 
-## Magnetic constant
+## Magnetic constant (Electromagnetism)
 newton_per_square_ampere = UnitOfMeasurement.find_or_create_by! symbol: 'N A<sup>-2</sup>', name: 'newton per square ampere'
 newton_per_square_ampere.update_attributes name: 'Newton pro Quadratampere', locale: :de
-magnetic_constant = Constant.find_or_create_by! symbol: 'μ<sub>0</sub>', name: 'Magnetic constant', unit_of_measurement: newton_per_square_ampere
+magnetic_constant = Constant.find_or_create_by! symbol: 'μ<sub>0</sub>', name: 'Magnetic constant', unit_of_measurement: newton_per_square_ampere, pack: magnetism
 magnetic_constant.set_value = "4*#{Math::PI.to_s}*10^-7"
 magnetic_constant.save!
 magnetic_constant.update_attributes name: 'Magnetische Feldkonstante', locale: :de
 
-## Electric constant
-electric_constant = Constant.find_or_create_by! symbol: 'ε<sub>0</sub>', name: 'Electric constant', unit_of_measurement: farad_per_meter
+## Electric constant (Electromagnetism)
+electric_constant = Constant.find_or_create_by! symbol: 'ε<sub>0</sub>', name: 'Electric constant', unit_of_measurement: farad_per_meter, pack: electricity
 electric_constant.set_value = '8.854188*10^-12'
 electric_constant.save!
 electric_constant.update_attributes name: 'Elektrische Feldkonstante', locale: :de
 
-## Absolute zero
-absolute_zero = Constant.find_or_create_by! symbol: 'T<sub>a</sub>', name: 'Absolute zero', unit_of_measurement: kelvin
+## Absolute zero (Thermodynamics)
+absolute_zero = Constant.find_or_create_by! symbol: 'T<sub>a</sub>', name: 'Absolute zero', unit_of_measurement: kelvin, pack: thermodynamics_basics
 absolute_zero.set_value = '0'
 absolute_zero.save!
 absolute_zero.update_attributes name: 'Absoluter Nullpunkt', locale: :de
 
-## Unified atomic mass unit
-unified_atomic_mass_unit = Constant.find_or_create_by! symbol: 'u', name: 'Unified atomic mass unit', unit_of_measurement: kilogram
+## Unified atomic mass unit (Chemical physics)
+unified_atomic_mass_unit = Constant.find_or_create_by! symbol: 'u', name: 'Unified atomic mass unit', unit_of_measurement: kilogram, pack: chemical_physics_basics
 unified_atomic_mass_unit.set_value = '1.660540*10^-27'
 unified_atomic_mass_unit.save!
 unified_atomic_mass_unit.update_attributes name: 'Atomare Masseeinheit', locale: :de
 
-## Avogadro constant
+## Avogadro constant (Chemical physics)
 per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol<sup>-1</sup>', name: 'per mole'
 per_mole.update_attributes name: 'Pro Mol', locale: :de
-avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Avogadro constant', unit_of_measurement: per_mole
+avogadro_constant = Constant.find_or_create_by! symbol: 'N<sub>A</sub>', name: 'Avogadro constant', unit_of_measurement: per_mole, pack: chemical_physics_advanced
 avogadro_constant.set_value = '6.022142*10^23'
 avogadro_constant.save!
 avogadro_constant.update_attributes name: 'Avogadro-Konstante', locale: :de
 
-## Boltzmann constant
-boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', unit_of_measurement: joule_per_kelvin
+## Boltzmann constant (Thermodynamics)
+boltzmann_constant = Constant.find_or_create_by! symbol: 'k', name: 'Boltzmann constant', unit_of_measurement: joule_per_kelvin, pack: thermodynamics_advanced
 boltzmann_constant.set_value = '1.380650*10^-23'
 boltzmann_constant.save!
 boltzmann_constant.update_attributes name: 'Boltzmann-Konstante', locale: :de
 
-## Compton wavelength of an electron
-compton_wavelength_of_an_electron = Constant.find_or_create_by! symbol: 'λ<sub>C</sub>', name: 'Compton wavelength of an electron', unit_of_measurement: meter
+## Compton wavelength of an electron (Quantum mechanics)
+compton_wavelength_of_an_electron = Constant.find_or_create_by! symbol: 'λ<sub>C</sub>', name: 'Compton wavelength of an electron', unit_of_measurement: meter, pack: quantum_mechanics_basics
 compton_wavelength_of_an_electron.set_value = '2.426310^-12'
 compton_wavelength_of_an_electron.save!
 compton_wavelength_of_an_electron.update_attributes name: 'Compton-Wellenlänge des Elektrons', locale: :de
 
-## Faraday constant
+## Faraday constant (Chemical physics)
 ampere_second_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'A s mol<sup>-1</sup>', name: 'ampere second per mole'
 ampere_second_per_mole.update_attributes name: 'Amperesekunde pro Mol', locale: :de
-faraday_constant = Constant.find_or_create_by! symbol: 'F<sub>A</sub>', name: 'Faraday constant', unit_of_measurement: ampere_second_per_mole
+faraday_constant = Constant.find_or_create_by! symbol: 'F<sub>A</sub>', name: 'Faraday constant', unit_of_measurement: ampere_second_per_mole, pack: chemical_physics_advanced
 faraday_constant.set_value = '9.648534*10^4'
 faraday_constant.save!
 faraday_constant.update_attributes name: 'Faraday-Konstante', locale: :de
 
-## Loschmidt constant
+## Loschmidt constant (Chemical physics)
 per_cubic_meter = UnitOfMeasurement.find_or_create_by! symbol: 'm<sup>-3</sup>', name: 'per cubic meter'
 per_cubic_meter.update_attributes name: 'Pro Kubikmeter', locale: :de
-loschmidt_constant = Constant.find_or_create_by! symbol: 'N<sub>L</sub>', name: 'Loschmidt constant', unit_of_measurement: per_cubic_meter
+loschmidt_constant = Constant.find_or_create_by! symbol: 'N<sub>L</sub>', name: 'Loschmidt constant', unit_of_measurement: per_cubic_meter, pack: chemical_physics_advanced
 loschmidt_constant.set_value = '2.686778*10^25'
 loschmidt_constant.save!
 loschmidt_constant.update_attributes name: 'Loschmidt-Konstante', locale: :de
 
-## Rydberg constant
-rydberg_constant = Constant.find_or_create_by! symbol: 'R<sub>H</sub>', name: 'Rydberg constant', unit_of_measurement: per_meter
+## Rydberg constant (Electromagnetism)
+rydberg_constant = Constant.find_or_create_by! symbol: 'R<sub>H</sub>', name: 'Rydberg constant', unit_of_measurement: per_meter, pack: optics
 rydberg_constant.set_value = '1.097373*10^7'
 rydberg_constant.save!
 rydberg_constant.update_attributes name: 'Rydberg-Konstante', locale: :de
 
-## Rydberg frequency
-rydberg_frequency = Constant.find_or_create_by! symbol: 'R<sub>y</sub>', name: 'Rydberg frequency', unit_of_measurement: hertz
+## Rydberg frequency (Electromagnetism)
+rydberg_frequency = Constant.find_or_create_by! symbol: 'R<sub>y</sub>', name: 'Rydberg frequency', unit_of_measurement: hertz, pack: optics
 rydberg_frequency.set_value = '3.289841*10^15'
 rydberg_frequency.save!
 rydberg_frequency.update_attributes name: 'Rydberg-Frequenz', locale: :de
 
-## Stefan-Boltzmann constant
+## Stefan-Boltzmann constant (Thermodynamics)
 watt_per_square_meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'W m<sup>-2</sup> K<sup>-4</sup>', name: 'watt per square meter kelvin'
 watt_per_square_meter_kelvin.update_attributes name: 'Watt pro Quadratmeterkelvin', locale: :de
-stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ<sub>B</sub>', name: 'Stefan-Boltzmann constant', unit_of_measurement: watt_per_square_meter_kelvin
+stefan_boltzmann_constant = Constant.find_or_create_by! symbol: 'σ<sub>B</sub>', name: 'Stefan-Boltzmann constant', unit_of_measurement: watt_per_square_meter_kelvin, pack: thermodynamics_advanced
 stefan_boltzmann_constant.set_value = '5.670400*10^-8'
 stefan_boltzmann_constant.save!
 stefan_boltzmann_constant.update_attributes name: 'Stefan-Boltzmann-Konstante', locale: :de
 
-## Gas constant
+## Gas constant (Chemical physics)
 joule_per_kelvin_mole = UnitOfMeasurement.find_or_create_by! symbol: 'J K<sup>-1</sup> mol<sup>-1</sup>', name: 'joule per kelvin mole'
 joule_per_kelvin_mole.update_attributes name: 'Joule pro Kelvinmol', locale: :de
-gas_constant = Constant.find_or_create_by! symbol: 'R<sub>0</sub>', name: 'Gas constant', unit_of_measurement: joule_per_kelvin_mole
+gas_constant = Constant.find_or_create_by! symbol: 'R<sub>0</sub>', name: 'Gas constant', unit_of_measurement: joule_per_kelvin_mole, pack: chemical_physics_advanced
 gas_constant.set_value = '8.314472'
 gas_constant.save!
 gas_constant.update_attributes name: 'Universelle Gaskonstante', locale: :de
 
-## Wien displacement law constant
+## Wien displacement law constant (Quantum mechanics)
 meter_kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'm K', name: 'meter kelvin'
 meter_kelvin.update_attributes name: 'Meterkelvin', locale: :de
-wien_displacement_law_constant = Constant.find_or_create_by! symbol: 'b<sub>energy</sub>', name: 'Wien displacement law constant', unit_of_measurement: meter_kelvin
+wien_displacement_law_constant = Constant.find_or_create_by! symbol: 'b<sub>energy</sub>', name: 'Wien displacement law constant', unit_of_measurement: meter_kelvin, pack: quantum_mechanics_basics
 wien_displacement_law_constant.set_value = '2.897769*10^-3'
 wien_displacement_law_constant.save!
 wien_displacement_law_constant.update_attributes name: 'Wiensche Konstante', locale: :de
 
-## Molar volume of an ideal gas
+## Molar volume of an ideal gas (Chemical physics)
 liter_per_mole = UnitOfMeasurement.find_or_create_by! symbol: 'l mol<sup>-1</sup>', name: 'liter per mole'
 liter_per_mole.update_attributes name: 'Liter pro Mol', locale: :de
-molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub>', name: 'Molar volume of an ideal gas', unit_of_measurement: liter_per_mole
+molar_volume_of_an_ideal_gas = Constant.find_or_create_by! symbol: 'V<sub>0</sub>', name: 'Molar volume of an ideal gas', unit_of_measurement: liter_per_mole, pack: chemical_physics_advanced
 molar_volume_of_an_ideal_gas.set_value = '22.414'
 molar_volume_of_an_ideal_gas.save!
 molar_volume_of_an_ideal_gas.update_attributes name: 'Molares Normvolumen', locale: :de
 
-## Standard acceleration of gravity
-standard_acceleration_of_gravity = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', unit_of_measurement: meter_per_square_second
+## Standard acceleration of gravity (Mechanics)
+standard_acceleration_of_gravity = Constant.find_or_create_by! symbol: 'g<sub>0</sub>', name: 'Standard acceleration of gravity', unit_of_measurement: meter_per_square_second, pack: mechanics_basics
 standard_acceleration_of_gravity.set_value = '9.80665*10^-2'
 standard_acceleration_of_gravity.save!
 standard_acceleration_of_gravity.update_attributes name: 'Normfallbeschleunigung', locale: :de
 
-## Standard temperature
-standard_temperature = Constant.find_or_create_by! symbol: 'T<sub>0</sub>', name: 'Standard temperature', unit_of_measurement: kelvin
+## Standard temperature (Thermodynamics)
+standard_temperature = Constant.find_or_create_by! symbol: 'T<sub>0</sub>', name: 'Standard temperature', unit_of_measurement: kelvin, pack: thermodynamics_basics
 standard_temperature.set_value = '273.15'
 standard_temperature.save!
 standard_temperature.update_attributes name: 'Normtemperatur', locale: :de
 
-## Elementary charge
-elementary_charge = Constant.find_or_create_by! symbol: 'e', name: 'Elementary charge', unit_of_measurement: coulomb
+## Elementary charge (Electromagnetism)
+elementary_charge = Constant.find_or_create_by! symbol: 'e', name: 'Elementary charge', unit_of_measurement: coulomb, pack: electromagnetism_basics
 elementary_charge.set_value = '1.60217646*10^-19'
 elementary_charge.save!
 elementary_charge.update_attributes name: 'Elementarladung', locale: :de
 
-## Electron mass
-electron_mass = Constant.find_or_create_by! symbol: 'm<sub>e</sub>', name: 'Electron mass', unit_of_measurement: kilogram
+## Electron mass (Chemical physics)
+electron_mass = Constant.find_or_create_by! symbol: 'm<sub>e</sub>', name: 'Electron mass', unit_of_measurement: kilogram, pack: chemical_physics_basics
 electron_mass.set_value = '9.10938188*10^-31'
 electron_mass.save!
 electron_mass.update_attributes name: 'Ruhemasse eines Elektrons', locale: :de
 
-## Neutron mass
-neutron_mass = Constant.find_or_create_by! symbol: 'm<sub>n</sub>', name: 'Neutron mass', unit_of_measurement: kilogram
+## Neutron mass (Chemical physics)
+neutron_mass = Constant.find_or_create_by! symbol: 'm<sub>n</sub>', name: 'Neutron mass', unit_of_measurement: kilogram, pack: chemical_physics_basics
 neutron_mass.set_value = '1.67492716*10^-27'
 neutron_mass.save!
 neutron_mass.update_attributes name: 'Ruhemasse eines Neutrons', locale: :de
 
-## Proton mass
-proton_mass = Constant.find_or_create_by! symbol: 'm<sub>p</sub>', name: 'Proton mass', unit_of_measurement: kilogram
+## Proton mass (Chemical physics)
+proton_mass = Constant.find_or_create_by! symbol: 'm<sub>p</sub>', name: 'Proton mass', unit_of_measurement: kilogram, pack: chemical_physics_basics
 proton_mass.set_value = '1.67262158*10^-27'
 proton_mass.save!
 proton_mass.update_attributes name: 'Ruhemasse eines Protons', locale: :de
@@ -730,6 +753,26 @@ Equation.find_or_create_by! quantity: electric_potential, equation: 'P / I'
 
 
 # Translations
+
+## Packs & Categories
+mechanics.update_attributes name: 'Mechanik', description: 'Beschreibung', locale: :de
+mechanics_basics.update_attributes name: 'Mechanik (Basis)', description: 'Beschreibung', locale: :de
+kinematics.update_attributes name: 'Kinematik', description: 'Beschreibung', locale: :de
+dynamics.update_attributes name: 'Dynamik', description: 'Beschreibung', locale: :de
+thermodynamics.update_attributes name: 'Themodynamik', description: 'Beschreibung', locale: :de
+thermodynamics_basics.update_attributes name: 'Themodynamik (Basis)', description: 'Beschreibung', locale: :de
+thermodynamics_advanced.update_attributes name: 'Themodynamik (Erweitert)', description: 'Beschreibung', locale: :de
+electromagnetism.update_attributes name: 'Elektromagnetismus', description: 'Beschreibung', locale: :de
+electromagnetism_basics.update_attributes name: 'Elektromagnetismus (Basis)', description: 'Beschreibung', locale: :de
+electricity.update_attributes name: 'Elektrizität', description: 'Beschreibung', locale: :de
+magnetism.update_attributes name: 'Magnetismus', description: 'Beschreibung', locale: :de
+optics.update_attributes name: 'Optik', description: 'Beschreibung', locale: :de
+quantum_mechanics.update_attributes name: 'Quantenmachanik', description: 'Beschreibung', locale: :de
+relativity.update_attributes name: 'Relativität', description: 'Beschreibung', locale: :de
+quantum_mechanics_basics.update_attributes name: 'Quantenmachanik (Basis)', description: 'Beschreibung', locale: :de
+chemical_physics.update_attributes name: 'Chemische Physik', description: 'Beschreibung', locale: :de
+chemical_physics_basics.update_attributes name: 'Chemische Physik (Basis)', description: 'Beschreibung', locale: :de
+chemical_physics_advanced.update_attributes name: 'Chemische Physik (Erweitert)', description: 'Beschreibung', locale: :de
 
 ## Length
 length.update_attributes name: 'Länge', description: 'Die eindimensionale Ausdehnung eines Gegenstandes', locale: :de

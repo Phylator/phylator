@@ -1,0 +1,10 @@
+%h1= t 'categories.index.title'
+
+.cards
+    - @categories.with_translations(I18n.locale).order(:name).each do |category|
+        = link_to category, class: 'card' do
+            .wrapper
+                %h2.small= category.name
+                %p.small
+                    %span= category.purchased?.capitalize
+            = asset 'components/list/item-open.svg'
