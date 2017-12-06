@@ -1,7 +1,8 @@
 de:
     calculations:
         show:
-            no_solution_found: Keine Lösung gefunden
+            dependencies:
+                content: Indem Du zu deiner Berechnung die Größen aus einer der folgenden Gruppen hinzufügst, kannst du ein Ergebnis erzielen.
             details:
                 add: Füge details hinzu
             save:

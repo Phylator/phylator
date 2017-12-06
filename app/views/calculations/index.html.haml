@@ -5,9 +5,12 @@
         - current_user.calculations.order('created_at desc').each do |calculation|
             = link_to calculation, class: 'card' do
                 .wrapper
-                    %h2.small
-                        = calculation.result.pretty_value
-                        %span= calculation.unit_of_measurement.sym
+                    - if calculation.result.undefined
+                        %h3.red= t 'cd.no_solution_found'
+                    - else
+                        %h2.small
+                            = calculation.result.pretty_value
+                            %span= calculation.unit_of_measurement.sym
                     %p.small
                         - if calculation.name.nil? || calculation.name == ''
                             %span= calculation.quantity.name

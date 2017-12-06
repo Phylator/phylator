@@ -14,8 +14,10 @@ class Quantity < ApplicationRecord
     has_many :unit_of_measurements, through: :quantity_unit_of_measurements
     has_many :equations
     has_many :measurements, class_name: 'Calculation::Measurement'
-    has_many :equation_quantities, class_name: '::Equation::Quantity'
+    has_many :equation_quantities, class_name: '::Equation::Quantity', dependent: :destroy
     has_many :in_equations, through: :equation_quantities, source: :equation
+    has_many :calculation_dependencies, class_name: '::Calculation::Dependency', dependent: :destroy
+    has_many :needed_by_calculations, through: :calculation_dependencies, source: :calculation
 
     belongs_to :pack
 

@@ -6,11 +6,11 @@ class Equation < ApplicationRecord
 
     belongs_to :quantity, class_name: '::Quantity'
 
-    has_many :calculation_equations, class_name: '::Calculation::Equation'
+    has_many :calculation_equations, class_name: '::Calculation::Equation', dependent: :destroy
     has_many :calculations, through: :calculation_equations
-    has_many :equation_quantities, class_name: '::Equation::Quantity'
+    has_many :equation_quantities, class_name: '::Equation::Quantity', dependent: :destroy
     has_many :quantities, through: :equation_quantities
-    has_many :equation_constants, class_name: '::Equation::Constant'
+    has_many :equation_constants, class_name: '::Equation::Constant', dependent: :destroy
     has_many :constants, through: :equation_constants
 
     def pure_equation

@@ -15,9 +15,9 @@ class Constant < ApplicationRecord
     # validates :value, presence: true
     validates :unit_of_measurement, presence: true
 
-    has_many :calculation_constants, class_name: '::Calculation::Constant'
+    has_many :calculation_constants, class_name: '::Calculation::Constant', dependent: :destroy
     has_many :calculations, through: :calculation_constants
-    has_many :equation_constants, class_name: '::Equation::Constant'
+    has_many :equation_constants, class_name: '::Equation::Constant', dependent: :destroy
     has_many :equations, through: :equation_constants
 
     belongs_to :pack

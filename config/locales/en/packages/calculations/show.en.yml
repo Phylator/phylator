@@ -1,7 +1,8 @@
 en:
     calculations:
         show:
-            no_solution_found: No solution found
+            dependencies:
+                content: By including one of the following sets of quantities in your calculation, you will be able to get a result.
             details:
                 add: Add some details
             save:

@@ -1,1 +1,1 @@
-json.array! (Quantity.purchased(current_user).base + Quantity.free.base), partial: 'quantities/quantity', as: :quantity
+json.array! (Quantity.purchased(current_user) + Quantity.free), partial: 'quantities/quantity', as: :quantity

@@ -7,7 +7,7 @@ class Calculation::Result < ApplicationRecord
     include Value
     include MarginOfError
 
-    validates :value, presence: true
+    # validates :value, presence: true
 
     belongs_to :calculation, class_name: '::Calculation'
 
@@ -49,6 +49,7 @@ class Calculation::Result < ApplicationRecord
             var = constant.value
             calculator.store "#{symbol}": var
         end
+        ## Return specific message, if necessary constant has not been added yet!
 
         # Solve equations
         ## Solve equations unless unit conversion is requested
@@ -78,8 +79,12 @@ class Calculation::Result < ApplicationRecord
                 equations.delete(key) if value == []
             end
             ## Solve equations
-            calculation_results = calculator.solve equations
-            calculation_result = calculation_results[self.calculation.quantity.pure_sym]&.map {|x| BigDecimal(x) rescue nil }.compact.first || :undefined
+            begin
+                calculation_results = calculator.solve equations
+                calculation_result = calculation_results[self.calculation.quantity.pure_sym]&.map {|x| BigDecimal(x) rescue nil }.compact.first || :undefined
+            rescue TSort::Cyclic
+                calculation_result = :undefined
+            end
 
             # calculation_result = :undefined
             # ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
@@ -130,6 +135,20 @@ class Calculation::Result < ApplicationRecord
             self.value = result
             # self.margin_of_error = resulting_error
         else
+            # Storing needed dependencies
+            if equations
+                i = 0
+                equations[self.calculation.quantity.pure_sym].each do |equation|
+                    dependencies = calculator.dependencies equation
+                    dependencies.each do |dependency|
+                        Quantity.all.each do |quantity|
+                            self.calculation.calculation_dependencies.build(quantity: quantity, index: i) if quantity.pure_sym == dependency
+                        end
+                    end
+                    i += 1
+                end
+            end
+
             self.undefined = true
         end
 

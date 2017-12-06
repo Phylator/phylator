@@ -17,7 +17,7 @@
 
 .head-wrapper
     - if @calculation.result.undefined
-        %h2.red= t 'calculations.show.no_solution_found'
+        %h1.red= t 'cd.no_solution_found'
     - else
         %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
@@ -43,7 +43,25 @@
                 %h3= @calculation.name
             %p= @calculation.description if @calculation.description
 
-    - if current_user && can?(:update, @calculation)
+    - if @calculation.result.undefined && @calculation.dependencies.any?
+        %h3= t 'cd.missing_dependencies'
+        %p= t 'calculations.show.dependencies.content'
+        .cards
+            - @calculation.calculation_dependencies.group_by(&:index).each do |index, dependencies|
+                - if index > 0
+                    %hr
+                - dependencies.each do |dependency|
+                    = link_to dependency.quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                        .wrapper
+                            %h2.small= dependency.quantity.sym
+                            %p.small
+                                %span= dependency.quantity.name
+                                - if dependency.quantity.vector
+                                    ·
+                                    %span= t 'd.vector'
+                        = asset 'components/list/item-open.svg'
+
+    - if current_user && can?(:update, @calculation) && !@calculation.result.undefined
         %h3= t('cd.convert_to')
         = simple_form_for @calculation, turboboost: true do |f|
             = token_tag

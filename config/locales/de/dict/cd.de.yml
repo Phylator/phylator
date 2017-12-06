@@ -10,8 +10,10 @@ de:
         launch_app: App öffnen
         learn_more: Mehr erfahren
         margin_of_error: Messfehler
+        missing_dependencies: Fehlende Größen
         new_password: Neues Passwort
-        no_permission: Nicht autorisiert
+        no_permission: Noch kein Zugriff auf diesen Inhalt
+        no_solution_found: Keine Lösung gefunden
         page_not_accessible: Seite nicht aufrufbar
         physical_constants: Naturkonstanten
         physical_quantities: Physikalische Größen
