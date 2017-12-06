@@ -9,28 +9,30 @@
 .content-wrapper
     %p= @unit_of_measurement.name
 
-    %h3= t 'cd.physical_quantities'
-    .cards
-        - @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small= quantity.sym
-                    %p.small
-                        %span= quantity.name
-                        - if quantity.vector
-                            ·
-                            %span= t 'd.vector'
-                = asset 'components/list/item-open.svg'
+    - if @unit_of_measurement.quantities.any?
+        %h3= t 'cd.physical_quantities'
+        .cards
+            - @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+                = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                    .wrapper
+                        %h2.small= quantity.sym
+                        %p.small
+                            %span= quantity.name
+                            - if quantity.vector
+                                ·
+                                %span= t 'd.vector'
+                    = asset 'components/list/item-open.svg'
 
-    %h3= t 'cd.physical_constants'
-    .cards
-        - @unit_of_measurement.constants.with_translations(I18n.locale).order(:name).each do |constant|
-            = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small= constant.sym
-                    %p.small
-                        %span= constant.name
-                = asset 'components/list/item-open.svg'
+    - if @unit_of_measurement.constants.any?
+        %h3= t 'cd.physical_constants'
+        .cards
+            - @unit_of_measurement.constants.with_translations(I18n.locale).order(:name).each do |constant|
+                = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                    .wrapper
+                        %h2.small= constant.sym
+                        %p.small
+                            %span= constant.name
+                    = asset 'components/list/item-open.svg'
 
     - if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id).any?
         %h3= t 'd.p.calculations'
