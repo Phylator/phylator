@@ -2,7 +2,7 @@ de:
     calculations:
         show:
             dependencies:
-                content: Indem Du zu deiner Berechnung die Größen aus einer der folgenden Gruppen hinzufügst, kannst du ein Ergebnis erzielen.
+                content: Indem Du zu deinen Messwerten die Größen aus einer der folgenden Gruppen hinzufügst, kannst du ein Ergebnis erzielen.
             details:
                 add: Füge details hinzu
             save:
