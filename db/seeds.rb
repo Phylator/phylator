@@ -713,7 +713,7 @@ Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_"init"^
 
 Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_"init" * t + 1/2 * a * t^2'
 Equation.find_or_create_by! quantity: initial_velocity, equation: '( s - 1/2 * a * t^2 ) / t'
-Equation.find_or_create_by! quantity: acceleration, equation: '(2 * ( s - u * t )) / t^2'
+Equation.find_or_create_by! quantity: acceleration, equation: '(2 * ( s - v_"init" * t )) / t^2'
 # Equation.find_or_create_by! quantity: time, equation: '...'
 
 Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_"init"'
