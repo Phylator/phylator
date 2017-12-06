@@ -37,7 +37,7 @@ function componentsStripeInit() {
     card.mount('#card-element');
 
     // Handle real-time validation errors from the card Element.
-    card.change(function(event) {
+    card.addEventListener( 'change', function(event) {
         var displayError = $('#card-errors');
         if (event.error) {
             displayError.textContent = event.error.message;

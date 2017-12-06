@@ -17,3 +17,7 @@ function componentsModalInit() {
 function componentsModalOpen(el) {
     $(el).iziModal('open');
 };
+
+function componentsModalClose(el) {
+    $(el).iziModal('close');
+};

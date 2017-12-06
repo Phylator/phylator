@@ -10,7 +10,7 @@
 .tools
     .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
     .share.md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-    - if can? :destroy, @calculation
+    - if current_user && can?(:destroy, @calculation)
         .delete.md-trigger{ data: { modal: '.delete' } }= asset 'icons/trash-round.svg'
 
 
@@ -35,7 +35,7 @@
                 = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
 
 .content-wrapper
-    - if can? :update, @calculation
+    - if current_user && can?(:update, @calculation)
         .md-trigger{ data: { modal: '.edit' } }
             - if @calculation.name.nil? || @calculation.name == ''
                 %h3= t('calculations.show.details.add')
@@ -43,9 +43,10 @@
                 %h3= @calculation.name
             %p= @calculation.description if @calculation.description
 
-    - if current_user && current_user.id == @calculation.user_id
+    - if current_user && can?(:update, @calculation)
         %h3= t('cd.convert_to') + ' ...'
         = simple_form_for @calculation, turboboost: true do |f|
+            = token_tag
             = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 

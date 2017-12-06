@@ -44,7 +44,7 @@ class Calculation::Result < ApplicationRecord
         end
 
         # Add constants
-        ::Constant.all.each do |constant|
+        (::Constant&.purchased(self.calculation.user) + ::Constant.free).each do |constant|
             symbol = constant.pure_sym
             var = constant.value
             calculator.store "#{symbol}": var
@@ -52,7 +52,7 @@ class Calculation::Result < ApplicationRecord
 
         # Solve equations
         ## Solve equations unless unit conversion is requested
-        unless measurements_per_quantity.has_key?(self.calculation.quantity_id) && measurements_per_quantity.count == 1
+        unless measurements_per_quantity.has_key?(self.calculation.quantity_id)
             ## Add equations
             equations = {}
             ::Quantity.all.each do |quantity|
@@ -109,6 +109,8 @@ class Calculation::Result < ApplicationRecord
             ## Store result to calculator
             calculator.store "#{self.calculation.quantity.pure_sym}": calculation_result if calculation_result.present?
             # calculator.store "#{self.calculation.quantity.sym}_error": calculation_error if calculation_error.present?
+        else
+            calculation_result = calculator.evaluate self.calculation.quantity.pure_sym
         end
 
         unless calculation_result == :undefined
@@ -119,7 +121,7 @@ class Calculation::Result < ApplicationRecord
             if self.calculation.unit_of_measurement.base?
                 result = calculation_result
             else
-                result = calculator.evaluate symbol + self.calculation.unit_of_measurement.from_base
+                result = calculator.evaluate calculation_result.to_s + self.calculation.unit_of_measurement.from_base
                 # resulting_error = calculator.evaluate( "round(#{symbol}_error, #{decimal_places_errors.min})" + self.calculation.unit_of_measurement.from_base )
             end
 

@@ -9,13 +9,17 @@ class PurchasesController < ApplicationController
         @purchase.pack = Pack.friendly.find params[:id]
         description = I18n.t 'payments.create.description', pack: @purchase.pack.name
 
-        charge = Stripe::Charge.create(
-            amount: @purchase.pack.price * 100,
-            currency: 'usd',
-            description: description,
-            receipt_email: params[:receipt_email],
-            source: params[:token]
-        )
+        begin
+            charge = Stripe::Charge.create(
+                amount: (@purchase.pack.price * 100).to_i,
+                currency: 'usd',
+                description: description,
+                receipt_email: params[:receipt_email],
+                source: params[:token]
+            )
+        rescue => e
+            railse e.inspect
+        end
 
         @purchase.stripe_charge_id = charge[:id]
         @purchase.save!

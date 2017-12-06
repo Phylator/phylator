@@ -36,7 +36,7 @@ class Constant < ApplicationRecord
         self.symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
     end
 
-    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user.id } }) }
+    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user&.id } }) }
     scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
 
     private

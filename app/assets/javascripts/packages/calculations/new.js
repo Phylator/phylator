@@ -11,13 +11,21 @@ function calculationsNewInit() {
         if ( $('form > .quantity').is(':visible') ) {
             $('form > .quantity').fadeToggle(250);
             $('form > .unit').fadeToggle( 250, function() {
-                $('form').toggleClass('pushed-down');
+                if ( $('.ad').length > 0 ) {
+                    $('.ad').toggleClass('pushed-down');
+                } else {
+                    $('form').toggleClass('pushed-down');
+                };
                 $('p.setup').toggleClass('invisible');
                 $('nav.app').toggleClass('invisible');
                 $('.measurements').toggleClass('content-disabled');
             });
         } else {
-            $('form').toggleClass('pushed-down');
+            if ( $('.ad').length > 0 ) {
+                $('.ad').toggleClass('pushed-down');
+            } else {
+                $('form').toggleClass('pushed-down');
+            };
             $('nav.app').toggleClass('invisible');
             $('p.setup').toggleClass('invisible');
             $('.measurements').toggleClass('content-disabled');

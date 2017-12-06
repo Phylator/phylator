@@ -33,7 +33,7 @@ class Quantity < ApplicationRecord
     end
 
     scope :base, -> { where(parent_quantity: nil) }
-    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user.id } }) }
+    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user&.id } }) }
     scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
 
 end

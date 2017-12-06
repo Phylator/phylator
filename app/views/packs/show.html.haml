@@ -9,7 +9,7 @@
 
 - unless @pack.purchased? current_user
     .buy-wrapper
-        = link_to t('packs.show.buy', price: number_to_currency(@pack.price)), '', class: 'btn md-trigger', data: { modal: '.buy' }
+        = link_to t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), '', class: 'btn md-trigger', data: { modal: '.buy' }
 
 .content-wrapper
     %p
@@ -84,6 +84,6 @@
             .wrapper.hidden
                 %p= t('packs.show.modals.buy.success')
                 .centered
-                    = submit_tag t('packs.show.buy', price: number_to_currency(@pack.price)), onclick: 'componentsModalClose($(".modal.buy"));'
+                    = submit_tag t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), onclick: 'componentsModalClose($(".modal.buy"));'
     .modal-loader-wrapper.hidden
         = asset 'loader/modal'

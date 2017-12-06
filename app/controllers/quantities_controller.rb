@@ -1,6 +1,6 @@
 class QuantitiesController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:show]
     before_action :set_quantity, only: [:show]
 
     # GET /quantities

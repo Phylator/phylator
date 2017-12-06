@@ -1,15 +1,13 @@
 .calculations.new
-    // display: flex
-    // flex-direction: column
-    // align-items: center
     .ad
         background: color(dark, darkest)
         padding: px(30)
-        margin-bottom: px(35)
         display: flex
         flex-direction: column
         align-items: flex-start
         align-self: stretch
+        &.pushed-down
+            padding-top: px(90)
         p
             margin: px(8) 0 px(30)
         .wrapper
@@ -77,3 +75,5 @@
                     margin-bottom: px(50)
                 .input
                     margin: px(25) 0
+                    &:first-child
+                        margin-top: 0

@@ -22,7 +22,7 @@
         - current_user.purchases.each do |purchase|
             = link_to purchase.pack, class: 'card' do
                 .wrapper
-                    %h2.small= number_to_currency purchase.amount
+                    %h2.small= number_to_currency purchase.amount, unit: '$'
                     %p.small
                         %span= purchase.pack.name
                         ·

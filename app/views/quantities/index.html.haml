@@ -1,32 +1,33 @@
-- unless current_user.purchases.count == Pack.all.count
-    .ad
-        %h3= t 'quantities.index.ad.title'
-        %p= t 'quantities.index.ad.content'
-        = link_to t('quantities.index.ad.link'), categories_url, class: 'btn', data: { turbolinks_animate_type: 'nav' }
+- if current_user
+    - unless current_user && current_user.purchases.count == Pack.all.count
+        .ad
+            %h3= t 'quantities.index.ad.title'
+            %p= t 'quantities.index.ad.content'
+            = link_to t('quantities.index.ad.link'), categories_url, class: 'btn', data: { turbolinks_animate_type: 'nav' }
 
-.wrapper
+    .wrapper
 
-    %h1= t 'cd.physical_quantities'
-    .cards
-        - (Quantity.with_translations(I18n.locale).purchased(current_user).base + Quantity.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
-            = link_to quantity, class: 'card' do
-                .wrapper
-                    %h2.small= quantity.sym
-                    %p.small
-                        %span= quantity.name
-                        - if quantity.vector
-                            ·
-                            %span= t 'd.vector'
-                = asset 'components/list/item-open.svg'
+        %h1= t 'cd.physical_quantities'
+        .cards
+            - (Quantity.with_translations(I18n.locale).purchased(current_user).base + Quantity.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
+                = link_to quantity, class: 'card' do
+                    .wrapper
+                        %h2.small= quantity.sym
+                        %p.small
+                            %span= quantity.name
+                            - if quantity.vector
+                                ·
+                                %span= t 'd.vector'
+                    = asset 'components/list/item-open.svg'
 
 
-    %h1= t 'cd.physical_constants'
+        %h1= t 'cd.physical_constants'
 
-    .cards
-        - (Constant.with_translations(I18n.locale).purchased(current_user) + Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |constant|
-            = link_to constant, class: 'card' do
-                .wrapper
-                    %h2.small= constant.sym
-                    %p.small
-                        %span= constant.name
-                = asset 'components/list/item-open.svg'
+        .cards
+            - (Constant.with_translations(I18n.locale).purchased(current_user) + Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |constant|
+                = link_to constant, class: 'card' do
+                    .wrapper
+                        %h2.small= constant.sym
+                        %p.small
+                            %span= constant.name
+                    = asset 'components/list/item-open.svg'
