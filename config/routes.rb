@@ -8,7 +8,9 @@ Rails.application.routes.draw do
         resources :quantities, only: [:index, :show] do
             get 'units_of_measurement', to: 'unit_of_measurements#index'
         end
+        resources :unit_of_measurements, only: [:show]
         resources :constants, only: [:show]
+        resources :equations, only: [:show]
         resources :calculations, except: [:new, :edit] do
             resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end

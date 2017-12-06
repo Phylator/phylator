@@ -7,6 +7,7 @@ class CreateConstants < ActiveRecord::Migration[5.1]
 
             t.string :symbol, unique: true
             t.text :value, null: false
+            t.string :wikipedia
 
             t.string :slug, null: false, unique: true, index: true
 

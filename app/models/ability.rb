@@ -22,6 +22,16 @@ class Ability
         can :read, Constant do |constant|
             true if constant.pack.price == 0 || constant.pack.purchases.where(user_id: user.id).any?
         end
+        ## Units
+        can :read, UnitOfMeasurement do |unit_of_measurement|
+            unit_of_measurement.quantities.each do |quantity|
+                true if quantity.pack.price == 0 || quantity.pack.purchases.where(user_id: user.id).any?
+            end
+        end
+        ## Equations
+        can :read, Equation do |equation|
+            true if equation.quantity.pack.price == 0 || equation.quantity.pack.purchases.where(user_id: user.id).any?
+        end
 
         # Categories & Packs
         can :read, Category

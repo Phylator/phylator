@@ -69,7 +69,7 @@
         %h3= t 'cd.physical_constants'
         .cards
             - @calculation.constants.each do |constant|
-                = link_to constant, class: 'card' do
+                = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small= constant.sym
                         %p.small
@@ -80,9 +80,19 @@
         %h3= t 'd.p.equations'
         .cards
             - @calculation.equations.uniq.each do |equation|
-                .card
+                = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         = '`' + equation.quantity.sym + '=' + equation.equation + '`'
+                    = asset 'components/list/item-open.svg'
+
+    %h3= t 'd.unit_of_measurement'
+    .cards
+        = link_to @calculation.unit_of_measurement, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+            .wrapper
+                %h2.small= @calculation.unit_of_measurement.sym
+                %p.small
+                    %span= @calculation.unit_of_measurement.name
+            = asset 'components/list/item-open.svg'
 
 
 

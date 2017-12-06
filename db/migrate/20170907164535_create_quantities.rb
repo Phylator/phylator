@@ -7,6 +7,7 @@ class CreateQuantities < ActiveRecord::Migration[5.1]
 
             t.string :symbol, unique: true
             t.boolean :vector, default: false, null: false
+            t.string :wikipedia
 
             t.string :slug, null: false, unique: true, index: true
 

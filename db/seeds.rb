@@ -33,7 +33,7 @@ chemical_physics_advanced = Pack.find_or_create_by! category: chemical_physics, 
 
 
 # Length (Mechanics)
-length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object', pack: mechanics_basics
+length = Quantity.find_or_create_by! symbol: 'l', name: 'Length', description: 'The one-dimensional extent of an object', wikipedia: 'https://wikipedia.org/wiki/Distance', pack: mechanics_basics
 meter = UnitOfMeasurement.find_or_create_by! symbol: 'm', name: 'meter', base: true
 meter.unit_of_measurement_quantities.find_or_create_by! quantity: length
 exameter = UnitOfMeasurement.find_or_create_by! symbol: 'Em', name: 'exameter', to_base: '*1000000000000000000'
@@ -81,7 +81,7 @@ yard.unit_of_measurement_quantities.find_or_create_by! quantity: length
 miles = UnitOfMeasurement.find_or_create_by! symbol: 'mi', name: 'miles', to_base: '/16093.44'
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: length
 ## Distance traveled (Mechanics)
-distance_traveled = Quantity.find_or_create_by! symbol: 's', name: 'Distance traveled', description: 'Distance an object traveled', pack: mechanics_basics, parent_quantity: length
+distance_traveled = Quantity.find_or_create_by! symbol: 's', name: 'Distance traveled', description: 'Distance an object traveled', wikipedia: 'https://wikipedia.org/wiki/Distance', pack: mechanics_basics, parent_quantity: length
 meter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 exameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 petameter.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
@@ -107,7 +107,7 @@ yard.unit_of_measurement_quantities.find_or_create_by! quantity: distance_travel
 miles.unit_of_measurement_quantities.find_or_create_by! quantity: distance_traveled
 
 # Mass (Mechanics)
-mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration', pack: mechanics_basics
+mass = Quantity.find_or_create_by! symbol: 'm', name: 'Mass', description: 'A measure of resistance to acceleration', wikipedia: 'https://wikipedia.org/wiki/Mass', pack: mechanics_basics
 kilogram = UnitOfMeasurement.find_or_create_by! symbol: 'kg', name: 'kilogram', base: true
 kilogram.unit_of_measurement_quantities.find_or_create_by! quantity: mass
 exagram = UnitOfMeasurement.find_or_create_by! symbol: 'Eg', name: 'exagram', to_base: '*1000000000000000'
@@ -144,7 +144,7 @@ pound = UnitOfMeasurement.find_or_create_by! symbol: 'lbs', name: 'pound', to_ba
 pound.unit_of_measurement_quantities.find_or_create_by! quantity: mass
 
 # Time (Mechanics)
-time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event', pack: mechanics_basics
+time = Quantity.find_or_create_by! symbol: 't', name: 'Time', description: 'The duration of an event', wikipedia: 'https://wikipedia.org/wiki/Time_in_physics', pack: mechanics_basics
 second = UnitOfMeasurement.find_or_create_by! symbol: 's', name: 'second', base: true
 second.unit_of_measurement_quantities.find_or_create_by! quantity: time
 milisecond = UnitOfMeasurement.find_or_create_by! symbol: 'ms', name: 'milisecond', to_base: '/1000'
@@ -175,7 +175,7 @@ year = UnitOfMeasurement.find_or_create_by! symbol: 'year', name: 'year', to_bas
 year.unit_of_measurement_quantities.find_or_create_by! quantity: time
 
 # Electric current (Electromagnetism)
-electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time', pack: electromagnetism_basics
+electric_current = Quantity.find_or_create_by! symbol: 'I', name: 'Electric current', description: 'Rate of flow of electrical charge per unit time', wikipedia: 'https://wikipedia.org/wiki/Electric_current', pack: electromagnetism_basics
 ampere = UnitOfMeasurement.find_or_create_by! symbol: 'A', name: 'ampere', base: true
 ampere.unit_of_measurement_quantities.find_or_create_by! quantity: electric_current
 miliampere = UnitOfMeasurement.find_or_create_by! symbol: 'mA', name: 'miliampere', to_base: '/1000'
@@ -196,7 +196,7 @@ yoctoampere = UnitOfMeasurement.find_or_create_by! symbol: 'yA', name: 'yoctoamp
 yoctoampere.unit_of_measurement_quantities.find_or_create_by! quantity: electric_current
 
 # Temperature (Thermodynamics)
-temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system', pack: thermodynamics_basics
+temperature = Quantity.find_or_create_by! symbol: 'T', name: 'Temperature', description: 'Average kinetic energy per degree of freedom of a system', wikipedia: 'https://wikipedia.org/wiki/Temperature', pack: thermodynamics_basics
 kelvin = UnitOfMeasurement.find_or_create_by! symbol: 'K', name: 'kelvin', base: true
 kelvin.unit_of_measurement_quantities.find_or_create_by! quantity: temperature
 degree_celcius = UnitOfMeasurement.find_or_create_by! symbol: '°C', name: 'degree celcius', to_base: '+273.15'
@@ -205,12 +205,12 @@ degree_fahrenheit = UnitOfMeasurement.find_or_create_by! symbol: '°F', name: 'd
 degree_fahrenheit.unit_of_measurement_quantities.find_or_create_by! quantity: temperature
 
 # Amount of substance (Chemical physics)
-amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C', pack: chemical_physics_basics
+amount_of_substance = Quantity.find_or_create_by! symbol: 'n', name: 'Amount of substance', description: 'Number of particles compared to the number of atoms in 0.012 kg of 12C', wikipedia: 'https://wikipedia.org/wiki/Amount_of_substance', pack: chemical_physics_basics
 mole = UnitOfMeasurement.find_or_create_by! symbol: 'mol', name: 'mole', base: true
 mole.unit_of_measurement_quantities.find_or_create_by! quantity: amount_of_substance
 
 # Luminous intensity (Electromagnetism)
-luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle', pack: optics
+luminous_intensity = Quantity.find_or_create_by! symbol: 'L', name: 'Luminous intensity', description: 'Wavelength-weighted power of emitted light per unit solid angle', wikipedia: 'https://wikipedia.org/wiki/Luminous_intensity', pack: optics
 candela = UnitOfMeasurement.find_or_create_by! symbol: 'cd', name: 'candela', base: true
 candela.unit_of_measurement_quantities.find_or_create_by! quantity: luminous_intensity
 
@@ -702,23 +702,23 @@ Equation.find_or_create_by! quantity: mass, equation: 'p / v'
 Equation.find_or_create_by! quantity: momentum, equation: 'm * v'
 Equation.find_or_create_by! quantity: velocity, equation: 'p / m'
 
-Equation.find_or_create_by! quantity: velocity, equation: 'v_initial + a * t'
-Equation.find_or_create_by! quantity: acceleration, equation: '( v - v_initial ) / t'
-Equation.find_or_create_by! quantity: time, equation: '( v - v_initial ) / a'
+Equation.find_or_create_by! quantity: velocity, equation: 'v_"init" + a * t'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v - v_"init" ) / t'
+Equation.find_or_create_by! quantity: time, equation: '( v - v_"init" ) / a'
 
-Equation.find_or_create_by! quantity: velocity, equation: 'sqrt( v_initial^2 + 2 * a * s )'
+Equation.find_or_create_by! quantity: velocity, equation: 'sqrt( v_"init"^2 + 2 * a * s )'
 Equation.find_or_create_by! quantity: initial_velocity, equation: 'sqrt( v^2 - 2 * a * s )'
-Equation.find_or_create_by! quantity: distance_traveled, equation: '( v^2 - v_initial^2 ) / ( 2 * a )'
-Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_initial^2 ) / ( 2 * s )'
+Equation.find_or_create_by! quantity: distance_traveled, equation: '( v^2 - v_"init"^2 ) / ( 2 * a )'
+Equation.find_or_create_by! quantity: acceleration, equation: '( v^2 - v_"init"^2 ) / ( 2 * s )'
 
-Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_initial * t + 1/2 * a * t^2'
+Equation.find_or_create_by! quantity: distance_traveled, equation: 'v_"init" * t + 1/2 * a * t^2'
 Equation.find_or_create_by! quantity: initial_velocity, equation: '( s - 1/2 * a * t^2 ) / t'
 Equation.find_or_create_by! quantity: acceleration, equation: '(2 * ( s - u * t )) / t^2'
 # Equation.find_or_create_by! quantity: time, equation: '...'
 
-Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_initial'
+Equation.find_or_create_by! quantity: impulse, equation: 'm * v - m * v_"init"'
 # Equation.find_or_create_by! quantity: initial_velocity, equation: '( m * v - Δp ) / m' ##### issue with Δp #####
-# Equation.find_or_create_by! quantity: velocity, equation: '( Δp + m * v_initial ) / m' ##### issue with Δp #####
+# Equation.find_or_create_by! quantity: velocity, equation: '( Δp + m * v_"init" ) / m' ##### issue with Δp #####
 # Equation.find_or_create_by! quantity: mass, equation: '...'
 
 Equation.find_or_create_by! quantity: work, equation: 'F * s'

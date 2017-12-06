@@ -2,6 +2,21 @@
     display: flex
     flex-direction: column
     align-items: center
+    .ad
+        background: color(dark, darkest)
+        padding: px(30)
+        margin-bottom: px(35)
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        align-self: stretch
+        p
+            margin: px(8) 0 px(30)
+        .wrapper
+            display: flex
+            align-items: center
+            a:not(:last-child)
+                margin-right: px(25)
     p.setup
         display: flex
         justify-content: center
@@ -16,6 +31,7 @@
         position: fixed
         top: 0
         left: 0
+        z-index: 99
         transition-duration: .25s
         &.invisible
             top: px(-60)

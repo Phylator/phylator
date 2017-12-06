@@ -12,6 +12,8 @@
         = @quantity.description
         - if @quantity.vector
             = t 'quantities.show.vector'
+    - if @quantity.wikipedia
+        %p= link_to t('cd.learn_more'), @quantity.wikipedia, target: '_blank'
 
     %h3= t 'd.pack'
     .cards
@@ -26,9 +28,10 @@
         %h3= t 'd.p.equations'
         .cards
             - @quantity.equations.each do |equation|
-                .card
+                = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
-                        = '`' + @quantity.pure_sym + '=' + equation.equation + '`'
+                        = '`' + @quantity.sym + '=' + equation.equation + '`'
+                    = asset 'components/list/item-open.svg'
 
     - if (@quantity.child_quantities.purchased(current_user) + @quantity.child_quantities.free).any?
         %h3= t 'cd.physical_quantities'
@@ -47,8 +50,27 @@
     %h3= t 'd.p.units_of_measurement'
     .cards
         - @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc).each do |unit_of_measurement|
-            .card{ class: ('highlighted' if unit_of_measurement.base) }
+            = link_to unit_of_measurement, class: 'card' + (unit_of_measurement.base ? ' highlighted' : ''), data: { turbolinks_animate_animation: 'fadeout' } do
                 .wrapper
                     %h2.small= unit_of_measurement.sym
                     %p.small
                         %span= unit_of_measurement.name
+                = asset 'components/list/item-open.svg'
+
+    - if Calculation.where(quantity_id: @quantity.id).any?
+        %h3= t 'd.p.calculations'
+        .cards
+            - Calculation.where(quantity_id: @quantity.id).order('created_at desc').each do |calculation|
+                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                    .wrapper
+                        %h2.small
+                            = calculation.result.pretty_value
+                            %span= calculation.unit_of_measurement.sym
+                        %p.small
+                            - if calculation.name.nil? || calculation.name == ''
+                                %span= calculation.quantity.name
+                            - else
+                                %span= calculation.name
+                            ·
+                            %span= timeago calculation.created_at
+                    = asset 'components/list/item-open.svg'

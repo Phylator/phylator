@@ -60,14 +60,14 @@ class Calculation::Result < ApplicationRecord
             end
             # ::Equation.all.each do |equation| ##### LEADING TO: TSort exception #####
             ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
-                equations[equation.quantity.pure_sym] << equation.equation
+                equations[equation.quantity.pure_sym] << equation.pure_equation
                 ## Associate equation with calculation if used
-                if calculator.dependencies(equation.equation).size == 0
+                if calculator.dependencies(equation.pure_equation).size == 0
                     self.calculation.calculation_equations.create! equation: equation
                     ## Associate physical constant with calculation if used
                     ::Constant.all.each do |constant|
                         symbol = constant.pure_sym
-                        if equation.equation.include? symbol
+                        if equation.pure_equation.include? symbol
                             self.calculation.calculation_constants.create! constant: constant
                         end
                     end

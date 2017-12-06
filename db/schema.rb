@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205060818) do
+ActiveRecord::Schema.define(version: 20171206140335) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -112,12 +112,31 @@ ActiveRecord::Schema.define(version: 20171205060818) do
     t.bigint "unit_of_measurement_id"
     t.string "symbol"
     t.text "value", null: false
+    t.string "wikipedia"
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pack_id"], name: "index_constants_on_pack_id"
     t.index ["slug"], name: "index_constants_on_slug"
     t.index ["unit_of_measurement_id"], name: "index_constants_on_unit_of_measurement_id"
+  end
+
+  create_table "equation_constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "constant_id"
+    t.bigint "equation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["constant_id"], name: "index_equation_constants_on_constant_id"
+    t.index ["equation_id"], name: "index_equation_constants_on_equation_id"
+  end
+
+  create_table "equation_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "quantity_id"
+    t.bigint "equation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equation_id"], name: "index_equation_quantities_on_equation_id"
+    t.index ["quantity_id"], name: "index_equation_quantities_on_quantity_id"
   end
 
   create_table "equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -165,6 +184,8 @@ ActiveRecord::Schema.define(version: 20171205060818) do
     t.bigint "user_id"
     t.bigint "pack_id"
     t.decimal "amount", precision: 8, scale: 2
+    t.string "stripe_charge_id"
+    t.boolean "completed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pack_id"], name: "index_purchases_on_pack_id"
@@ -176,6 +197,7 @@ ActiveRecord::Schema.define(version: 20171205060818) do
     t.bigint "parent_quantity_id"
     t.string "symbol"
     t.boolean "vector", default: false, null: false
+    t.string "wikipedia"
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

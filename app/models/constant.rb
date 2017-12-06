@@ -17,6 +17,8 @@ class Constant < ApplicationRecord
 
     has_many :calculation_constants, class_name: '::Calculation::Constant'
     has_many :calculations, through: :calculation_constants
+    has_many :equation_constants, class_name: '::Equation::Constant'
+    has_many :equations, through: :equation_constants
 
     belongs_to :pack
 

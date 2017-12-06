@@ -14,6 +14,8 @@
 .content-wrapper
     %p
         = @constant.name
+    - if @constant.wikipedia
+        %p= link_to t('cd.learn_more'), @constant.wikipedia, target: '_blank'
 
     %h3= t 'd.pack'
     .cards
@@ -26,8 +28,27 @@
 
     %h3= t 'd.unit_of_measurement'
     .cards
-        .card
+        = link_to @constant.unit_of_measurement, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
             .wrapper
                 %h2.small= @constant.unit_of_measurement.sym
                 %p.small
                     %span= @constant.unit_of_measurement.name
+            = asset 'components/list/item-open.svg'
+
+    - if @constant.calculations.where(user_id: current_user.id).any?
+        %h3= t 'd.p.calculations'
+        .cards
+            - @constant.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
+                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                    .wrapper
+                        %h2.small
+                            = calculation.result.pretty_value
+                            %span= calculation.unit_of_measurement.sym
+                        %p.small
+                            - if calculation.name.nil? || calculation.name == ''
+                                %span= calculation.quantity.name
+                            - else
+                                %span= calculation.name
+                            ·
+                            %span= timeago calculation.created_at
+                    = asset 'components/list/item-open.svg'
