@@ -6210,36 +6210,33 @@ body.devise nav.app > a:last-child {
   padding: 2.1875em 1.5625em 6.25em;
 }
 
-/* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
-.calculations.new {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* line 5, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new .ad {
   background: var(--color-dark-darkest);
   padding: 1.875em;
-  margin-bottom: 2.1875em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
 }
-/* line 13, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new .ad.pushed-down {
+  padding-top: 5.625em;
+}
+/* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new .ad p {
   margin: 0.5em 0 1.875em;
 }
-/* line 15, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 13, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new .ad .wrapper {
   display: flex;
   align-items: center;
 }
-/* line 18, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 16, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new .ad .wrapper a:not(:last-child) {
   margin-right: 1.5625em;
 }
-/* line 20, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 18, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new p.setup {
   display: flex;
   justify-content: center;
@@ -6257,40 +6254,42 @@ body.devise nav.app > a:last-child {
   z-index: 99;
   transition-duration: 0.25s;
 }
-/* line 36, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 34, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new p.setup.invisible {
   top: -3.75em;
 }
-/* line 38, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 36, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new p.setup span.in {
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.8125em;
   font-style: normal;
   padding: 0 0.3125em;
 }
-/* line 43, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 41, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new p.setup span.quantity, .calculations.new p.setup span.unit {
   margin-bottom: -0.0625em;
 }
-/* line 45, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 43, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form {
-  padding: 3.125em 0 2.1875em;
-  width: 100%;
-  max-width: 85%;
+  padding: 2.1875em 1.875em;
+}
+/* line 45, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new form.pushed-down {
+  padding-top: 4.6875em;
 }
 /* line 47, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
-.calculations.new form.pushed-down {
-  padding-top: 6.5625em;
-}
-/* line 51, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form div:not(.content-disabled):not(.submit-wrapper):last-child {
   margin-bottom: 2.1875em;
 }
-/* line 54, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 49, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new form > .quantity, .calculations.new form > .unit {
+  transition: none;
+}
+/* line 52, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .content-disabled label, .calculations.new form .content-disabled a, .calculations.new form .content-disabled input[type="submit"], .calculations.new form .content-disabled p, .calculations.new form .content-disabled hr {
   display: none;
 }
-/* line 56, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 54, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .content-disabled input {
   cursor: not-allowed;
   pointer-events: none;
@@ -6298,18 +6297,18 @@ body.devise nav.app > a:last-child {
   background: rgba(0, 0, 0, 0.1);
   color: transparent;
 }
-/* line 63, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 61, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .submit-wrapper {
   margin-top: 3.75em;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
 }
-/* line 68, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 66, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .submit-wrapper a.btn {
   margin-right: 1.5625em;
 }
-/* line 71, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 69, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .measurement p.margin-of-error {
   color: var(--color-dark-lighter);
   font-size: 0.875em;
@@ -6318,9 +6317,13 @@ body.devise nav.app > a:last-child {
   text-align: center;
   margin-bottom: 3.125em;
 }
-/* line 78, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+/* line 76, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
 .calculations.new form .measurements .measurement .input {
   margin: 1.5625em 0;
+}
+/* line 78, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
+.calculations.new form .measurements .measurement .input:first-child {
+  margin-top: 0;
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/show.sass */
@@ -6569,20 +6572,19 @@ body.devise nav.app > a:last-child {
 .quantities.index .ad {
   background: var(--color-dark-darkest);
   padding: 1.875em;
-  margin-bottom: 2.1875em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+/* line 8, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
 .quantities.index .ad p {
   margin: 0.5em 0 1.875em;
 }
-/* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+/* line 10, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
 .quantities.index > .wrapper {
   padding: 2.1875em 1.5625em 6.25em;
 }
-/* line 13, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
 .quantities.index > .wrapper .cards ~ h1 {
   margin-top: 2.1875em;
 }
