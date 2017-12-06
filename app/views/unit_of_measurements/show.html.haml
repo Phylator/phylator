@@ -34,11 +34,11 @@
                             %span= constant.name
                     = asset 'components/list/item-open.svg'
 
-    - if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id).any?
+    - if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
-            - Calculation.where(unit_of_measurement_id: @unit_of_measurement.id).order('created_at desc').each do |calculation|
-                = link_to calculation, class: 'card' do
+            - Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).order('created_at desc').each do |calculation|
+                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small
                             = calculation.result.pretty_value

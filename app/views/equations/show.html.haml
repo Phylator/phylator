@@ -40,10 +40,10 @@
                             %span= constant.name
                     = asset 'components/list/item-open.svg'
 
-    - if @equation.calculations.any?
+    - if @equation.calculations.where(user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
-            - @equation.calculations.order('created_at desc').each do |calculation|
+            - @equation.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
                 = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small

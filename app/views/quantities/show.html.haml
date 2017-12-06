@@ -70,10 +70,10 @@
                         %span= unit_of_measurement.name
                 = asset 'components/list/item-open.svg'
 
-    - if Calculation.where(quantity_id: @quantity.id).any?
+    - if Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
-            - Calculation.where(quantity_id: @quantity.id).order('created_at desc').each do |calculation|
+            - Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).order('created_at desc').each do |calculation|
                 = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
                         %h2.small
