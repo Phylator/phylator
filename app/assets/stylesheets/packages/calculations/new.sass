@@ -1,7 +1,7 @@
 .calculations.new
-    display: flex
-    flex-direction: column
-    align-items: center
+    // display: flex
+    // flex-direction: column
+    // align-items: center
     .ad
         background: color(dark, darkest)
         padding: px(30)
@@ -43,13 +43,13 @@
         span.quantity, span.unit
             margin-bottom: px(-1)
     form
-        padding: px(50) 0 px(35)
+        padding: px(35) px(30)
         &.pushed-down
-            padding-top: px(105)
-        width: 100%
-        max-width: 85%
+            padding-top: px(75)
         div:not(.content-disabled):not(.submit-wrapper):last-child
             margin-bottom: px(35)
+        & > .quantity, & > .unit
+            transition: none
         .content-disabled
             label, a, input[type="submit"], p, hr
                 display: none

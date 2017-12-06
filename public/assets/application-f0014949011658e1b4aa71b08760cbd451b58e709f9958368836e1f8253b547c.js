@@ -21797,18 +21797,18 @@ function componentsStripeInit() {
     // (Note that this demo uses a wider set of styles than the guide below.)
     var style = {
         base: {
-            color: '#26272B',
+            color: '#fff',
             lineHeight: '1.35',
             fontFamily: 'brandon-grotesque, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
             fontSmoothing: 'antialiased',
             fontSize: '16px',
             '::placeholder': {
-                color: '#A4ABAF'
+                color: '#9297a7'
             }
         },
             invalid: {
-            color: '#e2816a',
-            iconColor: '#e2816a'
+            color: '#f19882',
+            iconColor: '#f19882'
         }
     };
 
@@ -21819,7 +21819,7 @@ function componentsStripeInit() {
     card.mount('#card-element');
 
     // Handle real-time validation errors from the card Element.
-    card.addEventListener( 'change', function(event) {
+    card.change(function(event) {
         var displayError = $('#card-errors');
         if (event.error) {
             displayError.textContent = event.error.message;
@@ -21943,11 +21943,13 @@ function calculationsNewInit() {
         if ( $('form > .quantity').is(':visible') ) {
             $('form > .quantity').fadeToggle(250);
             $('form > .unit').fadeToggle( 250, function() {
+                $('form').toggleClass('pushed-down');
                 $('p.setup').toggleClass('invisible');
                 $('nav.app').toggleClass('invisible');
                 $('.measurements').toggleClass('content-disabled');
             });
         } else {
+            $('form').toggleClass('pushed-down');
             $('nav.app').toggleClass('invisible');
             $('p.setup').toggleClass('invisible');
             $('.measurements').toggleClass('content-disabled');
