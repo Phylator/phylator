@@ -15,11 +15,7 @@ module Value
     def pretty_value
         x = self.value.to_s
         if x.size > 12
-            if x[1] == '.'
-                '%.10f' % x
-            else
-                trim(self.value).to_s
-            end
+            "%g" % ( "%E" % x )
         else
             delimiter(trim(self.value))
         end
