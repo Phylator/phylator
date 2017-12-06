@@ -1,5 +1,6 @@
 de:
     cd:
+        belongs_to: Gehört zu
         convert_to: Umrechnen in
         copied_to_clipboard: In Zwischenablage kopiert
         current_password: Aktuelles Passwort

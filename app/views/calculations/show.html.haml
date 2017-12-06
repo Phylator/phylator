@@ -82,7 +82,7 @@
             - @calculation.equations.uniq.each do |equation|
                 = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
-                        = '`' + equation.quantity.sym + '=' + equation.equation + '`'
+                        = '`' + equation.quantity.ascii_sym + '=' + equation.equation + '`'
                     = asset 'components/list/item-open.svg'
 
     %h3= t 'd.unit_of_measurement'

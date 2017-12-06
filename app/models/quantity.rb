@@ -28,6 +28,9 @@ class Quantity < ApplicationRecord
     def pure_sym
         self.symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
     end
+    def ascii_sym
+        self.symbol.sub('<sub>', '_"').sub('</sub>', '"').force_encoding('UTF-8')
+    end
 
     scope :base, -> { where(parent_quantity: nil) }
     scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user.id } }) }

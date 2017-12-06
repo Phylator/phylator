@@ -24,13 +24,26 @@
                     %span= @quantity.pack.name
             = asset 'components/list/item-open.svg'
 
+    - if @quantity.parent_quantity.present?
+        %h3= t 'cd.belongs_to'
+        .cards
+            = link_to @quantity.parent_quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
+                .wrapper
+                    %h2.small= @quantity.parent_quantity.sym
+                    %p.small
+                        %span= @quantity.parent_quantity.name
+                        - if @quantity.parent_quantity.vector
+                            ·
+                            %span= t 'd.vector'
+                = asset 'components/list/item-open.svg'
+
     - if @quantity.equations.any?
         %h3= t 'd.p.equations'
         .cards
             - @quantity.equations.each do |equation|
                 = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                     .wrapper
-                        = '`' + @quantity.sym + '=' + equation.equation + '`'
+                        = '`' + @quantity.ascii_sym + '=' + equation.equation + '`'
                     = asset 'components/list/item-open.svg'
 
     - if (@quantity.child_quantities.purchased(current_user) + @quantity.child_quantities.free).any?

@@ -1,5 +1,6 @@
 en:
     cd:
+        belongs_to: Belongs to
         convert_to: Convert to
         copied_to_clipboard: Copied to clipboard
         current_password: Current password
