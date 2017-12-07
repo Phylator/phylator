@@ -16,18 +16,11 @@
 
 - if current_user.purchases.any?
 
-    %h1= t 'd.p.purchases'
+    %h3= t 'd.p.purchases'
 
     .cards
         - current_user.purchases.each do |purchase|
-            = link_to purchase.pack, class: 'card' do
-                .wrapper
-                    %h2.small= number_to_currency purchase.amount, unit: '$'
-                    %p.small
-                        %span= purchase.pack.name
-                        ·
-                        %span= time_ago_in_words purchase.created_at
-                = asset 'components/list/item-open.svg'
+            = render 'purchases/purchase', purchase: purchase
 
     %hr
 
