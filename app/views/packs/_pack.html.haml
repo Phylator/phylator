@@ -1,7 +1,7 @@
 = link_to pack, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
     .wrapper
         %h3= pack.name
-        %p.small
+        %p.small.align
             - if pack.purchased?(current_user)
                 = asset 'icons/purchased.svg'
             - else
