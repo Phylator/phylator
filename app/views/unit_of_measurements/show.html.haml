@@ -8,7 +8,7 @@
     - else
         %h2.copy{ data: { clipboard_text: @value.to_s } }
             = "%g" % ( "%E" % @value )
-            %span= @unit_of_measurement.sym + ' = 1' + (@unit_of_measurement.quantities.first ? @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym : '')
+            %span= @unit_of_measurement.sym + (@unit_of_measurement.quantities.first ? ' = 1' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym : '')
 
 
 
