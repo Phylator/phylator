@@ -50,7 +50,7 @@
             - @calculation.calculation_dependencies.group_by(&:index).each do |index, dependencies|
                 - if index > 0
                     %hr
-                - dependencies.each do |dependency|
+                - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
                     = link_to dependency.quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
                         .wrapper
                             %h2.small= dependency.quantity.sym

@@ -145,7 +145,7 @@ class Calculation::Result < ApplicationRecord
                         Quantity.all.each do |quantity|
                             quantities << quantity if quantity.pure_sym == dependency
                         end
-                        self.calculation.calculation_dependencies.build(quantity: quantities.first, index: i)
+                        self.calculation.calculation_dependencies.create!(quantity: quantities.first, index: i)
                     end
                     i += 1
                 end
