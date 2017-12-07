@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @category
+        render layout: 'details'
     end
 
     private

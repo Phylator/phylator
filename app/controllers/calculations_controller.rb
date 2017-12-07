@@ -16,6 +16,7 @@ class CalculationsController < ApplicationController
     # GET /calculations/1.json
     def show
         @animation = 'fadeinright'
+        render layout: 'details'
     end
 
     # GET /calculations/new

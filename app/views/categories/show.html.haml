@@ -1,16 +1,12 @@
-= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-    = asset 'components/back.svg'
-
-
-
-.head-wrapper
+- replace :title do
     %h1= @category.name
 
-.content-wrapper
-    %p
-        = @category.description
 
-    %h3= t 'd.p.packs'
-    .cards
-        - @category.packs.each do |pack|
-            = render 'packs/pack', pack: pack, animation: 'fadeout'
+
+%p
+    = @category.description
+
+%h3= t 'd.p.packs'
+.cards
+    - @category.packs.each do |pack|
+        = render 'packs/pack', pack: pack, animation: 'fadeout'

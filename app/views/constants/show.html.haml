@@ -1,32 +1,27 @@
-= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-    = asset 'components/back.svg'
-
-.tools
+- replace :tools do
     .copy{ data: { clipboard_text: @constant.value.to_s } }= asset 'icons/ungroup.svg'
-
-
-
-.head-wrapper
+- replace :title do
     %h2.copy{ data: { clipboard_text: @constant.value.to_s } }
         = @constant.pretty_value
         %span= @constant.unit_of_measurement.sym
 
-.content-wrapper
-    %p
-        = @constant.name
-    - if @constant.wikipedia
-        %p= link_to t('cd.learn_more'), @constant.wikipedia, target: '_blank'
 
-    %h3= t 'd.pack'
+
+%p
+    = @constant.name
+- if @constant.wikipedia
+    %p= link_to t('cd.learn_more'), @constant.wikipedia, target: '_blank'
+
+%h3= t 'd.pack'
+.cards
+    = render 'packs/pack', pack: @constant.pack, animation: 'fadeout'
+
+%h3= t 'd.unit_of_measurement'
+.cards
+    = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @constant.unit_of_measurement, animation: 'fadeout'
+
+- if @constant.calculations.where(user_id: current_user.id).any?
+    %h3= t 'd.p.calculations'
     .cards
-        = render 'packs/pack', pack: @constant.pack, animation: 'fadeout'
-
-    %h3= t 'd.unit_of_measurement'
-    .cards
-        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @constant.unit_of_measurement, animation: 'fadeout'
-
-    - if @constant.calculations.where(user_id: current_user.id).any?
-        %h3= t 'd.p.calculations'
-        .cards
-            - @constant.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
-                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'
+        - @constant.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
+            = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

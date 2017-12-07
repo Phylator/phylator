@@ -17,6 +17,8 @@ class UnitOfMeasurementsController < ApplicationController
 
         calculator = Dentaku::Calculator.new case_sensitive: true
         @value = calculator.evaluate '1' + @unit_of_measurement.from_base
+        
+        render layout: 'details'
     end
 
     private

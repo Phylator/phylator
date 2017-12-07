@@ -8,6 +8,7 @@ class ConstantsController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @constant
+        render layout: 'details'
     end
 
     private

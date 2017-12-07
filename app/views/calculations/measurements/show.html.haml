@@ -1,62 +1,47 @@
-= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-    = asset 'components/back.svg'
-
-.tools
+- replace :tools do
     .copy{ data: { clipboard_text: @measurement.value.to_s } }= asset 'icons/ungroup.svg'
     .share.md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-
-
-
-.head-wrapper
+- replace :title do
     %h2.copy{ data: { clipboard_text: @measurement.value.to_s } }
         = @measurement.pretty_value
         %span= @measurement.unit_of_measurement.sym
-    %p
-        %span= link_to @measurement.quantity.name, quantity_url(@measurement.quantity), data: { turbolinks_animate_animation: 'fadeout' }
-        ·
-        %span= timeago @measurement.created_at
-
-.content-wrapper
-    - if can? :update, @measurement
-        .md-trigger{ data: { modal: '.edit' } }
-            - if @measurement.name.nil? || @measurement.name == ''
-                %h3= t('calculations.measurements.show.details.add')
-            - else
-                %h3= @measurement.name
-            %p= @measurement.description if @measurement.description
-
-    %h3= t 'd.unit_of_measurement'
-    .cards
-        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @measurement.unit_of_measurement, animation: 'fadeout'
+- replace :subtitle do
+    %span= link_to @measurement.quantity.name, quantity_url(@measurement.quantity), data: { turbolinks_animate_animation: 'fadeout' }
+    ·
+    %span= timeago @measurement.created_at
 
 
 
+- if can? :update, @measurement
+    .md-trigger{ data: { modal: '.edit' } }
+        - if @measurement.name.nil? || @measurement.name == ''
+            %h3= t('calculations.measurements.show.details.add')
+        - else
+            %h3= @measurement.name
+        %p= @measurement.description if @measurement.description
+
+%h3= t 'd.unit_of_measurement'
+.cards
+    = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @measurement.unit_of_measurement, animation: 'fadeout'
 
 
 
-.modal.share
-    .modal-content-wrapper
-        %h3= t 'd.share'
-        .wrapper
-            = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
-            = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
-            = link_to 'Google +', "https://plus.google.com/share?url=#{request.original_url}", target: '_blank'
-            = link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}"
+- append :modals do
+    .modal.share
+        .modal-content-wrapper
+            %h3= t 'd.share'
+            .wrapper
+                = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
+                = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
+                = link_to 'Google +', "https://plus.google.com/share?url=#{request.original_url}", target: '_blank'
+                = link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}"
 
-.modal.edit
-    .modal-content-wrapper
-        = simple_form_for @measurement, url: calculation_measurement_url(@measurement.calculation.id, @measurement.id), method: :put do |f|
-            = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
-            = f.input :margin_of_error, as: :integer, required: true, label: t('cd.margin_of_error'), input_html: { step: 'any' }
-            = f.input :name, label: t('d.title')
-            = f.input :description, label: t('d.description')
-            .flex-wrapper
-                = f.button :submit, t('d.save')
-
-
--# %span
--#     = '+-'
--#     - if @measurement.result.margin_of_error.to_s.size > 12
--#         = "%e" % @measurement.result.margin_of_error.to_s
--#     - else
--#         = @measurement.result.margin_of_error.to_s
+    .modal.edit
+        .modal-content-wrapper
+            = simple_form_for @measurement, url: calculation_measurement_url(@measurement.calculation.id, @measurement.id), method: :put do |f|
+                = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
+                = f.input :margin_of_error, as: :integer, required: true, label: t('cd.margin_of_error'), input_html: { step: 'any' }
+                = f.input :name, label: t('d.title')
+                = f.input :description, label: t('d.description')
+                .flex-wrapper
+                    = f.button :submit, t('d.save')

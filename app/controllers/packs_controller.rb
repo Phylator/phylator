@@ -6,6 +6,7 @@ class PacksController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @pack
+        render layout: 'details'
     end
 
     private

@@ -15,6 +15,7 @@ class QuantitiesController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @quantity
+        render layout: 'details'
     end
 
     private

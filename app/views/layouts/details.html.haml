@@ -1,0 +1,23 @@
+= extends :application do
+    = replace :body do
+
+        = area :back do
+            = link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
+                = asset 'components/back.svg'
+
+        .tools
+            = area :tools
+
+        .head-wrapper
+            = area :title
+            %p= area :subtitle
+
+        = area :wrapper
+
+        .content-wrapper
+            = area :content do
+                = yield
+
+        = area :modals
+
+        = area :scripts

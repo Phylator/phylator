@@ -1,26 +1,22 @@
-= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-    = asset 'components/back.svg'
-
-
-
-.head-wrapper
+- replace :title do
     %h2= '`' + @equation.quantity.ascii_sym + '=' + @equation.equation + '`'
 
-.content-wrapper
-    %h3= t 'cd.physical_quantities'
+
+
+%h3= t 'cd.physical_quantities'
+.cards
+    = render 'quantities/quantity', quantity: @equation.quantity, animation: 'fadeout'
+    - @equation.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+        = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
+
+- if @equation.constants.any?
+    %h3= t 'cd.physical_constants'
     .cards
-        = render 'quantities/quantity', quantity: @equation.quantity, animation: 'fadeout'
-        - @equation.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
+        - @equation.constants.with_translations(I18n.locale).order(:name).each do |constant|
+            = render 'constants/constant', constant: constant, animation: 'fadeout'
 
-    - if @equation.constants.any?
-        %h3= t 'cd.physical_constants'
-        .cards
-            - @equation.constants.with_translations(I18n.locale).order(:name).each do |constant|
-                = render 'constants/constant', constant: constant, animation: 'fadeout'
-
-    - if @equation.calculations.where(user_id: current_user.id).any?
-        %h3= t 'd.p.calculations'
-        .cards
-            - @equation.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
-                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'
+- if @equation.calculations.where(user_id: current_user.id).any?
+    %h3= t 'd.p.calculations'
+    .cards
+        - @equation.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
+            = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

@@ -1,12 +1,6 @@
-= link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-    = asset 'components/back.svg'
-
-.tools
+- replace :tools do
     .copy{ data: { clipboard_text: @value.to_s } }= asset 'icons/ungroup.svg'
-
-
-
-.head-wrapper
+- replace :title do
     - if @unit_of_measurement.base
         %h2.copy{ data: { clipboard_text: @value.to_s } }
             = "%g" % ( "%E" % @value )
@@ -16,23 +10,24 @@
             = "%g" % ( "%E" % @value )
             %span= @unit_of_measurement.sym + ' = 1' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym
 
-.content-wrapper
-    %p= @unit_of_measurement.name
 
-    - if @unit_of_measurement.quantities.any?
-        %h3= t 'cd.physical_quantities'
-        .cards
-            - @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-                = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
 
-    - if @unit_of_measurement.constants.any?
-        %h3= t 'cd.physical_constants'
-        .cards
-            - @unit_of_measurement.constants.with_translations(I18n.locale).order(:name).each do |constant|
-                = render 'constants/constant', constant: constant, animation: 'fadeout'
+%p= @unit_of_measurement.name
 
-    - if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).any?
-        %h3= t 'd.p.calculations'
-        .cards
-            - Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).order('created_at desc').each do |calculation|
-                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'
+- if @unit_of_measurement.quantities.any?
+    %h3= t 'cd.physical_quantities'
+    .cards
+        - @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
+            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
+
+- if @unit_of_measurement.constants.any?
+    %h3= t 'cd.physical_constants'
+    .cards
+        - @unit_of_measurement.constants.with_translations(I18n.locale).order(:name).each do |constant|
+            = render 'constants/constant', constant: constant, animation: 'fadeout'
+
+- if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).any?
+    %h3= t 'd.p.calculations'
+    .cards
+        - Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).order('created_at desc').each do |calculation|
+            = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

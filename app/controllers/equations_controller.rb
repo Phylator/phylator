@@ -8,6 +8,7 @@ class EquationsController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @equation
+        render layout: 'details'
     end
 
     private
