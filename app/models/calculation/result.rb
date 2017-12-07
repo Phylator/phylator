@@ -140,10 +140,12 @@ class Calculation::Result < ApplicationRecord
                 i = 0
                 equations[self.calculation.quantity.pure_sym].each do |equation|
                     dependencies = calculator.dependencies equation
-                    dependencies.each do |dependency|
+                    dependencies.uniq.each do |dependency|
+                        quantities = []
                         Quantity.all.each do |quantity|
-                            self.calculation.calculation_dependencies.build(quantity: quantity, index: i) if quantity.pure_sym == dependency
+                            quantities << quantity if quantity.pure_sym == dependency
                         end
+                        self.calculation.calculation_dependencies.build(quantity: quantities.first, index: i)
                     end
                     i += 1
                 end
