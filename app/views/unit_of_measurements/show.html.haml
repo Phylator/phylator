@@ -1,10 +1,20 @@
 = link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
     = asset 'components/back.svg'
 
+.tools
+    .copy{ data: { clipboard_text: @value.to_s } }= asset 'icons/ungroup.svg'
+
 
 
 .head-wrapper
-    %h2= @unit_of_measurement.sym
+    - if @unit_of_measurement.base
+        %h2.copy{ data: { clipboard_text: @value.to_s } }
+            = "%g" % ( "%E" % @value )
+            %span= @unit_of_measurement.sym
+    - else
+        %h2.copy{ data: { clipboard_text: @value.to_s } }
+            = "%g" % ( "%E" % @value )
+            %span= @unit_of_measurement.sym + ' = 1' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym
 
 .content-wrapper
     %p= @unit_of_measurement.name

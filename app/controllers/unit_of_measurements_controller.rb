@@ -14,6 +14,9 @@ class UnitOfMeasurementsController < ApplicationController
     def show
         @animation = 'fadeinright'
         authorize! :read, @unit_of_measurement
+
+        calculator = Dentaku::Calculator.new case_sensitive: true
+        @value = calculator.evaluate '1' + @unit_of_measurement.from_base
     end
 
     private

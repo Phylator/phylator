@@ -1,17 +1,14 @@
 .unit_of_measurements.show
     & > .head-wrapper
+        position: relative
+        z-index: 1
         display: flex
-        align-items: flex-end
+        flex-direction: column
+        justify-content: flex-end
         height: 40vh
         width: 100%
-        padding: px(35)
+        padding: px(35) px(30)
         background: color(dark, dark)
-        h2
-            font-size: px(60)
-            font-style: italic
-            margin-right: px(5)
-            position: relative
-            top: px(3)
     & > .content-wrapper
         padding: px(35) px(30)
         & > h3
