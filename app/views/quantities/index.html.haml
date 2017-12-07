@@ -1,4 +1,4 @@
-- if current_user && current_user.purchases.count + Pack.where(price: 0).count == Pack.all.count
+- unless current_user && (current_user.purchases.count + Pack.where(price: 0).count) == Pack.all.count
     .ad
         %h3= t 'quantities.index.ad.title'
         %p= t 'quantities.index.ad.content'
