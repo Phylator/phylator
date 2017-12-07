@@ -50,9 +50,11 @@ class CalculationsController < ApplicationController
         respond_to do |format|
             if @calculation.update calculation_params
                 format.html { redirect_to @calculation, notice: I18n.t('calculations.update.success') }
+                format.js
                 format.json { render :show, status: :ok, location: @calculation }
             else
                 format.html { render :edit }
+                format.js
                 format.json { render json: @calculation.errors, status: :unprocessable_entity }
             end
         end
@@ -64,6 +66,7 @@ class CalculationsController < ApplicationController
         @calculation.destroy
         respond_to do |format|
             format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: I18n.t('calculations.destroy.success') }
+            format.js
             format.json { head :no_content }
         end
     end

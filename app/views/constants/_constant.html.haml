@@ -1,4 +1,4 @@
-- if local_assigns[:link]
+- unless local_assigns[:link] == false
     = link_to constant, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
         .wrapper
             %h2.small= constant.sym

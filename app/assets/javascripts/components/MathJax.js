@@ -5,5 +5,5 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function MathJaxInit() {
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    // MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 };
