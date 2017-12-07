@@ -1,6 +1,6 @@
 document.addEventListener( 'turbolinks:load', function() {
     if ( $('body.packs.show').length != 0 ) {
-        // componentsStripeInit();
+        componentsStripeInit();
     };
 });
 
@@ -16,7 +16,6 @@ function componentsStripeInit() {
     var style = {
         base: {
             color: '#fff',
-            lineHeight: '1.35',
             fontFamily: 'brandon-grotesque, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
             fontSmoothing: 'antialiased',
             fontSize: '16px',
@@ -55,8 +54,7 @@ function componentsStripeInit() {
             $('.modal.buy .modal-loader-wrapper').hide().removeClass('hidden').fadeIn(250);
 
             var options = {
-                name: document.getElementById('name').value,
-                receipt_email: document.getElementById('receipt_email').value,
+                name: document.getElementById('name').value
             };
 
             stripe.createToken(card, options).then(function(result) {
@@ -74,7 +72,7 @@ function componentsStripeInit() {
                     $('form#purchase-form').addClass('hidden');
                     $('.modal.buy .modal-content-wrapper > h2').addClass('hidden');
                     $('form#purchase .wrapper').removeClass('hidden');
-                    $('form#purchase input#receipt_email').val(options['receipt_email']);
+                    $('form#purchase input#receipt_email').val(document.getElementById('receipt_email').value);
 
                     $('.modal.buy .modal-loader-wrapper').fadeOut( 250, function() {
                         $('.modal.buy .modal-content-wrapper').fadeIn(250);

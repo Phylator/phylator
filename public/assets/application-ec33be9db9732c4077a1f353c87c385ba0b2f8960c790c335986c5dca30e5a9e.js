@@ -21689,7 +21689,7 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function MathJaxInit() {
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 };
 document.addEventListener( 'turbolinks:load', function() {
     componentsAlertInit();
@@ -21780,6 +21780,10 @@ function componentsModalInit() {
 function componentsModalOpen(el) {
     $(el).iziModal('open');
 };
+
+function componentsModalClose(el) {
+    $(el).iziModal('close');
+};
 document.addEventListener( 'turbolinks:load', function() {
     if ( $('body.packs.show').length != 0 ) {
         componentsStripeInit();
@@ -21798,7 +21802,6 @@ function componentsStripeInit() {
     var style = {
         base: {
             color: '#fff',
-            lineHeight: '1.35',
             fontFamily: 'brandon-grotesque, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
             fontSmoothing: 'antialiased',
             fontSize: '16px',
@@ -21819,7 +21822,7 @@ function componentsStripeInit() {
     card.mount('#card-element');
 
     // Handle real-time validation errors from the card Element.
-    card.change(function(event) {
+    card.addEventListener( 'change', function(event) {
         var displayError = $('#card-errors');
         if (event.error) {
             displayError.textContent = event.error.message;
@@ -21837,8 +21840,7 @@ function componentsStripeInit() {
             $('.modal.buy .modal-loader-wrapper').hide().removeClass('hidden').fadeIn(250);
 
             var options = {
-                name: document.getElementById('name').value,
-                receipt_email: document.getElementById('receipt_email').value,
+                name: document.getElementById('name').value
             };
 
             stripe.createToken(card, options).then(function(result) {
@@ -21856,7 +21858,7 @@ function componentsStripeInit() {
                     $('form#purchase-form').addClass('hidden');
                     $('.modal.buy .modal-content-wrapper > h2').addClass('hidden');
                     $('form#purchase .wrapper').removeClass('hidden');
-                    $('form#purchase input#receipt_email').val(options['receipt_email']);
+                    $('form#purchase input#receipt_email').val(document.getElementById('receipt_email').value);
 
                     $('.modal.buy .modal-loader-wrapper').fadeOut( 250, function() {
                         $('.modal.buy .modal-content-wrapper').fadeIn(250);
@@ -21943,11 +21945,21 @@ function calculationsNewInit() {
         if ( $('form > .quantity').is(':visible') ) {
             $('form > .quantity').fadeToggle(250);
             $('form > .unit').fadeToggle( 250, function() {
+                if ( $('.ad').length > 0 ) {
+                    $('.ad').toggleClass('pushed-down');
+                } else {
+                    $('form').toggleClass('pushed-down');
+                };
                 $('p.setup').toggleClass('invisible');
                 $('nav.app').toggleClass('invisible');
                 $('.measurements').toggleClass('content-disabled');
             });
         } else {
+            if ( $('.ad').length > 0 ) {
+                $('.ad').toggleClass('pushed-down');
+            } else {
+                $('form').toggleClass('pushed-down');
+            };
             $('nav.app').toggleClass('invisible');
             $('p.setup').toggleClass('invisible');
             $('.measurements').toggleClass('content-disabled');

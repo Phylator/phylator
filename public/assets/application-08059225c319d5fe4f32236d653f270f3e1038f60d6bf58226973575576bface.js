@@ -21689,7 +21689,7 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 function MathJaxInit() {
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    // MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 };
 document.addEventListener( 'turbolinks:load', function() {
     componentsAlertInit();
@@ -21780,9 +21780,13 @@ function componentsModalInit() {
 function componentsModalOpen(el) {
     $(el).iziModal('open');
 };
+
+function componentsModalClose(el) {
+    $(el).iziModal('close');
+};
 document.addEventListener( 'turbolinks:load', function() {
     if ( $('body.packs.show').length != 0 ) {
-        componentsStripeInit();
+        // componentsStripeInit();
     };
 });
 
@@ -21819,7 +21823,7 @@ function componentsStripeInit() {
     card.mount('#card-element');
 
     // Handle real-time validation errors from the card Element.
-    card.change(function(event) {
+    card.addEventListener( 'change', function(event) {
         var displayError = $('#card-errors');
         if (event.error) {
             displayError.textContent = event.error.message;
@@ -21943,13 +21947,21 @@ function calculationsNewInit() {
         if ( $('form > .quantity').is(':visible') ) {
             $('form > .quantity').fadeToggle(250);
             $('form > .unit').fadeToggle( 250, function() {
-                $('form').toggleClass('pushed-down');
+                if ( $('.ad').length > 0 ) {
+                    $('.ad').toggleClass('pushed-down');
+                } else {
+                    $('form').toggleClass('pushed-down');
+                };
                 $('p.setup').toggleClass('invisible');
                 $('nav.app').toggleClass('invisible');
                 $('.measurements').toggleClass('content-disabled');
             });
         } else {
-            $('form').toggleClass('pushed-down');
+            if ( $('.ad').length > 0 ) {
+                $('.ad').toggleClass('pushed-down');
+            } else {
+                $('form').toggleClass('pushed-down');
+            };
             $('nav.app').toggleClass('invisible');
             $('p.setup').toggleClass('invisible');
             $('.measurements').toggleClass('content-disabled');
