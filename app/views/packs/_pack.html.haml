@@ -1,0 +1,13 @@
+= link_to pack, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
+    .wrapper
+        %h3= pack.name
+        %p.small
+            - if pack.purchased?(current_user)
+                = asset 'icons/purchased.svg'
+            - else
+                = asset 'icons/not_purchased.svg'
+            %span
+                = pack.purchased?(current_user) ? t('categories.show.added') : t('categories.show.not_added')
+                ⋅
+                = pack.price == 0 ? t('categories.show.free') : number_to_currency(pack.price, unit: '$')
+    = asset 'components/list/item-open.svg'

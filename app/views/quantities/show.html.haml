@@ -17,73 +17,32 @@
 
     %h3= t 'd.pack'
     .cards
-        = link_to @quantity.pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-            .wrapper
-                %h3= @quantity.pack.category.name
-                %p.small
-                    %span= @quantity.pack.name
-            = asset 'components/list/item-open.svg'
+        = render 'packs/pack', pack: @quantity.pack, animation: 'fadeout'
 
     - if @quantity.parent_quantity.present?
         %h3= t 'cd.belongs_to'
         .cards
-            = link_to @quantity.parent_quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small= @quantity.parent_quantity.sym
-                    %p.small
-                        %span= @quantity.parent_quantity.name
-                        - if @quantity.parent_quantity.vector
-                            ·
-                            %span= t 'd.vector'
-                = asset 'components/list/item-open.svg'
+            = render 'quantities/quantity', quantity: @quantity.parent_quantity, animation: 'fadeout'
 
     - if @quantity.equations.any?
         %h3= t 'd.p.equations'
         .cards
             - @quantity.equations.each do |equation|
-                = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        = '`' + @quantity.ascii_sym + '=' + equation.equation + '`'
-                    = asset 'components/list/item-open.svg'
+                = render 'equations/equation', equation: equation, animation: 'fadeout'
 
     - if (@quantity.child_quantities.purchased(current_user) + @quantity.child_quantities.free).any?
         %h3= t 'cd.physical_quantities'
         .cards
             - (@quantity.child_quantities.with_translations(I18n.locale).purchased(current_user) + @quantity.child_quantities.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |quantity|
-                = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small= quantity.sym
-                        %p.small
-                            %span= quantity.name
-                            - if quantity.vector
-                                ·
-                                %span= t 'd.vector'
-                    = asset 'components/list/item-open.svg'
+                = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
 
     %h3= t 'd.p.units_of_measurement'
     .cards
         - @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc).each do |unit_of_measurement|
-            = link_to unit_of_measurement, class: 'card' + (unit_of_measurement.base ? ' highlighted' : ''), data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small= unit_of_measurement.sym
-                    %p.small
-                        %span= unit_of_measurement.name
-                = asset 'components/list/item-open.svg'
+            = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: unit_of_measurement, animation: 'fadeout'
 
     - if Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
             - Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).order('created_at desc').each do |calculation|
-                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small
-                            = calculation.result.pretty_value
-                            %span= calculation.unit_of_measurement.sym
-                        %p.small
-                            - if calculation.name.nil? || calculation.name == ''
-                                %span= calculation.quantity.name
-                            - else
-                                %span= calculation.name
-                            ·
-                            %span= timeago calculation.created_at
-                    = asset 'components/list/item-open.svg'
+                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

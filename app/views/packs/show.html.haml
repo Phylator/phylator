@@ -19,43 +19,13 @@
         %h3= t 'cd.physical_quantities'
         .cards
             - @pack.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-                - if @pack.purchased? current_user
-                    = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                        .wrapper
-                            %h2.small= quantity.sym
-                            %p.small
-                                %span= quantity.name
-                                - if quantity.vector
-                                    ·
-                                    %span= t 'd.vector'
-                        = asset 'components/list/item-open.svg'
-                - else
-                    .card
-                        .wrapper
-                            %h2.small= quantity.sym
-                            %p.small
-                                %span= quantity.name
-                                - if quantity.vector
-                                    ·
-                                    %span= t 'd.vector'
+                = render 'quantities/quantity', quantity: quantity, animation: 'fadeout', link: @pack.purchased?(current_user)
 
     - if @pack.constants.any?
         %h3= t 'cd.physical_constants'
         .cards
             - @pack.constants.with_translations(I18n.locale).order(:name).each do |constant|
-                - if @pack.purchased? current_user
-                    = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                        .wrapper
-                            %h2.small= constant.sym
-                            %p.small
-                                %span= constant.name
-                        = asset 'components/list/item-open.svg'
-                - else
-                    .card
-                        .wrapper
-                            %h2.small= constant.sym
-                            %p.small
-                                %span= constant.name
+                = render 'constants/constant', constant: constant, animation: 'fadeout', link: @pack.purchased?(current_user)
 
 
 

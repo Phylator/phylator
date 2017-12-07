@@ -51,15 +51,7 @@
                 - if index > 0
                     %hr
                 - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
-                    = link_to dependency.quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                        .wrapper
-                            %h2.small= dependency.quantity.sym
-                            %p.small
-                                %span= dependency.quantity.name
-                                - if dependency.quantity.vector
-                                    ·
-                                    %span= t 'd.vector'
-                        = asset 'components/list/item-open.svg'
+                    = render 'quantities/quantity', quantity: dependency.quantity, animation: 'fadeout'
 
     - if current_user && can?(:update, @calculation) && !@calculation.result.undefined
         %h3= t('cd.convert_to')
@@ -71,47 +63,24 @@
     %h3= t 'd.p.measurements'
     .cards
         - @calculation.measurements.each do |measurement|
-            = link_to request.base_url + '/app/calculations/' + @calculation.id.to_s + '/measurements/' + measurement.id.to_s, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small
-                        = measurement.pretty_value
-                        %span= measurement.unit_of_measurement.sym
-                    %p.small
-                        - unless measurement.name.nil? || measurement.name == ''
-                            %span= measurement.name
-                            ·
-                        %span= measurement.quantity.name
-                = asset 'components/list/item-open.svg'
+            = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
 
 
     - if @calculation.constants.any?
         %h3= t 'cd.physical_constants'
         .cards
             - @calculation.constants.each do |constant|
-                = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small= constant.sym
-                        %p.small
-                            %span= constant.name
-                    = asset 'components/list/item-open.svg'
+                = render 'constants/constant', constant: constant, animation: 'fadeout'
 
     - if @calculation.equations.any?
         %h3= t 'd.p.equations'
         .cards
             - @calculation.equations.uniq.each do |equation|
-                = link_to equation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        = '`' + equation.quantity.ascii_sym + '=' + equation.equation + '`'
-                    = asset 'components/list/item-open.svg'
+                = render 'equations/equation', equation: equation, animation: 'fadeout'
 
     %h3= t 'd.unit_of_measurement'
     .cards
-        = link_to @calculation.unit_of_measurement, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-            .wrapper
-                %h2.small= @calculation.unit_of_measurement.sym
-                %p.small
-                    %span= @calculation.unit_of_measurement.name
-            = asset 'components/list/item-open.svg'
+        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @calculation.unit_of_measurement, animation: 'fadeout'
 
 
 

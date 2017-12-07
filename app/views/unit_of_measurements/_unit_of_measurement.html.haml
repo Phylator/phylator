@@ -1,0 +1,6 @@
+= link_to unit_of_measurement, class: 'card' + (unit_of_measurement.base ? ' highlighted' : ''), data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
+    .wrapper
+        %h2.small= unit_of_measurement.sym
+        %p.small
+            %span= unit_of_measurement.name
+    = asset 'components/list/item-open.svg'

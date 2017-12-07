@@ -6065,16 +6065,11 @@ html body:not(.disabledTransitions) * {
 .cards > .card.highlighted {
   background: var(--color-dark-light);
 }
-/* line 38, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
-.cards > .card p {
-  display: flex;
-  align-items: center;
-}
-/* line 42, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 40, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:first-child) {
   margin-left: 0.3125em;
 }
-/* line 44, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 42, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:last-child) {
   margin-right: 0.3125em;
 }
@@ -6604,7 +6599,7 @@ body.devise nav.app > a:last-child {
   font-style: italic;
   margin-right: 0.3125em;
   position: relative;
-  top: 0.25em;
+  top: 0.1875em;
 }
 /* line 15, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/show.sass */
 .quantities.show > .content-wrapper {
@@ -6617,26 +6612,21 @@ body.devise nav.app > a:last-child {
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
 .unit_of_measurements.show > .head-wrapper {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
   height: 40vh;
   width: 100%;
-  padding: 2.1875em;
+  padding: 2.1875em 1.875em;
   background: var(--color-dark-dark);
 }
-/* line 9, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
-.unit_of_measurements.show > .head-wrapper h2 {
-  font-size: 3.75em;
-  font-style: italic;
-  margin-right: 0.3125em;
-  position: relative;
-  top: 0.25em;
-}
-/* line 15, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
 .unit_of_measurements.show > .content-wrapper {
   padding: 2.1875em 1.875em;
 }
-/* line 17, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
+/* line 14, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/unit_of_measurements/show.sass */
 .unit_of_measurements.show > .content-wrapper > h3 {
   margin-top: 2.8125em;
 }

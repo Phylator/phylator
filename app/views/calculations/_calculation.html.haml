@@ -1,0 +1,16 @@
+= link_to calculation, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
+    .wrapper
+        - if calculation.result.undefined
+            %h3.red= t 'cd.no_solution_found'
+        - else
+            %h2.small
+                = calculation.result.pretty_value
+                %span= calculation.unit_of_measurement.sym
+        %p.small
+            - if calculation.name.nil? || calculation.name == ''
+                %span= calculation.quantity.name
+            - else
+                %span= calculation.name
+            ·
+            %span= timeago calculation.created_at
+    = asset 'components/list/item-open.svg'

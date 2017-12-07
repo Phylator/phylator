@@ -9,51 +9,18 @@
 .content-wrapper
     %h3= t 'cd.physical_quantities'
     .cards
-        = link_to @equation.quantity, class: 'card highlighted', data: { turbolinks_animate_animation: 'fadeout' } do
-            .wrapper
-                %h2.small= @equation.quantity.sym
-                %p.small
-                    %span= @equation.quantity.name
-                    - if @equation.quantity.vector
-                        ·
-                        %span= t 'd.vector'
-            = asset 'components/list/item-open.svg'
+        = render 'quantities/quantity', quantity: @equation.quantity, animation: 'fadeout'
         - @equation.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            = link_to quantity, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                .wrapper
-                    %h2.small= quantity.sym
-                    %p.small
-                        %span= quantity.name
-                        - if quantity.vector
-                            ·
-                            %span= t 'd.vector'
-                = asset 'components/list/item-open.svg'
+            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
 
     - if @equation.constants.any?
         %h3= t 'cd.physical_constants'
         .cards
             - @equation.constants.with_translations(I18n.locale).order(:name).each do |constant|
-                = link_to constant, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small= constant.sym
-                        %p.small
-                            %span= constant.name
-                    = asset 'components/list/item-open.svg'
+                = render 'constants/constant', constant: constant, animation: 'fadeout'
 
     - if @equation.calculations.where(user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
             - @equation.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
-                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small
-                            = calculation.result.pretty_value
-                            %span= calculation.unit_of_measurement.sym
-                        %p.small
-                            - if calculation.name.nil? || calculation.name == ''
-                                %span= calculation.quantity.name
-                            - else
-                                %span= calculation.name
-                            ·
-                            %span= timeago calculation.created_at
-                    = asset 'components/list/item-open.svg'
+                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

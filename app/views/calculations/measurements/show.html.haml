@@ -25,6 +25,10 @@
                 %h3= @measurement.name
             %p= @measurement.description if @measurement.description
 
+    %h3= t 'd.unit_of_measurement'
+    .cards
+        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @measurement.unit_of_measurement, animation: 'fadeout'
+
 
 
 

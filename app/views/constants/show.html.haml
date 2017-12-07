@@ -19,36 +19,14 @@
 
     %h3= t 'd.pack'
     .cards
-        = link_to @constant.pack, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-            .wrapper
-                %h3= @constant.pack.category.name
-                %p.small
-                    %span= @constant.pack.name
-            = asset 'components/list/item-open.svg'
+        = render 'packs/pack', pack: @constant.pack, animation: 'fadeout'
 
     %h3= t 'd.unit_of_measurement'
     .cards
-        = link_to @constant.unit_of_measurement, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-            .wrapper
-                %h2.small= @constant.unit_of_measurement.sym
-                %p.small
-                    %span= @constant.unit_of_measurement.name
-            = asset 'components/list/item-open.svg'
+        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @constant.unit_of_measurement, animation: 'fadeout'
 
     - if @constant.calculations.where(user_id: current_user.id).any?
         %h3= t 'd.p.calculations'
         .cards
             - @constant.calculations.where(user_id: current_user.id).order('created_at desc').each do |calculation|
-                = link_to calculation, class: 'card', data: { turbolinks_animate_animation: 'fadeout' } do
-                    .wrapper
-                        %h2.small
-                            = calculation.result.pretty_value
-                            %span= calculation.unit_of_measurement.sym
-                        %p.small
-                            - if calculation.name.nil? || calculation.name == ''
-                                %span= calculation.quantity.name
-                            - else
-                                %span= calculation.name
-                            ·
-                            %span= timeago calculation.created_at
-                    = asset 'components/list/item-open.svg'
+                = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'

@@ -1,0 +1,19 @@
+- if local_assigns[:link]
+    .card
+        .wrapper
+            %h2.small= quantity.sym
+            %p.small
+                %span= quantity.name
+                - if quantity.vector
+                    ·
+                    %span= t 'd.vector'
+- else
+    = link_to quantity, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
+        .wrapper
+            %h2.small= quantity.sym
+            %p.small
+                %span= quantity.name
+                - if quantity.vector
+                    ·
+                    %span= t 'd.vector'
+        = asset 'components/list/item-open.svg'

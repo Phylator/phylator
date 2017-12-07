@@ -1,0 +1,18 @@
+= link_to category, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
+    .wrapper
+        %h3= category.name
+        %p.small
+            - if category.purchased?(current_user) == 0
+                = asset 'icons/purchased.svg'
+            - elsif category.purchased?(current_user) == 1
+                = asset 'icons/partially_purchased.svg'
+            - else
+                = asset 'icons/not_purchased.svg'
+            %span
+                - if category.purchased?(current_user) == 0
+                    = t 'categories.index.added'
+                - elsif category.purchased?(current_user) == 1
+                    = t 'categories.index.partially_added'
+                - else
+                    = t 'categories.index.not_added'
+    = asset 'components/list/item-open.svg'
