@@ -34,7 +34,7 @@ class Quantity < ApplicationRecord
     def sym
         self.symbol.html_safe
     end
-    def ascii_sym
+    def pure_sym
         self.symbol.sub('<sub>', '_"').sub('</sub>', '"').force_encoding('UTF-8')
     end
     def ascii_sym
