@@ -3,6 +3,14 @@ class Pack < ApplicationRecord
     extend FriendlyId
     friendly_id :name, use: :slugged
     translates :name, :description
+    include AlgoliaSearch
+    algoliasearch do
+        attribute :name, :description
+        add_attribute :algolia_category
+    end
+    def algolia_category
+        self.category.name
+    end
 
     validates :price, presence: true, numericality: true
     validates :name, presence: true

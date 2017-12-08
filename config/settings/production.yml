@@ -1,3 +1,8 @@
 stripe:
     publishable_key: pk_test_eOpXmFh05CQjWwo87etVRjbc
     secret_key: sk_test_Yo26npXx57sxVukeGQ0zshWx
+
+algoliasearch:
+    application_id: N0HHQGSRM0
+    api_key: c524357aa05aa73a9fe1a54ec7caf46b
+    search_key: cd21694b9db641c1ddfd693a2bde7cce

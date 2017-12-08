@@ -31,6 +31,9 @@ Rails.application.routes.draw do
             edit: 'account'
         }
 
+        get 'search', to: 'search#index'
+        get 'search/render', to: 'search#renderer'
+
         get 'setup', to: 'welcome#index'
         get 'language', to: 'welcome#language'
 

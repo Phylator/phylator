@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require ahoy
 //= require turboboost/turboboost
+//= require algolia/v3/algoliasearch.min
 
 //= require_tree ./vendor
 //= require_tree ./components

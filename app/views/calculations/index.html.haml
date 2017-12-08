@@ -1,4 +1,7 @@
-%h1= t 'd.p.calculations'
+.title-wrapper
+    %h1= t 'd.p.calculations'
+    = link_to search_url do
+        = asset 'icons/search.svg'
 
 .cards
     - if current_user.calculations.any?

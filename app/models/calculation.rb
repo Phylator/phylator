@@ -1,5 +1,14 @@
 class Calculation < ApplicationRecord
 
+    include AlgoliaSearch
+    algoliasearch do
+        attribute :name, :description
+        add_attribute :algolia_quantity
+    end
+    def algolia_quantity
+        self.quantity.name
+    end
+
     before_create :randomize_id
     after_create_commit :calc
     before_update :re_calc

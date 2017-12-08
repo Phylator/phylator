@@ -6,13 +6,19 @@
 
 .wrapper
 
-    %h1= t 'cd.physical_quantities'
+    .title-wrapper
+        %h1= t 'cd.physical_quantities'
+        = link_to search_url(tab: 'quantities') do
+            = asset 'icons/search.svg'
     .cards
         - (Quantity.with_translations(I18n.locale).purchased(current_user).base + Quantity.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
             = render 'quantities/quantity', quantity: quantity
 
 
-    %h1= t 'cd.physical_constants'
+    .title-wrapper
+        %h1= t 'cd.physical_constants'
+        = link_to search_url(tab: 'constants') do
+            = asset 'icons/search.svg'
 
     .cards
         - (Constant.with_translations(I18n.locale).purchased(current_user) + Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |constant|

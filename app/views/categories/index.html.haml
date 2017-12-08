@@ -1,4 +1,7 @@
-%h1= t 'categories.index.title'
+.title-wrapper
+    %h1= t 'categories.index.title'
+    = link_to search_url(tab: 'packs') do
+        = asset 'icons/search.svg'
 
 .cards
     - @categories.with_translations(I18n.locale).order(:name).each do |category|

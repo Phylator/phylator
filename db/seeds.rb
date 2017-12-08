@@ -1101,3 +1101,12 @@ newton.update_attributes name: 'Newton', locale: :de
 ## Work
 work.update_attributes name: 'Arbeit', description: 'Übertragene Energie', locale: :de
 joule.update_attributes name: 'Joule', locale: :de
+
+
+
+
+
+# Algolia
+Quantity.reindex
+Constant.reindex
+Pack.reindex

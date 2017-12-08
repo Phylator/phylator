@@ -1,0 +1,43 @@
+document.addEventListener( 'turbolinks:load', function() {
+    if ( $('body.search').length > 0 ) {
+        algoliaSearchInit();
+    };
+});
+
+
+
+function algoliaSearchInit() {
+    var client = algoliasearch('<%= Settings.algoliasearch.application_id %>', '<%= Settings.algoliasearch.search_key %>'),
+        rawIndex = $('p#tab').text();
+
+    if ( rawIndex == 'calculations' ) {
+        rawIndex = 'Calculation';
+    } else if ( rawIndex == 'quantities' ) {
+        rawIndex = 'Quantity';
+    } else if ( rawIndex == 'constants' ) {
+        rawIndex = 'Constant';
+    } else if ( rawIndex == 'packs' ) {
+        rawIndex = 'Pack';
+    };
+    var index = client.initIndex(rawIndex);
+
+    $('input#query').change(function() {
+        algoliaSearchStart(index, rawIndex, $(this).val());
+    });
+};
+
+function algoliaSearchStart(index, rawIndex, query) {
+    $('.content-wrapper .cards').fadeOut(function() {
+        $('.content-wrapper .cards').empty();
+        index.search( query, { hitsPerPage: 10, page: 0 } ).then(function searchDone(content) {
+            console.log(content);
+            $.each( content['hits'], function( index, value ) {
+                $.get( '/app/search/render', { index: rawIndex, id: value['objectID'] }, function(data) {
+                    $('.content-wrapper .cards').append(data).fadeIn();
+                });
+            });
+        }).catch(function searchFailure(err) {
+            console.error(err);
+        });
+    });
+};

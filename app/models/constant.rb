@@ -4,10 +4,17 @@ class Constant < ApplicationRecord
 
     include Value
 
-    # acts_as_taggable
     extend FriendlyId
     friendly_id :slug_candidates, use: :slugged
     translates :name, :description
+    include AlgoliaSearch
+    algoliasearch do
+        attribute :name
+        add_attribute :algolia_sym
+    end
+    def algolia_sym
+        self.symbol.sub('<sub>', '').sub('</sub>', '').force_encoding('UTF-8')
+    end
 
     include Uniqueness
     validates :symbol, presence: true
