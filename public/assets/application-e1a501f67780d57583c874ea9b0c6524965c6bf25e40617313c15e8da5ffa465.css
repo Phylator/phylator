@@ -6065,16 +6065,16 @@ html body:not(.disabledTransitions) * {
 .cards > .card.highlighted {
   background: var(--color-dark-light);
 }
-/* line 38, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
-.cards > .card p {
+/* line 39, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+.cards > .card p.align {
   display: flex;
   align-items: center;
 }
-/* line 42, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 43, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:first-child) {
   margin-left: 0.3125em;
 }
-/* line 44, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
+/* line 45, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/card/index.sass */
 .cards > .card p span:not(:last-child) {
   margin-right: 0.3125em;
 }
@@ -6208,6 +6208,17 @@ body.devise nav.app > a:last-child {
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
 .calculations.index {
   padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
+.calculations.index > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 7, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
+.calculations.index > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
@@ -6569,7 +6580,7 @@ body.devise nav.app > a:last-child {
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index .ad {
+.quantities.index > .ad {
   background: var(--color-dark-darkest);
   padding: 1.875em;
   display: flex;
@@ -6577,7 +6588,7 @@ body.devise nav.app > a:last-child {
   align-items: flex-start;
 }
 /* line 8, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index .ad p {
+.quantities.index > .ad p {
   margin: 0.5em 0 1.875em;
 }
 /* line 10, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
@@ -6585,7 +6596,18 @@ body.devise nav.app > a:last-child {
   padding: 2.1875em 1.5625em 6.25em;
 }
 /* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index > .wrapper .cards ~ h1 {
+.quantities.index > .wrapper > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 16, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
+}
+/* line 19, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper > .cards ~ h1 {
   margin-top: 2.1875em;
 }
 
@@ -6665,6 +6687,17 @@ body.devise nav.app > a:last-child {
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
 .categories.index {
   padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
+.categories.index > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 7, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
+.categories.index > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
@@ -6754,6 +6787,46 @@ body.devise nav.app > a:last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .head-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 9.6875em;
+  width: 100%;
+  background: var(--color-dark-dark);
+}
+/* line 8, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .head-wrapper input {
+  border-radius: 0;
+  font-size: 1.125em;
+  padding: 1.4375em;
+}
+/* line 15, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools a svg path, .search.index > .tools a svg circle {
+  fill: var(--color-dark-lighter);
+}
+/* line 17, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools a:not(:first-child) {
+  margin-left: 1.875em;
+}
+/* line 21, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools p#tab.calculations ~ a.calculations svg path, .search.index > .tools p#tab.calculations ~ a.calculations svg circle, .search.index > .tools p#tab.quantities ~ a.quantities svg path, .search.index > .tools p#tab.quantities ~ a.quantities svg circle, .search.index > .tools p#tab.constants ~ a.constants svg path, .search.index > .tools p#tab.constants ~ a.constants svg circle, .search.index > .tools p#tab.packs ~ a.packs svg path, .search.index > .tools p#tab.packs ~ a.packs svg circle {
+  fill: white;
+}
+/* line 23, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper {
+  padding: 2.1875em 1.875em;
+}
+/* line 25, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards {
+  margin: 0;
+  transition: none;
+}
+/* line 28, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards > .card:first-child {
+  margin-top: 0;
 }
 
 /* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
