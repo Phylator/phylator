@@ -6,3 +6,5 @@
     = render 'constants/constant', constant: Constant.find(params[:id]), animation: 'fadeout'
 - elsif params[:index] == 'Pack'
     = render 'packs/pack', pack: Pack.find(params[:id]), animation: 'fadeout'
+- elsif params[:index] == 'Placeholder'
+    = render 'placeholder'

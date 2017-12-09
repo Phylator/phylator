@@ -30,12 +30,17 @@ function algoliaSearchStart(index, rawIndex, query) {
     $('.content-wrapper .cards').fadeOut(function() {
         $('.content-wrapper .cards').empty();
         index.search( query, { hitsPerPage: 10, page: 0 } ).then(function searchDone(content) {
-            console.log(content);
-            $.each( content['hits'], function( index, value ) {
-                $.get( '/app/search/render', { index: rawIndex, id: value['objectID'] }, function(data) {
-                    $('.content-wrapper .cards').append(data).fadeIn();
+            if ( content['hits'].length == 0 ) {
+                $.get( '/app/search/render', { index: 'Placeholder' }, function(data) {
+                    $('.content-wrapper .cards').html(data).fadeIn();
                 });
-            });
+            } else {
+                $.each( content['hits'], function( index, value ) {
+                    $.get( '/app/search/render', { index: rawIndex, id: value['objectID'] }, function(data) {
+                        $('.content-wrapper .cards').append(data).fadeIn();
+                    });
+                });
+            };
         }).catch(function searchFailure(err) {
             console.error(err);
         });
