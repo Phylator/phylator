@@ -37,7 +37,7 @@
         = area :head
 
 
-    %body{ id: 'scaling-' + (session[:scaling] || 'custom'), class: [class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ), ( 'turbolinks-animate' if current_animation )].split(' '), data: { turbolinks_animate_animation: current_animation } }
+    %body{ class: [class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ), ( 'turbolinks-animate' if current_animation )].split(' '), data: { turbolinks_animate_animation: current_animation } }
 
 
         -# %p.notice= notice
