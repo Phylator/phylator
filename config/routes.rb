@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
     namespace :platforms do
-        get 'chrome', to: 'chrome#index'
+        get 'android', to: 'android#index'
     end
 
     scope 'app' do

@@ -8,9 +8,9 @@ function iframeInit() {
 
     var inIframe = ( window.location != window.parent.location ) ? true : false;
 
-    if ( inIframe === true && $('body#scaling-custom').length > 0 ) {
+    if ( inIframe === true && $('.nativeGapScalingEnabled').length > 0 ) {
         $('*').css({ 'transition': 'none' });
-        $(':root').css({ 'font-size': '17px' });
+        $(':root').css({ 'font-size': '18px' });
         $('*').css({ 'transition': 'inherit' });
     };
 
