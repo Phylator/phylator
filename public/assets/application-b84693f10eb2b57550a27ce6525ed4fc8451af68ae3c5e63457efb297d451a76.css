@@ -4139,23 +4139,23 @@ html.iziModal-isAttached {
  *
  * Copyright (c) 2017 Daniel Eden
  */
-/* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 11, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
 }
 
-/* line 16, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 16, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .animated.infinite {
   animation-iteration-count: infinite;
 }
 
-/* line 20, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 20, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .animated.hinge {
   animation-duration: 2s;
 }
 
-/* line 24, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 24, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .animated.flipOutX,
 .animated.flipOutY,
 .animated.bounceIn,
@@ -4180,7 +4180,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, -4px, 0);
   }
 }
-/* line 52, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 52, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounce {
   animation-name: bounce;
   transform-origin: center bottom;
@@ -4194,7 +4194,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 67, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 67, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .flash {
   animation-name: flash;
 }
@@ -4211,7 +4211,7 @@ html.iziModal-isAttached {
     transform: scale3d(1, 1, 1);
   }
 }
-/* line 87, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 87, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .pulse {
   animation-name: pulse;
 }
@@ -4239,7 +4239,7 @@ html.iziModal-isAttached {
     transform: scale3d(1, 1, 1);
   }
 }
-/* line 121, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 121, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rubberBand {
   animation-name: rubberBand;
 }
@@ -4255,7 +4255,7 @@ html.iziModal-isAttached {
     transform: translate3d(10px, 0, 0);
   }
 }
-/* line 139, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 139, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .shake {
   animation-name: shake;
 }
@@ -4280,7 +4280,7 @@ html.iziModal-isAttached {
     transform: translateX(0);
   }
 }
-/* line 169, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 169, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .headShake {
   animation-timing-function: ease-in-out;
   animation-name: headShake;
@@ -4303,7 +4303,7 @@ html.iziModal-isAttached {
     transform: rotate3d(0, 0, 1, 0deg);
   }
 }
-/* line 196, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 196, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .swing {
   transform-origin: top center;
   animation-name: swing;
@@ -4326,7 +4326,7 @@ html.iziModal-isAttached {
     transform: scale3d(1, 1, 1);
   }
 }
-/* line 223, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 223, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .tada {
   animation-name: tada;
 }
@@ -4355,7 +4355,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 259, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 259, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .wobble {
   animation-name: wobble;
 }
@@ -4386,7 +4386,7 @@ html.iziModal-isAttached {
     transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
   }
 }
-/* line 297, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 297, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .jello {
   animation-name: jello;
   transform-origin: center;
@@ -4418,7 +4418,7 @@ html.iziModal-isAttached {
     transform: scale3d(1, 1, 1);
   }
 }
-/* line 335, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 335, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceIn {
   animation-name: bounceIn;
 }
@@ -4445,7 +4445,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 367, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 367, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceInDown {
   animation-name: bounceInDown;
 }
@@ -4472,7 +4472,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 399, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 399, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceInLeft {
   animation-name: bounceInLeft;
 }
@@ -4499,7 +4499,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 431, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 431, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceInRight {
   animation-name: bounceInRight;
 }
@@ -4526,7 +4526,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 0, 0);
   }
 }
-/* line 463, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 463, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceInUp {
   animation-name: bounceInUp;
 }
@@ -4544,7 +4544,7 @@ html.iziModal-isAttached {
     transform: scale3d(0.3, 0.3, 0.3);
   }
 }
-/* line 483, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 483, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceOut {
   animation-name: bounceOut;
 }
@@ -4562,7 +4562,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 2000px, 0);
   }
 }
-/* line 503, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 503, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceOutDown {
   animation-name: bounceOutDown;
 }
@@ -4577,7 +4577,7 @@ html.iziModal-isAttached {
     transform: translate3d(-2000px, 0, 0);
   }
 }
-/* line 519, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 519, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceOutLeft {
   animation-name: bounceOutLeft;
 }
@@ -4592,7 +4592,7 @@ html.iziModal-isAttached {
     transform: translate3d(2000px, 0, 0);
   }
 }
-/* line 535, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 535, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceOutRight {
   animation-name: bounceOutRight;
 }
@@ -4610,7 +4610,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, -2000px, 0);
   }
 }
-/* line 555, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 555, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .bounceOutUp {
   animation-name: bounceOutUp;
 }
@@ -4623,7 +4623,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 569, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 569, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeIn {
   animation-name: fadeIn;
 }
@@ -4638,7 +4638,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 585, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 585, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInDown {
   animation-name: fadeInDown;
 }
@@ -4653,7 +4653,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 601, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 601, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInDownBig {
   animation-name: fadeInDownBig;
 }
@@ -4668,7 +4668,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 617, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 617, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInLeft {
   animation-name: fadeInLeft;
 }
@@ -4683,7 +4683,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 633, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 633, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInLeftBig {
   animation-name: fadeInLeftBig;
 }
@@ -4698,7 +4698,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 649, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 649, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInRight {
   animation-name: fadeInRight;
 }
@@ -4713,7 +4713,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 665, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 665, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInRightBig {
   animation-name: fadeInRightBig;
 }
@@ -4728,7 +4728,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 681, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 681, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInUp {
   animation-name: fadeInUp;
 }
@@ -4743,7 +4743,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 697, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 697, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeInUpBig {
   animation-name: fadeInUpBig;
 }
@@ -4756,7 +4756,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 711, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 711, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOut {
   animation-name: fadeOut;
 }
@@ -4770,7 +4770,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 100%, 0);
   }
 }
-/* line 726, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 726, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutDown {
   animation-name: fadeOutDown;
 }
@@ -4784,7 +4784,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 2000px, 0);
   }
 }
-/* line 741, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 741, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutDownBig {
   animation-name: fadeOutDownBig;
 }
@@ -4798,7 +4798,7 @@ html.iziModal-isAttached {
     transform: translate3d(-100%, 0, 0);
   }
 }
-/* line 756, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 756, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutLeft {
   animation-name: fadeOutLeft;
 }
@@ -4812,7 +4812,7 @@ html.iziModal-isAttached {
     transform: translate3d(-2000px, 0, 0);
   }
 }
-/* line 771, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 771, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutLeftBig {
   animation-name: fadeOutLeftBig;
 }
@@ -4826,7 +4826,7 @@ html.iziModal-isAttached {
     transform: translate3d(100%, 0, 0);
   }
 }
-/* line 786, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 786, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutRight {
   animation-name: fadeOutRight;
 }
@@ -4840,7 +4840,7 @@ html.iziModal-isAttached {
     transform: translate3d(2000px, 0, 0);
   }
 }
-/* line 801, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 801, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutRightBig {
   animation-name: fadeOutRightBig;
 }
@@ -4854,7 +4854,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, -100%, 0);
   }
 }
-/* line 816, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 816, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutUp {
   animation-name: fadeOutUp;
 }
@@ -4868,7 +4868,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, -2000px, 0);
   }
 }
-/* line 831, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 831, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .fadeOutUpBig {
   animation-name: fadeOutUpBig;
 }
@@ -4895,7 +4895,7 @@ html.iziModal-isAttached {
     animation-timing-function: ease-in;
   }
 }
-/* line 862, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 862, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .animated.flip {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
@@ -4923,7 +4923,7 @@ html.iziModal-isAttached {
     transform: perspective(400px);
   }
 }
-/* line 894, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 894, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .flipInX {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -4951,7 +4951,7 @@ html.iziModal-isAttached {
     transform: perspective(400px);
   }
 }
-/* line 926, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 926, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .flipInY {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -4971,7 +4971,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 948, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 948, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .flipOutX {
   animation-name: flipOutX;
   -webkit-backface-visibility: visible !important;
@@ -4991,7 +4991,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 970, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 970, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .flipOutY {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -5016,7 +5016,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 998, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 998, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .lightSpeedIn {
   animation-name: lightSpeedIn;
   animation-timing-function: ease-out;
@@ -5031,7 +5031,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1014, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1014, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .lightSpeedOut {
   animation-name: lightSpeedOut;
   animation-timing-function: ease-in;
@@ -5049,7 +5049,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1033, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1033, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateIn {
   animation-name: rotateIn;
 }
@@ -5066,7 +5066,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1051, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1051, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateInDownLeft {
   animation-name: rotateInDownLeft;
 }
@@ -5083,7 +5083,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1069, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1069, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateInDownRight {
   animation-name: rotateInDownRight;
 }
@@ -5100,7 +5100,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1087, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1087, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateInUpLeft {
   animation-name: rotateInUpLeft;
 }
@@ -5117,7 +5117,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1105, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1105, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateInUpRight {
   animation-name: rotateInUpRight;
 }
@@ -5133,7 +5133,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1122, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1122, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateOut {
   animation-name: rotateOut;
 }
@@ -5149,7 +5149,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1139, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1139, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateOutDownLeft {
   animation-name: rotateOutDownLeft;
 }
@@ -5165,7 +5165,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1156, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1156, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateOutDownRight {
   animation-name: rotateOutDownRight;
 }
@@ -5181,7 +5181,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1173, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1173, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateOutUpLeft {
   animation-name: rotateOutUpLeft;
 }
@@ -5197,7 +5197,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1190, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1190, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rotateOutUpRight {
   animation-name: rotateOutUpRight;
 }
@@ -5223,7 +5223,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1219, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1219, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .hinge {
   animation-name: hinge;
 }
@@ -5245,7 +5245,7 @@ html.iziModal-isAttached {
     transform: scale(1);
   }
 }
-/* line 1244, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1244, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .jackInTheBox {
   animation-name: jackInTheBox;
 }
@@ -5261,7 +5261,7 @@ html.iziModal-isAttached {
     transform: none;
   }
 }
-/* line 1262, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1262, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rollIn {
   animation-name: rollIn;
 }
@@ -5276,7 +5276,7 @@ html.iziModal-isAttached {
     transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
   }
 }
-/* line 1279, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1279, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .rollOut {
   animation-name: rollOut;
 }
@@ -5290,7 +5290,7 @@ html.iziModal-isAttached {
     opacity: 1;
   }
 }
-/* line 1294, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1294, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomIn {
   animation-name: zoomIn;
 }
@@ -5307,7 +5307,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1312, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1312, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomInDown {
   animation-name: zoomInDown;
 }
@@ -5324,7 +5324,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1330, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1330, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomInLeft {
   animation-name: zoomInLeft;
 }
@@ -5341,7 +5341,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1348, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1348, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomInRight {
   animation-name: zoomInRight;
 }
@@ -5358,7 +5358,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1366, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1366, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomInUp {
   animation-name: zoomInUp;
 }
@@ -5375,7 +5375,7 @@ html.iziModal-isAttached {
     opacity: 0;
   }
 }
-/* line 1385, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1385, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomOut {
   animation-name: zoomOut;
 }
@@ -5393,7 +5393,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1404, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1404, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomOutDown {
   animation-name: zoomOutDown;
 }
@@ -5409,7 +5409,7 @@ html.iziModal-isAttached {
     transform-origin: left center;
   }
 }
-/* line 1421, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1421, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomOutLeft {
   animation-name: zoomOutLeft;
 }
@@ -5425,7 +5425,7 @@ html.iziModal-isAttached {
     transform-origin: right center;
   }
 }
-/* line 1438, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1438, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomOutRight {
   animation-name: zoomOutRight;
 }
@@ -5443,7 +5443,7 @@ html.iziModal-isAttached {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-/* line 1457, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1457, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .zoomOutUp {
   animation-name: zoomOutUp;
 }
@@ -5457,7 +5457,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 0, 0);
   }
 }
-/* line 1472, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1472, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideInDown {
   animation-name: slideInDown;
 }
@@ -5471,7 +5471,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 0, 0);
   }
 }
-/* line 1487, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1487, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideInLeft {
   animation-name: slideInLeft;
 }
@@ -5485,7 +5485,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 0, 0);
   }
 }
-/* line 1502, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1502, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideInRight {
   animation-name: slideInRight;
 }
@@ -5499,7 +5499,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 0, 0);
   }
 }
-/* line 1517, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1517, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideInUp {
   animation-name: slideInUp;
 }
@@ -5513,7 +5513,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, 100%, 0);
   }
 }
-/* line 1532, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1532, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideOutDown {
   animation-name: slideOutDown;
 }
@@ -5527,7 +5527,7 @@ html.iziModal-isAttached {
     transform: translate3d(-100%, 0, 0);
   }
 }
-/* line 1547, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1547, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
@@ -5541,7 +5541,7 @@ html.iziModal-isAttached {
     transform: translate3d(100%, 0, 0);
   }
 }
-/* line 1562, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1562, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideOutRight {
   animation-name: slideOutRight;
 }
@@ -5555,7 +5555,7 @@ html.iziModal-isAttached {
     transform: translate3d(0, -100%, 0);
   }
 }
-/* line 1577, D:/projects/apps/phylator/phylator/app/assets/stylesheets/vendor/animate.css */
+/* line 1577, C:/Dev/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-animate-1.1.0/vendor/assets/stylesheets/animate.css */
 .slideOutUp {
   animation-name: slideOutUp;
 }
@@ -5939,9 +5939,10 @@ svg.nc-icon.loader * {
   text-decoration: none;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  transition: all 0.15s ease-out;
 }
 
-/* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 :root {
   font-size: 15px;
   font-family: adelle-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
@@ -5954,25 +5955,21 @@ svg.nc-icon.loader * {
   font-smooth: always;
 }
 @media (min-width: 800px) {
-  /* line 11, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+  /* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
   :root {
     font-size: 16px;
   }
 }
 
-/* line 24, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 25, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html {
   background: var(--color-dark-darker);
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 30, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
+/* line 31, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
 html body {
   min-height: 100vh;
-}
-/* line 32, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/document/index.sass */
-html body:not(.disabledTransitions) * {
-  transition: all 0.15s ease-out;
 }
 
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/components/utilities/math_jax.sass */
@@ -6208,6 +6205,17 @@ body.devise nav.app > a:last-child {
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
 .calculations.index {
   padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
+.calculations.index > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 7, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/index.sass */
+.calculations.index > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/calculations/new.sass */
@@ -6569,7 +6577,7 @@ body.devise nav.app > a:last-child {
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index .ad {
+.quantities.index > .ad {
   background: var(--color-dark-darkest);
   padding: 1.875em;
   display: flex;
@@ -6577,7 +6585,7 @@ body.devise nav.app > a:last-child {
   align-items: flex-start;
 }
 /* line 8, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index .ad p {
+.quantities.index > .ad p {
   margin: 0.5em 0 1.875em;
 }
 /* line 10, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
@@ -6585,7 +6593,18 @@ body.devise nav.app > a:last-child {
   padding: 2.1875em 1.5625em 6.25em;
 }
 /* line 12, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
-.quantities.index > .wrapper .cards ~ h1 {
+.quantities.index > .wrapper > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 16, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
+}
+/* line 19, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/quantities/index.sass */
+.quantities.index > .wrapper > .cards ~ h1 {
   margin-top: 2.1875em;
 }
 
@@ -6665,6 +6684,17 @@ body.devise nav.app > a:last-child {
 /* line 1, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
 .categories.index {
   padding: 2.1875em 1.5625em 6.25em;
+}
+/* line 3, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
+.categories.index > .title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 7, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/index.sass */
+.categories.index > .title-wrapper > a {
+  position: relative;
+  top: 0.125em;
 }
 
 /* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/categories/show.sass */
@@ -6754,6 +6784,58 @@ body.devise nav.app > a:last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* line 2, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .head-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 9.6875em;
+  width: 100%;
+  background: var(--color-dark-dark);
+}
+/* line 8, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .head-wrapper input {
+  border-radius: 0;
+  font-size: 1.125em;
+  padding: 1.4375em;
+}
+/* line 15, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools a svg path, .search.index > .tools a svg circle {
+  fill: var(--color-dark-lighter);
+}
+/* line 17, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools a:not(:first-child) {
+  margin-left: 1.875em;
+}
+/* line 21, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .tools p#tab.calculations ~ a.calculations svg path, .search.index > .tools p#tab.calculations ~ a.calculations svg circle, .search.index > .tools p#tab.quantities ~ a.quantities svg path, .search.index > .tools p#tab.quantities ~ a.quantities svg circle, .search.index > .tools p#tab.constants ~ a.constants svg path, .search.index > .tools p#tab.constants ~ a.constants svg circle, .search.index > .tools p#tab.packs ~ a.packs svg path, .search.index > .tools p#tab.packs ~ a.packs svg circle {
+  fill: white;
+}
+/* line 23, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper {
+  padding: 2.1875em 1.875em;
+}
+/* line 25, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards {
+  margin: 0;
+  transition: none;
+}
+/* line 28, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards > .card:first-child {
+  margin-top: 0;
+}
+/* line 30, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards > .placeholder {
+  width: 100%;
+  margin: 6.25em 0;
+  display: flex;
+  justify-content: center;
+}
+/* line 35, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/search/index.sass */
+.search.index > .content-wrapper > .cards > .placeholder svg {
+  width: 3em;
+  height: 3em;
 }
 
 /* line 4, D:/projects/apps/phylator/phylator/app/assets/stylesheets/packages/welcome/index.sass */
