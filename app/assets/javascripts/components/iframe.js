@@ -1,4 +1,4 @@
-document.addEventListener( 'turbolinks:load', function() {
+document.addEventListener( 'turbolinks:before-render', function() {
     iframeInit();
 });
 
