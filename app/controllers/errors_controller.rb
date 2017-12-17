@@ -1,7 +1,9 @@
 class ErrorsController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     def not_found
-        @animation = 'fadein'
+        turbolinks_animate 'fadein'
         render layout: (current_user ? 'app' : 'application')
     end
 

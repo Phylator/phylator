@@ -1,5 +1,7 @@
 class UnitOfMeasurementsController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     before_action :authenticate_user!, only: [:show]
     before_action :set_unit_of_measurement, only: [:show]
 
@@ -12,12 +14,12 @@ class UnitOfMeasurementsController < ApplicationController
     # GET /unit_of_measurements/1
     # GET /unit_of_measurements/1.json
     def show
-        @animation = 'fadeinright'
+        turbolinks_animate 'fadeinright'
         authorize! :read, @unit_of_measurement
 
         calculator = Dentaku::Calculator.new case_sensitive: true
         @value = calculator.evaluate '1' + @unit_of_measurement.from_base
-        
+
         render layout: 'details'
     end
 

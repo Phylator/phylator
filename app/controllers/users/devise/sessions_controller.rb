@@ -1,5 +1,12 @@
 class Users::Devise::SessionsController < Devise::SessionsController
 
+    include TurbolinksAnimateHelper
+
+    def new
+        turbolinks_animate 'fadein'
+        super
+    end
+
     def create
         self.resource = warden.authenticate! auth_options
         set_flash_message! :notice, :signed_in

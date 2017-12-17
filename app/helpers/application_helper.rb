@@ -6,9 +6,4 @@ module ApplicationHelper
         options.map(&:inspect).join(delimiter).gsub('"', '').gsub(',', '').gsub('[', '').gsub(']', '')
     end
 
-    # Returns current animation
-    def current_animation
-        @animation
-    end
-
 end

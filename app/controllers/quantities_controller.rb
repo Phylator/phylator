@@ -1,19 +1,21 @@
 class QuantitiesController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     before_action :authenticate_user!, only: [:show]
     before_action :set_quantity, only: [:show]
 
     # GET /quantities
     # GET /quantities.json
     def index
-        @animation = 'fadein'
+        turbolinks_animate 'fadein'
         render layout: 'app'
     end
 
     # GET /quantities/1
     # GET /quantities/1.json
     def show
-        @animation = 'fadeinright'
+        turbolinks_animate 'fadeinright'
         authorize! :read, @quantity
         render layout: 'details'
     end

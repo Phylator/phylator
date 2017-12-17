@@ -37,7 +37,7 @@
         = area :head
 
 
-    %body{ class: [class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ), ( session[:nativeGapScalingEnabled] ? 'nativeGapScalingEnabled': '' ), ( 'turbolinks-animate' if current_animation )].split(' '), data: { turbolinks_animate_animation: current_animation } }
+    = turbolinks_animate_body class: [class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ), ( session[:nativeGapScalingEnabled] ? 'nativeGapScalingEnabled': '' )].join(' ') do
 
 
         -# %p.notice= notice

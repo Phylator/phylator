@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+//= require turbolinks-animate
 //= require ahoy
 //= require turboboost/turboboost
 //= require algolia/v3/algoliasearch.min

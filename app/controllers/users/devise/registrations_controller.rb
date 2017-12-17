@@ -1,5 +1,17 @@
 class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
+    include TurbolinksAnimateHelper
+
+    def new
+        turbolinks_animate 'fadein'
+        super
+    end
+
+    def edit
+        turbolinks_animate 'fadein'
+        super
+    end
+
     def create
         build_resource sign_up_params
 

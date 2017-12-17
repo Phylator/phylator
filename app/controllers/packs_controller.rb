@@ -1,10 +1,12 @@
 class PacksController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     before_action :authenticate_user!
     before_action :set_pack
 
     def show
-        @animation = 'fadeinright'
+        turbolinks_animate 'fadeinright'
         authorize! :read, @pack
         render layout: 'details'
     end

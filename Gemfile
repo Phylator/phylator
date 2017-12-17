@@ -24,7 +24,8 @@ gem 'pry-rails', '~> 0.3.6'
 gem 'turboboost', github: 'waymondo/turboboost'
 gem 'stripe', '~> 3.8'
 gem 'config', '~> 1.6'
-gem 'algoliasearch-rails', '~> 1.14', '>= 1.14.1'
+gem 'algoliasearch-rails', '~> 1.14'
+gem 'turbolinks-animate', '~> 1.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

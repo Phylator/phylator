@@ -1,5 +1,7 @@
 class CalculationsController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     before_action :authenticate_user!, except: [:new, :create, :show]
     before_action :set_calculation, only: [:show, :edit, :update, :destroy]
 
@@ -8,20 +10,20 @@ class CalculationsController < ApplicationController
     # GET /calculations
     # GET /calculations.json
     def index
-        @animation = 'fadein'
+        turbolinks_animate 'fadein'
         render layout: 'app'
     end
 
     # GET /calculations/1
     # GET /calculations/1.json
     def show
-        @animation = 'fadeinright'
+        turbolinks_animate 'fadeinright'
         render layout: 'details'
     end
 
     # GET /calculations/new
     def new
-        @animation = 'fadein'
+        turbolinks_animate 'fadein'
         @calculation = Calculation.new
         @calculation.measurements.build
         render layout: (current_user ? 'app' : 'application')

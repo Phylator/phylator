@@ -1,5 +1,7 @@
 class Calculations::MeasurementsController < ApplicationController
 
+    include TurbolinksAnimateHelper
+
     before_action :authenticate_user!, except: [:show]
     before_action :set_measurement, only: [:show, :update]
 
@@ -8,7 +10,7 @@ class Calculations::MeasurementsController < ApplicationController
     # GET calculations/1/measurements/1
     # GET calculations/1/measurements/1.json
     def show
-        @animation = 'fadeinright'
+        turbolinks_animate 'fadeinright'
         render layout: 'details'
     end
 
