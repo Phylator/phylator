@@ -2,14 +2,16 @@
 
 A simple but powerful calculator for physics.
 
-**https://phylator.herokuapp.com**
-
-Install:
+Available on:
 
 * [Android](https://play.google.com/store/apps/details?id=com.herokuapp.phylator)
 * [iOS](https://phylator.herokuapp.com/)
 * [Windows 10](https://www.microsoft.com/library/errorpages/smarterror.aspx?correlationId=rcPS1C5pekaqYOxD.3)
 * [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
+
+---
+
+**https://phylator.herokuapp.com**
 
 ---
 
