@@ -1,10 +1,15 @@
-# devise-onesignal
+# Phylator
 
-[![Gem Version](https://badge.fury.io/rb/devise-onesignal.svg)](https://badge.fury.io/rb/devise-onesignal) <img src="https://travis-ci.org/jonhue/devise-onesignal.svg?branch=master" />
+A simple but powerful calculator for physics.
 
-Implement user targeted cross-platform notifications with OneSignal & Devise in your Rails app. Can also be used without Devise, but is primarily intended to be used along with some sort of user-management-system.
+**https://phylator.herokuapp.com**
 
-This gem works well together with [notifications-rails](https://github.com/jonhue/notifications-rails) which introduces a notifications handling & pushing API. To build a cross-platform notification solution also add the [native](https://github.com/NativeGap/native-ruby) gem to your app.
+Install:
+
+* [Android](https://play.google.com/store/apps/details?id=com.herokuapp.phylator)
+* [iOS](https://phylator.herokuapp.com/)
+* [Windows 10](https://www.microsoft.com/library/errorpages/smarterror.aspx?correlationId=rcPS1C5pekaqYOxD.3)
+* [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
 
 ---
 
