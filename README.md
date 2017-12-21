@@ -1,6 +1,4 @@
-# Phylator
-
-A simple but powerful calculator for physics.
+# Phylator - A simple but powerful calculator for physics.
 
 Available on:
 
