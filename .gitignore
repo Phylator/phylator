@@ -22,7 +22,7 @@
 
 .byebug_history
 
-# /public/assets
+/public/assets
 
 config/settings.local.yml
 config/settings/*.local.yml
