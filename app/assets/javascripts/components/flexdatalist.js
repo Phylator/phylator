@@ -4,7 +4,9 @@ document.addEventListener( 'turbolinks:load', function() {
 
 
 
-function flexdatalistInit( el = $('body') ) {
+function flexdatalistInit(el) {
+
+    el = el || $('body');
 
     el.find('input.flexdatalist').flexdatalist();
 
