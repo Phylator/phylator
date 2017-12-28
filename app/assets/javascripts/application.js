@@ -19,7 +19,7 @@
 //= require algolia/v3/algoliasearch.min
 
 // require_tree ./vendor
-//= require_tree ./components
-// require_tree ./packages
+// require_tree ./components
+//= require_tree ./packages
 
 //= require cable
