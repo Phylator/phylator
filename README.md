@@ -75,10 +75,6 @@ rails db:seed
 #### Development instructions
 
 ```
-$ rails assets:precompile
-
-$ rails assets:clean
-
 $ rails s
 ```
 
