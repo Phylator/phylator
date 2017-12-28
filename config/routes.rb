@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-    namespace :platforms do
-        get 'android', to: 'android#index'
-    end
+    mount Native::Engine, at: '/native'
 
     scope 'app' do
         resources :quantities, only: [:index, :show] do

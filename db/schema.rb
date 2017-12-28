@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206205817) do
+ActiveRecord::Schema.define(version: 20171228201535) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -167,6 +167,19 @@ ActiveRecord::Schema.define(version: 20171206205817) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "native_apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "platform"
+    t.string "url"
+    t.datetime "last_used"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_native_apps_on_owner_type_and_owner_id"
+    t.index ["platform"], name: "index_native_apps_on_platform"
+    t.index ["url"], name: "index_native_apps_on_url"
   end
 
   create_table "pack_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -26,6 +26,8 @@ gem 'stripe', '~> 3.8'
 gem 'config', '~> 1.6'
 gem 'algoliasearch-rails', '~> 1.14'
 gem 'turbolinks-animate', '~> 1.1'
+gem 'nestive-rails', '~> 1.0'
+gem 'native', '~> 2.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

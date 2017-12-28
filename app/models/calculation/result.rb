@@ -81,7 +81,7 @@ class Calculation::Result < ApplicationRecord
             ## Solve equations
             begin
                 calculation_results = calculator.solve equations
-                calculation_result = calculation_results[self.calculation.quantity.pure_sym]&.map {|x| BigDecimal(x) rescue nil }.compact.first || :undefined
+                calculation_result = calculation_results[self.calculation.quantity.pure_sym]&.map {|x| BigDecimal(x) rescue nil }&.compact&.first || :undefined
             rescue TSort::Cyclic
                 calculation_result = :undefined
             end
