@@ -20,6 +20,6 @@
 
 // require_tree ./vendor
 //= require_tree ./components
-//= require_tree ./packages
+// require_tree ./packages
 
 //= require cable
