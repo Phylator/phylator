@@ -1,261 +1,232 @@
 /**
- * Copyright (c) 2016 hustcc
- * License: MIT
- * Version: v3.0.2
- * https://github.com/hustcc/timeago.js
-**/
-/* jshint expr: true */
-!function (root, factory) {
-  if (typeof module === 'object' && module.exports) {
-    module.exports = factory(root); // nodejs support
-    module.exports['default'] = module.exports; // es6 support
+ * Timeago is a jQuery plugin that makes it easy to support automatically
+ * updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").
+ *
+ * @name timeago
+ * @version 1.6.1
+ * @requires jQuery v1.2.3+
+ * @author Ryan McGeary
+ * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+ *
+ * For usage and examples, visit:
+ * http://timeago.yarp.com/
+ *
+ * Copyright (c) 2008-2017, Ryan McGeary (ryan -[at]- mcgeary [*dot*] org)
+ */
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && typeof module.exports === 'object') {
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
   }
-  else
-    root.timeago = factory(root);
-}(typeof window !== 'undefined' ? window : this,
-function () {
-  var indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
-    indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
-    // build-in locales: en & zh_CN
-    locales = {
-      'en': function(number, index) {
-        if (index === 0) return ['just now', 'right now'];
-        var unit = indexMapEn[parseInt(index / 2)];
-        if (number > 1) unit += 's';
-        return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
-      },
-      'zh_CN': function(number, index) {
-        if (index === 0) return ['刚刚', '片刻后'];
-        var unit = indexMapZh[parseInt(index / 2)];
-        return [number + unit + '前', number + unit + '后'];
+}(function ($) {
+  $.timeago = function(timestamp) {
+    if (timestamp instanceof Date) {
+      return inWords(timestamp);
+    } else if (typeof timestamp === "string") {
+      return inWords($.timeago.parse(timestamp));
+    } else if (typeof timestamp === "number") {
+      return inWords(new Date(timestamp));
+    } else {
+      return inWords($.timeago.datetime(timestamp));
+    }
+  };
+  var $t = $.timeago;
+
+  $.extend($.timeago, {
+    settings: {
+      refreshMillis: 60000,
+      allowPast: true,
+      allowFuture: false,
+      localeTitle: false,
+      cutoff: 0,
+      autoDispose: true,
+      strings: {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: "ago",
+        suffixFromNow: "from now",
+        inPast: 'any moment now',
+        seconds: "less than a minute",
+        minute: "about a minute",
+        minutes: "%d minutes",
+        hour: "about an hour",
+        hours: "about %d hours",
+        day: "a day",
+        days: "%d days",
+        month: "about a month",
+        months: "%d months",
+        year: "about a year",
+        years: "%d years",
+        wordSeparator: " ",
+        numbers: []
       }
     },
-    // second, minute, hour, day, week, month, year(365 days)
-    SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
-    SEC_ARRAY_LEN = 6,
-    // ATTR_DATETIME = 'datetime',
-    ATTR_DATA_TID = 'data-tid',
-    timers = {}; // real-time render timers
 
-  // format Date / string / timestamp to Date instance.
-  function toDate(input) {
-    if (input instanceof Date) return input;
-    if (!isNaN(input)) return new Date(toInt(input));
-    if (/^\d+$/.test(input)) return new Date(toInt(input));
-    input = (input || '').trim().replace(/\.\d+/, '') // remove milliseconds
-      .replace(/-/, '/').replace(/-/, '/')
-      .replace(/(\d)T(\d)/, '$1 $2').replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
-      .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-    return new Date(input);
-  }
-  // change f into int, remove decimal. Just for code compression
-  function toInt(f) {
-    return parseInt(f);
-  }
-  // format the diff second to *** time ago, with setting locale
-  function formatDiff(diff, locale, defaultLocale) {
-    // if locale is not exist, use defaultLocale.
-    // if defaultLocale is not exist, use build-in `en`.
-    // be sure of no error when locale is not exist.
-    locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
-    // if (! locales[locale]) locale = defaultLocale;
-    var i = 0,
-      agoin = diff < 0 ? 1 : 0, // timein or timeago
-      total_sec = diff = Math.abs(diff);
-
-    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-      diff /= SEC_ARRAY[i];
-    }
-    diff = toInt(diff);
-    i *= 2;
-
-    if (diff > (i === 0 ? 9 : 1)) i += 1;
-    return locales[locale](diff, i, total_sec)[agoin].replace('%s', diff);
-  }
-  // calculate the diff second between date to be formated an now date.
-  function diffSec(date, nowDate) {
-    nowDate = nowDate ? toDate(nowDate) : new Date();
-    return (nowDate - toDate(date)) / 1000;
-  }
-  /**
-   * nextInterval: calculate the next interval time.
-   * - diff: the diff sec between now and date to be formated.
-   *
-   * What's the meaning?
-   * diff = 61 then return 59
-   * diff = 3601 (an hour + 1 second), then return 3599
-   * make the interval with high performace.
-  **/
-  function nextInterval(diff) {
-    var rst = 1, i = 0, d = Math.abs(diff);
-    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-      diff /= SEC_ARRAY[i];
-      rst *= SEC_ARRAY[i];
-    }
-    // return leftSec(d, rst);
-    d = d % rst;
-    d = d ? rst - d : rst;
-    return Math.ceil(d);
-  }
-  // get the datetime attribute, `data-timeagp` / `datetime` are supported.
-  function getDateAttr(node) {
-    return getAttr(node, 'data-timeago') || getAttr(node, 'datetime');
-  }
-  // get the node attribute, native DOM and jquery supported.
-  function getAttr(node, name) {
-    if(node.getAttribute) return node.getAttribute(name); // native
-    if(node.attr) return node.attr(name); // jquery
-  }
-  // set the node attribute, native DOM and jquery supported.
-  function setTidAttr(node, val) {
-    if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
-    if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
-  }
-  // get the timer id of node.
-  // remove the function, can save some bytes.
-  // function getTidFromNode(node) {
-  //   return getAttr(node, ATTR_DATA_TID);
-  // }
-  /**
-   * timeago: the function to get `timeago` instance.
-   * - nowDate: the relative date, default is new Date().
-   * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
-   *
-   * How to use it?
-   * var timeagoLib = require('timeago.js');
-   * var timeago = timeagoLib(); // all use default.
-   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
-   * var timeago = timeagoLib(null, 'zh_CN'); // set default locale is `zh_CN`.
-   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
-  **/
-  function Timeago(nowDate, defaultLocale) {
-    this.nowDate = nowDate;
-    // if do not set the defaultLocale, set it with `en`
-    this.defaultLocale = defaultLocale || 'en'; // use default build-in locale
-    // for dev test
-    // this.nextInterval = nextInterval;
-  }
-  // what the timer will do
-  Timeago.prototype.doRender = function(node, date, locale) {
-    var diff = diffSec(date, this.nowDate),
-      self = this,
-      tid;
-    // delete previously assigned timeout's id to node
-    node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
-    // waiting %s seconds, do the next render
-    timers[tid = setTimeout(function() {
-      self.doRender(node, date, locale);
-      delete timers[tid];
-    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = 0; // there is no need to save node in object.
-    // set attribute date-tid
-    setTidAttr(node, tid);
-  };
-  /**
-   * format: format the date to *** time ago, with setting or default locale
-   * - date: the date / string / timestamp to be formated
-   * - locale: the formated string's locale name, e.g. en / zh_CN
-   *
-   * How to use it?
-   * var timeago = require('timeago.js')();
-   * timeago.format(new Date(), 'pl'); // Date instance
-   * timeago.format('2016-09-10', 'fr'); // formated date string
-   * timeago.format(1473473400269); // timestamp with ms
-  **/
-  Timeago.prototype.format = function(date, locale) {
-    return formatDiff(diffSec(date, this.nowDate), locale, this.defaultLocale);
-  };
-  /**
-   * render: render the DOM real-time.
-   * - nodes: which nodes will be rendered.
-   * - locale: the locale name used to format date.
-   *
-   * How to use it?
-   * var timeago = require('timeago.js')();
-   * // 1. javascript selector
-   * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
-   * // 2. use jQuery selector
-   * timeago.render($('.need_to_be_rendered'), 'pl');
-   *
-   * Notice: please be sure the dom has attribute `datetime`.
-  **/
-  Timeago.prototype.render = function(nodes, locale) {
-    if (nodes.length === undefined) nodes = [nodes];
-    for (var i = 0, len = nodes.length; i < len; i++) {
-      this.doRender(nodes[i], getDateAttr(nodes[i]), locale); // render item
-    }
-  };
-  /**
-   * setLocale: set the default locale name.
-   *
-   * How to use it?
-   * var timeago = require('timeago.js')();
-   * timeago.setLocale('fr');
-  **/
-  Timeago.prototype.setLocale = function(locale) {
-    this.defaultLocale = locale;
-  };
-  /**
-   * timeago: the function to get `timeago` instance.
-   * - nowDate: the relative date, default is new Date().
-   * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
-   *
-   * How to use it?
-   * var timeagoFactory = require('timeago.js');
-   * var timeago = timeagoFactory(); // all use default.
-   * var timeago = timeagoFactory('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
-   * var timeago = timeagoFactory(null, 'zh_CN'); // set default locale is `zh_CN`.
-   * var timeago = timeagoFactory('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
-   **/
-  function timeagoFactory(nowDate, defaultLocale) {
-    return new Timeago(nowDate, defaultLocale);
-  }
-  /**
-   * register: register a new language locale
-   * - locale: locale name, e.g. en / zh_CN, notice the standard.
-   * - localeFunc: the locale process function
-   *
-   * How to use it?
-   * var timeagoFactory = require('timeago.js');
-   *
-   * timeagoFactory.register('the locale name', the_locale_func);
-   * // or
-   * timeagoFactory.register('pl', require('timeago.js/locales/pl'));
-   **/
-  timeagoFactory.register = function(locale, localeFunc) {
-    locales[locale] = localeFunc;
-  };
-
-  /**
-   * cancel: cancels one or all the timers which are doing real-time render.
-   *
-   * How to use it?
-   * For canceling all the timers:
-   * var timeagoFactory = require('timeago.js');
-   * var timeago = timeagoFactory();
-   * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
-   * timeagoFactory.cancel(); // will stop all the timers, stop render in real time.
-   *
-   * For canceling single timer on specific node:
-   * var timeagoFactory = require('timeago.js');
-   * var timeago = timeagoFactory();
-   * var nodes = document.querySelectorAll('.need_to_be_rendered');
-   * timeago.render(nodes);
-   * timeagoFactory.cancel(nodes[0]); // will clear a timer attached to the first node, stop render in real time.
-   **/
-  timeagoFactory.cancel = function(node) {
-    var tid;
-    // assigning in if statement to save space
-    if (node) {
-      tid = getAttr(node, ATTR_DATA_TID); // get the timer of DOM node(native / jq).
-      if (tid) {
-        clearTimeout(tid);
-        delete timers[tid];
+    inWords: function(distanceMillis) {
+      if (!this.settings.allowPast && ! this.settings.allowFuture) {
+          throw 'timeago allowPast and allowFuture settings can not both be set to false.';
       }
-    } else {
-      for (tid in timers) clearTimeout(tid);
-      timers = {};
+
+      var $l = this.settings.strings;
+      var prefix = $l.prefixAgo;
+      var suffix = $l.suffixAgo;
+      if (this.settings.allowFuture) {
+        if (distanceMillis < 0) {
+          prefix = $l.prefixFromNow;
+          suffix = $l.suffixFromNow;
+        }
+      }
+
+      if (!this.settings.allowPast && distanceMillis >= 0) {
+        return this.settings.strings.inPast;
+      }
+
+      var seconds = Math.abs(distanceMillis) / 1000;
+      var minutes = seconds / 60;
+      var hours = minutes / 60;
+      var days = hours / 24;
+      var years = days / 365;
+
+      function substitute(stringOrFunction, number) {
+        var string = $.isFunction(stringOrFunction) ? stringOrFunction(number, distanceMillis) : stringOrFunction;
+        var value = ($l.numbers && $l.numbers[number]) || number;
+        return string.replace(/%d/i, value);
+      }
+
+      var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
+        seconds < 90 && substitute($l.minute, 1) ||
+        minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
+        minutes < 90 && substitute($l.hour, 1) ||
+        hours < 24 && substitute($l.hours, Math.round(hours)) ||
+        hours < 42 && substitute($l.day, 1) ||
+        days < 30 && substitute($l.days, Math.round(days)) ||
+        days < 45 && substitute($l.month, 1) ||
+        days < 365 && substitute($l.months, Math.round(days / 30)) ||
+        years < 1.5 && substitute($l.year, 1) ||
+        substitute($l.years, Math.round(years));
+
+      var separator = $l.wordSeparator || "";
+      if ($l.wordSeparator === undefined) { separator = " "; }
+      return $.trim([prefix, words, suffix].join(separator));
+    },
+
+    parse: function(iso8601) {
+      var s = $.trim(iso8601);
+      s = s.replace(/\.\d+/,""); // remove milliseconds
+      s = s.replace(/-/,"/").replace(/-/,"/");
+      s = s.replace(/T/," ").replace(/Z/," UTC");
+      s = s.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // -04:00 -> -0400
+      s = s.replace(/([\+\-]\d\d)$/," $100"); // +09 -> +0900
+      return new Date(s);
+    },
+    datetime: function(elem) {
+      var iso8601 = $t.isTime(elem) ? $(elem).attr("datetime") : $(elem).attr("title");
+      return $t.parse(iso8601);
+    },
+    isTime: function(elem) {
+      // jQuery's `is()` doesn't play well with HTML5 in IE
+      return $(elem).get(0).tagName.toLowerCase() === "time"; // $(elem).is("time");
+    }
+  });
+
+  // functions that can be called via $(el).timeago('action')
+  // init is default when no action is given
+  // functions are called with context of a single element
+  var functions = {
+    init: function() {
+      functions.dispose.call(this);
+      var refresh_el = $.proxy(refresh, this);
+      refresh_el();
+      var $s = $t.settings;
+      if ($s.refreshMillis > 0) {
+        this._timeagoInterval = setInterval(refresh_el, $s.refreshMillis);
+      }
+    },
+    update: function(timestamp) {
+      var date = (timestamp instanceof Date) ? timestamp : $t.parse(timestamp);
+      $(this).data('timeago', { datetime: date });
+      if ($t.settings.localeTitle) {
+        $(this).attr("title", date.toLocaleString());
+      }
+      refresh.apply(this);
+    },
+    updateFromDOM: function() {
+      $(this).data('timeago', { datetime: $t.parse( $t.isTime(this) ? $(this).attr("datetime") : $(this).attr("title") ) });
+      refresh.apply(this);
+    },
+    dispose: function () {
+      if (this._timeagoInterval) {
+        window.clearInterval(this._timeagoInterval);
+        this._timeagoInterval = null;
+      }
     }
   };
 
-  return timeagoFactory;
-});
+  $.fn.timeago = function(action, options) {
+    var fn = action ? functions[action] : functions.init;
+    if (!fn) {
+      throw new Error("Unknown function name '"+ action +"' for timeago");
+    }
+    // each over objects here and call the requested function
+    this.each(function() {
+      fn.call(this, options);
+    });
+    return this;
+  };
+
+  function refresh() {
+    var $s = $t.settings;
+
+    //check if it's still visible
+    if ($s.autoDispose && !$.contains(document.documentElement,this)) {
+      //stop if it has been removed
+      $(this).timeago("dispose");
+      return this;
+    }
+
+    var data = prepareData(this);
+
+    if (!isNaN(data.datetime)) {
+      if ( $s.cutoff === 0 || Math.abs(distance(data.datetime)) < $s.cutoff) {
+        $(this).text(inWords(data.datetime));
+      } else {
+        if ($(this).attr('title').length > 0) {
+            $(this).text($(this).attr('title'));
+        }
+      }
+    }
+    return this;
+  }
+
+  function prepareData(element) {
+    element = $(element);
+    if (!element.data("timeago")) {
+      element.data("timeago", { datetime: $t.datetime(element) });
+      var text = $.trim(element.text());
+      if ($t.settings.localeTitle) {
+        element.attr("title", element.data('timeago').datetime.toLocaleString());
+      } else if (text.length > 0 && !($t.isTime(element) && element.attr("title"))) {
+        element.attr("title", text);
+      }
+    }
+    return element.data("timeago");
+  }
+
+  function inWords(date) {
+    return $t.inWords(distance(date));
+  }
+
+  function distance(date) {
+    return (new Date().getTime() - date.getTime());
+  }
+
+  // fix for IE6 suckage
+  document.createElement("abbr");
+  document.createElement("time");
+}));
