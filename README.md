@@ -3,7 +3,7 @@
 Available on:
 
 * [Android](https://play.google.com/store/apps/details?id=com.herokuapp.phylator)
-* [iOS]()
+* iOS
 * [Windows 10](https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc)
 * [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
 
