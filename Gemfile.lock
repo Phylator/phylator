@@ -19,16 +19,6 @@ GIT
   specs:
     dentaku (3.1.0)
 
-GIT
-  remote: https://github.com/waymondo/turboboost.git
-  revision: 1b8247349f08c9e3044fb5e53e8690d6feb2ed20
-  specs:
-    turboboost (0.1.1)
-      coffee-rails
-      jquery-rails
-      railties
-      turbolinks
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -381,7 +371,6 @@ DEPENDENCIES
   sentry-raven (~> 2)
   simple_form (~> 3)
   stripe (~> 3)
-  turboboost!
   turbolinks (~> 5)
   turbolinks-animate (~> 1)
   tzinfo-data
