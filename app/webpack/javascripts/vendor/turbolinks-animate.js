@@ -1,7 +1,7 @@
 import $ from 'jquery';
 window.jQuery = window.$ = $;
-const TurbolinksAnimate = require('turbolinks-animate');
+import * as turbolinksAnimate from 'turbolinks-animate';
 
 export function init() {
-    TurbolinksAnimate.init();
+    turbolinksAnimate.TurbolinksAnimate.init();
 };
