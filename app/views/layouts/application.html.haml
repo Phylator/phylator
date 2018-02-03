@@ -18,17 +18,17 @@
         %link{ rel: 'icon', sizes: '512x512', href: (area :icon_512x512, request.base_url + '/icon_512x512.png') }
         %link{ rel: 'msapplication-square70x70logo', content: (area :ms_icon_70x70, request.base_url + '/ms_icon_70x70.png') }
         %link{ rel: 'msapplication-square150x150logo', content: (area :ms_icon_150x150, request.base_url + '/ms_icon_150x150.png') }
-        %link{ rel: 'msapplication-wide310x150logo', content: (area :ms_icon_310x150, request.base_url + '/ms_icon_310x150.png') }
+        -# %link{ rel: 'msapplication-wide310x150logo', content: (area :ms_icon_310x150, request.base_url + '/ms_icon_310x150.png') }
         %link{ rel: 'msapplication-square310x310logo', content: (area :ms_icon_310x310, request.base_url + '/ms_icon_310x310.png') }
 
         %meta{ name: 'theme-color', content: area(:theme_color, '#242a38') }
 
         = favicon_link_tag '/favicon.ico'
 
-        = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-        = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=AM_CHTML'
-        = javascript_include_tag 'https://js.stripe.com/v3/', 'data-turbolinks-track': 'reload'
-        = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+        = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+        -# = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=AM_CHTML'
+        = javascript_include_tag 'https://js.stripe.com/v3/'#, 'data-turbolinks-track': 'reload'
+        = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
         = native_assets
 
         %link{ rel: 'stylesheet', href: 'https://use.typekit.net/vvt1lpo.css' }

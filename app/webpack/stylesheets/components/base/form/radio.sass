@@ -1,0 +1,26 @@
+input[type="radio"]
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    width: px(25)
+    height: px(25)
+    padding: 0
+    cursor: pointer
+    border-radius: 50%
+    transition: border .15s ease-out, background-color .15s ease-out, box-shadow .15s ease-out
+    &:checked
+        background: color(accent, dark)
+        background: url("https://phylator.herokuapp.com/check_white.png") no-repeat center center, color(accent, dark)
+        border: none
+        position: relative
+    &:not(:checked)
+        background: color(dark, dark)
+        box-shadow: style(box-shadow, sm)
+        &:not(:focus)
+            border-color: color(dark, dark)
+    & ~ label
+        margin-bottom: px(5)
+
+.radio-wrapper
+    & > label:not(:last-child)
+        margin-right: px(25)

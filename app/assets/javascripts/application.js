@@ -9,17 +9,3 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery
-//= require rails-ujs
-//= require turbolinks
-//= require turbolinks-animate
-//= require ahoy
-//= require turboboost/turboboost
-//= require algolia/v3/algoliasearch.min
-
-//= require_tree ./vendor
-//= require_tree ./components
-//= require_tree ./packages
-
-//= require cable

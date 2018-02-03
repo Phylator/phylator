@@ -1,0 +1,18 @@
+.tools
+    position: absolute
+    z-index: 100
+    top: px(30)
+    right: px(30)
+    display: flex
+    align-items: center
+    & > div
+        cursor: pointer
+        &:not(:last-child)
+            margin-right: px(30)
+        svg
+            path, circle
+                fill: color(dark, lighter)
+        &.delete svg
+            margin-right: 0
+            path, circle
+                fill: color(red, darker)

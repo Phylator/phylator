@@ -1,17 +1,23 @@
 GIT
-  remote: https://github.com/globalize/globalize.git
-  revision: b228455065888d91fd2aca6340dd7ef3d8d5c92e
+  remote: https://github.com/codahale/bcrypt-ruby.git
+  revision: f2db689ba567d1a018f4dacb1ccf909adc93e887
   specs:
-    globalize (5.1.0.beta2)
+    bcrypt (3.1.11)
+
+GIT
+  remote: https://github.com/globalize/globalize.git
+  revision: e946e63983d42c9ff49b39b13ffcc3ad45626dd3
+  specs:
+    globalize (5.1.0)
       activemodel (>= 4.2, < 5.2)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
 
 GIT
   remote: https://github.com/rubysolo/dentaku.git
-  revision: 4e05d7d37acef122ae87ae3419eb235103ce6347
+  revision: 4869b10e820a3983b2dc249ffd14c5f8ee111b30
   specs:
-    dentaku (3.0.0)
+    dentaku (3.1.0)
 
 GIT
   remote: https://github.com/waymondo/turboboost.git
@@ -65,7 +71,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    ahoy_matey (1.6.0)
+    ahoy_matey (1.6.1)
       addressable
       browser (~> 2.0)
       geocoder
@@ -83,27 +89,26 @@ GEM
       algoliasearch (>= 1.17.0, < 2.0.0)
       json (>= 1.5.1)
     arel (8.0.0)
-    ast (2.3.0)
-    bcrypt (3.1.11-x86-mingw32)
+    ast (2.4.0)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.5.0)
-    binding_of_caller (0.7.3)
+    binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     brakeman (3.7.2)
     browser (2.5.2)
     builder (3.2.3)
-    byebug (9.1.0)
+    byebug (10.0.0)
     cancancan (1.17.0)
-    capybara (2.16.1)
+    capybara (2.17.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      xpath (~> 2.0)
+      xpath (>= 2.0, < 4.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -122,7 +127,7 @@ GEM
     crass (1.0.3)
     debug_inspector (0.0.3)
     deep_merge (1.1.1)
-    devise (4.3.0)
+    devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.2)
@@ -158,7 +163,7 @@ GEM
     errbase (0.0.3)
     erubi (1.7.0)
     execjs (2.7.0)
-    faraday (0.13.1)
+    faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18-x86-mingw32)
     friendly_id (5.2.3)
@@ -170,7 +175,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     httpclient (2.8.3)
-    i18n (0.9.1)
+    i18n (0.9.3)
       concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
     jbuilder (2.7.0)
@@ -195,16 +200,16 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.10.3)
-    multi_json (1.12.2)
+    minitest (5.11.3)
+    multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.4.10-x86-mingw32)
-    native (2.1.1)
+    native (2.1.4)
       rails (>= 5.0)
-    nestive-rails (1.0.0)
+    nestive-rails (1.0.1)
       rails (>= 5.0)
     nio4r (2.2.0)
-    nokogiri (1.8.1-x86-mingw32)
+    nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     parallel (1.12.1)
@@ -218,9 +223,11 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.1)
-    puma (3.11.0)
-    rack (2.0.3)
+    puma (3.11.2)
+    rack (2.0.4)
     rack-attack (5.0.1)
+      rack
+    rack-proxy (0.6.3)
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -254,7 +261,8 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     referer-parser (0.3.0)
-    request_store (1.3.2)
+    request_store (1.4.0)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -269,7 +277,7 @@ GEM
     rubyzip (1.2.1)
     safely_block (0.2.0)
       errbase
-    sass (3.5.4)
+    sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -283,7 +291,7 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
-    sentry-raven (2.7.1)
+    sentry-raven (2.7.2)
       faraday (>= 0.7.6, < 1.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
@@ -301,16 +309,17 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-animate (1.1.0)
-      railties (>= 4.0)
-    turbolinks-source (5.0.3)
+    turbolinks (5.1.0)
+      turbolinks-source (~> 5.1)
+    turbolinks-animate (1.3.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
+    turbolinks-source (5.1.0)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2017.3)
+    tzinfo-data (1.2018.3)
       tzinfo (>= 1.0.0)
-    uglifier (4.1.0)
+    uglifier (4.1.5)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
     user_agent_parser (2.4.1)
@@ -322,60 +331,66 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (3.2.1)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (2.1.0)
-      nokogiri (~> 1.3)
+    xpath (3.0.0)
+      nokogiri (~> 1.8)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  ahoy_matey (~> 1.6)
-  algoliasearch-rails (~> 1.14)
-  better_errors (~> 2.4)
-  binding_of_caller (~> 0.7)
-  brakeman (~> 3.7)
-  browser (~> 2.5)
+  ahoy_matey (~> 1)
+  algoliasearch-rails (~> 1)
+  bcrypt!
+  better_errors (~> 2)
+  binding_of_caller (~> 0)
+  brakeman (~> 3)
+  browser (~> 2)
   byebug
-  cancancan (~> 1.17)
-  capybara (~> 2.13)
-  coffee-rails (~> 4.2)
-  config (~> 1.6)
+  cancancan (~> 1)
+  capybara (~> 2)
+  coffee-rails (~> 4)
+  config (~> 1)
   dentaku!
-  devise (~> 4.3)
-  friendly_id (~> 5.2)
+  devise (~> 4)
+  friendly_id (~> 5)
   globalize!
-  haml (~> 5.0)
-  i18n (~> 0.8)
-  jbuilder (~> 2.5)
-  jquery-rails (~> 4.3)
-  lol_dba (~> 2.1)
-  metamagic (~> 3.1)
-  mysql2 (~> 0.4)
-  native (~> 2.1)
-  nestive-rails (~> 1.0)
-  pg (~> 0.21)
-  pry-rails (~> 0.3.6)
-  puma (~> 3.7)
-  rack-timeout (~> 0.4)
-  rails (~> 5.1)
-  rubocop (~> 0.51)
-  sass-rails (~> 5.0)
+  haml (~> 5)
+  i18n (~> 0)
+  jbuilder (~> 2)
+  jquery-rails (~> 4)
+  lol_dba (~> 2)
+  metamagic (~> 3)
+  mysql2 (~> 0)
+  native (~> 2)
+  nestive-rails (~> 1)
+  pg (~> 0)
+  pry-rails (~> 0.3)
+  puma (~> 3)
+  rack-timeout (~> 0)
+  rails (~> 5)
+  rubocop (~> 0)
+  sass-rails (~> 5)
   selenium-webdriver
-  sentry-raven (~> 2.7)
-  simple_form (~> 3.5)
-  stripe (~> 3.8)
+  sentry-raven (~> 2)
+  simple_form (~> 3)
+  stripe (~> 3)
   turboboost!
   turbolinks (~> 5)
-  turbolinks-animate (~> 1.1)
+  turbolinks-animate (~> 1)
   tzinfo-data
-  uglifier (>= 1.3)
-  web-console (~> 3.5)
+  uglifier (>= 1)
+  web-console (~> 3)
+  webpacker (~> 3)
 
 RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

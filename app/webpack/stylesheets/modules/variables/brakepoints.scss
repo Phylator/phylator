@@ -1,0 +1,19 @@
+$breakpoints: (
+    small: 480px,
+    mobile: 800px,
+    medium: 960px,
+    large: 1280px,
+    desktop: 1920px
+);
+
+@mixin bigger-than($breakpoint) {
+    @media ( min-width: #{map-get($breakpoints, $breakpoint)} ) {
+        @content
+    }
+}
+
+@mixin smaller-than($breakpoint) {
+    @media ( max-width: #{map-get($breakpoints, $breakpoint)} ) {
+        @content
+    }
+}
