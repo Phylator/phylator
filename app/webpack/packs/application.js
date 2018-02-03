@@ -1,7 +1,8 @@
 import $ from 'jquery';
-const Turbolinks = require('turbolinks')
-Turbolinks.start();
 import 'rails-ujs';
+
+import Turbolinks from 'turbolinks';
+Turbolinks.start();
 
 import './../javascripts/vendor/vendor';
 // import './../javascripts/components/components';

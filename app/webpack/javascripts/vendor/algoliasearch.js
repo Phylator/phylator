@@ -1,9 +1,8 @@
 import $ from 'jquery';
-import * as algoliasearch from 'algoliasearch';
+import algoliasearch from 'algoliasearch';
 
 export function init( app_id, search_key ) {
-    console.log('flexdatalist');
-    var client = algoliasearch.algoliasearch( app_id, search_key ),
+    var client = algoliasearch( app_id, search_key ),
         rawIndex = $('p#tab').text();
 
     if ( rawIndex == 'calculations' ) {
@@ -20,7 +19,6 @@ export function init( app_id, search_key ) {
     $('input#query').change(function() {
         start(index, rawIndex, $(this).val());
     });
-    console.log('flexdatalist');
 };
 
 function start(index, rawIndex, query) {

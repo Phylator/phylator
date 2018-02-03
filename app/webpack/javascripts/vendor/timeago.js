@@ -1,6 +1,9 @@
 import $ from 'jquery';
+window.jQuery = window.$ = $;
+require('timeago');
 
 export function init() {
+
     if ( $('p#lang').text() == 'de' ) {
         $.timeago.settings.strings = {
             prefixAgo: "vor",
@@ -23,4 +26,5 @@ export function init() {
     // more translations: https://github.com/rmm5t/jquery-timeago/tree/master/locales
 
     $('.timeago').timeago();
+
 };

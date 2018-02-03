@@ -15,5 +15,5 @@ export function init(el) {
         $(unitsEl).flexdatalist();
         $(unitsEl).attr( 'disabled', 'false' );
     });
-    
+
 };
