@@ -36,6 +36,7 @@ gem 'r404'
 gem 'acts_as_belongable'
 gem 'randomize_id'
 gem 'cancancan-system'
+gem 'mozaic'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

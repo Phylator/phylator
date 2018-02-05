@@ -1,16 +1,16 @@
-= extends :application do
-    = replace :body do
+= mozaic :application do
 
-        %nav.app{ data: { turbolinks_animate_persist: 'nav' } }
-            = link_to calculations_url, class: 'calculations', data: { turbolinks_animate_type: 'nav' } do
-                = asset 'icons/calculator.svg'
-            = link_to quantities_url, class: 'quantities', data: { turbolinks_animate_type: 'nav' } do
-                = asset 'icons/quantity.svg'
-            = link_to app_root_url, class: 'new', data: { turbolinks_animate_type: 'nav' } do
-                = asset 'icons/simple-add.svg'
-            = link_to categories_url, class: 'categories', data: { turbolinks_animate_type: 'nav' } do
-                = asset 'icons/shop.svg'
-            = link_to edit_user_registration_url, class: 'account', data: { turbolinks_animate_type: 'nav' } do
-                = asset 'icons/single-02.svg'
-        = area :content do
-            = yield
+    %nav.app{ data: { turbolinks_animate_persist: 'nav' } }
+        = link_to calculations_url, class: 'calculations', data: { turbolinks_animate_type: 'nav' } do
+            = asset 'icons/calculator.svg'
+        = link_to quantities_url, class: 'quantities', data: { turbolinks_animate_type: 'nav' } do
+            = asset 'icons/quantity.svg'
+        = link_to app_root_url, class: 'new', data: { turbolinks_animate_type: 'nav' } do
+            = asset 'icons/simple-add.svg'
+        = link_to categories_url, class: 'categories', data: { turbolinks_animate_type: 'nav' } do
+            = asset 'icons/shop.svg'
+        = link_to edit_user_registration_url, class: 'account', data: { turbolinks_animate_type: 'nav' } do
+            = asset 'icons/single-02.svg'
+
+    = mozaic_area :app do
+        = yield

@@ -205,6 +205,10 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    mozaic (1.2.1)
+      activesupport (>= 5.0)
+      nestive-rails (~> 1.0)
+      railties (>= 5.0)
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.4.10-x86-mingw32)
@@ -394,6 +398,7 @@ DEPENDENCIES
   jbuilder (~> 2)
   lol_dba (~> 2)
   metamagic
+  mozaic
   mysql2 (~> 0)
   native
   nestive-rails
