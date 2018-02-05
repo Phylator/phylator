@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
     mount Native::Engine, at: '/native'
 
+    mount Pwa::Engine, at: ''
+
     scope 'app' do
         resources :quantities, only: [:index, :show] do
             get 'units_of_measurement', to: 'unit_of_measurements#index'

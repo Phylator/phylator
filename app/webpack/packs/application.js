@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'rails-ujs';
+import 'pwa-rails';
 
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
