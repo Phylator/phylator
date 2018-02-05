@@ -229,6 +229,10 @@ GEM
     puma (3.11.2)
     pwa (2.0.1)
       railties (>= 5.0)
+    r404 (2.0.0)
+      actionpack (>= 5.0)
+      activesupport (>= 5.0)
+      railties (>= 5.0)
     rack (2.0.4)
     rack-attack (5.0.1)
       rack
@@ -381,6 +385,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3)
   pwa
+  r404
   rack-timeout (~> 0)
   rails (~> 5)
   rubocop (~> 0)

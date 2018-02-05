@@ -44,6 +44,6 @@ Rails.application.routes.draw do
     get 'privacy', to: 'welcome#privacy'
     root 'welcome#product'
 
-    match '*path', to: 'errors#not_found', via: :all
+    match '*path', to: 'r404#not_found', via: :all
 
 end

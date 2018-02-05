@@ -32,6 +32,7 @@ gem 'notification-handler'
 gem 'notification-pusher-onesignal'
 gem 'devise-onesignal'
 gem 'pwa'
+gem 'r404'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

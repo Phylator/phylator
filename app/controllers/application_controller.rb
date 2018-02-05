@@ -1,23 +1,32 @@
 class ApplicationController < ActionController::Base
 
 
-    protect_from_forgery with: :exception
+    protect_from_forgery with: :exception, prepend: true
 
-    before_action :set_raven_context
-    before_action :init
-    before_action :set_locale
 
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :store_current_location, unless: :devise_controller?
     before_action :set_animation, if: :devise_controller?
+    helper_method :current_user
+    before_action :set_raven_context
+    before_action :set_locale
 
 
+    include R404Renderer
+    rescue_from CanCan::AccessDenied do |exception|
+        render_r404 :access_denied, 403, exception
+    end
+    rescue_from ActiveRecord::RecordNotFound, AbstractController::ActionNotFound, ActionController::RoutingError do |exception|
+        render_r404 :not_found, 404, exception
+    end
 
-    rescue_from (ActiveRecord::RecordNotFound) { |exception| handle_exception exception, 404 }
-    rescue_from (AbstractController::ActionNotFound) { |exception| handle_exception exception, 404 }
-    rescue_from (ActionController::RoutingError) { |exception| handle_exception exception, 404 }
-    rescue_from (CanCan::AccessDenied) { |exception| handle_exception exception, 403 }
-    rescue_from (TSort::Cyclic) { |exception| handle_exception exception, 400 }
-    rescue_from (Math::DomainError) { |exception| handle_exception exception, 500 }
+
+    def current_ability
+        @current_ability ||= Ability.new current_user
+    end
+    def authorizes! ability, collection
+        collection&.select { |object| authorize! ability, object }
+    end
 
 
 
@@ -29,7 +38,7 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit :sign_up, keys: [:calculation_id]
         devise_parameter_sanitizer.permit :sign_in, keys: [:calculation_id]
     end
-
+    
     def set_animation
         @animation = 'fadein'
     end
@@ -47,8 +56,8 @@ class ApplicationController < ActionController::Base
 
 
 
-    def init
-        @quantities = Quantity.all
+    def render_r404_access_denied format, status, exception
+        format.html { redirect_back fallback_location: root_url, alert: 'You are unauthorized to perform this action' }
     end
 
 
@@ -85,28 +94,13 @@ class ApplicationController < ActionController::Base
     end
 
 
-    def handle_exception ex, status
-        render_error ex, status
-        logger.error ex
-    end
-    def render_error ex, status
-        respond_to do |format|
-            if status == 404
-                format.html { render 'errors/not_found', status: status }
-            elsif status == 403
-                format.html { redirect_to(categories_url, alert: I18n.t('cd.no_permission')) }
-            elsif status == 400
-                format.html { redirect_back(fallback_location: app_root_url, alert: I18n.t('calculations.create.error')) }
-            elsif status == 500
-                format.html { redirect_back(fallback_location: app_root_url, alert: I18n.t('calculations.create.math_domain')) }
-            end
-            format.all { render nothing: true, status: status }
-        end
+    def store_current_location
+        store_location_for :user, request.original_url
     end
 
 
     def set_raven_context
-        Raven.user_context id: session[:current_user_id]
+        Raven.user_context(id: current_author.id) if current_author
         Raven.extra_context params: params.to_unsafe_h, url: request.url
     end
 
