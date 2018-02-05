@@ -66,12 +66,20 @@ end
 
 # Units
 units = JSON.parse File.read('data/units.json')
+si_prefixes = JSON.parse File.read('data/si_prefixes.json')
 units.each do |unit|
     locals = unit.delete 'locals'
     quantities = unit.delete 'quantities'
+    si_prefix = unit.delete 'si_prefixes?'
+    base_symbol = unit.delete 'base_symbol'
+    base_name = unit.delete 'base_name'
     u = UnitOfMeasurement.find_by name: unit['name']
     if u.nil?
-        u = UnitOfMeasurement.create! unit
+        begin
+            u = UnitOfMeasurement.create! unit
+        rescue ActiveRecord::RecordInvalid
+            raise [unit['symbol'], unit['name']].inspect
+        end
     else
         u.update! unit
     end
@@ -79,8 +87,42 @@ units.each do |unit|
         u.add_to_belonger! Quantity.find_by(name: quantity)
     end
     locals.each do |locale, translation|
+        base_name = translation.delete 'base_name'
         translation[:locale] = locale.to_sym
         u.update_attributes translation
+        translation['base_name'] = base_name
+    end
+    unless si_prefix == false
+        si_prefixes.each do |si_prefix|
+            prefixed_unit = unit.dup
+            prefixed_unit['si'] = true
+            prefixed_unit['symbol'] = si_prefix['symbol'] + ( base_symbol || prefixed_unit['symbol'] )
+            prefixed_unit['name'] = si_prefix['name'] + ( base_name&.downcase || prefixed_unit['name'].downcase )
+            unless prefixed_unit['base'] == true
+                prefixed_unit['to_base'] = "*(1#{prefixed_unit['to_base']})#{si_prefix['to_base']}"
+            else
+                prefixed_unit['to_base'] = si_prefix['to_base']
+            end
+            u = UnitOfMeasurement.find_by name: prefixed_unit['name']
+            if u.nil?
+                begin
+                    u = UnitOfMeasurement.create! prefixed_unit
+                rescue ActiveRecord::RecordInvalid
+                    raise [prefixed_unit['symbol'], prefixed_unit['name'], prefixed_unit['to_base']].inspect
+                end
+            else
+                u.update! prefixed_unit
+            end
+            quantities&.each do |quantity|
+                u.add_to_belonger! Quantity.find_by(name: quantity)
+            end
+            locals.each do |locale, translation|
+                base_name = translation.delete 'base_name'
+                translation['name'] = si_prefix.dig('locals', locale, 'name') + ( base_name&.downcase || translation['name'].downcase ).downcase
+                translation[:locale] = locale.to_sym
+                u.update_attributes translation
+            end
+        end
     end
 end
 

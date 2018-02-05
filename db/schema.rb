@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205132849) do
+ActiveRecord::Schema.define(version: 20180205141437) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180205132849) do
     t.integer "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ability", default: "guest"
     t.index ["belongable_type", "belongable_id"], name: "index_belongings_on_belongable_type_and_belongable_id"
     t.index ["belonger_type", "belonger_id"], name: "index_belongings_on_belonger_type_and_belonger_id"
   end
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(version: 20180205132849) do
     t.boolean "base", default: false, null: false
     t.string "to_base", default: "*1", null: false
     t.string "f_base"
+    t.boolean "si", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

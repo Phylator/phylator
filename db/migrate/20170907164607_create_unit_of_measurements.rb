@@ -6,6 +6,7 @@ class CreateUnitOfMeasurements < ActiveRecord::Migration[5.1]
             t.boolean :base, default: false, null: false
             t.string :to_base, default: '*1', null: false
             t.string :f_base
+            t.boolean :si, default: false, null: false
 
             t.timestamps
 

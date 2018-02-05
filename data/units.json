@@ -9,186 +9,6 @@
         }
     }
 }, {
-    "symbol": "Em",
-    "name": "exameter",
-    "to_base": "*1000000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Exameter"
-        }
-    }
-}, {
-    "symbol": "Pm",
-    "name": "petameter",
-    "to_base": "*1000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Petameter"
-        }
-    }
-}, {
-    "symbol": "Tm",
-    "name": "terameter",
-    "to_base": "*1000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Terameter"
-        }
-    }
-}, {
-    "symbol": "Gm",
-    "name": "gigameter",
-    "to_base": "*1000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Gigameter"
-        }
-    }
-}, {
-    "symbol": "Mm",
-    "name": "megameter",
-    "to_base": "*1000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Megameter"
-        }
-    }
-}, {
-    "symbol": "km",
-    "name": "kilometer",
-    "to_base": "*1000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Kilometer"
-        }
-    }
-}, {
-    "symbol": "hm",
-    "name": "hectometer",
-    "to_base": "*100",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Hektometer"
-        }
-    }
-}, {
-    "symbol": "dam",
-    "name": "decameter",
-    "to_base": "*10",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Dekameter"
-        }
-    }
-}, {
-    "symbol": "dm",
-    "name": "decimeter",
-    "to_base": "/10",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Dezimeter"
-        }
-    }
-}, {
-    "symbol": "cm",
-    "name": "centimeter",
-    "to_base": "/100",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Zentimeter"
-        }
-    }
-}, {
-    "symbol": "mm",
-    "name": "milimeter",
-    "to_base": "/1000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Milimeter"
-        }
-    }
-}, {
-    "symbol": "µm",
-    "name": "micrometer",
-    "to_base": "/1000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Mikrometer"
-        }
-    }
-}, {
-    "symbol": "nm",
-    "name": "nanometer",
-    "to_base": "/1000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Nanometer"
-        }
-    }
-}, {
-    "symbol": "pm",
-    "name": "picometer",
-    "to_base": "/1000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Pikometer"
-        }
-    }
-}, {
-    "symbol": "fm",
-    "name": "femtometer",
-    "to_base": "/1000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Femtometer"
-        }
-    }
-}, {
-    "symbol": "am",
-    "name": "attometer",
-    "to_base": "/1000000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Attometer"
-        }
-    }
-}, {
-    "symbol": "zm",
-    "name": "zeptometer",
-    "to_base": "/1000000000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Zeptometer"
-        }
-    }
-}, {
-    "symbol": "ym",
-    "name": "yoctometer",
-    "to_base": "/1000000000000000000000000",
-    "quantities": ["Length", "Distance traveled", "Wavelength"],
-    "locals": {
-        "de": {
-            "name": "Yoktometer"
-        }
-    }
-}, {
     "symbol": "in",
     "name": "inch",
     "to_base": "/0.254",
@@ -230,152 +50,16 @@
     }
 }, {
     "symbol": "kg",
+    "base_symbol": "g",
     "name": "kilogram",
+    "base_name": "gram",
     "base": true,
     "quantities": ["Mass"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
-            "name": "Kilogramm"
-        }
-    }
-}, {
-    "symbol": "Eg",
-    "name": "exagram",
-    "to_base": "*1000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Exagramm"
-        }
-    }
-}, {
-    "symbol": "Pg",
-    "name": "petagram",
-    "to_base": "*1000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Petagramm"
-        }
-    }
-}, {
-    "symbol": "Tg",
-    "name": "teragram",
-    "to_base": "*1000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Teragramm"
-        }
-    }
-}, {
-    "symbol": "Gg",
-    "name": "gigagram",
-    "to_base": "*1000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Gigagramm"
-        }
-    }
-}, {
-    "symbol": "Mg",
-    "name": "megagram",
-    "to_base": "*1000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Megagramm"
-        }
-    }
-}, {
-    "symbol": "g",
-    "name": "gram",
-    "to_base": "/1000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Gramm"
-        }
-    }
-}, {
-    "symbol": "mg",
-    "name": "miligram",
-    "to_base": "/1000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Miligramm"
-        }
-    }
-}, {
-    "symbol": "µg",
-    "name": "microgram",
-    "to_base": "/1000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Mikrogramm"
-        }
-    }
-}, {
-    "symbol": "ng",
-    "name": "nanog",
-    "to_base": "/10000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Nanogramm"
-        }
-    }
-}, {
-    "symbol": "pg",
-    "name": "pcogram",
-    "to_base": "/1000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Petagramm"
-        }
-    }
-}, {
-    "symbol": "fg",
-    "name": "femtogram",
-    "to_base": "/1000000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Femtogramm"
-        }
-    }
-}, {
-    "symbol": "ag",
-    "name": "attogram",
-    "to_base": "/1000000000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Attogramm"
-        }
-    }
-}, {
-    "symbol": "zg",
-    "name": "zeptogram",
-    "to_base": "/1000000000000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Zeptogramm"
-        }
-    }
-}, {
-    "symbol": "yg",
-    "name": "yoctogram",
-    "to_base": "/1000000000000000000000000000",
-    "quantities": ["Mass"],
-    "locals": {
-        "de": {
-            "name": "Yoktogramm"
+            "name": "Kilogramm",
+            "base_name": "Gramm"
         }
     }
 }, {
@@ -409,87 +93,7 @@
         }
     }
 }, {
-    "symbol": "ms",
-    "name": "milisecond",
-    "to_base": "/1000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Milisekunde"
-        }
-    }
-}, {
-    "symbol": "µs",
-    "name": "microsecond",
-    "to_base": "/1000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Mikrosekunde"
-        }
-    }
-}, {
-    "symbol": "ns",
-    "name": "nanosecond",
-    "to_base": "/1000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Nanosekunde"
-        }
-    }
-}, {
-    "symbol": "ps",
-    "name": "picosecond",
-    "to_base": "/1000000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Pikosekunde"
-        }
-    }
-}, {
-    "symbol": "fs",
-    "name": "femtosecond",
-    "to_base": "/1000000000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Femtosekunde"
-        }
-    }
-}, {
-    "symbol": "as",
-    "name": "attosecond",
-    "to_base": "/1000000000000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Attosekunde"
-        }
-    }
-}, {
-    "symbol": "zs",
-    "name": "zeptosecond",
-    "to_base": "/1000000000000000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Zeptosekunde"
-        }
-    }
-}, {
-    "symbol": "ys",
-    "name": "yoctosecond",
-    "to_base": "/1000000000000000000000000",
-    "quantities": ["Time"],
-    "locals": {
-        "de": {
-            "name": "Yoktosekunde"
-        }
-    }
-}, {
-    "symbol": "min",
+    "symbol": "minute",
     "name": "minute",
     "to_base": "*60",
     "quantities": ["Time"],
@@ -499,7 +103,7 @@
         }
     }
 }, {
-    "symbol": "h",
+    "symbol": "hour",
     "name": "hour",
     "to_base": "*3600",
     "quantities": ["Time"],
@@ -509,7 +113,7 @@
         }
     }
 }, {
-    "symbol": "d",
+    "symbol": "day",
     "name": "day",
     "to_base": "*86400",
     "quantities": ["Time"],
@@ -549,86 +153,6 @@
         }
     }
 }, {
-    "symbol": "mA",
-    "name": "miliampere",
-    "to_base": "/1000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Miliampere"
-        }
-    }
-}, {
-    "symbol": "µA",
-    "name": "microampere",
-    "to_base": "/1000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Mikroampere"
-        }
-    }
-}, {
-    "symbol": "nA",
-    "name": "nanoampere",
-    "to_base": "/1000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Nanoampere"
-        }
-    }
-}, {
-    "symbol": "pA",
-    "name": "picoampere",
-    "to_base": "/1000000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Pikoampere"
-        }
-    }
-}, {
-    "symbol": "fA",
-    "name": "femtoampere",
-    "to_base": "/1000000000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Femtoampere"
-        }
-    }
-}, {
-    "symbol": "aA",
-    "name": "attoampere",
-    "to_base": "/1000000000000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Attoampere"
-        }
-    }
-}, {
-    "symbol": "zA",
-    "name": "zeptoampere",
-    "to_base": "/1000000000000000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Zeptoampere"
-        }
-    }
-}, {
-    "symbol": "yA",
-    "name": "yoctoampere",
-    "to_base": "/1000000000000000000000000",
-    "quantities": ["Electric current"],
-    "locals": {
-        "de": {
-            "name": "Yoktoampere"
-        }
-    }
-}, {
     "symbol": "K",
     "name": "kelvin",
     "base": true,
@@ -640,7 +164,7 @@
     }
 }, {
     "symbol": "°C",
-    "name": "degree celcius",
+    "name": "celsius",
     "to_base": "+273.15",
     "quantities": ["Temperature"],
     "locals": {
@@ -650,7 +174,7 @@
     }
 }, {
     "symbol": "°F",
-    "name": "degree fahrenheit",
+    "name": "fahrenheit",
     "to_base": "*(5/9)+459.67*(5/9)",
     "f_base": "*(9/5)-459.67",
     "quantities": ["Temperature"],
@@ -684,6 +208,7 @@
     "name": "meter per square second",
     "base": true,
     "quantities": ["Acceleration"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Meter pro Quadratsekunde"
@@ -694,6 +219,7 @@
     "name": "rad per square second",
     "base": true,
     "quantities": ["Angular acceleration"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Rad pro Quadratsekunde"
@@ -704,6 +230,7 @@
     "name": "rad per second",
     "base": true,
     "quantities": ["Angular velocity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Rad pro Sekunde"
@@ -714,6 +241,7 @@
     "name": "square meter",
     "base": true,
     "quantities": ["Area"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Quadratmeter"
@@ -724,6 +252,7 @@
     "name": "kilogram per square meter",
     "base": true,
     "quantities": ["Area density", "Moment of inertia"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Kilogramm pro Quadratmeter"
@@ -744,6 +273,7 @@
     "name": "joule per mole",
     "base": true,
     "quantities": ["Chemical potential"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Mol"
@@ -754,6 +284,7 @@
     "name": "ampere per square meter",
     "base": true,
     "quantities": ["Current density"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Ampere pro Quadratmeter"
@@ -774,6 +305,7 @@
     "name": "coulomb per cubic meter",
     "base": true,
     "quantities": ["Electric charge density"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Coulomb pro Kubikmeter"
@@ -784,6 +316,7 @@
     "name": "coulomb per square meter",
     "base": true,
     "quantities": ["Electric displacement"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Coulomb pro Quadratmeter"
@@ -794,6 +327,7 @@
     "name": "volt per meter",
     "base": true,
     "quantities": ["Electric field strength"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Volt pro Meter"
@@ -814,6 +348,7 @@
     "name": "siemens per meter",
     "base": true,
     "quantities": ["Electrical conductivity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Siemens pro Meter"
@@ -844,6 +379,7 @@
     "name": "ohm meter",
     "base": true,
     "quantities": ["Electrical resistivity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Ohmmeter"
@@ -864,6 +400,7 @@
     "name": "joule per cubic meter",
     "base": true,
     "quantities": ["Energy density"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Kubikmeter"
@@ -874,6 +411,7 @@
     "name": "joule per kelvin",
     "base": true,
     "quantities": ["Entropy", "Heat capacity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Kelvin"
@@ -904,6 +442,7 @@
     "name": "watt per square meter",
     "base": true,
     "quantities": ["Heat flux density", "Intensity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Watt pro Quadratmeter"
@@ -924,6 +463,7 @@
     "name": "newton second",
     "base": true,
     "quantities": ["Impulse", "Momentum"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Newtonsekunde"
@@ -954,6 +494,7 @@
     "name": "ampere per meter",
     "base": true,
     "quantities": ["Magnetic field strength", "Magnetization"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Ampere pro Meter"
@@ -984,6 +525,7 @@
     "name": "kilogram per cubic meter",
     "base": true,
     "quantities": ["Density"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Kilogramm pro Kubikmeter"
@@ -994,6 +536,7 @@
     "name": "mole per cubic meter",
     "base": true,
     "quantities": ["Molar concentration"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Mol pro Kubikmeter"
@@ -1004,6 +547,7 @@
     "name": "joule per kelvin mole",
     "base": true,
     "quantities": ["Molar heat capacity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Kelvinmol"
@@ -1014,6 +558,7 @@
     "name": "henry per meter",
     "base": true,
     "quantities": ["Permeability"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Henry pro Meter"
@@ -1024,6 +569,7 @@
     "name": "farad per meter",
     "base": true,
     "quantities": ["Permittivity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Farad pro Meter"
@@ -1034,6 +580,7 @@
     "name": "radian",
     "base": true,
     "quantities": ["Plain angle"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Radiant"
@@ -1064,6 +611,7 @@
     "name": "mole per cubic meter second",
     "base": true,
     "quantities": ["Reaction rate"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Mol pro Quadratmetersekunde"
@@ -1074,6 +622,7 @@
     "name": "meter per second",
     "base": true,
     "quantities": ["Speed", "Velocity", "Initial velocity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Meter pro Sekunde"
@@ -1084,6 +633,7 @@
     "name": "kilogram square meter per second",
     "base": true,
     "quantities": ["Spin"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Kilogrammquadratmeter pro Sekunde"
@@ -1094,6 +644,7 @@
     "name": "joule per square meter",
     "base": true,
     "quantities": ["Surface tension"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Quadratmeter"
@@ -1104,6 +655,7 @@
     "name": "watt per meter kelvin",
     "base": true,
     "quantities": ["Thermal conductivity"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Watt pro Meterkelvin"
@@ -1114,6 +666,7 @@
     "name": "newton meter",
     "base": true,
     "quantities": ["Torque"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Newtonmeter"
@@ -1124,6 +677,7 @@
     "name": "cubic meter",
     "base": true,
     "quantities": ["Volume"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Kubikmeter"
@@ -1134,6 +688,7 @@
     "name": "per meter",
     "base": true,
     "quantities": ["Wavenumber"],
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "pro Meter"
@@ -1142,6 +697,7 @@
 }, {
     "symbol": "m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>",
     "name": "cubic meter per kilogram square second",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Kubikmeter pro Kilogrammquadratsekunde"
@@ -1150,6 +706,7 @@
 }, {
     "symbol": "J s",
     "name": "joule second",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joulesekunde"
@@ -1158,6 +715,7 @@
 }, {
     "symbol": "N A<sup>-2</sup>",
     "name": "newton per square meter",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Newton pro Quadratampere"
@@ -1166,6 +724,7 @@
 }, {
     "symbol": "mol<sup>-1</sup>",
     "name": "per mole",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "pro Mol"
@@ -1174,6 +733,7 @@
 }, {
     "symbol": "A s mol<sup>-1</sup>",
     "name": "ampere second per mole",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Amperesekunde pro Mol"
@@ -1182,6 +742,7 @@
 }, {
     "symbol": "m<sup>-3</sup>",
     "name": "per cubic meter",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "pro Kubikmeter"
@@ -1190,6 +751,7 @@
 }, {
     "symbol": "W m<sup>-2</sup> K<sup>-4</sup>",
     "name": "watt per square meter kelvin",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Watt pro Quadratmeterkelvin"
@@ -1198,6 +760,7 @@
 }, {
     "symbol": "J K<sup>-1</sup> mol<sup>-1</sup>",
     "name": "joule per kelvin mole",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Joule pro Kelvinmol"
@@ -1206,6 +769,7 @@
 }, {
     "symbol": "m K",
     "name": "meter kelvin",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Meterkelvin"
@@ -1214,6 +778,7 @@
 }, {
     "symbol": "l mol<sup>-1</sup>",
     "name": "liter per mole",
+    "si_prefixes?": false,
     "locals": {
         "de": {
             "name": "Liter pro Mol"
