@@ -17,9 +17,9 @@ $(document).on( 'turbolinks:load', function() {
     _timeago.init();
     _turbolinksAnimate.init();
     if ( $('body.packs.show').length != 0 ) {
-        _stripe.init('<%= Settings.stripe.publishable_key %>');
+        _stripe.init(stripePublicationKey);
     };
     if ( $('body.search').length > 0 ) {
-        _algoliasearch.init( '<%= Settings.algoliasearch.application_id %>', '<%= Settings.algoliasearch.search_key %>' );
+        _algoliasearch.init( algoliasearchApplicationId, algoliasearchSearchKey );
     };
 });

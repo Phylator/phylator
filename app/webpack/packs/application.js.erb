@@ -1,5 +1,12 @@
+const stripePublishableKey = '<%= Settings.stripe.publishable_key %>';
+const algoliasearchApplicationId = '<%= Settings.algoliasearch.application_id %>';
+const algoliasearchSearchKey = '<%= Settings.algoliasearch.search_key %>';
+
+
 import $ from 'jquery';
 import 'rails-ujs';
+import 'devise-onesignal';
+import 'devise-onesignal/vendor/assets/javascripts/OneSignalSDK';
 import 'pwa-rails';
 
 import Turbolinks from 'turbolinks';
