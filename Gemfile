@@ -38,7 +38,7 @@ gem 'acts_as_belongable'
 gem 'randomize_id'
 gem 'cancancan-system'
 gem 'mozaic'
-gem 'myg-rails'
+gem 'myg'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
