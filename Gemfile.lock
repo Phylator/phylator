@@ -317,6 +317,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    search-engine-optimization (1.0.0)
+      mozaic (~> 1.0)
+      railties (>= 5.0)
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -414,6 +417,7 @@ DEPENDENCIES
   randomize_id
   rubocop (~> 0)
   sass-rails (~> 5)
+  search-engine-optimization
   selenium-webdriver
   sentry-raven
   simple_form

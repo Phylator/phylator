@@ -9,6 +9,7 @@ end
 
 gem 'haml'
 gem 'metamagic'
+gem 'search-engine-optimization'
 gem 'sentry-raven'
 gem 'simple_form'
 gem 'i18n'
