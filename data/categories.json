@@ -1,0 +1,46 @@
+[{
+    "name": "Mechanics",
+    "description": "Description",
+    "locals": {
+        "de": {
+            "name": "Mechanik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Thermodynamics",
+    "description": "Description",
+    "locals": {
+        "de": {
+            "name": "Themodynamik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Electromagnetism",
+    "description": "Description",
+    "locals": {
+        "de": {
+            "name": "Elektromagnetismus",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Quantum mechanics",
+    "description": "Description",
+    "locals": {
+        "de": {
+            "name": "Quantenmechanik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Chemical physics",
+    "description": "Description",
+    "locals": {
+        "de": {
+            "name": "Chemische Physik",
+            "description": "Beschreibung"
+        }
+    }
+}]

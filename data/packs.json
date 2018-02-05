@@ -1,0 +1,133 @@
+[{
+    "name": "Basics",
+    "description": "Description",
+    "price": 0,
+    "category": "Mechanics",
+    "locals": {
+        "de": {
+            "name": "Basis",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Kinematics",
+    "description": "Description",
+    "price": 1,
+    "category": "Mechanics",
+    "locals": {
+        "de": {
+            "name": "Kinematik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Dynamics",
+    "description": "Description",
+    "price": 1,
+    "category": "Mechanics",
+    "locals": {
+        "de": {
+            "name": "Dynamik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Basics",
+    "description": "Description",
+    "price": 0,
+    "category": "Thermodynamics",
+    "locals": {
+        "de": {
+            "name": "Basis",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Advanced",
+    "description": "Description",
+    "price": 2,
+    "category": "Thermodynamics",
+    "locals": {
+        "de": {
+            "name": "Erweitert",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Electricity",
+    "description": "Description",
+    "price": 4,
+    "category": "Electromagnetism",
+    "locals": {
+        "de": {
+            "name": "Elektrizität",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Magnetism",
+    "description": "Description",
+    "price": 2,
+    "category": "Electromagnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetismus",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Optics",
+    "description": "Description",
+    "price": 2,
+    "category": "Electromagnetism",
+    "locals": {
+        "de": {
+            "name": "Optik",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Relativity",
+    "description": "Description",
+    "price": 0,
+    "category": "Quantum mechanics",
+    "locals": {
+        "de": {
+            "name": "Relativität",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Basics",
+    "description": "Description",
+    "price": 1,
+    "category": "Quantum mechanics",
+    "locals": {
+        "de": {
+            "name": "Basis",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Basics",
+    "description": "Description",
+    "price": 2,
+    "category": "Chemical physics",
+    "locals": {
+        "de": {
+            "name": "Basis",
+            "description": "Beschreibung"
+        }
+    }
+}, {
+    "name": "Advanced",
+    "description": "Description",
+    "price": 2,
+    "category": "Chemical physics",
+    "locals": {
+        "de": {
+            "name": "Erweitert",
+            "description": "Beschreibung"
+        }
+    }
+}]

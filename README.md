@@ -7,9 +7,18 @@ Available on:
 * [Windows 10](https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc)
 * [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
 
+Data:
+
+* [Quantities](data/quantities.json)
+* [Equations](data/equations.json)
+* [Units](data/units.json)
+* [Constants](data/constants.json)
+* [Categories](data/categories.json)
+* [Packs](data/packs.json)
+
 ---
 
-**https://phylator.herokuapp.com**
+**https://phylator.com**
 
 ---
 

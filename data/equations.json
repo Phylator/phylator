@@ -1,0 +1,49 @@
+[{
+    "quantity": "Acceleration",
+    "equations": ["F / m", "( v - v_'init' ) / t", "( v^2 - v_'init'^2 ) / ( 2 * s )"]
+}, {
+    "quantity": "Area",
+    "equations": ["F / p_f"]
+}, {
+    "quantity": "Electric current",
+    "equations": ["U / R", "P / U"]
+}, {
+    "quantity": "Electric potential",
+    "equations": ["I * R", "P / I"]
+}, {
+    "quantity": "Electrical resistance",
+    "equations": ["U / I"]
+}, {
+    "quantity": "Energy",
+    "equations": ["P * t"]
+}, {
+    "quantity": "Force",
+    "equations": ["m * a", "W / s", "p_f * A"]
+}, {
+    "quantity": "Distance traveled",
+    "equations": ["W / F", "( v^2 - v_'init'^2 ) / ( 2 * a )"]
+}, {
+    "quantity": "Mass",
+    "equations": ["F / a", "p / v"]
+}, {
+    "quantity": "Momentum",
+    "equations": ["m * v"]
+}, {
+    "quantity": "Power",
+    "equations": ["W / t", "E / t", "I * U"]
+}, {
+    "quantity": "Pressure",
+    "equations": ["F / A"]
+}, {
+    "quantity": "Time",
+    "equations": ["W / P", "E / P", "( v - v_'init' ) / a"]
+}, {
+    "quantity": "Velocity",
+    "equations": ["p / m", "v_'init' + a * t", "sqrt( v_'init'^2 + 2 * a * s )"]
+}, {
+    "quantity": "Initial velocity",
+    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )"]
+}, {
+    "quantity": "Work",
+    "equations": ["F * s", "P * t"]
+}]

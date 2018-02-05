@@ -1,0 +1,942 @@
+[{
+    "symbol": "l",
+    "name": "Length",
+    "description": "The one-dimensional extent of an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Länge",
+            "description": "Die eindimensionale Ausdehnung eines Gegenstandes"
+        }
+    }
+}, {
+    "symbol": "s",
+    "name": "Distance traveled",
+    "description": "Distance an object traveled",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Length",
+    "locals": {
+        "de": {
+            "name": "Zurückgelegte Strecke",
+            "description": "Von einem Objekt zurückgelegte Strecke"
+        }
+    }
+}, {
+    "symbol": "m",
+    "name": "Mass",
+    "description": "A measure of resistance to acceleration",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mass",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Masse",
+            "description": "Ein Maß für Widerstand gegen Beschleunigung"
+        }
+    }
+}, {
+    "symbol": "t",
+    "name": "Time",
+    "description": "The duration of an event",
+    "wikipedia": "https://en.wikipedia.org/wiki/Time_in_physics",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Zeit",
+            "description": "Die Dauer eines Ereignisses"
+        }
+    }
+}, {
+    "symbol": "I",
+    "name": "Electric current",
+    "description": "Rate of flow of electrical charge per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_current",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Stromstärke",
+            "description": "Durchflussrate der elektrischen Ladung pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "T",
+    "name": "Temperature",
+    "description": "Average kinetic energy per degree of freedom of a system",
+    "wikipedia": "https://en.wikipedia.org/wiki/Temperature",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Temperatur",
+            "description": "Durchschnittliche kinetische Energie pro Freiheitsgrad eines Systems"
+        }
+    }
+}, {
+    "symbol": "n",
+    "name": "Amount of substance",
+    "description": "Number of particles compared to the number of atoms in 0.012 kg of 12C",
+    "wikipedia": "https://en.wikipedia.org/wiki/Amount_of_substance",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Stoffmenge",
+            "description": "Anzahl der Partikel im Vergleich zur Anzahl der Atome in 0,012 kg 12C"
+        }
+    }
+}, {
+    "symbol": "L",
+    "name": "Luminous intensity",
+    "description": "Wavelength-weighted power of emitted light per unit solid angle",
+    "wikipedia": "https://en.wikipedia.org/wiki/Luminous_intensity",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Optics",
+    "locals": {
+        "de": {
+            "name": "Lichtstärke",
+            "description": "Wellenlängengewichtete Leistung des emittierten Lichts pro Raumwinkeleinheit"
+        }
+    }
+}, {
+    "symbol": "a",
+    "name": "Acceleration",
+    "description": "Change of the speed or velocity per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Acceleration",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Beschleunigung",
+            "description": "Änderung der Geschwindigkeit pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "a<sub>α</sub>",
+    "name": "Angular acceleration",
+    "description": "Change in angular speed or velocity per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Angular_acceleration",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Kinematics",
+    "locals": {
+        "de": {
+            "name": "Winkelbeschleunigung",
+            "description": "Änderung der Winkelgeschwindigkeit pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "ω",
+    "name": "Angular velocity",
+    "description": "The angle incremented in a plane by a segment connecting an object and a reference point per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Angular_velocity",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Kinematics",
+    "locals": {
+        "de": {
+            "name": "Winkelgeschwindigkeit",
+            "description": "Der Winkel, der in einer Ebene durch ein Segment erhöht wird, das ein Objekt und einen Referenzpunkt pro Zeiteinheit verbindet"
+        }
+    }
+}, {
+    "symbol": "A",
+    "name": "Area",
+    "description": "Extent of a surface",
+    "wikipedia": "https://en.wikipedia.org/wiki/Area",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Fläche",
+            "description": "Ausmaß einer Oberfläche"
+        }
+    }
+}, {
+    "symbol": "ρ<sub>A</sub>",
+    "name": "Area density",
+    "description": "Mass per unit area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Area_density",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Massenbelegung",
+            "description": "Masse pro Flächeneinheit"
+        }
+    }
+}, {
+    "symbol": "C",
+    "name": "Capacitance",
+    "description": "Stored charge per unit electric potential",
+    "wikipedia": "https://en.wikipedia.org/wiki/Capacitance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Kapazität",
+            "description": "Gespeicherte Ladung pro elektrischem Potential"
+        }
+    }
+}, {
+    "symbol": "μ<sub>ch</sub>",
+    "name": "Chemical potential",
+    "description": "Energy per unit change in amount of substance",
+    "wikipedia": "https://en.wikipedia.org/wiki/Chemical_potential",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Chemisches Potential",
+            "description": "Energie pro Einheitsänderung der Stoffmenge"
+        }
+    }
+}, {
+    "symbol": "J",
+    "name": "Current density",
+    "description": "Electric current per unit cross-section area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Current_density",
+    "vector": false,
+    "vector": true,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrische Stromdichte",
+            "description": "Elektrischer Strom pro Querschnittsfläche"
+        }
+    }
+}, {
+    "symbol": "Q",
+    "name": "Electric charge",
+    "description": "The force per unit electric field strength",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_charge",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Elektrische Ladung",
+            "description": "Die Kraft pro Einheit der elektrischen Feldstärke"
+        }
+    }
+}, {
+    "symbol": "ρ<sub>Q</sub>",
+    "name": "Electric charge density",
+    "description": "Electric charge per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_charge_density",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrische Ladungsdichte",
+            "description": "Die Kraft pro Einheit der elektrischen Feldstärke"
+        }
+    }
+}, {
+    "symbol": "D",
+    "name": "Electric displacement",
+    "description": "Strength of the electric displacement",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_displacement_field",
+    "vector": true,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Dielektrische Verschiebung",
+            "description": "Stärke der elektrischen Verschiebung"
+        }
+    }
+}, {
+    "symbol": "E",
+    "name": "Electric field strength",
+    "description": "Strength of the electric field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_field",
+    "vector": true,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrische Feldstärke",
+            "description": "Stärke des elektrischen Feldes"
+        }
+    }
+}, {
+    "symbol": "G",
+    "name": "Electrical conductance",
+    "description": "Measure for how easily current flows through a material",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrischer Materialwiderstand",
+            "description": "Maß der Leichtigkeit, mit der Strom durch ein Material fließt"
+        }
+    }
+}, {
+    "symbol": "σ",
+    "name": "Electrical conductivity",
+    "description": "Measure of a material's ability to conduct an electric current",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrische Leitfähigkeit",
+            "description": "Maß der Fähigkeit eines Materials, elektrischen Strom zu leiten"
+        }
+    }
+}, {
+    "symbol": "U",
+    "name": "Electric potential",
+    "description": "Energy required to move a unit charge through an electric field from a reference point",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_potential",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Elektrische Spannung",
+            "description": "Energie, die benötigt wird, um eine Einheitsladung von einem Referenzpunkt durch ein elektrisches Feld zu bewegen"
+        }
+    }
+}, {
+    "symbol": "R",
+    "name": "Electrical resistance",
+    "description": "Electric potential per unit electric current",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrischer Widerstand",
+            "description": "Elektrisches Potential pro elektrischem Strom"
+        }
+    }
+}, {
+    "symbol": "ρ<sub>el</sub>",
+    "name": "Electrical resistivity",
+    "description": "Bulk property equivalent of electrical resistance",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Elektrischer Mengenwiderstand",
+            "description": "Mengeneigenschaftsäquivalent des elektrischen Widerstandes"
+        }
+    }
+}, {
+    "symbol": "E<sub>i</sub>",
+    "name": "Energy",
+    "description": "Capacity of a body or system to do work",
+    "wikipedia": "https://en.wikipedia.org/wiki/Energy",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Energie",
+            "description": "Arbeitskapazität eines Körpers oder Systems"
+        }
+    }
+}, {
+    "symbol": "ρ<sub>E</sub>",
+    "name": "Energy density",
+    "description": "Energy per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Energy_density",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Energiedichte",
+            "description": "Energie pro Volumeneinheit"
+        }
+    }
+}, {
+    "symbol": "S<sub>sys</sub>",
+    "name": "Entropy",
+    "description": "Logarithmic measure of the number of available states of a system",
+    "wikipedia": "https://en.wikipedia.org/wiki/Entropy",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Entropie",
+            "description": "Logarithmisches Maß für die Anzahl der verfügbaren Zustände eines Systems"
+        }
+    }
+}, {
+    "symbol": "F",
+    "name": "Force",
+    "description": "Transfer of momentum per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Force",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Kraft",
+            "description": "Übertragung eines Impulses pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "f",
+    "name": "Frequency",
+    "description": "Number of (periodic) occurrences per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Frequency",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Frequenz",
+            "description": "Anzahl von (periodischen) Ereignissen pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "Q<sub>th</sub>",
+    "name": "Heat",
+    "description": "Thermal energy",
+    "wikipedia": "https://en.wikipedia.org/wiki/Heat",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Wärmemenge",
+            "description": "Wärmeenergie"
+        }
+    }
+}, {
+    "symbol": "C<sub>p</sub>",
+    "name": "Heat capacity",
+    "description": "Energy per unit temperature change",
+    "wikipedia": "https://en.wikipedia.org/wiki/Heat_capacity",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Wärmekapazität",
+            "description": "Energie pro Temperaturänderung"
+        }
+    }
+}, {
+    "symbol": "ϕ<sub>Q</sub>",
+    "name": "Heat flux density",
+    "description": "Heat flow per unit time per unit surface area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Heat_flux",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Wärmestromdichte",
+            "description": "Wärmefluss pro Zeiteinheit und Flächeneinheit"
+        }
+    }
+}, {
+    "symbol": "E<sub>v</sub>",
+    "name": "Illuminance",
+    "description": "Luminous flux per unit surface area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Illuminance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Optics",
+    "locals": {
+        "de": {
+            "name": "Beleuchtungsstärke",
+            "description": "Lichtstrom pro Flächeneinheit"
+        }
+    }
+}, {
+    "symbol": "Z",
+    "name": "Impedance",
+    "description": "Resistance to an alternating current of a given frequency, including effect on phase",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electrical_impedance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Impedanz",
+            "description": "Widerstand gegen einen Wechselstrom einer bestimmten Frequenz, einschließlich der Auswirkung auf die Phase"
+        }
+    }
+}, {
+    "symbol": "Δp",
+    "name": "Impulse",
+    "description": "Transferred momentum",
+    "wikipedia": "https://en.wikipedia.org/wiki/Impulse_(physics)",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Dynamics",
+    "locals": {
+        "de": {
+            "name": "Impuls",
+            "description": "Übertragene Dynamik"
+        }
+    }
+}, {
+    "symbol": "L<sub>m</sub>",
+    "name": "Inductance",
+    "description": "Magnetic flux generated per unit current through a circuit",
+    "wikipedia": "https://en.wikipedia.org/wiki/Inductance",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Induktivität",
+            "description": "Magnetischer Fluss, der pro Einheitsstrom durch eine Schaltung erzeugt wird"
+        }
+    }
+}, {
+    "symbol": "I<sub>P</sub>",
+    "name": "Intensity",
+    "description": "Power per unit cross sectional area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Intensity_(physics)",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Intensität",
+            "description": "Leistung pro Querschnittseinheit"
+        }
+    }
+}, {
+    "symbol": "F<sub>ph</sub>",
+    "name": "Luminous flux",
+    "description": "Perceived power of a light source",
+    "wikipedia": "https://en.wikipedia.org/wiki/Luminous_flux",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Optics",
+    "locals": {
+        "de": {
+            "name": "Lichtstrom",
+            "description": "Wahrgenommene Kraft einer Lichtquelle"
+        }
+    }
+}, {
+    "symbol": "H",
+    "name": "Magnetic field strength",
+    "description": "Strength of a magnetic field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Magnetic_field",
+    "vector": true,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetische Feldstärke",
+            "description": "Stärke eines Magnetfeldes"
+        }
+    }
+}, {
+    "symbol": "Φ",
+    "name": "Magnetic flux",
+    "description": "Measure of magnetism, taking account of the strength and the extent of a magnetic field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Magnetic_flux",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetischer Fluss",
+            "description": "Maß des Magnetismus unter Berücksichtigung der Stärke und des Ausmaßes eines Magnetfeldes"
+        }
+    }
+}, {
+    "symbol": "B",
+    "name": "Magnetic flux density",
+    "description": "Measure for the strength of the magnetic field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Magnetic_flux",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetische Flussdichte",
+            "description": "Maß für die Stärke des Magnetfeldes"
+        }
+    }
+}, {
+    "symbol": "M",
+    "name": "Magnetization",
+    "description": "Amount of magnetic moment per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Magnetization",
+    "vector": true,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetisierung",
+            "description": "Menge des magnetischen Momentes pro Volumeneinheit"
+        }
+    }
+}, {
+    "symbol": "ρ",
+    "name": "Density",
+    "description": "Mass per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Density",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Dichte",
+            "description": "Masse pro Volumeneinheit"
+        }
+    }
+}, {
+    "symbol": "C<sub>mol</sub>",
+    "name": "Molar concentration",
+    "description": "Amount of substance per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Molar_concentration",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Stoffmengenkonzentration",
+            "description": "Menge einer Substanz pro Volumeneinheit"
+        }
+    }
+}, {
+    "symbol": "c<sub>mol</sub>",
+    "name": "Molar heat capacity",
+    "description": "Heat capacity of a material per unit amount of substance",
+    "wikipedia": "https://en.wikipedia.org/wiki/Molar_heat_capacity",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Wärmekapazität",
+            "description": "Wärmekapazität eines Materials pro Stoffmenge einer Substanz"
+        }
+    }
+}, {
+    "symbol": "I<sub>m</sub>",
+    "name": "Moment of inertia",
+    "description": "Inertia of an object with respect to angular acceleration",
+    "wikipedia": "https://en.wikipedia.org/wiki/Moment_of_inertia",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Kinematics",
+    "locals": {
+        "de": {
+            "name": "Trägheitsmoment",
+            "description": "Trägheit eines Objekts in Bezug auf die Winkelbeschleunigung"
+        }
+    }
+}, {
+    "symbol": "p",
+    "name": "Momentum",
+    "description": "Product of an object's mass and velocity",
+    "wikipedia": "https://en.wikipedia.org/wiki/Momentum",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Dynamics",
+    "locals": {
+        "de": {
+            "name": "Momentum",
+            "description": "Produkt der Masse und Geschwindigkeit eines Objekts"
+        }
+    }
+}, {
+    "symbol": "μ",
+    "name": "Permeability",
+    "description": "Measure for how the magnetization of material is affected by the application of an external magnetic field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Permeability_(electromagnetism)",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Magnetism",
+    "locals": {
+        "de": {
+            "name": "Magnetische Permeabilität",
+            "description": "Maß für den Einfluss eines externen Magnetfeldes auf die Magnetisierung eines Materials"
+        }
+    }
+}, {
+    "symbol": "ε",
+    "name": "Permittivity",
+    "description": "Measure for how the polarization of a material is affected by the application of an external electric field",
+    "wikipedia": "https://en.wikipedia.org/wiki/Permittivity",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Electricity",
+    "locals": {
+        "de": {
+            "name": "Permittivität",
+            "description": "Maß für den Einfluss eines externen Magnetfeldes auf die Polarisation eines Materials"
+        }
+    }
+}, {
+    "symbol": "θ",
+    "name": "Plain angle",
+    "description": "Ratio of circular arc length to radius",
+    "wikipedia": "https://en.wikipedia.org/wiki/Angle",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Winkel",
+            "description": "Verhältnis von Kreisbogenlänge zu Radius"
+        }
+    }
+}, {
+    "symbol": "P",
+    "name": "Power",
+    "description": "Rate of transfer of energy per unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Electric_power",
+    "vector": false,
+    "category": "Electromagnetism",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Leistung",
+            "description": "Übertragungsrate von Energie pro Zeiteinheit"
+        }
+    }
+}, {
+    "symbol": "p<sub>f</sub>",
+    "name": "Pressure",
+    "description": "Force per unit area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Pressure",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Druck",
+            "description": "Kraft pro Flächeneinheit"
+        }
+    }
+}, {
+    "symbol": "r",
+    "name": "Reaction rate",
+    "description": "Rate of a chemical reaction for unit time",
+    "wikipedia": "https://en.wikipedia.org/wiki/Reaction_rate",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Reaktionsgeschwindigkeit",
+            "description": "Geschwindigkeit einer chemischen Reaktion"
+        }
+    }
+}, {
+    "symbol": "v<sub>abs</sub>",
+    "name": "Speed",
+    "description": "Moved distance per unit time: the first time derivative of position",
+    "wikipedia": "https://en.wikipedia.org/wiki/Speed",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Geschwindigkeitsbetrag",
+            "description": "Zurückgelegte Distanz pro Zeiteinheit. Die erste Ableitung der Position"
+        }
+    }
+}, {
+    "symbol": "S",
+    "name": "Spin",
+    "description": "Quantum-mechanically defined angular momentum of a particle",
+    "wikipedia": "https://en.wikipedia.org/wiki/Spin_(physics)",
+    "vector": false,
+    "category": "Quantum mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Spin",
+            "description": "Quantenmechanisch definierter Drehimpuls eines Teilchens"
+        }
+    }
+}, {
+    "symbol": "p<sub>p</sub>",
+    "name": "Stress",
+    "description": "Force per unit oriented surface area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Stress_(mechanics)",
+    "vector": false,
+    "category": "Quantum mechanics",
+    "pack": "Relativity",
+    "locals": {
+        "de": {
+            "name": "Mechanische Spannung",
+            "description": "Kraft pro Einheitsorientierter Oberfläche"
+        }
+    }
+}, {
+    "symbol": "γ",
+    "name": "Surface tension",
+    "description": "Energy change per unit change in surface area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Surface_tension",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Oberflächenspannung",
+            "description": "Energieänderung pro Flächeneinheit"
+        }
+    }
+}, {
+    "symbol": "k<sub>th</sub>",
+    "name": "Thermal conductivity",
+    "description": "Measure for the ease with which a material conducts heat",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thermal_conductivity",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Advanced",
+    "locals": {
+        "de": {
+            "name": "Wärmeleitfähigkeit",
+            "description": "Maß für die Leichtigkeit, mit der ein Material Wärme leitet"
+        }
+    }
+}, {
+    "symbol": "τ",
+    "name": "Torque",
+    "description": "Product of a force and the perpendicular distance of the force from the point about which it is exerted",
+    "wikipedia": "https://en.wikipedia.org/wiki/Torque",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Dynamics",
+    "locals": {
+        "de": {
+            "name": "Drehmoment",
+            "description": "Produkt einer Kraft und der senkrechte Abstand der Kraft von dem Punkt, um den sich das Objekt dreht"
+        }
+    }
+}, {
+    "symbol": "v",
+    "name": "Velocity",
+    "description": "Speed and direction of an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Velocity",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Geschwindigkeit",
+            "description": "Geschwindigkeit und Richtung eines Objekts"
+        }
+    }
+}, {
+    "symbol": "v<sub>init</sub>",
+    "name": "Initial velocity",
+    "description": "Initial speed and direction of an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Velocity",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Velocity",
+    "locals": {
+        "de": {
+            "name": "Anfangsgeschwindigkeit",
+            "description": "Anfangsgeschwindigkeit und Richtung eines Objekts"
+        }
+    }
+}, {
+    "symbol": "V",
+    "name": "Volume",
+    "description": "Three dimensional extent of an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Volume",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Volumen",
+            "description": "Dreidimensionale Ausdehnung eines Objekts"
+        }
+    }
+}, {
+    "symbol": "λ",
+    "name": "Wavelength",
+    "description": "Perpendicular distance between repeating units of a wave",
+    "wikipedia": "https://en.wikipedia.org/wiki/Wavelength",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Wellenlänge",
+            "description": "Senkrechter Abstand zwischen sich wiederholenden Einheiten einer Welle"
+        }
+    }
+}, {
+    "symbol": "k<sub>λ</sub>",
+    "name": "Wavenumber",
+    "description": "Repetency or spacial frequency: the number of cycles per unit distance",
+    "wikipedia": "https://en.wikipedia.org/wiki/Wavenumber",
+    "vector": false,
+    "category": "Thermodynamics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Wellenzahl",
+            "description": "Repetitions- oder räumliche Frequenz. Die Anzahl der Zyklen pro Entfernungseinheit"
+        }
+    }
+}, {
+    "symbol": "w",
+    "name": "Weight",
+    "description": "Gravitational force on an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Weight",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Gewichtskraft",
+            "description": "Gravitationskraft auf ein Objekt"
+        }
+    }
+}, {
+    "symbol": "W",
+    "name": "Work",
+    "description": "Transferred energy",
+    "wikipedia": "https://en.wikipedia.org/wiki/Work_(physics)",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Arbeit",
+            "description": "Übertragene Energie"
+        }
+    }
+}]
