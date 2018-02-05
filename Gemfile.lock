@@ -199,6 +199,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    material-components-web (2.0.4)
+      mozaic (~> 1.0)
+      railties (>= 5.0)
     metamagic (3.1.7)
       rails (>= 3.0.0)
     method_source (0.9.0)
@@ -211,6 +214,10 @@ GEM
       railties (>= 5.0)
     multi_json (1.13.1)
     multipart-post (2.0.0)
+    myg-rails (1.0.0)
+      material-components-web (~> 2.0)
+      mozaic (~> 1.0)
+      railties (>= 5.0)
     mysql2 (0.4.10-x86-mingw32)
     native (2.1.4)
       rails (>= 5.0)
@@ -402,6 +409,7 @@ DEPENDENCIES
   lol_dba (~> 2)
   metamagic
   mozaic
+  myg-rails
   mysql2 (~> 0)
   native
   nestive-rails
