@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205101228) do
+ActiveRecord::Schema.define(version: 20180205132849) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "visit_id"
@@ -23,32 +23,18 @@ ActiveRecord::Schema.define(version: 20180205101228) do
     t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name"
   end
 
-  create_table "calculation_constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "calculation_id"
-    t.bigint "constant_id"
+  create_table "belongings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "belonger_type"
+    t.bigint "belonger_id"
+    t.string "belongable_type"
+    t.bigint "belongable_id"
+    t.string "scope"
+    t.integer "position"
+    t.integer "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["calculation_id"], name: "index_calculation_constants_on_calculation_id"
-    t.index ["constant_id"], name: "index_calculation_constants_on_constant_id"
-  end
-
-  create_table "calculation_dependencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "calculation_id"
-    t.bigint "quantity_id"
-    t.integer "index", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["calculation_id"], name: "index_calculation_dependencies_on_calculation_id"
-    t.index ["quantity_id"], name: "index_calculation_dependencies_on_quantity_id"
-  end
-
-  create_table "calculation_equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "calculation_id"
-    t.bigint "equation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["calculation_id"], name: "index_calculation_equations_on_calculation_id"
-    t.index ["equation_id"], name: "index_calculation_equations_on_equation_id"
+    t.index ["belongable_type", "belongable_id"], name: "index_belongings_on_belongable_type_and_belongable_id"
+    t.index ["belonger_type", "belonger_id"], name: "index_belongings_on_belonger_type_and_belonger_id"
   end
 
   create_table "calculation_measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -141,24 +127,6 @@ ActiveRecord::Schema.define(version: 20180205101228) do
     t.datetime "updated_at", null: false
     t.index ["onesignal_id"], name: "index_devices_on_onesignal_id"
     t.index ["owner_type", "owner_id"], name: "index_devices_on_owner_type_and_owner_id"
-  end
-
-  create_table "equation_constants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "constant_id"
-    t.bigint "equation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["constant_id"], name: "index_equation_constants_on_constant_id"
-    t.index ["equation_id"], name: "index_equation_constants_on_equation_id"
-  end
-
-  create_table "equation_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "quantity_id"
-    t.bigint "equation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["equation_id"], name: "index_equation_quantities_on_equation_id"
-    t.index ["quantity_id"], name: "index_equation_quantities_on_quantity_id"
   end
 
   create_table "equations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -264,15 +232,6 @@ ActiveRecord::Schema.define(version: 20180205101228) do
     t.string "wikipedia"
     t.index ["locale"], name: "index_quantity_translations_on_locale"
     t.index ["quantity_id"], name: "index_quantity_translations_on_quantity_id"
-  end
-
-  create_table "unit_of_measurement_quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "quantity_id"
-    t.bigint "unit_of_measurement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quantity_id"], name: "index_unit_of_measurement_quantities_on_quantity_id"
-    t.index ["unit_of_measurement_id"], name: "index_unit_of_measurement_quantities_on_unit_of_measurement_id"
   end
 
   create_table "unit_of_measurement_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

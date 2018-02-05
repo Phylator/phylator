@@ -33,6 +33,8 @@ gem 'notification-pusher-onesignal'
 gem 'devise-onesignal'
 gem 'pwa'
 gem 'r404'
+gem 'acts_as_belongable'
+gem 'randomize_id'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

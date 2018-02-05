@@ -1,9 +1,10 @@
 class Pack < ApplicationRecord
 
     extend FriendlyId
+    include AlgoliaSearch
     friendly_id :name, use: :slugged
     translates :name, :description
-    include AlgoliaSearch
+    
     algoliasearch do
         attribute :name, :description
         add_attribute :algolia_category

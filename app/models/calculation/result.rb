@@ -5,9 +5,7 @@ class Calculation::Result < ApplicationRecord
     before_validation :calc
 
     include Value
-    include MarginOfError
-
-    # validates :value, presence: true
+    # include MarginOfError
 
     belongs_to :calculation, class_name: '::Calculation'
 
@@ -64,12 +62,12 @@ class Calculation::Result < ApplicationRecord
                 equations[equation.quantity.pure_sym] << equation.pure_equation
                 ## Associate equation with calculation if used
                 if calculator.dependencies(equation.pure_equation).size == 0
-                    self.calculation.calculation_equations.create! equation: equation
+                    self.calculation.add_belongable! equation
                     ## Associate physical constant with calculation if used
                     ::Constant.all.each do |constant|
                         symbol = constant.pure_sym
                         if equation.pure_equation.include? symbol
-                            self.calculation.calculation_constants.create! constant: constant
+                            self.calculation.add_belongable! constant
                         end
                     end
                 end
@@ -145,7 +143,7 @@ class Calculation::Result < ApplicationRecord
                         Quantity.all.each do |quantity|
                             quantities << quantity if quantity.pure_sym == dependency
                         end
-                        self.calculation.calculation_dependencies.create!(quantity: quantities.first, index: i)
+                        self.calculation.add_belongable! quantities.first, index: i
                     end
                     i += 1
                 end

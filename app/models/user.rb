@@ -5,21 +5,12 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
 
-    before_create :randomize_id
-
     uses_native_apps
     has_devices
 
-    has_many :calculations
-    has_many :purchases
     attr_accessor :calculation_id
 
-    private
-
-    def randomize_id
-        begin
-            self.id = SecureRandom.random_number 9_223_372_036_854_775_807
-        end while self.class.where(id: self.id).exists?
-    end
+    has_many :calculations
+    has_many :purchases
 
 end

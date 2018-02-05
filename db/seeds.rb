@@ -76,7 +76,7 @@ units.each do |unit|
         u.update! unit
     end
     quantities&.each do |quantity|
-        u.unit_of_measurement_quantities.find_or_create_by! quantity: Quantity.find_by(name: quantity)
+        u.add_to_belonger! Quantity.find_by(name: quantity)
     end
     locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
