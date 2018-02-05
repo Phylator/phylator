@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     mount Pwa::Engine, at: ''
 
     scope 'app' do
+
         resources :quantities, only: [:index, :show] do
             get 'units_of_measurement', to: 'unit_of_measurements#index'
         end
@@ -21,8 +22,8 @@ Rails.application.routes.draw do
         resources :purchases, only: [:create]
 
         devise_for :users, path: '', controllers: {
-            sessions: 'users/devise/sessions',
-            registrations: 'users/devise/registrations'
+            sessions: 'users/sessions',
+            registrations: 'users/registrations'
         }, path_names: {
             sign_in: 'login',
             sign_up: 'signup',
@@ -34,15 +35,16 @@ Rails.application.routes.draw do
         get 'search', to: 'search#index'
         get 'search/render', to: 'search#renderer'
 
-        get 'setup', to: 'welcome#index'
+        get 'setup', to: 'welcome#setup'
         get 'language', to: 'welcome#language'
 
         root 'calculations#new', as: :app_root
+        
     end
 
 
     get 'privacy', to: 'welcome#privacy'
-    root 'welcome#product'
+    root 'welcome#index'
 
     match '*path', to: 'r404#not_found', via: :all
 

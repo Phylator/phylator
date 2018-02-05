@@ -1,6 +1,4 @@
-class Users::Devise::SessionsController < Devise::SessionsController
-
-    include TurbolinksAnimateHelper
+class Users::SessionsController < Devise::SessionsController
 
     def new
         turbolinks_animate 'fadein'

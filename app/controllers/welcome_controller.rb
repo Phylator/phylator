@@ -1,12 +1,12 @@
 class WelcomeController < ApplicationController
 
-    include TurbolinksAnimateHelper
-
     def index
         turbolinks_animate 'fadein'
-        unless params[:stay]
-            redirect_to app_root_url if current_user || session[:setup]
-        end
+    end
+
+    def setup
+        turbolinks_animate 'fadein'
+        redirect_to app_root_url if !params[:stay] && ( current_user || session[:setup] )
         session[:setup] = true
     end
 
@@ -15,9 +15,7 @@ class WelcomeController < ApplicationController
     end
 
     def privacy
-    end
-
-    def product
+        turbolinks_animate 'fadein'
     end
 
 end

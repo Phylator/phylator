@@ -1,21 +1,16 @@
 class ConstantsController < ApplicationController
 
-    include TurbolinksAnimateHelper
+    before_action :authenticate_user!
+    before_action :set_constant
 
-    before_action :authenticate_user!, only: [:show]
-    before_action :set_constant, only: [:show]
-
-    # GET /constants/1
-    # GET /constants/1.json
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
         authorize! :read, @constant
-        render layout: 'details'
+        render layout: 'app/show'
     end
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_constant
         @constant = Constant.friendly.find params[:id]
     end

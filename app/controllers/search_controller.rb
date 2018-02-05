@@ -1,12 +1,10 @@
 class SearchController < ApplicationController
 
-    include TurbolinksAnimateHelper
-
     before_action :authenticate_user!
 
     def index
-        turbolinks_animate 'fadeinright'
-        render layout: 'details'
+        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
+        render layout: 'app/show'
     end
 
     def renderer

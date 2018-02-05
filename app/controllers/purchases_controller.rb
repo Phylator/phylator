@@ -2,8 +2,6 @@ class PurchasesController < ApplicationController
 
     before_action :authenticate_user!
 
-    # POST /purchases
-    # POST /purchases.json
     def create
         @purchase = current_user.purchases.build
         @purchase.pack = Pack.friendly.find params[:id]

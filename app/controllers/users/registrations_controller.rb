@@ -1,6 +1,4 @@
-class Users::Devise::RegistrationsController < Devise::RegistrationsController
-
-    include TurbolinksAnimateHelper
+class Users::RegistrationsController < Devise::RegistrationsController
 
     def new
         turbolinks_animate 'fadein'

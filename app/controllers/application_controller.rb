@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :store_current_location, unless: :devise_controller?
-    before_action :set_animation, if: :devise_controller?
     helper_method :current_user
     before_action :set_raven_context
     before_action :set_locale
@@ -37,10 +36,6 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit :sign_up, keys: [:calculation_id]
         devise_parameter_sanitizer.permit :sign_in, keys: [:calculation_id]
-    end
-    
-    def set_animation
-        @animation = 'fadein'
     end
 
     def after_sign_in_path_for resource

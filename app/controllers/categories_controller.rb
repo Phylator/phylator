@@ -1,20 +1,19 @@
 class CategoriesController < ApplicationController
 
-    include TurbolinksAnimateHelper
-
     before_action :authenticate_user!
     before_action :set_category, only: [:show]
 
     def index
         turbolinks_animate 'fadein'
         @categories = Category.all
+        authorizes! :read, @categories
         render layout: 'app'
     end
 
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
         authorize! :read, @category
-        render layout: 'details'
+        render layout: 'app/show'
     end
 
     private
