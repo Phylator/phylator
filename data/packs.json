@@ -54,6 +54,17 @@
         }
     }
 }, {
+    "name": "Basics",
+    "description": "Description",
+    "price": 0,
+    "category": "Electromagnetism",
+    "locals": {
+        "de": {
+            "name": "Basis",
+            "description": "Beschreibung"
+        }
+    }
+}, {
     "name": "Electricity",
     "description": "Description",
     "price": 4,

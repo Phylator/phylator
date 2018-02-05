@@ -10,85 +10,119 @@ user&.encrypted_password
 
 
 # Categories
-categories = JSON.parse File.read('../data/categories.json')
+categories = JSON.parse File.read('data/categories.json')
 categories.each do |category|
     locals = category.delete 'locals'
-    category = Category.find_or_create_by! category
+    c = Category.find_by name: category['name']
+    if c.nil?
+        c = Category.create! category
+    else
+        c.update! category
+    end
     locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
-        category.update_attributes translation
+        c.update_attributes translation
     end
 end
 
 
 # Packs
-packs = JSON.parse File.read('../data/packs.json')
+packs = JSON.parse File.read('data/packs.json')
 packs.each do |pack|
     locals = pack.delete 'locals'
     pack[:category] = Category.find_by name: pack.delete('category')
-    pack = Pack.find_or_create_by! pack
+    pa = Pack.find_by name: pack['name'], category: pack['category']
+    if pa.nil?
+        pa = Pack.create! pack
+    else
+        pa.update! pack
+    end
     locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
-        pack.update_attributes translation
+        pa.update_attributes translation
     end
 end
 
 
 # Quantities
-quantities = JSON.parse File.read('../data/quantities.json')
+quantities = JSON.parse File.read('data/quantities.json')
 quantities.each do |quantity|
     locals = quantity.delete 'locals'
-    quantity[:pack] = Pack.find_by name: quantity.delete('pack'), category: quantity.delete('category')
+    category = Category.find_by name: quantity.delete('category')
+    quantity[:pack] = Pack.find_by name: quantity.delete('pack'), category: category
     quantity[:parent_quantity] = Quantity.find_by name: quantity.delete('parent_quantity')
-    quantity = Quantity.find_or_create_by! quantity
-    locals.each do |locale, translation|
-        translation[:locale] = locale.to_sym
-        quantity.update_attributes translation
+    q = Quantity.find_by name: quantity['name']
+    if q.nil?
+        q = Quantity.create! quantity
+    else
+        q.update! quantity
     end
-end
-
-
-# Constants
-constants = JSON.parse File.read('../data/constants.json')
-constants.each do |constant|
-    locals = constant.delete 'locals'
-    constant[:pack] = Pack.find_by name: constant.delete('pack'), category: constant.delete('category')
-    constant[:unit_of_measurement] = UnitOfMeasurement.find_by name: constant.delete('unit')
-    value = constant.delete('value')
-    constant = Constant.find_or_create_by! constant
-    constant.set_value = value
-    constant.save!
     locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
-        constant.update_attributes translation
+        q.update_attributes translation
     end
 end
 
 
 # Units
-units = JSON.parse File.read('../data/units.json')
+units = JSON.parse File.read('data/units.json')
 units.each do |unit|
     locals = unit.delete 'locals'
-    quantites = unit.delete('quantites')
-    unit = UnitOfMeasurement.find_or_create_by! unit
-    quantites.each do |quantity|
-        quantity = Quantity.find_by name: quantity
-        unit.unit_of_measurement_quantities.find_or_create_by! quantity: quantity
+    quantities = unit.delete 'quantities'
+    u = UnitOfMeasurement.find_by name: unit['name']
+    if u.nil?
+        u = UnitOfMeasurement.create! unit
+    else
+        u.update! unit
+    end
+    quantities&.each do |quantity|
+        u.unit_of_measurement_quantities.find_or_create_by! quantity: Quantity.find_by(name: quantity)
     end
     locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
-        unit.update_attributes translation
+        u.update_attributes translation
+    end
+end
+
+
+# Constants
+constants = JSON.parse File.read('data/constants.json')
+constants.each do |constant|
+    locals = constant.delete 'locals'
+    category = Category.find_by name: constant.delete('category')
+    constant[:pack] = Pack.find_by name: constant.delete('pack'), category: category
+    constant[:unit_of_measurement] = UnitOfMeasurement.find_by name: constant.delete('unit')
+    value = constant.delete('value')
+    c = Constant.find_by name: constant['name']
+    if c.nil?
+        c = Constant.create! constant
+    else
+        c.update! constant
+    end
+    c.set_value = value
+    c.save!
+    locals.each do |locale, translation|
+        translation[:locale] = locale.to_sym
+        c.update_attributes translation
     end
 end
 
 
 # Equations
-equations = JSON.parse File.read('../data/equations.json')
+equations = JSON.parse File.read('data/equations.json')
 equations.each do |data|
     quantity = Quantity.find_by name: data['quantity']
     data['equations'].each do |equation|
-        equation[:quantity] = quantity
-        equation = Equation.find_or_create_by! equation
+        equation = {
+            equation: equation,
+            quantity: quantity
+        }
+        e = Equation.find_by equation: equation[:equation], quantity: equation[:quantity]
+        if e.nil?
+            e = Equation.create! equation
+        else
+            e.update! equation
+        end
     end
 end
 
@@ -96,6 +130,6 @@ end
 
 
 # Algolia
+Pack.reindex
 Quantity.reindex
 Constant.reindex
-Pack.reindex

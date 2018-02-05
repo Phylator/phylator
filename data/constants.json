@@ -7,7 +7,7 @@
     "pack": "Relativity",
     "locals": {
         "de": {
-            "name": "Lichtegeschwindigkeit im Vakuum",
+            "name": "Lichtgeschwindigkeit im Vakuum"
         }
     }
 }, {
@@ -19,7 +19,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Gravitationskonstante",
+            "name": "Gravitationskonstante"
         }
     }
 }, {
@@ -31,7 +31,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Plancksches Wirkungsquantum",
+            "name": "Plancksches Wirkungsquantum"
         }
     }
 }, {
@@ -43,7 +43,7 @@
     "pack": "Magnetism",
     "locals": {
         "de": {
-            "name": "Magnetische Feldkonstante",
+            "name": "Magnetische Feldkonstante"
         }
     }
 }, {
@@ -55,7 +55,7 @@
     "pack": "Electricity",
     "locals": {
         "de": {
-            "name": "Elektrische Feldkonstante",
+            "name": "Elektrische Feldkonstante"
         }
     }
 }, {
@@ -67,7 +67,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Absoluter Nullpunkt",
+            "name": "Absoluter Nullpunkt"
         }
     }
 }, {
@@ -79,7 +79,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Atomare Masseeinheit",
+            "name": "Atomare Masseeinheit"
         }
     }
 }, {
@@ -91,7 +91,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Avogadro-Konstante",
+            "name": "Avogadro-Konstante"
         }
     }
 }, {
@@ -103,7 +103,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Boltzmann-Konstante",
+            "name": "Boltzmann-Konstante"
         }
     }
 }, {
@@ -115,7 +115,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Compton-Wellenlänge des Elektrons",
+            "name": "Compton-Wellenlänge des Elektrons"
         }
     }
 }, {
@@ -127,7 +127,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Faraday-Konstante",
+            "name": "Faraday-Konstante"
         }
     }
 }, {
@@ -139,7 +139,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Loschmidt-Konstante",
+            "name": "Loschmidt-Konstante"
         }
     }
 }, {
@@ -151,7 +151,7 @@
     "pack": "Optics",
     "locals": {
         "de": {
-            "name": "Rydberg-Konstante",
+            "name": "Rydberg-Konstante"
         }
     }
 }, {
@@ -163,7 +163,7 @@
     "pack": "Optics",
     "locals": {
         "de": {
-            "name": "Rydberg-Frequenz",
+            "name": "Rydberg-Frequenz"
         }
     }
 }, {
@@ -175,7 +175,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Stefan-Boltzmann-Konstante",
+            "name": "Stefan-Boltzmann-Konstante"
         }
     }
 }, {
@@ -187,7 +187,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Universelle Gaskonstante",
+            "name": "Universelle Gaskonstante"
         }
     }
 }, {
@@ -199,7 +199,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Wiensche Konstante",
+            "name": "Wiensche Konstante"
         }
     }
 }, {
@@ -211,7 +211,7 @@
     "pack": "Advanced",
     "locals": {
         "de": {
-            "name": "Molares Normvolumen",
+            "name": "Molares Normvolumen"
         }
     }
 }, {
@@ -223,7 +223,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Normfallbeschleunigung",
+            "name": "Normfallbeschleunigung"
         }
     }
 }, {
@@ -235,7 +235,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Normtemperatur",
+            "name": "Normtemperatur"
         }
     }
 }, {
@@ -247,7 +247,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Elementarladung",
+            "name": "Elementarladung"
         }
     }
 }, {
@@ -259,7 +259,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Ruhemasse eines Elektrons",
+            "name": "Ruhemasse eines Elektrons"
         }
     }
 }, {
@@ -271,7 +271,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Ruhemasse eines Neutrons",
+            "name": "Ruhemasse eines Neutrons"
         }
     }
 }, {
@@ -283,7 +283,7 @@
     "pack": "Basics",
     "locals": {
         "de": {
-            "name": "Ruhemasse eines Protons",
+            "name": "Ruhemasse eines Protons"
         }
     }
 }]

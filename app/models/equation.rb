@@ -14,7 +14,7 @@ class Equation < ApplicationRecord
     has_many :constants, through: :equation_constants
 
     def pure_equation
-        self.equation.tr('"', '')
+        self.equation.tr("'", '')
     end
 
     private

@@ -673,7 +673,7 @@
     "symbol": "cd",
     "name": "candela",
     "base": true,
-    "quantities": ["Liminous intensity"],
+    "quantities": ["Luminous intensity"],
     "locals": {
         "de": {
             "name": "Candela"
