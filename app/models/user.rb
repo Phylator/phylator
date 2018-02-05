@@ -8,6 +8,7 @@ class User < ApplicationRecord
     before_create :randomize_id
 
     uses_native_apps
+    has_devices
 
     has_many :calculations
     has_many :purchases

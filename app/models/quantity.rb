@@ -2,7 +2,7 @@ class Quantity < ApplicationRecord
 
     extend FriendlyId
     friendly_id :name, use: :slugged
-    translates :name, :description
+    translates :name, :description, :wikipedia
     include AlgoliaSearch
     algoliasearch do
         attribute :name, :description

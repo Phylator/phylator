@@ -6,5 +6,10 @@ algoliasearch:
     application_id: BELGHUUECR
     api_key: 3ead4a057c74d82e87a67abac9342eb1
     search_key: 129450ba7709f82016843156552e66db
+
+onesignal:
+    app_id: 60054b7e-95db-4ba1-bcb6-8611072fe26b
+    api_key: MzQwOTgwYmYtMWQyMC00ZDYyLWI2MDQtOTA5OThkYTI2ZDc3
+
 sentry_raven:
     dsn: 'https://2925cce1cec0488fa1ebae95bfb147eb:c51669cfaf3f4e3ea6d1b95ffe4a2bcc@sentry.io/260645'

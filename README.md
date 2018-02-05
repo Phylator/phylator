@@ -7,7 +7,7 @@ Available on:
 * [Windows 10](https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc)
 * [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
 
-Data:
+View at, enhance or add to Phylator's data:
 
 * [Quantities](data/quantities.json)
 * [Equations](data/equations.json)
