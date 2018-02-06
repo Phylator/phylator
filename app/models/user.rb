@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
     uses_native_apps
     has_devices
+    notification_target
 
     attr_accessor :calculation_id
 
