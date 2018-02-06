@@ -141,6 +141,7 @@ GEM
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       railties (>= 5.0)
+    dotenv (0.7.0)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -174,6 +175,9 @@ GEM
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18-x86-mingw32)
+    foreman (0.64.0)
+      dotenv (~> 0.7.0)
+      thor (>= 0.13.6)
     friendly_id (5.2.3)
       activerecord (>= 4.0.0)
     geocoder (1.4.5)
@@ -404,6 +408,7 @@ DEPENDENCIES
   dentaku!
   devise
   devise-onesignal
+  foreman
   friendly_id
   globalize!
   haml

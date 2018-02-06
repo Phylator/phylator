@@ -39,6 +39,7 @@ gem 'randomize_id'
 gem 'cancancan-system'
 gem 'mozaic'
 gem 'myg'
+gem 'foreman'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
