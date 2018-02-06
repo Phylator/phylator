@@ -3,7 +3,6 @@ window.jQuery = window.$ = $;
 require('izimodal');
 
 export function init() {
-    console.log('flexdatalist');
     $('.modal').iziModal({
         width: '85%'
     });
@@ -11,7 +10,6 @@ export function init() {
         event.preventDefault();
         $('.modal' + $(this).data('modal')).iziModal('open');
     });
-    console.log('flexdatalist');
 };
 
 function componentsModalOpen(el) {
