@@ -1,6 +1,6 @@
 stripe:
-    publishable_key: pk_test_I8hK5VaNf5LAXkKxvSUR81DG
-    secret_key: sk_test_qj9K8cdQsPspAnEecKUhCvfv
+    publishable_key: pk_live_xCz1DNtVfEgc5o55T8zpRqp5
+    secret_key: sk_live_IiBfD8YoDg4sQhchwPkcj7S9
 
 algoliasearch:
     application_id: N0HHQGSRM0
