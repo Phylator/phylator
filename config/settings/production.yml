@@ -1,6 +1,6 @@
 stripe:
-    publishable_key: pk_live_xCz1DNtVfEgc5o55T8zpRqp5
-    secret_key: sk_live_IiBfD8YoDg4sQhchwPkcj7S9
+    publishable_key: <%= ENV["STRIPE_PUBLISHABLE_KEY"] %>
+    secret_key: <%= ENV["STRIPE_SECRET_KEY"] %>
 
 algoliasearch:
     application_id: N0HHQGSRM0
