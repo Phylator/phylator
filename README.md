@@ -1,30 +1,29 @@
-# Phylator - A simple but powerful calculator for physics.
+<div align="center">
+	<img src="https://phylator.com/icon_76x76.png" width="76">
+	<h1>Phylator</h1>
+	<h5>A simple but powerful calculator for physics</h4>
+	<br>
+	<h4>
+		<a href="https://phylator.com">Website</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="https://play.google.com/store/apps/details?id=com.herokuapp.phylator">Android</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="https://phylator.com">iOS</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc">Windows</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng">Chrome</a>
+	</h4>
+</div>
+<br>
+<br>
+<br>
 
-Available on:
-
-* [Android](https://play.google.com/store/apps/details?id=com.herokuapp.phylator)
-* iOS
-* [Windows 10](https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc)
-* [Chrome](https://chrome.google.com/webstore/detail/phylator/ggpfjgcjfolgjiblbgfekmboejonlnng)
-
-View at, enhance or add to Phylator's data:
-
-* [Quantities](data/quantities.json)
-* [Equations](data/equations.json)
-* [Units](data/units.json)
-* [Constants](data/constants.json)
-* [Categories](data/categories.json)
-* [Packs](data/packs.json)
-* [SI prefixes](data/si_prefixes.json)
-
----
-
-**https://phylator.com**
-
----
+<img src="https://phylator.com/assets/packages/welcome/product/main@2x-88b2e6ca9cb76df1381b2de8267b0425468925e9dc7f6dd21461aae34b4bd600.png" height="500" align="right">
 
 ## Table of Contents
 
+* [Data](#data)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -35,6 +34,20 @@ View at, enhance or add to Phylator's data:
         * [Development intructions](#development-instructions)
         * [Deployment intructions](#deployment-instructions)
 * [License](#license)
+
+---
+
+## Data
+
+View at, enhance or add to Phylator's data:
+
+* [Quantities](data/quantities.json)
+* [Equations](data/equations.json)
+* [Units](data/units.json)
+* [Constants](data/constants.json)
+* [Categories](data/categories.json)
+* [Packs](data/packs.json)
+* [SI prefixes](data/si_prefixes.json)
 
 ---
 
