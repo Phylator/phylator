@@ -8,7 +8,7 @@
 		&nbsp;&nbsp;&nbsp;
 		<a href="https://play.google.com/store/apps/details?id=com.herokuapp.phylator">Android</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="https://phylator.com">iOS</a>
+		iOS
 		&nbsp;&nbsp;&nbsp;
 		<a href="https://www.microsoft.com/en-us/store/p/phylator/9p2s8l446bhc">Windows</a>
 		&nbsp;&nbsp;&nbsp;
