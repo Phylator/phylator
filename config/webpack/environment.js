@@ -1,7 +1,6 @@
 const { environment } = require('@rails/webpacker')
 const erb = require('./loaders/erb')
-const sass = require('./loaders/sass')
 
 environment.loaders.append('erb', erb)
-environment.loaders.prepend('sass', sass)
+environment.loaders.get('sass').use.find(item => item.loader === 'sass-loader').options.includePaths = ['node_modules']
 module.exports = environment
