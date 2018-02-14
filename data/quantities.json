@@ -984,7 +984,7 @@
     }
 }, {
     "symbol": "n<sub>ω</sub>",
-    "name": "Rotationnumber",
+    "name": "Rotation number",
     "description": "Accumulative number of rotations",
     "wikipedia": "https://en.wikipedia.org/wiki/Rotational_speed",
     "vector": false,

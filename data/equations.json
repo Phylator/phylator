@@ -1,103 +1,300 @@
 [{
     "quantity": "Acceleration",
-    "equations": ["F / m", "( v - v_0 ) / t", "( v^2 - v_0^2 ) / ( 2 * s )", "2 * ( s - s_0 - v_0 * t ) / t^2", "2 * s / t^2"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F / m" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Evenly accelerated movement",
+        "equations": [
+            { "equation": "( v - v_0 ) / t" },
+            { "equation": "2 * ( s - s_0 - v_0 * t ) / t^2" },
+            { "equation": "2 * s / t^2", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] },
+            { "equation": "v / t", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] },
+            { "equation": "v^2 / ( 2 * s )", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }]
 }, {
     "quantity": "Angular acceleration",
-    "equations": ["v^2 / r", "ω^2 * r"]
+    "categories": [{
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "v^2 / r" }, { "equation": "ω^2 * r" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
 }, {
     "quantity": "Angular velocity",
-    "equations": ["F_r / ( m * r )", "v / r", "sqrt( a_α / r )"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_r / ( m * r )" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "v / r" }, { "equation": "sqrt( a_α / r )" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
 }, {
     "quantity": "Area",
-    "equations": ["F_p / p_f"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_p / p_f" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Buoyancy",
-    "equations": ["ρ * V * g_0"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "ρ * V * g_0" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Centripetal force",
-    "equations": ["m * v^2 / r", "m * 4 * π^2 * r / T_t^2", "m * ω^2 * r"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "m * v^2 / r" }, { "equation": "m * 4 * π^2 * r / T_t^2" }, { "equation": "m * ω^2 * r" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Coefficient of friction",
-    "equations": ["F_R / F_N"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_R / F_N" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Density",
-    "equations": ["F_B / ( V * g_0 )"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_B / ( V * g_0 )" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Diameter",
-    "equations": ["2 * r"]
+    "categories": [{
+        "title": "Basics",
+        "equations": [{ "equation": "2 * r" }],
+        "locals": { "de": { "title": "Basis" } }
+    }]
 }, {
     "quantity": "Distance traveled",
-    "equations": ["W / F", "( v^2 - v_0^2 ) / ( 2 * a )", "v * t + s_0", "a / 2 * t^2 + v_0 * t + s_0", "g_0 / 2 * t^2", "v^2 / ( 2 * g_0 )"]
-}, {
-    "quantity": "Electric current",
-    "equations": ["U / R", "P / U"]
-}, {
-    "quantity": "Electric potential",
-    "equations": ["I * R", "P / I"]
-}, {
-    "quantity": "Electrical resistance",
-    "equations": ["U / I"]
-}, {
-    "quantity": "Energy",
-    "equations": ["P * t"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "W / F" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Uniform rectilinear motion",
+        "equations": [{ "equation": "v * t + s_0" }],
+        "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated movement",
+        "equations": [
+            { "equation": "a / 2 * t^2 + v_0 * t + s_0" },
+            { "equation": "a / 2 * t^2", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] },
+            { "equation": "( v * t ) / 2", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] },
+            { "equation": "v^2 / ( 2 * a )", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }, {
+        "title": "Freefall",
+        "equations": [{ "equation": "g_0 / 2 * t^2" }, { "equation": "v^2 / ( 2 * g_0 )" }],
+        "locals": { "de": { "title": "Freier Fall" } }
+    }]
 }, {
     "quantity": "Force",
-    "equations": ["m * a", "W / s", "G_N * ( m * m1 ) / r^2", "Δp / t", "τ / r"]
+    "categories": [{
+        "title": "Forces in mechanics",
+        "equations": [{ "equation": "m * a" }, { "equation": "W / s" }, { "equation": "G_N * ( m * m1 ) / r^2" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Newton's laws",
+        "equations": [{ "equation": "Δp / t" }],
+        "locals": { "de": { "title": "Newtonsche Gesetze" } }
+    }, {
+        "title": "Torque and balance",
+        "equations": [{ "equation": "τ / r", "conditions": ["`r ⊥ F`"] }],
+        "locals": { "de": { "title": "Drehmoment und Gleichgewicht" } }
+    }]
 }, {
     "quantity": "Friction",
-    "equations": ["μ_R * F_N"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "μ_R * F_N" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Impulse",
-    "equations": ["F * t"]
+    "categories": [{
+        "title": "Newton's laws",
+        "equations": [{ "equation": "F * t" }],
+        "locals": { "de": { "title": "Newtonsche Gesetze" } }
+    }]
 }, {
     "quantity": "Initial distance",
-    "equations": ["s - v * t", "s - a / 2 * t^2 - v_0 * t"]
+    "categories": [{
+        "title": "Uniform rectilinear motion",
+        "equations": [{ "equation": "s - v * t" }],
+        "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated movement",
+        "equations": [{ "equation": "s - a / 2 * t^2 - v_0 * t" }],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }]
 }, {
     "quantity": "Initial velocity",
-    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )", "( s - s_0 - a / 2 * t^2 ) / t"]
+    "categories": [{
+        "title": "Evenly accelerated movement",
+        "equations": [{ "equation": "v - a * t" }, { "equation": "( s - s_0 - a / 2 * t^2 ) / t" }],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }]
 }, {
     "quantity": "Mass",
-    "equations": ["F / a", "p / v", "w / g_0", "F_r * r / v^2", "F_r * T_t^2 / ( 4 * π^2 * r )", "F_r / ( ω^2 * r )", "F * r^2 / G_N"]
-}, {
-    "quantity": "Momentum",
-    "equations": ["m * v"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [
+            { "equation": "F / a" },
+            { "equation": "w / g_0" },
+            { "equation": "F_r * r / v^2" },
+            { "equation": "F_r * T_t^2 / ( 4 * π^2 * r )" },
+            { "equation": "F_r / ( ω^2 * r )" },
+            { "equation": "F * r^2 / ( G_N * m )" }
+        ],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Normal force",
-    "equations": ["F_R / μ_R"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_R / μ_R" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Period",
-    "equations": ["F_r / ( m * 4 * π^2 * r )", "2 * π * r / v"]
-}, {
-    "quantity": "Power",
-    "equations": ["W / t", "E / t", "I * U"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_r / ( m * 4 * π^2 * r )" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "2 * π * r / v" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
 }, {
     "quantity": "Pressure",
-    "equations": ["F_p / A"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_p / A" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Pressure force",
-    "equations": ["p_f * A"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "p_f * A" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Radius",
-    "equations": ["d / 2", "F_r / ( m * v^2 )", "F_r * T_t^2 / ( m * 4 * π^2 )", "F_r / ( m * ω^2 )", "F / ( G_N * m * m1 )", "τ / F", "( v * T_t ) / ( 2 * π )", "v / ( 2 * π * n_ω )", "v / ω", "v^2 / a_α", "a_α / ω^2"]
+    "categories": [{
+        "title": "Basics",
+        "equations": [{ "equation": "d / 2" }],
+        "locals": { "de": { "title": "Basis" } }
+    }, {
+        "title": "Forces in Mechanics",
+        "equations": [
+            { "equation": "F_r / ( m * v^2 )" },
+            { "equation": "F_r * T_t^2 / ( m * 4 * π^2 )" },
+            { "equation": "F_r / ( m * ω^2 )" },
+            { "equation": "F / ( G_N * m * m1 )" }
+        ],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Torque and balance",
+        "equations": [{ "equation": "τ / F", "conditions": ["`r ⊥ F`"] }],
+        "locals": { "de": { "title": "Drehmoment und Gleichgewicht" } }
+    }, {
+        "title": "Uniform rectilinear motion",
+        "equations": [{ "equation": "( v * T_t ) / ( 2 * π )" }],
+        "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
+    }, {
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "v / ( 2 * π * n_ω )" }, { "equation": "v / ω" }, { "equation": "v^2 / a_α" }, { "equation": "a_α / ω^2" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
 }, {
-    "quantity": "Rotationnumber",
-    "equations": ["v / ( 2 * π * r )"]
+    "quantity": "Rotation number",
+    "categories": [{
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "v / ( 2 * π * r )" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
 }, {
     "quantity": "Time",
-    "equations": ["W / P", "E / P", "( v - v_0 ) / a", "Δp / F", "( s - s_0 ) / v", "sqrt( 2 * s / a )", "v / g_0"]
+    "categories": [{
+        "title": "Newton's laws",
+        "equations": [{ "equation": "Δp / F" }],
+        "locals": { "de": { "title": "Newtonsche Gesetze" } }
+    }, {
+        "title": "Uniform rectilinear motion",
+        "equations": [{ "equation": "( s - s_0 ) / v" }],
+        "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated movement",
+        "equations": [{ "equation": "( v - v_0 ) / a" }, { "equation": "sqrt( 2 * s / a )" }],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }, {
+        "title": "Freefall",
+        "equations": [{ "equation": "v / g_0" }],
+        "locals": { "de": { "title": "Freier Fall" } }
+    }]
 }, {
     "quantity": "Torque",
-    "equations": ["r * F"]
+    "categories": [{
+        "title": "Torque and balance",
+        "equations": [{ "equation": "r * F", "conditions": ["`r ⊥ F`"] }],
+        "locals": { "de": { "title": "Drehmoment und Gleichgewicht" } }
+    }]
 }, {
     "quantity": "Velocity",
-    "equations": ["p / m", "v_0 + a * t", "sqrt( v_0^2 + 2 * a * s )", "sqrt( F_r * r / m )", "( s - s_0 ) / t", "2 * π * r / T_t", "2 * π * r * n_ω", "ω * r", "a_α * r", "g_0 * t", "sqrt( 2 * g_0 * s )"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "sqrt( F_r * r / m )" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Uniform rectilinear motion",
+        "equations": [{ "equation": "( s - s_0 ) / t" }],
+        "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
+    }, {
+        "title": "Uniform circular motion",
+        "equations": [{ "equation": "2 * π * r / T_t" }, { "equation": "2 * π * r * n_ω" }, { "equation": "ω * r" }, { "equation": "sqrt( a_α * r )" }],
+        "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Evenly accelerated movement",
+        "equations": [{ "equation": "a * t + v_0" }],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }, {
+        "title": "Freefall",
+        "equations": [{ "equation": "g_0 * t" }, { "equation": "sqrt( 2 * g_0 * s )" }],
+        "locals": { "de": { "title": "Freier Fall" } }
+    }]
 }, {
     "quantity": "Volume",
-    "equations": ["F_B / ( ρ * g_0 )"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F_B / ( ρ * g_0 )" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Weight",
-    "equations": ["m * g_0"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "m * g_0" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }, {
     "quantity": "Work",
-    "equations": ["F * s", "P * t"]
+    "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "F * s" }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
 }]

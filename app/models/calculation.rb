@@ -20,7 +20,8 @@ class Calculation < ApplicationRecord
 
     has_one :result, class_name: 'Calculation::Result'
     has_many :measurements, class_name: 'Calculation::Measurement'
-    belonger :equations, 'Equation'
+    belonger :equations, 'Equation', scope: :dependency
+    belonger :equations, 'Equation', scope: :exclude
     belonger :constants, 'Constant'
     belonger :dependencies, 'Quantity'
 

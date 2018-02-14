@@ -154,16 +154,25 @@ end
 equations = JSON.parse File.read('data/equations.json')
 equations.each do |data|
     quantity = Quantity.find_by name: data['quantity']
-    data['equations'].each do |equation|
-        equation = {
-            equation: equation,
-            quantity: quantity
-        }
-        e = Equation.find_by equation: equation[:equation], quantity: equation[:quantity]
-        if e.nil?
-            e = Equation.create! equation
-        else
-            e.update! equation
+    data['categories'].each do |category_data|
+        title = category_data['title']
+        category_data['equations'].each do |equation|
+            equation = {
+                equation: equation['equation'],
+                title: title,
+                conditions: equation['conditions'],
+                quantity: quantity
+            }
+            e = Equation.find_by equation: equation[:equation], quantity: equation[:quantity]
+            if e.nil?
+                e = Equation.create! equation
+            else
+                e.update! equation
+            end
+            category_data['locals'].each do |locale, translation|
+                translation[:locale] = locale.to_sym
+                e.update_attributes translation
+            end
         end
     end
 end

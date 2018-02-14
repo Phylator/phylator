@@ -4,6 +4,8 @@ class Equation < ApplicationRecord
 
     acts_as_belonger
     acts_as_belongable
+    serialize :conditions, Array
+    translates :title, :conditions
 
     validates :equation, presence: true
 
@@ -11,7 +13,8 @@ class Equation < ApplicationRecord
     belonger :constants, 'Constant'
 
     belongs_to :quantity
-    belongable :calculations, 'Calculation'
+    belongable :calculations, 'Calculation', scope: :dependency
+    belongable :excluded_from_calculations, 'Calculation', scope: :exclude
 
     def pure_equation
         self.equation.tr "'", ''
