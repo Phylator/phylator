@@ -1,9 +1,12 @@
 [{
     "quantity": "Acceleration",
-    "equations": ["F / m", "( v - v_'init' ) / t", "( v^2 - v_'init'^2 ) / ( 2 * s )"]
+    "equations": ["F / m", "( v - v_0 ) / t", "( v^2 - v_0^2 ) / ( 2 * s )"]
+}, {
+    "quantity": "Angular acceleration",
+    "equations": ["v^2 / r", "ω^2 * r"]
 }, {
     "quantity": "Angular velocity",
-    "equations": ["F_r / ( m * r )"]
+    "equations": ["F_r / ( m * r )", "v / r", "sqrt( a_α / r )"]
 }, {
     "quantity": "Area",
     "equations": ["F_p / p_f"]
@@ -36,13 +39,19 @@
     "equations": ["P * t"]
 }, {
     "quantity": "Force",
-    "equations": ["m * a", "W / s", "G_N * ( m * m1 ) / r^2"]
+    "equations": ["m * a", "W / s", "G_N * ( m * m1 ) / r^2", "Δp / t", "τ / r"]
 }, {
     "quantity": "Friction",
     "equations": ["μ_R * F_N"]
 }, {
     "quantity": "Distance traveled",
-    "equations": ["W / F", "( v^2 - v_'init'^2 ) / ( 2 * a )"]
+    "equations": ["W / F", "( v^2 - v_0^2 ) / ( 2 * a )", "v * t + s_0"]
+}, {
+    "quantity": "Impulse",
+    "equations": ["F * t"]
+}, {
+    "quantity": "Initial distance",
+    "equations": ["s - v * t"]
 }, {
     "quantity": "Initial velocity",
     "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )"]
@@ -57,7 +66,7 @@
     "equations": ["F_R / μ_R"]
 }, {
     "quantity": "Period",
-    "equations": ["F_r / ( m * 4 * π^2 * r )"]
+    "equations": ["F_r / ( m * 4 * π^2 * r )", "2 * π * r / v"]
 }, {
     "quantity": "Power",
     "equations": ["W / t", "E / t", "I * U"]
@@ -69,13 +78,19 @@
     "equations": ["p_f * A"]
 }, {
     "quantity": "Radius",
-    "equations": ["d / 2", "F_r / ( m * v^2 )", "F_r * T_t^2 / ( m * 4 * π^2 )", "F_r / ( m * ω^2 )", "F / ( G_N * m * m1 )"]
+    "equations": ["d / 2", "F_r / ( m * v^2 )", "F_r * T_t^2 / ( m * 4 * π^2 )", "F_r / ( m * ω^2 )", "F / ( G_N * m * m1 )", "τ / F", "( v * T_t ) / ( 2 * π )", "v / ( 2 * π * n_ω )", "v / ω", "v^2 / a_α", "a_α / ω^2"]
+}, {
+    "quantity": "Rotationnumber",
+    "equations": ["v / ( 2 * π * r )"]
 }, {
     "quantity": "Time",
-    "equations": ["W / P", "E / P", "( v - v_'init' ) / a"]
+    "equations": ["W / P", "E / P", "( v - v_0 ) / a", "Δp / F", "( s - s_0 ) / v"]
+}, {
+    "quantity": "Torque",
+    "equations": ["r * F"]
 }, {
     "quantity": "Velocity",
-    "equations": ["p / m", "v_'init' + a * t", "sqrt( v_'init'^2 + 2 * a * s )", "sqrt( F_r * r / m )"]
+    "equations": ["p / m", "v_0 + a * t", "sqrt( v_0^2 + 2 * a * s )", "sqrt( F_r * r / m )", "( s - s_0 ) / t", "2 * π * r / T_t", "2 * π * r * n_ω", "ω * r", "a_α * r"]
 }, {
     "quantity": "Volume",
     "equations": ["F_B / ( ρ * g_0 )"]

@@ -2,7 +2,7 @@
     "symbol": "m",
     "name": "meter",
     "base": true,
-    "quantities": ["Length", "Distance traveled", "Wavelength", "Radius", "Diameter"],
+    "quantities": ["Length", "Distance traveled", "Initial distance", "Wavelength", "Radius", "Diameter"],
     "locals": {
         "de": {
             "name": "Meter"
@@ -12,7 +12,7 @@
     "symbol": "in",
     "name": "inch",
     "to_base": "/0.254",
-    "quantities": ["Length", "Distance traveled", "Wavelength", "Radius", "Diameter"],
+    "quantities": ["Length", "Distance traveled", "Initial distance", "Wavelength", "Radius", "Diameter"],
     "locals": {
         "de": {
             "name": "Zoll"
@@ -22,7 +22,7 @@
     "symbol": "ft",
     "name": "foot",
     "to_base": "/3.048",
-    "quantities": ["Length", "Distance traveled", "Wavelength", "Radius", "Diameter"],
+    "quantities": ["Length", "Distance traveled", "Initial distance", "Wavelength", "Radius", "Diameter"],
     "locals": {
         "de": {
             "name": "Fuß"
@@ -32,7 +32,7 @@
     "symbol": "yd",
     "name": "yard",
     "to_base": "/9.144",
-    "quantities": ["Length", "Distance traveled", "Wavelength", "Radius", "Diameter"],
+    "quantities": ["Length", "Distance traveled", "Initial distance", "Wavelength", "Radius", "Diameter"],
     "locals": {
         "de": {
             "name": "Yard"
@@ -42,7 +42,7 @@
     "symbol": "mi",
     "name": "miles",
     "to_base": "/16093.44",
-    "quantities": ["Length", "Distance traveled", "Wavelength", "Radius", "Diameter"],
+    "quantities": ["Length", "Distance traveled", "Initial distance", "Wavelength", "Radius", "Diameter"],
     "locals": {
         "de": {
             "name": "Meile"

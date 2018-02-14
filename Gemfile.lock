@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/rubysolo/dentaku.git
-  revision: 4869b10e820a3983b2dc249ffd14c5f8ee111b30
+  revision: a407a28587951ec8dc0bffd54f9c347d1d8d018f
   specs:
     dentaku (3.1.0)
 
@@ -420,7 +420,6 @@ DEPENDENCIES
   myg
   mysql2 (~> 0)
   native
-  nestive-rails
   notification-handler
   notification-pusher-onesignal
   pg (~> 0)

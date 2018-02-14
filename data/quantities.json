@@ -635,7 +635,23 @@
         }
     }
 }, {
-    "symbol": "v<sub>init</sub>",
+    "symbol": "s<sub>0</sub>",
+    "name": "Initial distance",
+    "description": "Initial distance an object traveled",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Length",
+    "locals": {
+        "de": {
+            "name": "Anfangsweg",
+            "description": "Zurückgelegter Anfangsweg eines Objekts",
+            "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
+        }
+    }
+}, {
+    "symbol": "v<sub>0</sub>",
     "name": "Initial velocity",
     "description": "Initial speed and direction of an object",
     "wikipedia": "https://en.wikipedia.org/wiki/Velocity",
@@ -964,6 +980,21 @@
             "name": "Reaktionsgeschwindigkeit",
             "description": "Geschwindigkeit einer chemischen Reaktion",
             "wikipedia": "https://de.wikipedia.org/wiki/Kinetik_(Chemie)#Die_Reaktionsgeschwindigkeit"
+        }
+    }
+}, {
+    "symbol": "n<sub>ω</sub>",
+    "name": "Rotationnumber",
+    "description": "Accumulative number of rotations",
+    "wikipedia": "https://en.wikipedia.org/wiki/Rotational_speed",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Drehzahl",
+            "description": "Häufigkeit der Umdrehungen",
+            "wikipedia": "https://de.wikipedia.org/wiki/Drehzahl"
         }
     }
 }, {
