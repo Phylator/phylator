@@ -1,6 +1,6 @@
 [{
     "quantity": "Acceleration",
-    "equations": ["F / m", "( v - v_0 ) / t", "( v^2 - v_0^2 ) / ( 2 * s )"]
+    "equations": ["F / m", "( v - v_0 ) / t", "( v^2 - v_0^2 ) / ( 2 * s )", "2 * ( s - s_0 - v_0 * t ) / t^2", "2 * s / t^2"]
 }, {
     "quantity": "Angular acceleration",
     "equations": ["v^2 / r", "ω^2 * r"]
@@ -26,6 +26,9 @@
     "quantity": "Diameter",
     "equations": ["2 * r"]
 }, {
+    "quantity": "Distance traveled",
+    "equations": ["W / F", "( v^2 - v_0^2 ) / ( 2 * a )", "v * t + s_0", "a / 2 * t^2 + v_0 * t + s_0", "g_0 / 2 * t^2", "v^2 / ( 2 * g_0 )"]
+}, {
     "quantity": "Electric current",
     "equations": ["U / R", "P / U"]
 }, {
@@ -44,17 +47,14 @@
     "quantity": "Friction",
     "equations": ["μ_R * F_N"]
 }, {
-    "quantity": "Distance traveled",
-    "equations": ["W / F", "( v^2 - v_0^2 ) / ( 2 * a )", "v * t + s_0"]
-}, {
     "quantity": "Impulse",
     "equations": ["F * t"]
 }, {
     "quantity": "Initial distance",
-    "equations": ["s - v * t"]
+    "equations": ["s - v * t", "s - a / 2 * t^2 - v_0 * t"]
 }, {
     "quantity": "Initial velocity",
-    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )"]
+    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )", "( s - s_0 - a / 2 * t^2 ) / t"]
 }, {
     "quantity": "Mass",
     "equations": ["F / a", "p / v", "w / g_0", "F_r * r / v^2", "F_r * T_t^2 / ( 4 * π^2 * r )", "F_r / ( ω^2 * r )", "F * r^2 / G_N"]
@@ -84,13 +84,13 @@
     "equations": ["v / ( 2 * π * r )"]
 }, {
     "quantity": "Time",
-    "equations": ["W / P", "E / P", "( v - v_0 ) / a", "Δp / F", "( s - s_0 ) / v"]
+    "equations": ["W / P", "E / P", "( v - v_0 ) / a", "Δp / F", "( s - s_0 ) / v", "sqrt( 2 * s / a )", "v / g_0"]
 }, {
     "quantity": "Torque",
     "equations": ["r * F"]
 }, {
     "quantity": "Velocity",
-    "equations": ["p / m", "v_0 + a * t", "sqrt( v_0^2 + 2 * a * s )", "sqrt( F_r * r / m )", "( s - s_0 ) / t", "2 * π * r / T_t", "2 * π * r * n_ω", "ω * r", "a_α * r"]
+    "equations": ["p / m", "v_0 + a * t", "sqrt( v_0^2 + 2 * a * s )", "sqrt( F_r * r / m )", "( s - s_0 ) / t", "2 * π * r / T_t", "2 * π * r * n_ω", "ω * r", "a_α * r", "g_0 * t", "sqrt( 2 * g_0 * s )"]
 }, {
     "quantity": "Volume",
     "equations": ["F_B / ( ρ * g_0 )"]
