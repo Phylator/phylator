@@ -14,22 +14,6 @@
         }
     }
 }, {
-    "symbol": "s",
-    "name": "Distance traveled",
-    "description": "Distance an object traveled",
-    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
-    "vector": false,
-    "category": "Mechanics",
-    "pack": "Basics",
-    "parent_quantity": "Length",
-    "locals": {
-        "de": {
-            "name": "Zurückgelegte Strecke",
-            "description": "Von einem Objekt zurückgelegte Strecke",
-            "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
-        }
-    }
-}, {
     "symbol": "m",
     "name": "Mass",
     "description": "A measure of resistance to acceleration",
@@ -195,6 +179,22 @@
         }
     }
 }, {
+    "symbol": "F<sub>B</sub>",
+    "name": "Buoyancy",
+    "description": "Upward force exerted by a fluid that opposes the weight of an immersed object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Buoyancy",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Force",
+    "locals": {
+        "de": {
+            "name": "Auftriebskraft",
+            "description": "Auftriebskraft, die von einer Flüssigkeit ausgeübt wird, und die dem Gewicht eines eingetauchten Objekts entgegenwirkt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Statischer_Auftrieb"
+        }
+    }
+}, {
     "symbol": "C",
     "name": "Capacitance",
     "description": "Stored charge per unit electric potential",
@@ -207,6 +207,22 @@
             "name": "Kapazität",
             "description": "Gespeicherte Ladung pro elektrischem Potential",
             "wikipedia": "https://de.wikipedia.org/wiki/Elektrische_Kapazität"
+        }
+    }
+}, {
+    "symbol": "F<sub>r</sub>",
+    "name": "Centripetal force",
+    "description": "A force that makes a body follow a curved path. Its direction is always orthogonal to the motion of the body and towards the fixed point of the instantaneous center of curvature of the path.",
+    "wikipedia": "https://en.wikipedia.org/wiki/Centripetal_force",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Force",
+    "locals": {
+        "de": {
+            "name": "Zentripetalkraft",
+            "description": "Die Komponente der äußeren Kraft zum Mittelpunkt des Krümmungskreises, die auf einen Körper wirken muss, damit sich dieser im Inertialsystem auf einer gekrümmten Bahn bewegt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Zentripetalkraft"
         }
     }
 }, {
@@ -225,6 +241,22 @@
         }
     }
 }, {
+    "symbol": "μ<sub>R</sub>",
+    "name": "Coefficient of friction",
+    "description": "Dimensionless scalar value which describes the ratio of the force of friction between two bodies and the force pressing them together",
+    "wikipedia": "https://en.wikipedia.org/wiki/Friction#Coefficient_of_friction",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Friction",
+    "locals": {
+        "de": {
+            "name": "Reibungszahl",
+            "description": "Dimensionsloser Skalarwert, der das Verhältnis der Reibungskraft zwischen zwei Körpern und die sie drückende Kraft beschreibt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Reibungskoeffizient"
+        }
+    }
+}, {
     "symbol": "J",
     "name": "Current density",
     "description": "Electric current per unit cross-section area",
@@ -238,6 +270,37 @@
             "name": "Elektrische Stromdichte",
             "description": "Elektrischer Strom pro Querschnittsfläche",
             "wikipedia": "https://de.wikipedia.org/wiki/Elektrische_Stromdichte"
+        }
+    }
+}, {
+    "symbol": "d",
+    "name": "Diameter",
+    "description": "The longest chord of a circle or sphere",
+    "wikipedia": "https://en.wikipedia.org/wiki/Diameter",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Durchmesser",
+            "description": "Der größtmögliche Abstand zweier Punkte der Kreislinie oder der Kugeloberflächenpunkte",
+            "wikipedia": "https://de.wikipedia.org/wiki/Durchmesser"
+        }
+    }
+}, {
+    "symbol": "s",
+    "name": "Distance traveled",
+    "description": "Distance an object traveled",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Length",
+    "locals": {
+        "de": {
+            "name": "Zurückgelegte Strecke",
+            "description": "Von einem Objekt zurückgelegte Strecke",
+            "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
         }
     }
 }, {
@@ -451,6 +514,22 @@
         }
     }
 }, {
+    "symbol": "F<sub>R</sub>",
+    "name": "Friction",
+    "description": "The force resisting the relative motion of solid surfaces, fluid layers, and material elements sliding against each other",
+    "wikipedia": "https://en.wikipedia.org/wiki/Friction",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Force",
+    "locals": {
+        "de": {
+            "name": "Reibung",
+            "description": "Kraft, die zwischen sich berührenden Körpern oder Teilchen wirkt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Reibung"
+        }
+    }
+}, {
     "symbol": "Q<sub>th</sub>",
     "name": "Heat",
     "description": "Thermal energy",
@@ -553,6 +632,22 @@
             "name": "Induktivität",
             "description": "Magnetischer Fluss, der pro Einheitsstrom durch eine Schaltung erzeugt wird",
             "wikipedia": "https://de.wikipedia.org/wiki/Induktivität"
+        }
+    }
+}, {
+    "symbol": "v<sub>init</sub>",
+    "name": "Initial velocity",
+    "description": "Initial speed and direction of an object",
+    "wikipedia": "https://en.wikipedia.org/wiki/Velocity",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Velocity",
+    "locals": {
+        "de": {
+            "name": "Anfangsgeschwindigkeit",
+            "description": "Anfangsgeschwindigkeit und Richtung eines Objekts",
+            "wikipedia": "https://de.wikipedia.org/wiki/Geschwindigkeit"
         }
     }
 }, {
@@ -736,6 +831,37 @@
         }
     }
 }, {
+    "symbol": "F<sub>N</sub>",
+    "name": "Normal force",
+    "description": "The component of the contact force that is perpendicular to the surface that an object contacts",
+    "wikipedia": "https://en.wikipedia.org/wiki/Normal_force",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Force",
+    "locals": {
+        "de": {
+            "name": "Normalkraft",
+            "description": "Die Komponente der Kontaktkraft, die senkrecht zu der Oberfläche steht, die ein Objekt berührt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Normalkraft"
+        }
+    }
+}, {
+    "symbol": "T<sub>t</sub>",
+    "name": "Period",
+    "description": "The duration of time of one cycle in a repeating event",
+    "wikipedia": "https://en.wikipedia.org/wiki/Period_(physics)",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Periodendauer",
+            "description": "Das kleinste zeitliche Intervall, nach dem sich der Vorgang wiederholt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Periode_(Physik)"
+        }
+    }
+}, {
     "symbol": "ε",
     "name": "Permittivity",
     "description": "Measure for how the polarization of a material is affected by the application of an external electric field",
@@ -796,7 +922,37 @@
         }
     }
 }, {
+    "symbol": "F<sub>p</sub>",
+    "name": "Pressure force",
+    "description": "Force of pressure on unit area",
+    "wikipedia": "https://en.wikipedia.org/wiki/Pressure",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Druckkraft",
+            "description": "Kraft von Druck auf Fläche",
+            "wikipedia": "https://de.wikipedia.org/wiki/Kraft#Zusammenhang_von_Kraft_und_Druck"
+        }
+    }
+}, {
     "symbol": "r",
+    "name": "Radius",
+    "description": "A radius of a circle or sphere is any of the line segments from its center to its perimeter, and in more modern usage, it is also their length",
+    "wikipedia": "https://en.wikipedia.org/wiki/Radius",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Radius",
+            "description": "Der Abstand zwischen dem Mittelpunkt M eines Kreises und der Kreislinie bezeichnet",
+            "wikipedia": "https://de.wikipedia.org/wiki/Radius"
+        }
+    }
+}, {
+    "symbol": "r<sub>ch</sub>",
     "name": "Reaction rate",
     "description": "Rate of a chemical reaction for unit time",
     "wikipedia": "https://en.wikipedia.org/wiki/Reaction_rate",
@@ -916,22 +1072,6 @@
         }
     }
 }, {
-    "symbol": "v<sub>init</sub>",
-    "name": "Initial velocity",
-    "description": "Initial speed and direction of an object",
-    "wikipedia": "https://en.wikipedia.org/wiki/Velocity",
-    "vector": true,
-    "category": "Mechanics",
-    "pack": "Basics",
-    "parent_quantity": "Velocity",
-    "locals": {
-        "de": {
-            "name": "Anfangsgeschwindigkeit",
-            "description": "Anfangsgeschwindigkeit und Richtung eines Objekts",
-            "wikipedia": "https://de.wikipedia.org/wiki/Geschwindigkeit"
-        }
-    }
-}, {
     "symbol": "V",
     "name": "Volume",
     "description": "Three dimensional extent of an object",
@@ -984,6 +1124,7 @@
     "vector": false,
     "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Force",
     "locals": {
         "de": {
             "name": "Gewichtskraft",

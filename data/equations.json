@@ -2,8 +2,26 @@
     "quantity": "Acceleration",
     "equations": ["F / m", "( v - v_'init' ) / t", "( v^2 - v_'init'^2 ) / ( 2 * s )"]
 }, {
+    "quantity": "Angular velocity",
+    "equations": ["F_r / ( m * r )"]
+}, {
     "quantity": "Area",
-    "equations": ["F / p_f"]
+    "equations": ["F_p / p_f"]
+}, {
+    "quantity": "Buoyancy",
+    "equations": ["ρ * V * g_0"]
+}, {
+    "quantity": "Centripetal force",
+    "equations": ["m * v^2 / r", "m * 4 * π^2 * r / T_t^2", "m * ω^2 * r"]
+}, {
+    "quantity": "Coefficient of friction",
+    "equations": ["F_R / F_N"]
+}, {
+    "quantity": "Density",
+    "equations": ["F_B / ( V * g_0 )"]
+}, {
+    "quantity": "Diameter",
+    "equations": ["2 * r"]
 }, {
     "quantity": "Electric current",
     "equations": ["U / R", "P / U"]
@@ -18,31 +36,52 @@
     "equations": ["P * t"]
 }, {
     "quantity": "Force",
-    "equations": ["m * a", "W / s", "p_f * A"]
+    "equations": ["m * a", "W / s", "G_N * ( m * m ) / r^2"]
+}, {
+    "quantity": "Friction",
+    "equations": ["μ_R * F_N"]
 }, {
     "quantity": "Distance traveled",
     "equations": ["W / F", "( v^2 - v_'init'^2 ) / ( 2 * a )"]
 }, {
+    "quantity": "Initial velocity",
+    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )"]
+}, {
     "quantity": "Mass",
-    "equations": ["F / a", "p / v"]
+    "equations": ["F / a", "p / v", "w / g_0", "F_r * r / v^2", "F_r * T_t^2 / ( 4 * π^2 * r )", "F_r / ( ω^2 * r )"]
 }, {
     "quantity": "Momentum",
     "equations": ["m * v"]
+}, {
+    "quantity": "Normal force",
+    "equations": ["F_R / μ_R"]
+}, {
+    "quantity": "Period",
+    "equations": ["F_r / ( m * 4 * π^2 * r )"]
 }, {
     "quantity": "Power",
     "equations": ["W / t", "E / t", "I * U"]
 }, {
     "quantity": "Pressure",
-    "equations": ["F / A"]
+    "equations": ["F_p / A"]
+}, {
+    "quantity": "Pressure force",
+    "equations": ["p_f * A"]
+}, {
+    "quantity": "Radius",
+    "equations": ["d / 2", "F_r / ( m * v^2 )", "F_r * T_t^2 / ( m * 4 * π^2 )", "F_r / ( m * ω^2 )"]
 }, {
     "quantity": "Time",
     "equations": ["W / P", "E / P", "( v - v_'init' ) / a"]
 }, {
     "quantity": "Velocity",
-    "equations": ["p / m", "v_'init' + a * t", "sqrt( v_'init'^2 + 2 * a * s )"]
+    "equations": ["p / m", "v_'init' + a * t", "sqrt( v_'init'^2 + 2 * a * s )", "sqrt( F_r * r / m )"]
 }, {
-    "quantity": "Initial velocity",
-    "equations": ["v - a * t", "sqrt( v^2 - 2 * a * s )"]
+    "quantity": "Volume",
+    "equations": ["F_B / ( ρ * g_0 )"]
+}, {
+    "quantity": "Weight",
+    "equations": ["m * g_0"]
 }, {
     "quantity": "Work",
     "equations": ["F * s", "P * t"]
