@@ -1,4 +1,15 @@
 [{
+    "symbol": "π",
+    "name": "Pi",
+    "value": "3.14159265359",
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Pi"
+        }
+    }
+}, {
     "symbol": "c<sub>0</sub>",
     "name": "Vacuum speed of light",
     "value": "2.99792458*10^8",

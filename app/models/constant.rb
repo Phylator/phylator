@@ -25,7 +25,7 @@ class Constant < ApplicationRecord
     validates :unit_of_measurement, presence: true
 
     belongs_to :pack
-    belongs_to :unit_of_measurement
+    belongs_to :unit_of_measurement, optional: true
     belongable :calculations, 'Calculation'
     belongable :equations, 'Equation'
 
