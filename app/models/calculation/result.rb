@@ -24,21 +24,26 @@ class Calculation::Result < ApplicationRecord
         # decimal_places_errors = []
         # symbols = []
         measurements_per_quantity.each do |quantity_id, measurements|
-            ## Pick first measurement for quantity
-            measurement = measurements.first
-            var = measurement.value
-            # margin_of_error = measurement.margin_of_error
             ## Get symbol for quantity
             symbol = ::Quantity.find(quantity_id).pure_sym
             # symbols << symbol
-            ## Convert measurement to base unit
-            unless measurement.unit_of_measurement.base?
-                var = calculator.evaluate var.to_s + measurement.unit_of_measurement.to_base
-                # margin_of_error = calculator.evaluate( margin_of_error.to_s + measurement.unit_of_measurement.to_base )
+            measurements.each_with_index do |measurement, index|
+                measurement = measurements.first
+                var = measurement.value
+                # margin_of_error = measurement.margin_of_error
+                ## Convert measurement to base unit
+                unless measurement.unit_of_measurement.base?
+                    var = calculator.evaluate var.to_s + measurement.unit_of_measurement.to_base
+                    # margin_of_error = calculator.evaluate( margin_of_error.to_s + measurement.unit_of_measurement.to_base )
+                end
+                ## Store variable in calculator
+                if index > 0
+                    calculator.store "#{symbol}#{index}": var.to_f
+                else
+                    calculator.store "#{symbol}": var.to_f
+                end
+                # calculator.store "#{symbol}_error": margin_of_error
             end
-            ## Store variable in calculator
-            calculator.store "#{symbol}": var.to_f
-            # calculator.store "#{symbol}_error": margin_of_error
         end
 
         # Add constants
@@ -57,8 +62,8 @@ class Calculation::Result < ApplicationRecord
             ::Quantity.all.each do |quantity|
                 equations[quantity.pure_sym] = []
             end
-            # ::Equation.all.each do |equation| ##### LEADING TO: TSort exception #####
-            ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
+            ::Equation.all.each do |equation| ##### LEADING TO: TSort exception #####
+            # ::Equation.where(quantity_id: self.calculation.quantity_id).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.pure_equation
                 ## Associate equation with calculation if used
                 if calculator.dependencies(equation.pure_equation).size == 0
