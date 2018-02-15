@@ -188,7 +188,12 @@
         "locals": { "de": { "title": "Waagerechter Wurf" } }
     }, {
         "title": "Oblique throw",
-        "equations": [{ "equation": "x / ( t * cos( θ ) )" }],
+        "equations": [
+            { "equation": "x / ( t * cos( θ ) )" },
+            { "equation": "( y + g_0 / 2 * t^2 ) / ( t * sin( θ ) )" },
+            { "equation": "v / cos( θ )", "conditions": ["`v` - horizontal component"], "locals": { "de": { "conditions": ["`v` - horizontale Komponente"] } } },
+            { "equation": "( v + g_0 * t ) / sin( θ )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+        ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
@@ -227,7 +232,13 @@
     "quantity": "Plain angle",
     "categories": [{
         "title": "Oblique throw",
-        "equations": [{ "equation": "acos( x / ( v_0 * t ) )" }],
+        "equations": [
+            { "equation": "acos( x / ( v_0 * t ) )" },
+            { "equation": "asin( ( y + g_0 / 2 * t^2 ) / ( v_0 * t ) )" },
+            { "equation": "asin( ( v_0^2 * g_0^2 * t^2 - v^2 ) / ( 2 * v_0 * g * t ) )" },
+            { "equation": "acos( v / v_0 )", "conditions": ["`v` - horizontal component"], "locals": { "de": { "conditions": ["`v` - horizontale Komponente"] } } },
+            { "equation": "asin( ( v + g_0 * t ) / v_0 )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+        ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
@@ -323,7 +334,10 @@
         "locals": { "de": { "title": "Waagerechter Wurf" } }
     }, {
         "title": "Oblique throw",
-        "equations": [{ "equation": "x / ( v_0 * cos( θ ) )" }],
+        "equations": [
+            { "equation": "x / ( v_0 * cos( θ ) )" },
+            { "equation": "( v_0 * sin( θ ) - v ) / g_0", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+        ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
@@ -375,6 +389,14 @@
             { "equation": "- g_0 * t", "conditions": ["Vertical component"], "locals": { "de": { "conditions": ["Vertikale Komponente"] } } }
         ],
         "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [
+            { "equation": "sqrt( v_0^2 + g_0^2 * t^2 - 2 * v_0 * g_0 * t * sin( θ ) )" },
+            { "equation": "v_0 * cos( θ )", "conditions": ["Horizontal component"], "locals": { "de": { "conditions": ["Horizontale Komponente"] } } },
+            { "equation": "v_0 * cos( θ ) - g_0 * t", "conditions": ["Vertical component"], "locals": { "de": { "conditions": ["Vertikale Komponente"] } } }
+        ],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Vertical distance",
@@ -390,6 +412,10 @@
         "title": "Horizontal throw",
         "equations": [{ "equation": "- g_0 / 2 * t^2" }, { "equation": "- g_0 / ( 2 * v_0^2 ) * x^2" }],
         "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [{ "equation": "v_0 * t * sin(θ) - g_0 / 2 * t^2" }],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Volume",
