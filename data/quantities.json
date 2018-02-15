@@ -292,7 +292,7 @@
     "name": "Distance traveled",
     "description": "Distance an object traveled",
     "wikipedia": "https://en.wikipedia.org/wiki/Distance",
-    "vector": false,
+    "vector": true,
     "category": "Mechanics",
     "pack": "Basics",
     "parent_quantity": "Length",
@@ -572,6 +572,22 @@
             "name": "Wärmestromdichte",
             "description": "Wärmefluss pro Zeiteinheit und Flächeneinheit",
             "wikipedia": "https://de.wikipedia.org/wiki/Wärmestromdichte"
+        }
+    }
+}, {
+    "symbol": "x",
+    "name": "Horizontal distance",
+    "description": "Distance an object traveled horizontally",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Length",
+    "locals": {
+        "de": {
+            "name": "Vertikale Entfernung",
+            "description": "Von einem Objekt zurückgelegte horizontale Strecke",
+            "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
         }
     }
 }, {
@@ -1100,6 +1116,22 @@
             "name": "Geschwindigkeit",
             "description": "Geschwindigkeit und Richtung eines Objekts",
             "wikipedia": "https://de.wikipedia.org/wiki/Geschwindigkeit"
+        }
+    }
+}, {
+    "symbol": "y",
+    "name": "Vertical distance",
+    "description": "Distance an object traveled vertically",
+    "wikipedia": "https://en.wikipedia.org/wiki/Distance",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Length",
+    "locals": {
+        "de": {
+            "name": "Vertikale Entfernung",
+            "description": "Von einem Objekt zurückgelegte vertikale Strecke",
+            "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
         }
     }
 }, {

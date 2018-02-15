@@ -157,6 +157,7 @@ equations.each do |data|
     data['categories'].each do |category_data|
         title = category_data['title']
         category_data['equations'].each do |equation|
+            locals = equation.delete 'locals'
             equation = {
                 equation: equation['equation'],
                 title: title,
@@ -171,6 +172,7 @@ equations.each do |data|
             end
             category_data['locals'].each do |locale, translation|
                 translation[:locale] = locale.to_sym
+                translation[:conditions] = locals&.dig(locale, 'conditions')
                 e.update_attributes translation
             end
         end

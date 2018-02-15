@@ -5,6 +5,10 @@
         "equations": [{ "equation": "F / m" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
+        "title": "Movement",
+        "equations": [{ "equation": "v / t" }],
+        "locals": { "de": { "title": "Beliebige Bewegung" } }
+    }, {
         "title": "Evenly accelerated movement",
         "equations": [
             { "equation": "( v - v_0 ) / t" },
@@ -98,6 +102,10 @@
         "title": "Freefall",
         "equations": [{ "equation": "g_0 / 2 * t^2" }, { "equation": "v^2 / ( 2 * g_0 )" }],
         "locals": { "de": { "title": "Freier Fall" } }
+    }, {
+        "title": "Vertical throw upwards",
+        "equations": [{ "equation": "v_0^2 / ( 2 * g_0 )", "conditions": ["Ascended height"], "locals": { "de": { "conditions": ["Steighöhe"] } } }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
     }]
 }, {
     "quantity": "Force",
@@ -120,6 +128,17 @@
         "title": "Forces in Mechanics",
         "equations": [{ "equation": "μ_R * F_N" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }]
+}, {
+    "quantity": "Horizontal distance",
+    "categories": [{
+        "title": "Horizontal throw",
+        "equations": [{ "equation": "v_0 * t" }, { "equation": "sqrt( - 2 * y * v_0^2 / g_0 )" }],
+        "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [{ "equation": "v_0 * t * cos( θ )" }],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Impulse",
@@ -145,6 +164,32 @@
         "title": "Evenly accelerated movement",
         "equations": [{ "equation": "v - a * t" }, { "equation": "( s - s_0 - a / 2 * t^2 ) / t" }],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }, {
+        "title": "Vertical throw downwards",
+        "equations": [{ "equation": "- ( y + g_0 / 2 * t^2 ) / t" }, { "equation": "v - g_0 * t" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach unten" } }
+    }, {
+        "title": "Vertical throw upwards",
+        "equations": [
+            { "equation": "( y + g_0 / 2 * t^2 ) / t" },
+            { "equation": "v + g_0 * t" },
+            { "equation": "t * g_0", "conditions": ["´t´ - ascent time"], "locals": { "de": { "conditions": ["´t´ - Steigzeit"] } } },
+            { "equation": "sqrt( s / ( 2 * g_0 ) )", "conditions": ["´s´ - ascended height"], "locals": { "de": { "conditions": ["´t´ - Steighöhe"] } } }
+        ],
+        "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
+    }, {
+        "title": "Horizontal throw",
+        "equations": [
+            { "equation": "x / t" },
+            { "equation": "sqrt( - g_0 / ( 2 * y ) * x^2 )" },
+            { "equation": "sqrt( v^2 - g_0^2 * t^2 )" },
+            { "equation": "v", "conditions": ["Horizontal component"], "locals": { "de": { "conditions": ["Horizontale Komponente"] } } }
+        ],
+        "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [{ "equation": "x / ( t * cos( θ ) )" }],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Mass",
@@ -177,6 +222,13 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "2 * π * r / v" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }]
+}, {
+    "quantity": "Plain angle",
+    "categories": [{
+        "title": "Oblique throw",
+        "equations": [{ "equation": "acos( x / ( v_0 * t ) )" }],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Pressure",
@@ -234,6 +286,10 @@
         "equations": [{ "equation": "Δp / F" }],
         "locals": { "de": { "title": "Newtonsche Gesetze" } }
     }, {
+        "title": "Movement",
+        "equations": [{ "equation": "v / a" }],
+        "locals": { "de": { "title": "Beliebige Bewegung" } }
+    }, {
         "title": "Uniform rectilinear motion",
         "equations": [{ "equation": "( s - s_0 ) / v" }],
         "locals": { "de": { "title": "Gleichförmige geradlinige Bewegung" } }
@@ -245,6 +301,30 @@
         "title": "Freefall",
         "equations": [{ "equation": "v / g_0" }],
         "locals": { "de": { "title": "Freier Fall" } }
+    }, {
+        "title": "Vertical throw downwards",
+        "equations": [{ "equation": "( - v - v_0 ) / g_0" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach unten" } }
+    }, {
+        "title": "Vertical throw upwards",
+        "equations": [
+            { "equation": "( v_0 - v ) / g_0" },
+            { "equation": "v_0 / g_0", "conditions": ["Ascent time"], "locals": { "de": { "conditions": ["Steigzeit"] } } }
+        ],
+        "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
+    }, {
+        "title": "Horizontal throw",
+        "equations": [
+            { "equation": "x / v_0" },
+            { "equation": "sqrt( - 2 * y / g_0 )" },
+            { "equation": "sqrt( ( v^2 - v_0^2 ) / g_0^2 )" },
+            { "equation": "- v / g_0", "conditions": ["Vertical component"], "locals": { "de": { "conditions": ["Vertikale Komponente"] } } }
+        ],
+        "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [{ "equation": "x / ( v_0 * cos( θ ) )" }],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Torque",
@@ -259,6 +339,10 @@
         "title": "Forces in Mechanics",
         "equations": [{ "equation": "sqrt( F_r * r / m )" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Movement",
+        "equations": [{ "equation": "a * t" }],
+        "locals": { "de": { "title": "Beliebige Bewegung" } }
     }, {
         "title": "Uniform rectilinear motion",
         "equations": [{ "equation": "( s - s_0 ) / t" }],
@@ -275,6 +359,37 @@
         "title": "Freefall",
         "equations": [{ "equation": "g_0 * t" }, { "equation": "sqrt( 2 * g_0 * s )" }],
         "locals": { "de": { "title": "Freier Fall" } }
+    }, {
+        "title": "Vertical throw downwards",
+        "equations": [{ "equation": "- v_0 - g_0 * t" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach unten" } }
+    }, {
+        "title": "Vertical throw upwards",
+        "equations": [{ "equation": "v_0 - g_0 * t" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
+    }, {
+        "title": "Horizontal throw",
+        "equations": [
+            { "equation": "sqrt( v_0^2 + g_0^2 * t^2 )" },
+            { "equation": "v_0", "conditions": ["Horizontal component"], "locals": { "de": { "conditions": ["Horizontale Komponente"] } } },
+            { "equation": "- g_0 * t", "conditions": ["Vertical component"], "locals": { "de": { "conditions": ["Vertikale Komponente"] } } }
+        ],
+        "locals": { "de": { "title": "Waagerechter Wurf" } }
+    }]
+}, {
+    "quantity": "Vertical distance",
+    "categories": [{
+        "title": "Vertical throw downwards",
+        "equations": [{ "equation": "- v_0 * t - g_0 / 2 * t^2" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach unten" } }
+    }, {
+        "title": "Vertical throw upwards",
+        "equations": [{ "equation": "v_0 * t - g_0 / 2 * t^2" }],
+        "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
+    }, {
+        "title": "Horizontal throw",
+        "equations": [{ "equation": "- g_0 / 2 * t^2" }, { "equation": "- g_0 / ( 2 * v_0^2 ) * x^2" }],
+        "locals": { "de": { "title": "Waagerechter Wurf" } }
     }]
 }, {
     "quantity": "Volume",
