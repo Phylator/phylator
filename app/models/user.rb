@@ -5,8 +5,6 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
 
-    uses_native_apps
-    has_devices
     notification_target
 
     attr_accessor :calculation_id

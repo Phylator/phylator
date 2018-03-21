@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-    mount Native::Engine, at: '/native'
-
-    mount Pwa::Engine, at: ''
-
     scope 'app' do
 
         resources :quantities, only: [:index, :show] do
@@ -39,11 +35,9 @@ Rails.application.routes.draw do
         get 'language', to: 'welcome#language'
 
         root 'calculations#new', as: :app_root
-        
+
     end
 
-
-    get 'privacy', to: 'welcome#privacy'
     root 'welcome#index'
 
     match '*path', to: 'r404#not_found', via: :all
