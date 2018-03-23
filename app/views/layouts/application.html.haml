@@ -1,6 +1,20 @@
-= mozaic :mozaic do
-    %p#copyText.hidden= t('cd.copied_to_clipboard')
-    %p#alert.hidden= alert
-    %p#lang.hidden= I18n.locale
-    = mozaic_area :application do
-        = yield
+- replace :layout, 'application'
+- replace :body_class, 'myg-layout--toolbar'
+
+= mozaic do
+
+    = component 'myg/toolbar', class: 'myg-toolbar--flexible', data: { turbolinks_animate_persist: 'application' } do
+        .myg-wrap--large.mdc-toolbar__row
+            %section.mdc-toolbar__section.mdc-toolbar__section--align-start
+                = link_to root_url, data: { turbolinks_animate_type: 'application' } do
+                    = asset 'components/brand/logo_large'
+            %section.mdc-toolbar__section.mdc-toolbar__section--align-end
+                - if current_user
+                    = link_to 'Account', edit_user_registration_url
+                - else
+                    = link_to 'Login', new_user_session_url
+                = link_to 'Open app', new_app_url
+
+    .myg-content
+        = mozaic_area :application do
+            = yield
