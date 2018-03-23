@@ -183,7 +183,7 @@
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.28.0.tgz#4ae96a852fcd324d61b649adc995326c431fcaea"
 
-"@rails/webpacker@^3.2.1":
+"@rails/webpacker@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-3.3.1.tgz#cc327dbdd5380c75468e769b52ea09b6616b4529"
   dependencies:
@@ -7765,7 +7765,7 @@ webpack-dev-middleware@1.12.2:
     range-parser "^1.0.3"
     time-stamp "^2.0.0"
 
-webpack-dev-server@^2.11.2:
+webpack-dev-server@2.11.2:
   version "2.11.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.11.2.tgz#1f4f4c78bf1895378f376815910812daf79a216f"
   dependencies:

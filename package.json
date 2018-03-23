@@ -2,7 +2,7 @@
     "name": "phylator",
     "private": true,
     "dependencies": {
-        "@rails/webpacker": "^3.2.1",
+        "@rails/webpacker": "^3.3.1",
         "ahoy.js": "^0.3.1",
         "algoliasearch": "^3.24.9",
         "aos": "^2.2.0",
@@ -20,6 +20,6 @@
     },
     "devDependencies": {
         "webpack-cli": "^2.0.10",
-        "webpack-dev-server": "^2.11.2"
+        "webpack-dev-server": "2.11.2"
     }
 }

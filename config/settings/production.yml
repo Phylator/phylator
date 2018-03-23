@@ -7,9 +7,5 @@ algoliasearch:
     api_key: c524357aa05aa73a9fe1a54ec7caf46b
     search_key: cd21694b9db641c1ddfd693a2bde7cce
 
-onesignal:
-    app_id: 60054b7e-95db-4ba1-bcb6-8611072fe26b
-    api_key: MzQwOTgwYmYtMWQyMC00ZDYyLWI2MDQtOTA5OThkYTI2ZDc3
-
 sentry_raven:
     dsn: 'https://4d5d36bc21464f5f8a69433f929c4cc4:4ed72f27b4fc4f6194ef1001c67d26dd@sentry.io/260644'

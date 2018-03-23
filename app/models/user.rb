@@ -5,8 +5,6 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
 
-    attr_accessor :calculation_id
-
     has_many :calculations
     has_many :purchases
 
