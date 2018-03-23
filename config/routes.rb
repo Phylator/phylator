@@ -29,10 +29,9 @@ Rails.application.routes.draw do
         }
 
         get 'search', to: 'search#index'
-        get 'search/render', to: 'search#renderer'
 
         get 'setup', to: 'welcome#setup'
-        get 'language', to: 'welcome#language'
+        get 'language', to: 'welcome#language', constraints: Modalist::Ajax.new
 
         root 'calculations#new', as: :app_root
 

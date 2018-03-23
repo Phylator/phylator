@@ -1,13 +1,10 @@
 !!!
 %html{ lang: I18n.locale }
 
-    %head
-
         %meta{ charset: 'utf-8' }
         %meta{ name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1' }
 
-        = metamagic site: 'Phylator', title: [:title, :site], separator: ' - ', description: '...', keywords: ['physics', 'calculator']
-        = pwa_manifest
+        = metamagic site: 'Phylator', title: [:title, :site], separator: ' - ', description: '...', keywords: ['calculator', 'physics', 'converter', 'units']
 
         %link{ rel: 'apple-touch-icon', sizes: '76x76', href: request.base_url + '/icon_76x76.png' }
         %link{ rel: 'apple-touch-icon', sizes: '120x120', href: request.base_url + '/icon_120x120.png' }
@@ -21,26 +18,28 @@
         -# %link{ rel: 'msapplication-wide310x150logo', content: request.base_url + '/icon_310x150.png' }
         %link{ rel: 'msapplication-square310x310logo', content: request.base_url + '/icon_310x310.png' }
 
-        %meta{ name: 'theme-color', content: area(:theme_color, '#242a38') }
-
         = favicon_link_tag '/favicon.ico'
 
+        = component 'seo/schema', type: :brand, name: 'Phylator', description: 'A simple but powerful calculator for physics', url: 'https://phylator.com', logo: 'https://phylator.com/512x512.png'
         = component 'layouts/google_analytics'
 
         = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-        -# = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=AM_CHTML'
-        = javascript_include_tag 'https://js.stripe.com/v3/'#, 'data-turbolinks-track': 'reload'
         = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-        = native_assets
-
-        %link{ rel: 'stylesheet', href: 'https://use.typekit.net/vvt1lpo.css' }
+        = javascript_include_tag 'https://js.stripe.com/v3/'
+        = component 'nativegap/assets'
 
         = csrf_meta_tags
 
-        = area :head
+    = component 'turbolinks-animate', animation: @turbolinks_animate_animation, class: 'myg myg-layout ' + class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ), id: area(:layout) do
 
+        %p#notice.hidden= notice
+        %p#alert.hidden= alert
+        = component 'myg/toast'
 
-    = turbolinks_animate_body class: class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ) do
-    
+        = component 'modalist/overlay'
+        = component 'modalist/wrapper'
+
+        = component 'desktop'
+
         = mozaic_area do
             = yield

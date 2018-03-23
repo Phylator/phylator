@@ -5255,10 +5255,6 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-onsignal@^5.0.6:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/onsignal/-/onsignal-5.0.6.tgz#e1741e21b5692ae25bf36467ac9485c1d029b9e5"
-
 opn@^5.1.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-5.3.0.tgz#64871565c863875f052cfdf53d3e3cb5adb53b1c"

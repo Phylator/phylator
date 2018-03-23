@@ -7,7 +7,6 @@ class ActsAsBelongableMigration < ActiveRecord::Migration[5.1]
 
             t.string :scope
             t.integer :position
-            t.integer :index
 
             t.timestamps null: false
 

@@ -2,13 +2,14 @@ class SearchController < ApplicationController
 
     before_action :authenticate_user!
 
-    def index
-        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
-        render layout: 'app/show'
-    end
+    layout 'app/show'
 
-    def renderer
-        render layout: false
+    def index
+        turbolinks_animate 'fadeinright'
+        respond_to do |format|
+            format.html
+            format.js
+        end
     end
 
 end
