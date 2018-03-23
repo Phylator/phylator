@@ -43,6 +43,7 @@ gem 'modalist'
 gem 'browser'
 gem 'dentaku'
 gem 'algoliasearch-rails'
+gem 'globalize', github: 'globalize/globalize'
 gem 'bootsnap', require: false
 
 
