@@ -20,15 +20,15 @@ class PurchasesController < ApplicationController
         @purchase.completed = true
         @purchase.save!
 
-        notification = Notification.create target: current_user, object: @purchase
-        notification[:metadata] = {
-            onesignal_contents: {
-                en: I18n.t('purchases.create.success', pack: @purchase.pack.name),
-                de: I18n.t('purchases.create.success', pack: @purchase.pack.name, locale: :de)
-            }
-        }
-        notification.save!
-        notification.push :OneSignal, player_ids: notification.target.onesignal_player_ids
+        # notification = Notification.create target: current_user, object: @purchase
+        # notification[:metadata] = {
+        #     onesignal_contents: {
+        #         en: I18n.t('purchases.create.success', pack: @purchase.pack.name),
+        #         de: I18n.t('purchases.create.success', pack: @purchase.pack.name, locale: :de)
+        #     }
+        # }
+        # notification.save!
+        # notification.push :OneSignal, player_ids: notification.target.onesignal_player_ids
 
         redirect_to @purchase.pack, notice: I18n.t('purchases.create.success', pack: @purchase.pack.name)
     end

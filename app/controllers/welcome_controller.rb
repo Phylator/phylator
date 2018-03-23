@@ -11,11 +11,7 @@ class WelcomeController < ApplicationController
     end
 
     def language
-        turbolinks_animate 'fadein'
-    end
-
-    def privacy
-        turbolinks_animate 'fadein'
+        modalist
     end
 
 end

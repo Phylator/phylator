@@ -11,7 +11,7 @@ class CalculationsController < ApplicationController
     end
 
     def show
-        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
+        turbolinks_animate 'fadeinright'
         authorize! :read, @calculation
         render layout: 'app/show'
     end

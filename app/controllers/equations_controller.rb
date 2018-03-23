@@ -4,7 +4,7 @@ class EquationsController < ApplicationController
     before_action :set_equation
 
     def show
-        turbolinks_animate { desktop: 'fadein', mobile: 'fadeinright' }
+        turbolinks_animate 'fadeinright'
         authorize! :read, @equation
         render layout: 'app/show'
     end

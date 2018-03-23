@@ -1,5 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+    layout 'devise', only: [:new]
+    layout 'app', only: [:edit]
+
     def new
         turbolinks_animate 'fadein'
         super
@@ -19,9 +22,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
             if resource.active_for_authentication?
                 set_flash_message! :notice, :signed_up
                 sign_up resource_name, resource
-                if calculation_param != ''
-                    calculation = ::Calculation.find calculation_param
-                    calculation.update! user_id: current_user.id if calculation.user_id.nil?
+                if calculation_param && calculation_param != ''
+                    calculation = Calculation.find calculation_param
+                    calculation.update! user: current_user if calculation.user.present?
                 end
                 respond_with resource, location: after_sign_up_path_for(resource)
             else
@@ -47,6 +50,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_up_params = devise_parameter_sanitizer.sanitize :sign_up
         sign_up_params.delete :calculation_id
         sign_up_params
+    end
+
+    def after_sign_up_path_for resource
+        app_root_url
     end
 
 end
