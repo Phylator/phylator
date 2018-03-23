@@ -1,24 +1,29 @@
-const stripePublishableKey = '<%= Settings.stripe.publishable_key %>';
-const algoliasearchApplicationId = '<%= Settings.algoliasearch.application_id %>';
-const algoliasearchSearchKey = '<%= Settings.algoliasearch.search_key %>';
+window.stripePublishableKey = '<%= Settings.stripe.publishable_key %>';
+window.algoliasearchApplicationId = '<%= Settings.algoliasearch.application_id %>';
+window.algoliasearchSearchKey = '<%= Settings.algoliasearch.search_key %>';
 
+import Rails from 'rails-ujs';
+window.Rails = Rails;
+Rails.start();
 
-import $ from 'jquery';
-import 'rails-ujs';
-import 'ahoy.js';
-import 'devise-onesignal';
-import 'devise-onesignal/vendor/assets/javascripts/OneSignalSDK';
+// import 'ahoy.js';
 
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
-import './../javascripts/vendor/vendor';
-import './../javascripts/components/components';
+import 'turbolinks-animate';
+document.addEventListener( 'turbolinks:load', () => {
+    TurbolinksAnimate.init({ element: document.querySelector('body.turbolinks-animate') });
+})
 
-import './../javascripts/packages/calculations/calculations';
-import './../javascripts/packages/welcome/welcome';
+import NativeGap from 'nativegap';
+document.addEventListener( 'DOMContentLoaded', () => {
+    const nativegap = new NativeGap;
+})
 
-// import './../javascripts/cable';
+import './../javascripts/myg/index';
+
+// import './../javascripts/packages/apps/show';
 
 
 import './../stylesheets/index';
