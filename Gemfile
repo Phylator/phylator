@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0.rc2'
 gem 'puma'
 gem 'sass-rails'
 gem 'uglifier'
@@ -41,7 +41,7 @@ gem 'myg'
 gem 'nilify_blanks'
 gem 'modalist'
 gem 'browser'
-gem 'dentaku', github: 'rubysolo/dentaku'
+gem 'dentaku'
 gem 'algoliasearch-rails'
 gem 'bootsnap', require: false
 
