@@ -2,12 +2,13 @@ window.stripePublishableKey = '<%= Settings.stripe.publishable_key %>';
 window.algoliasearchApplicationId = '<%= Settings.algoliasearch.application_id %>';
 window.algoliasearchSearchKey = '<%= Settings.algoliasearch.search_key %>';
 
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+
 import Rails from 'rails-ujs';
 window.Rails = Rails;
 Rails.start();
 
-import $ from 'jquery';
-window.jQuery = window.$ = $;
 import ahoy from 'ahoy.js';
 
 import Turbolinks from 'turbolinks';
@@ -40,8 +41,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 import AOS from 'aos';
 AOS.init();
 
-import $ from 'jquery';
-window.jQuery = window.$ = $;
 require('jquery-flexdatalist/jquery.flexdatalist');
 $('input.flexdatalist').flexdatalist();
 $('input.flexdatalist[data-units]').on( 'change:flexdatalist', ( event, set, options ) => {
