@@ -4,6 +4,15 @@ GIT
   specs:
     bcrypt (3.1.11)
 
+GIT
+  remote: https://github.com/globalize/globalize.git
+  revision: 31703e58e637a333aa721d7a8fe9332b43405647
+  specs:
+    globalize (5.1.0)
+      activemodel (>= 4.2, < 5.2)
+      activerecord (>= 4.2, < 5.2)
+      request_store (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -362,7 +371,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.3.1)
+    webpacker (3.4.0)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
@@ -394,6 +403,7 @@ DEPENDENCIES
   dentaku
   devise
   friendly_id
+  globalize!
   haml
   i18n
   jbuilder
