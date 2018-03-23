@@ -17,7 +17,7 @@ import './select';
 // import './sidebar';
 import './slide';
 // import './slider';
-// import './tabs';
+import './tabs';
 import './text';
 import './theme';
 // import './titlebar';

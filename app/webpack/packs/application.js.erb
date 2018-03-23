@@ -6,7 +6,9 @@ import Rails from 'rails-ujs';
 window.Rails = Rails;
 Rails.start();
 
-// import 'ahoy.js';
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+import ahoy from 'ahoy.js';
 
 import Turbolinks from 'turbolinks';
 Turbolinks.start();
@@ -22,13 +24,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
 })
 
 const instantsearch = require('instantsearch');
-const search = instantsearch({
-    appId: algoliasearchApplicationId,
-    apiKey: algoliasearchSearchKey,
-    indexName: getParameter('tab')[0].toUpperCase() + getParameter('tab').substring(1),
-    urlSync: true
-});
-search.start();
+document.addEventListener( 'DOMContentLoaded', () => {
+    if (document.querySelector('body.search')) {
+        let testString = 'packs';
+        const search = instantsearch({
+            appId: algoliasearchApplicationId,
+            apiKey: algoliasearchSearchKey,
+            indexName: testString[0].toUpperCase() + testString.substring(1),
+            urlSync: true
+        });
+        search.start();
+    }
+})
 
 import AOS from 'aos';
 AOS.init();
@@ -54,9 +61,3 @@ import './../javascripts/myg/index';
 
 
 import './../stylesheets/index';
-
-
-
-function getParameter(name) {
-    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-}
