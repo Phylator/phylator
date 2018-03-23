@@ -59,7 +59,6 @@
     = link_to 'https://nativegap.com', target: '_blank' do
         = asset 'icons/nativegap.svg'
     .links
-        = link_to t('cd.privacy_policy'), privacy_url
         - if current_user
             = link_to t('d.account'), edit_user_registration_url, class: 'btn secondary'
         - else
