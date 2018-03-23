@@ -1,30 +1,30 @@
 $myg-theme: (
     accent: (
-        light: #4063e8,
-        base: #042ecb,
-        dark: #052ab3,
-        contrast: #ffffff
+        light: #279bfa,
+        base: #1c95f7,
+        dark: #148beb,
+        contrast: #141D26
     ),
     text: (
-        lighter: #bec7cf,
-        light: #97a4b0,
-        base: #657786,
-        dark: #3d4553,
-        darker: #14171A
+        lighter: #FFFFFF,
+        light: #8899A6,
+        base: #8899A6,
+        dark: #587286,
+        darker: #3D5466
     ),
     background: (
-        lighter: #fcfcfc,
-        light: #ffffff,
-        base: #ffffff,
-        dark: #FBFBFD,
-        darker: #ecf2f7
+        lighter: #2E425A,
+        light: #233446,
+        base: #1B2936,
+        dark: #18242f,
+        darker: #141D26
     ),
-    border: #dce2e7,
-    box-shadow: rgba(#000, .05),
-    error: #f6809a,
-    success: #6adb83,
+    border: #111D2B,
+    box-shadow: rgba(#657786, .05),
+    error: #F6809A,
+    success: #4dbb65,
     overlay: (
-        light: transparentize(#e7eCf0, 0.13),
-        dark: transparentize(#14171A, 0.87),
+        light: transparentize(#141D26, 0.13),
+        dark: transparentize(#141D26, 0.13),
     )
 );
