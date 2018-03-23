@@ -14,8 +14,6 @@ class Calculation < ApplicationRecord
         self.quantity.name
     end
 
-    accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
-
     validates :measurements, presence: true
 
     has_one :result, class_name: 'Calculation::Result'
@@ -28,6 +26,8 @@ class Calculation < ApplicationRecord
     belongs_to :unit_of_measurement
     belongs_to :quantity
     belongs_to :user, optional: true
+
+    accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
 
     def calc
         self.result.destroy if self.result
