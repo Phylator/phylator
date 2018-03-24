@@ -5,7 +5,7 @@ class UnitOfMeasurementsController < ApplicationController
 
     def index
         @units_of_measurement = Quantity.find(params[:quantity_id]).unit_of_measurements
-        # authorizes! :read, @units_of_measurement
+        authorizes! :read, @units_of_measurement
         redirect_back fallback_location: app_root_url, alert: I18n.t('cd.page_not_accessible') unless request.format == 'json'
     end
 

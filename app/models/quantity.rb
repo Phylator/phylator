@@ -32,8 +32,8 @@ class Quantity < ApplicationRecord
     has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'
 
     scope :base, -> { where(parent_quantity: nil) }
-    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user&.id } }) }
     scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
+    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user: user } }) }
 
     def sym
         self.symbol.html_safe
