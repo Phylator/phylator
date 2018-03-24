@@ -8,6 +8,10 @@
                 = link_to 'Next', 'javascript:void(0)', class: 'myg-button myg-button--disabled next'
         .carousel-cell
             %h1.sm Choose a unit
+            %p What unit should Phylator use to present the result?
+            = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, id: 'quantityUnits', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+            .flex.reverse
+                = link_to 'Next', 'javascript:void(0)', class: 'myg-button myg-button--disabled next'
         .carousel-cell
             %h1.sm What are you calculating?
         .carousel-cell
