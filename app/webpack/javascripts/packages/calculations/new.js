@@ -18,13 +18,14 @@ document.addEventListener( 'turbolinks:load', () => {
                 mygSlide.flickity.select(slideIndex);
             }
         }));
-        // $('input.flexdatalist').flexdatalist();
-        $('input.flexdatalist[data-units]').on( 'change:flexdatalist', function( event, set, options ) {
+        $('input.select').on( 'change:flexdatalist', ( event, set, options ) => {
             document.querySelector('.carousel-cell:nth-child(' + (slideIndex + 1) + ') a.next').classList.remove('myg-button--disabled');
-            let unitsEl = $(this).data('units'),
-                unitsUrl = '/app/quantities/' + set.value + '/units_of_measurement.json?locale=' + $('html').attr('lang');
-            $(unitsEl).data( 'data', unitsUrl );
-            $(unitsEl).flexdatalist();
+            let unitsEl = document.querySelector(document.querySelector('.carousel-cell:nth-child(' + (slideIndex + 1) + ') input.flexdatalist').dataset.units);
+            if (unitsEl) {
+                let unitsUrl = '/app/quantities/' + set.value + '/units_of_measurement.json?locale=' + document.querySelector('html').getAttribute('lang');
+                unitsEl.dataset.data = unitsUrl;
+                $(unitsEl).flexdatalist();
+            }
         });
     }
 })
