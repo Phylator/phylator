@@ -1,59 +1,18 @@
-import $ from 'jquery';
+import MygSlide from 'myg-slide';
 
-export function init() {
-
-    function calculationsNewToggleContent() {
-        if ( $('form > .quantity').is(':visible') ) {
-            $('form > .quantity').fadeToggle(250);
-            $('form > .unit').fadeToggle( 250, function() {
-                if ( $('.ad').length > 0 ) {
-                    $('.ad').toggleClass('pushed-down');
-                } else {
-                    $('form').toggleClass('pushed-down');
-                };
-                $('p.setup').toggleClass('invisible');
-                $('nav.app').toggleClass('invisible');
-                $('.measurements').toggleClass('content-disabled');
-            });
-        } else {
-            if ( $('.ad').length > 0 ) {
-                $('.ad').toggleClass('pushed-down');
-            } else {
-                $('form').toggleClass('pushed-down');
-            };
-            $('nav.app').toggleClass('invisible');
-            $('p.setup').toggleClass('invisible');
-            $('.measurements').toggleClass('content-disabled');
-            setTimeout(function() {
-                $('form > .quantity').fadeToggle(250);
-                $('form > .unit').fadeToggle(250);
-            }, 250);
-        };
-    };
-
-    $('input#quantityUnits').on( 'select:flexdatalist', function(event, object, options) {
-        var unitName = object['name'],
-            quantityId = $('input#quantity').flexdatalist('value');
-        $.getJSON( '/app/quantities.json?locale=' + $('p#lang').text(), { get_param: 'value' }, function(data) {
-            var quantity = $.grep( data, function(e) { return e.id == quantityId; }),
-                quantityName = quantity[0].name;
-            $('p.setup span.quantity').html(quantityName);
-            $('p.setup span.unit').html(unitName);
-            calculationsNewToggleContent();
+document.addEventListener( 'turbolinks:load', () => {
+    if (document.querySelector('body.calculations.new')) {
+        let slideIndex = 0;
+        const mygSlide = new MygSlide( document.querySelector('.myg-slide'), {
+            prevNextButtons: false,
+            pageDots: false,
+            draggable: false
         });
-    });
-    $('p.setup').click(function() {
-        calculationsNewToggleContent();
-    });
-
-};
-
-export function marginOfErrorInit() {
-    $('p.margin-of-error').click(function() {
-        $(this).toggle();
-        var el = $(this).parent().find('.calculation_measurements_margin_of_error');
-        el.toggleClass('hide');
-        if ( !el.hasClass('hide') )
-            el.find('input').focus();
-    });
-};
+        document.querySelectorAll('a.next').forEach( (element) => element.addEventListener( 'click', function() {
+            if (!this.classList.contains('myg-button--disabled')) {
+                slideIndex++;
+                mygSlide.flickity.select(slideIndex);
+            }
+        }));
+    }
+})

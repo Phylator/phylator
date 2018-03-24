@@ -12,6 +12,6 @@ $scrollbar: (
     width: px(5),
     track-background: transparent,
     thumb-border-radius: px(2.5),
-    thumb-background: color(border),
+    thumb-background: color(background, darker),
     thumb-hover-background: color(text, dark)
 ) !default;

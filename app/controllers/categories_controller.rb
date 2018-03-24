@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
     end
 
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
         authorize! :read, @category
         render layout: 'app/show'
     end

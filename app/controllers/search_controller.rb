@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     layout 'app/show'
 
     def index
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
         respond_to do |format|
             format.html
             format.js

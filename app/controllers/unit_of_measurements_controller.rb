@@ -10,7 +10,7 @@ class UnitOfMeasurementsController < ApplicationController
     end
 
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
         authorize! :read, @unit_of_measurement
         calculator = Dentaku::Calculator.new case_sensitive: true
         @value = calculator.evaluate '1' + @unit_of_measurement.from_base

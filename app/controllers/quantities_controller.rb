@@ -6,12 +6,12 @@ class QuantitiesController < ApplicationController
     def index
         turbolinks_animate 'fadein'
         @quantities = Quantity.all
-        authorizes! :read, @quantities
+        # authorizes! :read, @quantities
         render layout: 'app'
     end
 
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
         authorize! :read, @quantity
         render layout: 'app/show'
     end

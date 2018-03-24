@@ -1,15 +1,30 @@
-= simple_form_for @calculation, authenticity_token: true do |f|
-    = f.error_notification
+= simple_form_for @calculation do |f|
+    .myg-slide.main-carousel
+        .carousel-cell
+            %h1.sm Choose a quantity
+            %p To begin with, tell Phylator what physical quantity you want to calculate.
+            = component 'myg/form-field', as: :input, attribute: :quantity_id, class_name: 'calculation', input_html: { required: true, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: '/app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+            .flex.reverse
+                = link_to 'Next', 'javascript:void(0)', class: 'myg-button myg-button--disabled next'
+        .carousel-cell
+            %h1.sm Choose a unit
+        .carousel-cell
+            %h1.sm What are you calculating?
+        .carousel-cell
+            %h1.sm Here is what you need?
+        .carousel-cell
+            %h1.sm Enter your measurements
 
-    - if current_user
-        = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-    .quantity
-        = f.input :quantity_id, required: true, label: t('calculations.form.quantity.label'), input_html: { type: :text, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-    .unit
-        = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
-    .measurements.content-disabled
-        = f.simple_fields_for :measurements do |builder|
-            = render 'calculations/measurements/form', f: builder
-        .submit-wrapper
-            = f.button :submit, t('d.calculate')
-            = simple_add_fields t('calculations.form.measurements.add'), f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'
+
+
+
+    -# .quantity
+    -#     = f.input :quantity_id, required: true, label: t('calculations.form.quantity.label'), input_html: { type: :text, id: 'quantity', class: 'flexdatalist', data: { units: '#quantityUnits', data: 'app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    -# .unit
+    -#     = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity', selection_required: 'true', value_property: 'id', min_length: '0' } }
+    -# .measurements.content-disabled
+    -#     = f.simple_fields_for :measurements do |builder|
+    -#         = render 'calculations/measurements/form', f: builder
+    -#     .submit-wrapper
+    -#         = f.button :submit, t('d.calculate')
+    -#         = simple_add_fields t('calculations.form.measurements.add'), f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'

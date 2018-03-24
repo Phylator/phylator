@@ -13,6 +13,16 @@ GIT
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
 
+GIT
+  remote: https://github.com/jonhue/myg-rails.git
+  revision: 00b4d292883f44b7891fe9bf3b356a2bd2071934
+  specs:
+    myg (2.8.0)
+      actionpack (>= 5.0)
+      activesupport (>= 5.0)
+      mozaic (~> 2.0)
+      railties (>= 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -92,7 +102,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.2.1)
       msgpack (~> 1.0)
-    brakeman (4.2.0)
+    brakeman (4.2.1)
     browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.1)
@@ -215,11 +225,6 @@ GEM
     msgpack (1.2.4-x86-mingw32)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    myg (2.8.0)
-      actionpack (>= 5.0)
-      activesupport (>= 5.0)
-      mozaic (~> 2.0)
-      railties (>= 5.0)
     mysql2 (0.4.10-x86-mingw32)
     nativegap (3.0.3)
       mozaic (~> 2.0)
@@ -235,7 +240,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     parallel (1.12.1)
-    parser (2.5.0.4)
+    parser (2.5.0.5)
       ast (~> 2.4.0)
     pg (1.0.0-x86-mingw32)
     powerpack (0.1.1)
@@ -412,7 +417,7 @@ DEPENDENCIES
   metamagic
   modalist
   mozaic
-  myg
+  myg!
   mysql2 (~> 0.4.10)
   nativegap
   nilify_blanks

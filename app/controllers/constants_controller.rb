@@ -4,7 +4,7 @@ class ConstantsController < ApplicationController
     before_action :set_constant
 
     def show
-        turbolinks_animate 'fadeinright'
+        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
         authorize! :read, @constant
         render layout: 'app/show'
     end
