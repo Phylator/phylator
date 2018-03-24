@@ -1,0 +1,12 @@
+%h1.sm What are you calculating?
+- if @categories.any?
+    %p Tell Phylator what area of science your calculation belongs to.
+    .flex.center
+        .myg-list
+            - @categories.each do |category|
+                .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category)
+        %p.sm or
+        = link_to 'Make a custom calculation', how_url(quantity: params[:quantity], unit: params[:unit])
+- else
+    %p Phylator couldn't find any predefined calculations.
+    = link_to 'Continue', enter_url(quantity: params[:quantity], unit: params[:unit])

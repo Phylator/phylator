@@ -1,0 +1,22 @@
+body.calculations.what
+    .myg-content
+        padding: myg-spacing(md)
+        & > p
+            margin-bottom: px(35)
+        .flex.center
+            flex-direction: column
+            .myg-list
+                background: color(background, light)
+                width: 100%
+                border: px(1) solid color(border)
+                +border-radius(sm)
+                .myg-list--item
+                    padding: px(15) px(20)
+                    &:not(:last-child)
+                        border-bottom: px(1) solid color(border)
+                    a
+                        text-decoration: none !important
+                        color: color(text, base)
+                        +transition(color)
+                        &:hover, &:focus, &:active
+                            color: color(text, darker)

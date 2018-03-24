@@ -4,7 +4,7 @@ class Calculations::MeasurementsController < ApplicationController
     before_action :set_measurement
 
     def show
-        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
+        turbolinks_animate 'fadeinright'
         authorize! :read, @measurement
         render layout: 'app/show'
     end

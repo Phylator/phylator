@@ -1,6 +1,6 @@
 class CalculationsController < ApplicationController
 
-    before_action :authenticate_user!, except: [:new, :create, :show]
+    before_action :authenticate_user!, except: [:new, :create, :show, :what, :how, :enter]
     before_action :set_calculation, only: [:show, :edit, :update, :destroy]
 
     layout 'app'
@@ -12,7 +12,7 @@ class CalculationsController < ApplicationController
     end
 
     def show
-        turbolinks_animate({ desktop: 'fadein', mobile: 'fadeinright'})
+        turbolinks_animate 'fadeinright'
         authorize! :read, @calculation
         render layout: 'app/show'
     end
@@ -20,7 +20,6 @@ class CalculationsController < ApplicationController
     def new
         turbolinks_animate 'fadein'
         @calculation = Calculation.new
-        @calculation.measurements.build
         authorize! :create, @calculation
         render layout: current_user ? 'app' : 'mozaic'
     end
@@ -57,6 +56,39 @@ class CalculationsController < ApplicationController
             format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: I18n.t('calculations.destroy.success') }
             format.js
         end
+    end
+
+    def what
+        turbolinks_animate 'fadein'
+        @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
+        authorize! :create, @calculation
+        @categories = @calculation.quantity.equations.map { |e| e.title }
+        if !params.has_key?(:quantity) && !params.has_key?(:unit)
+            redirect_to app_root_url
+        elsif !@categories.any?
+            redirect_to how_url(quantity: params[:quantity], unit: params[:unit])
+        else
+            render layout: current_user ? 'app' : 'mozaic'
+        end
+    end
+
+    def how
+        turbolinks_animate 'fadein'
+        redirect_to app_root_url unless params.has_key?(:quantity) || params.has_key?(:unit)
+        @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
+        authorize! :create, @calculation
+        @equations = @calculation.quantity.equations.where(title: params[:category]) if params.has_key?(:category)
+        redirect_to app_root_url if @equations.nil? || !@equations.any?
+        render layout: current_user ? 'app' : 'mozaic'
+    end
+
+    def enter
+        turbolinks_animate 'fadein'
+        redirect_to app_root_url unless params.has_key?(:quantity) || params.has_key?(:unit)
+        @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
+        authorize! :create, @calculation
+        @calculation.measurements.build
+        render layout: current_user ? 'app' : 'mozaic'
     end
 
     private

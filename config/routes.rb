@@ -11,6 +11,9 @@ Rails.application.routes.draw do
         resources :calculations, except: [:new, :edit] do
             resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end
+        get 'what', to: 'calculations#what'
+        get 'how', to: 'calculations#how'
+        get 'enter', to: 'calculations#enter'
 
         resources :categories, only: [:index, :show]
         resources :packs, only: [:show]
