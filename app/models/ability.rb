@@ -24,6 +24,7 @@ class Ability
         end
         can :read, UnitOfMeasurement do |unit_of_measurement|
             return true if user.id && user.units_of_measurement.include?(unit_of_measurement)
+            free = false
             unit_of_measurement.quantities.each do |quantity|
                 free = quantity.pack.price == 0
                 break if free
