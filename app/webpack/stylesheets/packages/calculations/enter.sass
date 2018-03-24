@@ -1,5 +1,18 @@
 body.calculations.enter
     .myg-content
         padding: myg-spacing(md)
-        p
-            margin-bottom: px(35)
+        form
+            .measurement
+                padding: px(25) 0
+                &:not(:last-child)
+                    border-bottom: px(1) solid color(border)
+                .myg-form-field--inline-container
+                    .myg-form-field
+                        margin-top: px(20)
+                        &:first-child
+                            flex: 1
+                        &:last-child
+                            flex: 1.5
+            .myg-button--container.reverse
+                margin-top: px(15)
+                flex-direction: row-reverse

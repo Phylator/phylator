@@ -1,10 +1,18 @@
-- local_assigns[:id] = 1 unless local_assigns[:id]
+-# - local_assigns[:id] = 1 unless local_assigns[:id]
+-# .measurement
+-#     = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
+-#     -# %p.margin-of-error
+-#     -#     = t 'calculations.measurements.form.margin_of_error.add'
+-#     -#     = f.input :margin_of_error, as: :integer, label: t('cd.margin_of_error'), input_html: { step: 'any' }, wrapper_html: { class: 'hide' }
+-#     = f.input :quantity_id, required: true, label: t('cd.physical_quantity'), input_html: { type: :text, id: 'quantity' + local_assigns[:id].to_s, class: 'flexdatalist', data: { units: '#quantityUnits' + local_assigns[:id].to_s, data: 'app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+-#     = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits' + local_assigns[:id].to_s, data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity' + local_assigns[:id].to_s, selection_required: 'true', value_property: 'id', min_length: '0' } }
+-#     = simple_remove_fields t('d.remove'), f
+-#     %hr
+
+
 .measurement
-    = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
-    -# %p.margin-of-error
-    -#     = t 'calculations.measurements.form.margin_of_error.add'
-    -#     = f.input :margin_of_error, as: :integer, label: t('cd.margin_of_error'), input_html: { step: 'any' }, wrapper_html: { class: 'hide' }
-    = f.input :quantity_id, required: true, label: t('cd.physical_quantity'), input_html: { type: :text, id: 'quantity' + local_assigns[:id].to_s, class: 'flexdatalist', data: { units: '#quantityUnits' + local_assigns[:id].to_s, data: 'app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-    = f.input :unit_of_measurement_id, disabled: true, required: true, label: t('cd.unit_of_measurement'), input_html: { type: :text, id: 'quantityUnits' + local_assigns[:id].to_s, data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], chained_relatives: 'true', relatives: '#quantity' + local_assigns[:id].to_s, selection_required: 'true', value_property: 'id', min_length: '0' } }
-    = simple_remove_fields t('d.remove'), f if local_assigns[:destroy]
-    %hr
+    = component 'myg/form-field', as: :input, attribute: :quantity_id, class_name: "calculation[measurements_attributes][#{index}]", input_html: { required: true, placeholder: 'Quantity', class: 'select flexdatalist', value: measurement&.quantity_id, data: { units: "#calculation_measurements_attributes__#{index}___unit_of_measurement_id", data: '/app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    .myg-form-field--inline-container
+        = component 'myg/form-field', as: :input, attribute: :value, class_name: "calculation[measurements_attributes][#{index}]", input_html: { required: true, type: 'number', step: 'any', placeholder: 'Value' }
+        = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: "calculation[measurements_attributes][#{index}]", input_html: { required: true, disabled: true, placeholder: 'Unit', class: 'select', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    -# = component 'myg/input', attribute: :_destroy, class_name: "calculation[measurements_attributes][#{index}]", class: 'hidden', type: 'hidden'
