@@ -24,37 +24,39 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const nativegap = new NativeGap;
 })
 
-const instantsearch = require('instantsearch.js');
-document.addEventListener( 'DOMContentLoaded', () => {
-    if (document.querySelector('body.search')) {
-        let testString = 'packs';
-        const search = instantsearch({
-            appId: algoliasearchApplicationId,
-            apiKey: algoliasearchSearchKey,
-            indexName: testString[0].toUpperCase() + testString.substring(1),
-            urlSync: true
-        });
-        search.start();
-    }
-})
-
-import AOS from 'aos';
-AOS.init();
-
-require('jquery-flexdatalist/jquery.flexdatalist');
-$('input.flexdatalist').flexdatalist();
-$('input.flexdatalist[data-units]').on( 'change:flexdatalist', ( event, set, options ) => {
-    let unitsEl = $(this).data('units'),
-        unitsUrl = 'app/quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text();
-    $(unitsEl).data( 'data', unitsUrl );
-    $(unitsEl).flexdatalist();
-    $(unitsEl).attr( 'disabled', 'false' );
-});
-
-import MathJax from 'mathjax/MathJax';
-MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+// const instantsearch = require('instantsearch.js');
+// document.addEventListener( 'DOMContentLoaded', () => {
+//     if (document.querySelector('body.search')) {
+//         let testString = 'packs';
+//         const search = instantsearch({
+//             appId: algoliasearchApplicationId,
+//             apiKey: algoliasearchSearchKey,
+//             indexName: testString[0].toUpperCase() + testString.substring(1),
+//             urlSync: true
+//         });
+//         search.start();
+//     }
+// })
+//
+// import AOS from 'aos';
+// AOS.init();
+//
+// require('jquery-flexdatalist/jquery.flexdatalist');
+// $('input.flexdatalist').flexdatalist();
+// $('input.flexdatalist[data-units]').on( 'change:flexdatalist', ( event, set, options ) => {
+//     let unitsEl = $(this).data('units'),
+//         unitsUrl = 'app/quantities/' + set.value + '/units_of_measurement.json?locale=' + $('p#lang').text();
+//     $(unitsEl).data( 'data', unitsUrl );
+//     $(unitsEl).flexdatalist();
+//     $(unitsEl).attr( 'disabled', 'false' );
+// });
+//
+// import MathJax from 'mathjax/MathJax';
+// MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 
 import './../javascripts/myg/index';
+
+import './../javascripts/mozaic/signup';
 
 // import './../javascripts/packages/apps/show';
 

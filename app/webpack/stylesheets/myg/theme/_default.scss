@@ -1,26 +1,26 @@
 $myg-theme: (
     accent: (
-        light: #279bfa,
-        base: #1c95f7,
-        dark: #148beb,
+        light: #3383f7,
+        base: #2577ed,
+        dark: #0e5fd4,
         contrast: #141D26
     ),
     text: (
-        lighter: #FFFFFF,
-        light: #8899A6,
+        lighter: #3D5466,
+        light: #587286,
         base: #8899A6,
-        dark: #587286,
-        darker: #3D5466
+        dark: #8899A6,
+        darker: #FFFFFF
     ),
     background: (
-        lighter: #2E425A,
-        light: #233446,
+        lighter: #141D26,
+        light: #18242f,
         base: #1B2936,
-        dark: #18242f,
-        darker: #141D26
+        dark: #233446,
+        darker: #2E425A
     ),
     border: #111D2B,
-    box-shadow: rgba(#657786, .05),
+    box-shadow: rgba(#141D26, .05),
     error: #F6809A,
     success: #4dbb65,
     overlay: (

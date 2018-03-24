@@ -3,11 +3,12 @@ class CalculationsController < ApplicationController
     before_action :authenticate_user!, except: [:new, :create, :show]
     before_action :set_calculation, only: [:show, :edit, :update, :destroy]
 
+    layout 'app'
+
     def index
         turbolinks_animate 'fadein'
         @calculations = Calculation.all
         authorizes! :read, @calculations
-        render layout: 'app'
     end
 
     def show
@@ -21,7 +22,7 @@ class CalculationsController < ApplicationController
         @calculation = Calculation.new
         @calculation.measurements.build
         authorize! :create, @calculation
-        render layout: current_layout
+        render layout: current_user ? 'app' : 'mozaic'
     end
 
     def create

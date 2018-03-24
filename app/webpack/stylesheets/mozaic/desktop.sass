@@ -1,2 +1,23 @@
-.mozaic--component.desktop
-    // ...
+body.myg-layout
+    #desktop
+        display: none
+        width: 100%
+        height: 100vh
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        svg
+            height: px(70)
+        h2, p
+            text-align: center
+            max-width: 85%
+        h2
+            margin: px(40) 0 px(10)
+        p
+            margin: 0 0 px(30)
+    +bigger-than(phone)
+        &:not(.welcome)
+            & > *
+                display: none
+            #desktop
+                display: flex
