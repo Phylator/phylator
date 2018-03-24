@@ -1,12 +1,4 @@
--# %h1.sm Enter your measurements
--# %p Enter measurements and start your calculation.
--#
--# = simple_form_for @calculation do |f|
--#     = f.simple_fields_for :measurements do |builder|
--#         = render 'calculations/measurements/form', f: builder
--#     .myg-button--container.reverse
--#         = component 'myg/button', value: 'Calculate'
--#         = simple_add_fields t('calculations.form.measurements.add'), f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'
+%p#measurement-index.hidden= @calculation.measurements.count
 
 %h1.sm Enter your measurements
 %p Enter measurements and start your calculation.
@@ -18,5 +10,4 @@
         = render 'calculations/measurements/form', measurement: measurement, index: index
     .myg-button--container.reverse
         = component 'myg/button', value: 'Calculate'
-        = link_to 'Add measurement', 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @index))}\")"
-        -# = simple_add_fields t('calculations.form.measurements.add'), f, :measurements, 'calculations/measurements/form', 'calculationsFormAddMeasurement'
+        = link_to 'Add measurement', 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @calculation.measurements.count))}\")"
