@@ -5,7 +5,7 @@ class QuantitiesController < ApplicationController
 
     def index
         turbolinks_animate 'fadein'
-        @quantities = Quantity.free + Quantity.purchased(current_user)
+        @quantities = current_user ? Quantity.free + current_user.quantities : Quantity.free
         authorizes! :read, @quantities
         render layout: 'app'
     end

@@ -33,7 +33,6 @@ class Quantity < ApplicationRecord
 
     scope :base, -> { where(parent_quantity: nil) }
     scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
-    scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user: user } }) }
 
     def sym
         self.symbol.html_safe
