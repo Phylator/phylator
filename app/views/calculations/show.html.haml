@@ -1,113 +1,141 @@
+- meta title: @constant.name
+
 - replace :back do
-    = link_to (current_user ? calculations_url : app_root_url), class: 'back', data: { turbolinks_animate_appear: 'fadein' } do
-        = asset 'components/back.svg'
+    = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
+        %i.myg-i-icon.myg-i-tail-left
 - replace :tools do
-    .copy{ data: { clipboard_text: @calculation.result.value.to_s } }= asset 'icons/ungroup.svg' unless @calculation.result.undefined
-    .share.md-trigger{ data: { modal: '.share' } }= asset 'icons/share-26.svg'
-    - if current_user && can?(:destroy, @calculation)
-        .delete.md-trigger{ data: { modal: '.delete' } }= asset 'icons/trash-round.svg'
+    - unless @calculation.result.undefined
+        = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @calculation.result.value.to_s } do
+            %i.myg-i-icon.myg-i-single-copy-04
+    = link_to 'javascript:void(0)', class: 'modalist--trigger' do
+        %i.myg-i-icon.myg-i-share-26
+    - if can?(:destroy, @calculation)
+        = link_to calculation_url(@calculation), method: :delete, data: { confirm: 'Deleting this calculation is irreversible. Are you sure?' } do
+            %i.myg-i-icon.myg-i-trash-round
 - replace :title do
     - if @calculation.result.undefined
-        %h1.red= t 'cd.no_solution_found'
+        %h1.color--error No solution found
     - else
-        %h2.copy{ data: { clipboard_text: @calculation.result.value.to_s } }
+        %h1.sym.clipboard{ data: { clipboard: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
             %span= @calculation.unit_of_measurement.sym
 - replace :subtitle do
-    %span= link_to @calculation.quantity.name, @calculation.quantity, data: { turbolinks_animate_animation: 'fadeout' }
-    ·
-    %span= timeago @calculation.created_at
-- if !current_user && notice
-    - replace :wrapper do
-        .account-wrapper{ class: ('invisible' if notice) }
-            .flex-wrapper
-                = link_to t('d.signup'), new_user_registration_url(calculation: @calculation.id), class: 'btn'
-                = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
-
-
-
-- if current_user && can?(:update, @calculation)
-    .md-trigger{ data: { modal: '.edit' } }
-        - if @calculation.name.nil? || @calculation.name == ''
-            %h3= t('calculations.show.details.add')
-        - else
-            %h3= @calculation.name
-        %p= @calculation.description if @calculation.description
-
-- if @calculation.result.undefined && @calculation.dependencies.any?
-    %h3= t 'cd.missing_dependencies'
-    %p= t 'calculations.show.dependencies.content'
-    .cards
-        - @calculation.calculation_dependencies.group_by(&:index).each do |index, dependencies|
-            - if index > 0
-                %hr
-            - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
-                = render 'quantities/quantity', quantity: dependency.quantity, animation: 'fadeout'
-
-- if current_user && can?(:update, @calculation) && !@calculation.result.undefined
-    %h3= t('cd.convert_to')
-    = simple_form_for @calculation, turboboost: true do |f|
-        = token_tag
-        = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-
-
-%h3= t 'd.p.measurements'
-.cards
-    - @calculation.measurements.each do |measurement|
-        = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
-
-
-- if @calculation.constants.any?
-    %h3= t 'cd.physical_constants'
-    .cards
-        - @calculation.constants.each do |constant|
-            = render 'constants/constant', constant: constant, animation: 'fadeout'
-
-- if @calculation.equations.any?
-    %h3= t 'd.p.equations'
-    .cards
-        - @calculation.equations.uniq.each do |equation|
-            = render 'equations/equation', equation: equation, animation: 'fadeout'
-
-%h3= t 'd.unit_of_measurement'
-.cards
-    = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @calculation.unit_of_measurement, animation: 'fadeout'
-
-
-
-- append :modals do
-    .modal.share
-        .modal-content-wrapper
-            %h3= t 'd.share'
-            .wrapper
-                = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
-                = link_to 'WhatsApp', "whatsapp://send?text=#{request.original_url}", target: '_blank'
-                = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
-                = link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}", target: '_blank'
-
-    .modal.signup
-        .modal-content-wrapper
-            %h3= t 'calculations.show.save.title'
-            %p= t 'calculations.show.save.content'
-            .flex-wrapper
-                = link_to t('d.signup'), new_user_registration_url(calculation: @calculation.id), class: 'btn'
-                = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
-
-    .modal.edit
-        .modal-content-wrapper
-            = simple_form_for @calculation, remote: true do |f|
-                = f.input :name, label: t('d.title')
-                = f.input :description, label: t('d.description')
-                .flex-wrapper
-                    = f.button :submit, t('d.save'), onclick: 'componentsModalClose(".modal.edit");'
-
-    .modal.delete
-        .modal-content-wrapper
-            = link_to t('d.delete') + '?', @calculation, method: :delete, remote: true, class: 'btn warn'
-
-
+    %p
+        %span= link_to @calculation.quantity.name, @calculation.quantity, data: { turbolinks_animate_animation: 'fadeout' }
+        ·
+        %span= time_ago_in_words @calculation.created_at
 
 - if !current_user && notice
-    - append :head do
-        %script{ type: 'text/javascript' }
-            $(document).on( 'turbolinks:load', function() { componentsModalOpen('.modal.signup'); });
+    - replace :section do
+        = component 'suggestion', title: 'Store this calculation', content: 'Sign into Phylator to keep your calculations and get access to its big library.' do
+            = link_to 'Signup', new_user_registration_url, class: 'myg-button'
+            = link_to 'Signin', new_user_session_url, class: 'myg-button myg-button--secondary'
+
+-# %p= link_to 'Learn more', @constant.wikipedia, target: '_blank'
+-#
+-# %h2 Pack
+-# .myg-grid.myg-wrap--phone
+-#     = render @constant.pack, animation: 'fadeout'
+-#
+-# %h2 Unit
+-# .myg-grid.myg-wrap--phone
+-#     = render @constant.unit_of_measurement, animation: 'fadeout'
+-#
+-# - if @calculations.any?
+-#     %h2 Calculations
+-#     .myg-grid.myg-wrap--phone
+-#         - @calculations.each do |calculation|
+-#             = render calculation, animation: 'fadeout'
+
+
+
+
+
+
+
+
+-# - if current_user && can?(:update, @calculation)
+-#     .md-trigger{ data: { modal: '.edit' } }
+-#         - if @calculation.name.nil? || @calculation.name == ''
+-#             %h3= t('calculations.show.details.add')
+-#         - else
+-#             %h3= @calculation.name
+-#         %p= @calculation.description if @calculation.description
+-#
+-# - if @calculation.result.undefined && @calculation.dependencies.any?
+-#     %h3= t 'cd.missing_dependencies'
+-#     %p= t 'calculations.show.dependencies.content'
+-#     .cards
+-#         - @calculation.calculation_dependencies.group_by(&:index).each do |index, dependencies|
+-#             - if index > 0
+-#                 %hr
+-#             - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
+-#                 = render 'quantities/quantity', quantity: dependency.quantity, animation: 'fadeout'
+-#
+-# - if current_user && can?(:update, @calculation) && !@calculation.result.undefined
+-#     %h3= t('cd.convert_to')
+-#     = simple_form_for @calculation, turboboost: true do |f|
+-#         = token_tag
+-#         = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+-#
+-#
+-# %h3= t 'd.p.measurements'
+-# .cards
+-#     - @calculation.measurements.each do |measurement|
+-#         = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
+-#
+-#
+-# - if @calculation.constants.any?
+-#     %h3= t 'cd.physical_constants'
+-#     .cards
+-#         - @calculation.constants.each do |constant|
+-#             = render 'constants/constant', constant: constant, animation: 'fadeout'
+-#
+-# - if @calculation.equations.any?
+-#     %h3= t 'd.p.equations'
+-#     .cards
+-#         - @calculation.equations.uniq.each do |equation|
+-#             = render 'equations/equation', equation: equation, animation: 'fadeout'
+-#
+-# %h3= t 'd.unit_of_measurement'
+-# .cards
+-#     = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @calculation.unit_of_measurement, animation: 'fadeout'
+-#
+-#
+-#
+-# - append :modals do
+-#     .modal.share
+-#         .modal-content-wrapper
+-#             %h3= t 'd.share'
+-#             .wrapper
+-#                 = link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{request.original_url}", target: '_blank'
+-#                 = link_to 'WhatsApp', "whatsapp://send?text=#{request.original_url}", target: '_blank'
+-#                 = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank'
+-#                 = link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{request.original_url}", target: '_blank'
+-#
+-#     .modal.signup
+-#         .modal-content-wrapper
+-#             %h3= t 'calculations.show.save.title'
+-#             %p= t 'calculations.show.save.content'
+-#             .flex-wrapper
+-#                 = link_to t('d.signup'), new_user_registration_url(calculation: @calculation.id), class: 'btn'
+-#                 = link_to t('d.signin'), new_user_session_url(calculation: @calculation.id), class: 'btn secondary'
+-#
+-#     .modal.edit
+-#         .modal-content-wrapper
+-#             = simple_form_for @calculation, remote: true do |f|
+-#                 = f.input :name, label: t('d.title')
+-#                 = f.input :description, label: t('d.description')
+-#                 .flex-wrapper
+-#                     = f.button :submit, t('d.save'), onclick: 'componentsModalClose(".modal.edit");'
+-#
+-#     .modal.delete
+-#         .modal-content-wrapper
+-#             = link_to t('d.delete') + '?', @calculation, method: :delete, remote: true, class: 'btn warn'
+
+
+
+-# - if !current_user && notice
+-#     - append :head do
+-#         %script{ type: 'text/javascript' }
+-#             $(document).on( 'turbolinks:load', function() { componentsModalOpen('.modal.signup'); });
