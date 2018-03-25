@@ -4,7 +4,7 @@ class Pack < ApplicationRecord
     include AlgoliaSearch
     friendly_id :name, use: :slugged
     translates :name, :description
-    
+
     algoliasearch do
         attribute :name, :description
         add_attribute :algolia_category
@@ -21,6 +21,8 @@ class Pack < ApplicationRecord
     has_many :quantities
     has_many :constants
     belongs_to :category
+
+    scope :free, -> { where(price: 0) }
 
     def purchased? user
         return true if self.purchases.where(user_id: user.id).any? || self.price == 0

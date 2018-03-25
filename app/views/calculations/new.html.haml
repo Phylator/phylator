@@ -1,2 +1,6 @@
-= component 'signup' unless current_user
+- unless current_user
+    = component 'suggestion', title: 'Phylator does more!', content: "Create an account and save your calculations. You also get access to Phylator's extensive library of physical quantities & constants." do
+        = link_to 'Signup', new_user_registration_url, class: 'myg-button'
+        = link_to 'Signin', new_user_session_url, class: 'myg-button myg-button--secondary'
+        %p.sm= link_to 'Hide', 'javascript:void(0)'
 = render 'form'

@@ -1,10 +1,9 @@
--# - unless current_user && (current_user.purchases.count + Pack.where(price: 0).count) == Pack.all.count
--#     .ad
--#         %h3= t 'quantities.index.ad.title'
--#         %p= t 'quantities.index.ad.content'
--#         = link_to t('quantities.index.ad.link'), categories_url, class: 'btn', data: { turbolinks_animate_type: 'nav' }
-
 - meta title: 'Quantities'
+
+- if current_user.packs.count + Pack.free.count < Pack.all.count
+    = component 'suggestion', title: "Expand Phylator's capabilities!", content: 'Purchase an expansion pack to use more phsical quantities and constants in your calculations.' do
+        = link_to 'Expansion packs', categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
+        %p.sm= link_to 'Hide', 'javascript:void(0)'
 
 .title
     %h1.sm Quantities
