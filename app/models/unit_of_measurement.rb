@@ -1,5 +1,7 @@
 class UnitOfMeasurement < ApplicationRecord
 
+    extend FriendlyId
+    friendly_id :name, use: :slugged
     translates :name
     acts_as_belonger
     acts_as_belongable
@@ -8,6 +10,7 @@ class UnitOfMeasurement < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :to_base, presence: true
 
+    has_many :calculations
     has_many :constants
     has_many :measurements, class_name: 'Calculation::Measurement'
     belongable :quantities, 'Quantity'

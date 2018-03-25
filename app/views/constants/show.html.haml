@@ -1,5 +1,8 @@
 - meta title: @constant.name
 
+- replace :tools do
+    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @value.to_s } } do
+        %i.myg-i-icon.myg-i-single-copy-04
 - replace :title do
     %h1.sym.clipboard{ data: { clipboard: @constant.value.to_s } }
         = @constant.pretty_value

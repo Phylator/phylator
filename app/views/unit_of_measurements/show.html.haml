@@ -1,33 +1,31 @@
+- meta title: @unit_of_measurement.name
+
 - replace :tools do
-    .copy{ data: { clipboard_text: @value.to_s } }= asset 'icons/ungroup.svg'
+    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @value.to_s } do
+        %i.myg-i-icon.myg-i-single-copy-04
 - replace :title do
-    - if @unit_of_measurement.base
-        %h2.copy{ data: { clipboard_text: @value.to_s } }
-            = "%g" % ( "%E" % @value )
-            %span= @unit_of_measurement.sym
-    - else
-        %h2.copy{ data: { clipboard_text: @value.to_s } }
-            = "%g" % ( "%E" % @value )
-            %span= @unit_of_measurement.sym + (@unit_of_measurement.quantities.first ? ' = 1' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym : '')
+    %h1.sym.clipboard{ data: { clipboard: @value.to_s } }
+        = "%g" % ( "%E" % @value )
+        %span= @unit_of_measurement.base ? @unit_of_measurement.sym : "#{@unit_of_measurement.sym} #{'= 1 ' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym if @unit_of_measurement.quantities.any?}"
+- replace :subtitle do
+    %p= @unit_of_measurement.name
 
+%p= @unit_of_measurement.si ? 'This is a SI unit.' : 'This is not a SI unit.'
 
+- if @quantities.any?
+    %h2 Quantities
+    .myg-grid.myg-wrap--phone
+        - @quantities.each do |quantity|
+            = render quantity, animation: 'fadeout'
 
-%p= @unit_of_measurement.name
+- if @constants.any?
+    %h2 Constants
+    .myg-grid.myg-wrap--phone
+        - @constants.each do |constant|
+            = render constant, animation: 'fadeout'
 
-- if @unit_of_measurement.quantities.any?
-    %h3= t 'cd.physical_quantities'
-    .cards
-        - @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
-
-- if @unit_of_measurement.constants.any?
-    %h3= t 'cd.physical_constants'
-    .cards
-        - @unit_of_measurement.constants.with_translations(I18n.locale).order(:name).each do |constant|
-            = render 'constants/constant', constant: constant, animation: 'fadeout'
-
-- if Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).any?
-    %h3= t 'd.p.calculations'
-    .cards
-        - Calculation.where(unit_of_measurement_id: @unit_of_measurement.id, user_id: current_user.id).order('created_at desc').each do |calculation|
-            = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'
+- if @calculations.any?
+    %h2 Calculations
+    .myg-grid.myg-wrap--phone
+        - @calculations.each do |calculation|
+            = render calculation, animation: 'fadeout'
