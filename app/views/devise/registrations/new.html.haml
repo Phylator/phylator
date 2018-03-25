@@ -1,15 +1,17 @@
-%h1= t 'd.signup'
+- meta title: 'Signup'
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = f.error_notification
+- if params.has_key? :calculation
+    %h2 Save your calculation
+- else
+    %h2 Get started
+%p Welcome to Phylator! Enter some credentials to get started.
 
-    .form-inputs
-        = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
-        = f.input :email, required: true, autofocus: true, label: t('d.email')
-        = f.input :password, required: true, label: t('d.password'), hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+= simple_form_for resource, as: resource_name, url: user_registration_url, html: { id: 'signup-form' } do |f|
+    = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', minlength: 5 }
 
-    .form-actions
-        = f.button :submit, t('d.signup')
-
-.links
-    = render 'devise/shared/links'
+- replace :footer do
+    %p.sm
+        = link_to 'Login instead?', new_user_session_url(calculation: params[:calculation]), class: 'hyperlink--inherit'
+    = component 'myg/button', value: 'Signup', form: 'signup-form'

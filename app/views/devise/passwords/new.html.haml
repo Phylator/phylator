@@ -1,13 +1,12 @@
-%h1= t 'cd.forgot_your_password?'
+- meta title: 'Forgot password?'
 
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-    = f.error_notification
+%h2 Forgot password?
+%p No problem. Recover your account by creating a new one.
 
-    .form-inputs
-        = f.input :email, required: true, autofocus: true, label: t('d.email')
+= simple_form_for resource, as: resource_name, url: password_url, html: { id: 'password-form' } do |f|
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
 
-    .form-actions
-        = f.button :submit, t('devise.passwords.new.form.submit')
-
-.links
-    = render 'devise/shared/links'
+- replace :footer do
+    %p.sm
+        = link_to 'Try to login', new_user_session_url, class: 'hyperlink--inherit'
+    = component 'myg/button', value: 'Proceed', form: 'password-form'

@@ -24,9 +24,9 @@ Rails.application.routes.draw do
             sessions: 'users/sessions',
             registrations: 'users/registrations'
         }, path_names: {
-            sign_in: 'login',
+            sign_in: 'signin',
             sign_up: 'signup',
-            sign_out: 'logout',
+            sign_out: 'signout',
             password: 'forgot',
             edit: 'account'
         }
