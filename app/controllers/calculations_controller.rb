@@ -1,6 +1,6 @@
 class CalculationsController < ApplicationController
 
-    before_action :authenticate_user!, except: [:new, :create, :show, :what, :how, :enter]
+    before_action :authenticate_user!, except: [:new, :create, :show, :what, :how, :measurements]
     before_action :set_calculation, only: [:show, :edit, :update, :destroy]
 
     layout 'app'
@@ -82,7 +82,7 @@ class CalculationsController < ApplicationController
         render layout: current_user ? 'app' : 'mozaic'
     end
 
-    def enter
+    def measurements
         turbolinks_animate 'fadein'
         redirect_to app_root_url unless params.has_key?(:quantity) || params.has_key?(:unit)
         @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
