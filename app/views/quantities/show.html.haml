@@ -23,7 +23,7 @@
 - if @equations.any?
     %h2 Equations
     - @equations.each do |title, equations|
-        %h4= title
+        %h4.color--text-base= title
         .myg-grid.myg-wrap--phone
             - equations.each do |equation|
                 = render equation, animation: 'fadeout'
