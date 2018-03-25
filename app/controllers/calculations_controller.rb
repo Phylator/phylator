@@ -7,7 +7,7 @@ class CalculationsController < ApplicationController
 
     def index
         turbolinks_animate 'fadein'
-        @calculations = Calculation.all
+        @calculations = current_user.calculations.order('created_at desc')
         authorizes! :read, @calculations
     end
 

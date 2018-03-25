@@ -1,4 +1,20 @@
 #app.myg-layout
+	.myg-content
+		padding: myg-spacing(md)
+		.title
+			+flex
+			align-items: center
+			justify-content: space-between
+			a
+				color: color(text, base)
+				+transition(color)
+				&:hover, &:focus, &:active
+					color: color(text, darker)
+				i
+					font-size: px(20)
+		.myg-grid
+			& > *
+				+myg-grid-span(4)
 	.myg-toolbar
 		.mdc-toolbar__row
 			+flex
@@ -17,11 +33,11 @@
 						font-size: px(20)
 
 
-body.calculations.index .myg-toolbar a:first-child
+body.calculations.index .mdc-toolbar__row a:first-child
 	color: color(text, darker)
-body.quantities .myg-toolbar a:nth-child(2)
+body.quantities .mdc-toolbar__row a:nth-child(2)
 	color: color(text, darker)
-body.categories .myg-toolbar a:nth-child(4)
+body.categories .mdc-toolbar__row a:nth-child(4)
 	color: color(text, darker)
-body.users .myg-toolbar a:last-child
+body.users .mdc-toolbar__row a:last-child
 	color: color(text, darker)

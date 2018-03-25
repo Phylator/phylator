@@ -1,15 +1,13 @@
-.title-wrapper
-    %h1= t 'd.p.calculations'
+.title
+    %h1.sm Calculations
     = link_to search_url do
-        = asset 'icons/search.svg'
+        %i.myg-i-icon.myg-i-zoom-2
 
-.cards
-    - if current_user.calculations.any?
-        - current_user.calculations.order('created_at desc').each do |calculation|
-            = render 'calculations/calculation', calculation: calculation
+.myg-grid.myg-wrap--phone
+    - if @calculations.any?
+        - @calculations.each do |calculation|
+            = render calculation
     - else
-        = link_to app_root_url, class: 'card', data: { turbolinks_animate_type: 'nav' } do
-            .wrapper
-                %h3= t 'calculations.index.empty.title'
-                %p.small= t 'calculations.index.empty.content'
-            = asset 'components/list/item-open.svg'
+        = link_to app_root_url, class: 'myg-card', data: { turbolinks_animate_type: 'app' } do
+            %h3 It's empty here ...
+            %p Start by creating your first calculation
