@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
     def index
         turbolinks_animate 'fadein'
-        @categories = Category.all
+        @categories = Category.all.with_translations(I18n.locale).order(:name)
         authorizes! :read, @categories
         render layout: 'app'
     end

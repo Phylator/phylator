@@ -1,18 +1,12 @@
-= link_to category, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
-    .wrapper
-        %h3= category.name
-        %p.small.align
-            - if category.purchased?(current_user) == 0
-                = asset 'icons/purchased.svg'
-            - elsif category.purchased?(current_user) == 1
-                = asset 'icons/partially_purchased.svg'
-            - else
-                = asset 'icons/not_purchased.svg'
-            %span
-                - if category.purchased?(current_user) == 0
-                    = t 'categories.index.added'
-                - elsif category.purchased?(current_user) == 1
-                    = t 'categories.index.partially_added'
-                - else
-                    = t 'categories.index.not_added'
-    = asset 'components/list/item-open.svg'
+= link_to category, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    %h3= category.name
+    %p.flex.center--c
+        - if category.purchased?(current_user) == 0
+            %i.myg-i-icon.myg-i-check-circle-08
+            %span= t 'categories.index.added'
+        - elsif category.purchased?(current_user) == 1
+            %i.myg-i-icon.myg-i-e-check
+            %span= t 'categories.index.partially_added'
+        - else
+            %i.myg-o-i-icon.myg-o-i-shape-oval
+            %span= t 'categories.index.not_added'

@@ -1,10 +1,8 @@
 - if local_assigns[:link] == false
     .myg-card
         %h2.sym= constant.sym
-        %p.sm
-            %span= constant.name
+        %p.sm= constant.name
 - else
     = link_to constant, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
         %h2.sym= constant.sym
-        %p.sm
-            %span= constant.name
+        %p.sm= constant.name

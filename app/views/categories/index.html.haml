@@ -1,8 +1,8 @@
-.title-wrapper
-    %h1= t 'categories.index.title'
+.title
+    %h1.sm Packs
     = link_to search_url(tab: 'packs') do
-        = asset 'icons/search.svg'
+        %i.myg-i-icon.myg-i-zoom-2
 
-.cards
-    - @categories.with_translations(I18n.locale).order(:name).each do |category|
-        = render 'categories/category', category: category
+.myg-grid.myg-wrap--phone
+    - @categories.each do |category|
+        = render category
