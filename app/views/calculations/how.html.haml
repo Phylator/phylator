@@ -3,6 +3,6 @@
 .flex.center
     .myg-list
         - @equations.each do |equation|
-            .myg-list--item= link_to equation.quantities.map { |q| q.name }.join(', '), enter_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id)
+            .myg-list--item= link_to equation.quantities.map { |q| q.name }.join(', '), measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id)
     %p.sm or
-    = link_to 'Enter custom measurements', enter_url(quantity: params[:quantity], unit: params[:unit])
+    = link_to 'Enter custom measurements', measurements_url(quantity: params[:quantity], unit: params[:unit])

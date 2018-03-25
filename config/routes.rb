@@ -13,7 +13,7 @@ Rails.application.routes.draw do
         end
         get 'what', to: 'calculations#what'
         get 'how', to: 'calculations#how'
-        get 'enter', to: 'calculations#enter'
+        get 'measurements', to: 'calculations#measurements'
 
         resources :categories, only: [:index, :show]
         resources :packs, only: [:show]
