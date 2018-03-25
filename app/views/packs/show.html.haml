@@ -1,57 +1,54 @@
+- meta title: "#{@pack.category.name}/#{@pack.name}"
+
 - replace :title do
     %h1= @pack.name
 - replace :subtitle do
-    = @pack.category.name
-
-
+    %p= @pack.category.name
 
 - unless @pack.purchased? current_user
-    - replace :wrapper do
-        .buy-wrapper
-            = link_to t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), '', class: 'btn md-trigger', data: { modal: '.buy' }
+    - replace :section do
+        %section
+            = link_to t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), pack_checkout_url(@pack), class: 'myg-button modalist--trigger'
+
+%p= @pack.description
+
+- if @quantities.any?
+    %h2 Quantities
+    .myg-grid.myg-wrap--phone
+        - @quantities.each do |quantity|
+            = render quantity, animation: 'fadeout', link: @pack.purchased?(current_user)
+
+- if @constants.any?
+    %h2 Constants
+    .myg-grid.myg-wrap--phone
+        - @constants.each do |constant|
+            = render constant, animation: 'fadeout', link: @pack.purchased?(current_user)
 
 
 
-%p
-    %span= @pack.description
-
-- if @pack.quantities.any?
-    %h3= t 'cd.physical_quantities'
-    .cards
-        - @pack.quantities.with_translations(I18n.locale).order(:name).each do |quantity|
-            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout', link: @pack.purchased?(current_user)
-
-- if @pack.constants.any?
-    %h3= t 'cd.physical_constants'
-    .cards
-        - @pack.constants.with_translations(I18n.locale).order(:name).each do |constant|
-            = render 'constants/constant', constant: constant, animation: 'fadeout', link: @pack.purchased?(current_user)
-
-
-
-- append :modals do
-    .modal.buy
-        .modal-content-wrapper
-            %h1.small= t('packs.show.modals.buy.title')
-            %form#purchase-form{ action: '/charge', method: :post }
-                .input
-                    %label{ for: 'name' }= t('d.name')
-                    = text_field_tag :name, ''
-                .input
-                    %label{ for: 'receipt_email' }= t('d.email')
-                    = text_field_tag :receipt_email, current_user.email, type: :email
-                .form-row.input
-                    #card-element
-                    #card-errors{ role: 'alert' }
-                .flex-wrapper.reverse
-                    %button= t('packs.show.modals.buy.next')
-            = form_tag purchases_url(id: @pack.slug), method: :post, id: 'purchase' do
-                = text_field_tag :id, '', class: 'hidden'
-                = text_field_tag :token, '', class: 'hidden'
-                = text_field_tag :receipt_email, '', class: 'hidden'
-                .wrapper.hidden
-                    %p= t('packs.show.modals.buy.success')
-                    .centered
-                        = submit_tag t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), onclick: 'componentsModalClose($(".modal.buy"));'
-        .modal-loader-wrapper.hidden
-            = asset 'loader/modal'
+-# - append :modals do
+-#     .modal.buy
+-#         .modal-content-wrapper
+-#             %h1.small= t('packs.show.modals.buy.title')
+-#             %form#purchase-form{ action: '/charge', method: :post }
+-#                 .input
+-#                     %label{ for: 'name' }= t('d.name')
+-#                     = text_field_tag :name, ''
+-#                 .input
+-#                     %label{ for: 'receipt_email' }= t('d.email')
+-#                     = text_field_tag :receipt_email, current_user.email, type: :email
+-#                 .form-row.input
+-#                     #card-element
+-#                     #card-errors{ role: 'alert' }
+-#                 .flex-wrapper.reverse
+-#                     %button= t('packs.show.modals.buy.next')
+-#             = form_tag purchases_url(id: @pack.slug), method: :post, id: 'purchase' do
+-#                 = text_field_tag :id, '', class: 'hidden'
+-#                 = text_field_tag :token, '', class: 'hidden'
+-#                 = text_field_tag :receipt_email, '', class: 'hidden'
+-#                 .wrapper.hidden
+-#                     %p= t('packs.show.modals.buy.success')
+-#                     .centered
+-#                         = submit_tag t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), onclick: 'componentsModalClose($(".modal.buy"));'
+-#         .modal-loader-wrapper.hidden
+-#             = asset 'loader/modal'

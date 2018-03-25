@@ -26,7 +26,7 @@ class Quantity < ApplicationRecord
 
     belongs_to :pack
     belongable :in_equations, 'Equation'
-    belongable :needed_by_calculations, 'Calculation'
+    belongable :calculations, 'Calculation'
 
     belongs_to :parent_quantity, class_name: 'Quantity', foreign_key: 'parent_quantity_id', required: false
     has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'

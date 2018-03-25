@@ -16,7 +16,9 @@ Rails.application.routes.draw do
         get 'measurements', to: 'calculations#measurements'
 
         resources :categories, only: [:index, :show]
-        resources :packs, only: [:show]
+        resources :packs, only: [:show] do
+            get 'checkout', to: 'packs#checkout', constraints: Modalist::Ajax.new
+        end
 
         resources :purchases, only: [:create]
 

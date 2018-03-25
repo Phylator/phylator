@@ -1,4 +1,2 @@
-= link_to equation, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
-    .wrapper
-        = '`' + equation.quantity.ascii_sym + '=' + equation.equation + '`'
-    = asset 'components/list/item-open.svg'
+= link_to equation, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    %h2.sym= '`' + equation.quantity.ascii_sym + '=' + equation.equation + '`'

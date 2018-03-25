@@ -1,13 +1,15 @@
-= link_to pack, class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
-    .wrapper
-        %h3= pack.name
-        %p.small.align
-            - if pack.purchased?(current_user)
-                = asset 'icons/purchased.svg'
-            - else
-                = asset 'icons/not_purchased.svg'
+= link_to pack, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    %h3= pack.name
+    %p.flex.center--c
+        - if pack.purchased? current_user
+            %i.myg-i-icon.myg-i-check-circle-08
             %span
-                = pack.purchased?(current_user) ? t('categories.show.added') : t('categories.show.not_added')
+                = t 'categories.index.added'
                 ⋅
                 = pack.price == 0 ? t('categories.show.free') : number_to_currency(pack.price, unit: '$')
-    = asset 'components/list/item-open.svg'
+        - else
+            %i.myg-o-i-icon.myg-o-i-shape-oval
+            %span
+                = t 'categories.index.not_added'
+                ⋅
+                = pack.price == 0 ? t('categories.show.free') : number_to_currency(pack.price, unit: '$')

@@ -5,7 +5,9 @@ class ConstantsController < ApplicationController
 
     def show
         turbolinks_animate 'fadeinright'
+        @calculations = @constant.calculations.where(user: current_user).order('created_at desc')
         authorize! :read, @constant
+        authorizes! :read, @calculations
         render layout: 'app/show'
     end
 

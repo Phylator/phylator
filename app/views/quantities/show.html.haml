@@ -1,45 +1,44 @@
+- meta title: @quantity.name
+
 - replace :title do
-    %h2= @quantity.sym
+    %h1.sym= @quantity.sym
 - replace :subtitle do
-    = @quantity.name
-
-
+    %p= @quantity.name
 
 %p
     = @quantity.description
     - if @quantity.vector
         = t 'quantities.show.vector'
-- if @quantity.wikipedia
-    %p= link_to t('cd.learn_more'), @quantity.wikipedia, target: '_blank'
+%p= link_to 'Learn more', @quantity.wikipedia, target: '_blank'
 
-%h3= t 'd.pack'
-.cards
-    = render 'packs/pack', pack: @quantity.pack, animation: 'fadeout'
+%h2 Pack
+.myg-grid.myg-wrap--phone
+    = render @quantity.pack, animation: 'fadeout'
 
 - if @quantity.parent_quantity.present?
-    %h3= t 'cd.belongs_to'
-    .cards
-        = render 'quantities/quantity', quantity: @quantity.parent_quantity, animation: 'fadeout'
+    %h2 Belongs to
+    .myg-grid.myg-wrap--phone
+        = render @quantity.parent_quantity, animation: 'fadeout'
 
-- if @quantity.equations.any?
-    %h3= t 'd.p.equations'
-    .cards
-        - @quantity.equations.each do |equation|
-            = render 'equations/equation', equation: equation, animation: 'fadeout'
+- if @equations.any?
+    %h2 Equations
+    - @equations.each do |title, equations|
+        %h4= title
+        .myg-grid.myg-wrap--phone
+            - equations.each do |equation|
+                = render equation, animation: 'fadeout'
 
-- if (@quantity.child_quantities.purchased(current_user) + @quantity.child_quantities.free).any?
-    %h3= t 'cd.physical_quantities'
-    .cards
-        - (@quantity.child_quantities.with_translations(I18n.locale).purchased(current_user) + @quantity.child_quantities.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |quantity|
-            = render 'quantities/quantity', quantity: quantity, animation: 'fadeout'
+- if @quantities.any?
+    %h2 Quantities
+    - @quantities.each do |quantity|
+        = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
-%h3= t 'd.p.units_of_measurement'
-.cards
-    - @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc).each do |unit_of_measurement|
-        = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: unit_of_measurement, animation: 'fadeout'
+- if @unit_of_measurements.any?
+    %h2 Units
+    - @unit_of_measurements.each do |unit_of_measurement|
+        = render unit_of_measurement, animation: 'fadeout', link: can?(:read, unit_of_measurement)
 
-- if Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).any?
-    %h3= t 'd.p.calculations'
-    .cards
-        - Calculation.where(quantity_id: @quantity.id, user_id: current_user.id).order('created_at desc').each do |calculation|
-            = render 'calculations/calculation', calculation: calculation, animation: 'fadeout'
+- if @calculations.any?
+    %h2 Units
+    - @calculations.each do |calculation|
+        = render calculation, animation: 'fadeout'

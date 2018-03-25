@@ -1,12 +1,11 @@
+- meta title: @category.name
+
 - replace :title do
     %h1= @category.name
 
+%p= @category.description
 
-
-%p
-    = @category.description
-
-%h3= t 'd.p.packs'
-.cards
-    - @category.packs.each do |pack|
-        = render 'packs/pack', pack: pack, animation: 'fadeout'
+%h2 Packs
+.myg-grid.myg-wrap--phone
+    - @packs.each do |pack|
+        = render pack, animation: 'fadeout'

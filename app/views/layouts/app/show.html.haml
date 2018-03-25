@@ -1,22 +1,17 @@
-= mozaic :application do
+- replace :layout, 'app_show'
 
-    = area :back do
-        = link_to '', class: 'back preventdefault', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-            = asset 'components/back.svg'
-
-    .tools
-        = area :tools
-
-    .head-wrapper
-        = area :title
-        %p= area :subtitle
-
-    = area :wrapper
-
-    .content-wrapper
-        = mozaic_area :'app/show' do
-            = yield
-
-    = area :modals
-
-    = area :scripts
+= mozaic do
+    .myg-content
+        %header
+            .tools
+                = area :back do
+                    = link_to 'javascript:void(0)', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
+                        %i.myg-i-icon.myg-i-tail-left
+                .wrapper= area :tools
+            .head
+                = area :title
+                = area :subtitle
+        = area :section
+        %main
+            = mozaic_area :app_show do
+                = yield

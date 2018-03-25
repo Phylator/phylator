@@ -1,0 +1,55 @@
+#app_show.myg-layout
+	.myg-content
+		header, main
+			padding: myg-spacing(md)
+		header
+			background: color(background, dark)
+			min-height: px(250)
+			height: 45vh
+			+flex
+			flex-direction: column
+			justify-content: space-between
+			.tools
+				+flex
+				align-items: center
+				justify-content: space-between
+				a
+					color: color(text, base)
+					text-decoration: none !important
+					+transition(color)
+					&:hover, &:focus, &:active
+						color: color(text, darker)
+					&.error
+						color: color(error) !important
+					i
+						font-size: px(24)
+				.wrapper
+					+flex
+					align-items: center
+			.head
+				h1
+					margin-bottom: 0
+					&.clipboard
+						+cursor(pointer)
+					&.sym
+						+font(serif)
+						font-size: px(48)
+						line-height: 1.2
+						span
+							font-size: px(24)
+				p
+					margin: 0
+		section
+			background: color(background, light)
+			padding: myg-spacing(md)
+			+flex--center
+		main
+			& > p:last-of-type
+				margin-bottom: px(35)
+			& > h2
+				margin-bottom: px(15)
+			.myg-grid
+				&:not(:last-child)
+					margin-bottom: px(35)
+				& > *
+					+myg-grid-span(4)

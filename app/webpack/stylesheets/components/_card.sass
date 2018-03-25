@@ -5,8 +5,12 @@
     +transition
     &:hover, &:focus, &:active
         background: color(background, lighter)
+    &.highlighted
+        background: color(background, lighter)
     h2, h3
         margin: 0 0 px(5)
+        &:last-child
+            margin: 0
         &.sym
             +font(serif)
             font-style: italic
