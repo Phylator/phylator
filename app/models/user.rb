@@ -9,7 +9,7 @@ class User < ApplicationRecord
     has_many :purchases
     has_many :packs, through: :purchases
     has_many :quantities, through: :packs
-    has_many :constantss, through: :packs
+    has_many :constants, through: :packs
     has_many :units_of_measurement, through: :quantities
 
 end

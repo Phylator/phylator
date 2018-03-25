@@ -13,6 +13,8 @@
 				i
 					font-size: px(20)
 		.myg-grid
+			&:not(:last-child)
+				margin-bottom: px(35)
 			& > *
 				+myg-grid-span(4)
 	.myg-toolbar
@@ -34,10 +36,10 @@
 
 
 body.calculations.index .mdc-toolbar__row a:first-child
-	color: color(text, darker)
+	color: color(text, darker) !important
 body.quantities .mdc-toolbar__row a:nth-child(2)
-	color: color(text, darker)
+	color: color(text, darker) !important
 body.categories .mdc-toolbar__row a:nth-child(4)
-	color: color(text, darker)
+	color: color(text, darker) !important
 body.users .mdc-toolbar__row a:last-child
-	color: color(text, darker)
+	color: color(text, darker) !important

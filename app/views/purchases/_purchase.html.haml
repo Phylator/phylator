@@ -1,8 +1,7 @@
-= link_to purchase.pack, class: 'card' do
-    .wrapper
-        %h2.small= number_to_currency purchase.amount, unit: '$'
-        %p.small
-            %span= purchase.pack.name
-            ·
-            %span= time_ago_in_words purchase.created_at
-    = asset 'components/list/item-open.svg'
+.myg-list--item
+    = link_to purchase.pack do
+        %span= number_to_currency purchase.amount, unit: '$'
+        ·
+        %span= purchase.pack.name
+        ·
+        %span= time_ago_in_words purchase.created_at

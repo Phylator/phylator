@@ -1,25 +1,23 @@
-- unless current_user && (current_user.purchases.count + Pack.where(price: 0).count) == Pack.all.count
-    .ad
-        %h3= t 'quantities.index.ad.title'
-        %p= t 'quantities.index.ad.content'
-        = link_to t('quantities.index.ad.link'), categories_url, class: 'btn', data: { turbolinks_animate_type: 'nav' }
+-# - unless current_user && (current_user.purchases.count + Pack.where(price: 0).count) == Pack.all.count
+-#     .ad
+-#         %h3= t 'quantities.index.ad.title'
+-#         %p= t 'quantities.index.ad.content'
+-#         = link_to t('quantities.index.ad.link'), categories_url, class: 'btn', data: { turbolinks_animate_type: 'nav' }
 
-.wrapper
+.title
+    %h1.sm Quantities
+    = link_to search_url(tab: 'quantities') do
+        %i.myg-i-icon.myg-i-zoom-2
 
-    .title-wrapper
-        %h1= t 'cd.physical_quantities'
-        = link_to search_url(tab: 'quantities') do
-            = asset 'icons/search.svg'
-    .cards
-        - (Quantity.with_translations(I18n.locale).purchased(current_user).base + Quantity.with_translations(I18n.locale).free.base).sort_by { |obj| obj.name }.each do |quantity|
-            = render 'quantities/quantity', quantity: quantity
+.myg-grid.myg-wrap--phone
+    - @quantities.each do |quantity|
+        = render quantity
 
+.title
+    %h1.sm Constants
+    = link_to search_url(tab: 'constants') do
+        %i.myg-i-icon.myg-i-zoom-2
 
-    .title-wrapper
-        %h1= t 'cd.physical_constants'
-        = link_to search_url(tab: 'constants') do
-            = asset 'icons/search.svg'
-
-    .cards
-        - (Constant.with_translations(I18n.locale).purchased(current_user) + Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }.each do |constant|
-            = render 'constants/constant', constant: constant
+.myg-grid.myg-wrap--phone
+    - @constants.each do |constant|
+        = render constant

@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def edit
+        @purchases = current_user.purchases.order('created_at desc')
         turbolinks_animate 'fadein'
         super
     end

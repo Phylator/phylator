@@ -1,37 +1,23 @@
-%h1= t 'devise.registrations.edit.title'
-%p= current_user.email
+%h1.sm Account
 
-.list
-    = link_to setup_url(stay: true), class: 'tour list-item' do
-        %h3= t 'devise.registrations.edit.list.tour'
-        = asset 'components/list/item-open.svg'
-    = link_to language_url, class: 'language list-item' do
-        %h3= t 'devise.registrations.edit.list.language'
-        = asset 'components/list/item-open.svg'
-    = link_to destroy_user_session_path, method: :delete, class: 'logout list-item' do
-        %h3= t 'd.logout'
-        = asset 'components/list/item-open.svg'
+.myg-list
+    .myg-list--item= link_to 'Tour', setup_url(stay: true)
+    .myg-list--item= link_to 'Change language', language_url, class: 'modalist--trigger'
+    .myg-list--item= link_to 'Signout', destroy_user_session_path, method: :delete
 
 %hr
 
-- if current_user.purchases.any?
-
-    %h3= t 'd.p.purchases'
-
-    .cards
-        - current_user.purchases.each do |purchase|
-            = render 'purchases/purchase', purchase: purchase
-
+- if @purchases.any?
+    %h3 Purchases
+    .myg-list
+        - @purchases.each do |purchase|
+            =render purchase
     %hr
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = f.error_notification
-
-    .form-inputs
-        = f.input :email, required: true, label: t('d.email')
-        = f.input :password, autocomplete: 'off', required: false, label: t('cd.new_password')
-        = f.input :current_password, required: true, label: t('cd.current_password')
-
-    .form-actions
-        = f.button :submit, t('d.update')
-        = link_to t('d.delete'), registration_path(resource_name), data: { confirm: t('devise.registrations.edit.delete') }, method: :delete, class: 'btn warn'
+= simple_form_for resource, as: resource_name, url: user_registration_url, html: { method: :put } do |f|
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', value: current_user.email }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'New password (optional)', input_html: { minlength: 5, type: 'password' }
+    = component 'myg/form-field', as: :input, attribute: :current_password, class_name: 'user', floating_label: 'Current password', input_html: { required: true, minlength: 5, type: 'password' }
+    .myg-button--container
+        = component 'myg/button', value: 'Update'
+        = link_to 'Delete account', user_registration_url, method: :delete, data: { confirm: t('devise.registrations.edit.delete') }, class: 'myg-button myg-button--secondary error'
