@@ -1,24 +1,26 @@
 - meta title: 'Quantities'
 
-- if current_user.packs.count + Pack.free.count < Pack.all.count
+- if current_user.purchases.count == 0
     = component 'suggestion', title: "Expand Phylator's capabilities!", content: 'Purchase an expansion pack to use more phsical quantities and constants in your calculations.' do
         = link_to 'Expansion packs', categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
         %p.sm= link_to 'Hide', 'javascript:void(0)'
 
-.title
-    %h1.sm Quantities
-    = link_to search_url(tab: 'quantities') do
-        %i.myg-i-icon.myg-i-zoom-2
+.content-wrapper
 
-.myg-grid.myg-wrap--phone
-    - @quantities.each do |quantity|
-        = render quantity
+    .title
+        %h1.sm Quantities
+        = link_to search_url(tab: 'quantities') do
+            %i.myg-i-icon.myg-i-zoom-2
 
-.title
-    %h1.sm Constants
-    = link_to search_url(tab: 'constants') do
-        %i.myg-i-icon.myg-i-zoom-2
+    .myg-grid.myg-wrap--phone
+        - @quantities.each do |quantity|
+            = render quantity
 
-.myg-grid.myg-wrap--phone
-    - @constants.each do |constant|
-        = render constant
+    .title
+        %h1.sm Constants
+        = link_to search_url(tab: 'constants') do
+            %i.myg-i-icon.myg-i-zoom-2
+
+    .myg-grid.myg-wrap--phone
+        - @constants.each do |constant|
+            = render constant
