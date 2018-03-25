@@ -13,7 +13,15 @@ class CalculationsController < ApplicationController
 
     def show
         turbolinks_animate 'fadeinright'
+        @dependencies = @calculation.calculation_dependencies.group_by(&:index)
+        @measurements = @calculation.measurements
+        @constants = @calculation.constants.with_translations(I18n.locale).order(:name)
+        @equations = @calculation.equations
+        @conditions = []
+        @equations.each { |e| e.conditions.map { |c| @conditions << c } }
         authorize! :read, @calculation
+        authorizes! :read, @constants
+        authorizes! :read, @equations
         render layout: 'app/show'
     end
 
@@ -34,6 +42,11 @@ class CalculationsController < ApplicationController
         else
             redirect_to app_root_url, alert: I18n.t('calculations.create.error')
         end
+    end
+
+    def edit
+        authorize! :update, @calculation
+        modalist
     end
 
     def update
@@ -62,7 +75,7 @@ class CalculationsController < ApplicationController
         turbolinks_animate 'fadein'
         @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
         authorize! :create, @calculation
-        @categories = @calculation.quantity.equations.map { |e| e.title }
+        @categories = @calculation.quantity.equations.map { |e| e.title }.uniq
         if !params.has_key?(:quantity) && !params.has_key?(:unit)
             redirect_to app_root_url
         elsif !@categories.any?

@@ -4,8 +4,8 @@ class Equation < ApplicationRecord
 
     acts_as_belonger
     acts_as_belongable
-    serialize :conditions, Array
     translates :title, :conditions
+    serialize :conditions, Array
 
     validates :equation, presence: true
 

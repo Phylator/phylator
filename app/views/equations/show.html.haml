@@ -3,6 +3,15 @@
 - replace :title do
     %h1.sm= '`' + @equation.quantity.ascii_sym + '=' + @equation.equation + '`'
 
+%p= @equation.title
+
+- if @equation.conditions.any?
+    %h2 Conditions
+    .myg-list
+        - @equation.conditions.each do |condition|
+            .myg-list--item
+                %p= condition
+
 - if @quantities.any?
     %h2 Quantities
     .myg-grid.myg-wrap--phone

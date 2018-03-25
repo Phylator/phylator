@@ -1,11 +1,9 @@
-= link_to calculation_measurement_url(calculation_id: measurement.calculation.id, id: measurement.id), class: 'card', data: { turbolinks_animate_animation: (local_assigns[:animation] ? animation : nil) } do
-    .wrapper
-        %h2.small
-            = measurement.pretty_value
-            %span= measurement.unit_of_measurement.sym
-        %p.small
-            - unless measurement.name.nil? || measurement.name == ''
-                %span= measurement.name
-                ·
-            %span= measurement.quantity.name
-    = asset 'components/list/item-open.svg'
+= link_to measurement, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    %h2.sym
+        = measurement.pretty_value
+        %span= measurement.unit_of_measurement.sym
+    %p.sm
+        - unless measurement.name.nil?
+            %span= measurement.name
+            ·
+        %span= measurement.quantity.name

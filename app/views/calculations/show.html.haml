@@ -31,21 +31,53 @@
             = link_to 'Signup', new_user_registration_url, class: 'myg-button'
             = link_to 'Signin', new_user_session_url, class: 'myg-button myg-button--secondary'
 
--# %p= link_to 'Learn more', @constant.wikipedia, target: '_blank'
--#
--# %h2 Pack
--# .myg-grid.myg-wrap--phone
--#     = render @constant.pack, animation: 'fadeout'
--#
--# %h2 Unit
--# .myg-grid.myg-wrap--phone
--#     = render @constant.unit_of_measurement, animation: 'fadeout'
--#
--# - if @calculations.any?
--#     %h2 Calculations
--#     .myg-grid.myg-wrap--phone
--#         - @calculations.each do |calculation|
--#             = render calculation, animation: 'fadeout'
+%h3= @calculation.name if @calculation.name
+%p= @calculation.description if @calculation.description
+- if can? :update, @calculation
+    %p= link_to 'Edit name & description' edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
+
+- if @calculation.result.undefined && @calculation.dependencies.any?
+    %h2 Missing dependencies
+    %p= t 'calculations.show.dependencies.content'
+    .myg-grid.myg-wrap--phone
+        - @dependencies.each do |index, dependencies|
+            - if index > 0
+                %hr
+            - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
+                = render dependency.quantity, animation: 'fadeout', link: dependency.quantity.pack.purchased?(current_user)
+
+- if can?(:update, @calculation) && !@calculation.result.undefined
+    %h3 Unit conversion
+    = simple_form_for @calculation do |f|
+        = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: 'Choose a unit', class: 'select flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+
+%h2 Measurements
+.myg-grid.myg-wrap--phone
+    - @measurements.each do |measurement|
+        = render measurement, animation: 'fadeout'
+
+- if @constants.any?
+    %h2 Constants
+    .cards
+        - @constants.each do |constant|
+            = render constant, animation: 'fadeout'
+
+- if @conditions.any?
+    %h2 Conditions
+    .myg-list
+        - @conditions.each do |condition|
+            .myg-list--item
+                %p= condition
+
+- if @equations.any?
+    %h2 Equations
+    .cards
+        - @equations.each do |equation|
+            = render equation, animation: 'fadeout'
+
+%h2 Unit
+.myg-grid.myg-wrap--phone
+    = render @calculation.unit_of_measurement, animation: 'fadeout'
 
 
 
@@ -54,55 +86,6 @@
 
 
 
--# - if current_user && can?(:update, @calculation)
--#     .md-trigger{ data: { modal: '.edit' } }
--#         - if @calculation.name.nil? || @calculation.name == ''
--#             %h3= t('calculations.show.details.add')
--#         - else
--#             %h3= @calculation.name
--#         %p= @calculation.description if @calculation.description
--#
--# - if @calculation.result.undefined && @calculation.dependencies.any?
--#     %h3= t 'cd.missing_dependencies'
--#     %p= t 'calculations.show.dependencies.content'
--#     .cards
--#         - @calculation.calculation_dependencies.group_by(&:index).each do |index, dependencies|
--#             - if index > 0
--#                 %hr
--#             - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
--#                 = render 'quantities/quantity', quantity: dependency.quantity, animation: 'fadeout'
--#
--# - if current_user && can?(:update, @calculation) && !@calculation.result.undefined
--#     %h3= t('cd.convert_to')
--#     = simple_form_for @calculation, turboboost: true do |f|
--#         = token_tag
--#         = f.input :unit_of_measurement_id, required: true, label: false, input_html: { type: :text, value: @calculation.unit_of_measurement_id, class: 'flexdatalist', data: { data: '/app/quantities/' + @calculation.quantity.id.to_s + '/units_of_measurement.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
--#
--#
--# %h3= t 'd.p.measurements'
--# .cards
--#     - @calculation.measurements.each do |measurement|
--#         = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
--#
--#
--# - if @calculation.constants.any?
--#     %h3= t 'cd.physical_constants'
--#     .cards
--#         - @calculation.constants.each do |constant|
--#             = render 'constants/constant', constant: constant, animation: 'fadeout'
--#
--# - if @calculation.equations.any?
--#     %h3= t 'd.p.equations'
--#     .cards
--#         - @calculation.equations.uniq.each do |equation|
--#             = render 'equations/equation', equation: equation, animation: 'fadeout'
--#
--# %h3= t 'd.unit_of_measurement'
--# .cards
--#     = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @calculation.unit_of_measurement, animation: 'fadeout'
--#
--#
--#
 -# - append :modals do
 -#     .modal.share
 -#         .modal-content-wrapper

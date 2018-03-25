@@ -9,7 +9,7 @@
     = @quantity.description
     - if @quantity.vector
         = t 'quantities.show.vector'
-%p= link_to 'Learn more', @quantity.wikipedia, target: '_blank'
+%p= link_to 'Learn more', @quantity.wikipedia, target: '_blank', class: 'hyperlink--inherit'
 
 %h2 Pack
 .myg-grid.myg-wrap--phone

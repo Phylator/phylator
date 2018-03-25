@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         resources :unit_of_measurements, only: [:show]
         resources :constants, only: [:show]
         resources :equations, only: [:show]
-        resources :calculations, except: [:new, :edit] do
+        resources :calculations, except: [:new] do
             resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end
         get 'what', to: 'calculations#what'
