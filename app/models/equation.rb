@@ -1,6 +1,6 @@
 class Equation < ApplicationRecord
 
-    after_create :associate
+    after_create_commit :associate
 
     acts_as_belonger
     acts_as_belongable
