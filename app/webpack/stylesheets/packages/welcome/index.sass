@@ -1,2 +1,22 @@
 body.welcome.index
-    // ...
+    .myg-content
+        section#head
+            width: px(1500)
+            max-width: 85%
+            margin: 0 auto
+            padding: px(50) 0
+            +flex
+            align-items: center
+            justify-content: space-evenly
+            .content-wrapper
+                margin-right: px(50)
+                h1
+                    margin: 0 0 px(10)
+                h2
+                    margin: 0 0 px(40)
+                    color: color(text, light)
+            .image-wrapper
+                img
+                    height: 75vh
+                    min-height: px(350)
+                    max-height: px(500)

@@ -1,0 +1,16 @@
+#application.myg-layout
+    .myg-toolbar
+        background: color(background, base)
+        border: none
+        padding: 0 px(20) 0 px(12)
+        svg
+            height: px(50)
+        a
+            font-size: px(15)
+            color: color(text, base)
+            text-decoration: none !important
+            +transition(color)
+            &:not(:first-child)
+                margin-left: px(20)
+            &:hover, &:focus, &:active
+                color: color(accent, base)
