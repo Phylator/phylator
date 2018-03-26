@@ -7,7 +7,7 @@
         .myg-wrap--large.mdc-toolbar__row
             %section.mdc-toolbar__section.mdc-toolbar__section--align-start
                 = link_to root_url, data: { turbolinks_animate_type: 'application' } do
-                    = asset 'components/brand/logo_large'
+                    = asset 'components/brand/logo'
             %section.mdc-toolbar__section.mdc-toolbar__section--align-end
                 - if current_user
                     = link_to 'Account', edit_user_registration_url

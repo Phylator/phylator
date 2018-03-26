@@ -9,5 +9,8 @@
         %h1.sm= t 'welcome.index.slide4.title'
         %p.lg= t 'welcome.index.slide4.content'
         .myg-button--container
-            = link_to 'Signin', new_user_session_url, class: 'myg-button'
-            = link_to 'Get started', app_root_url, class: 'myg-button myg-button--secondary'
+            - if current_user
+                = link_to 'Get started', app_root_url, class: 'myg-button'
+            - else
+                = link_to 'Signin', new_user_session_url, class: 'myg-button'
+                = link_to 'Get started', app_root_url, class: 'myg-button myg-button--secondary'

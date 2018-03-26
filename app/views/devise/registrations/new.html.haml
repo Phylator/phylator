@@ -1,9 +1,9 @@
 - meta title: 'Signup'
 
 - if params.has_key? :calculation
-    %h2 Save your calculation
+    %h1.sm Save your calculation
 - else
-    %h2 Get started
+    %h1.sm Get started
 %p Welcome to Phylator! Enter some credentials to get started.
 
 = simple_form_for resource, as: resource_name, url: user_registration_url, html: { id: 'signup-form' } do |f|
