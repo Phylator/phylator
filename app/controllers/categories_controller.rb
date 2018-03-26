@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
 
     def show
         turbolinks_animate 'fadeinright'
-        @packs = @category.packs.order(:price)
+        @packs = @category.packs.order(:price, :name)
         authorize! :read, @category
         authorizes! :read, @packs
         render layout: 'app/show'
