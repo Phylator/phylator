@@ -11,7 +11,13 @@ class Constant < ApplicationRecord
     acts_as_belongable
 
     algoliasearch do
-        attribute :name
+        Settings.phylator.languages.each do |lang|
+            add_attribute "name_#{lang}" do
+                Globalize.with_locale(lang) do
+                    name
+                end
+            end
+        end
         add_attribute :algolia_sym
     end
     def algolia_sym

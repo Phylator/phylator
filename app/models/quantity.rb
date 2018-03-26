@@ -9,7 +9,18 @@ class Quantity < ApplicationRecord
     acts_as_belongable
 
     algoliasearch do
-        attribute :name, :description
+        Settings.phylator.languages.each do |lang|
+            add_attribute "name_#{lang}" do
+                Globalize.with_locale(lang) do
+                    name
+                end
+            end
+            add_attribute "description_#{lang}" do
+                Globalize.with_locale(lang) do
+                    description
+                end
+            end
+        end
         add_attribute :algolia_sym
     end
     def algolia_sym

@@ -6,7 +6,18 @@ class Pack < ApplicationRecord
     translates :name, :description
 
     algoliasearch do
-        attribute :name, :description
+        Settings.phylator.languages.each do |lang|
+            add_attribute "name_#{lang}" do
+                Globalize.with_locale(lang) do
+                    name
+                end
+            end
+            add_attribute "description_#{lang}" do
+                Globalize.with_locale(lang) do
+                    description
+                end
+            end
+        end
         add_attribute :algolia_category
     end
     def algolia_category

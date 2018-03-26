@@ -10,6 +10,12 @@ body.welcome.index
             justify-content: space-evenly
             .content-wrapper
                 margin-right: px(50)
+                +smaller-than(phone)
+                    margin-right: 0
+                    +flex
+                    flex-direction: column
+                    align-items: center
+                    text-align: center
                 h1
                     margin: 0 0 px(10)
                 h2
@@ -18,6 +24,8 @@ body.welcome.index
                 .myg-button--container
                     margin-bottom: px(25)
             .image-wrapper
+                +smaller-than(phone)
+                    display: none
                 img
                     height: 75vh
                     min-height: px(350)

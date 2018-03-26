@@ -3,6 +3,12 @@
         background: color(background, base)
         border: none
         padding: 0 px(20) 0 px(12)
+        +smaller-than(phone)
+            .mdc-toolbar__section--align-end
+                margin-top: px(35)
+                justify-content: center
+            .mdc-toolbar__section--align-end
+                display: none
         svg
             height: px(50)
         a
