@@ -6,7 +6,7 @@
             .myg-list--item
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
                     %p= equation.quantities.map { |q| q.name }.join(', ')
-                    - if equation.conditions.any?
+                    - if equation.conditions&.any?
                         %p.sm Conditions:
                         - equation.conditions.each do |condition|
                             %p.sm= condition

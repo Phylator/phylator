@@ -91,8 +91,11 @@ class CalculationsController < ApplicationController
         @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
         authorize! :create, @calculation
         @equations = @calculation.quantity.equations.where(title: params[:category]) if params.has_key?(:category)
-        redirect_to app_root_url if @equations.nil? || !@equations.any?
-        render layout: current_user ? 'app' : 'mozaic'
+        if @equations.nil? || !@equations.any?
+            redirect_to app_root_url
+        else
+            render layout: current_user ? 'app' : 'mozaic'
+        end
     end
 
     def measurements
