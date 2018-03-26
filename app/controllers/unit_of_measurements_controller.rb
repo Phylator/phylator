@@ -18,6 +18,7 @@ class UnitOfMeasurementsController < ApplicationController
         authorize! :read, @unit_of_measurement
         authorizes! :read, @quantities
         authorizes! :read, @constants
+        authorizes! :read, @si_prefixes
         authorizes! :read, @calculations
         calculator = Dentaku::Calculator.new case_sensitive: true
         @value = calculator.evaluate '1' + @unit_of_measurement.from_base
