@@ -89,6 +89,15 @@
         }
     }
 }, {
+    "symbol": "",
+    "name": "",
+    "to_base": "*1",
+    "locals": {
+        "de": {
+            "name": ""
+        }
+    }
+}, {
     "symbol": "d",
     "name": "deci",
     "to_base": "/10",

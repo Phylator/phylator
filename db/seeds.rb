@@ -95,10 +95,12 @@ units.each do |unit|
     unless si_prefix == false
         si_prefixes.each do |si_prefix|
             prefixed_unit = unit.dup
+            prefixed_unit['base'] = false
             prefixed_unit['si'] = u
             prefixed_unit['symbol'] = si_prefix['symbol'] + ( base_symbol || prefixed_unit['symbol'] )
-            prefixed_unit['name'] = si_prefix['name'] + ( base_name&.downcase || prefixed_unit['name'].downcase )
-            unless prefixed_unit['base'] == true
+            name = base_name&.downcase || prefixed_unit['name'].downcase
+            prefixed_unit['name'] = si_prefix['name'] + (name.include?(' ') ? ' ' : '') + name
+            if prefixed_unit['base'] == false
                 prefixed_unit['to_base'] = "*(1#{prefixed_unit['to_base']})#{si_prefix['to_base']}"
             else
                 prefixed_unit['to_base'] = si_prefix['to_base']
