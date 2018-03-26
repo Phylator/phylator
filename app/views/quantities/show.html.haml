@@ -30,15 +30,18 @@
 
 - if @quantities.any?
     %h2 Quantities
-    - @quantities.each do |quantity|
-        = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
+    .myg-grid.myg-wrap--phone
+        - @quantities.each do |quantity|
+            = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @unit_of_measurements.any?
     %h2 Units
-    - @unit_of_measurements.each do |unit_of_measurement|
-        = render unit_of_measurement, animation: 'fadeout', highlighted: unit_of_measurement.base, link: can?(:read, unit_of_measurement)
+    .myg-grid.myg-wrap--phone
+        - @unit_of_measurements.each do |unit_of_measurement|
+            = render unit_of_measurement, animation: 'fadeout', highlighted: unit_of_measurement.base, link: can?(:read, unit_of_measurement)
 
 - if @calculations.any?
     %h2 Calculations
-    - @calculations.each do |calculation|
-        = render calculation, animation: 'fadeout'
+    .myg-grid.myg-wrap--phone
+        - @calculations.each do |calculation|
+            = render calculation, animation: 'fadeout'
