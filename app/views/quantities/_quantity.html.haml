@@ -4,13 +4,13 @@
             %h2.sym= quantity.sym
             %p.sm= quantity.name
     - else
-        = link_to quantity.pack, class: "myg-card #{'highlighted' if local_assigns[:highlighted]}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
+        = link_to quantity.pack, class: "myg-card #{'highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
             %h2.sym= quantity.sym
             %p.sm
                 = quantity.name
                 ·
                 Not added
 - else
-    = link_to quantity, class: "myg-card #{'highlighted' if local_assigns[:highlighted]}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    = link_to quantity, class: "myg-card #{'highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
         %h2.sym= quantity.sym
         %p.sm= quantity.name
