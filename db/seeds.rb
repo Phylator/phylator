@@ -30,7 +30,7 @@ end
 packs = JSON.parse File.read('data/packs.json')
 packs.each do |pack|
     locals = pack.delete 'locals'
-    pack[:category] = Category.find_by name: pack.delete('category')
+    pack['category'] = Category.find_by name: pack.delete('category')
     pa = Pack.find_by name: pack['name'], category: pack['category']
     if pa.nil?
         pa = Pack.create! pack
@@ -95,7 +95,7 @@ units.each do |unit|
     unless si_prefix == false
         si_prefixes.each do |si_prefix|
             prefixed_unit = unit.dup
-            prefixed_unit['si'] = true
+            prefixed_unit['si'] = u
             prefixed_unit['symbol'] = si_prefix['symbol'] + ( base_symbol || prefixed_unit['symbol'] )
             prefixed_unit['name'] = si_prefix['name'] + ( base_name&.downcase || prefixed_unit['name'].downcase )
             unless prefixed_unit['base'] == true

@@ -15,6 +15,9 @@ class UnitOfMeasurement < ApplicationRecord
     has_many :measurements, class_name: 'Calculation::Measurement'
     belongable :quantities, 'Quantity'
 
+    belongs_to :si, class_name: 'UnitOfMeasurement', optional: true
+    has_many :si_prefixes, class_name: 'UnitOfMeasurement', source: :si
+
     def sym
         self.symbol.html_safe
     end

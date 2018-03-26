@@ -2,16 +2,16 @@
 
 - replace :back do
     = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
-        %i.myg-i-icon.myg-i-tail-left
+        %i.nc-icon.nc-tail-left
 - replace :tools do
     - unless @calculation.result.undefined
         = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @calculation.result.value.to_s } do
-            %i.myg-i-icon.myg-i-single-copy-04
+            %i.nc-icon.nc-single-copy-04
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
-        %i.myg-i-icon.myg-i-share-26
+        %i.nc-icon.nc-share-26
     - if can?(:destroy, @calculation)
         = link_to calculation_url(@calculation), method: :delete, data: { confirm: 'Deleting this calculation is irreversible. Are you sure?' } do
-            %i.myg-i-icon.myg-i-trash-round
+            %i.nc-icon.nc-trash-round
 - replace :title do
     - if @calculation.result.undefined
         %h1.color--error No solution found

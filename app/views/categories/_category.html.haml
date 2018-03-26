@@ -2,10 +2,10 @@
     %h3= category.name
     %p.flex.center--c
         - if category.purchased?(current_user) == 0
-            %i.myg-i-icon.myg-i-check-circle-08
+            %i.nc-icon.nc-check-circle-08
             %span= t 'categories.index.added'
         - elsif category.purchased?(current_user) == 1
-            %i.myg-i-icon.myg-i-e-check
+            %i.nc-icon.nc-e-check
             %span= t 'categories.index.partially_added'
         - else
             %i.myg-o-i-icon.myg-o-i-shape-oval
