@@ -5,7 +5,7 @@
 
 %p= @equation.title
 
-- if @equation.conditions.any?
+- if @equation.conditions&.any?
     %h2 Conditions
     .myg-list
         - @equation.conditions.each do |condition|
