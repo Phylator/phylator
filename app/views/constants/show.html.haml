@@ -10,7 +10,7 @@
 - replace :subtitle do
     %p= @constant.name
 
-%p= link_to 'Learn more', @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit'
+%p= link_to 'Learn more', @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @constant.wikipedia
 
 %h2 Pack
 .myg-grid.myg-wrap--phone
