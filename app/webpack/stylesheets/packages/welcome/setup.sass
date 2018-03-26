@@ -1,0 +1,28 @@
+body.welcome.setup
+    .flickity-page-dots
+        bottom: px(25)
+        .dot
+            width: px(12)
+            height: px(12)
+            opacity: 1
+            background: transparent
+            border: px(2) solid color(background, darker)
+            +transition
+            &.is-selected
+                background: color(background, darker)
+    .carousel-cell
+        width: 100%
+        height: 100vh
+        +flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        text-align: center
+        h1, p
+            max-width: 85%
+        h1
+            margin-bottom: 0
+        p
+            margin-bottom: px(100)
+        .myg-button--container
+            margin: px(-75) 0 px(75)

@@ -7,7 +7,6 @@ import MygSlide from 'myg-slide';
 function init() {
     const mygSlides = MygSlide.initAll( document.querySelectorAll('.myg-slide'), {
         prevNextButtons: false,
-        wrapAround: true,
-        autoPlay: 10000
+        wrapAround: false
     });
 }
