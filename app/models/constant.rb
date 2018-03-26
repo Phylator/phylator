@@ -7,7 +7,7 @@ class Constant < ApplicationRecord
     include Value
     include Uniqueness
     friendly_id :name, use: :slugged
-    translates :name, :description
+    translates :name
     acts_as_belongable
 
     algoliasearch do
