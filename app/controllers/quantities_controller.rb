@@ -15,7 +15,7 @@ class QuantitiesController < ApplicationController
         turbolinks_animate 'fadeinright'
         @equations = @quantity.equations.with_translations(I18n.locale).group_by { |e| e.title }
         @quantities = @quantity.child_quantities.with_translations(I18n.locale).order(:name)
-        @unit_of_measurements = @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc)
+        @unit_of_measurements = @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc)
         @calculations = @quantity.calculations.where(user: current_user).order('created_at desc')
         authorize! :read, @quantity
         # authorizes! :read, @equations

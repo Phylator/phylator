@@ -4,7 +4,7 @@ class UnitOfMeasurementsController < ApplicationController
     before_action :set_unit_of_measurement, only: [:show]
 
     def index
-        @units_of_measurement = Quantity.find(params[:quantity_id]).unit_of_measurements.with_translations(I18n.locale).order(base: :desc, name: :asc)
+        @units_of_measurement = Quantity.find(params[:quantity_id]).unit_of_measurements.with_translations(I18n.locale).order(base: :desc)
         authorizes! :read, @units_of_measurement
         redirect_back fallback_location: app_root_url, alert: I18n.t('cd.page_not_accessible') unless request.format == 'json'
     end
@@ -18,7 +18,6 @@ class UnitOfMeasurementsController < ApplicationController
         authorize! :read, @unit_of_measurement
         authorizes! :read, @quantities
         authorizes! :read, @constants
-        authorizes! :read, @si_prefixes
         authorizes! :read, @calculations
         calculator = Dentaku::Calculator.new case_sensitive: true
         @value = calculator.evaluate '1' + @unit_of_measurement.from_base
