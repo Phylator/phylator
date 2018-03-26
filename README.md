@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="https://phylator.com/icon_76x76.png" width="76">
+	<img src="https://phylator.com/icon_70x70.png" width="76">
 	<h1>Phylator</h1>
 	<h5>A simple but powerful calculator for physics</h4>
 	<br>
