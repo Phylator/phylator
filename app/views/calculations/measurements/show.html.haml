@@ -38,7 +38,7 @@
 
     .modal.edit
         .modal-content-wrapper
-            = simple_form_for @measurement, url: calculation_measurement_url(@measurement.calculation.id, @measurement.id), method: :put do |f|
+            = simple_form_for @measurement, url: calculation_measurement_url(@measurement.calculation.id, @measurement.id), method: :put, authenticity_token: true do |f|
                 = f.input :value, as: :integer, required: true, label: t('d.value'), input_html: { step: 'any' }
                 = f.input :margin_of_error, as: :integer, required: true, label: t('cd.margin_of_error'), input_html: { step: 'any' }
                 = f.input :name, label: t('d.title')

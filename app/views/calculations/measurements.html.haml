@@ -3,7 +3,7 @@
 %h1.sm Enter your measurements
 %p Enter measurements and start your calculation.
 
-= simple_form_for @calculation do |f|
+= simple_form_for @calculation, authenticity_token: true do |f|
     = f.input :quantity_id, as: :hidden, value: params[:quantity]
     = f.input :unit_of_measurement_id, as: :hidden, value: params[:unit]
     - @calculation.measurements.each_with_index do |measurement, index|

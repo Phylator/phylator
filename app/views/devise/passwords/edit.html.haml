@@ -3,7 +3,7 @@
 %h1.sm Update your password
 %p Enter your new password to be able to access your account again.
 
-= simple_form_for resource, as: resource_name, url: user_password_url, html: { method: :put } do |f|
+= simple_form_for resource, as: resource_name, url: user_password_url, authenticity_token: true, html: { method: :put } do |f|
     = f.input :reset_password_token, as: :hidden
     = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', autofocus: true, minlength: 5 }
     .flex.reverse

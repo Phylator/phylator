@@ -3,7 +3,7 @@
 %h1.sm Signin
 %p Welcome back! Signin using your email and password.
 
-= simple_form_for resource, as: resource_name, url: user_session_url, html: { id: 'signin-form' } do |f|
+= simple_form_for resource, as: resource_name, url: user_session_url, authenticity_token: true, html: { id: 'signin-form' } do |f|
     = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
     = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
     = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', minlength: 5 }
