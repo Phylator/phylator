@@ -6,7 +6,7 @@
 - replace :title do
     %h1.sym.clipboard{ data: { clipboard: @constant.value.to_s } }
         = @constant.pretty_value
-        %span= @constant.unit_of_measurement.sym
+        %span= @constant.unit_of_measurement.sym if @constant.unit_of_measurement
 - replace :subtitle do
     %p= @constant.name
 
@@ -16,9 +16,10 @@
 .myg-grid.myg-wrap--phone
     = render @constant.pack, animation: 'fadeout'
 
-%h2 Unit
-.myg-grid.myg-wrap--phone
-    = render @constant.unit_of_measurement, animation: 'fadeout'
+- if @constant.unit_of_measurement
+    %h2 Unit
+    .myg-grid.myg-wrap--phone
+        = render @constant.unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
     %h2 Calculations
