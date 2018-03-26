@@ -1,9 +1,9 @@
 import $ from 'jquery';
 window.jQuery = window.$ = $;
-require('jquery-flexdatalist/jquery.flexdatalist');
 
 document.addEventListener( 'turbolinks:load', () => {
     if (document.querySelector('body.calculations.new')) {
+        require('jquery-flexdatalist/jquery.flexdatalist');
         let unitEl = document.querySelector('#__unit'),
             quantityEl = document.querySelector('#__quantity');
         $(quantityEl).flexdatalist();
