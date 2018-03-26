@@ -1,7 +1,9 @@
 Rails.application.configure do
-  # Verifies that versions and hashed value of the package contents in the project's package.json
+    # Verifies that versions and hashed value of the package contents in the project's package.json
     config.webpacker.check_yarn_integrity = false
-   config.webpacker.check_yarn_integrity = false    # Settings specified here will take precedence over those in config/application.rb.
+
+
+    # Settings specified here will take precedence over those in config/application.rb.
 
     # Code is not reloaded between requests.
     config.cache_classes = true
@@ -26,7 +28,7 @@ Rails.application.configure do
     config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
     # Compress JavaScripts and CSS.
-    config.assets.js_compressor = :uglifier
+    # config.assets.js_compressor = :uglifier
     config.assets.css_compressor = :sass
 
     # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -44,7 +46,7 @@ Rails.application.configure do
     # Mount Action Cable outside main process or domain
     # config.action_cable.mount_path = nil
     # config.action_cable.url = 'wss://example.com/cable'
-    # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+    # config.action_cable.allowed_request_origins = [ 'https://phylator.com', /https:\/\/phylator.*/ ]
 
     # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
     # config.force_ssl = true
@@ -83,14 +85,28 @@ Rails.application.configure do
     # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
     if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
+        logger = ActiveSupport::Logger.new(STDOUT)
+        logger.formatter = config.log_formatter
+        config.logger = ActiveSupport::TaggedLogging.new(logger)
     end
 
     # Do not dump schema after migrations.
     config.active_record.dump_schema_after_migration = false
 
-    # Devise
-    config.action_mailer.default_url_options = { host: 'phylator.com' }
+    # Needed for Devise Gem
+    config.action_mailer.default_url_options = {
+        host: 'phylator.com',
+        protocol: 'https'
+    }
+    # Host for url helpers
+    Rails.application.routes.default_url_options[:host] = 'phylator.com'
+    Rails.application.routes.default_url_options[:protocol] = 'https'
+
+    # Heroku
+    config.serve_static_assets = true
+    config.assets.digest = true
+
+    # Cloudflare Flexible SSL && Heroku Free Dynos (No custom SSL certificate)
+    config.action_controller.forgery_protection_origin_check = false
+
 end
