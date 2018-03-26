@@ -5,7 +5,7 @@
         %h1 A calculator for physics
         %h2 simple but powerful.
         .myg-button--container
-            = link_to 'Install', Settings.phylator.socials.nativegap, class: 'myg-button'
+            = link_to 'Install', Settings.phylator.socials.nativegap, target: '_blank', class: 'myg-button'
             = link_to 'Open web app', (current_user ? app_root_url : setup_url), class: 'myg-button myg-button--secondary'
     .image-wrapper
         = image_tag 'packages/welcome/app.png'
