@@ -58,7 +58,7 @@
 
 - if @constants.any?
     %h2 Constants
-    .cards
+    .myg-grid.myg-wrap--phone
         - @constants.each do |constant|
             = render constant, animation: 'fadeout'
 
@@ -71,7 +71,7 @@
 
 - if @equations.any?
     %h2 Equations
-    .cards
+    .myg-grid.myg-wrap--phone
         - @equations.each do |equation|
             = render equation, animation: 'fadeout'
 
