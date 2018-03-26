@@ -3,7 +3,7 @@
 %h2 Forgot password?
 %p No problem. Recover your account by creating a new one.
 
-= simple_form_for resource, as: resource_name, url: password_url, html: { id: 'password-form' } do |f|
+= simple_form_for resource, as: resource_name, url: user_password_url, html: { id: 'password-form' } do |f|
     = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
 
 - replace :footer do
