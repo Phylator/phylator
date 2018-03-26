@@ -22,6 +22,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const nativegap = new NativeGap;
 })
 
+document.addEventListener( 'turbolinks:load', () => {
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+})
+
 import ahoy from 'ahoy.js';
 
 // const instantsearch = require('instantsearch.js');
