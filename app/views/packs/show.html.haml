@@ -16,13 +16,13 @@
     %h2 Quantities
     .myg-grid.myg-wrap--phone
         - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout', link: @pack.purchased?(current_user)
+            = render quantity, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false
 
 - if @constants.any?
     %h2 Constants
     .myg-grid.myg-wrap--phone
         - @constants.each do |constant|
-            = render constant, animation: 'fadeout', link: @pack.purchased?(current_user)
+            = render constant, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false
 
 
 

@@ -1,10 +1,18 @@
 - if local_assigns[:link] == false
-    = link_to constant.pack, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
-        %h2.sym= constant.sym
-        %p.sm
-            = constant.name
-            ·
-            Not added
+    - if local_assigns[:link_pack] == false
+        .myg-card{ data: { turbolinks_animate_animation: local_assigns[:animation] } } do
+            %h2.sym= constant.sym
+            %p.sm
+                = constant.name
+                ·
+                Not added
+    - else
+        = link_to constant.pack, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+            %h2.sym= constant.sym
+            %p.sm
+                = constant.name
+                ·
+                Not added
 - else
     = link_to constant, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
         %h2.sym= constant.sym
