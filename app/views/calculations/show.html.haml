@@ -6,12 +6,12 @@
 - replace :tools do
     - unless @calculation.result.undefined
         = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @calculation.result.value.to_s } do
-            %i.nc-icon.nc-single-copy-04
+            %i.nc-icon.nc-single-ungroup
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26
     - if can?(:destroy, @calculation)
         = link_to calculation_url(@calculation), method: :delete, data: { confirm: 'Deleting this calculation is irreversible. Are you sure?' } do
-            %i.nc-icon.nc-trash-round
+            %i.nc-icon.nc-trash
 - replace :title do
     - if @calculation.result.undefined
         %h1.color--error No solution found

@@ -28,7 +28,7 @@ class UnitOfMeasurementsController < ApplicationController
     private
 
     def set_unit_of_measurement
-        @unit_of_measurement = UnitOfMeasurement.find params[:id]
+        @unit_of_measurement = UnitOfMeasurement.friendly.find params[:id]
     end
 
 end
