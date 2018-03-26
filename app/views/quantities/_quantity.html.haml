@@ -1,6 +1,6 @@
 - if local_assigns[:link] == false
     - if local_assigns[:link_pack] == false
-        .myg-card{ class: ('highlighted' if local_assigns[:highlighted]), data: { turbolinks_animate_animation: local_assigns[:animation] } } do
+        .myg-card{ class: ('highlighted' if local_assigns[:highlighted]) }
             %h2.sym= quantity.sym
             %p.sm
                 = quantity.name
