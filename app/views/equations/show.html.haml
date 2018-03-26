@@ -3,7 +3,9 @@
 - replace :title do
     %h1.sm= '`' + @equation.quantity.ascii_sym + '=' + @equation.equation + '`'
 
-%p= @equation.title
+%p
+    Category:
+    = @equation.title
 
 - if @equation.conditions&.any?
     %h2 Conditions

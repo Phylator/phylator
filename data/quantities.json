@@ -280,6 +280,7 @@
     "vector": false,
     "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Length",
     "locals": {
         "de": {
             "name": "Durchmesser",
@@ -976,6 +977,7 @@
     "vector": false,
     "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Length",
     "locals": {
         "de": {
             "name": "Radius",
