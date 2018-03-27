@@ -22,7 +22,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const nativegap = new NativeGap;
 })
 
-import 'pwa-rails';
+import ProgressiveWebApp from 'pwa-rails';
+document.addEventListener( 'turbolinks:load', () => {
+    const progressiveWebApp = new ProgressiveWebApp();
+})
 
 document.addEventListener( 'turbolinks:load', () => {
     MathJax.Hub.Queue(['Typeset', MathJax.Hub]);

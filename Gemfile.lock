@@ -246,7 +246,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.3)
-    pwa (3.0.0)
+    pwa (4.0.0)
       mozaic (~> 2)
       railties (>= 5.0)
     r404 (2.0.0)
