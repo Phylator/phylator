@@ -12,5 +12,5 @@ en:
             missing_dependencies:
                 title: Missing dependencies
                 content: By adding one of the following sets of quantities to your measurements, you will be able to get a result.
-                conditions: Conditions:
+                conditions: "Conditions:"
             unit_conversion: Unit conversion
