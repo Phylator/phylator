@@ -1,4 +1,1 @@
-- if params[:all] == true
-    json.array! Quantity.all, partial: 'quantities/quantity', as: :quantity
-- else
-    json.array! @quantities, partial: 'quantities/quantity', as: :quantity
+json.array! (params[:all] ? Quantity.all.with_translations(I18n.locale).order(:name) : @quantities), partial: 'quantities/quantity', as: :quantity
