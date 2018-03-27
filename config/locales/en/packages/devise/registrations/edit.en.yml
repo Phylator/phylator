@@ -8,5 +8,5 @@ en:
                     new_password: New password (optional)
                     current_password: Current password
                     delete:
-                        link:
+                        link: Delete account
                         confirm: You'll permanently loose all your purchases & calculations. Are you sure?
