@@ -1,17 +1,17 @@
-- meta title: 'Signup'
+- meta title: t('d.signup')
 
 - if params.has_key? :calculation
-    %h1.sm Save your calculation
+    %h1.sm= t('devise.registrations.new.calculation.title')
 - else
-    %h1.sm Get started
-%p Welcome to Phylator! Enter some credentials to get started.
+    %h1.sm= t('devise.registrations.new.no_calculation.title')
+%p= t('devise.registrations.new.content')
 
 = simple_form_for resource, as: resource_name, url: user_registration_url, authenticity_token: true, html: { id: 'signup-form' } do |f|
     = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
-    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
-    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', minlength: 5 }
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', autofocus: true }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('d.password'), input_html: { required: true, type: 'password', minlength: 5 }
 
 - replace :footer do
     %p.sm
-        = link_to 'Login instead?', new_user_session_url(calculation: params[:calculation]), class: 'hyperlink--inherit'
-    = component 'myg/button', value: 'Signup', form: 'signup-form'
+        = link_to t('devise.registrations.new.login_instead'), new_user_session_url(calculation: params[:calculation]), class: 'hyperlink--inherit'
+    = component 'myg/button', value: t('d.signup'), form: 'signup-form'

@@ -1,0 +1,10 @@
+en:
+    devise:
+        registrations:
+            new:
+                calculation:
+                    title: Save your calculation
+                no_calculation:
+                    title: Get started
+                content: Welcome to Phylator! Enter some credentials to get started.
+                login_instead: Login instead?

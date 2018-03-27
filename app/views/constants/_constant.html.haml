@@ -9,7 +9,7 @@
             %p.sm
                 = constant.name
                 ·
-                Not added
+                = t('constants.constant.not_added')
 - else
     = link_to constant, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
         %h2.sym= constant.sym

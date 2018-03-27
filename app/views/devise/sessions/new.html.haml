@@ -1,16 +1,16 @@
-- meta title: 'Signin'
+- meta title: t('d.signin')
 
-%h1.sm Signin
-%p Welcome back! Signin using your email and password.
+%h1.sm= t('d.signin')
+%p= t('devise.sessions.new.content')
 
 = simple_form_for resource, as: resource_name, url: user_session_url, authenticity_token: true, html: { id: 'signin-form' } do |f|
     = f.input :calculation_id, as: :hidden, required: false, input_html: { value: params[:calculation] }
-    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: 'Email', input_html: { required: true, type: 'email', autofocus: true }
-    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', minlength: 5 }
-    = component 'myg/form-field', as: :checkbox, attribute: :remember_me, class_name: 'user', inline_label: 'Remember me', input_html: { input_html: { checked: true } } if devise_mapping.rememberable?
+    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', autofocus: true }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('d.password'), input_html: { required: true, type: 'password', minlength: 5 }
+    = component 'myg/form-field', as: :checkbox, attribute: :remember_me, class_name: 'user', inline_label: t('devise.sessions.new.remember_me'), input_html: { input_html: { checked: true } } if devise_mapping.rememberable?
 
 - replace :footer do
     %p.sm
-        = link_to 'Signup', new_user_registration_url(calculation: params[:calculation]), class: 'hyperlink--inherit'
-        = link_to 'Forgot password?', new_user_password_url, class: 'hyperlink--inherit'
-    = component 'myg/button', value: 'Signin', form: 'signin-form'
+        = link_to t('d.signup'), new_user_registration_url(calculation: params[:calculation]), class: 'hyperlink--inherit'
+        = link_to t('devise.sessions.new.forgot_password'), new_user_password_url, class: 'hyperlink--inherit'
+    = component 'myg/button', value: t('d.signin'), form: 'signin-form'

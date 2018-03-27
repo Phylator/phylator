@@ -2,8 +2,11 @@ en:
     devise:
         registrations:
             edit:
-                title: Account
                 list:
-                    tour: Take a tour
-                    language: Change language
-                delete: You'll loose all your calculations & drafts permanently. Are you sure?
+                    change_language: Change language
+                form:
+                    new_password: New password (optional)
+                    current_password: Current password
+                    delete:
+                        link:
+                        confirm: You'll loose all your calculations & drafts permanently. Are you sure?

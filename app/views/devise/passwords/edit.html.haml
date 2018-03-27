@@ -1,10 +1,10 @@
-- meta title: 'Update your password'
+- meta title: t('devise.passwords.edit.title')
 
-%h1.sm Update your password
-%p Enter your new password to be able to access your account again.
+%h1.sm= t('devise.passwords.edit.title')
+%p= t('devise.passwords.edit.content')
 
 = simple_form_for resource, as: resource_name, url: user_password_url, authenticity_token: true, html: { method: :put } do |f|
     = f.input :reset_password_token, as: :hidden
-    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: 'Password', input_html: { required: true, type: 'password', autofocus: true, minlength: 5 }
+    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('d.password'), input_html: { required: true, type: 'password', autofocus: true, minlength: 5 }
     .flex.reverse
-        = component 'myg/button', value: 'Proceed'
+        = component 'myg/button', value: t('d.proceed')

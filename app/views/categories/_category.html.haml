@@ -3,10 +3,10 @@
     %p.flex.center--c
         - if category.purchased?(current_user) == 0
             %i.nc-icon.nc-check-circle-08
-            %span= t 'categories.index.added'
+            %span= t('categories.category.added')
         - elsif category.purchased?(current_user) == 1
             %i.nc-icon.nc-e-check
-            %span= t 'categories.index.partially_added'
+            %span= t('categories.category.partially_added')
         - else
             %i.nc-icon.nc-e-circle
-            %span= t 'categories.index.not_added'
+            %span= t('categories.category.not_added')

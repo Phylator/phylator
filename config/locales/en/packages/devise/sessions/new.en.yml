@@ -1,0 +1,7 @@
+en:
+    devise:
+        sessions:
+            new:
+                content: Welcome back! Signin using your email and password.
+                remember_me: Remember me
+                forgot_password: Forgot password?

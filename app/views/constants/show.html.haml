@@ -13,19 +13,19 @@
         ·
         %span= @constant.name
 
-%p= link_to 'Learn more', @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @constant.wikipedia
+%p= link_to t('constants.show.learn_more'), @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @constant.wikipedia
 
-%h2 Pack
+%h2= t('d.pack')
 .myg-grid.myg-wrap--phone
     = render @constant.pack, animation: 'fadeout'
 
 - if @constant.unit_of_measurement
-    %h2 Unit
+    %h2= t('d.unit')
     .myg-grid.myg-wrap--phone
         = render @constant.unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
-    %h2 Calculations
+    %h2= t('d.calculations')
     .myg-grid.myg-wrap--phone
         - @calculations.each do |calculation|
             = render calculation, animation: 'fadeout'

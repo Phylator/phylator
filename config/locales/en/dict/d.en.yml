@@ -1,5 +1,6 @@
 en:
     d:
+        account: Account
         calculate: Calculate
         calculations: Calculations
         conditions: Conditions
@@ -8,7 +9,7 @@ en:
         # contribute: Contribute
         # delete: Delete
         # description: Description
-        # email: Email
+        email: Email
         equations: Equations
         hide: Hide
         # in: In
@@ -16,17 +17,23 @@ en:
         measurements: Measurements
         # name: Name
         next: Next
-        # pack: Pack
-        # password: Password
+        pack: Pack
+        packs: Packs
+        password: Password
+        proceed: Proceed
+        purchases: Purchases
         quantity: Quantity
         # remove: Remove
         # save: Save
         # share: Share
         signin: Signin
+        signout: Signout
         signup: Signup
+        support: Support
         # title: Title
+        tour: Tour
         # undefined: Undefinded
-        # update: Update
+        update: Update
         unit: Unit
         # unit_of_measurement: Unit of measurement
         value: Value
