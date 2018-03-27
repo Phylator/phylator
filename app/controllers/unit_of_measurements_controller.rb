@@ -16,8 +16,6 @@ class UnitOfMeasurementsController < ApplicationController
         @si_prefixes = @unit_of_measurement.si_prefixes.with_translations(I18n.locale).order(:name)
         @calculations = @unit_of_measurement.calculations.where(user: current_user).order('created_at desc')
         authorize! :read, @unit_of_measurement
-        authorizes! :read, @quantities
-        authorizes! :read, @constants
         authorizes! :read, @si_prefixes
         authorizes! :read, @calculations
         calculator = Dentaku::Calculator.new case_sensitive: true

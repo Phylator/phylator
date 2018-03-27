@@ -19,13 +19,13 @@
     %h2 Quantities
     .myg-grid.myg-wrap--phone
         - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout'
+            = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @constants.any?
     %h2 Constants
     .myg-grid.myg-wrap--phone
         - @constants.each do |constant|
-            = render constant, animation: 'fadeout'
+            = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
 
 - if @si_prefixes.any?
     %h2 SI prefixes

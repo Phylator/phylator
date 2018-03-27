@@ -18,6 +18,8 @@ class UnitOfMeasurement < ApplicationRecord
     belongs_to :si, class_name: 'UnitOfMeasurement', optional: true
     has_many :si_prefixes, class_name: 'UnitOfMeasurement', foreign_key: :si
 
+    scope :base, -> { where(si_id: nil) }
+
     def sym
         self.symbol.html_safe
     end

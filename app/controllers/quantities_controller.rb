@@ -5,7 +5,7 @@ class QuantitiesController < ApplicationController
 
     def index
         turbolinks_animate 'fadein'
-        @quantities = (current_user ? Quantity.with_translations(I18n.locale).free + current_user.quantities.with_translations(I18n.locale) : Quantity.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
+        @quantities = (current_user ? Quantity.base.with_translations(I18n.locale).free + current_user.quantities.base.with_translations(I18n.locale) : Quantity.base.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
         @constants = (current_user ? Constant.with_translations(I18n.locale).free + current_user.constants.with_translations(I18n.locale) : Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
         authorizes! :read, @quantities
         render layout: 'app'
@@ -15,7 +15,7 @@ class QuantitiesController < ApplicationController
         turbolinks_animate 'fadeinright'
         @equations = @quantity.equations.with_translations(I18n.locale).group_by { |e| e.title }
         @quantities = @quantity.child_quantities.with_translations(I18n.locale).order(:name)
-        @unit_of_measurements = @quantity.unit_of_measurements.with_translations(I18n.locale).order(base: :desc)
+        @unit_of_measurements = @quantity.unit_of_measurements.base.with_translations(I18n.locale).order(base: :desc)
         @calculations = @quantity.calculations.where(user: current_user).order('created_at desc')
         authorize! :read, @quantity
         # authorizes! :read, @equations
