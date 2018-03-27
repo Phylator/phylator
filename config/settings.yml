@@ -6,5 +6,10 @@ phylator:
         twitter: https://twitter.com/phylator
         nativegap: https://nativegap.com/explore/phylator
 
+mailgun:
+    emails:
+        with: with@phylator.com
+        support: support@phylator.com
+
 google_analytics:
     tracking_id: UA-113597635-1

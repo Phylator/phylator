@@ -5,6 +5,7 @@
 .myg-list
     .myg-list--item= link_to 'Tour', setup_url(stay: true)
     .myg-list--item= link_to 'Change language', language_url, class: 'modalist--trigger'
+    .myg-list--item= link_to 'Support', "mailto:#{Settings.mailgun.emails.support}"
     .myg-list--item= link_to 'Signout', destroy_user_session_path, method: :delete
 
 %hr
