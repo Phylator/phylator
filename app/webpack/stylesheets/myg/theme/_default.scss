@@ -3,7 +3,7 @@ $myg-theme: (
         light: #3383f7,
         base: #2577ed,
         dark: #0e5fd4,
-        contrast: #141D26
+        contrast: #1B2936
     ),
     text: (
         lighter: #3D5466,
@@ -13,14 +13,14 @@ $myg-theme: (
         darker: #FFFFFF
     ),
     background: (
-        lighter: #141D26,
-        light: #18242f,
-        base: #1B2936,
-        dark: #233446,
-        darker: #2E425A
+        lighter: #1B2936,
+        light: #233446,
+        base: #2E425A,
+        dark: #364a63,
+        darker: #3e536c
     ),
-    border: #111D2B,
-    box-shadow: rgba(#141D26, .05),
+    border: #1B2936,
+    box-shadow: rgba(#1B2936, .05),
     error: #F6809A,
     success: #4dbb65,
     overlay: (
