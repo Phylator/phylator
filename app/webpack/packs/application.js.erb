@@ -26,13 +26,15 @@ document.addEventListener( 'turbolinks:load', () => {
     MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 })
 
-import ClipboardJS from 'clipboard';
+import Clipboard from 'clipboard';
 document.addEventListener( 'turbolinks:load', () => {
-    const clipboard = new ClipboardJS('.clipboard');
-    clipboard.on( 'success', () => {
+    const clipboard = new Clipboard('.clipboard');
+    clipboard.on( 'success', (e) => {
+        e.clearSelection();
         mygToast.show({ message: document.querySelector('#clipboard-success').innerHTML });
     });
-    clipboard.on( 'error', () => {
+    clipboard.on( 'error', (e) => {
+        e.clearSelection();
         mygToast.error({ message: document.querySelector('#clipboard-error').innerHTML });
     });
 })
