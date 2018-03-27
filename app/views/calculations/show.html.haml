@@ -1,4 +1,4 @@
-- meta title: @constant.name
+- meta title: @calculation.name || "Calculation of #{@calculation.quantity.name}"
 
 - replace :back do
     = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
@@ -6,7 +6,7 @@
 - replace :tools do
     - unless @calculation.result.undefined
         = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @calculation.result.value.to_s } do
-            %i.nc-icon.nc-single-ungroup
+            %i.nc-icon.nc-ungroup
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26
     - if can?(:destroy, @calculation)

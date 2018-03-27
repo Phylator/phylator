@@ -9,6 +9,11 @@ class Calculations::MeasurementsController < ApplicationController
         render layout: 'app/show'
     end
 
+    def edit
+        authorize! :update, @measurement
+        modalist
+    end
+
     def update
         authorize! :update, @measurement
         if @measurement.update measurement_params
