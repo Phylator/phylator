@@ -1,8 +1,8 @@
 - meta title: t('d.quantities')
 
 - if current_user.purchases.count == 0
-    = component 'suggestion', title: t('quantities.show.suggestion.title'), content: t('quantities.show.suggestion.content') do
-        = link_to t('quantities.show.suggestion.expansion_packs'), categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
+    = component 'suggestion', title: t('quantities.index.suggestion.title'), content: t('quantities.index.suggestion.content') do
+        = link_to t('quantities.index.suggestion.expansion_packs'), categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
         %p.sm= link_to t('d.hide'), 'javascript:void(0)'
 
 .content-wrapper
