@@ -27,13 +27,15 @@ document.addEventListener( 'turbolinks:load', () => {
 })
 
 import ClipboardJS from 'clipboard';
-const clipboard = new ClipboardJS('.clipboard');
-clipboard.on( 'success', () => {
-    mygToast.show({ message: document.querySelector('#clipboard-success').innerHTML });
-});
-clipboard.on( 'error', () => {
-    mygToast.error({ message: document.querySelector('#clipboard-error').innerHTML });
-});
+document.addEventListener( 'turbolinks:load', () => {
+    const clipboard = new ClipboardJS('.clipboard');
+    clipboard.on( 'success', () => {
+        mygToast.show({ message: document.querySelector('#clipboard-success').innerHTML });
+    });
+    clipboard.on( 'error', () => {
+        mygToast.error({ message: document.querySelector('#clipboard-error').innerHTML });
+    });
+})
 
 import ahoy from 'ahoy.js';
 
