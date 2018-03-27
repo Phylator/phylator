@@ -84,7 +84,8 @@ units.each do |unit|
         u.update! unit
     end
     quantities&.each do |quantity|
-        u.add_to_belonger! Quantity.find_by(name: quantity)
+        quantity = Quantity.find_by(name: quantity)
+        u.add_to_belonger! quantity unless u.quantities.include?(quantity)
     end
     locals.each do |locale, translation|
         base_name = translation.delete 'base_name'
@@ -117,7 +118,8 @@ units.each do |unit|
                 u.update! prefixed_unit
             end
             quantities&.each do |quantity|
-                u.add_to_belonger! Quantity.find_by(name: quantity)
+                quantity = Quantity.find_by(name: quantity)
+                u.add_to_belonger! quantity unless u.quantities.include?(quantity)
             end
             locals.each do |locale, translation|
                 base_name = translation.delete 'base_name'
