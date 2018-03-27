@@ -40,11 +40,15 @@
     %h2 Missing dependencies
     %p= t 'calculations.show.dependencies.content'
     .myg-grid.myg-wrap--phone
-        - @dependencies.each do |index, dependencies|
-            - if index > 0
-                %hr
-            - dependencies.uniq { |obj| obj.quantity_id }.each do |dependency|
-                = render dependency.quantity, animation: 'fadeout', link: dependency.quantity.pack.purchased?(current_user)
+    .myg-list
+        - @dependencies.each do |equation|
+            .myg-list--item
+                = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
+                    %p= equation.quantities.map { |q| q.name }.join(', ')
+                    - if equation.conditions&.any?
+                        %p.sm Conditions:
+                        - equation.conditions.each do |condition|
+                            %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
     %h3 Unit conversion

@@ -13,7 +13,7 @@
 - if @unit_of_measurement.si.present?
     %p
         This is a SI prefix of
-        = link_to @unit_of_measurement.si, @unit_of_measurement.si.name, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
+        = link_to @unit_of_measurement.si.name, @unit_of_measurement.si, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
 
 - if @quantities.any?
     %h2 Quantities
