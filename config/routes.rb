@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+    mount Pwa::Engine, at: ''
+
     scope 'app' do
 
         resources :quantities, only: [:index, :show] do

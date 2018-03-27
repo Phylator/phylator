@@ -7,6 +7,7 @@
         %meta{ name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1' }
 
         = metamagic site: 'Phylator', title: [:title, :site], separator: ' - ', description: '...', keywords: ['calculator', 'physics', 'converter', 'units']
+        = component 'pwa/manifest'
 
         %link{ rel: 'apple-touch-icon', sizes: '76x76', href: request.base_url + '/icon_76x76.png' }
         %link{ rel: 'apple-touch-icon', sizes: '120x120', href: request.base_url + '/icon_120x120.png' }
@@ -21,6 +22,7 @@
         %link{ rel: 'msapplication-square310x310logo', content: request.base_url + '/icon_310x310.png' }
 
         = favicon_link_tag '/favicon.ico'
+        = component 'pwa/theme', default: '#233446'
 
         = component 'seo/schema', type: :brand, name: 'Phylator', description: t('layouts.mozaic.schema.description'), url: 'https://phylator.com', logo: 'https://phylator.com/icon_512x512.png'
         = component 'layouts/google_analytics'
