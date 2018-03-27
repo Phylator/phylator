@@ -1,0 +1,33 @@
+en:
+    d:
+        calculate: Calculate
+        calculations: Calculations
+        conditions: Conditions
+        constants: Constants
+        continue: Continue
+        # contribute: Contribute
+        # delete: Delete
+        # description: Description
+        # email: Email
+        equations: Equations
+        hide: Hide
+        # in: In
+        # logout: Logout
+        measurements: Measurements
+        # name: Name
+        next: Next
+        # pack: Pack
+        # password: Password
+        quantity: Quantity
+        # remove: Remove
+        # save: Save
+        # share: Share
+        signin: Signin
+        signup: Signup
+        # title: Title
+        # undefined: Undefinded
+        # update: Update
+        unit: Unit
+        # unit_of_measurement: Unit of measurement
+        value: Value
+        # vector: Vector

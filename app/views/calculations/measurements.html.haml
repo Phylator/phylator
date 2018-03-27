@@ -1,7 +1,7 @@
 %p#measurement-index.hidden= @calculation.measurements.count
 
-%h1.sm Enter your measurements
-%p Enter measurements and start your calculation.
+%h1.sm= t('calculations.measurements.title')
+%p= t('calculations.measurements.content')
 
 = simple_form_for @calculation, authenticity_token: true do |f|
     = f.input :quantity_id, as: :hidden, value: params[:quantity]
@@ -9,5 +9,5 @@
     - @calculation.measurements.each_with_index do |measurement, index|
         = render 'calculations/measurements/form', measurement: measurement, index: index
     .myg-button--container.reverse
-        = component 'myg/button', value: 'Calculate'
-        = link_to 'Add measurement', 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @calculation.measurements.count))}\")"
+        = component 'myg/button', value: t('d.calculate')
+        = link_to t('calculations.measurements.add_measurement'), 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @calculation.measurements.count))}\")"

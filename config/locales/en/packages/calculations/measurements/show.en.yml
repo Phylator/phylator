@@ -1,6 +1,6 @@
-de:
+en:
     calculations:
         measurements:
             show:
-                details:
-                    add: Füge details hinzu
+                title: Measurement of %{name}
+                edit: Edit name & description

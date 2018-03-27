@@ -1,7 +1,7 @@
-- meta title: 'Calculations'
+- meta title: t('d.calculations')
 
 .title
-    %h1.sm Calculations
+    %h1.sm= t('d.calculations')
     = link_to search_url do
         %i.nc-icon.nc-zoom-2
 
@@ -11,5 +11,5 @@
             = render calculation
     - else
         = link_to app_root_url, class: 'myg-card', data: { turbolinks_animate_type: 'app' } do
-            %h3 It's empty here ...
-            %p.sm Start by creating your first calculation
+            %h3= t('calculations.index.placeholder.title')
+            %p.sm= t('calculations.index.placeholder.content')

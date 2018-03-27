@@ -1,4 +1,4 @@
-- meta title: @measurement.name || "Measurement of #{@measurement.quantity.name}"
+- meta title: @measurement.name || t('calculations.measurements.show.edit', name: @measurement.quantity.name)
 
 - replace :tools do
     = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @measurement.value.to_s } do
@@ -21,7 +21,7 @@
 %h3= @measurement.name if @measurement.name
 %p= @measurement.description if @measurement.description
 - if can? :update, @measurement
-    %p= link_to 'Edit name & description' edit_calculation_measurement_url(@measurement), class: 'modalist--trigger hyperlink--inherit'
+    %p= link_to t('calculations.measurements.show.edit'), edit_calculation_measurement_url(@measurement), class: 'modalist--trigger hyperlink--inherit'
 
 %h2 Unit
 .myg-grid.myg-wrap--phone

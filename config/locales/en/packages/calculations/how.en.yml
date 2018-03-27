@@ -1,0 +1,7 @@
+en:
+    calculations:
+        how:
+            title: Choose a set of measurements
+            content: Here are suggestions for measurements you could enter.
+            conditions: Conditions:
+            custom_measurements: Enter custom measurements

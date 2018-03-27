@@ -111,7 +111,7 @@
     "quantity": "Force",
     "categories": [{
         "title": "Forces in mechanics",
-        "equations": [{ "equation": "m * a" }, { "equation": "W / s" }, { "equation": "G_N * ( m * m1 ) / r^2" }],
+        "equations": [{ "equation": "m * a" }, { "equation": "W / s" }, { "equation": "G_N * ( m * m_1 ) / r^2" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
         "title": "Newton's laws",

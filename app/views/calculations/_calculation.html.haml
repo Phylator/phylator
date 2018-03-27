@@ -1,6 +1,6 @@
 = link_to calculation, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
     - if calculation.result.undefined
-        %h3.color--error No solution found
+        %h3.color--error= t('calculations.calculation.no_solution_found')
     - else
         %h2.sym
             = calculation.result.pretty_value

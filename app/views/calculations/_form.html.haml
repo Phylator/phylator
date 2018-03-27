@@ -1,6 +1,6 @@
 = simple_form_for @calculation, url: what_url, method: :get, authenticity_token: true do |f|
-    %h1.sm Choose a quantity
-    = component 'myg/form-field', as: :input, attribute: :quantity, label: 'Tell Phylator what physical quantity you want to calculate.', input_html: { required: true, class: 'select flexdatalist', data: { units: '#__unit', data: '/app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
-    = component 'myg/form-field', as: :input, attribute: :unit, label: 'What unit should Phylator use to present the result?', input_html: { required: true, disabled: true, class: 'select', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    %h1.sm= t('calculations.form.title')
+    = component 'myg/form-field', as: :input, attribute: :quantity, label: t('calculations.form.quantity'), input_html: { required: true, class: 'select flexdatalist', data: { units: '#__unit', data: '/app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    = component 'myg/form-field', as: :input, attribute: :unit, label: t('calculations.form.unit'), input_html: { required: true, disabled: true, class: 'select', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
     .flex.reverse
-        = component 'myg/button', value: 'Next', class: 'myg-button--disabled'
+        = component 'myg/button', value: = t('d.next'), class: 'myg-button--disabled'

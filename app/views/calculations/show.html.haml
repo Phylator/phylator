@@ -1,4 +1,4 @@
-- meta title: @calculation.name || "Calculation of #{@calculation.quantity.name}"
+- meta title: @calculation.name || t('calculations.show.title', name: @calculation.quantity.name)
 
 - replace :back do
     = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
@@ -10,11 +10,11 @@
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26
     - if can?(:destroy, @calculation)
-        = link_to calculation_url(@calculation), method: :delete, data: { confirm: 'Deleting this calculation is irreversible. Are you sure?' } do
+        = link_to calculation_url(@calculation), method: :delete, data: { confirm: t('calculations.show.delete.confirm') } do
             %i.nc-icon.nc-trash
 - replace :title do
     - if @calculation.result.undefined
-        %h1.color--error No solution found
+        %h1.color--error= t('calculations.show.no_solution_found')
     - else
         %h1.sym.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
@@ -27,18 +27,18 @@
 
 - if !current_user && notice
     - replace :section do
-        = component 'suggestion', title: 'Store this calculation', content: 'Sign into Phylator to keep your calculations and get access to its big library.' do
-            = link_to 'Signup', new_user_registration_url, class: 'myg-button'
-            = link_to 'Signin', new_user_session_url, class: 'myg-button myg-button--secondary'
+        = component 'suggestion', title: t('calculations.show.suggestion.title'), content: t('calculations.show.suggestion.content') do
+            = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
+            = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
 
 %h3= @calculation.name if @calculation.name
 %p= @calculation.description if @calculation.description
 - if can? :update, @calculation
-    %p= link_to 'Edit name & description' edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
+    %p= link_to t('calculations.show.edit'), edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
 
 - if @calculation.result.undefined && @calculation.dependencies.any?
-    %h2 Missing dependencies
-    %p= t 'calculations.show.dependencies.content'
+    %h2= t('calculations.show.missing_dependencies.title')
+    %p= t('calculations.show.missing_dependencies.content')
     .myg-grid.myg-wrap--phone
     .myg-list
         - @dependencies.each do |equation|
@@ -46,40 +46,40 @@
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
                     %p= equation.quantities.map { |q| q.name }.join(', ')
                     - if equation.conditions&.any?
-                        %p.sm Conditions:
+                        %p.sm= t('calculations.show.missing_dependencies.conditions')
                         - equation.conditions.each do |condition|
                             %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
-    %h3 Unit conversion
+    %h3= t('calculations.show.unit_conversion')
     = simple_form_for @calculation, authenticity_token: true do |f|
         = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: 'Choose a unit', class: 'select flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
-%h2 Measurements
+%h2= t('d.measurements')
 .myg-grid.myg-wrap--phone
     - @measurements.each do |measurement|
         = render measurement, animation: 'fadeout'
 
 - if @constants.any?
-    %h2 Constants
+    %h2= t('d.constants')
     .myg-grid.myg-wrap--phone
         - @constants.each do |constant|
             = render constant, animation: 'fadeout'
 
 - if @conditions.any?
-    %h2 Conditions
+    %h2= t('d.conditions')
     .myg-list
         - @conditions.each do |condition|
             .myg-list--item
                 %p= condition
 
 - if @equations.any?
-    %h2 Equations
+    %h2= t('d.equations')
     .myg-grid.myg-wrap--phone
         - @equations.each do |equation|
             = render equation, animation: 'fadeout'
 
-%h2 Unit
+%h2= t('d.unit')
 .myg-grid.myg-wrap--phone
     = render @calculation.unit_of_measurement, animation: 'fadeout'
 

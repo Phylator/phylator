@@ -31,7 +31,7 @@ class Calculation::Result < ApplicationRecord
                 end
                 ## Store variable in calculator
                 if index > 0
-                    calculator.store "#{symbol}#{index}": var.to_f
+                    calculator.store "#{symbol}_#{index}": var.to_f
                 else
                     calculator.store "#{symbol}": var.to_f
                 end

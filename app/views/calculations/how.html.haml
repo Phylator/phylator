@@ -1,5 +1,5 @@
-%h1.sm Choose a set of measurements
-%p Here are suggestions for measurements you could enter.
+%h1.sm= t('calculations.how.title')
+%p= t('calculations.how.content')
 .flex.center
     .myg-list
         - @equations.each do |equation|
@@ -7,8 +7,8 @@
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
                     %p= equation.quantities.map { |q| q.name }.join(', ')
                     - if equation.conditions&.any?
-                        %p.sm Conditions:
+                        %p.sm= t('calculations.how.conditions')
                         - equation.conditions.each do |condition|
                             %p.sm= condition
     %p.sm or
-    = link_to 'Enter custom measurements', measurements_url(quantity: params[:quantity], unit: params[:unit])
+    = link_to t('calculations.how.custom_measurements'), measurements_url(quantity: params[:quantity], unit: params[:unit])

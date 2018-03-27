@@ -52,24 +52,17 @@ class CalculationsController < ApplicationController
 
     def update
         authorize! :update, @calculation
-        respond_to do |format|
-            if @calculation.update calculation_params
-                format.html { redirect_to @calculation, notice: I18n.t('calculations.update.success') }
-                format.js
-            else
-                format.html { render :edit }
-                format.js
-            end
+        if @calculation.update calculation_params
+            redirect_to @calculation, notice: I18n.t('calculations.update.success')
+        else
+            render :edit
         end
     end
 
     def destroy
         authorize! :destroy, @calculation
         @calculation.destroy
-        respond_to do |format|
-            format.html { redirect_to (current_user ? calculations_url : app_root_url), notice: I18n.t('calculations.destroy.success') }
-            format.js
-        end
+        redirect_to (current_user ? calculations_url : app_root_url), notice: I18n.t('calculations.destroy.success')
     end
 
     def what

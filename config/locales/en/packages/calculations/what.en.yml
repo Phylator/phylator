@@ -1,0 +1,9 @@
+en:
+    calculations:
+        what:
+            title: What are you calculating?
+            categories:
+                content: Tell Phylator what area of science your calculation belongs to.
+                custom_calculation: Make a custom calculation
+            no_categories:
+                content: Phylator couldn't find any predefined calculations.

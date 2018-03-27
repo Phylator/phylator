@@ -1,0 +1,6 @@
+en:
+    calculations:
+        measurements:
+            title: Enter your measurements
+            content: Enter measurements and start your calculation.
+            add_measurement: Add measurement

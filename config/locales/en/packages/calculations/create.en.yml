@@ -1,6 +1,0 @@
-en:
-    calculations:
-        create:
-            success: Calculation successfull
-            error: Could not solve calculation
-            math_domain: Math Domain error

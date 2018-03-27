@@ -1,10 +1,16 @@
 en:
     calculations:
         show:
-            dependencies:
-                content: By adding one of the following sets of quantities to your measurements, you will be able to get a result.
-            details:
-                add: Add some details
-            save:
+            title: Calculation of %{name}
+            delete:
+                confirm: Deleting this calculation is irreversible. Are you sure?
+            no_solution_found: No solution found
+            suggestion:
                 title: Save this calculation
                 content: After logging in you have access to all your calculations as well as the entire database of quantities, units & equations.
+            edit: Edit name & description
+            missing_dependencies:
+                title: Missing dependencies
+                content: By adding one of the following sets of quantities to your measurements, you will be able to get a result.
+                conditions: Conditions:
+            unit_conversion: Unit conversion
