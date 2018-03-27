@@ -92,11 +92,12 @@ units.each do |unit|
         u.update_attributes translation
         translation['base_name'] = base_name
     end
+    base_unit = u
     unless si_prefix == false
         si_prefixes.each do |si_prefix|
             prefixed_unit = unit.dup
             prefixed_unit['base'] = false
-            prefixed_unit['si'] = u
+            prefixed_unit['si'] = base_unit
             prefixed_unit['symbol'] = si_prefix['symbol'] + ( base_symbol || prefixed_unit['symbol'] )
             name = base_name&.downcase || prefixed_unit['name'].downcase
             prefixed_unit['name'] = si_prefix['name'] + (name.include?(' ') ? ' ' : '') + name
