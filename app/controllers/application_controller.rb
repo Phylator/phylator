@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     private
 
     def render_r404_access_denied format, status, exception
-        format.html { redirect_back fallback_location: root_url, alert: 'You are unauthorized to perform this action' }
+        format.html { redirect_back fallback_location: root_url, alert: I18n.t('application.unauthorized') }
     end
 
     def set_locale

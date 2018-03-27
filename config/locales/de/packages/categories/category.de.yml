@@ -1,7 +1,6 @@
 de:
     categories:
-        index:
-            title: Erweiterungs Packs
+        category:
             added: Hinzugefügt
             partially_added: Teilweise hinzugefügt
-            not_added: Noch nicht hinzugefügt
+            not_added: Nicht hinzugefügt

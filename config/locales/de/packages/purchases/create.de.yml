@@ -1,5 +1,5 @@
 de:
     purchases:
         create:
-            description: "%{pack} Expansion Pack"
-            success: "%{pack} Expansion Pack erfolgreich hinzugefügt"
+            description: Kauf des %{category}/%{pack} Erweiterungs-Packs von Phylator
+            success: Vielen Dank für Deinen Kauf!

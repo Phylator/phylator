@@ -1,0 +1,5 @@
+de:
+    unit_of_measurements:
+        show:
+            content: Dies ist ein SI-Präfix von %{unit}
+            si_prefixes: SI Präfixe

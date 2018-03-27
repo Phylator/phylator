@@ -20,6 +20,7 @@ en:
         purchases: Purchases
         quantities: Quantities
         quantity: Quantity
+        scalar: Scalar
         signin: Signin
         signout: Signout
         signup: Signup

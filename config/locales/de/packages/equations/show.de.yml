@@ -1,0 +1,5 @@
+de:
+    equations:
+        show:
+            title: Gleichung für %{name}
+            content: Kategorie: %{category}

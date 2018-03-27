@@ -6,7 +6,7 @@ class PurchasesController < ApplicationController
         @purchase = current_user.purchases.build
         @purchase.pack = Pack.friendly.find params[:id]
         @purchase.amount = @purchase.pack.price
-        description = I18n.t 'payments.create.description', pack: @purchase.pack.name
+        description = I18n.t('purchases.create.description', category: @purchase.pack.category, pack: @purchase.pack.name)
 
         charge = Stripe::Charge.create(
             amount: (@purchase.pack.price * 100).to_i,
@@ -30,7 +30,7 @@ class PurchasesController < ApplicationController
         # notification.save!
         # notification.push :OneSignal, player_ids: notification.target.onesignal_player_ids
 
-        redirect_to @purchase.pack, notice: I18n.t('purchases.create.success', pack: @purchase.pack.name)
+        redirect_to @purchase.pack, notice: I18n.t('purchases.create.success')
     end
 
 end

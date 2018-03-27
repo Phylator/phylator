@@ -1,10 +1,16 @@
 de:
     calculations:
         show:
-            dependencies:
-                content: Indem Du zu deinen Messwerten die Größen aus einer der folgenden Gruppen hinzufügst, kannst du ein Ergebnis erzielen.
-            details:
-                add: Füge details hinzu
-            save:
-                title: Berechnung speichern?
-                content: Durch das Anmelden erlangst du Zugriff auf all deine Berechnungen und die gesamte Datenbank an physikalischen Größen, Maßinheiten und Gleichungen.
+            title: Berechnung von %{name}
+            delete:
+                confirm: Das Löschen dieser Berechnung ist irreversibel. Bist Du Dir sicher?
+            no_solution_found: Keine Lösung gefunden
+            suggestion:
+                title: Speichere diese Berechnung
+                content: Nach Deiner Anmeldung hast du Zugriff auf all deine Berechnungen und die große Datanbank von physikalischen Größen & Konstanten.
+            edit: Name & Beschreibung bearbeiten
+            missing_dependencies:
+                title: Fehlende Komponenten
+                content: Indem Du eine der dargelegten Gruppen von Größen zu Deinen Messwerten hinzufügst, kann Phylator ein Ergebnis berechnen.
+                conditions: Bedingungen:
+            unit_conversion: Maßeinheit ändern

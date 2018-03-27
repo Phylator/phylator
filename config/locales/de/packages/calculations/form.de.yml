@@ -1,7 +1,6 @@
 de:
     calculations:
         form:
-            quantity:
-                label: Wähle eine physikalische Größe
-            measurements:
-                add: Messwert hinzufügen
+            title: Wähle eine Größe
+            quantity: Sag Phylator welche physikalische Größe Du berechnen willst.
+            unit: Welche Maßeinheit soll Phylator nutzen, um Dir das Ergebnis anzuzeigen?

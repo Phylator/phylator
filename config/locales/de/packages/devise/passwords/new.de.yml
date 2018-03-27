@@ -2,5 +2,6 @@ de:
     devise:
         passwords:
             new:
-                form:
-                    submit: Anleitung senden
+                title: Passwort vergessen?
+                content: Kein Problem. Erstelle einfach ein neues.
+                try_to_login: Anmelden

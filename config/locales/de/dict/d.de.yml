@@ -1,0 +1,33 @@
+de:
+    d:
+        account: Account
+        calculate: Berechnen
+        calculations: Berechnungen
+        conditions: Bedingungen
+        constants: Konstanten
+        continue: Fortsetzen
+        email: Email
+        equations: Gleichungen
+        free: Kostenlos
+        hide: Verstecken
+        install: Installieren
+        measurements: Messwerte
+        next: Weiter
+        pack: Pack
+        packs: Packs
+        password: Passwort
+        proceed: Fortfahren
+        purchases: Käufe
+        quantities: Physikalische Größen
+        quantity: Physikalische Größe
+        scalar: Skalar
+        signin: Anmelden
+        signout: Abmelden
+        signup: Registrieren
+        support: Support
+        tour: Tour
+        update: Aktualisieren
+        unit: Maßeinheit
+        units: Maßeinheiten
+        value: Wert
+        vector: Vektor

@@ -1,0 +1,7 @@
+de:
+    calculations:
+        how:
+            title: Wähle eine Gruppe von Messwerten
+            content: Hier sind Vorschläge für Messwerte, die Du eingeben könntest.
+            conditions: Bedingungen:
+            custom_measurements: Eigene Messwerte eingeben

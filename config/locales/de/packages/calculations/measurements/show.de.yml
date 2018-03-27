@@ -1,6 +1,6 @@
-en:
+de:
     calculations:
         measurements:
             show:
-                details:
-                    add: Add some details
+                title: Messwert von %{name}
+                edit: Name & Beschreibung bearbeiten

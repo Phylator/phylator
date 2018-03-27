@@ -1,15 +1,7 @@
 de:
     welcome:
         index:
-            slide1:
-                title: Gib an, was du berechnest
-                content: Beginne durch Auswählen der physikalischen Größe und Maßeinheit, die Du erhalten willst.
-            slide2:
-                title: Trag Messwerte ein
-                content: Dann trage alle Deine Messwerte ein. Füge einen Fehler hinzu, wenn der Wert nicht genau ist.
-            slide3:
-                content1: Du möchtest die App verbessern?
-                content2: ist Open Source. Wir würden uns freuen, wenn Du dabei bist.
-            slide4:
-                title: Behalte deine Berechnungen im Auge
-                content: Melde Dich an oder erstelle einen Phylator Account, um deine Berechnungen zu speichern und mehr Vorteile zu erhalten.
+            title: Ein einfacher aber leistungsfähiger Taschenrechner für Physik
+            header: Ein Taschenrechner für Physik
+            subheader: einfach aber leistungsfähig.
+            open_web_app: Web App öffnen

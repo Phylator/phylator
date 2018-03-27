@@ -2,8 +2,11 @@ de:
     devise:
         registrations:
             edit:
-                title: Account
                 list:
-                    tour: Nehme eine Tour
-                    language: Sprache ändern
-                delete: Du verlierst unwiderruflich den Zugang zu all Deinen Berechnungen und Entwürfen. Bist du dir sicher?
+                    change_language: Sprache ändern
+                form:
+                    new_password: Neues Passwort (optional)
+                    current_password: Aktuelles Passwort
+                    delete:
+                        link:
+                        confirm: Du verlierst unwiderruflich den Zugriff auf deine Käufe & Berechnungen. Bist Du Dir sicher?

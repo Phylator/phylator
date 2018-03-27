@@ -7,9 +7,8 @@
 
 %p
     = @quantity.description
-    - if @quantity.vector
-        ⋅
-        = t('d.vector')
+    ⋅
+    = @quantity.vector ? t('d.vector') : t('d.scalar')
 %p= link_to t('quantities.show.learn_more'), @quantity.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @quantity.wikipedia
 
 %h2 Pack

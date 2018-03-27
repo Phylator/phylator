@@ -1,0 +1,5 @@
+en:
+    purchases:
+        create:
+            description: Purchasing Phylator's %{category}/%{pack} expansion pack
+            success: Thanks for your purchase!

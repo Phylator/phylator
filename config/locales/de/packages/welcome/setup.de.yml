@@ -1,0 +1,13 @@
+de:
+    welcome:
+        setup:
+            slide1:
+                title: Wähle aus, was Du berechnen willst
+                content: Beginne, indem Du auswählst welche physikalische Größe Du in welcher Maßeinheit berechnen möchtest.
+            slide2:
+                title: Gib Deine Messwerte ein
+                content: Trage dann all Deine Messwerte in der jeweiligen Maßeinheit ein.
+            slide3:
+                title: Behalte Deine Berechnungen
+                content: Melde Dich mit einem Phylator Account an, um Berechnungen zu speichern und weitere Vorteile zu erhalten.
+                get_started: Los gehts

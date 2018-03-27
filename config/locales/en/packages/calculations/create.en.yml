@@ -1,0 +1,5 @@
+en:
+    calculations:
+        create:
+            success: Calculation successful
+            error: Calculation failed
