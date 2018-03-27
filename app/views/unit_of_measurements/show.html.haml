@@ -1,10 +1,10 @@
 - meta title: @unit_of_measurement.name
 
 - replace :tools do
-    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @value.to_s } do
+    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @value.to_s } do
         %i.nc-icon.nc-ungroup
 - replace :title do
-    %h1.sym.clipboard{ data: { clipboard: @value.to_s } }
+    %h1.sym.clipboard{ data: { clipboard_text: @value.to_s } }
         = "%g" % ( "%E" % @value )
         %span= @unit_of_measurement.base ? @unit_of_measurement.sym : "#{@unit_of_measurement.sym} #{'= 1 ' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym if @unit_of_measurement.quantities.any?}"
 - replace :subtitle do

@@ -5,7 +5,7 @@
         %i.nc-icon.nc-tail-left
 - replace :tools do
     - unless @calculation.result.undefined
-        = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @calculation.result.value.to_s } do
+        = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @calculation.result.value.to_s } do
             %i.nc-icon.nc-ungroup
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26
@@ -16,7 +16,7 @@
     - if @calculation.result.undefined
         %h1.color--error No solution found
     - else
-        %h1.sym.clipboard{ data: { clipboard: @calculation.result.value.to_s } }
+        %h1.sym.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
             = @calculation.result.pretty_value
             %span= @calculation.unit_of_measurement.sym
 - replace :subtitle do

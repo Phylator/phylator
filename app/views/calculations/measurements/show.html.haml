@@ -1,12 +1,12 @@
 - meta title: @measurement.name || "Measurement of #{@measurement.quantity.name}"
 
 - replace :tools do
-    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard: @measurement.value.to_s } do
+    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @measurement.value.to_s } do
         %i.nc-icon.nc-ungroup
     = link_to 'javascript:void(0)', class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26
 - replace :title do
-    %h1.sym.clipboard{ data: { clipboard: @measurement.value.to_s } }
+    %h1.sym.clipboard{ data: { clipboard_text: @measurement.value.to_s } }
         = @measurement.pretty_value
         %span= @measurement.unit_of_measurement.sym
 - replace :subtitle do

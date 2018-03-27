@@ -26,6 +26,15 @@ document.addEventListener( 'turbolinks:load', () => {
     MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 })
 
+import ClipboardJS from 'clipboard';
+const clipboard = new ClipboardJS('.clipboard');
+clipboard.on( 'success', () => {
+    mygToast.show({ message: document.querySelector('#clipboard-success').innerHTML });
+});
+clipboard.on( 'error', () => {
+    mygToast.error({ message: document.querySelector('#clipboard-error').innerHTML });
+});
+
 import ahoy from 'ahoy.js';
 
 // const instantsearch = require('instantsearch.js');
