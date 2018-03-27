@@ -1,0 +1,5 @@
+en:
+    equations:
+        show:
+            title: Equation for %{name}
+            content: Category: %{category}

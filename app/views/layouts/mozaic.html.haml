@@ -22,7 +22,7 @@
 
         = favicon_link_tag '/favicon.ico'
 
-        = component 'seo/schema', type: :brand, name: 'Phylator', description: 'A simple but powerful calculator for physics', url: 'https://phylator.com', logo: 'https://phylator.com/512x512.png'
+        = component 'seo/schema', type: :brand, name: 'Phylator', description: t('layouts.mozaic.schema.description'), url: 'https://phylator.com', logo: 'https://phylator.com/icon_512x512.png'
         = component 'layouts/google_analytics'
 
         = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -35,8 +35,8 @@
 
     = component 'turbolinks-animate', animation: @turbolinks_animate_animation, class: 'myg myg-layout ' + class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ) + ' ' + area(:body_class), id: area(:layout) do
 
-        %p#clipboard-success.hidden= t('cd.copied_to_clipboard')
-        %p#clipboard-error.hidden= t('cd.copied_to_clipboard')
+        %p#clipboard-success.hidden= t('layouts.mozaic.clipoard.success')
+        %p#clipboard-error.hidden= t('layouts.mozaic.clipoard.error')
         %p#notice.hidden= notice
         %p#alert.hidden= alert
         = component 'myg/toast'

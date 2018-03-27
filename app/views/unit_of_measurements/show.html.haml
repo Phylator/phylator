@@ -11,30 +11,28 @@
     %p= @unit_of_measurement.name
 
 - if @unit_of_measurement.si.present?
-    %p
-        This is a SI prefix of
-        = link_to @unit_of_measurement.si.name, @unit_of_measurement.si, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
+    %p= t('unit_of_measurements.show.content', unit: link_to(@unit_of_measurement.si.name, @unit_of_measurement.si, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }))
 
 - if @quantities.any?
-    %h2 Quantities
+    %h2= t('d.quantities')
     .myg-grid.myg-wrap--phone
         - @quantities.each do |quantity|
             = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @constants.any?
-    %h2 Constants
+    %h2= t('d.constants')
     .myg-grid.myg-wrap--phone
         - @constants.each do |constant|
             = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
 
 - if @si_prefixes.any?
-    %h2 SI prefixes
+    %h2= t('unit_of_measurements.show.si_prefixes')
     .myg-grid.myg-wrap--phone
         - @si_prefixes.each do |unit_of_measurement|
             = render unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
-    %h2 Calculations
+    %h2= t('d.calculations')
     .myg-grid.myg-wrap--phone
         - @calculations.each do |calculation|
             = render calculation, animation: 'fadeout'

@@ -1,4 +1,5 @@
 en:
     quantities:
         show:
-            vector: ⋅ Vector
+            learn_more: Learn more
+            belongs_to: Belongs to

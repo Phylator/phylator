@@ -1,5 +1,5 @@
 #desktop
     = asset 'components/brand/logo'
-    %h2 Phylator is only available on phones.
-    %p Shrink the window if possible. We're working to make Phylator available on all screen sizes.
-    = link_to 'Track our progress', Settings.phylator.socials.twitter, target: '_blank', class: 'myg-button'
+    %h2= t('mozaic.desktop.title')
+    %p= t('mozaic.desktop.content')
+    = link_to t('mozaic.desktop.track_our_progress'), Settings.phylator.socials.twitter, target: '_blank', class: 'myg-button'

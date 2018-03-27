@@ -1,16 +1,16 @@
 .myg-slide.main-carousel
     .carousel-cell
-        %h1.sm= t 'welcome.index.slide1.title'
-        %p.lg= t 'welcome.index.slide1.content'
+        %h1.sm= t('welcome.setup.slide1.title')
+        %p.lg= t('welcome.setup.slide1.content')
     .carousel-cell
-        %h1.sm= t 'welcome.index.slide2.title'
-        %p.lg= t 'welcome.index.slide2.content'
+        %h1.sm= t('welcome.setup.slide2.title')
+        %p.lg= t('welcome.setup.slide2.content')
     .carousel-cell
-        %h1.sm= t 'welcome.index.slide4.title'
-        %p.lg= t 'welcome.index.slide4.content'
+        %h1.sm= t('welcome.setup.slide3.title')
+        %p.lg= t('welcome.setup.slide3.content')
         .myg-button--container
             - if current_user
-                = link_to 'Get started', app_root_url, class: 'myg-button'
+                = link_to t('welcome.setup.slide3.get_started'), app_root_url, class: 'myg-button'
             - else
-                = link_to 'Signin', new_user_session_url, class: 'myg-button'
-                = link_to 'Get started', app_root_url, class: 'myg-button myg-button--secondary'
+                = link_to t('d.signin'), new_user_session_url, class: 'myg-button'
+                = link_to t('welcome.setup.slide3.get_started'), app_root_url, class: 'myg-button myg-button--secondary'

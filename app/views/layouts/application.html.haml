@@ -9,11 +9,11 @@
                 = link_to root_url, data: { turbolinks_animate_type: 'application' } do
                     = asset 'components/brand/logo'
             %section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                = link_to 'Follow @phylator on Twitter', Settings.phylator.socials.twitter
+                = link_to t('layouts.application.twitter'), Settings.phylator.socials.twitter
                 - if current_user
-                    = link_to 'Account', edit_user_registration_url
+                    = link_to t('d.account'), edit_user_registration_url
                 - else
-                    = link_to 'Login', new_user_session_url
+                    = link_to t('d.signin'), new_user_session_url
 
     .myg-content
         = mozaic_area :application do

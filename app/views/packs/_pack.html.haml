@@ -4,12 +4,12 @@
         - if pack.purchased? current_user
             %i.nc-icon.nc-check-circle-08
             %span
-                = t 'categories.index.added'
+                = t 'packs.pack.added'
                 ⋅
-                = pack.price == 0 ? t('categories.show.free') : number_to_currency(pack.price, unit: '$')
+                = pack.price == 0 ? t('d.free') : number_to_currency(pack.price, unit: '$')
         - else
             %i.nc-icon.nc-e-circle
             %span
-                = t 'categories.index.not_added'
+                = t 'packs.pack.not_added'
                 ⋅
-                = pack.price == 0 ? t('categories.show.free') : number_to_currency(pack.price, unit: '$')
+                = pack.price == 0 ? t('d.free') : number_to_currency(pack.price, unit: '$')

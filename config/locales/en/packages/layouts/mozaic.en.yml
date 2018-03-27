@@ -1,0 +1,8 @@
+en:
+    layouts:
+        mozaic:
+            schema:
+                description: A simple but powerful calculator for physics
+            clipoard:
+                success: Copied to clipboard
+                error: Could not copy to clipboard

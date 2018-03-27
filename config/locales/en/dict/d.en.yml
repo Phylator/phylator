@@ -6,35 +6,27 @@ en:
         conditions: Conditions
         constants: Constants
         continue: Continue
-        # contribute: Contribute
-        # delete: Delete
-        # description: Description
         email: Email
         equations: Equations
+        free: Free
         hide: Hide
-        # in: In
-        # logout: Logout
+        install: Install
         measurements: Measurements
-        # name: Name
         next: Next
         pack: Pack
         packs: Packs
         password: Password
         proceed: Proceed
         purchases: Purchases
+        quantities: Quantities
         quantity: Quantity
-        # remove: Remove
-        # save: Save
-        # share: Share
         signin: Signin
         signout: Signout
         signup: Signup
         support: Support
-        # title: Title
         tour: Tour
-        # undefined: Undefinded
         update: Update
         unit: Unit
-        # unit_of_measurement: Unit of measurement
+        units: Units
         value: Value
-        # vector: Vector
+        vector: Vector
