@@ -3,4 +3,4 @@
     = component 'myg/form-field', as: :input, attribute: :quantity, label: t('calculations.form.quantity'), input_html: { required: true, class: 'select flexdatalist', data: { units: '#__unit', data: '/app/quantities.json?locale=' + I18n.locale.to_s, search_in: ['sym', 'name'], text_property: 'name', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
     = component 'myg/form-field', as: :input, attribute: :unit, label: t('calculations.form.unit'), input_html: { required: true, disabled: true, class: 'select', data: { search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
     .flex.reverse
-        = component 'myg/button', value: = t('d.next'), class: 'myg-button--disabled'
+        = component 'myg/button', value: t('d.next'), class: 'myg-button--disabled'
