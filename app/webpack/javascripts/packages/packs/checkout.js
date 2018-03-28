@@ -15,12 +15,12 @@ document.addEventListener( 'modalist:render', () => {
                     }
                 },
                 invalid: {
-                    color: '#f6809a',
-                    iconColor: '#f6809a'
+                    color: '#F6809A',
+                    iconColor: '#F6809A'
                 }
             },
             card = elements.create( 'card', { style: style } ),
-            form = document.querySelector('.modalist--content-body.users.payment_methods.edit form'),
+            form = document.querySelector('.modalist--content-body.packs.checkout form'),
             hiddenInput = form.querySelector('input[name="stripeToken"]');
 
         card.mount('#card-element');
@@ -30,7 +30,7 @@ document.addEventListener( 'modalist:render', () => {
                 event.preventDefault();
                 stripe.createToken(card).then(function(result) {
                     hiddenInput.value = result.token.id;
-                    Rails.fire( form, 'submit' );
+                    form.submit();
                 });
                 return false;
             }
