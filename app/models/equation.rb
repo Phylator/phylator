@@ -16,7 +16,7 @@ class Equation < ApplicationRecord
     belongable :calculations, 'Calculation', scope: :dependency
     belongable :excluded_from_calculations, 'Calculation', scope: :exclude
 
-    scope :free, -> { includes(:quantity, :pack).where(quantities: { packs: { price: 0 } }) }
+    scope :free, -> { includes(quantity: :pack).where(quantities: { packs: { price: 0 } }) }
 
     def pure_equation
         self.equation.tr "'", ''
