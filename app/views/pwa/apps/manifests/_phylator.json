@@ -6,7 +6,7 @@
     "display": "standalone",
     "background_color": "#233446",
     "description": "A simple but powerful calculator for physics",
-    "theme_color": "#2577ed",
+    "theme_color": "#233446",
     "orientation": "portrait",
     "dir": "rtl",
     "lang": "en-US",
