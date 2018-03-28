@@ -4,5 +4,5 @@ de:
             schema:
                 description: Ein einfacher und leistungsfähiger Taschenrechner für Physik
             clipoard:
-                success: Erfolgreich opiert
+                success: Erfolgreich kopiert
                 error: Fehler beim kopieren

@@ -586,7 +586,7 @@
     "parent_quantity": "Length",
     "locals": {
         "de": {
-            "name": "Vertikale Entfernung",
+            "name": "Horizontale Entfernung",
             "description": "Von einem Objekt zurückgelegte horizontale Strecke",
             "wikipedia": "https://de.wikipedia.org/wiki/Abstand"
         }
