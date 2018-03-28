@@ -5,8 +5,6 @@ document.addEventListener( 'modalist:render', () => {
             style = {
                 base: {
                     color: '#FFFFFF',
-                    background: '#1B2936',
-                    lineHeight: '18px',
                     fontFamily: '"Inter UI", sans-serif',
                     fontSmoothing: 'antialiased',
                     fontSize: '16px',
