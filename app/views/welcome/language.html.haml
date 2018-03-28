@@ -1,4 +1,4 @@
-= component 'modalist', title: 'Change language' do
+= component 'modalist', title: t('welcome.language.title') do
     = component 'modalist/closer'
 
 %p= link_to 'Deutsch', url_without_parameters(url_for(:back)) + '?locale=de'
