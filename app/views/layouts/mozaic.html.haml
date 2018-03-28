@@ -43,7 +43,8 @@
         %p#alert.hidden= alert
         = component 'myg/toast'
 
-        = component 'modalist/overlay'
+        = component 'modalist/overlay' do
+            = asset 'components/loaders/modalist'
         = component 'modalist/wrapper'
 
         = component 'desktop'
