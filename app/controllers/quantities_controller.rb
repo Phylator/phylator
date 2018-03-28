@@ -6,6 +6,7 @@ class QuantitiesController < ApplicationController
     def index
         turbolinks_animate 'fadein'
         @quantities = (current_user ? Quantity.base.with_translations(I18n.locale).free + current_user.quantities.base.with_translations(I18n.locale) : Quantity.base.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
+        @json_quantities = params[:all] ? Quantity.all.with_translations(I18n.locale).order(:name) : (current_user ? Quantity.with_translations(I18n.locale).free + current_user.quantities.with_translations(I18n.locale) : Quantity.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
         @constants = (current_user ? Constant.with_translations(I18n.locale).free + current_user.constants.with_translations(I18n.locale) : Constant.with_translations(I18n.locale).free).sort_by { |obj| obj.name }
         authorizes! :read, @quantities
         render layout: 'app'
