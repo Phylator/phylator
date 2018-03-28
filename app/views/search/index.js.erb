@@ -2,5 +2,5 @@
 <% if @results %>
     $('.myg-grid').append('<% if @tab == "quantity" || @tab == "constant" %><h2><%= @tab == "quantity" ? t("d.quantities") : t("d.constants") %></h2><% end %><%= j render @results, animation: "fadeout" %>');
 <% else %>
-    $('.myg-grid').append('<%= j render "placeholder" %>');
+    $('.myg-grid').append('<%= j render "placeholder", tab: @tab %>');
 <% end %>
