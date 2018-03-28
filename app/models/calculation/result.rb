@@ -39,7 +39,7 @@ class Calculation::Result < ApplicationRecord
         end
 
         # Add constants
-        constants = self.calculation.user ? Constant.free + current_user.constants : Constant.free
+        constants = self.calculation.user ? Constant.free + self.calculation.user.constants : Constant.free
         constants.each do |constant|
             symbol = constant.pure_sym
             var = constant.value
