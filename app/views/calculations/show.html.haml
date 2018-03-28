@@ -31,8 +31,8 @@
             = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
             = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
 
-%h2= @calculation.name if @calculation.name
-%p= @calculation.description if @calculation.description
+%h2#name= @calculation.name if @calculation.name
+%p#description= @calculation.description if @calculation.description
 - if can? :update, @calculation
     %p= link_to t('calculations.show.edit'), edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
 
