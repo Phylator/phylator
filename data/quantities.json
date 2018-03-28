@@ -887,6 +887,7 @@
     "vector": false,
     "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Time",
     "locals": {
         "de": {
             "name": "Periodendauer",

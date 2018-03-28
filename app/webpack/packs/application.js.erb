@@ -36,7 +36,7 @@ document.addEventListener( 'turbolinks:load', () => {
     const clipboard = new Clipboard('.clipboard');
     clipboard.on( 'success', (e) => {
         e.clearSelection();
-        mygToast.show({ message: document.querySelector('#clipboard-success').innerHTML });
+        mygToast.success({ message: document.querySelector('#clipboard-success').innerHTML });
     });
     clipboard.on( 'error', (e) => {
         e.clearSelection();
