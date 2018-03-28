@@ -57,8 +57,8 @@ class Calculation::Result < ApplicationRecord
                 equations[quantity.pure_sym] = []
             end
             usable_equations = self.calculation.user ? Equation.free + self.calculation.user.equations : Equation.free
-            usable_equations.each do |equation| ##### LEADING TO: TSort exception #####
-            # Equation.where(quantity: self.calculation.quantity).each do |equation|
+            # usable_equations.each do |equation| ##### LEADING TO: TSort exception #####
+            Equation.where(quantity: self.calculation.quantity).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.pure_equation
                 ## Associate equation with calculation if used
                 if calculator.dependencies(equation.pure_equation).size == 0
