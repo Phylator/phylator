@@ -53,9 +53,9 @@
                             %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
-    %h2= t('calculations.show.unit_conversion')
-    = simple_form_for @calculation, authenticity_token: true do |f|
-        = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: 'Choose a unit', class: 'select flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+    %h2= t('calculations.show.unit_conversion.title')
+    = simple_form_for @calculation, authenticity_token: true, html: { id: 'unit-conversion' } do |f|
+        = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: t('calculations.show.unit_conversion.placeholder'), class: 'flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 %h2= t('d.measurements')
 .myg-grid.myg-wrap--phone

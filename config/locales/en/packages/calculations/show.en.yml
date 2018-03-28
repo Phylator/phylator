@@ -13,4 +13,6 @@ en:
                 title: Missing dependencies
                 content: By adding one of the following sets of quantities to your measurements, you will be able to get a result.
                 conditions: "Conditions:"
-            unit_conversion: Unit conversion
+            unit_conversion:
+                title: Unit conversion
+                placeholder: Choose another unit

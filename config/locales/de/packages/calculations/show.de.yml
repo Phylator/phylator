@@ -13,4 +13,6 @@ de:
                 title: Fehlende Komponenten
                 content: Indem Du eine der dargelegten Gruppen von Größen zu Deinen Messwerten hinzufügst, kann Phylator ein Ergebnis berechnen.
                 conditions: "Bedingungen:"
-            unit_conversion: Maßeinheit ändern
+            unit_conversion:
+                title: Maßeinheit ändern
+                placeholder: Wähle eine andere Maßeinheit
