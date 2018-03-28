@@ -18,10 +18,7 @@ function addMeasurement(data) {
 window.addMeasurement = addMeasurement;
 
 function init() {
-    document.querySelectorAll('input.select--initial').forEach( (element) => {
-        $(element).flexdatalist( 'value', element.dataset.value );
-    })
-    $('input.select--initial').one( 'change:flexdatalist', function( event, set, options ) {
+    $('input.flexdatalist').one( 'change:flexdatalist', function( event, set, options ) {
         let quantityEl = this,
             unitEl = document.querySelector(quantityEl.dataset.units);
         if (unitEl && quantityEl.value) {
