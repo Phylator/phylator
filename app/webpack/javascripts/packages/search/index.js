@@ -1,15 +1,13 @@
 document.addEventListener( 'turbolinks:load', () => {
     if (document.querySelector('body.search.index')) {
-        const instantsearch = require('instantsearch.js');
-        document.querySelector('input#query').addEventListener( 'change', function() {
-            let testString = this.value;
-            const search = instantsearch({
-                appId: algoliasearchApplicationId,
-                apiKey: algoliasearchSearchKey,
-                indexName: testString[0].toUpperCase() + testString.substring(1),
-                urlSync: true
+        let algoliasearch = require('algoliasearch');
+        const tab = document.querySelector('#tab').innerHTML;
+        const client = algoliasearch( algoliasearchApplicationId, algoliasearchSearchKey );
+        const index = client.initIndex( tab[0].toUpperCase() + tab.substring(1) );
+        document.querySelector('input#__query').addEventListener( 'input', function() {
+            index.search( this.value, ( err, content ) => {
+                console.log(content.hits);
             });
-            search.start();
         })
     }
 })
