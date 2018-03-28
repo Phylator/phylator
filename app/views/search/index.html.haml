@@ -1,3 +1,5 @@
+- meta title: t("search.index.tabs.#{@tab}")
+
 - replace :title do
     = component 'myg/form-field', as: :input, attribute: 'query', floating_label: t("search.index.tabs.#{@tab}"), input_html: { autofocus: true, spellcheck: 'false' }
 - replace :tools do
@@ -8,7 +10,6 @@
         %i.nc-icon.nc-bold
     = link_to search_url(tab: 'pack'), class: 'pack', data: { turbolinks_animate_animation: 'fadeout' } do
         %i.nc-icon.nc-gift-2
-
 
 .myg-grid.myg-wrap--phone
     = render 'placeholder'

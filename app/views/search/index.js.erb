@@ -1,11 +1,5 @@
-<% if params[:index] == 'Calculation' %>
-    <%= j render 'calculations/calculation', calculation: Calculation.find(params[:id]), animation: 'fadeout' %>
-<% elsif params[:index] == 'Quantity' %>
-    <%= j render 'quantities/quantity', quantity: Quantity.find(params[:id]), animation: 'fadeout' %>
-<% elsif params[:index] == 'Quantity' %>
-    <%= j render 'constants/constant', constant: Constant.find(params[:id]), animation: 'fadeout' %>
-<% elsif params[:index] == 'Quantity' %>
-    <%= j render 'packs/pack', pack: Pack.find(params[:id]), animation: 'fadeout' %>
-<% elsif params[:index] == 'Quantity' %>
+<% if @results %>
+    <%= j render @results, animation: 'fadeout' %>
+<% else %>
     <%= j render 'placeholder' %>
 <% end %>
