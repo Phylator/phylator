@@ -2,7 +2,7 @@
 
 %h1.sm= t('d.account')
 
-.myg-list
+.myg-list.myg-list--contained
     .myg-list--item= link_to t('d.tour'), setup_url(stay: true)
     .myg-list--item= link_to t('devise.registrations.edit.list.change_language'), language_url, class: 'modalist--trigger'
     .myg-list--item= link_to t('d.support'), "mailto:#{Settings.mailgun.emails.support}"
@@ -12,7 +12,7 @@
 
 - if @purchases.any?
     %h3= t('d.purchases')
-    .myg-list
+    .myg-list.myg-list--contained
         - @purchases.each do |purchase|
             = render purchase
     %hr

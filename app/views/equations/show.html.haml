@@ -7,7 +7,7 @@
 
 - if @equation.conditions&.any?
     %h2= t('d.conditions')
-    .myg-list
+    .myg-list.myg-list--contained
         - @equation.conditions.each do |condition|
             .myg-list--item
                 %p= condition

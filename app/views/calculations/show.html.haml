@@ -40,7 +40,7 @@
     %h2= t('calculations.show.missing_dependencies.title')
     %p= t('calculations.show.missing_dependencies.content')
     .myg-grid.myg-wrap--phone
-    .myg-list
+    .myg-list.myg-list--contained
         - @dependencies.each do |equation|
             .myg-list--item
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
@@ -68,7 +68,7 @@
 
 - if @conditions.any?
     %h2= t('d.conditions')
-    .myg-list
+    .myg-list.myg-list--contained
         - @conditions.each do |condition|
             .myg-list--item
                 %p= condition

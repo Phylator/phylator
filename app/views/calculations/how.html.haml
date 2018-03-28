@@ -1,7 +1,7 @@
 %h1.sm= t('calculations.how.title')
 %p= t('calculations.how.content')
 .flex.center
-    .myg-list
+    .myg-list.myg-list--contained
         - @equations.each do |equation|
             .myg-list--item
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do

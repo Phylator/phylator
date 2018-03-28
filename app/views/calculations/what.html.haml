@@ -2,7 +2,7 @@
 - if @categories.any?
     %p= t('calculations.what.categories.content')
     .flex.center
-        .myg-list
+        .myg-list.myg-list--contained
             - @categories.each do |category|
                 .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category)
         %p.sm or

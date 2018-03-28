@@ -1,16 +1,16 @@
 - if local_assigns[:link] == false
     - if local_assigns[:link_pack] == false
-        .myg-card{ class: ('highlighted' if local_assigns[:highlighted]) }
+        .myg-card{ class: ('myg-card--highlighted' if local_assigns[:highlighted]) }
             %h2.sym= quantity.sym
             %p.sm= quantity.name
     - else
-        = link_to quantity.pack, class: "myg-card #{'highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
+        = link_to quantity.pack, class: "myg-card #{'myg-card--highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
             %h2.sym= quantity.sym
             %p.sm
                 = quantity.name
                 ·
                 = t('quantities.quantity.not_added')
 - else
-    = link_to quantity, class: "myg-card #{'highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
+    = link_to quantity, class: "myg-card #{'myg-card--highlighted' if local_assigns[:highlighted] == true}", data: { turbolinks_animate_animation: local_assigns[:animation] } do
         %h2.sym= quantity.sym
         %p.sm= quantity.name
