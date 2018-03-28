@@ -1,5 +1,5 @@
-%h1= t 'welcome.language.title'
+= component 'modalist', title: 'Change language' do
+    = component 'modalist/closer'
 
-.languages
-    = link_to 'English', url_for(:back) + '?locale=en', class: 'language'
-    = link_to 'Deutsch', url_for(:back) + '?locale=de', class: 'language'
+%p= link_to 'Deutsch', url_without_parameters(url_for(:back)) + '?locale=de'
+%p= link_to 'English', url_without_parameters(url_for(:back)) + '?locale=en'
