@@ -58,7 +58,7 @@
 %h2= t('d.measurements')
 .myg-grid.myg-wrap--phone
     - @measurements.each do |measurement|
-        = render measurement, animation: 'fadeout'
+        = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
 
 - if @constants.any?
     %h2= t('d.constants')
