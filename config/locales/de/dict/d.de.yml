@@ -6,12 +6,14 @@ de:
         conditions: Bedingungen
         constants: Konstanten
         continue: Fortsetzen
+        description: Beschreibung
         email: Email
         equations: Gleichungen
         free: Kostenlos
         hide: Verstecken
         install: Installieren
         measurements: Messwerte
+        name: Name
         next: Weiter
         pack: Pack
         packs: Packs

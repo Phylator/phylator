@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :constants, only: [:show]
         resources :equations, only: [:show]
         resources :calculations, except: [:new] do
-            resources :measurements, only: [:show, :edit, :update], controller: 'calculations/measurements'
+            resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end
         get 'what', to: 'calculations#what'
         get 'how', to: 'calculations#how'

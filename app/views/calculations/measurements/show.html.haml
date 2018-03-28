@@ -18,11 +18,6 @@
         ·
         %span= time_ago_in_words @measurement.created_at
 
-%h3= @measurement.name if @measurement.name
-%p= @measurement.description if @measurement.description
-- if can? :update, @measurement
-    %p= link_to t('calculations.measurements.show.edit'), edit_calculation_measurement_url(@measurement), class: 'modalist--trigger hyperlink--inherit'
-
 %h2 Unit
 .myg-grid.myg-wrap--phone
     = render @measurement.unit_of_measurement, animation: 'fadeout'
