@@ -93,7 +93,7 @@
         }
     }
 }, {
-    "symbol": "min",
+    "symbol": "minute",
     "name": "minute",
     "to_base": "*60",
     "quantities": ["Time", "Period"],
@@ -103,7 +103,7 @@
         }
     }
 }, {
-    "symbol": "h",
+    "symbol": "hour",
     "name": "hour",
     "to_base": "*3600",
     "quantities": ["Time", "Period"],
@@ -113,7 +113,7 @@
         }
     }
 }, {
-    "symbol": "d",
+    "symbol": "day",
     "name": "day",
     "to_base": "*86400",
     "quantities": ["Time", "Period"],
@@ -133,7 +133,7 @@
         }
     }
 }, {
-    "symbol": "a",
+    "symbol": "year",
     "name": "year",
     "to_base": "*31557600",
     "quantities": ["Time", "Period"],

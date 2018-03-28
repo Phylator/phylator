@@ -4,15 +4,6 @@ GIT
   specs:
     bcrypt (3.1.11)
 
-GIT
-  remote: https://github.com/globalize/globalize.git
-  revision: 55c9c7a6d94f5707c3ff72a318498c8c125287b1
-  specs:
-    globalize (5.1.0)
-      activemodel (>= 4.2, < 5.2)
-      activerecord (>= 4.2, < 5.2)
-      request_store (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,6 +159,10 @@ GEM
     geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    globalize (5.1.0)
+      activemodel (>= 4.2, < 5.2)
+      activerecord (>= 4.2, < 5.2)
+      request_store (~> 1.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -256,7 +251,7 @@ GEM
     rack (2.0.4)
     rack-proxy (0.6.4)
       rack
-    rack-test (0.8.3)
+    rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rack-timeout (0.4.2)
     rails (5.2.0.rc2)
@@ -406,7 +401,7 @@ DEPENDENCIES
   dentaku
   devise
   friendly_id
-  globalize!
+  globalize
   haml
   i18n
   jbuilder
