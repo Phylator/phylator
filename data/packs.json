@@ -17,7 +17,7 @@
     "locals": {
         "de": {
             "name": "Kinematik",
-            "description": "Erweitere Phylator neue Größen der Kinematik."
+            "description": "Erweitere Phylator um neue Größen der Kinematik."
         }
     }
 }, {
@@ -28,7 +28,7 @@
     "locals": {
         "de": {
             "name": "Dynamik",
-            "description": "Erweitere Phylator neue Größen der Dynamik."
+            "description": "Erweitere Phylator um neue Größen der Dynamik."
         }
     }
 }, {
@@ -50,7 +50,7 @@
     "locals": {
         "de": {
             "name": "Erweitert",
-            "description": "Erweitere Phylator neue Größen der Thermodynamik."
+            "description": "Erweitere Phylator um neue Größen der Thermodynamik."
         }
     }
 }, {
@@ -72,7 +72,7 @@
     "locals": {
         "de": {
             "name": "Elektrizität",
-            "description": "Erweitere Phylator neue Größen der Elektrizität."
+            "description": "Erweitere Phylator um neue Größen der Elektrizität."
         }
     }
 }, {
@@ -83,7 +83,7 @@
     "locals": {
         "de": {
             "name": "Magnetismus",
-            "description": "Erweitere Phylator neue Größen der Magnetismus."
+            "description": "Erweitere Phylator um neue Größen der Magnetismus."
         }
     }
 }, {
@@ -94,7 +94,7 @@
     "locals": {
         "de": {
             "name": "Optik",
-            "description": "Erweitere Phylator neue Größen der Optik."
+            "description": "Erweitere Phylator um neue Größen der Optik."
         }
     }
 }, {
@@ -116,7 +116,7 @@
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Erweitere Phylator neue Größen der Quantenmechanik."
+            "description": "Erweitere Phylator um neue Größen der Quantenmechanik."
         }
     }
 }, {
@@ -138,7 +138,7 @@
     "locals": {
         "de": {
             "name": "Erweitert",
-            "description": "Erweitere Phylator neue Größen der chemischen Physik."
+            "description": "Erweitere Phylator um neue Größen der chemischen Physik."
         }
     }
 }]
