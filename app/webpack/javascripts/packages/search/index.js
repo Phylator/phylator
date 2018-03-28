@@ -5,16 +5,21 @@ document.addEventListener( 'turbolinks:load', () => {
         const algoliasearch = require('algoliasearch');
         const tab = document.querySelector('#tab').innerHTML;
         const client = algoliasearch( algoliasearchApplicationId, algoliasearchSearchKey );
-        document.querySelector('input#__query').addEventListener( 'input', function() {
-            if (this.value) {
-                search( client, this.value, tab );
-                if ( tab == 'quantity' ) {
-                    search( client, this.value, 'constant' );
+        let input = document.querySelector('#__query'),
+            value = input.value;
+        setInterval(() => {
+            if (input.value != value) {
+                value = input.value;
+                if (document.querySelector('#__query').value) {
+                    search( client, this.value, tab );
+                    if ( tab == 'quantity' ) {
+                        search( client, this.value, 'constant' );
+                    }
+                } else {
+                    render(tab);
                 }
-            } else {
-                render(tab);
             }
-        })
+        }, 1000)
     }
 })
 
@@ -22,9 +27,13 @@ function search( client, query, tab ) {
     let index = client.initIndex( tab[0].toUpperCase() + tab.substring(1) );
     index.search( query, ( err, content ) => {
         if (content.hits.length > 0) {
-            render(tab);
+            console.log(content.hits);
+            let results = content.hits.map((object) => {
+                return object['objectID'];
+            });
+            render( tab, results );
         } else {
-            render( tab, content.hits );
+            render(tab);
         }
     });
 }

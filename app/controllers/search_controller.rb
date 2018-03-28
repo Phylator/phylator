@@ -7,18 +7,30 @@ class SearchController < ApplicationController
     def index
         turbolinks_animate 'fadeinright'
         @tab = params[:tab] || 'calculation'
-        if params.has_key?(:content) && params[:content].is_a?(Hash)
-            raise content.inspect
+        # raise params[:content].inspect
+        if params.has_key?(:content) && params[:content].is_a?(Array)
             @results = []
             case @tab
             when 'calculation'
-                params[:content].each { |r| @results << Calculation.find(r['objectID']) }
+                params[:content].each do |id|
+                    calculation = Calculation.find(id)
+                    @results << calculation if can?(:read, calculation)
+                end
             when 'quantity'
-                params[:content].each { |r| @results << Quantity.find(r['objectID']) }
+                params[:content].each do |id|
+                    quantity = Quantity.find(id)
+                    @results << quantity if can?(:read, quantity)
+                end
             when 'constant'
-                params[:content].each { |r| @results << Constant.find(r['objectID']) }
+                params[:content].each do |id|
+                    constant = Constant.find(id)
+                    @results << constant if can?(:read, constant)
+                end
             when 'pack'
-                params[:content].each { |r| @results << Pack.find(r['objectID']) }
+                params[:content].each do |id|
+                    pack = Pack.find(id)
+                    @results << pack if can?(:read, pack)
+                end
             end
         end
         respond_to do |format|
