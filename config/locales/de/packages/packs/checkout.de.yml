@@ -1,0 +1,5 @@
+de:
+    packs:
+        checkout:
+            title: "%{pack} kaufen"
+            buy: Für %{price} kaufen
