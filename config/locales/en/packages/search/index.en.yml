@@ -2,6 +2,6 @@ en:
     search:
         index:
             tabs:
-                calculations: Search calculations
-                quantities: Search quantities & constants
-                packs: Search packs
+                calculation: Search calculations
+                quantity: Search quantities & constants
+                pack: Search packs

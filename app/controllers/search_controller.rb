@@ -7,7 +7,6 @@ class SearchController < ApplicationController
     def index
         turbolinks_animate 'fadeinright'
         @tab = params[:tab] || 'calculation'
-        # raise params[:content].inspect
         if params.has_key?(:content) && params[:content].is_a?(Array)
             @results = []
             case @tab

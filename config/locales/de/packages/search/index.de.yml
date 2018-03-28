@@ -2,6 +2,6 @@ de:
     search:
         index:
             tabs:
-                calculations: Nach Berechnungen suchen
-                quantities: Nach Größen & Konstanten suchen
-                packs: Nach Erweiterungs-Packs suchen
+                calculation: Nach Berechnungen suchen
+                quantity: Nach Größen & Konstanten suchen
+                pack: Nach Erweiterungs-Packs suchen

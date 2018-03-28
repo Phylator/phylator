@@ -1,6 +1,6 @@
 <% unless @tab == 'constant' %>document.querySelector('.myg-grid').innerHTML = '';<% end %>
 <% if @results %>
-    $('.myg-grid').append('<% if @tab == "quantity" || @tab == "constant" %><h2><%= @tab.capitalize %></h2><% end %><%= j render @results, animation: "fadeout" %>');
+    $('.myg-grid').append('<% if @tab == "quantity" || @tab == "constant" %><h2><%= @tab == "quantity" ? t("d.quantities") : t("d.constants") %></h2><% end %><%= j render @results, animation: "fadeout" %>');
 <% else %>
     $('.myg-grid').append('<%= j render "placeholder" %>');
 <% end %>
