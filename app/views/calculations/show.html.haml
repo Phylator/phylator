@@ -11,7 +11,7 @@
         %i.nc-icon.nc-share-26
     - if can?(:destroy, @calculation)
         = link_to calculation_url(@calculation), method: :delete, data: { confirm: t('calculations.show.delete.confirm') } do
-            %i.nc-icon.nc-trash
+            %i.nc-icon.nc-trash.color--error
 - replace :title do
     - if @calculation.result.undefined
         %h1.color--error= t('calculations.show.no_solution_found')
