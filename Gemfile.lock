@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/jonhue/modalist.git
-  revision: b33b2147a88c74dafeda5fe62cbf8ab3dcbc4590
+  revision: 8a238ff3f8a48f1625832dfd6eb1aed99a85b197
   specs:
     modalist (2.3.1)
       actionpack (>= 5.0)
