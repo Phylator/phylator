@@ -1,5 +1,6 @@
+<% unless @tab == 'constant' %>document.querySelector('.myg-grid').innerHTML = '';<% end %>
 <% if @results %>
-    <%= j render @results, animation: 'fadeout' %>
+    $('.myg-grid').append(<%= j render @results, animation: 'fadeout' %>);
 <% else %>
     <%= j render 'placeholder' %>
 <% end %>
