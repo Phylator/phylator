@@ -14,7 +14,7 @@
     %h3= t('d.purchases')
     .myg-list.myg-list--contained
         - @purchases.each do |purchase|
-            = render purchase
+            = render 'purchases/purchase', purchase: purchase
     %hr
 
 = simple_form_for resource, as: resource_name, url: user_registration_url, authenticity_token: true, html: { method: :put } do |f|
