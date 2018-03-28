@@ -19,7 +19,7 @@ class PacksController < ApplicationController
     private
 
     def set_pack
-        @pack = Pack.friendly.find params[:id]
+        @pack = Pack.friendly.find params[:id] || params[:pack_id]
     end
 
 end

@@ -4,15 +4,6 @@ GIT
   specs:
     bcrypt (3.1.11)
 
-GIT
-  remote: https://github.com/jonhue/modalist.git
-  revision: 5de6e3ec6e91c92b75fef59fe3837b6aa700650a
-  specs:
-    modalist (2.3.1)
-      actionpack (>= 5.0)
-      mozaic (~> 2.0)
-      railties (>= 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,6 +199,10 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    modalist (2.3.1)
+      actionpack (>= 5.0)
+      mozaic (~> 2.0)
+      railties (>= 5.0)
     mozaic (2.0.1)
       activesupport (>= 5.0)
       nestive-rails (~> 1.0)
@@ -413,7 +408,7 @@ DEPENDENCIES
   lol_dba
   mailgun-ruby
   metamagic
-  modalist!
+  modalist
   mozaic
   myg
   mysql2 (~> 0.4.10)

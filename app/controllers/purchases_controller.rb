@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
     def create
         @purchase = current_user.purchases.build
-        @purchase.pack = Pack.friendly.find params[:id]
+        @purchase.pack = Pack.friendly.find params[:pack]
         @purchase.amount = @purchase.pack.price
         description = I18n.t('purchases.create.description', category: @purchase.pack.category, pack: @purchase.pack.name)
 
@@ -13,7 +13,7 @@ class PurchasesController < ApplicationController
             currency: 'usd',
             description: description,
             receipt_email: params[:receipt_email],
-            source: params[:token]
+            source: params[:stripeToken]
         )
 
         @purchase.stripe_charge_id = charge[:id]
