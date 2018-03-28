@@ -21,7 +21,7 @@
             %span= @calculation.unit_of_measurement.sym
 - replace :subtitle do
     %p
-        %span= link_to @calculation.quantity.name, @calculation.quantity, data: { turbolinks_animate_animation: 'fadeout' }
+        %span= link_to @calculation.quantity.name, @calculation.quantity, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
         ·
         %span= time_ago_in_words @calculation.created_at
 
@@ -31,10 +31,12 @@
             = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
             = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
 
-%h3= @calculation.name if @calculation.name
+%h2= @calculation.name if @calculation.name
 %p= @calculation.description if @calculation.description
 - if can? :update, @calculation
     %p= link_to t('calculations.show.edit'), edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
+
+%hr
 
 - if @calculation.result.undefined && @calculation.dependencies.any?
     %h2= t('calculations.show.missing_dependencies.title')
@@ -51,7 +53,7 @@
                             %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
-    %h3= t('calculations.show.unit_conversion')
+    %h2= t('calculations.show.unit_conversion')
     = simple_form_for @calculation, authenticity_token: true do |f|
         = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: 'Choose a unit', class: 'select flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
