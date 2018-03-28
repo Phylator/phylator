@@ -11,9 +11,9 @@ document.addEventListener( 'turbolinks:load', () => {
             if (input.value != value) {
                 value = input.value;
                 if (document.querySelector('#__query').value) {
-                    search( client, this.value, tab );
+                    search( client, input.value, tab );
                     if ( tab == 'quantity' ) {
-                        search( client, this.value, 'constant' );
+                        search( client, input.value, 'constant' );
                     }
                 } else {
                     render(tab);
@@ -27,7 +27,6 @@ function search( client, query, tab ) {
     let index = client.initIndex( tab[0].toUpperCase() + tab.substring(1) );
     index.search( query, ( err, content ) => {
         if (content.hits.length > 0) {
-            console.log(content.hits);
             let results = content.hits.map((object) => {
                 return object['objectID'];
             });
