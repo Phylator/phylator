@@ -18,7 +18,7 @@ class CalculationsController < ApplicationController
         @constants = @calculation.constants.with_translations(I18n.locale).order(:name)
         @equations = @calculation.equations
         @conditions = []
-        @equations.each { |e| e.conditions.map { |c| @conditions << c } }
+        @equations.each { |e| e.conditions&.map { |c| @conditions << c } }
         authorize! :read, @calculation
         authorizes! :read, @constants
         authorizes! :read, @equations
