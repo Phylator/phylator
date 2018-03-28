@@ -52,11 +52,11 @@ class Calculation::Result < ApplicationRecord
         unless measurements_per_quantity.has_key?(self.calculation.quantity_id)
             ## Add equations
             equations = {}
-            usable_quantities = current_user ? Quantity.free + current_user.quantities : Quantity.free
+            usable_quantities = self.calculation.user ? Quantity.free + self.calculation.user.quantities : Quantity.free
             usable_quantities.each do |quantity|
                 equations[quantity.pure_sym] = []
             end
-            usable_equations = current_user ? Equation.free + current_user.equations : Equation.free
+            usable_equations = self.calculation.user ? Equation.free + self.calculation.user.equations : Equation.free
             # usable_equations.each do |equation| ##### LEADING TO: TSort exception #####
             Equation.where(quantity: self.calculation.quantity).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.pure_equation
