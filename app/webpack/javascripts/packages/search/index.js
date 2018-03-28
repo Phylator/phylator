@@ -8,9 +8,9 @@ document.addEventListener( 'turbolinks:load', () => {
         document.querySelector('input#__query').addEventListener( 'input', function() {
             document.querySelector('.myg-grid').innerHTML = '';
             if (this.value) {
-                search( this.value, tab );
+                search( client, this.value, tab );
                 if ( tab == 'quantity' ) {
-                    search( this.value, 'constant' );
+                    search( client, this.value, 'constant' );
                 }
             } else {
                 render(tab);
@@ -19,7 +19,7 @@ document.addEventListener( 'turbolinks:load', () => {
     }
 })
 
-function search( query, tab ) {
+function search( client, query, tab ) {
     let index = client.initIndex( tab[0].toUpperCase() + tab.substring(1) );
     index.search( query, ( err, content ) => {
         if (content.hits.length > 0) {
