@@ -32,12 +32,12 @@ class Quantity < ApplicationRecord
     validates :description, presence: true
 
     has_many :equations
+    has_many :calculations
     has_many :measurements, class_name: 'Calculation::Measurement'
     belonger :unit_of_measurements, 'UnitOfMeasurement'
 
     belongs_to :pack
     belongable :in_equations, 'Equation'
-    belongable :calculations, 'Calculation'
 
     belongs_to :parent_quantity, class_name: 'Quantity', foreign_key: 'parent_quantity_id', required: false
     has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'
