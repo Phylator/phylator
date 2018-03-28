@@ -19,6 +19,8 @@
 					+transition(color)
 					&:hover, &:focus, &:active
 						color: color(text, darker)
+					&:not(:first-child)
+						margin-left: px(25)
 					&.error
 						color: color(error) !important
 				.wrapper

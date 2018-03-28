@@ -1,0 +1,7 @@
+en:
+    search:
+        index:
+            tabs:
+                calculations: Search for calculations
+                quantities: Search for quantities & constants
+                packs: Search for packs

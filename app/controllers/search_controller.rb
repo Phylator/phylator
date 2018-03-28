@@ -6,10 +6,7 @@ class SearchController < ApplicationController
 
     def index
         turbolinks_animate 'fadeinright'
-        respond_to do |format|
-            format.html
-            format.js
-        end
+        @tab = params[:tab] || 'calculations'
     end
 
 end
