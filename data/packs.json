@@ -1,144 +1,144 @@
 [{
     "name": "Basics",
-    "description": "Description",
+    "description": "Everything you need to get started with simple calculations of mechanics.",
     "price": 0,
     "category": "Mechanics",
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Beschreibung"
+            "description": "Alles, was Du brauchst, um mit einfachen Berechnungen in der Mechanik zu beginnen."
         }
     }
 }, {
     "name": "Kinematics",
-    "description": "Description",
+    "description": "Expand Phylator to include quantities of kinematics.",
     "price": 1,
     "category": "Mechanics",
     "locals": {
         "de": {
             "name": "Kinematik",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Kinematik zu erweitern."
         }
     }
 }, {
     "name": "Dynamics",
-    "description": "Description",
+    "description": "Expand Phylator to include quantities of dynamics.",
     "price": 1,
     "category": "Mechanics",
     "locals": {
         "de": {
             "name": "Dynamik",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Dynamik zu erweitern."
         }
     }
 }, {
     "name": "Basics",
-    "description": "Description",
+    "description": "Everything you need to get started with simple calculations of thermodynamics.",
     "price": 0,
     "category": "Thermodynamics",
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Beschreibung"
+            "description": "Alles, was Du brauchst, um mit einfachen Berechnungen in Thermodynamik zu beginnen."
         }
     }
 }, {
     "name": "Advanced",
-    "description": "Description",
+    "description": "Expand Phylator to advance its capabilities in thermodynamics.",
     "price": 2,
     "category": "Thermodynamics",
     "locals": {
         "de": {
             "name": "Erweitert",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Thermodynamik zu erweitern."
         }
     }
 }, {
     "name": "Basics",
-    "description": "Description",
+    "description": "Everything you need to get started with simple calculations of electromagnetism.",
     "price": 0,
     "category": "Electromagnetism",
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Beschreibung"
+            "description": "Alles, was Du brauchst, um mit einfachen Berechnungen zum Elektromagnetismus zu beginnen."
         }
     }
 }, {
     "name": "Electricity",
-    "description": "Description",
+    "description": "Expand Phylator to include quantities of electricity.",
     "price": 4,
     "category": "Electromagnetism",
     "locals": {
         "de": {
             "name": "Elektrizität",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Elektrizität zu erweitern."
         }
     }
 }, {
     "name": "Magnetism",
-    "description": "Description",
+    "description": "Expand Phylator to include quantities of magnetism.",
     "price": 2,
     "category": "Electromagnetism",
     "locals": {
         "de": {
             "name": "Magnetismus",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Magnetismus zu erweitern."
         }
     }
 }, {
     "name": "Optics",
-    "description": "Description",
+    "description": "Expand Phylator to include quantities of optics.",
     "price": 2,
     "category": "Electromagnetism",
     "locals": {
         "de": {
             "name": "Optik",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in Optik zu erweitern."
         }
     }
 }, {
     "name": "Relativity",
-    "description": "Description",
+    "description": "Everything you need to get started with simple calculations of relativity in quantum mechanics.",
     "price": 0,
     "category": "Quantum mechanics",
     "locals": {
         "de": {
             "name": "Relativität",
-            "description": "Beschreibung"
+            "description": "Alles, was Du brauchst, um mit einfachen Berechnungen zu Relativität zu beginnen."
         }
     }
 }, {
     "name": "Basics",
-    "description": "Description",
+    "description": "Expand Phylator to advance its capabilities in quantum mechanics.",
     "price": 1,
     "category": "Quantum mechanics",
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in der Quantenmechanik zu erweitern."
         }
     }
 }, {
     "name": "Basics",
-    "description": "Description",
+    "description": "Everything you need to get started with simple calculations of chemical physics.",
     "price": 2,
     "category": "Chemical physics",
     "locals": {
         "de": {
             "name": "Basis",
-            "description": "Beschreibung"
+            "description": "Alles, was Du brauchst, um mit einfachen Berechnungen in der chemischen Physik zu beginnen."
         }
     }
 }, {
     "name": "Advanced",
-    "description": "Description",
+    "description": "Expand Phylator to advance its capabilities in chemical physics.",
     "price": 2,
     "category": "Chemical physics",
     "locals": {
         "de": {
             "name": "Erweitert",
-            "description": "Beschreibung"
+            "description": "Erweitere Phylator, um seine Möglichkeiten in chemischer Physik zu erweitern."
         }
     }
 }]
