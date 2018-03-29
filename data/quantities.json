@@ -1024,6 +1024,7 @@
     "vector": false,
     "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Velocity",
     "locals": {
         "de": {
             "name": "Geschwindigkeitsbetrag",
