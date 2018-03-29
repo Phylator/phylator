@@ -3,4 +3,3 @@ de:
         measurements:
             show:
                 title: Messwert von %{name}
-                edit: Name & Beschreibung bearbeiten

@@ -1,10 +1,8 @@
-- meta title: @measurement.name || t('calculations.measurements.show.edit', name: @measurement.quantity.name)
+- meta title: @measurement.name || t('calculations.measurements.show.title', name: @measurement.quantity.name)
 
 - replace :tools do
-    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @measurement.value.to_s } do
-        %i.nc-icon.nc-ungroup
-    = link_to 'javascript:void(0)', class: 'modalist--trigger' do
-        %i.nc-icon.nc-share-26
+    = link_to 'javascript:void(0)' do
+        %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @measurement.value.to_s } }
 - replace :title do
     %h1.sym.clipboard{ data: { clipboard_text: @measurement.value.to_s } }
         = @measurement.pretty_value
@@ -12,7 +10,7 @@
 - replace :subtitle do
     %p
         - if @measurement.quantity.pack.purchased?(current_user)
-            %span= link_to @measurement.quantity.name, @measurement.quantity, data: { turbolinks_animate_animation: 'fadeout' }
+            %span= link_to @measurement.quantity.name, @measurement.quantity, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
         - else
             %span= @measurement.quantity.name
         ·
@@ -20,4 +18,4 @@
 
 %h2 Unit
 .myg-grid.myg-wrap--phone
-    = render @measurement.unit_of_measurement, animation: 'fadeout'
+    = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @measurement.unit_of_measurement, animation: 'fadeout'

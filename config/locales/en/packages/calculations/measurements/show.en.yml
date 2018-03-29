@@ -3,4 +3,3 @@ en:
         measurements:
             show:
                 title: Measurement of %{name}
-                edit: Edit name & description
