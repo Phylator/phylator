@@ -62,12 +62,12 @@ class Calculation::Result < ApplicationRecord
                 equations[equation.quantity.pure_sym] << equation.pure_equation
                 ## Associate equation with calculation if used
                 if calculator.dependencies(equation.pure_equation).size == 0
-                    self.calculation.add_belongable! equation, scope: :dependency
+                    self.calculation.add_belongable!(equation, scope: :dependency) unless self.calculation.equations.include?(equation)
                     ## Associate physical constant with calculation if used
                     Constant.all.each do |constant|
                         symbol = constant.pure_sym
                         if equation.pure_equation.include? symbol
-                            self.calculation.add_belongable! constant
+                            self.calculation.add_belongable!(constant) unless self.calculation.constants.include?(constant)
                         end
                     end
                 end
@@ -125,7 +125,7 @@ class Calculation::Result < ApplicationRecord
             # Storing needed dependencies
             if equations
                 equations[self.calculation.quantity.pure_sym].each do |equation|
-                    self.calculation.add_belongable! equation, scope: :missing
+                    self.calculation.add_belongable!(equation, scope: :missing) unless self.calculation.missing_equations.include?(equation)
                 end
             end
 
