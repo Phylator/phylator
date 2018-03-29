@@ -1,0 +1,5 @@
+en:
+    pwa:
+        offline:
+            title: You are offline ...
+            content: We haven't cached this page for you. Return later with internet connectivity.
