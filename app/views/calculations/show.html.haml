@@ -5,7 +5,7 @@
         %i.nc-icon.nc-tail-left
 - replace :tools do
     - unless @calculation.result.undefined
-        = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @calculation.result.value.to_s } do
+        = link_to 'javascript:void(0)' do
             %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
     = link_to calculation_share_url(@calculation), class: 'modalist--trigger' do
         %i.nc-icon.nc-share-26

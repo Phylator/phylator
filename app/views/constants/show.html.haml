@@ -1,8 +1,8 @@
 - meta title: @constant.name
 
 - replace :tools do
-    = link_to 'javascript:void(0)', class: 'clipboard', data: { clipboard_text: @value.to_s } do
-        %i.nc-icon.nc-ungroup
+    = link_to 'javascript:void(0)' do
+        %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @value.to_s } }
 - replace :title do
     %h1.sym.clipboard{ data: { clipboard_text: @constant.value.to_s } }
         = @constant.pretty_value
