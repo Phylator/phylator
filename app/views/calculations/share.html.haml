@@ -2,6 +2,6 @@
     = component 'modalist/closer'
 
 %p= link_to 'Twitter', "https://twitter.com/home?status=I%20created%20a%20new%20calculation%20with%20%40phylator.%20Take%20a%20look!%20#{calculation_url(@calculation)}", target: '_blank'
-%p= link_to 'WhatsApp', "whatsapp://send?text=#{calculation_url(@calculation)}", target: '_blank'
 %p= link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{calculation_url(@calculation)}", target: '_blank'
+%p= link_to 'WhatsApp', "whatsapp://send?text=#{calculation_url(@calculation)}", target: '_blank'
 %p= link_to t('d.email'), "mailto:?&subject=My%20new%20calculation&body=Take%20a%20look!%20#{calculation_url(@calculation)}", target: '_blank'
