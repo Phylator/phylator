@@ -23,6 +23,7 @@ en:
         quantities: Quantities
         quantity: Quantity
         scalar: Scalar
+        share: Share
         signin: Signin
         signout: Signout
         signup: Signup

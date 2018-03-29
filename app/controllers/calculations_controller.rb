@@ -1,7 +1,7 @@
 class CalculationsController < ApplicationController
 
     before_action :authenticate_user!, except: [:new, :create, :show, :what, :how, :measurements]
-    before_action :set_calculation, only: [:show, :edit, :update, :destroy]
+    before_action :set_calculation, only: [:show, :edit, :update, :destroy, :share]
 
     layout 'app'
 
@@ -108,10 +108,14 @@ class CalculationsController < ApplicationController
         render layout: current_user ? 'app' : 'mozaic'
     end
 
+    def share
+        modalist
+    end
+
     private
 
     def set_calculation
-        @calculation = Calculation.find params[:id]
+        @calculation = Calculation.find params[:id] || params[:calculation_id]
     end
 
     def calculation_params

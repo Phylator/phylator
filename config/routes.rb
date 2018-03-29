@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :constants, only: [:show]
         resources :equations, only: [:show]
         resources :calculations, except: [:new] do
+            get 'share', to: 'calculations#share', constraints: Modalist::Ajax.new
             resources :measurements, only: [:show, :update], controller: 'calculations/measurements'
         end
         get 'what', to: 'calculations#what'
