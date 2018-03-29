@@ -4,9 +4,9 @@
     .flex.center
         .myg-list.myg-list--contained
             - @categories.each do |category|
-                .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category)
+                .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category), data: { turbolinks_animate_persist: 'app' }
         %p.sm or
-        = link_to t('calculations.what.categories.custom_calculation'), how_url(quantity: params[:quantity], unit: params[:unit])
+        = link_to t('calculations.what.categories.custom_calculation'), how_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_persist: 'app' }
 - else
     %p= t('calculations.what.no_categories.content')
-    = link_to t('d.continue'), measurements_url(quantity: params[:quantity], unit: params[:unit])
+    = link_to t('d.continue'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_persist: 'app' }

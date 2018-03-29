@@ -23,13 +23,16 @@ class Ability
             constant.pack.price == 0 || user.id && user.constants.include?(constant)
         end
         can :read, UnitOfMeasurement do |unit_of_measurement|
-            return true if user.id && user.unit_of_measurements.include?(unit_of_measurement)
-            free = false
-            unit_of_measurement.quantities.each do |quantity|
-                free = quantity.pack.price == 0
-                break if free
+            if user.id && user.unit_of_measurements.include?(unit_of_measurement)
+                true
+            else
+                free = false
+                unit_of_measurement.quantities.each do |quantity|
+                    free = quantity.pack.price == 0
+                    break if free
+                end
+                free
             end
-            free
         end
         can :read, Equation do |equation|
             equation.quantity.pack.price == 0 || user.id && user.quantities.include?(equation.quantity)

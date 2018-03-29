@@ -125,6 +125,7 @@ class Calculation::Result < ApplicationRecord
             # Storing needed dependencies
             if equations
                 equations[self.calculation.quantity.pure_sym].each do |equation|
+                    equation = Equation.find_by(equation: equation)
                     self.calculation.add_belongable!(equation, scope: :missing) unless self.calculation.missing_equations.include?(equation)
                 end
             end

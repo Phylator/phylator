@@ -4,11 +4,11 @@
     .myg-list.myg-list--contained
         - @equations.each do |equation|
             .myg-list--item
-                = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id) do
+                = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id), data: { turbolinks_animate_persist: 'app' } do
                     %p= equation.quantities.map { |q| q.name }.join(', ')
                     - if equation.conditions&.any?
                         %p.sm= t('calculations.how.conditions')
                         - equation.conditions.each do |condition|
                             %p.sm= condition
     %p.sm or
-    = link_to t('calculations.how.custom_measurements'), measurements_url(quantity: params[:quantity], unit: params[:unit])
+    = link_to t('calculations.how.custom_measurements'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_persist: 'app' }
