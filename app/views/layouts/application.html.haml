@@ -9,7 +9,7 @@
                 = link_to root_url, data: { turbolinks_animate_type: 'application' } do
                     = asset 'components/brand/logo'
             %section.mdc-toolbar__section.mdc-toolbar__section--align-end
-                = link_to t('layouts.application.twitter'), Settings.phylator.socials.twitter
+                = link_to t('layouts.application.twitter'), Settings.phylator.socials.twitter, target: '_blank'
                 - if current_user
                     = link_to t('d.account'), edit_user_registration_url
                 - else
