@@ -691,7 +691,7 @@
     "vector": true,
     "category": "Mechanics",
     "pack": "Basics",
-    "parent_quantity": "Length",
+    "parent_quantity": "Distance traveled",
     "locals": {
         "de": {
             "name": "Anfangsweg",
