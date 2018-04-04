@@ -25,6 +25,20 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "v^2 / r" }, { "equation": "ω^2 * r" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "0" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated rotation",
+        "equations": [
+            { "equation": "( 2 * ( θ - ω_0 * t - θ_0 ) ) / t^2" },
+            { "equation": "( ω - ω_0 ) / t" },
+            { "equation": "( ω_1 - ω ) / ( t_1 - t )" },
+            { "equation": "( 2 * θ ) / t^2", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] },
+            { "equation": "ω / t", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
     }]
 }, {
     "quantity": "Angular velocity",
@@ -36,6 +50,23 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "v / r" }, { "equation": "sqrt( a_α / r )" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [
+            { "equation": "( θ - θ_0 ) / t" },
+            { "equation": "( θ_1 - θ ) / ( t_1 - t )" },
+            { "equation": "v / r" },
+            { "equation": "( 2 * π ) / T_t" },
+            { "equation": "2 * π * n_ω" }
+        ],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated rotation",
+        "equations": [
+            { "equation": "a_α * t + ω_0" },
+            { "equation": "a_α * t", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
     }]
 }, {
     "quantity": "Area",
@@ -155,6 +186,27 @@
         "locals": { "de": { "title": "Newtonsche Gesetze" } }
     }]
 }, {
+    "quantity": "Initial angle",
+    "categories": [{
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "θ - ω * t" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated rotation",
+        "equations": [{ "equation": "θ - a_α / 2 * t^2 - ω_0 * t" }],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }]
+}, {
+    "quantity": "Initial angular velocity",
+    "categories": [{
+        "title": "Evenly accelerated rotation",
+        "equations": [
+            { "equation": "( θ - a_α / 2 * t^2 - θ_0 ) / t" },
+            { "equation": "ω - a_α * t" }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }]
+}, {
     "quantity": "Initial distance",
     "categories": [{
         "title": "Uniform rectilinear motion",
@@ -238,6 +290,10 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "2 * π * r / v" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "( 2 * π ) / ω" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
     }]
 }, {
     "quantity": "Plain angle",
@@ -254,6 +310,17 @@
             { "equation": "asin( ( t * g_0 ) / v_0 )", "conditions": ["`t` - ascent time"], "locals": { "de": { "conditions": ["`t` - Steigzeit"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "ω * t + θ_0" }],
+        "locals": { "de": { "title": "Gleichförmige Rotation" } }
+    }, {
+        "title": "Evenly accelerated rotation",
+        "equations": [
+            { "equation": "a_α / 2 * t^2 + ω_0 * t + θ_0" },
+            { "equation": "a_α / 2 * t^2", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
     }]
 }, {
     "quantity": "Pressure",
@@ -296,6 +363,10 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "v / ( 2 * π * n_ω )" }, { "equation": "v / ω" }, { "equation": "v^2 / a_α" }, { "equation": "a_α / ω^2" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "v / ω" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
     }]
 }, {
     "quantity": "Rotation number",
@@ -303,6 +374,10 @@
         "title": "Uniform circular motion",
         "equations": [{ "equation": "v / ( 2 * π * r )" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "ω / ( 2 * π )" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
     }]
 }, {
     "quantity": "Time",
@@ -354,6 +429,18 @@
             { "equation": "( v_0 * sin( θ ) ) / g_0", "conditions": ["Ascent time"], "locals": { "de": { "conditions": ["Steigzeit"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "( θ - θ_0 ) / ω" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+    }, {
+        "title": "Evenly accelerated rotation",
+        "equations": [
+            { "equation": "( ω - ω_0 ) / a_α" },
+            { "equation": "sqrt( ( 2 * θ ) / a_α )", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] },
+            { "equation": "ω / a_α", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
+        ],
+        "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
     }]
 }, {
     "quantity": "Torque",
@@ -412,6 +499,10 @@
             { "equation": "v_0 * cos( θ ) - g_0 * t", "conditions": ["Vertical component"], "locals": { "de": { "conditions": ["Vertikale Komponente"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
+    }, {
+        "title": "Uniform rotation",
+        "equations": [{ "equation": "ω * r" }],
+        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
     }]
 }, {
     "quantity": "Vertical distance",
