@@ -27,4 +27,4 @@
     = component 'myg/form-field', as: :input, attribute: :current_password, class_name: 'user', floating_label: t('devise.registrations.edit.form.current_password'), input_html: { required: true, minlength: 5, type: 'password' }
     .myg-button--container
         = component 'myg/button', value: t('d.update')
-        = link_to t('devise.registrations.edit.form.delete.link'), user_registration_url, method: :delete, data: { confirm: t('devise.registrations.edit.form.delete.confirm') }, class: 'myg-button myg-button--secondary error'
+        = link_to t('devise.registrations.edit.form.delete.link'), user_registration_url, method: :delete, class: 'myg-button myg-button--secondary error', data: { confirm: t('devise.registrations.edit.form.delete.confirm') }

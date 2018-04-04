@@ -106,6 +106,13 @@
         "title": "Vertical throw upwards",
         "equations": [{ "equation": "v_0^2 / ( 2 * g_0 )", "conditions": ["Ascended height"], "locals": { "de": { "conditions": ["Steighöhe"] } } }],
         "locals": { "de": { "title": "Senkrechter Wurf nach oben" } }
+    }, {
+        "title": "Oblique throw",
+        "equations": [
+            { "equation": "( v_0^2 * sin( 2 * θ ) ) / g_0", "conditions": ["Throw length"], "locals": { "de": { "conditions": ["Wurfweite"] } } },
+            { "equation": "( v_0^2 * sin( θ )^2 ) / 2 * g_0", "conditions": ["Throw height"], "locals": { "de": { "conditions": ["Wurfhöhe"] } } }
+        ],
+        "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
     "quantity": "Force",
@@ -192,7 +199,11 @@
             { "equation": "x / ( t * cos( θ ) )" },
             { "equation": "( y + g_0 / 2 * t^2 ) / ( t * sin( θ ) )" },
             { "equation": "v / cos( θ )", "conditions": ["`v` - horizontal component"], "locals": { "de": { "conditions": ["`v` - horizontale Komponente"] } } },
-            { "equation": "( v + g_0 * t ) / sin( θ )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+            { "equation": "( v + g_0 * t ) / sin( θ )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } },
+            { "equation": "sqrt( 1 / ( θ * x - y ) * g_0 * x^2 * 1 / cos( θ )^2 )" },
+            { "equation": "sqrt( ( s * g_0 ) / sin( 2 * θ ) )", "conditions": ["`s` - throw length"], "locals": { "de": { "conditions": ["`s` - Wurfweite"] } } },
+            { "equation": "sqrt( ( 2 * s * g_0 ) / sin( θ )^2 )", "conditions": ["`s` - throw height"], "locals": { "de": { "conditions": ["`s` - Wurfhöhe"] } } },
+            { "equation": "( t * g_0 ) / sin( θ )", "conditions": ["`t` - ascent time"], "locals": { "de": { "conditions": ["`t` - Steigzeit"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
@@ -237,7 +248,10 @@
             { "equation": "asin( ( y + g_0 / 2 * t^2 ) / ( v_0 * t ) )" },
             { "equation": "asin( ( v_0^2 * g_0^2 * t^2 - v^2 ) / ( 2 * v_0 * g * t ) )" },
             { "equation": "acos( v / v_0 )", "conditions": ["`v` - horizontal component"], "locals": { "de": { "conditions": ["`v` - horizontale Komponente"] } } },
-            { "equation": "asin( ( v + g_0 * t ) / v_0 )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+            { "equation": "asin( ( v + g_0 * t ) / v_0 )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } },
+            { "equation": "asin( ( s * g_0 ) / v_0^2 ) / 2", "conditions": ["`s` - throw length"], "locals": { "de": { "conditions": ["`s` - Wurfweite"] } } },
+            { "equation": "asin( sqrt( ( 2 * s * g_0 ) / v_0^2 ) )", "conditions": ["`s` - throw height"], "locals": { "de": { "conditions": ["`s` - Wurfhöhe"] } } },
+            { "equation": "asin( ( t * g_0 ) / v_0 )", "conditions": ["`t` - ascent time"], "locals": { "de": { "conditions": ["`t` - Steigzeit"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
@@ -336,7 +350,8 @@
         "title": "Oblique throw",
         "equations": [
             { "equation": "x / ( v_0 * cos( θ ) )" },
-            { "equation": "( v_0 * sin( θ ) - v ) / g_0", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } }
+            { "equation": "( v_0 * sin( θ ) - v ) / g_0", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } },
+            { "equation": "( v_0 * sin( θ ) ) / g_0", "conditions": ["Ascent time"], "locals": { "de": { "conditions": ["Steigzeit"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
@@ -414,7 +429,10 @@
         "locals": { "de": { "title": "Waagerechter Wurf" } }
     }, {
         "title": "Oblique throw",
-        "equations": [{ "equation": "v_0 * t * sin(θ) - g_0 / 2 * t^2" }],
+        "equations": [
+            { "equation": "v_0 * t * sin( θ ) - g_0 / 2 * t^2" },
+            { "equation": "tan( θ ) * x - ( g_0 / ( 2 * v_0^2 * cos( θ )^2 ) ) * x^2" }
+        ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
