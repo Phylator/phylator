@@ -41,20 +41,21 @@
 - if @calculation.result.undefined && @dependencies.any?
     %h2= t('calculations.show.missing_dependencies.title')
     %p= t('calculations.show.missing_dependencies.content')
-    .myg-list.myg-list--contained
-        - @dependencies.each do |equation|
-            .myg-list--item
-                = link_to measurements_url(quantity: @calculation.quantity_id, unit: @calculation.unit_of_measurement_id, equation: equation.id) do
-                    %p
-                        = "#{equation.title}:"
-                        - if equation.quantities.any?
-                            = equation.quantities.map { |q| q.name }.join(', ')
-                        - else
-                            = t('calculations.show.missing_dependencies.no_quantities')
-                    - if equation.conditions&.any?
-                        %p.sm= t('calculations.show.missing_dependencies.conditions')
-                        - equation.conditions.each do |condition|
-                            %p.sm= condition
+    - @dependencies.each do |title, equations|
+        %h4.color--text-base= title
+        .myg-list.myg-list--contained
+            - equations.each do |equation|
+                .myg-list--item
+                    = link_to measurements_url(quantity: @calculation.quantity_id, unit: @calculation.unit_of_measurement_id, equation: equation.id) do
+                        %p
+                            - if equation.quantities.any?
+                                = equation.quantities.map { |q| q.name }.join(', ')
+                            - else
+                                = t('calculations.show.missing_dependencies.no_quantities')
+                        - if equation.conditions&.any?
+                            %p.sm= t('calculations.show.missing_dependencies.conditions')
+                            - equation.conditions.each do |condition|
+                                %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
     %h2= t('calculations.show.unit_conversion.title')
