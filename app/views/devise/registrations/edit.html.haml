@@ -7,7 +7,7 @@
     .myg-list--item= link_to t('devise.registrations.edit.list.change_language'), language_url, class: 'modalist--trigger'
     .myg-list--item= link_to t('d.support'), "mailto:#{Settings.mailgun.emails.support}"
     .myg-list--item
-        = link_to Settings.phylator.socials.github do
+        = link_to Settings.phylator.socials.github, target: '_blank' do
             %p= t('devise.registrations.edit.list.development.title')
             %p.sm= t('devise.registrations.edit.list.development.content')
     .myg-list--item= link_to t('d.signout'), destroy_user_session_path, method: :delete
