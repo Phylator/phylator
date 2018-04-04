@@ -94,18 +94,21 @@ class CalculationsController < ApplicationController
 
     def measurements
         turbolinks_animate 'fadein'
-        redirect_to app_root_url unless params.has_key?(:quantity) || params.has_key?(:unit)
-        @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
-        authorize! :create, @calculation
-        if params.has_key?(:equation) && Equation.where(id: params[:equation]).any?
-            equation = Equation.find(params[:equation])
-            equation.quantities.each do |quantity|
-                @calculation.measurements.new quantity: quantity
-            end
+        unless params.has_key?(:quantity) || params.has_key?(:unit)
+            redirect_to app_root_url
         else
-            @calculation.measurements.new
+            @calculation = Calculation.new quantity_id: params[:quantity], unit_of_measurement_id: params[:unit]
+            authorize! :create, @calculation
+            if params.has_key?(:equation) && Equation.where(id: params[:equation]).any?
+                equation = Equation.find(params[:equation])
+                equation.quantities.each do |quantity|
+                    @calculation.measurements.new quantity: quantity
+                end
+            else
+                @calculation.measurements.new
+            end
+            render layout: current_user ? 'app' : 'mozaic'
         end
-        render layout: current_user ? 'app' : 'mozaic'
     end
 
     def share

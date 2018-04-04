@@ -4,8 +4,8 @@
 %p= t('calculations.measurements.content')
 
 = simple_form_for @calculation, authenticity_token: true do |f|
-    = f.input :quantity_id, as: :hidden, value: params[:quantity].to_s
-    = f.input :unit_of_measurement_id, as: :hidden, value: params[:unit].to_s
+    = f.input :quantity_id, as: :hidden, value: params[:quantity]
+    = f.input :unit_of_measurement_id, as: :hidden, value: params[:unit]
     - @calculation.measurements.each_with_index do |measurement, index|
         = render 'calculations/measurements/form', measurement: measurement, index: index
     .myg-button--container.reverse
