@@ -169,7 +169,7 @@
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
         "title": "Newton's laws",
-        "equations": [{ "equation": "Δp / t" }],
+        "equations": [{ "equation": "p / t" }],
         "locals": { "de": { "title": "Newtonsche Gesetze" } }
     }, {
         "title": "Torque and balance",
@@ -197,9 +197,13 @@
 }, {
     "quantity": "Impulse",
     "categories": [{
-        "title": "Newton's laws",
-        "equations": [{ "equation": "F * t" }],
-        "locals": { "de": { "title": "Newtonsche Gesetze" } }
+        "title": "Impulses",
+        "equations": [
+            { "equation": "p_1 - p" },
+            { "equation": "m * ( v_1 - v )" },
+            { "equation": "F * ( t_1 - t )", "conditions": ["`F = const`"] }
+        ],
+        "locals": { "de": { "title": "Impulse" } }
     }]
 }, {
     "quantity": "Initial angle",
@@ -292,6 +296,10 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "I_m / r^2", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Impulses",
+        "equations": [{ "equation": "p / v" }],
+        "locals": { "de": { "title": "Impulse" } }
     }]
 }, {
     "quantity": "Moment of inertia",
@@ -299,6 +307,17 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "m * r^2", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }]
+}, {
+    "quantity": "Momentum",
+    "categories": [{
+        "title": "Newton's laws",
+        "equations": [{ "equation": "F * t" }],
+        "locals": { "de": { "title": "Newtonsche Gesetze" } }
+    }, {
+        "title": "Impulses",
+        "equations": [{ "equation": "m * v" }],
+        "locals": { "de": { "title": "Impulse" } }
     }]
 }, {
     "quantity": "Normal force",
@@ -419,7 +438,7 @@
     "quantity": "Time",
     "categories": [{
         "title": "Newton's laws",
-        "equations": [{ "equation": "Δp / F" }],
+        "equations": [{ "equation": "p / F" }],
         "locals": { "de": { "title": "Newtonsche Gesetze" } }
     }, {
         "title": "Movement",
@@ -539,6 +558,10 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "ω * r" }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Impulses",
+        "equations": [{ "equation": "p / m" }],
+        "locals": { "de": { "title": "Impulse" } }
     }]
 }, {
     "quantity": "Vertical distance",

@@ -631,9 +631,9 @@
     "pack": "Dynamics",
     "locals": {
         "de": {
-            "name": "Impuls",
+            "name": "Kraftstoß",
             "description": "Übertragene Dynamik",
-            "wikipedia": "https://de.wikipedia.org/wiki/Impuls"
+            "wikipedia": "https://de.wikipedia.org/wiki/Moment_(Technische_Mechanik)"
         }
     }
 }, {
@@ -875,9 +875,9 @@
     "pack": "Dynamics",
     "locals": {
         "de": {
-            "name": "Moment",
+            "name": "Impuls",
             "description": "Produkt der Masse und Geschwindigkeit eines Objekts",
-            "wikipedia": "https://de.wikipedia.org/wiki/Moment_(Technische_Mechanik)"
+            "wikipedia": "https://de.wikipedia.org/wiki/Impuls"
         }
     }
 }, {
