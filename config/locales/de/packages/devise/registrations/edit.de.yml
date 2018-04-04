@@ -4,6 +4,9 @@ de:
             edit:
                 list:
                     change_language: Sprache ändern
+                    development:
+                        title: Entwicklung
+                        content: Es fehlt etwas? Phylator ist Open Source, sodass Du Änderungen & Erweiterungen zu jedem Zeitpunkt vorschlagen oder selbst implementieren kannst.
                 form:
                     new_password: Neues Passwort (optional)
                     current_password: Aktuelles Passwort
