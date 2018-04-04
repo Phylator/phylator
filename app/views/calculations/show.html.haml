@@ -45,7 +45,12 @@
         - @dependencies.each do |equation|
             .myg-list--item
                 = link_to measurements_url(quantity: @calculation.quantity_id, unit: @calculation.unit_of_measurement_id, equation: equation.id) do
-                    %p= equation.quantities.map { |q| q.name }.join(', ')
+                    %p
+                        = "#{equation.title}:"
+                        - if equation.quantities.any?
+                            = equation.quantities.map { |q| q.name }.join(', ')
+                        - else
+                            = t('calculations.show.missing_dependencies.no_quantities')
                     - if equation.conditions&.any?
                         %p.sm= t('calculations.show.missing_dependencies.conditions')
                         - equation.conditions.each do |condition|

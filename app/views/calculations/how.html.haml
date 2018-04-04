@@ -5,7 +5,11 @@
         - @equations.each do |equation|
             .myg-list--item
                 = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id), data: { turbolinks_animate_type: 'app' } do
-                    %p= equation.quantities.map { |q| q.name }.join(', ')
+                    %p
+                        - if equation.quantities.any?
+                            = equation.quantities.map { |q| q.name }.join(', ')
+                        - else
+                            = t('calculations.how.no_quantities')
                     - if equation.conditions&.any?
                         %p.sm= t('calculations.how.conditions')
                         - equation.conditions.each do |condition|
