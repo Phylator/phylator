@@ -18,6 +18,10 @@
             { "equation": "v^2 / ( 2 * s )", "conditions": ["`s_0 = 0`", "`v_0 = 0`"] }
         ],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Bewegung" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "a_α * r" }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Angular acceleration",
@@ -39,6 +43,10 @@
             { "equation": "ω / t", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
         ],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "a / r" }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Angular velocity",
@@ -67,6 +75,10 @@
             { "equation": "a_α * t", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
         ],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "v / r" }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Area",
@@ -144,6 +156,10 @@
             { "equation": "( v_0^2 * sin( θ )^2 ) / 2 * g_0", "conditions": ["Throw height"], "locals": { "de": { "conditions": ["Wurfhöhe"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "θ * r" }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Force",
@@ -272,6 +288,17 @@
             { "equation": "F * r^2 / ( G_N * m )" }
         ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "I_m / r^2", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
+    }]
+}, {
+    "quantity": "Moment of inertia",
+    "categories": [{
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "m * r^2", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Normal force",
@@ -321,6 +348,10 @@
             { "equation": "a_α / 2 * t^2", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
         ],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }, {
+        "title": "Translation and rotation",
+        "equations": [{ "equation": "s / r" }],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Pressure",
@@ -364,9 +395,14 @@
         "equations": [{ "equation": "v / ( 2 * π * n_ω )" }, { "equation": "v / ω" }, { "equation": "v^2 / a_α" }, { "equation": "a_α / ω^2" }],
         "locals": { "de": { "title": "Gleichförmige Kreisbewegung" } }
     }, {
-        "title": "Uniform rotation",
-        "equations": [{ "equation": "v / ω" }],
-        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+        "title": "Translation and rotation",
+        "equations": [
+            { "equation": "s / θ" },
+            { "equation": "v / ω" },
+            { "equation": "a / a_α" },
+            { "equation": "sqrt( I_m / m )", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }
+        ],
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Rotation number",
@@ -500,9 +536,9 @@
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }, {
-        "title": "Uniform rotation",
+        "title": "Translation and rotation",
         "equations": [{ "equation": "ω * r" }],
-        "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+        "locals": { "de": { "title": "Translation und Rotation" } }
     }]
 }, {
     "quantity": "Vertical distance",
