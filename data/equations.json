@@ -153,7 +153,7 @@
         "title": "Oblique throw",
         "equations": [
             { "equation": "( v_0^2 * sin( 2 * θ ) ) / g_0", "conditions": ["Throw length"], "locals": { "de": { "conditions": ["Wurfweite"] } } },
-            { "equation": "( v_0^2 * sin( θ )^2 ) / 2 * g_0", "conditions": ["Throw height"], "locals": { "de": { "conditions": ["Wurfhöhe"] } } }
+            { "equation": "( v_0^2 * sin( θ )^2 ) / ( 2 * g_0 )", "conditions": ["Throw height"], "locals": { "de": { "conditions": ["Wurfhöhe"] } } }
         ],
         "locals": { "de": { "title": "Schräger Wurf" } }
     }, {
@@ -329,7 +329,7 @@
         "equations": [
             { "equation": "acos( x / ( v_0 * t ) )" },
             { "equation": "asin( ( y + g_0 / 2 * t^2 ) / ( v_0 * t ) )" },
-            { "equation": "asin( ( v_0^2 * g_0^2 * t^2 - v^2 ) / ( 2 * v_0 * g * t ) )" },
+            { "equation": "asin( ( v_0^2 * g_0^2 * t^2 - v^2 ) / ( 2 * v_0 * g_0 * t ) )" },
             { "equation": "acos( v / v_0 )", "conditions": ["`v` - horizontal component"], "locals": { "de": { "conditions": ["`v` - horizontale Komponente"] } } },
             { "equation": "asin( ( v + g_0 * t ) / v_0 )", "conditions": ["`v` - vertical component"], "locals": { "de": { "conditions": ["`v` - vertikale Komponente"] } } },
             { "equation": "asin( ( s * g_0 ) / v_0^2 ) / 2", "conditions": ["`s` - throw length"], "locals": { "de": { "conditions": ["`s` - Wurfweite"] } } },
