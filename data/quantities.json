@@ -731,6 +731,22 @@
         }
     }
 }, {
+    "symbol": "E<sub>kin</sub>",
+    "name": "Kinetic energy",
+    "description": "Energy an object possesses due to its motion",
+    "wikipedia": "https://en.wikipedia.org/wiki/Kinetic_energy",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Energy",
+    "locals": {
+        "de": {
+            "name": "Energie",
+            "description": "Energie, die ein Objekt aufgrund seiner Bewegung besitzt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Kinetische_Energie"
+        }
+    }
+}, {
     "symbol": "F<sub>ph</sub>",
     "name": "Luminous flux",
     "description": "Perceived power of a light source",

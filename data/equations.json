@@ -47,6 +47,10 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "a / r" }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "τ / I_m" }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Angular velocity",
@@ -79,6 +83,10 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "v / r" }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }{
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "sqrt( 2 * E_kin / I_m )" }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Area",
@@ -280,6 +288,20 @@
         "locals": { "de": { "title": "Schräger Wurf" } }
     }]
 }, {
+    "quantity": "Kinetic energy",
+    "categories": [{
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "1 / 2 * I_m * ω^2" }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
+    }]
+}, {
+    "quantity": "Length",
+    "categories": [{
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "sqrt( 12 * I_m / m )", "conditions": ["Thin long rod"], "locals": { "de": { "conditions": ["Langer dünner Stab"] } } }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
+    }]
+}, {
     "quantity": "Mass",
     "categories": [{
         "title": "Forces in Mechanics",
@@ -300,13 +322,35 @@
         "title": "Impulses",
         "equations": [{ "equation": "p / v" }],
         "locals": { "de": { "title": "Impulse" } }
+    }, {
+        "title": "Dynamics of rotation",
+        "equations": [
+            { "equation": "12 * I_m / l^2", "conditions": ["Thin long rod"], "locals": { "de": { "conditions": ["Langer dünner Stab"] } } },
+            { "equation": "5 / 2 * I_m / r^2", "conditions": ["Sphere"], "locals": { "de": { "conditions": ["Kugel"] } } },
+            { "equation": "2 * I_m / r^2", "conditions": ["Cylinder"], "locals": { "de": { "conditions": ["Vollzylinder"] } } },
+            { "equation": "10 / 3 * I_m / r^2", "conditions": ["Straight circular cone"], "locals": { "de": { "conditions": ["Gerader Kreiskegel"] } } },
+            { "equation": "2 * I_m / ( r^2 + r_1^2 )", "conditions": ["Hollow cylinder", "`r` - outer radius", "`r_1` - inner radius"], "locals": { "de": { "conditions": ["Hohlzylinder", "`r` - äußerer Radius", "`r_1` - innerer Radius"] } } }
+        ],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Moment of inertia",
     "categories": [{
         "title": "Translation and rotation",
-        "equations": [{ "equation": "m * r^2", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }],
+        "equations": [{ "equation": "m * r^2", "conditions": ["For a ground point", "Thin circular ring"], "locals": { "de": { "conditions": ["Für einen Massepunkt", "Dünner Kreisring"] } } }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Dynamics of rotation",
+        "equations": [
+            { "equation": "1 / 12 * m * l^2", "conditions": ["Thin long rod"], "locals": { "de": { "conditions": ["Langer dünner Stab"] } } },
+            { "equation": "2 / 5 * m * r^2", "conditions": ["Sphere"], "locals": { "de": { "conditions": ["Kugel"] } } },
+            { "equation": "1 / 2 * m * r^2", "conditions": ["Cylinder"], "locals": { "de": { "conditions": ["Vollzylinder"] } } },
+            { "equation": "3 / 10 * m * r^2", "conditions": ["Straight circular cone"], "locals": { "de": { "conditions": ["Gerader Kreiskegel"] } } },
+            { "equation": "1 / 2 * m * ( r^2 + r_1^2 )", "conditions": ["Hollow cylinder", "`r` - outer radius", "`r_1` - inner radius"], "locals": { "de": { "conditions": ["Hohlzylinder", "`r` - äußerer Radius", "`r_1` - innerer Radius"] } } },
+            { "equation": "τ / a_α" },
+            { "equation": "2 * E_kin / ω^2" }
+        ],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Momentum",
@@ -422,6 +466,15 @@
             { "equation": "sqrt( I_m / m )", "conditions": ["For a ground point"], "locals": { "de": { "conditions": ["Für einen Massepunkt"] } } }
         ],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Dynamics of rotation",
+        "equations": [
+            { "equation": "sqrt( 5 / 2 * I_m / m )", "conditions": ["Sphere"], "locals": { "de": { "conditions": ["Kugel"] } } },
+            { "equation": "sqrt( 2 * I_m / m )", "conditions": ["Cylinder"], "locals": { "de": { "conditions": ["Vollzylinder"] } } },
+            { "equation": "sqrt( 10 / 3 * I_m / m )", "conditions": ["Straight circular cone"], "locals": { "de": { "conditions": ["Gerader Kreiskegel"] } } },
+            { "equation": "sqrt( 2 * I_m / m - r^2 )", "conditions": ["Outer/Inner radius of a hollow cylinder", "`r` - inner/outer radius"], "locals": { "de": { "conditions": ["Äußerer/Innerer Radius eines Hohlzylinders", "`r` - innerer/äußerer Radius"] } } }
+        ],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Rotation number",
@@ -503,6 +556,10 @@
         "title": "Torque and balance",
         "equations": [{ "equation": "r * F", "conditions": ["`r ⊥ F`"] }],
         "locals": { "de": { "title": "Drehmoment und Gleichgewicht" } }
+    }, {
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "I_m * a_α" }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
     "quantity": "Velocity",
