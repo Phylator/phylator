@@ -711,7 +711,7 @@
     "categories": [{
         "title": "Forces in Mechanics",
         "equations": [
-            { "equation": "E_1 - E" },
+            { "equation": "E_i_1 - E_i" },
             { "equation": "F * s", "conditions": ["`∠(F, s) = 0`"] },
             { "equation": "F * s * cos( θ )", "conditions": ["`∠(F, s) = θ`"] }
         ],
