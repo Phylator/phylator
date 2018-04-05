@@ -144,7 +144,10 @@
     "quantity": "Distance traveled",
     "categories": [{
         "title": "Forces in Mechanics",
-        "equations": [{ "equation": "W / F" }],
+        "equations": [
+            { "equation": "W / F", "conditions": ["`∠(F, s) = 0`"] },
+            { "equation": "W / ( F * cos( θ ) )", "conditions": ["`∠(F, s) = θ`"] }
+        ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
         "title": "Uniform rectilinear motion",
@@ -183,7 +186,12 @@
     "quantity": "Force",
     "categories": [{
         "title": "Forces in mechanics",
-        "equations": [{ "equation": "m * a" }, { "equation": "W / s" }, { "equation": "G_N * ( m * m_1 ) / r^2" }],
+        "equations": [
+            { "equation": "m * a" },
+            { "equation": "W / s", "conditions": ["`∠(F, s) = 0`"] },
+            { "equation": "W / ( s * cos( θ ) )", "conditions": ["`∠(F, s) = θ`"] },
+            { "equation": "G_N * ( m * m_1 ) / r^2" }
+        ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
         "title": "Newton's laws",
@@ -399,6 +407,10 @@
 }, {
     "quantity": "Plain angle",
     "categories": [{
+        "title": "Forces in Mechanics",
+        "equations": [{ "equation": "acos( W / ( F * s ) )", "conditions": ["`∠(F, s) = θ`"] }],
+        "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
         "title": "Oblique throw",
         "equations": [
             { "equation": "acos( x / ( v_0 * t ) )" },
@@ -671,7 +683,11 @@
     "quantity": "Work",
     "categories": [{
         "title": "Forces in Mechanics",
-        "equations": [{ "equation": "F * s" }],
+        "equations": [
+            { "equation": "E_1 - E" },
+            { "equation": "F * s", "conditions": ["`∠(F, s) = 0`"] },
+            { "equation": "F * s * cos( θ )", "conditions": ["`∠(F, s) = θ`"] }
+        ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }]
 }]
