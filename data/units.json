@@ -389,7 +389,7 @@
     "symbol": "J",
     "name": "joule",
     "base": true,
-    "quantities": ["Energy", "Heat", "Work"],
+    "quantities": ["Energy", "Kinetic energy", "Heat", "Work"],
     "locals": {
         "de": {
             "name": "Joule"
@@ -632,7 +632,7 @@
     "symbol": "kg m<sup>2</sup> s<sup>-1</sup>",
     "name": "kilogram square meter per second",
     "base": true,
-    "quantities": ["Spin"],
+    "quantities": ["Angular momentum", "Spin"],
     "si_prefixes?": false,
     "locals": {
         "de": {

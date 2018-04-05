@@ -181,6 +181,14 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "θ * r" }],
         "locals": { "de": { "title": "Translation und Rotation" } }
+    }, {
+        "title": "Mechanical work",
+        "equations": [
+            { "equation": "W / w", "conditions": ["Lifting work"], "locals": { "de": { "conditions": ["Hubarbeit"] } } },
+            { "equation": "W / F_R", "conditions": ["Friction work"], "locals": { "de": { "conditions": ["Reibungsarbeit"] } } },
+            { "equation": "sqrt( 2 * W / k )", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } }
+        ],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }, {
     "quantity": "Force",
@@ -208,6 +216,10 @@
         "title": "Forces in Mechanics",
         "equations": [{ "equation": "μ_R * F_N" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Mechanical work",
+        "equations": [{ "equation": "W / s", "conditions": ["Friction work"], "locals": { "de": { "conditions": ["Reibungsarbeit"] } } }],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }, {
     "quantity": "Horizontal distance",
@@ -445,6 +457,10 @@
         "title": "Forces in Mechanics",
         "equations": [{ "equation": "F_p / A" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Mechanical work",
+        "equations": [{ "equation": "- W / ( V_1 - V )", "conditions": ["Volume work", "`p = const`"], "locals": { "de": { "conditions": ["Volumenarbeit", "`p = const`"] } } }],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }, {
     "quantity": "Pressure force",
@@ -509,6 +525,13 @@
         "title": "Uniform rotation",
         "equations": [{ "equation": "ω / ( 2 * π )" }],
         "locals": { "de": { "title": "Gleichförmige Bewegung" } }
+    }]
+}, {
+    "quantity": "Spring constant",
+    "categories": [{
+        "title": "Mechanical work",
+        "equations": [{ "equation": "2 * W / s^2", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } }],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }, {
     "quantity": "Time",
@@ -678,6 +701,10 @@
         "title": "Forces in Mechanics",
         "equations": [{ "equation": "m * g_0" }],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Mechanical work",
+        "equations": [{ "equation": "W / s", "conditions": ["Lifting work"], "locals": { "de": { "conditions": ["Hubarbeit"] } } }],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }, {
     "quantity": "Work",
@@ -689,5 +716,14 @@
             { "equation": "F * s * cos( θ )", "conditions": ["`∠(F, s) = θ`"] }
         ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
+    }, {
+        "title": "Mechanical work",
+        "equations": [
+            { "equation": "w * s", "conditions": ["Lifting work"], "locals": { "de": { "conditions": ["Hubarbeit"] } } },
+            { "equation": "F_R * s", "conditions": ["Friction work"], "locals": { "de": { "conditions": ["Reibungsarbeit"] } } },
+            { "equation": "1 / 2 * k * s^2", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } },
+            { "equation": "- p_f * ( V_1 - V )", "conditions": ["Volume work", "`p = const`"], "locals": { "de": { "conditions": ["Volumenarbeit", "`p = const`"] } } }
+        ],
+        "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
 }]

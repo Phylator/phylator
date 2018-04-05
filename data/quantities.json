@@ -1112,6 +1112,21 @@
         }
     }
 }, {
+    "symbol": "k",
+    "name": "Spring constant",
+    "description": "The spring constant indicates the ratio of the force acting on a spring to the displacement of the spring",
+    "wikipedia": "https://en.wikipedia.org/wiki/Hooke%27s_law",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Federkonstante",
+            "description": "Die Federkonstante gibt das Verhältnis der auf eine Feder wirkende Kraft zur dadurch bewirkten Auslenkung der Feder an",
+            "wikipedia": "https://de.wikipedia.org/wiki/Federkonstante"
+        }
+    }
+}, {
     "symbol": "p<sub>p</sub>",
     "name": "Stress",
     "description": "Force per unit oriented surface area",
