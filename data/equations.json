@@ -186,7 +186,7 @@
         "equations": [
             { "equation": "W / w", "conditions": ["Lifting work"], "locals": { "de": { "conditions": ["Hubarbeit"] } } },
             { "equation": "W / F_R", "conditions": ["Friction work"], "locals": { "de": { "conditions": ["Reibungsarbeit"] } } },
-            { "equation": "sqrt( 2 * W / k )", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } }
+            { "equation": "sqrt( 2 * W / k_D )", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } }
         ],
         "locals": { "de": { "title": "Mechanische Arbeit" } }
     }]
@@ -721,7 +721,7 @@
         "equations": [
             { "equation": "w * s", "conditions": ["Lifting work"], "locals": { "de": { "conditions": ["Hubarbeit"] } } },
             { "equation": "F_R * s", "conditions": ["Friction work"], "locals": { "de": { "conditions": ["Reibungsarbeit"] } } },
-            { "equation": "1 / 2 * k * s^2", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } },
+            { "equation": "1 / 2 * k_D * s^2", "conditions": ["Spring tensioning work"], "locals": { "de": { "conditions": ["Federspannarbeit"] } } },
             { "equation": "- p_f * ( V_1 - V )", "conditions": ["Volume work", "`p = const`"], "locals": { "de": { "conditions": ["Volumenarbeit", "`p = const`"] } } }
         ],
         "locals": { "de": { "title": "Mechanische Arbeit" } }

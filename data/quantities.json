@@ -1112,7 +1112,7 @@
         }
     }
 }, {
-    "symbol": "k",
+    "symbol": "k<sub>D</sub>",
     "name": "Spring constant",
     "description": "The spring constant indicates the ratio of the force acting on a spring to the displacement of the spring",
     "wikipedia": "https://en.wikipedia.org/wiki/Hooke%27s_law",
