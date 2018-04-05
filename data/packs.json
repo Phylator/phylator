@@ -12,7 +12,7 @@
 }, {
     "name": "Kinematics",
     "description": "Expand Phylator to include quantities of kinematics.",
-    "price": 1,
+    "price": 3,
     "category": "Mechanics",
     "locals": {
         "de": {
@@ -23,7 +23,7 @@
 }, {
     "name": "Dynamics",
     "description": "Expand Phylator to include quantities of dynamics.",
-    "price": 1,
+    "price": 3,
     "category": "Mechanics",
     "locals": {
         "de": {
@@ -45,7 +45,7 @@
 }, {
     "name": "Advanced",
     "description": "Expand Phylator to advance its capabilities in thermodynamics.",
-    "price": 2,
+    "price": 3,
     "category": "Thermodynamics",
     "locals": {
         "de": {
@@ -67,7 +67,7 @@
 }, {
     "name": "Electricity",
     "description": "Expand Phylator to include quantities of electricity.",
-    "price": 4,
+    "price": 3,
     "category": "Electromagnetism",
     "locals": {
         "de": {
@@ -78,7 +78,7 @@
 }, {
     "name": "Magnetism",
     "description": "Expand Phylator to include quantities of magnetism.",
-    "price": 2,
+    "price": 3,
     "category": "Electromagnetism",
     "locals": {
         "de": {
@@ -89,7 +89,7 @@
 }, {
     "name": "Optics",
     "description": "Expand Phylator to include quantities of optics.",
-    "price": 2,
+    "price": 3,
     "category": "Electromagnetism",
     "locals": {
         "de": {
@@ -111,7 +111,7 @@
 }, {
     "name": "Basics",
     "description": "Expand Phylator to advance its capabilities in quantum mechanics.",
-    "price": 1,
+    "price": 3,
     "category": "Quantum mechanics",
     "locals": {
         "de": {
@@ -122,7 +122,7 @@
 }, {
     "name": "Basics",
     "description": "Everything you need to get started with simple calculations of chemical physics.",
-    "price": 2,
+    "price": 3,
     "category": "Chemical physics",
     "locals": {
         "de": {
@@ -133,7 +133,7 @@
 }, {
     "name": "Advanced",
     "description": "Expand Phylator to advance its capabilities in chemical physics.",
-    "price": 2,
+    "price": 3,
     "category": "Chemical physics",
     "locals": {
         "de": {
