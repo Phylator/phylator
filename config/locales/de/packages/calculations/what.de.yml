@@ -4,6 +4,6 @@ de:
             title: Was möchtest Du berechnen?
             categories:
                 content: Sag Phylator zu welchem Wissenschaftsfeld Deine Berechnung gehört.
-                custom_calculation: Anderes feld
+                custom_calculation: Anderes Feld
             no_categories:
                 content: Phylator konnte keine vorgegebenen Gleichungen finden.
