@@ -53,6 +53,13 @@
         "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
+    "quantity": "Angular momentum",
+    "categories": [{
+        "title": "Dynamics of rotation",
+        "equations": [{ "equation": "I_m * ω" }],
+        "locals": { "de": { "title": "Dynamik der Rotation" } }
+    }]
+}, {
     "quantity": "Angular velocity",
     "categories": [{
         "title": "Forces in Mechanics",
@@ -83,9 +90,12 @@
         "title": "Translation and rotation",
         "equations": [{ "equation": "v / r" }],
         "locals": { "de": { "title": "Translation und Rotation" } }
-    }{
+    }, {
         "title": "Dynamics of rotation",
-        "equations": [{ "equation": "sqrt( 2 * E_kin / I_m )" }],
+        "equations": [
+            { "equation": "sqrt( 2 * E_kin / I_m )" },
+            { "equation": "L_α / I_m" }
+        ],
         "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]
 }, {
@@ -348,7 +358,8 @@
             { "equation": "3 / 10 * m * r^2", "conditions": ["Straight circular cone"], "locals": { "de": { "conditions": ["Gerader Kreiskegel"] } } },
             { "equation": "1 / 2 * m * ( r^2 + r_1^2 )", "conditions": ["Hollow cylinder", "`r` - outer radius", "`r_1` - inner radius"], "locals": { "de": { "conditions": ["Hohlzylinder", "`r` - äußerer Radius", "`r_1` - innerer Radius"] } } },
             { "equation": "τ / a_α" },
-            { "equation": "2 * E_kin / ω^2" }
+            { "equation": "2 * E_kin / ω^2" },
+            { "equation": "L_α / ω" }
         ],
         "locals": { "de": { "title": "Dynamik der Rotation" } }
     }]

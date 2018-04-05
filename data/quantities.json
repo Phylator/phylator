@@ -134,6 +134,21 @@
         }
     }
 }, {
+    "symbol": "L<sub>α</sub>",
+    "name": "Angular momentum",
+    "description": "Rotational equivalent of linear momentum",
+    "wikipedia": "https://en.wikipedia.org/wiki/Angular_momentum",
+    "vector": true,
+    "category": "Mechanics",
+    "pack": "Kinematics",
+    "locals": {
+        "de": {
+            "name": "Drehimpuls",
+            "description": "Rotationsäquivalent des linearen Impulses",
+            "wikipedia": "https://de.wikipedia.org/wiki/Drehimpuls"
+        }
+    }
+}, {
     "symbol": "ω",
     "name": "Angular velocity",
     "description": "The angle incremented in a plane by a segment connecting an object and a reference point per unit time",
@@ -1088,6 +1103,7 @@
     "vector": false,
     "category": "Quantum mechanics",
     "pack": "Basics",
+    "parent_quantity": "Angular momentum",
     "locals": {
         "de": {
             "name": "Spin",
