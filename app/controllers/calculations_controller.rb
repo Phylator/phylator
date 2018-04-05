@@ -13,7 +13,7 @@ class CalculationsController < ApplicationController
 
     def show
         turbolinks_animate 'fadeinright'
-        @dependencies = @calculation.missing_equations.group_by { |e| e.title }
+        @dependencies = @calculation.missing_equations
         @measurements = @calculation.measurements
         @constants = @calculation.constants.with_translations(I18n.locale).order(:name)
         @equations = @calculation.equations

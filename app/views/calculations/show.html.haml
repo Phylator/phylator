@@ -41,7 +41,7 @@
 - if @calculation.result.undefined && @dependencies.any?
     %h2= t('calculations.show.missing_dependencies.title')
     %p= t('calculations.show.missing_dependencies.content')
-    - @dependencies.each do |title, equations|
+    - @dependencies.group_by { |e| e.title }.each do |title, equations|
         %h4.color--text-base= title
         .myg-list.myg-list--contained
             - equations.each do |equation|
