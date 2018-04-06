@@ -88,10 +88,10 @@ units.each do |unit|
         u.add_to_belonger! quantity unless u.quantities.include?(quantity)
     end
     locals.each do |locale, translation|
-        base_name = translation.delete 'base_name'
+        local_base_name = translation.delete 'base_name'
         translation[:locale] = locale.to_sym
         u.update_attributes translation
-        translation['base_name'] = base_name
+        translation['base_name'] = local_base_name
     end
     base_unit = u
     unless si_prefix == false
@@ -122,8 +122,8 @@ units.each do |unit|
                 u.add_to_belonger! quantity unless u.quantities.include?(quantity)
             end
             locals.each do |locale, translation|
-                base_name = translation.delete 'base_name'
-                translation['name'] = si_prefix.dig('locals', locale, 'name') + ( base_name&.downcase || translation['name'].downcase ).downcase
+                local_base_name = translation.delete 'base_name'
+                translation['name'] = si_prefix.dig('locals', locale, 'name') + ( local_base_name&.downcase || translation['name'].downcase ).downcase
                 translation[:locale] = locale.to_sym
                 u.update_attributes translation
             end
