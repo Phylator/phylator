@@ -77,8 +77,7 @@
     %h2= t('d.conditions')
     .myg-list.myg-list--contained
         - @conditions.each do |condition|
-            .myg-list--item
-                %p= condition
+            .myg-list--item= condition
 
 - if @equations.any?
     %h2= t('d.equations')

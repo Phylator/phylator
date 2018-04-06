@@ -587,6 +587,18 @@
         }
     }
 }, {
+    "symbol": "°",
+    "name": "degree",
+    "to_base": "*3.14159265359/180",
+    "f_base": "*180/3.14159265359",
+    "quantities": ["Plain angle"],
+    "si_prefixes?": false,
+    "locals": {
+        "de": {
+            "name": "Grad"
+        }
+    }
+}, {
     "symbol": "W",
     "name": "watt",
     "base": true,

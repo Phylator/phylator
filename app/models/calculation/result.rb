@@ -60,16 +60,15 @@ class Calculation::Result < ApplicationRecord
             # usable_equations.each do |equation| ##### LEADING TO: TSort exception #####
             Equation.where(quantity: self.calculation.quantity).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.pure_equation
-                ## Associate equation with calculation if used
-                if calculator.dependencies(equation.pure_equation).size == 0
-                    self.calculation.add_belongable!(equation, scope: :dependency) unless self.calculation.equations.include?(equation)
-                    ## Associate physical constant with calculation if used
-                    Constant.all.each do |constant|
-                        symbol = constant.pure_sym
-                        if equation.pure_equation.include? symbol
-                            self.calculation.add_belongable!(constant) unless self.calculation.constants.include?(constant)
-                        end
-                    end
+                used_equation = equation if calculator.dependencies(equation.pure_equation).size == 0 && ( used_equation.nil? || equation.quantities.size > used_equation.quantities.size )
+            end
+            ## Associate equation with calculation if used
+            self.calculation.add_belongable!(used_equation, scope: :dependency) unless self.calculation.equations.include?(equation)
+            ## Associate physical constant with calculation if used
+            Constant.all.each do |constant|
+                symbol = constant.pure_sym
+                if used_equation.pure_equation.include? symbol
+                    self.calculation.add_belongable!(constant) unless self.calculation.constants.include?(constant)
                 end
             end
             ## UNNECESSARY
