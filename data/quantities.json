@@ -288,6 +288,21 @@
         }
     }
 }, {
+    "symbol": "ρ",
+    "name": "Density",
+    "description": "Mass per unit volume",
+    "wikipedia": "https://en.wikipedia.org/wiki/Density",
+    "vector": false,
+    "category": "Chemical physics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Dichte",
+            "description": "Masse pro Volumeneinheit",
+            "wikipedia": "https://de.wikipedia.org/wiki/Dichte"
+        }
+    }
+}, {
     "symbol": "d",
     "name": "Diameter",
     "description": "The longest chord of a circle or sphere",
@@ -756,7 +771,7 @@
     "parent_quantity": "Energy",
     "locals": {
         "de": {
-            "name": "Energie",
+            "name": "Kinetische Energie",
             "description": "Energie, die ein Objekt aufgrund seiner Bewegung besitzt",
             "wikipedia": "https://de.wikipedia.org/wiki/Kinetische_Energie"
         }
@@ -837,18 +852,19 @@
         }
     }
 }, {
-    "symbol": "ρ",
-    "name": "Density",
-    "description": "Mass per unit volume",
-    "wikipedia": "https://en.wikipedia.org/wiki/Density",
+    "symbol": "E<sub>mech</sub>",
+    "name": "Mechanical energy",
+    "description": "Sum of potential and kinetic energy an object possesses",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mechanical_energy",
     "vector": false,
-    "category": "Chemical physics",
+    "category": "Mechanics",
     "pack": "Basics",
+    "parent_quantity": "Energy",
     "locals": {
         "de": {
-            "name": "Dichte",
-            "description": "Masse pro Volumeneinheit",
-            "wikipedia": "https://de.wikipedia.org/wiki/Dichte"
+            "name": "Mechanische Energie",
+            "description": "Summe der potentiellen und kinetischen Energie, die ein Objekt besitzt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Energie"
         }
     }
 }, {
@@ -986,6 +1002,22 @@
             "name": "Winkel",
             "description": "Verhältnis von Kreisbogenlänge zu Radius",
             "wikipedia": "https://de.wikipedia.org/wiki/Winkel"
+        }
+    }
+}, {
+    "symbol": "E<sub>pot</sub>",
+    "name": "Potential energy",
+    "description": "Energy an object possesses because of its position relative to other objects, stresses within itself, its electric charge, or other factors",
+    "wikipedia": "https://en.wikipedia.org/wiki/Potential_energy",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "parent_quantity": "Energy",
+    "locals": {
+        "de": {
+            "name": "Potentielle Energie",
+            "description": "Energie, die ein Objekt aufgrund seiner relativen Position zu anderen Objekten, seiner elektrischen Ladung oder anderen Faktoren besitzt",
+            "wikipedia": "https://de.wikipedia.org/wiki/Potentielle_Energie"
         }
     }
 }, {

@@ -123,7 +123,8 @@ units.each do |unit|
             end
             locals.each do |locale, translation|
                 local_base_name = translation.delete 'base_name'
-                translation['name'] = si_prefix.dig('locals', locale, 'name') + ( local_base_name&.downcase || translation['name'].downcase ).downcase
+                local_name = local_base_name&.downcase || translation['name'].downcase
+                translation['name'] = si_prefix.dig('locals', locale, 'name') + (local_name.include?(' ') ? ' ' : '') + local_name
                 translation[:locale] = locale.to_sym
                 u.update_attributes translation
             end
