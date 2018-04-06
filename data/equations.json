@@ -97,6 +97,10 @@
             { "equation": "L_α / I_m" }
         ],
         "locals": { "de": { "title": "Dynamik der Rotation" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "P / τ", "conditions": ["`τ = const`", "`ω = const`"] }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }, {
     "quantity": "Area",
@@ -146,7 +150,7 @@
         "title": "Forces in Mechanics",
         "equations": [
             { "equation": "W / F", "conditions": ["`∠(F, s) = 0`"] },
-            { "equation": "W / ( F * cos( θ ) )", "conditions": ["`∠(F, s) = θ`"] }
+            { "equation": "W / ( F * cos( θ ) )" }
         ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
@@ -195,13 +199,24 @@
         "locals": { "de": { "title": "Mechanische Energie" } }
     }]
 }, {
+    "quantity": "Energy conversion efficiency",
+    "categories": [{
+        "title": "Mechanical power",
+        "equations": [
+            { "equation": "E_i_1 / E_i", "conditions": ["`E_i_1` - energy output", "`E_i` - energy input"], "locals": { "de": { "conditions": ["`E_i_1` - abgegebene Energie", "`E_i` - zugeführte Energie"] } } },
+            { "equation": "W_1 / W", "conditions": ["`W_1` - work output", "`W` - work input"], "locals": { "de": { "conditions": ["`W_1` - abgegebene Arbeit", "`W` - zugeführte Arbeit"] } } },
+            { "equation": "P_1 / P", "conditions": ["`P_1` - power output", "`P` - power input"], "locals": { "de": { "conditions": ["`P_1` - abgegebene Leistung", "`P` - zugeführte Leistung"] } } }
+        ],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
+    }]
+}, {
     "quantity": "Force",
     "categories": [{
         "title": "Forces in mechanics",
         "equations": [
             { "equation": "m * a" },
             { "equation": "W / s", "conditions": ["`∠(F, s) = 0`"] },
-            { "equation": "W / ( s * cos( θ ) )", "conditions": ["`∠(F, s) = θ`"] },
+            { "equation": "W / ( s * cos( θ ) )" },
             { "equation": "G_N * ( m * m_1 ) / r^2" }
         ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
@@ -213,6 +228,10 @@
         "title": "Torque and balance",
         "equations": [{ "equation": "τ / r", "conditions": ["`r ⊥ F`"] }],
         "locals": { "de": { "title": "Drehmoment und Gleichgewicht" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "P / v", "conditions": ["`v = const`", "`F = const`"] }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }, {
     "quantity": "Friction",
@@ -490,6 +509,17 @@
         "locals": { "de": { "title": "Mechanische Energie" } }
     }]
 }, {
+    "quantity": "Power",
+    "categories": [{
+        "title": "Mechanical power",
+        "equations": [
+            { "equation": "W / t" },
+            { "equation": "F * v", "conditions": ["`v = const`", "`F = const`"] },
+            { "equation": "τ * ω", "conditions": ["`τ = const`", "`ω = const`"] }
+        ],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
+    }]
+}, {
     "quantity": "Pressure",
     "categories": [{
         "title": "Forces in Mechanics",
@@ -637,6 +667,10 @@
             { "equation": "ω / a_α", "conditions": ["`θ_0 = 0`", "`ω_0 = 0`"] }
         ],
         "locals": { "de": { "title": "Gleichmäßig beschleunigte Rotation" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "W / P" }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }, {
     "quantity": "Torque",
@@ -648,6 +682,10 @@
         "title": "Dynamics of rotation",
         "equations": [{ "equation": "I_m * a_α" }],
         "locals": { "de": { "title": "Dynamik der Rotation" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "P / ω", "conditions": ["`τ = const`", "`ω = const`"] }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }, {
     "quantity": "Velocity",
@@ -711,6 +749,10 @@
         "title": "Dynamics of translation",
         "equations": [{ "equation": "sqrt( 2 * E_kin / m )" }],
         "locals": { "de": { "title": "Dynamik der Translation" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "P / F", "conditions": ["`v = const`", "`F = const`"] }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }, {
     "quantity": "Vertical distance",
@@ -763,7 +805,7 @@
         "equations": [
             { "equation": "E_i_1 - E_i" },
             { "equation": "F * s", "conditions": ["`∠(F, s) = 0`"] },
-            { "equation": "F * s * cos( θ )", "conditions": ["`∠(F, s) = θ`"] }
+            { "equation": "F * s * cos( θ )" }
         ],
         "locals": { "de": { "title": "Kräfte in der Mechanik" } }
     }, {
@@ -775,5 +817,9 @@
             { "equation": "- p_f * ( V_1 - V )", "conditions": ["Volume work", "`p = const`"], "locals": { "de": { "conditions": ["Volumenarbeit", "`p = const`"] } } }
         ],
         "locals": { "de": { "title": "Mechanische Arbeit" } }
+    }, {
+        "title": "Mechanical power",
+        "equations": [{ "equation": "P * t" }],
+        "locals": { "de": { "title": "Mechanische Leistung" } }
     }]
 }]

@@ -389,7 +389,7 @@
     "symbol": "J",
     "name": "joule",
     "base": true,
-    "quantities": ["Energy", "Kinetic energy", "Heat", "Work"],
+    "quantities": ["Energy", "Kinetic energy", "Potential energy", "Mechanical energy", "Heat", "Work"],
     "locals": {
         "de": {
             "name": "Joule"

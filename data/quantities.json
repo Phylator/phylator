@@ -485,6 +485,21 @@
         }
     }
 }, {
+    "symbol": "η",
+    "name": "Energy conversion efficiency",
+    "description": "Ratio between the useful output of an energy conversion machine and the input, in energy terms",
+    "wikipedia": "https://en.wikipedia.org/wiki/Energy_conversion_efficiency",
+    "vector": false,
+    "category": "Mechanics",
+    "pack": "Basics",
+    "locals": {
+        "de": {
+            "name": "Wirkungsgrad",
+            "description": "Verhältnis zwischen Nutzleistung und Energieverbrauch bei einer Energieumwandlung",
+            "wikipedia": "https://de.wikipedia.org/wiki/Wirkungsgrad"
+        }
+    }
+}, {
     "symbol": "ρ<sub>E</sub>",
     "name": "Energy density",
     "description": "Energy per unit volume",
