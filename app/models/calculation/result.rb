@@ -63,7 +63,7 @@ class Calculation::Result < ApplicationRecord
                 used_equation = equation if calculator.dependencies(equation.pure_equation).size == 0 && ( used_equation.nil? || equation.quantities.size > used_equation.quantities.size )
             end
             ## Associate equation with calculation if used
-            self.calculation.add_belongable!(used_equation, scope: :dependency) unless self.calculation.equations.include?(equation)
+            self.calculation.add_belongable!(used_equation, scope: :dependency) unless self.calculation.equations.include?(used_equation)
             ## Associate physical constant with calculation if used
             Constant.all.each do |constant|
                 symbol = constant.pure_sym
