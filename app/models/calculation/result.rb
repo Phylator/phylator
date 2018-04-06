@@ -57,18 +57,21 @@ class Calculation::Result < ApplicationRecord
                 equations[quantity.pure_sym] = []
             end
             usable_equations = self.calculation.user ? Equation.free + self.calculation.user.equations : Equation.free
+            used_equation = nil
             # usable_equations.each do |equation| ##### LEADING TO: TSort exception #####
             Equation.where(quantity: self.calculation.quantity).each do |equation|
                 equations[equation.quantity.pure_sym] << equation.pure_equation
                 used_equation = equation if calculator.dependencies(equation.pure_equation).size == 0 && ( used_equation.nil? || equation.quantities.size > used_equation.quantities.size )
             end
             ## Associate equation with calculation if used
-            self.calculation.add_belongable!(used_equation, scope: :dependency) unless self.calculation.equations.include?(used_equation)
-            ## Associate physical constant with calculation if used
-            Constant.all.each do |constant|
-                symbol = constant.pure_sym
-                if used_equation.pure_equation.include? symbol
-                    self.calculation.add_belongable!(constant) unless self.calculation.constants.include?(constant)
+            unless used_equation.nil?
+                self.calculation.add_belongable!(used_equation, scope: :dependency) unless self.calculation.equations.include?(used_equation)
+                ## Associate physical constant with calculation if used
+                Constant.all.each do |constant|
+                    symbol = constant.pure_sym
+                    if used_equation.pure_equation.include? symbol
+                        self.calculation.add_belongable!(constant) unless self.calculation.constants.include?(constant)
+                    end
                 end
             end
             ## UNNECESSARY
