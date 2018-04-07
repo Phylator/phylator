@@ -4954,9 +4954,9 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-nativegap@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/nativegap/-/nativegap-1.1.5.tgz#33e772b73321a2c1cd969cb1ec2e0106d335a392"
+nativegap@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/nativegap/-/nativegap-1.1.6.tgz#3277e973ff6aaccfac41a2e44a387c7dbe9259f9"
 
 negotiator@0.6.1:
   version "0.6.1"
