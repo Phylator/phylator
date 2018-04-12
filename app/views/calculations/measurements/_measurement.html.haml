@@ -1,4 +1,4 @@
-= link_to measurement_url(calculation_id: measurement.calculation.id, id: measurement.id), class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
+= link_to calculation_measurement_url(calculation_id: measurement.calculation.id, id: measurement.id), class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
     %h2.sym
         = measurement.pretty_value
         %span= measurement.unit_of_measurement.sym
