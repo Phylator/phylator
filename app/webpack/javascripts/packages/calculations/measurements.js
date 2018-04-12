@@ -18,7 +18,11 @@ function addMeasurement(data) {
 window.addMeasurement = addMeasurement;
 
 function init() {
-    $('input.flexdatalist').flexdatalist();
+    $('input.flexdatalist').flexdatalist({
+        select: () => {
+            $(this).parent().find('div > .select').focus();
+        }
+    });
     $('input.flexdatalist').one( 'change:flexdatalist', function( event, set, options ) {
         let quantityEl = this,
             unitEl = document.querySelector(quantityEl.dataset.units);
