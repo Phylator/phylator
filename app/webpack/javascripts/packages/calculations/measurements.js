@@ -3,7 +3,7 @@ window.jQuery = window.$ = $;
 
 document.addEventListener( 'turbolinks:load', () => {
     if (document.querySelector('body.calculations.measurements')) {
-        require('jquery-flexdatalist/jquery.flexdatalist');
+        require('../../vendor/jquery.flexdatalist');
         init();
     }
 })
