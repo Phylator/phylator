@@ -41,13 +41,13 @@
 
 View at, enhance or add to Phylator's data:
 
-* [Quantities](data/quantities.json)
-* [Equations](data/equations.json)
-* [Units](data/units.json)
-* [Constants](data/constants.json)
-* [Categories](data/categories.json)
-* [Packs](data/packs.json)
-* [SI prefixes](data/si_prefixes.json)
+* [Quantities](https://github.com/Phylator/data/blob/master/quantities.json)
+* [Equations](https://github.com/Phylator/data/blob/master/equations.json)
+* [Units](https://github.com/Phylator/data/blob/master/units.json)
+* [Constants](https://github.com/Phylator/data/blob/master/constants.json)
+* [Categories](https://github.com/Phylator/data/blob/master/categories.json)
+* [Packs](https://github.com/Phylator/data/blob/master/packs.json)
+* [SI prefixes](https://github.com/Phylator/data/blob/master/si_prefixes.json)
 
 ---
 

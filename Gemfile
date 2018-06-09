@@ -45,6 +45,7 @@ gem 'dentaku'
 gem 'algoliasearch-rails'
 gem 'globalize'
 gem 'pwa'
+gem 'httparty'
 gem 'bootsnap', require: false
 
 

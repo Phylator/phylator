@@ -1,67 +1,12 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-
-# Demo
 user = User.create email: 'demo@phylator.com', password: 'password'
 user&.encrypted_password
 
-
-
-
-# Categories
-categories = JSON.parse File.read('data/categories.json')
-categories.each do |category|
-    locals = category.delete 'locals'
-    c = Category.find_by name: category['name']
-    if c.nil?
-        c = Category.create! category
-    else
-        c.update! category
-    end
-    locals.each do |locale, translation|
-        translation[:locale] = locale.to_sym
-        c.update_attributes translation
-    end
-end
-
-
-# Packs
-packs = JSON.parse File.read('data/packs.json')
-packs.each do |pack|
-    locals = pack.delete 'locals'
-    pack['category'] = Category.find_by name: pack.delete('category')
-    pa = Pack.find_by name: pack['name'], category: pack['category']
-    if pa.nil?
-        pa = Pack.create! pack
-    else
-        pa.update! pack
-    end
-    locals.each do |locale, translation|
-        translation[:locale] = locale.to_sym
-        pa.update_attributes translation
-    end
-end
-
-
-# Quantities
-quantities = JSON.parse File.read('data/quantities.json')
-quantities.each do |quantity|
-    locals = quantity.delete 'locals'
-    category = Category.find_by name: quantity.delete('category')
-    quantity[:pack] = Pack.find_by name: quantity.delete('pack'), category: category
-    quantity[:parent_quantity] = Quantity.find_by name: quantity.delete('parent_quantity')
-    q = Quantity.find_by name: quantity['name']
-    if q.nil?
-        q = Quantity.create! quantity
-    else
-        q.update! quantity
-    end
-    locals.each do |locale, translation|
-        translation[:locale] = locale.to_sym
-        q.update_attributes translation
-    end
-end
+Fetch::Category.new.perform
+Fetch::Pack.new.perform
+Fetch::Quantity.new.perform
 
 
 # Units
