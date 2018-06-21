@@ -235,9 +235,9 @@ agentkeepalive@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-2.2.0.tgz#c5d1bd4b129008f1163f236f86e5faea2026e2ef"
 
-ahoy.js@^0.3.1:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/ahoy.js/-/ahoy.js-0.3.2.tgz#d759a9b76008dcc762bd2667c0ade1430b44ccfb"
+ahoy.js@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/ahoy.js/-/ahoy.js-0.3.3.tgz#ca9332dcd59d999393f487ab0f06e0a02c216491"
   dependencies:
     object-to-formdata "^1.3.0"
 
