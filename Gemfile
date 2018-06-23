@@ -63,7 +63,7 @@ group :development do
     gem 'binding_of_caller'
     gem 'brakeman', require: false
     gem 'rubocop', require: false
-    gem 'mysql2', '~> 0.4.10'
+    gem 'mysql2', '~> 0.5.1'
     gem 'lol_dba', require: false
 end
 
