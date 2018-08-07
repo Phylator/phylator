@@ -12,7 +12,7 @@
         "nativegap": "^1.1.6",
         "pwa-rails": "^4.0.4",
         "rails-erb-loader": "^5.4.2",
-        "rails-ujs": "^5.1.5",
+        "rails-ujs": "^5.2.1",
         "turbolinks": "^5.1.1",
         "turbolinks-animate": "^3.0.5"
     },
