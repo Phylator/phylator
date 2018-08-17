@@ -6224,9 +6224,9 @@ punycode@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
 
-pwa-rails@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/pwa-rails/-/pwa-rails-4.0.4.tgz#15514edd0420ed159b8f37b72ded21386be98347"
+pwa-rails@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/pwa-rails/-/pwa-rails-4.0.5.tgz#42aee3821d96fddb9e46b80a28e2343f5e62517e"
 
 q@^1.1.2:
   version "1.5.1"
