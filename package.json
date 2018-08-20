@@ -13,7 +13,7 @@
         "pwa-rails": "^4.0.5",
         "rails-erb-loader": "^5.4.2",
         "rails-ujs": "^5.2.1",
-        "turbolinks": "^5.1.1",
+        "turbolinks": "^5.2.0",
         "turbolinks-animate": "^3.0.5"
     },
     "devDependencies": {
