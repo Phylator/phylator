@@ -1,23 +1,31 @@
 {
-    "name": "phylator",
-    "private": true,
-    "dependencies": {
-        "@rails/webpacker": "^3.5.5",
-        "ahoy.js": "^0.3.3",
-        "algoliasearch": "^3.30.0",
-        "clipboard": "^1.7.1",
-        "izimodal": "^1.5.1",
-        "jquery": "^3.3.1",
-        "myg": "^0.12.5",
-        "nativegap": "^1.1.6",
-        "pwa-rails": "^4.0.5",
-        "rails-erb-loader": "^5.4.2",
-        "rails-ujs": "^5.2.1",
-        "turbolinks": "^5.2.0",
-        "turbolinks-animate": "^3.0.5"
-    },
-    "devDependencies": {
-        "webpack-cli": "^2.1.5",
-        "webpack-dev-server": "2.11.2"
-    }
+  "name": "phylator",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.5.5",
+    "ahoy.js": "^0.3.3",
+    "algoliasearch": "^3.30.0",
+    "clipboard": "^1.7.1",
+    "izimodal": "^1.5.1",
+    "jquery": "^3.3.1",
+    "myg": "^0.12.5",
+    "nativegap": "^1.1.6",
+    "pwa-rails": "^4.0.5",
+    "rails-erb-loader": "^5.4.2",
+    "rails-ujs": "^5.2.1",
+    "turbolinks": "^5.2.0",
+    "turbolinks-animate": "^3.0.5"
+  },
+  "scripts": {
+    "stylelint": "stylelint app/**/*.scss",
+    "eslint": "eslint app/**/*.js app/webpack/packs/webpack.js.erb"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "stylelint": "^9.5.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^0.8.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^2.11.2"
+  }
 }

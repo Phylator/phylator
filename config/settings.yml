@@ -1,16 +1,13 @@
 phylator:
-    languages:
-        - en
-        - de
-    socials:
-        twitter: https://twitter.com/phylator
-        nativegap: https://nativegap.com/explore/phylator
-        github: https://github.com/Phylator/phylator
+  languages:
+    - en
+    - de
+  socials:
+    twitter: https://twitter.com/phylator
+    nativegap: https://nativegap.com/explore/phylator
+    github: https://github.com/Phylator/phylator
 
 mailgun:
-    emails:
-        with: with@phylator.com
-        support: support@phylator.com
-
-google_analytics:
-    tracking_id: UA-113597635-1
+  emails:
+    with: with@phylator.com
+    support: support@phylator.com

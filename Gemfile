@@ -1,75 +1,72 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.5.1'
 
 git_source(:github) do |repo_name|
-    repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-    "https://github.com/#{repo_name}.git"
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
 end
 
+gem 'rails', '~> 5.2.0'
 
-gem 'rails', '~> 5.2.0.rc2'
-gem 'puma'
-gem 'sass-rails'
-gem 'uglifier'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'redis'
-gem 'haml'
-gem 'metamagic'
-gem 'search-engine-optimization'
-gem 'sentry-raven'
-gem 'simple_form'
-gem 'i18n'
-gem 'ahoy_matey'
-gem 'cancancan'
-gem 'devise'
-# gem 'bcrypt'
-gem 'bcrypt', github: 'codahale/bcrypt-ruby', require: 'bcrypt'
-gem 'config'
-gem 'mailgun-ruby'
-gem 'stripe'
-gem 'friendly_id'
-gem 'turbolinks-animate'
-gem 'nativegap'
-gem 'webpacker'
-gem 'r404'
 gem 'acts_as_belongable'
-gem 'randomize_id'
+gem 'ahoy_matey'
+gem 'algoliasearch-rails'
+gem 'bootsnap', require: false
+gem 'browser'
+gem 'cancancan'
 gem 'cancancan-system'
+gem 'config'
+gem 'dentaku'
+gem 'devise'
+gem 'friendly_id'
+gem 'globalize', github: 'globalize/globalize'
+gem 'haml'
+gem 'httparty'
+gem 'i18n'
+gem 'jbuilder'
+gem 'metamagic'
+gem 'modalist'
 gem 'mozaic'
 gem 'myg'
 gem 'nilify_blanks'
-gem 'modalist'
-gem 'browser'
-gem 'dentaku'
-gem 'algoliasearch-rails'
-gem 'globalize'
+gem 'pg'
+gem 'puma'
 gem 'pwa'
-gem 'httparty'
-gem 'bootsnap', require: false
-
+gem 'r404'
+gem 'randomize_id'
+gem 'redis'
+gem 'sass-rails'
+gem 'search-engine-optimization'
+gem 'sentry-raven'
+gem 'simple_form'
+gem 'stripe'
+gem 'turbolinks'
+gem 'turbolinks-animate'
+gem 'uglifier'
+gem 'webpacker'
 
 group :development, :test do
-    gem 'byebug'
-    gem 'capybara'
-    gem 'selenium-webdriver'
+  gem 'byebug'
+  gem 'capybara'
+  gem 'haml_lint', require: false
+  gem 'rspec-rails', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'selenium-webdriver'
 end
 
 group :development do
-    gem 'certified'
-    gem 'web-console'
-    gem 'pry-rails'
-    gem 'better_errors'
-    gem 'binding_of_caller'
-    gem 'brakeman', require: false
-    gem 'rubocop', require: false
-    gem 'mysql2', '~> 0.5.1'
-    gem 'lol_dba', require: false
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'foreman', require: false
+  gem 'pry-rails'
+  gem 'web-console'
 end
 
 group :production do
-    gem 'pg'
-    gem 'rack-timeout'
+  gem 'rack-timeout'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
