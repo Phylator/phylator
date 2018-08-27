@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-class Calculation::Measurement < ApplicationRecord
-  self.table_name = 'calculation_measurements'
+class Calculation
+  class Measurement < ApplicationRecord
+    self.table_name = 'calculation_measurements'
 
-  include Value
+    include Value
 
-  before_save :re_calc, on: :update
+    before_save :recalculate, on: :update
 
-  belongs_to :calculation, class_name: '::Calculation'
-  belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
-  belongs_to :quantity, class_name: '::Quantity'
+    belongs_to :calculation, class_name: '::Calculation'
+    belongs_to :unit_of_measurement, class_name: '::UnitOfMeasurement'
+    belongs_to :quantity, class_name: '::Quantity'
 
-  validates :value, presence: true
+    validates :value, presence: true
 
-  private
+    private
 
-  def re_calc
-    calculation.calc if value_changed? || margin_of_error_changed?
+    def recalculate
+      calculation.calculate! if value_changed? || margin_of_error_changed?
+    end
   end
 end

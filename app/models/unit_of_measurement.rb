@@ -22,12 +22,14 @@ class UnitOfMeasurement < ApplicationRecord
   scope :base, -> { where(si_id: nil) }
 
   def sym
-    self.symbol.html_safe
+    symbol.html_safe
   end
+
   def base?
-    self.base
+    base
   end
+
   def from_base
-    self.f_base || self.to_base.tr('*/', '/*')
+    f_base || to_base.tr('*/', '/*')
   end
 end

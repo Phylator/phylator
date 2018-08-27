@@ -10,16 +10,10 @@ module Uniqueness
   private
 
   def uniqueness_of_record
-    if symbol_changed?
-      if Rails.env == 'production'
-        if Quantity.where(symbol: symbol).any? || Constant.where(symbol: symbol).any?
-          errors.add(:symbol, 'has already been taken')
-        end
-      else
-        if Quantity.where('BINARY symbol = ?', symbol).any? || Constant.where('BINARY symbol = ?', symbol).any?
-          errors.add(:symbol, 'has already been taken')
-        end
-      end
-    end
+    return unless symbol_changed?
+    return unless Quantity.where(symbol: symbol).any? ||
+                  Constant.where(symbol: symbol).any?
+
+    errors.add(:symbol, 'has already been taken')
   end
 end

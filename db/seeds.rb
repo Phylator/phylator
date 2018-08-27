@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# This file should contain all the record creation needed to seed the database
+# with its default values. The data can then be loaded with the rails db:seed
+# command (or created alongside the database with db:setup).
 
 user = User.create email: 'demo@phylator.com', password: 'password'
 user&.encrypted_password
@@ -10,14 +11,13 @@ Fetch::Category.new.perform
 Fetch::Pack.new.perform
 Fetch::Quantity.new.perform
 
-
 # Units
 units = JSON.parse File.read('data/units.json')
 si_prefixes = JSON.parse File.read('data/si_prefixes.json')
 units.each do |unit|
   locals = unit.delete 'locals'
   quantities = unit.delete 'quantities'
-  si_prefix = unit.delete 'si_prefixes?'
+  has_si_prefix = unit.delete 'si_prefixes?'
   base_symbol = unit.delete 'base_symbol'
   base_name = unit.delete 'base_name'
   u = UnitOfMeasurement.find_by name: unit['name']
@@ -41,52 +41,58 @@ units.each do |unit|
     translation['base_name'] = local_base_name
   end
   base_unit = u
-  unless si_prefix == false
-    si_prefixes.each do |si_prefix|
-      prefixed_unit = unit.dup
-      prefixed_unit['base'] = false
-      prefixed_unit['si'] = base_unit
-      prefixed_unit['symbol'] = si_prefix['symbol'] + ( base_symbol || prefixed_unit['symbol'] )
-      name = base_name&.downcase || prefixed_unit['name'].downcase
-      prefixed_unit['name'] = si_prefix['name'] + (name.include?(' ') ? ' ' : '') + name
-      if prefixed_unit['base'] == false
-        prefixed_unit['to_base'] = "*(1#{prefixed_unit['to_base']})#{si_prefix['to_base']}"
-      else
-        prefixed_unit['to_base'] = si_prefix['to_base']
+
+  next unless has_si_prefix
+  si_prefixes.each do |si_prefix|
+    prefixed_unit = unit.dup
+    prefixed_unit['base'] = false
+    prefixed_unit['si'] = base_unit
+    prefixed_unit['symbol'] =
+      si_prefix['symbol'] + (base_symbol || prefixed_unit['symbol'])
+    name = base_name&.downcase || prefixed_unit['name'].downcase
+    prefixed_unit['name'] =
+      si_prefix['name'] + (name.include?(' ') ? ' ' : '') + name
+    if prefixed_unit['base'] == false
+      prefixed_unit['to_base'] =
+        "*(1#{prefixed_unit['to_base']})#{si_prefix['to_base']}"
+    else
+      prefixed_unit['to_base'] = si_prefix['to_base']
+    end
+    u = UnitOfMeasurement.find_by name: prefixed_unit['name']
+    if u.nil?
+      begin
+        u = UnitOfMeasurement.create! prefixed_unit
+      rescue ActiveRecord::RecordInvalid
+        raise [prefixed_unit['symbol'], prefixed_unit['name'],
+               prefixed_unit['to_base']].inspect
       end
-      u = UnitOfMeasurement.find_by name: prefixed_unit['name']
-      if u.nil?
-        begin
-          u = UnitOfMeasurement.create! prefixed_unit
-        rescue ActiveRecord::RecordInvalid
-          raise [prefixed_unit['symbol'], prefixed_unit['name'], prefixed_unit['to_base']].inspect
-        end
-      else
-        u.update! prefixed_unit
-      end
-      quantities&.each do |quantity|
-        quantity = Quantity.find_by(name: quantity)
-        u.add_to_belonger! quantity unless u.quantities.include?(quantity)
-      end
-      locals.each do |locale, translation|
-        local_base_name = translation.delete 'base_name'
-        local_name = local_base_name&.downcase || translation['name'].downcase
-        translation['name'] = si_prefix.dig('locals', locale, 'name') + (local_name.include?(' ') ? ' ' : '') + local_name
-        translation[:locale] = locale.to_sym
-        u.update_attributes translation
-      end
+    else
+      u.update! prefixed_unit
+    end
+    quantities&.each do |quantity|
+      quantity = Quantity.find_by(name: quantity)
+      u.add_to_belonger! quantity unless u.quantities.include?(quantity)
+    end
+    locals.each do |locale, translation|
+      local_base_name = translation.delete 'base_name'
+      local_name = local_base_name&.downcase || translation['name'].downcase
+      translation['name'] = si_prefix.dig('locals', locale, 'name') +
+                            (local_name.include?(' ') ? ' ' : '') + local_name
+      translation[:locale] = locale.to_sym
+      u.update_attributes translation
     end
   end
 end
-
 
 # Constants
 constants = JSON.parse File.read('data/constants.json')
 constants.each do |constant|
   locals = constant.delete 'locals'
   category = Category.find_by name: constant.delete('category')
-  constant[:pack] = Pack.find_by name: constant.delete('pack'), category: category
-  constant[:unit_of_measurement] = UnitOfMeasurement.find_by name: constant.delete('unit')
+  constant[:pack] = Pack.find_by name: constant.delete('pack'),
+                                 category: category
+  constant[:unit_of_measurement] =
+    UnitOfMeasurement.find_by name: constant.delete('unit')
   value = constant.delete('value')
   c = Constant.find_by name: constant['name']
   if c.nil?
@@ -102,7 +108,6 @@ constants.each do |constant|
   end
 end
 
-
 # Equations
 equations = JSON.parse File.read('data/equations.json')
 equations.each do |data|
@@ -117,7 +122,8 @@ equations.each do |data|
         conditions: equation['conditions'],
         quantity: quantity
       }
-      e = Equation.find_by equation: equation[:equation], quantity: equation[:quantity]
+      e = Equation.find_by equation: equation[:equation],
+                           quantity: equation[:quantity]
       if e.nil?
         e = Equation.create! equation
       else
@@ -131,9 +137,6 @@ equations.each do |data|
     end
   end
 end
-
-
-
 
 # Algolia
 Pack.reindex

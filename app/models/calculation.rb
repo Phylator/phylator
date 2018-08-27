@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Calculation < ApplicationRecord
-  before_update :re_calc
-  after_create_commit :calc
+  before_validation :calculate, on: :create
+  before_validation :recalculate, on: :update
 
+  include Value
   include AlgoliaSearch
   acts_as_belonger
 
@@ -15,11 +16,10 @@ class Calculation < ApplicationRecord
     quantity.name
   end
 
-  has_one :result, class_name: 'Calculation::Result'
   has_many :measurements, class_name: 'Calculation::Measurement'
   belonger :equations, 'Equation', scope: :dependency
   belonger :missing_equations, 'Equation', scope: :missing
-  belonger :constants, 'Constant'
+  belonger :constants, 'Constant', scope: :dependency
 
   belongs_to :unit_of_measurement
   belongs_to :quantity
@@ -27,17 +27,25 @@ class Calculation < ApplicationRecord
 
   validates :measurements, presence: true
 
-  accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :measurements,
+                                reject_if: ->(a) { a[:value].blank? },
+                                allow_destroy: true
 
-  def calc
-    result.destroy if result
-    result = build_result
-    result.save!
+  def undefined?
+    value.nil?
+  end
+
+  def calculate!
+    update!(value: Calculate.new(calculation: calculation))
   end
 
   private
 
-  def re_calc
-    calc if unit_of_measurement_id_changed?
+  def calculate
+    self.value = Calculate.new(calculation: calculation)
+  end
+
+  def recalculate
+    calculate if unit_of_measurement_id_changed?
   end
 end

@@ -15,6 +15,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
+    - config/routes.rb
 
 Metrics/MethodLength:
   Exclude:

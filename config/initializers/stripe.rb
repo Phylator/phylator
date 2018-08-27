@@ -1,3 +1,6 @@
 # frozen_string_literal: true
 
-Stripe.api_key = Rails.application.credentials.dig(Rails.env, :stripe, :secret_key)
+environment = Rails.env.production? ? :production : :development
+
+Stripe.api_key =
+  Rails.application.credentials.dig(environment, :stripe, :secret_key)

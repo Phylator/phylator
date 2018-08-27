@@ -32,8 +32,11 @@ class Quantity < ApplicationRecord
   belongs_to :pack
   belongable :in_equations, 'Equation'
 
-  belongs_to :parent_quantity, class_name: 'Quantity', foreign_key: 'parent_quantity_id', required: false
-  has_many :child_quantities, class_name: 'Quantity', foreign_key: 'parent_quantity_id'
+  belongs_to :parent_quantity, class_name: 'Quantity',
+                               foreign_key: 'parent_quantity_id',
+                               required: false
+  has_many :child_quantities, class_name: 'Quantity',
+                              foreign_key: 'parent_quantity_id'
 
   validates :symbol, presence: true
   validates :name, presence: true, uniqueness: true
@@ -45,9 +48,11 @@ class Quantity < ApplicationRecord
   def sym
     symbol.html_safe
   end
+
   def pure_sym
     symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
   end
+
   def ascii_sym
     symbol.sub('<sub>', '_"').sub('</sub>', '"').force_encoding('UTF-8')
   end

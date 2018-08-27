@@ -33,12 +33,16 @@ class Constant < ApplicationRecord
   validates :symbol, presence: true
   validates :name, presence: true
 
-  scope :purchased, lambda { |user| includes(pack: :purchases).where(packs: { purchases: { user_id: user&.id } }) }
+  scope :purchased, lambda do |user|
+    includes(pack: :purchases)
+      .where(packs: { purchases: { user_id: user&.id } })
+  end
   scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
 
   def sym
     symbol.html_safe
   end
+
   def pure_sym
     symbol.sub('<sub>', '_').sub('</sub>', '').force_encoding('UTF-8')
   end
