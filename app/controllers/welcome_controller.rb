@@ -9,11 +9,17 @@ class WelcomeController < ApplicationController
 
   def setup
     turbolinks_animate 'fadein'
-    redirect_to app_root_url if !params[:stay] && ( current_user || session[:setup] )
+    redirect_to app_root_url if already_setup?
     session[:setup] = true
   end
 
   def language
     modalist
+  end
+
+  private
+
+  def already_setup?
+    !params[:stay] && (current_user || session[:setup])
   end
 end

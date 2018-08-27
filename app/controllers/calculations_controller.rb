@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CalculationsController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create, :show, :what, :how, :measurements]
+  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
   before_action :set_calculation, only: [:show, :edit, :update, :destroy, :share]
 
   layout 'app'
