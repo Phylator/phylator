@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fetch
   class Quantity
     def perform
@@ -12,7 +14,7 @@ module Fetch
     private
 
     def fetch_quantities_data
-      JSON.parse(HTTParty.get('https://raw.githubusercontent.com/Phylator/data/master/quantities.json').body)
+      JSON.parse(HTTParty.get(quantities_url).body)
     end
 
     def find_or_create_quantity(quantity_data)
@@ -32,6 +34,10 @@ module Fetch
         translation[:locale] = locale.to_sym
         quantity.update_attributes translation
       end
+    end
+
+    def quantities_url
+      'https://raw.githubusercontent.com/Phylator/data/master/quantities.json'
     end
   end
 end

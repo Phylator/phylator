@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fetch
   class Pack
     def perform
@@ -12,7 +14,7 @@ module Fetch
     private
 
     def fetch_packs_data
-      JSON.parse(HTTParty.get('https://raw.githubusercontent.com/Phylator/data/master/packs.json').body)
+      JSON.parse(HTTParty.get(packs_url).body)
     end
 
     def find_or_create_pack(pack_data)
@@ -30,6 +32,10 @@ module Fetch
         translation[:locale] = locale.to_sym
         pack.update_attributes translation
       end
+    end
+
+    def packs_url
+      'https://raw.githubusercontent.com/Phylator/data/master/packs.json'
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fetch
   class Category
     def perform
@@ -12,7 +14,7 @@ module Fetch
     private
 
     def fetch_categories_data
-      JSON.parse(HTTParty.get('https://raw.githubusercontent.com/Phylator/data/master/categories.json').body)
+      JSON.parse(HTTParty.get(categories_url).body)
     end
 
     def find_or_create_category(category_data)
@@ -29,6 +31,10 @@ module Fetch
         translation[:locale] = locale.to_sym
         category.update_attributes translation
       end
+    end
+
+    def categories_url
+      'https://raw.githubusercontent.com/Phylator/data/master/categories.json'
     end
   end
 end
