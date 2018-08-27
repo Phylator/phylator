@@ -1,7 +1,7 @@
 en:
-    welcome:
-        index:
-            title: A simple but powerful calculator for physics
-            header: A calculator for physics
-            subheader: simple but powerful.
-            open_web_app: Progressive web app
+  welcome:
+    index:
+      title: A simple but powerful calculator for physics
+      header: A calculator for physics
+      subheader: simple but powerful.
+      open_web_app: Progressive web app

@@ -1,6 +1,6 @@
 en:
-    categories:
-        category:
-            added: Added
-            partially_added: Partially added
-            not_added: Not added yet
+  categories:
+    category:
+      added: Added
+      partially_added: Partially added
+      not_added: Not added yet

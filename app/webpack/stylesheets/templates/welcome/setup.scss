@@ -1,0 +1,47 @@
+body.welcome.setup {
+  .flickity-page-dots {
+    bottom: px(35);
+
+    .dot {
+      background: transparent;
+      border: px(2) solid color(background, darker);
+      height: px(12);
+      opacity: 1;
+      width: px(12);
+
+      @include transition;
+
+      &.is-selected {
+        background: color(background, darker);
+      }
+    }
+  }
+
+  .carousel-cell {
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    @include flex;
+
+    h1,
+    p {
+      max-width: 85%;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: px(100);
+    }
+
+    .myg-button--container {
+      margin: px(-75) 0 px(75);
+    }
+  }
+}

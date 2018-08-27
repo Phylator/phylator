@@ -1,0 +1,60 @@
+body.welcome.index {
+  .myg-content {
+    @include smaller-than(phone) {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      @include flex;
+    }
+
+    section#head {
+      align-items: center;
+      justify-content: space-evenly;
+      margin: 0 auto;
+      max-width: 85%;
+      padding: px(50) 0;
+      width: px(1500);
+
+      @include flex;
+
+      .content-wrapper {
+        margin-right: px(50);
+
+        @include smaller-than(phone) {
+          align-items: center;
+          flex-direction: column;
+          margin-right: 0;
+          text-align: center;
+
+          @include flex;
+        }
+
+        h1 {
+          margin: 0 0 px(10);
+        }
+
+        h2 {
+          color: color(text, light);
+          margin: 0 0 px(40);
+        }
+
+        .myg-button--container {
+          margin-bottom: px(25);
+        }
+      }
+
+      .image-wrapper {
+        @include smaller-than(phone) {
+          display: none;
+        }
+
+        img {
+          height: 75vh;
+          max-height: px(500);
+          min-height: px(350);
+        }
+      }
+    }
+  }
+}

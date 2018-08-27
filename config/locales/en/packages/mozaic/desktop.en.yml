@@ -1,6 +1,6 @@
 en:
-    mozaic:
-        desktop:
-            title: Phylator does not support large screens.
-            content: Shrink the window if possible. We're working to make Phylator available on all screen sizes.
-            track_our_progress: Track our progress
+  mozaic:
+    desktop:
+      title: Phylator does not support large screens.
+      content: Shrink the window if possible. We're working to make Phylator available on all screen sizes.
+      track_our_progress: Track our progress

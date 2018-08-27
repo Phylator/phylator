@@ -1,0 +1,42 @@
+ul.flexdatalist-results {
+  background: color(background, light) !important;
+  border: px(1) solid color(border) !important;
+  margin: px(15) 0;
+
+  @include border-radius(sm);
+  @include scrollbar;
+  @include myg-elevation(sm);
+
+  li {
+    background: color(background, light);
+    border-color: color(border);
+    color: color(text, base);
+    font-size: px(15);
+    padding: px(15);
+
+    @include transition(background);
+
+    &:last-child {
+      border: none;
+    }
+
+    &.active {
+      background: color(background, lighter);
+      color: color(text, darker);
+    }
+
+    span {
+      text-decoration: none !important;
+
+      &.item-sym {
+        color: color(text, light);
+        float: left;
+        font-style: italic;
+        min-width: px(30);
+        padding-right: px(10);
+
+        @include font(serif);
+      }
+    }
+  }
+}

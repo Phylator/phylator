@@ -1,7 +1,7 @@
 de:
-    r404:
-        not_found:
-            title: Dy hast dlch vxrlaufen .(
-            content: Diese Seite existiert nicht. Wir hoffen, dass Du unversehrt bist. Stay cool & iss eine Banane!
-            phylator: phylator.com
-            apples_on_amazon: Äpfel auf Amazon
+  r404:
+    not_found:
+      title: Dy hast dlch vxrlaufen .(
+      content: Diese Seite existiert nicht. Wir hoffen, dass Du unversehrt bist. Stay cool & iss eine Banane!
+      phylator: phylator.com
+      apples_on_amazon: Äpfel auf Amazon

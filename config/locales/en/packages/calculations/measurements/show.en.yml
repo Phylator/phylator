@@ -1,5 +1,5 @@
 en:
-    calculations:
-        measurements:
-            show:
-                title: Measurement of %{name}
+  calculations:
+    measurements:
+      show:
+        title: Measurement of %{name}

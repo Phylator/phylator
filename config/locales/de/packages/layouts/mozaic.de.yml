@@ -1,8 +1,8 @@
 de:
-    layouts:
-        mozaic:
-            schema:
-                description: Ein einfacher und leistungsfähiger Taschenrechner für Physik
-            clipoard:
-                success: Erfolgreich kopiert
-                error: Fehler beim kopieren
+  layouts:
+    mozaic:
+      schema:
+        description: Ein einfacher und leistungsfähiger Taschenrechner für Physik
+      clipoard:
+        success: Erfolgreich kopiert
+        error: Fehler beim kopieren

@@ -1,6 +1,6 @@
 en:
-    calculations:
-        form:
-            title: Choose a quantity
-            quantity: Tell Phylator what physical quantity you want to calculate.
-            unit: What unit should Phylator use to present the result?
+  calculations:
+    form:
+      title: Choose a quantity
+      quantity: Tell Phylator what physical quantity you want to calculate.
+      unit: What unit should Phylator use to present the result?

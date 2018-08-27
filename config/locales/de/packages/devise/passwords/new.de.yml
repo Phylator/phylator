@@ -1,7 +1,7 @@
 de:
-    devise:
-        passwords:
-            new:
-                title: Passwort vergessen?
-                content: Kein Problem. Erstelle einfach ein neues.
-                try_to_login: Anmelden
+  devise:
+    passwords:
+      new:
+        title: Passwort vergessen?
+        content: Kein Problem. Erstelle einfach ein neues.
+        try_to_login: Anmelden

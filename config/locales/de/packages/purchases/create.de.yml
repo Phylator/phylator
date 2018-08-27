@@ -1,5 +1,5 @@
 de:
-    purchases:
-        create:
-            description: Kauf des %{category}/%{pack} Erweiterungs-Packs von Phylator
-            success: Vielen Dank für Deinen Kauf!
+  purchases:
+    create:
+      description: Kauf des %{category}/%{pack} Erweiterungs-Packs von Phylator
+      success: Vielen Dank für Deinen Kauf!

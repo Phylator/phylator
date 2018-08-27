@@ -1,7 +1,7 @@
 de:
-    search:
-        index:
-            tabs:
-                calculation: Nach Berechnungen suchen
-                quantity: Nach Größen & Konstanten suchen
-                pack: Nach Erweiterungs-Packs suchen
+  search:
+    index:
+      tabs:
+        calculation: Nach Berechnungen suchen
+        quantity: Nach Größen & Konstanten suchen
+        pack: Nach Erweiterungs-Packs suchen

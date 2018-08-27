@@ -1,5 +1,5 @@
 de:
-    packs:
-        pack:
-            added: Hinzugefügt
-            not_added: Nicht hinzugefügt
+  packs:
+    pack:
+      added: Hinzugefügt
+      not_added: Nicht hinzugefügt

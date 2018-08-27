@@ -1,0 +1,24 @@
+#devise.myg-layout {
+  .myg-footer--sticky {
+    justify-content: space-between;
+    padding: myg-spacing(md);
+
+    @include flex;
+
+    p > a {
+      text-decoration: none !important;
+
+      @include transition(color);
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color(accent, base);
+      }
+
+      &:not(:first-child) {
+        margin-left: px(15);
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 en:
-    devise:
-        passwords:
-            edit:
-                title: Update your password
-                content: Enter your new password to be able to access your account again.
+  devise:
+    passwords:
+      edit:
+        title: Update your password
+        content: Enter your new password to be able to access your account again.

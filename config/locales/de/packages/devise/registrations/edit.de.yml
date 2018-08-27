@@ -1,15 +1,15 @@
 de:
-    devise:
-        registrations:
-            edit:
-                list:
-                    change_language: Sprache ändern
-                    development:
-                        title: Entwicklung
-                        content: Es fehlt etwas? Phylator ist Open Source, sodass Du Änderungen & Erweiterungen zu jedem Zeitpunkt vorschlagen oder selbst implementieren kannst.
-                form:
-                    new_password: Neues Passwort (optional)
-                    current_password: Aktuelles Passwort
-                    delete:
-                        link: Account löschen
-                        confirm: Du verlierst unwiderruflich den Zugriff auf deine Käufe & Berechnungen. Bist Du Dir sicher?
+  devise:
+    registrations:
+      edit:
+        list:
+          change_language: Sprache ändern
+          development:
+            title: Entwicklung
+            content: Es fehlt etwas? Phylator ist Open Source, sodass Du Änderungen & Erweiterungen zu jedem Zeitpunkt vorschlagen oder selbst implementieren kannst.
+        form:
+          new_password: Neues Passwort (optional)
+          current_password: Aktuelles Passwort
+          delete:
+            link: Account löschen
+            confirm: Du verlierst unwiderruflich den Zugriff auf deine Käufe & Berechnungen. Bist Du Dir sicher?

@@ -1,0 +1,31 @@
+body.users.registrations.edit {
+  .myg-content {
+    padding: myg-spacing(md);
+
+    .myg-list--item > a {
+      p {
+        @include transition(color);
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        p {
+          color: color(text, darker);
+        }
+      }
+    }
+
+    .myg-button--container {
+      margin-top: px(10);
+    }
+  }
+}

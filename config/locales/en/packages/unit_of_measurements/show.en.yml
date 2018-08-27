@@ -1,5 +1,5 @@
 en:
-    unit_of_measurements:
-        show:
-            content: This is a SI prefix of %{unit}
-            si_prefixes: SI prefixes
+  unit_of_measurements:
+    show:
+      content: This is a SI prefix of %{unit}
+      si_prefixes: SI prefixes

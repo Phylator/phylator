@@ -1,5 +1,5 @@
 en:
-    packs:
-        checkout:
-            title: Purchase %{pack}
-            buy: Buy for %{price}
+  packs:
+    checkout:
+      title: Purchase %{pack}
+      buy: Buy for %{price}

@@ -1,0 +1,42 @@
+#application.myg-layout {
+  .myg-toolbar {
+    background: color(background, base);
+    border: none;
+    padding: 0 px(20) 0 px(6);
+
+    @include smaller-than(phone) {
+      padding: 0 px(20);
+
+      .mdc-toolbar__section--align-start {
+        justify-content: center;
+        margin-top: px(35);
+      }
+
+      .mdc-toolbar__section--align-end {
+        display: none;
+      }
+    }
+
+    svg {
+      height: px(50);
+    }
+
+    a {
+      color: color(text, base);
+      font-size: px(15);
+      text-decoration: none !important;
+
+      @include transition(color);
+
+      &:not(:first-child) {
+        margin-left: px(20);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color(accent, base);
+      }
+    }
+  }
+}

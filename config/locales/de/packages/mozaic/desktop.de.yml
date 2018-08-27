@@ -1,6 +1,6 @@
 de:
-    mozaic:
-        desktop:
-            title: Phylator ist nur auf kleinen Bildschirmen benutzbar.
-            content: Verkleinere das Fenster, falls möglich. Wir arbeiten daran, Phylator auf alle Bildschirmgrößen zu bringen.
-            track_our_progress: Folge unserem Fortschritt
+  mozaic:
+    desktop:
+      title: Phylator ist nur auf kleinen Bildschirmen benutzbar.
+      content: Verkleinere das Fenster, falls möglich. Wir arbeiten daran, Phylator auf alle Bildschirmgrößen zu bringen.
+      track_our_progress: Folge unserem Fortschritt

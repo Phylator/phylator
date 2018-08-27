@@ -1,0 +1,31 @@
+body.calculations.measurements:not(.show) {
+  .myg-content {
+    padding: myg-spacing(md);
+
+    form {
+      .measurement {
+        border-bottom: px(1) solid color(border);
+        padding: px(25) 0;
+
+        .myg-form-field--inline-container {
+          .myg-form-field {
+            margin-top: px(20);
+
+            &:first-child {
+              flex: 1;
+            }
+
+            &:last-child {
+              flex: 1.5;
+            }
+          }
+        }
+      }
+
+      .myg-button--container.reverse {
+        flex-direction: row-reverse;
+        margin-top: px(15);
+      }
+    }
+  }
+}

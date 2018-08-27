@@ -1,0 +1,27 @@
+body.calculations.new {
+  form {
+    padding: myg-spacing(md);
+
+    .myg-form-field {
+      &:not(:first-of-type) {
+        margin-top: px(25);
+      }
+
+      label {
+        color: color(text, base);
+        font-size: px(16);
+        font-weight: normal;
+        line-height: 1.75;
+        margin-bottom: px(15);
+      }
+
+      input {
+        margin-top: 0;
+      }
+    }
+
+    .flex.reverse {
+      margin-top: px(35);
+    }
+  }
+}

@@ -1,17 +1,14 @@
-// Border Radius
 $border-radius: (
-    none: 0,
-    sm: px(3),
-    md: px(5),
-    lg: px(10)
-) !default;
+  none: 0,
+  sm: px(3),
+  md: px(5),
+  lg: px(10)
+);
 
-
-// Scrollbar
 $scrollbar: (
-    width: px(5),
-    track-background: transparent,
-    thumb-border-radius: px(2.5),
-    thumb-background: color(background, darker),
-    thumb-hover-background: color(text, dark)
-) !default;
+  width: px(5),
+  track-background: transparent,
+  thumb-border-radius: px(2.5),
+  thumb-background: color(background, darker),
+  thumb-hover-background: color(text, dark)
+);
