@@ -1,25 +1,25 @@
+# frozen_string_literal: true
+
 class PacksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_pack
 
-    before_action :authenticate_user!
-    before_action :set_pack
+  def show
+    turbolinks_animate 'fadeinright'
+    @quantities = @pack.quantities.with_translations(I18n.locale).order(:name)
+    @constants = @pack.constants.with_translations(I18n.locale).order(:name)
+    authorize! :read, @pack
+    render layout: 'app/show'
+  end
 
-    def show
-        turbolinks_animate 'fadeinright'
-        @quantities = @pack.quantities.with_translations(I18n.locale).order(:name)
-        @constants = @pack.constants.with_translations(I18n.locale).order(:name)
-        authorize! :read, @pack
-        render layout: 'app/show'
-    end
+  def checkout
+    authorize! :read, @pack
+    modalist
+  end
 
-    def checkout
-        authorize! :read, @pack
-        modalist
-    end
+  private
 
-    private
-
-    def set_pack
-        @pack = Pack.friendly.find params[:id] || params[:pack_id]
-    end
-
+  def set_pack
+    @pack = Pack.friendly.find params[:id] || params[:pack_id]
+  end
 end
