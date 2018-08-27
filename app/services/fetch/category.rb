@@ -1,29 +1,24 @@
 # frozen_string_literal: true
 
 module Fetch
-  class Category
+  class Category < Base
     def perform
-      categories_data = fetch_categories_data
-      categories_data.each do |category_data|
-        locals = category_data.delete('locals')
-        category = find_or_create_category(category_data)
+      super do |dataset|
+        locals = dataset.delete('locals')
+        category = find_or_create(dataset)
         update_translations(category, locals)
       end
     end
 
     private
 
-    def fetch_categories_data
-      JSON.parse(HTTParty.get(categories_url).body)
-    end
-
-    def find_or_create_category(category_data)
-      category = Category.find_by(name: category_data['name'])
+    def find_or_create(dataset)
+      category = Category.find_by(name: dataset['name'])
 
       if category.present?
-        category.update!(category_data)
+        category.update!(dataset)
       else
-        Category.create!(category_data)
+        Category.create!(dataset)
       end
     end
 
@@ -34,7 +29,7 @@ module Fetch
       end
     end
 
-    def categories_url
+    def url
       'https://raw.githubusercontent.com/Phylator/data/master/categories.json'
     end
   end

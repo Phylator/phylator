@@ -1,32 +1,27 @@
 # frozen_string_literal: true
 
 module Fetch
-  class Pack
+  class Pack < Base
     def perform
-      packs_data = fetch_packs_data
-      packs_data.each do |pack_data|
-        locals = pack_data.delete('locals')
-        pack = find_or_create_pack(pack_data)
+      super do |dataset|
+        locals = dataset.delete('locals')
+        pack = find_or_create(dataset)
         update_translations(pack, locals)
       end
     end
 
     private
 
-    def fetch_packs_data
-      JSON.parse(HTTParty.get(packs_url).body)
-    end
-
-    def find_or_create_pack(pack_data)
-      pack_data['category'] =
-        Category.find_by(name: pack_data.delete('category'))
+    def find_or_create(dataset)
+      dataset['category'] =
+        Category.find_by(name: dataset.delete('category'))
       pack =
-        Pack.find_by(name: pack_data['name'], category: pack_data['category'])
+        Pack.find_by(name: dataset['name'], category: dataset['category'])
 
       if pack.present?
-        pack.update!(pack_data)
+        pack.update!(dataset)
       else
-        Pack.create!(pack_data)
+        Pack.create!(dataset)
       end
     end
 
@@ -37,7 +32,7 @@ module Fetch
       end
     end
 
-    def packs_url
+    def url
       'https://raw.githubusercontent.com/Phylator/data/master/packs.json'
     end
   end
