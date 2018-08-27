@@ -5,7 +5,7 @@ script:
   - bundle exec haml-lint
   - bundle exec rubocop
   - bundle exec rspec
-  - yarn install --without-engines
+  - yarn install --ignore-engines
   - bundle exec rails assets:precompile
   - yarn run eslint
   - yarn run stylelint
