@@ -27,11 +27,10 @@
     = component 'seo/schema', type: :brand, name: 'Phylator', description: t('layouts.mozaic.schema.description'), url: 'https://phylator.com', logo: 'https://phylator.com/icon_512x512.png'
     = component 'layouts/google_analytics'
 
-    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'webpack', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'webpack', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'https://js.stripe.com/v3/'
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=AM_CHTML'
-    = component 'nativegap/assets'
 
     = csrf_meta_tags
 

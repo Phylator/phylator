@@ -4,7 +4,6 @@ phylator:
     - de
   socials:
     twitter: https://twitter.com/phylator
-    nativegap: https://nativegap.com/explore/phylator
     github: https://github.com/Phylator/phylator
 
 mailgun:

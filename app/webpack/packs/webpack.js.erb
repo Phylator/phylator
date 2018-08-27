@@ -13,36 +13,31 @@ import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
 import 'turbolinks-animate';
-document.addEventListener( 'turbolinks:load', () => {
-    TurbolinksAnimate.init({ element: document.querySelector('body.turbolinks-animate') });
-})
-
-import NativeGap from 'nativegap';
-document.addEventListener( 'DOMContentLoaded', () => {
-    const nativegap = new NativeGap;
-})
+document.addEventListener('turbolinks:load', () => {
+  TurbolinksAnimate.init({element: document.querySelector('body.turbolinks-animate')});
+});
 
 import ProgressiveWebApp from 'pwa-rails';
-document.addEventListener( 'turbolinks:load', () => {
-    const progressiveWebApp = new ProgressiveWebApp();
-})
+document.addEventListener('turbolinks:load', () => {
+  const progressiveWebApp = new ProgressiveWebApp();
+});
 
-document.addEventListener( 'turbolinks:load', () => {
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
-})
+document.addEventListener('turbolinks:load', () => {
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+});
 
 import Clipboard from 'clipboard';
-document.addEventListener( 'turbolinks:load', () => {
-    const clipboard = new Clipboard('.clipboard');
-    clipboard.on( 'success', (e) => {
-        e.clearSelection();
-        mygToast.success({ message: document.querySelector('#clipboard-success').innerHTML });
-    });
-    clipboard.on( 'error', (e) => {
-        e.clearSelection();
-        mygToast.error({ message: document.querySelector('#clipboard-error').innerHTML });
-    });
-})
+document.addEventListener('turbolinks:load', () => {
+  const clipboard = new Clipboard('.clipboard');
+  clipboard.on('success', (e) => {
+    e.clearSelection();
+    mygToast.success({message: document.querySelector('#clipboard-success').innerHTML});
+  });
+  clipboard.on('error', (e) => {
+    e.clearSelection();
+    mygToast.error({message: document.querySelector('#clipboard-error').innerHTML});
+  });
+});
 
 import ahoy from 'ahoy.js';
 

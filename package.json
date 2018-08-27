@@ -9,7 +9,6 @@
     "izimodal": "^1.5.1",
     "jquery": "^3.3.1",
     "myg": "^0.12.5",
-    "nativegap": "^1.1.6",
     "pwa-rails": "^4.0.5",
     "rails-erb-loader": "^5.4.2",
     "rails-ujs": "^5.2.1",
@@ -18,7 +17,7 @@
   },
   "scripts": {
     "stylelint": "stylelint app/**/*.scss",
-    "eslint": "eslint app/**/*.js app/webpack/packs/webpack.js.erb"
+    "eslint": "eslint app/webpack/javascripts/mozaic/**/*.js app/webpack/javascripts/myg/**/*.js app/webpack/javascripts/templates/**/*.js app/webpack/packs/webpack.js.erb"
   },
   "devDependencies": {
     "eslint": "^5.4.0",

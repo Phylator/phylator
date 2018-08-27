@@ -5,7 +5,7 @@
     %h1= t('welcome.index.header')
     %h2= t('welcome.index.subheader')
     .myg-button--container
-      = link_to t('d.install'), Settings.phylator.socials.nativegap, target: '_blank', class: 'myg-button'
+      = link_to t('d.install'), 'Settings.phylator.socials.nativegap', target: '_blank', class: 'myg-button'
       = link_to t('welcome.index.open_web_app'), (current_user ? app_root_url : setup_url), class: 'myg-button myg-button--secondary'
   .image-wrapper
-    = image_tag 'packages/welcome/app.png'
+    = image_tag 'templates/welcome/app.png'
