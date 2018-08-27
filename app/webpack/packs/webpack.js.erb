@@ -1,6 +1,6 @@
-window.stripePublishableKey = '<%= Settings.stripe.publishable_key %>';
-window.algoliasearchApplicationId = '<%= Settings.algoliasearch.application_id %>';
-window.algoliasearchSearchKey = '<%= Settings.algoliasearch.search_key %>';
+window.stripePublishableKey = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :stripe, :publishable_key) %>';
+window.algoliasearchApplicationId = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :algoliasearch, :application_id) %>';
+window.algoliasearchSearchKey = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :algoliasearch, :search_key) %>';
 
 import $ from 'jquery';
 window.jQuery = window.$ = $;
