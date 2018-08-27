@@ -7,7 +7,7 @@
         .mdc-toolbar__row
             %section.mdc-toolbar__section.mdc-toolbar__section--align-start
                 = link_to root_url, data: { turbolinks_animate_type: 'application' } do
-                    = asset 'components/brand/logo'
+                    = asset 'logo.svg'
             %section.mdc-toolbar__section.mdc-toolbar__section--align-end
                 = link_to t('layouts.application.twitter'), Settings.phylator.socials.twitter, target: '_blank'
                 - if current_user
