@@ -3,19 +3,19 @@
 
 = mozaic do
 
-    = component 'myg/toolbar', class: 'myg-toolbar--flexible myg-toolbar--bottom', data: { turbolinks_animate_persist: 'app' } do
-        .mdc-toolbar__row
-            = link_to calculations_url, class: 'calculations', data: { turbolinks_animate_type: 'app' } do
-                %i.nc-icon.nc-calculator
-            = link_to quantities_url, class: 'quantities', data: { turbolinks_animate_type: 'app' } do
-                %i.nc-icon.nc-bold
-            = link_to app_root_url, class: 'new', data: { turbolinks_animate_type: 'app' } do
-                %i.nc-icon.nc-simple-add
-            = link_to categories_url, class: 'categories', data: { turbolinks_animate_type: 'app' } do
-                %i.nc-icon.nc-gift-2
-            = link_to edit_user_registration_url, class: 'account', data: { turbolinks_animate_type: 'app' } do
-                %i.nc-icon.nc-single-03
+  = component 'myg/toolbar', class: 'myg-toolbar--flexible myg-toolbar--bottom', data: { turbolinks_animate_persist: 'app' } do
+    .mdc-toolbar__row
+      = link_to calculations_url, class: 'calculations', data: { turbolinks_animate_type: 'app' } do
+        %i.nc-icon.nc-calculator
+      = link_to quantities_url, class: 'quantities', data: { turbolinks_animate_type: 'app' } do
+        %i.nc-icon.nc-bold
+      = link_to app_root_url, class: 'new', data: { turbolinks_animate_type: 'app' } do
+        %i.nc-icon.nc-simple-add
+      = link_to categories_url, class: 'categories', data: { turbolinks_animate_type: 'app' } do
+        %i.nc-icon.nc-gift-2
+      = link_to edit_user_registration_url, class: 'account', data: { turbolinks_animate_type: 'app' } do
+        %i.nc-icon.nc-single-03
 
-    .myg-content
-        = mozaic_area :app do
-            = yield
+  .myg-content
+    = mozaic_area :app do
+      = yield

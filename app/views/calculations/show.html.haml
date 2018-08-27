@@ -1,90 +1,90 @@
 - meta title: @calculation.name || t('calculations.show.title', name: @calculation.quantity.name)
 
 - replace :back do
-    = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
-        %i.nc-icon.nc-tail-left
+  = link_to (current_user ? calculations_url : app_root_url), data: { turbolinks_animate_appear: 'fadein' } do
+    %i.nc-icon.nc-tail-left
 - replace :tools do
-    - unless @calculation.result.undefined
-        = link_to 'javascript:void(0)' do
-            %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
-    = link_to calculation_share_url(@calculation), class: 'modalist--trigger' do
-        %i.nc-icon.nc-share-26
-    - if can?(:destroy, @calculation)
-        = link_to calculation_url(@calculation), method: :delete, data: { confirm: t('calculations.show.delete.confirm') } do
-            %i.nc-icon.nc-trash.color--error
+  - unless @calculation.result.undefined
+    = link_to 'javascript:void(0)' do
+      %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
+  = link_to calculation_share_url(@calculation), class: 'modalist--trigger' do
+    %i.nc-icon.nc-share-26
+  - if can?(:destroy, @calculation)
+    = link_to calculation_url(@calculation), method: :delete, data: { confirm: t('calculations.show.delete.confirm') } do
+      %i.nc-icon.nc-trash.color--error
 - replace :title do
-    - if @calculation.result.undefined
-        %h1.color--error= t('calculations.show.no_solution_found')
-    - else
-        %h1.sym.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
-            = @calculation.result.pretty_value
-            %span= @calculation.unit_of_measurement.sym
+  - if @calculation.result.undefined
+    %h1.color--error= t('calculations.show.no_solution_found')
+  - else
+    %h1.sym.clipboard{ data: { clipboard_text: @calculation.result.value.to_s } }
+      = @calculation.result.pretty_value
+      %span= @calculation.unit_of_measurement.sym
 - replace :subtitle do
-    %p
-        %span= link_to @calculation.quantity.name, @calculation.quantity, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
-        ·
-        %span= time_ago_in_words @calculation.created_at
+  %p
+    %span= link_to @calculation.quantity.name, @calculation.quantity, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' }
+    ·
+    %span= time_ago_in_words @calculation.created_at
 
 - if !current_user && notice
-    - replace :section do
-        = component 'suggestion', title: t('calculations.show.suggestion.title'), content: t('calculations.show.suggestion.content') do
-            = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
-            = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
+  - replace :section do
+    = component 'suggestion', title: t('calculations.show.suggestion.title'), content: t('calculations.show.suggestion.content') do
+      = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
+      = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
 
 %h2#name= @calculation.name unless @calculation.name.nil?
 %p#description= @calculation.description unless @calculation.description.nil?
 - if can? :update, @calculation
-    %p= link_to t('calculations.show.edit'), edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
+  %p= link_to t('calculations.show.edit'), edit_calculation_url(@calculation), class: 'modalist--trigger hyperlink--inherit'
 
 %hr
 
 - if @calculation.result.undefined && @dependencies.any?
-    %h2= t('calculations.show.missing_dependencies.title')
-    %p= t('calculations.show.missing_dependencies.content')
-    - @dependencies.group_by { |e| e.title }.each do |title, equations|
-        %h4.color--text-base= title
-        .myg-list.myg-list--contained
-            - equations.each do |equation|
-                .myg-list--item
-                    = link_to measurements_url(quantity: @calculation.quantity_id, unit: @calculation.unit_of_measurement_id, equation: equation.id) do
-                        %p
-                            - if equation.quantities.any?
-                                = equation.quantities.map { |q| q.name }.join(', ')
-                            - else
-                                = t('calculations.show.missing_dependencies.no_quantities')
-                        - if equation.conditions&.any?
-                            %p.sm= t('calculations.show.missing_dependencies.conditions')
-                            - equation.conditions.each do |condition|
-                                %p.sm= condition
+  %h2= t('calculations.show.missing_dependencies.title')
+  %p= t('calculations.show.missing_dependencies.content')
+  - @dependencies.group_by(&:title).each do |title, equations|
+    %h4.color--text-base= title
+    .myg-list.myg-list--contained
+      - equations.each do |equation|
+        .myg-list--item
+          = link_to measurements_url(quantity: @calculation.quantity_id, unit: @calculation.unit_of_measurement_id, equation: equation.id) do
+            %p
+              - if equation.quantities.any?
+                = equation.quantities.map(&:name).join(', ')
+              - else
+                = t('calculations.show.missing_dependencies.no_quantities')
+            - if equation.conditions&.any?
+              %p.sm= t('calculations.show.missing_dependencies.conditions')
+              - equation.conditions.each do |condition|
+                %p.sm= condition
 
 - if can?(:update, @calculation) && !@calculation.result.undefined
-    %h2= t('calculations.show.unit_conversion.title')
-    = simple_form_for @calculation, authenticity_token: true, html: { id: 'unit-conversion' } do |f|
-        = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: t('calculations.show.unit_conversion.placeholder'), class: 'flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id.to_s}/units_of_measurement.json?locale=#{I18n.locale.to_s}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
+  %h2= t('calculations.show.unit_conversion.title')
+  = simple_form_for @calculation, authenticity_token: true, html: { id: 'unit-conversion' } do
+    = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: t('calculations.show.unit_conversion.placeholder'), class: 'flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id}/units_of_measurement.json?locale=#{I18n.locale}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 %h2= t('d.measurements')
 .myg-grid.myg-wrap--phone
-    - @measurements.each do |measurement|
-        = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
+  - @measurements.each do |measurement|
+    = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
 
 - if @constants.any?
-    %h2= t('d.constants')
-    .myg-grid.myg-wrap--phone
-        - @constants.each do |constant|
-            = render constant, animation: 'fadeout'
+  %h2= t('d.constants')
+  .myg-grid.myg-wrap--phone
+    - @constants.each do |constant|
+      = render constant, animation: 'fadeout'
 
 - if @conditions.any?
-    %h2= t('d.conditions')
-    .myg-list.myg-list--contained
-        - @conditions.each do |condition|
-            .myg-list--item= condition
+  %h2= t('d.conditions')
+  .myg-list.myg-list--contained
+    - @conditions.each do |condition|
+      .myg-list--item= condition
 
 - if @equations.any?
-    %h2= t('d.equations')
-    .myg-grid.myg-wrap--phone
-        - @equations.each do |equation|
-            = render equation, animation: 'fadeout'
+  %h2= t('d.equations')
+  .myg-grid.myg-wrap--phone
+    - @equations.each do |equation|
+      = render equation, animation: 'fadeout'
 
 %h2= t('d.unit')
 .myg-grid.myg-wrap--phone
-    = render @calculation.unit_of_measurement, animation: 'fadeout'
+  = render @calculation.unit_of_measurement, animation: 'fadeout'

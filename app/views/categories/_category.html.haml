@@ -1,12 +1,12 @@
 = link_to category, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
-    %h3= category.name
-    %p.flex.center--c
-        - if category.purchased?(current_user) == 0
-            %i.nc-icon.nc-check-circle-08
-            %span= t('categories.category.added')
-        - elsif category.purchased?(current_user) == 1
-            %i.nc-icon.nc-e-check
-            %span= t('categories.category.partially_added')
-        - else
-            %i.nc-icon.nc-e-circle
-            %span= t('categories.category.not_added')
+  %h3= category.name
+  %p.flex.center--c
+    - if category.purchased?(current_user).zero?
+      %i.nc-icon.nc-check-circle-08
+      %span= t('categories.category.added')
+    - elsif category.purchased?(current_user) == 1
+      %i.nc-icon.nc-e-check
+      %span= t('categories.category.partially_added')
+    - else
+      %i.nc-icon.nc-e-circle
+      %span= t('categories.category.not_added')

@@ -1,26 +1,25 @@
 - meta title: t('d.quantities')
 
-- if current_user.purchases.count == 0
-    = component 'suggestion', title: t('quantities.index.suggestion.title'), content: t('quantities.index.suggestion.content') do
-        = link_to t('quantities.index.suggestion.expansion_packs'), categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
-        %p.sm= link_to t('d.hide'), 'javascript:void(0)'
+- if current_user.purchases.none?
+  = component 'suggestion', title: t('quantities.index.suggestion.title'), content: t('quantities.index.suggestion.content') do
+    = link_to t('quantities.index.suggestion.expansion_packs'), categories_url, class: 'myg-button', data: { turbolinks_animate_type: 'app' }
+    %p.sm= link_to t('d.hide'), 'javascript:void(0)'
 
 .content-wrapper
+  .title
+    %h1.sm= t('d.quantities')
+    = link_to search_url(tab: 'quantity') do
+      %i.nc-icon.nc-zoom-2
 
-    .title
-        %h1.sm= t('d.quantities')
-        = link_to search_url(tab: 'quantity') do
-            %i.nc-icon.nc-zoom-2
+  .myg-grid.myg-wrap--phone
+    - @quantities.each do |quantity|
+      = render quantity
 
-    .myg-grid.myg-wrap--phone
-        - @quantities.each do |quantity|
-            = render quantity
+  .title
+    %h1.sm= t('d.constants')
+    = link_to search_url(tab: 'quantity') do
+      %i.nc-icon.nc-zoom-2
 
-    .title
-        %h1.sm= t('d.constants')
-        = link_to search_url(tab: 'quantity') do
-            %i.nc-icon.nc-zoom-2
-
-    .myg-grid.myg-wrap--phone
-        - @constants.each do |constant|
-            = render constant
+  .myg-grid.myg-wrap--phone
+    - @constants.each do |constant|
+      = render constant

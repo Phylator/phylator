@@ -1,7 +1,7 @@
 .myg-list--item
-    = link_to purchase.pack do
-        %span= number_to_currency purchase.amount, unit: '$'
-        ·
-        %span= purchase.pack.name
-        ·
-        %span= time_ago_in_words purchase.created_at
+  = link_to purchase.pack do
+    %span= number_to_currency purchase.amount, unit: '$'
+    ·
+    %span= purchase.pack.name
+    ·
+    %span= time_ago_in_words purchase.created_at

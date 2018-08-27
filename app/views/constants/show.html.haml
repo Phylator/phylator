@@ -1,31 +1,32 @@
 - meta title: @constant.name
 
 - replace :tools do
-    = link_to 'javascript:void(0)' do
-        %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @value.to_s } }
+  = link_to 'javascript:void(0)' do
+    %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @value.to_s } }
 - replace :title do
-    %h1.sym.clipboard{ data: { clipboard_text: @constant.value.to_s } }
-        = @constant.pretty_value
-        %span= @constant.unit_of_measurement.sym if @constant.unit_of_measurement
+  %h1.sym.clipboard{ data: { clipboard_text: @constant.value.to_s } }
+    = @constant.pretty_value
+    - if @constant.unit_of_measurement
+      %span= @constant.unit_of_measurement.sym
 - replace :subtitle do
-    %p
-        %span= @constant.sym
-        ·
-        %span= @constant.name
+  %p
+    %span= @constant.sym
+    ·
+    %span= @constant.name
 
 %p= link_to t('constants.show.learn_more'), @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @constant.wikipedia
 
 %h2= t('d.pack')
 .myg-grid.myg-wrap--phone
-    = render @constant.pack, animation: 'fadeout'
+  = render @constant.pack, animation: 'fadeout'
 
 - if @constant.unit_of_measurement
-    %h2= t('d.unit')
-    .myg-grid.myg-wrap--phone
-        = render @constant.unit_of_measurement, animation: 'fadeout'
+  %h2= t('d.unit')
+  .myg-grid.myg-wrap--phone
+    = render @constant.unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
-    %h2= t('d.calculations')
-    .myg-grid.myg-wrap--phone
-        - @calculations.each do |calculation|
-            = render calculation, animation: 'fadeout'
+  %h2= t('d.calculations')
+  .myg-grid.myg-wrap--phone
+    - @calculations.each do |calculation|
+      = render calculation, animation: 'fadeout'

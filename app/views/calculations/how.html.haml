@@ -1,18 +1,18 @@
 %h1.sm= t('calculations.how.title')
 %p= t('calculations.how.content')
 .flex.center
-    .myg-list.myg-list--contained
-        - @equations.each do |equation|
-            .myg-list--item
-                = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id), data: { turbolinks_animate_type: 'app' } do
-                    %p
-                        - if equation.quantities.any?
-                            = equation.quantities.map { |q| q.name }.join(', ')
-                        - else
-                            = t('calculations.how.no_quantities')
-                    - if equation.conditions&.any?
-                        %p.sm= t('calculations.how.conditions')
-                        - equation.conditions.each do |condition|
-                            %p.sm= condition
-    %p.sm or
-    = link_to t('calculations.how.custom_measurements'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }
+  .myg-list.myg-list--contained
+    - @equations.each do |equation|
+      .myg-list--item
+        = link_to measurements_url(quantity: params[:quantity], unit: params[:unit], equation: equation.id), data: { turbolinks_animate_type: 'app' } do
+          %p
+            - if equation.quantities.any?
+              = equation.quantities.map(&:name).join(', ')
+            - else
+              = t('calculations.how.no_quantities')
+          - if equation.conditions&.any?
+            %p.sm= t('calculations.how.conditions')
+            - equation.conditions.each do |condition|
+              %p.sm= condition
+  %p.sm or
+  = link_to t('calculations.how.custom_measurements'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }

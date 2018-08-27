@@ -3,28 +3,28 @@
 %h1.sm= t('d.account')
 
 .myg-list.myg-list--contained
-    .myg-list--item= link_to t('d.tour'), setup_url(stay: true)
-    .myg-list--item= link_to t('devise.registrations.edit.list.change_language'), language_url, class: 'modalist--trigger'
-    .myg-list--item= link_to t('d.support'), "mailto:#{Settings.mailgun.emails.support}"
-    .myg-list--item
-        = link_to Settings.phylator.socials.github, target: '_blank' do
-            %p= t('devise.registrations.edit.list.development.title')
-            %p.sm= t('devise.registrations.edit.list.development.content')
-    .myg-list--item= link_to t('d.signout'), destroy_user_session_path, method: :delete
+  .myg-list--item= link_to t('d.tour'), setup_url(stay: true)
+  .myg-list--item= link_to t('devise.registrations.edit.list.change_language'), language_url, class: 'modalist--trigger'
+  .myg-list--item= link_to t('d.support'), "mailto:#{Settings.mailgun.emails.support}"
+  .myg-list--item
+    = link_to Settings.phylator.socials.github, target: '_blank' do
+      %p= t('devise.registrations.edit.list.development.title')
+      %p.sm= t('devise.registrations.edit.list.development.content')
+  .myg-list--item= link_to t('d.signout'), destroy_user_session_path, method: :delete
 
 %hr
 
 - if @purchases.any?
-    %h3= t('d.purchases')
-    .myg-list.myg-list--contained
-        - @purchases.each do |purchase|
-            = render 'purchases/purchase', purchase: purchase
-    %hr
+  %h3= t('d.purchases')
+  .myg-list.myg-list--contained
+    - @purchases.each do |purchase|
+      = render 'purchases/purchase', purchase: purchase
+  %hr
 
-= simple_form_for resource, as: resource_name, url: user_registration_url, authenticity_token: true, html: { method: :put } do |f|
-    = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', value: current_user.email }
-    = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('devise.registrations.edit.form.new_password'), input_html: { minlength: 5, type: 'password' }
-    = component 'myg/form-field', as: :input, attribute: :current_password, class_name: 'user', floating_label: t('devise.registrations.edit.form.current_password'), input_html: { required: true, minlength: 5, type: 'password' }
-    .myg-button--container
-        = component 'myg/button', value: t('d.update')
-        = link_to t('devise.registrations.edit.form.delete.link'), user_registration_url, method: :delete, class: 'myg-button myg-button--secondary error', data: { confirm: t('devise.registrations.edit.form.delete.confirm') }
+= simple_form_for resource, as: resource_name, url: user_registration_url, authenticity_token: true, html: { method: :put } do
+  = component 'myg/form-field', as: :input, attribute: :email, class_name: 'user', floating_label: t('d.email'), input_html: { required: true, type: 'email', value: current_user.email }
+  = component 'myg/form-field', as: :input, attribute: :password, class_name: 'user', floating_label: t('devise.registrations.edit.form.new_password'), input_html: { minlength: 5, type: 'password' }
+  = component 'myg/form-field', as: :input, attribute: :current_password, class_name: 'user', floating_label: t('devise.registrations.edit.form.current_password'), input_html: { required: true, minlength: 5, type: 'password' }
+  .myg-button--container
+    = component 'myg/button', value: t('d.update')
+    = link_to t('devise.registrations.edit.form.delete.link'), user_registration_url, method: :delete, class: 'myg-button myg-button--secondary error', data: { confirm: t('devise.registrations.edit.form.delete.confirm') }

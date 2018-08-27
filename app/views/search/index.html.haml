@@ -1,15 +1,15 @@
 - meta title: t("search.index.tabs.#{@tab}")
 
 - replace :title do
-    = component 'myg/form-field', as: :input, attribute: 'query', floating_label: t("search.index.tabs.#{@tab}"), input_html: { autofocus: true, spellcheck: 'false' }
+  = component 'myg/form-field', as: :input, attribute: 'query', floating_label: t("search.index.tabs.#{@tab}"), input_html: { autofocus: true, spellcheck: 'false' }
 - replace :tools do
-    %p#tab.hidden{ class: @tab }= @tab
-    = link_to search_url, class: 'calculation', data: { turbolinks_animate_animation: 'fadeout' } do
-        %i.nc-icon.nc-calculator
-    = link_to search_url(tab: 'quantity'), class: 'quantity', data: { turbolinks_animate_animation: 'fadeout' } do
-        %i.nc-icon.nc-bold
-    = link_to search_url(tab: 'pack'), class: 'pack', data: { turbolinks_animate_animation: 'fadeout' } do
-        %i.nc-icon.nc-gift-2
+  %p.hidden#tab{ class: @tab }= @tab
+  = link_to search_url, class: 'calculation', data: { turbolinks_animate_animation: 'fadeout' } do
+    %i.nc-icon.nc-calculator
+  = link_to search_url(tab: 'quantity'), class: 'quantity', data: { turbolinks_animate_animation: 'fadeout' } do
+    %i.nc-icon.nc-bold
+  = link_to search_url(tab: 'pack'), class: 'pack', data: { turbolinks_animate_animation: 'fadeout' } do
+    %i.nc-icon.nc-gift-2
 
 .myg-grid.myg-wrap--phone
-    = render 'placeholder', tab: @tab
+  = render 'placeholder', tab: @tab

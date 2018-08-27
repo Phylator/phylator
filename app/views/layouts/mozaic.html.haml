@@ -1,54 +1,54 @@
 !!!
 %html{ lang: I18n.locale }
 
-    %head
+  %head
 
-        %meta{ charset: 'utf-8' }
-        %meta{ name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1' }
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1' }
 
-        = metamagic site: 'Phylator', title: [:title, :site], separator: ' - ', description: '...', keywords: ['calculator', 'physics', 'converter', 'units']
-        = component 'pwa/manifest', url: request.base_url
+    = metamagic site: 'Phylator', title: [:title, :site], separator: ' - ', description: '...', keywords: ['calculator', 'physics', 'converter', 'units']
+    = component 'pwa/manifest', url: request.base_url
 
-        %link{ rel: 'apple-touch-icon', sizes: '76x76', href: request.base_url + '/icon_76x76.png' }
-        %link{ rel: 'apple-touch-icon', sizes: '120x120', href: request.base_url + '/icon_120x120.png' }
-        %link{ rel: 'apple-touch-icon', sizes: '152x152', href: request.base_url + '/icon_152x152.png' }
-        %link{ rel: 'icon', sizes: '192x192', href: request.base_url + '/icon_192x192.png' }
-        %link{ rel: 'icon', sizes: '256x256', href: request.base_url + '/icon_256x256.png' }
-        %link{ rel: 'icon', sizes: '384x384', href: request.base_url + '/icon_384x384.png' }
-        %link{ rel: 'icon', sizes: '512x512', href: request.base_url + '/icon_512x512.png' }
-        %link{ rel: 'msapplication-square70x70logo', content: request.base_url + '/icon_70x70.png' }
-        %link{ rel: 'msapplication-square150x150logo', content: request.base_url + '/icon_150x150.png' }
-        -# %link{ rel: 'msapplication-wide310x150logo', content: request.base_url + '/icon_310x150.png' }
-        %link{ rel: 'msapplication-square310x310logo', content: request.base_url + '/icon_310x310.png' }
+    %link{ rel: 'apple-touch-icon', sizes: '76x76', href: request.base_url + '/icon_76x76.png' }
+    %link{ rel: 'apple-touch-icon', sizes: '120x120', href: request.base_url + '/icon_120x120.png' }
+    %link{ rel: 'apple-touch-icon', sizes: '152x152', href: request.base_url + '/icon_152x152.png' }
+    %link{ rel: 'icon', sizes: '192x192', href: request.base_url + '/icon_192x192.png' }
+    %link{ rel: 'icon', sizes: '256x256', href: request.base_url + '/icon_256x256.png' }
+    %link{ rel: 'icon', sizes: '384x384', href: request.base_url + '/icon_384x384.png' }
+    %link{ rel: 'icon', sizes: '512x512', href: request.base_url + '/icon_512x512.png' }
+    %link{ rel: 'msapplication-square70x70logo', content: request.base_url + '/icon_70x70.png' }
+    %link{ rel: 'msapplication-square150x150logo', content: request.base_url + '/icon_150x150.png' }
+    -# %link{ rel: 'msapplication-wide310x150logo', content: request.base_url + '/icon_310x150.png' }
+    %link{ rel: 'msapplication-square310x310logo', content: request.base_url + '/icon_310x310.png' }
 
-        = favicon_link_tag '/favicon.ico'
-        = component 'pwa/theme', default: '#233446'
+    = favicon_link_tag '/favicon.ico'
+    = component 'pwa/theme', default: '#233446'
 
-        = component 'seo/schema', type: :brand, name: 'Phylator', description: t('layouts.mozaic.schema.description'), url: 'https://phylator.com', logo: 'https://phylator.com/icon_512x512.png'
-        = component 'layouts/google_analytics'
+    = component 'seo/schema', type: :brand, name: 'Phylator', description: t('layouts.mozaic.schema.description'), url: 'https://phylator.com', logo: 'https://phylator.com/icon_512x512.png'
+    = component 'layouts/google_analytics'
 
-        = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-        = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-        = javascript_include_tag 'https://js.stripe.com/v3/'
-        = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=AM_CHTML'
-        = component 'nativegap/assets'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://js.stripe.com/v3/'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=AM_CHTML'
+    = component 'nativegap/assets'
 
-        = csrf_meta_tags
+    = csrf_meta_tags
 
-    = component 'turbolinks-animate', animation: @turbolinks_animate_animation, class: 'myg myg-layout ' + class_hierarchy( [params[:controller].split('/').each { |n| n }, action_name] ) + ' ' + area(:body_class), id: area(:layout) do
+  = component 'turbolinks-animate', animation: @turbolinks_animate_animation, class: 'myg myg-layout ' + class_hierarchy([params[:controller].split('/').each { |n| n }, action_name]) + ' ' + area(:body_class), id: area(:layout) do
 
-        %p#clipboard-success.hidden= t('layouts.mozaic.clipoard.success')
-        %p#clipboard-error.hidden= t('layouts.mozaic.clipoard.error')
-        %p#notice.hidden= notice
-        %p#alert.hidden= alert
-        = component 'myg/toast'
+    %p.hidden#clipboard-success= t('layouts.mozaic.clipoard.success')
+    %p.hidden#clipboard-error= t('layouts.mozaic.clipoard.error')
+    %p.hidden#notice= notice
+    %p.hidden#alert= alert
+    = component 'myg/toast'
 
-        = component 'modalist/overlay' do
-            = asset 'loader.html'
-        = component 'modalist/wrapper'
+    = component 'modalist/overlay' do
+      = asset 'loader.html'
+    = component 'modalist/wrapper'
 
-        = component 'desktop'
+    = component 'desktop'
 
-        = mozaic_area do
-            .myg-content
-                = yield
+    = mozaic_area do
+      .myg-content
+        = yield

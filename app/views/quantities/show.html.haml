@@ -1,47 +1,47 @@
 - meta title: @quantity.name
 
 - replace :title do
-    %h1.sym= @quantity.sym
+  %h1.sym= @quantity.sym
 - replace :subtitle do
-    %p= @quantity.name
+  %p= @quantity.name
 
 %p
-    = @quantity.description
-    ⋅
-    = @quantity.vector ? t('d.vector') : t('d.scalar')
+  = @quantity.description
+  ⋅
+  = @quantity.vector ? t('d.vector') : t('d.scalar')
 %p= link_to t('quantities.show.learn_more'), @quantity.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @quantity.wikipedia
 
 %h2 Pack
 .myg-grid.myg-wrap--phone
-    = render @quantity.pack, animation: 'fadeout'
+  = render @quantity.pack, animation: 'fadeout'
 
 - if @quantity.parent_quantity.present?
-    %h2= t('quantities.show.belongs_to')
-    .myg-grid.myg-wrap--phone
-        = render @quantity.parent_quantity, animation: 'fadeout'
+  %h2= t('quantities.show.belongs_to')
+  .myg-grid.myg-wrap--phone
+    = render @quantity.parent_quantity, animation: 'fadeout'
 
 - if @equations.any?
-    %h2= t('d.equations')
-    - @equations.each do |title, equations|
-        %h4.color--text-base= title
-        .myg-grid.myg-wrap--phone
-            - equations.each do |equation|
-                = render equation, animation: 'fadeout'
+  %h2= t('d.equations')
+  - @equations.each do |title, equations|
+    %h4.color--text-base= title
+    .myg-grid.myg-wrap--phone
+      - equations.each do |equation|
+        = render equation, animation: 'fadeout'
 
 - if @quantities.any?
-    %h2= t('d.quantities')
-    .myg-grid.myg-wrap--phone
-        - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
+  %h2= t('d.quantities')
+  .myg-grid.myg-wrap--phone
+    - @quantities.each do |quantity|
+      = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @unit_of_measurements.any?
-    %h2= t('d.units')
-    .myg-grid.myg-wrap--phone
-        - @unit_of_measurements.each do |unit_of_measurement|
-            = render unit_of_measurement, animation: 'fadeout', highlighted: unit_of_measurement.base, link: can?(:read, unit_of_measurement)
+  %h2= t('d.units')
+  .myg-grid.myg-wrap--phone
+    - @unit_of_measurements.each do |unit_of_measurement|
+      = render unit_of_measurement, animation: 'fadeout', highlighted: unit_of_measurement.base, link: can?(:read, unit_of_measurement)
 
 - if @calculations.any?
-    %h2= t('d.calculations')
-    .myg-grid.myg-wrap--phone
-        - @calculations.each do |calculation|
-            = render calculation, animation: 'fadeout'
+  %h2= t('d.calculations')
+  .myg-grid.myg-wrap--phone
+    - @calculations.each do |calculation|
+      = render calculation, animation: 'fadeout'

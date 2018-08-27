@@ -1,31 +1,31 @@
 - meta title: t('equations.show.title', name: @equation.quantity.name)
 
 - replace :title do
-    %h1.sm= "`#{@equation.quantity.ascii_sym}=#{@equation.equation}`"
+  %h1.sm= "`#{@equation.quantity.ascii_sym}=#{@equation.equation}`"
 
-%p= t('equations.show.content', category:  @equation.title)
+%p= t('equations.show.content', category: @equation.title)
 
 - if @equation.conditions&.any?
-    %h2= t('d.conditions')
-    .myg-list.myg-list--contained
-        - @equation.conditions.each do |condition|
-            .myg-list--item= condition
+  %h2= t('d.conditions')
+  .myg-list.myg-list--contained
+    - @equation.conditions.each do |condition|
+      .myg-list--item= condition
 
 - if @quantities.any?
-    %h2= t('d.quantities')
-    .myg-grid.myg-wrap--phone
-        = render @equation.quantity, animation: 'fadeout', highlighted: true
-        - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
+  %h2= t('d.quantities')
+  .myg-grid.myg-wrap--phone
+    = render @equation.quantity, animation: 'fadeout', highlighted: true
+    - @quantities.each do |quantity|
+      = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @constants.any?
-    %h2= t('d.constants')
-    .myg-grid.myg-wrap--phone
-        - @constants.each do |constant|
-            = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
+  %h2= t('d.constants')
+  .myg-grid.myg-wrap--phone
+    - @constants.each do |constant|
+      = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
 
 - if @calculations.any?
-    %h2= t('d.calculations')
-    .myg-grid.myg-wrap--phone
-        - @calculations.each do |calculation|
-            = render calculation, animation: 'fadeout'
+  %h2= t('d.calculations')
+  .myg-grid.myg-wrap--phone
+    - @calculations.each do |calculation|
+      = render calculation, animation: 'fadeout'
