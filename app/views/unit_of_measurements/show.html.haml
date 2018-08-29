@@ -1,38 +1,40 @@
 - meta title: @unit_of_measurement.name
 
 - replace :tools do
-    = link_to 'javascript:void(0)' do
-        %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @value.to_s } }
+  = link_to 'javascript:void(0)' do
+    %i.nc-icon.nc-ungroup.clipboard{ data: { clipboard_text: @value.to_s } }
 - replace :title do
-    %h1.sym.clipboard{ data: { clipboard_text: @value.to_s } }
-        = "%g" % ( "%E" % @value )
-        %span= @unit_of_measurement.base ? @unit_of_measurement.sym : "#{@unit_of_measurement.sym} #{'= 1 ' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym if @unit_of_measurement.quantities.any?}"
+  %h1.sym.clipboard{ data: { clipboard_text: @value.to_s } }
+    -# rubocop:disable Style/FormatStringToken
+    = format('%g', format('%E', @value))
+    -# rubocop:enable Style/FormatStringToken
+    %span= @unit_of_measurement.base ? @unit_of_measurement.sym : "#{@unit_of_measurement.sym} #{'= 1 ' + @unit_of_measurement.quantities.first.unit_of_measurements.where(base: true).first.sym if @unit_of_measurement.quantities.any?}"
 - replace :subtitle do
-    %p= @unit_of_measurement.name
+  %p= @unit_of_measurement.name
 
 - if @unit_of_measurement.si.present?
-    %p= t('unit_of_measurements.show.content', unit: link_to(@unit_of_measurement.si.name, @unit_of_measurement.si, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' })).html_safe
+  %p= t('unit_of_measurements.show.content', unit: link_to(@unit_of_measurement.si.name, @unit_of_measurement.si, class: 'hyperlink--inherit', data: { turbolinks_animate_animation: 'fadeout' })).html_safe
 
 - if @quantities.any?
-    %h2= t('d.quantities')
-    .myg-grid.myg-wrap--phone
-        - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
+  %h2= t('d.quantities')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @quantities.each do |quantity|
+      = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @constants.any?
-    %h2= t('d.constants')
-    .myg-grid.myg-wrap--phone
-        - @constants.each do |constant|
-            = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
+  %h2= t('d.constants')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @constants.each do |constant|
+      = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
 
 - if @si_prefixes.any?
-    %h2= t('unit_of_measurements.show.si_prefixes')
-    .myg-grid.myg-wrap--phone
-        - @si_prefixes.each do |unit_of_measurement|
-            = render unit_of_measurement, animation: 'fadeout'
+  %h2= t('unit_of_measurements.show.si_prefixes')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @si_prefixes.each do |unit_of_measurement|
+      = render unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
-    %h2= t('d.calculations')
-    .myg-grid.myg-wrap--phone
-        - @calculations.each do |calculation|
-            = render calculation, animation: 'fadeout'
+  %h2= t('d.calculations')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @calculations.each do |calculation|
+      = render calculation, animation: 'fadeout'

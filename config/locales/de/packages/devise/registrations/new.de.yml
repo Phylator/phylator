@@ -1,10 +1,10 @@
 de:
-    devise:
-        registrations:
-            new:
-                calculation:
-                    title: Speichere Deine Berechnung
-                no_calculation:
-                    title: Auf gehts
-                content: Willkommen zu Phylator! Gib Email und Passwort ein, um loszulegen.
-                login_instead: Anmelden
+  devise:
+    registrations:
+      new:
+        calculation:
+          title: Speichere Deine Berechnung
+        no_calculation:
+          title: Auf gehts
+        content: Willkommen zu Phylator! Gib Email und Passwort ein, um loszulegen.
+        login_instead: Anmelden

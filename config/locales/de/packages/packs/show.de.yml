@@ -1,5 +1,5 @@
 de:
-    packs:
-        show:
-            title: "%{category}/%{pack}"
-            buy: Für %{price} kaufen
+  packs:
+    show:
+      title: "%{category}/%{pack}"
+      buy: Für %{price} kaufen

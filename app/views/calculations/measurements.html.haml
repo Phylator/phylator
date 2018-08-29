@@ -1,13 +1,13 @@
-%p#measurement-index.hidden= @calculation.measurements.count
+%p.hidden#measurement-index= @calculation.measurements.count
 
 %h1.sm= t('calculations.measurements.title')
 %p= t('calculations.measurements.content')
 
 = simple_form_for @calculation, authenticity_token: true do |f|
-    = f.input :quantity_id, as: :hidden, value: params[:quantity]
-    = f.input :unit_of_measurement_id, as: :hidden, value: params[:unit]
-    - @calculation.measurements.each_with_index do |measurement, index|
-        = render 'calculations/measurements/form', measurement: measurement, index: index
-    .myg-button--container.reverse
-        = component 'myg/button', value: t('d.calculate')
-        = link_to t('calculations.measurements.add_measurement'), 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @calculation.measurements.count))}\")"
+  = f.input :quantity_id, as: :hidden, value: params[:quantity]
+  = f.input :unit_of_measurement_id, as: :hidden, value: params[:unit]
+  - @calculation.measurements.each_with_index do |measurement, index|
+    = render 'calculations/measurements/form', measurement: measurement, index: index
+  .myg-button__container.reverse
+    = component 'myg/button', value: t('d.calculate')
+    = link_to t('calculations.measurements.add_measurement'), 'javascript:void(0)', class: 'myg-button myg-button--secondary', onClick: "addMeasurement(\"#{escape_javascript(render('calculations/measurements/form', index: @calculation.measurements.count))}\")"

@@ -1,0 +1,31 @@
+body.search.index {
+  .myg-content {
+    .tools {
+      #tab.calculation ~ a.calculation {
+        color: myg-theme__color(text, darker);
+      }
+
+      #tab.quantity ~ a.quantity {
+        color: myg-theme__color(text, darker);
+      }
+
+      #tab.pack ~ a.pack {
+        color: myg-theme__color(text, darker);
+      }
+    }
+
+    .myg-grid__grid {
+      & > h2 {
+        margin-bottom: 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      & > p:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

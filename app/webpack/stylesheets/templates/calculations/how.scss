@@ -1,0 +1,45 @@
+body.calculations.how {
+  .myg-content {
+    padding: myg-spacing(2);
+
+    & > p {
+      margin-bottom: myg__px(35);
+    }
+
+    .flex.center {
+      flex-direction: column;
+    }
+
+    .myg-list > .myg-list--item {
+      a {
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+          p {
+            color: myg-theme__color(text, darker) !important;
+          }
+        }
+
+        p {
+          color: myg-theme__color(text, base);
+
+          @include myg-animate__transition(color);
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &.sm {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

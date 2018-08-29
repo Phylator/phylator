@@ -1,32 +1,67 @@
+# frozen_string_literal: true
+
 class UnitOfMeasurementsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+  before_action :set_unit_of_measurement, only: [:show]
+  before_action :set_quantities, only: [:show]
+  before_action :set_constants, only: [:show]
+  before_action :set_si_prefixes, only: [:show]
+  before_action :set_calculations, only: [:show]
 
-    before_action :authenticate_user!, only: [:show]
-    before_action :set_unit_of_measurement, only: [:show]
+  layout 'app/show', only: [:show]
 
-    def index
-        @units_of_measurement = Quantity.find(params[:quantity_id]).unit_of_measurements.with_translations(I18n.locale).order(base: :desc)
-        authorizes! :read, @units_of_measurement
-        redirect_back fallback_location: app_root_url, alert: I18n.t('unit_of_measurements.index.page_not_accessible') unless request.format == 'json'
-    end
+  # rubocop:disable Style/MultilineIfModifier
+  def index
+    @units_of_measurement = Quantity.find(params[:quantity_id])
+                                    .unit_of_measurements
+                                    .with_translations(I18n.locale)
+                                    .order(base: :desc)
+    authorizes! :read, @units_of_measurement
 
-    def show
-        turbolinks_animate 'fadeinright'
-        @quantities = @unit_of_measurement.quantities.with_translations(I18n.locale).order(:name)
-        @constants = @unit_of_measurement.constants.with_translations(I18n.locale).order(:name)
-        @si_prefixes = @unit_of_measurement.si_prefixes.with_translations(I18n.locale).order(:name)
-        @calculations = @unit_of_measurement.calculations.where(user: current_user).order('created_at desc')
-        authorize! :read, @unit_of_measurement
-        authorizes! :read, @si_prefixes
-        authorizes! :read, @calculations
-        calculator = Dentaku::Calculator.new case_sensitive: true
-        @value = calculator.evaluate '1' + @unit_of_measurement.from_base
-        render layout: 'app/show'
-    end
+    redirect_back(
+      fallback_location: app_root_url,
+      alert: I18n.t('unit_of_measurements.index.page_not_accessible')
+    ) unless request.format == 'json'
+  end
+  # rubocop:enable Style/MultilineIfModifier
 
-    private
+  def show
+    turbolinks_animate 'fadeinright'
+    calculator = Dentaku::Calculator.new case_sensitive: true
+    @value = calculator.evaluate("1#{@unit_of_measurement.from_base}")
+  end
 
-    def set_unit_of_measurement
-        @unit_of_measurement = UnitOfMeasurement.friendly.find params[:id]
-    end
+  private
 
+  def set_unit_of_measurement
+    @unit_of_measurement = UnitOfMeasurement.friendly.find(params[:id])
+    authorize! :read, @unit_of_measurement
+  end
+
+  def set_quantities
+    @quantities = @unit_of_measurement.quantities
+                                      .with_translations(I18n.locale)
+                                      .order(:name)
+    authorizes! :read, @quantities
+  end
+
+  def set_constants
+    @constants = @unit_of_measurement.constants
+                                     .with_translations(I18n.locale)
+                                     .order(:name)
+    authorizes! :read, @constants
+  end
+
+  def set_si_prefixes
+    @si_prefixes = @unit_of_measurement.si_prefixes
+                                       .with_translations(I18n.locale)
+                                       .order(:name)
+    authorizes! :read, @si_prefixes
+  end
+
+  def set_calculations
+    @calculations = @unit_of_measurement.calculations.where(user: current_user)
+                                        .order(created_at: :desc)
+    authorizes! :read, @calculations
+  end
 end

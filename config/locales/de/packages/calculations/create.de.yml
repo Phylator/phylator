@@ -1,5 +1,5 @@
 de:
-    calculations:
-        create:
-            success: Berechnung erfolgreich
-            error: Berechnung fehlgeschlagen
+  calculations:
+    create:
+      success: Berechnung erfolgreich
+      error: Berechnung fehlgeschlagen

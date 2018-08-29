@@ -1,7 +1,7 @@
 de:
-    quantities:
-        index:
-            suggestion:
-                title: Erweitere Phylators Möglichkeiten!
-                content: Kaufe ein Erweiterungs-Pack, um weitere physikalische Größen & Konstanten in Deinen Berechnungen verwenden zu können.
-                expansion_packs: Erweiterungs-Packs
+  quantities:
+    index:
+      suggestion:
+        title: Erweitere Phylators Möglichkeiten!
+        content: Kaufe ein Erweiterungs-Pack, um weitere physikalische Größen & Konstanten in Deinen Berechnungen verwenden zu können.
+        expansion_packs: Erweiterungs-Packs

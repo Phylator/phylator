@@ -1,17 +1,17 @@
 - replace :layout, 'app_show'
 
 = mozaic do
-    .myg-content
-        %header
-            .tools
-                = area :back do
-                    = link_to 'javascript:void(0)', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
-                        %i.nc-icon.nc-tail-left
-                .wrapper= area :tools
-            .head
-                = area :title
-                = area :subtitle
-        = area :section
-        %main
-            = mozaic_area :app_show do
-                = yield
+  .myg-content
+    %header
+      .tools
+        = area :back do
+          = link_to 'javascript:void(0)', onclick: 'history.back();', data: { turbolinks_animate_appear: 'fadein' } do
+            %i.nc-icon.nc-tail-left
+        .wrapper= area :tools
+      .head
+        = area :title
+        = area :subtitle
+    = area :section
+    %main
+      = mozaic_area :app_show do
+        = yield

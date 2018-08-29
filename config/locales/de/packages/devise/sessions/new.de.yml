@@ -1,7 +1,7 @@
 de:
-    devise:
-        sessions:
-            new:
-                content: Willkommen zurück! Melde Dich mit Email und Passwort an.
-                remember_me: Angemeldet bleiben?
-                forgot_password: Passwort vergessen?
+  devise:
+    sessions:
+      new:
+        content: Willkommen zurück! Melde Dich mit Email und Passwort an.
+        remember_me: Angemeldet bleiben?
+        forgot_password: Passwort vergessen?

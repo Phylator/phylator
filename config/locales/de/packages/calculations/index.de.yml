@@ -1,6 +1,6 @@
 de:
-    calculations:
-        index:
-            placeholder:
-                title: Es ist leer hier ...
-                content: Erstelle Deine erste Berechnung
+  calculations:
+    index:
+      placeholder:
+        title: Es ist leer hier ...
+        content: Erstelle Deine erste Berechnung

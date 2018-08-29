@@ -1,0 +1,47 @@
+body.welcome.setup {
+  .flickity-page-dots {
+    bottom: myg__px(35);
+
+    .dot {
+      background: transparent;
+      border: myg__px(2) solid myg-theme__color(background, darker);
+      height: myg__px(12);
+      opacity: 1;
+      width: myg__px(12);
+
+      @include myg-animate__transition;
+
+      &.is-selected {
+        background: myg-theme__color(background, darker);
+      }
+    }
+  }
+
+  .carousel-cell {
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    @include myg-grid__flex;
+
+    h1,
+    p {
+      max-width: 85%;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: myg__px(100);
+    }
+
+    .myg-button__container {
+      margin: myg__px(-75) 0 myg__px(75);
+    }
+  }
+}

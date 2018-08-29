@@ -1,4 +1,4 @@
 en:
-    calculations:
-        update:
-            success: Calculation deleted
+  calculations:
+    update:
+      success: Calculation deleted

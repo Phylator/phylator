@@ -1,0 +1,11 @@
+exclude:
+  - vendor/**/*
+
+linters:
+  LineLength:
+    enabled: false
+
+  UnnecessaryStringOutput:
+    exclude:
+      - app/views/equations/_equation.html.haml
+      - app/views/equations/show.html.haml

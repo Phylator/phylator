@@ -1,6 +1,6 @@
 de:
-    calculations:
-        measurements:
-            title: Gib Deine Messwerte ein
-            content: Trage Deine Messwerte ein und berechne das Ergebnis.
-            add_measurement: Messwert hinzufügen
+  calculations:
+    measurements:
+      title: Gib Deine Messwerte ein
+      content: Trage Deine Messwerte ein und berechne das Ergebnis.
+      add_measurement: Messwert hinzufügen

@@ -1,12 +1,12 @@
 %h1.sm= t('calculations.what.title')
 - if @categories.any?
-    %p= t('calculations.what.categories.content')
-    .flex.center
-        .myg-list.myg-list--contained
-            - @categories.each do |category|
-                .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category), data: { turbolinks_animate_type: 'app' }
-        %p.sm or
-        = link_to t('calculations.what.categories.custom_calculation'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }
+  %p= t('calculations.what.categories.content')
+  .flex.center
+    .myg-list.myg-list--contained
+      - @categories.each do |category|
+        .myg-list--item= link_to category, how_url(quantity: params[:quantity], unit: params[:unit], category: category), data: { turbolinks_animate_type: 'app' }
+    %p.sm or
+    = link_to t('calculations.what.categories.custom_calculation'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }
 - else
-    %p= t('calculations.what.no_categories.content')
-    = link_to t('d.continue'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }
+  %p= t('calculations.what.no_categories.content')
+  = link_to t('d.continue'), measurements_url(quantity: params[:quantity], unit: params[:unit]), data: { turbolinks_animate_type: 'app' }

@@ -1,0 +1,116 @@
+#app_show.myg-layout {
+  .myg-content {
+    header,
+    main {
+      padding: myg-spacing(2);
+    }
+
+    header {
+      background: myg-theme__color(background, dark);
+      flex-direction: column;
+      height: 45vh;
+      justify-content: space-between;
+      min-height: myg__px(250);
+
+      @include myg-grid__flex;
+
+      .tools {
+        align-items: center;
+        justify-content: space-between;
+
+        @include myg-grid__flex;
+
+        a {
+          color: myg-theme__color(text, base);
+          text-decoration: none !important;
+
+          @include myg-animate__transition(color);
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: myg-theme__color(text, darker);
+          }
+
+          &:not(:first-child) {
+            margin-left: myg__px(25);
+          }
+
+          &.error {
+            color: myg-theme__color(error) !important;
+          }
+        }
+
+        .wrapper {
+          align-items: center;
+
+          @include myg-grid__flex;
+        }
+      }
+
+      .head {
+        overflow-x: auto;
+
+        @include myg-theme__scrollbar;
+
+        h1 {
+          margin-bottom: 0;
+
+          &.clipboard {
+            @include myg__cursor(pointer);
+          }
+
+          &.sym {
+            font-size: myg__px(40);
+            line-height: 1.2;
+
+            @include myg-font(serif);
+
+            span {
+              font-size: myg__px(36);
+            }
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    section {
+      background: myg-theme__color(background, light);
+      padding: myg-spacing(2);
+
+      @includemyg-grid__flex---center;
+    }
+
+    main {
+      & > p:last-of-type {
+        margin-bottom: myg__px(35);
+      }
+
+      & > h2 {
+        margin-bottom: myg__px(15);
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .myg-list:not(:last-child) {
+        margin-bottom: myg__px(35);
+      }
+
+      .myg-grid__grid {
+        &:not(:last-child) {
+          margin-bottom: myg__px(35);
+        }
+
+        & > * {
+          @include myg-grid__grid-span(4);
+        }
+      }
+    }
+  }
+}

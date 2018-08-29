@@ -1,25 +1,25 @@
 - meta title: t('packs.show.title', category: @pack.category.name, pack: @pack.name)
 
 - replace :title do
-    %h1= @pack.name
+  %h1= @pack.name
 - replace :subtitle do
-    %p= @pack.category.name
+  %p= @pack.category.name
 
 - unless @pack.purchased? current_user
-    - replace :section do
-        %section
-            = link_to t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), pack_checkout_url(@pack), class: 'myg-button modalist--trigger'
+  - replace :section do
+    %section
+      = link_to t('packs.show.buy', price: number_to_currency(@pack.price, unit: '$')), pack_checkout_url(@pack), class: 'myg-button modalist--trigger'
 
 %p= @pack.description
 
 - if @quantities.any?
-    %h2= t('d.quantities')
-    .myg-grid.myg-wrap--phone
-        - @quantities.each do |quantity|
-            = render quantity, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false
+  %h2= t('d.quantities')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @quantities.each do |quantity|
+      = render quantity, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false
 
 - if @constants.any?
-    %h2= t('d.constants')
-    .myg-grid.myg-wrap--phone
-        - @constants.each do |constant|
-            = render constant, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false
+  %h2= t('d.constants')
+  .myg-grid__grid.myg-grid__wrap--phone
+    - @constants.each do |constant|
+      = render constant, animation: 'fadeout', link: @pack.purchased?(current_user), link_pack: false

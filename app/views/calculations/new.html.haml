@@ -1,6 +1,6 @@
 - unless current_user
-    = component 'suggestion', title: t('calculations.new.suggestion.title'), content: t('calculations.new.suggestion.content') do
-        = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
-        = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
-        %p.sm= link_to t('d.hide'), 'javascript:void(0)'
+  = component 'suggestion', title: t('calculations.new.suggestion.title'), content: t('calculations.new.suggestion.content') do
+    = link_to t('d.signup'), new_user_registration_url, class: 'myg-button'
+    = link_to t('d.signin'), new_user_session_url, class: 'myg-button myg-button--secondary'
+    %p.sm= link_to t('d.hide'), 'javascript:void(0)'
 = render 'form'

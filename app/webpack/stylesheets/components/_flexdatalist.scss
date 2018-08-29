@@ -1,0 +1,42 @@
+ul.flexdatalist-results {
+  background: myg-theme__color(background, light) !important;
+  border: myg__px(1) solid myg-theme__color(border) !important;
+  margin: myg__px(15) 0;
+
+  @include myg-theme__border-radius(2);
+  @include myg-theme__scrollbar;
+  @include myg-elevation(2);
+
+  li {
+    background: myg-theme__color(background, light);
+    border-color: myg-theme__color(border);
+    color: myg-theme__color(text, base);
+    font-size: myg__px(15);
+    padding: myg__px(15);
+
+    @include myg-animate__transition(background);
+
+    &:last-child {
+      border: none;
+    }
+
+    &.active {
+      background: myg-theme__color(background, lighter);
+      color: myg-theme__color(text, darker);
+    }
+
+    span {
+      text-decoration: none !important;
+
+      &.item-sym {
+        color: myg-theme__color(text, light);
+        float: left;
+        font-style: italic;
+        min-width: myg__px(30);
+        padding-right: myg__px(10);
+
+        @include myg-font(serif);
+      }
+    }
+  }
+}

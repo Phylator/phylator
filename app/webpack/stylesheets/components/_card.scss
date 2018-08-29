@@ -1,0 +1,37 @@
+.myg-card {
+  background: myg-theme__color(background, light);
+  text-decoration: none !important;
+
+  @include myg-animate__transition;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: myg-theme__color(background, dark);
+  }
+
+  h2,
+  h3 {
+    margin: 0 0 myg__px(5);
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &.sym {
+      @include myg-font(serif);
+
+      &.nb {
+        font-weight: normal;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+
+    i {
+      margin-right: myg__px(10);
+    }
+  }
+}

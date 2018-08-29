@@ -1,8 +1,8 @@
 de:
-    calculations:
-        how:
-            title: Wähle eine Gruppe von Messwerten
-            content: Hier sind Vorschläge für Messwerte, die Du eingeben könntest.
-            no_quantities: Kein Größen
-            conditions: "Bedingungen:"
-            custom_measurements: Eigene Messwerte eingeben
+  calculations:
+    how:
+      title: Wähle eine Gruppe von Messwerten
+      content: Hier sind Vorschläge für Messwerte, die Du eingeben könntest.
+      no_quantities: Kein Größen
+      conditions: "Bedingungen:"
+      custom_measurements: Eigene Messwerte eingeben

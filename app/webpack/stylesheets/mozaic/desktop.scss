@@ -1,0 +1,40 @@
+body.myg-layout {
+  #desktop {
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+
+    svg {
+      height: myg__px(70);
+    }
+
+    h2,
+    p {
+      max-width: 85%;
+      text-align: center;
+    }
+
+    h2 {
+      margin: myg__px(40) 0 myg__px(10);
+    }
+
+    p {
+      margin: 0 0 myg__px(30);
+    }
+  }
+
+  @include myg-grid__bigger-than(phone) {
+    &:not(.welcome) {
+      & > * {
+        display: none;
+      }
+
+      #desktop {
+        display: flex;
+      }
+    }
+  }
+}

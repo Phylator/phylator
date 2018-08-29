@@ -1,14 +1,14 @@
 = link_to calculation, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
-    - if calculation.result.undefined
-        %h3.color--error= t('calculations.calculation.no_solution_found')
+  - if calculation.result.undefined
+    %h3.color--error= t('calculations.calculation.no_solution_found')
+  - else
+    %h2.sym
+      = calculation.result.pretty_value
+      %span= calculation.unit_of_measurement.sym
+  %p.sm
+    - if calculation.name.nil?
+      %span= calculation.quantity.name
     - else
-        %h2.sym
-            = calculation.result.pretty_value
-            %span= calculation.unit_of_measurement.sym
-    %p.sm
-        - if calculation.name.nil?
-            %span= calculation.quantity.name
-        - else
-            %span= calculation.name
-        ·
-        %span= time_ago_in_words calculation.created_at
+      %span= calculation.name
+    ·
+    %span= time_ago_in_words calculation.created_at

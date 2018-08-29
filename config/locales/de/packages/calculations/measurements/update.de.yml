@@ -1,5 +1,5 @@
 de:
-    calculations:
-        measurements:
-            update:
-                success: Messwert aktualisiert
+  calculations:
+    measurements:
+      update:
+        success: Messwert aktualisiert

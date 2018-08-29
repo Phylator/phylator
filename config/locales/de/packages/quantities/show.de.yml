@@ -1,5 +1,5 @@
 de:
-    quantities:
-        show:
-            learn_more: Mehr erfahren
-            belongs_to: Zugehörigkeit
+  quantities:
+    show:
+      learn_more: Mehr erfahren
+      belongs_to: Zugehörigkeit

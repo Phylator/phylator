@@ -1,8 +1,8 @@
 = component 'modalist', title: t('calculations.edit.title') do
-    = component 'modalist/closer'
+  = component 'modalist/closer'
 
-= simple_form_for @calculation, method: :put do |f|
-    = component 'myg/form-field', as: :input, attribute: :name, class_name: 'calculation', floating_label: t('d.name'), input_html: { required: true, value: @calculation.name }
-    = component 'myg/form-field', as: :input, attribute: :description, class_name: 'calculation', floating_label: t('d.description'), input_html: { value: @calculation.description }
-    .flex.reverse
-        = component 'myg/button', value: t('d.update')
+= simple_form_for @calculation, method: :put do
+  = component 'myg/form-field', as: :input, attribute: :name, class_name: 'calculation', floating_label: t('d.name'), input_html: { required: true, value: @calculation.name }
+  = component 'myg/form-field', as: :input, attribute: :description, class_name: 'calculation', floating_label: t('d.description'), input_html: { value: @calculation.description }
+  .flex.reverse
+    = component 'myg/button', value: t('d.update')

@@ -1,43 +1,51 @@
+# frozen_string_literal: true
+
 class Calculation < ApplicationRecord
+  before_validation :calculate, on: :create
+  before_validation :recalculate, on: :update
 
-    before_update :re_calc
-    after_create_commit :calc
+  include Value
+  include AlgoliaSearch
+  acts_as_belonger
 
-    include AlgoliaSearch
-    acts_as_belonger
+  algoliasearch do
+    attribute :name, :description
+    add_attribute :algolia_quantity
+  end
+  def algolia_quantity
+    quantity.name
+  end
 
-    algoliasearch do
-        attribute :name, :description
-        add_attribute :algolia_quantity
-    end
-    def algolia_quantity
-        self.quantity.name
-    end
+  has_many :measurements, class_name: 'Calculation::Measurement'
+  belonger :equations, 'Equation', scope: :dependency
+  belonger :missing_equations, 'Equation', scope: :missing
+  belonger :constants, 'Constant', scope: :dependency
 
-    validates :measurements, presence: true
+  belongs_to :unit_of_measurement
+  belongs_to :quantity
+  belongs_to :user, optional: true
 
-    has_one :result, class_name: 'Calculation::Result'
-    has_many :measurements, class_name: 'Calculation::Measurement'
-    belonger :equations, 'Equation', scope: :dependency
-    belonger :missing_equations, 'Equation', scope: :missing
-    belonger :constants, 'Constant'
+  validates :measurements, presence: true
 
-    belongs_to :unit_of_measurement
-    belongs_to :quantity
-    belongs_to :user, optional: true
+  accepts_nested_attributes_for :measurements,
+                                reject_if: ->(a) { a[:value].blank? },
+                                allow_destroy: true
 
-    accepts_nested_attributes_for :measurements, reject_if: lambda { |a| a[:value].blank? }, allow_destroy: true
+  def undefined?
+    value.nil?
+  end
 
-    def calc
-        self.result.destroy if self.result
-        result = self.build_result
-        result.save!
-    end
+  def calculate!
+    update!(value: Calculate.new(calculation: calculation))
+  end
 
-    private
+  private
 
-    def re_calc
-        self.calc if self.unit_of_measurement_id_changed?
-    end
+  def calculate
+    self.value = Calculate.new(calculation: calculation)
+  end
 
+  def recalculate
+    calculate if unit_of_measurement_id_changed?
+  end
 end

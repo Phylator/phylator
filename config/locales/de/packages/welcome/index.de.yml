@@ -1,7 +1,7 @@
 de:
-    welcome:
-        index:
-            title: Ein einfacher und leistungsfähiger Taschenrechner für Physik
-            header: Ein Taschenrechner für Physik
-            subheader: einfach und leistungsfähig.
-            open_web_app: Web App öffnen
+  welcome:
+    index:
+      title: Ein einfacher und leistungsfähiger Taschenrechner für Physik
+      header: Ein Taschenrechner für Physik
+      subheader: einfach und leistungsfähig.
+      open_web_app: Web App öffnen

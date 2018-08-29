@@ -1,39 +1,41 @@
+# frozen_string_literal: true
+
 class Equation < ApplicationRecord
+  after_create :associate
 
-    after_create :associate
+  acts_as_belonger
+  acts_as_belongable
+  serialize :conditions, Array
+  translates :title, :conditions
+  translation_class.send :serialize, :conditions
 
-    acts_as_belonger
-    acts_as_belongable
-    serialize :conditions, Array
-    translates :title, :conditions
-    translation_class.send :serialize, :conditions
+  belonger :quantities, 'Quantity'
+  belonger :constants, 'Constant'
 
-    validates :equation, presence: true
+  belongs_to :quantity
+  belongable :calculations, 'Calculation', scope: :dependency
+  belongable :excluded_from_calculations, 'Calculation', scope: :exclude
 
-    belonger :quantities, 'Quantity'
-    belonger :constants, 'Constant'
+  validates :equation, presence: true
 
-    belongs_to :quantity
-    belongable :calculations, 'Calculation', scope: :dependency
-    belongable :excluded_from_calculations, 'Calculation', scope: :exclude
+  scope :free, lambda do
+    includes(quantity: :pack).where(quantities: { packs: { price: 0 } })
+  end
 
-    scope :free, -> { includes(quantity: :pack).where(quantities: { packs: { price: 0 } }) }
+  def pure_equation
+    equation.tr("'", '')
+  end
 
-    def pure_equation
-        self.equation.tr "'", ''
+  private
+
+  def associate
+    calculator = ::Dentaku::Calculator.new(case_sensitive: true)
+    symbols = calculator.dependencies(pure_equation)
+    Quantity.all.each do |quantity|
+      add_belongable!(quantity) if symbols.include?(quantity.pure_sym)
     end
-
-    private
-
-    def associate
-        calculator = ::Dentaku::Calculator.new case_sensitive: true
-        symbols = calculator.dependencies self.pure_equation
-        Quantity.all.each do |quantity|
-            self.add_belongable! quantity if symbols.include? quantity.pure_sym
-        end
-        Constant.all.each do |constant|
-            self.add_belongable! constant if symbols.include? constant.pure_sym
-        end
+    Constant.all.each do |constant|
+      add_belongable!(constant) if symbols.include?(constant.pure_sym)
     end
-
+  end
 end

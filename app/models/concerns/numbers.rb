@@ -1,25 +1,26 @@
+# frozen_string_literal: true
+
 module Numbers
+  extend ActiveSupport::Concern
 
-    extend ActiveSupport::Concern
+  include ActionView::Helpers::NumberHelper
 
-    include ActionView::Helpers::NumberHelper
+  def trim(num)
+    int = num.to_i
+    float = num.to_f
+    int == float ? int : float
+  end
 
-    def trim num
-        i, f = num.to_i, num.to_f
-        i == f ? i : f
+  def delimiter(num)
+    number_with_delimiter num
+  end
+
+  def decimals(num)
+    decimal_places = 0
+    while num != num.to_i
+      decimal_places += 1
+      num *= 10
     end
-
-    def delimiter num
-        number_with_delimiter num
-    end
-
-    def decimals a
-        num = 0
-        while a != a.to_i
-            num += 1
-            a *= 10
-        end
-        num
-    end
-
+    decimal_places
+  end
 end

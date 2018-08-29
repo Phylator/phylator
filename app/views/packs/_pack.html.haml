@@ -1,15 +1,15 @@
 = link_to pack, class: 'myg-card', data: { turbolinks_animate_animation: local_assigns[:animation] } do
-    %h3= pack.name
-    %p.flex.center--c
-        - if pack.purchased? current_user
-            %i.nc-icon.nc-check-circle-08
-            %span
-                = t 'packs.pack.added'
-                ⋅
-                = pack.price == 0 ? t('d.free') : number_to_currency(pack.price, unit: '$')
-        - else
-            %i.nc-icon.nc-e-circle
-            %span
-                = t 'packs.pack.not_added'
-                ⋅
-                = pack.price == 0 ? t('d.free') : number_to_currency(pack.price, unit: '$')
+  %h3= pack.name
+  %p.flex.center--c
+    - if pack.purchased? current_user
+      %i.nc-icon.nc-check-circle-08
+      %span
+        = t 'packs.pack.added'
+        ⋅
+        = pack.price.zero? ? t('d.free') : number_to_currency(pack.price, unit: '$')
+    - else
+      %i.nc-icon.nc-e-circle
+      %span
+        = t 'packs.pack.not_added'
+        ⋅
+        = pack.price.zero? ? t('d.free') : number_to_currency(pack.price, unit: '$')

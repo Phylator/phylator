@@ -1,10 +1,10 @@
 - meta title: t('d.packs')
 
 .title
-    %h1.sm= t('d.packs')
-    = link_to search_url(tab: 'pack') do
-        %i.nc-icon.nc-zoom-2
+  %h1.sm= t('d.packs')
+  = link_to search_url(tab: 'pack') do
+    %i.nc-icon.nc-zoom-2
 
-.myg-grid.myg-wrap--phone
-    - @categories.each do |category|
-        = render category
+.myg-grid__grid.myg-grid__wrap--phone
+  - @categories.each do |category|
+    = render category

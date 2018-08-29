@@ -1,7 +1,7 @@
 en:
-    quantities:
-        index:
-            suggestion:
-                title: Expand Phylator's capabilities!
-                content: Purchase an expansion pack to use more phsical quantities and constants in your calculations.
-                expansion_packs: Expansion packs
+  quantities:
+    index:
+      suggestion:
+        title: Expand Phylator's capabilities!
+        content: Purchase an expansion pack to use more phsical quantities and constants in your calculations.
+        expansion_packs: Expansion packs

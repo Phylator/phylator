@@ -1,0 +1,13 @@
+body.calculations.what {
+  .myg-content {
+    padding: myg-spacing(2);
+
+    & > p {
+      margin-bottom: myg__px(35);
+    }
+
+    .flex.center {
+      flex-direction: column;
+    }
+  }
+}

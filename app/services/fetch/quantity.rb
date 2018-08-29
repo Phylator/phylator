@@ -1,37 +1,40 @@
+# frozen_string_literal: true
+
 module Fetch
-  class Quantity
+  class Quantity < Base
     def perform
-      quantities_data = fetch_quantities_data
-      quantities_data.each do |quantity_data|
-        locals = quantity_data.delete 'locals'
-        quantity = find_or_create_quantity(quantity_data)
+      super do |dataset|
+        locals = dataset.delete('locals')
+        quantity = find_or_create(dataset)
         update_translations(quantity, locals)
       end
     end
 
     private
 
-    def fetch_quantities_data
-      JSON.parse(HTTParty.get('https://raw.githubusercontent.com/Phylator/data/master/quantities.json').body)
-    end
+    def find_or_create(dataset)
+      category = Category.find_by(name: dataset.delete('category'))
+      dataset['pack'] =
+        Pack.find_by(name: dataset.delete('pack'), category: category)
+      dataset['parent_quantity'] =
+        Quantity.find_by(name: dataset.delete('parent_quantity'))
 
-    def find_or_create_quantity(quantity_data)
-      category = Category.find_by name: quantity_data.delete('category')
-      quantity_data['pack'] = Pack.find_by name: quantity_data.delete('pack'), category: category
-      quantity_data['parent_quantity'] = Quantity.find_by name: quantity_data.delete('parent_quantity')
-      quantity = Quantity.find_by name: quantity_data['name']
-      if quantity.nil?
-        quantity = Quantity.create! quantity_data
+      if (quantity = Quantity.find_by(name: dataset['name']))
+        quantity.update!(dataset)
       else
-        quantity.update! quantity_data
+        Quantity.create!(dataset)
       end
     end
 
     def update_translations(quantity, locals)
       locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
-        quantity.update_attributes translation
+        quantity.update!(translation)
       end
+    end
+
+    def url
+      'https://raw.githubusercontent.com/Phylator/data/master/quantities.json'
     end
   end
 end

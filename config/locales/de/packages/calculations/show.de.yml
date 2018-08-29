@@ -1,19 +1,19 @@
 de:
-    calculations:
-        show:
-            title: Berechnung von %{name}
-            delete:
-                confirm: Das Löschen dieser Berechnung ist irreversibel. Bist Du Dir sicher?
-            no_solution_found: Keine Lösung gefunden
-            suggestion:
-                title: Speichere diese Berechnung
-                content: Nach Deiner Anmeldung hast du Zugriff auf all deine Berechnungen und die große Datanbank von physikalischen Größen & Konstanten.
-            edit: Name & Beschreibung bearbeiten
-            missing_dependencies:
-                title: Fehlende Komponenten
-                content: Indem Du eine der dargelegten Gruppen von Größen zu Deinen Messwerten hinzufügst, kann Phylator ein Ergebnis berechnen.
-                no_quantities: Kein Größen
-                conditions: "Bedingungen:"
-            unit_conversion:
-                title: Maßeinheit ändern
-                placeholder: Wähle eine andere Maßeinheit
+  calculations:
+    show:
+      title: Berechnung von %{name}
+      delete:
+        confirm: Das Löschen dieser Berechnung ist irreversibel. Bist Du Dir sicher?
+      no_solution_found: Keine Lösung gefunden
+      suggestion:
+        title: Speichere diese Berechnung
+        content: Nach Deiner Anmeldung hast du Zugriff auf all deine Berechnungen und die große Datanbank von physikalischen Größen & Konstanten.
+      edit: Name & Beschreibung bearbeiten
+      missing_dependencies:
+        title: Fehlende Komponenten
+        content: Indem Du eine der dargelegten Gruppen von Größen zu Deinen Messwerten hinzufügst, kann Phylator ein Ergebnis berechnen.
+        no_quantities: Kein Größen
+        conditions: "Bedingungen:"
+      unit_conversion:
+        title: Maßeinheit ändern
+        placeholder: Wähle eine andere Maßeinheit

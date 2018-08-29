@@ -1,13 +1,13 @@
 en:
-    welcome:
-        setup:
-            slide1:
-                title: Specify what to calculate
-                content: Start by selecting what physical quantity in which unit of measurement you want to get.
-            slide2:
-                title: Enter your measurements
-                content: Then enter all your measurements. Add a margin of error if your result is not accurate.
-            slide3:
-                title: Keep your calculations close
-                content: Create or sign into your Phylator account to save your calculations and get more benefits.
-                get_started: Get started
+  welcome:
+    setup:
+      slide1:
+        title: Specify what to calculate
+        content: Start by selecting what physical quantity in which unit of measurement you want to get.
+      slide2:
+        title: Enter your measurements
+        content: Then enter all your measurements. Add a margin of error if your result is not accurate.
+      slide3:
+        title: Keep your calculations close
+        content: Create or sign into your Phylator account to save your calculations and get more benefits.
+        get_started: Get started

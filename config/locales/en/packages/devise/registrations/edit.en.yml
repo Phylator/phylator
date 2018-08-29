@@ -1,15 +1,15 @@
 en:
-    devise:
-        registrations:
-            edit:
-                list:
-                    change_language: Change language
-                    development:
-                        title: Development
-                        content: Something is missing? Phylator is Open Source, so that you can request changes & additions at any time or implement them yourself.
-                form:
-                    new_password: New password (optional)
-                    current_password: Current password
-                    delete:
-                        link: Delete account
-                        confirm: You'll permanently loose all your purchases & calculations. Are you sure?
+  devise:
+    registrations:
+      edit:
+        list:
+          change_language: Change language
+          development:
+            title: Development
+            content: Something is missing? Phylator is Open Source, so that you can request changes & additions at any time or implement them yourself.
+        form:
+          new_password: New password (optional)
+          current_password: Current password
+          delete:
+            link: Delete account
+            confirm: You'll permanently loose all your purchases & calculations. Are you sure?

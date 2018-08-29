@@ -1,0 +1,55 @@
+window.stripePublishableKey = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :stripe, :publishable_key) %>';
+window.algoliasearchApplicationId = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :algoliasearch, :application_id) %>';
+window.algoliasearchSearchKey = '<%= Rails.application.credentials.dig((Rails.env.production? ? :production : :development), :algoliasearch, :search_key) %>';
+
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+
+import Rails from 'rails-ujs';
+window.Rails = Rails;
+Rails.start();
+
+import Turbolinks from 'turbolinks';
+Turbolinks.start();
+
+import 'turbolinks-animate';
+document.addEventListener('turbolinks:load', () => {
+  TurbolinksAnimate.init({element: document.querySelector('body.turbolinks-animate')});
+});
+
+import ProgressiveWebApp from 'pwa-rails';
+document.addEventListener('turbolinks:load', () => {
+  const progressiveWebApp = new ProgressiveWebApp();
+});
+
+document.addEventListener('turbolinks:load', () => {
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+});
+
+import Clipboard from 'clipboard';
+document.addEventListener('turbolinks:load', () => {
+  const clipboard = new Clipboard('.clipboard');
+  clipboard.on('success', (e) => {
+    e.clearSelection();
+    mygToast.success({message: document.querySelector('#clipboard-success').innerHTML});
+  });
+  clipboard.on('error', (e) => {
+    e.clearSelection();
+    mygToast.error({message: document.querySelector('#clipboard-error').innerHTML});
+  });
+});
+
+import ahoy from 'ahoy.js';
+
+import './../javascripts/myg/index';
+
+import './../javascripts/mozaic/suggestion';
+
+import './../javascripts/templates/calculations/show';
+import './../javascripts/templates/calculations/new';
+import './../javascripts/templates/calculations/measurements';
+import './../javascripts/templates/search/index';
+import './../javascripts/templates/packs/checkout';
+
+
+import './../stylesheets/index';

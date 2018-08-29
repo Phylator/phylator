@@ -1,15 +1,15 @@
 - meta title: t('d.calculations')
 
 .title
-    %h1.sm= t('d.calculations')
-    = link_to search_url do
-        %i.nc-icon.nc-zoom-2
+  %h1.sm= t('d.calculations')
+  = link_to search_url do
+    %i.nc-icon.nc-zoom-2
 
-.myg-grid.myg-wrap--phone
-    - if @calculations.any?
-        - @calculations.each do |calculation|
-            = render calculation
-    - else
-        = link_to app_root_url, class: 'myg-card', data: { turbolinks_animate_type: 'app' } do
-            %h3= t('calculations.index.placeholder.title')
-            %p.sm= t('calculations.index.placeholder.content')
+.myg-grid__grid.myg-grid__wrap--phone
+  - if @calculations.any?
+    - @calculations.each do |calculation|
+      = render calculation
+  - else
+    = link_to app_root_url, class: 'myg-card', data: { turbolinks_animate_type: 'app' } do
+      %h3= t('calculations.index.placeholder.title')
+      %p.sm= t('calculations.index.placeholder.content')

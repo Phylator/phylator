@@ -7,7 +7,6 @@ import './checkbox';
 // import './dropdown';
 // import './footer';
 import './form-field';
-import './input';
 // import './menu';
 import './modal';
 // import './progress';

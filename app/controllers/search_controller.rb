@@ -1,41 +1,37 @@
+# frozen_string_literal: true
+
 class SearchController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_tab
+  before_action :set_results
 
-    before_action :authenticate_user!
+  layout 'app/show'
 
-    layout 'app/show'
+  def index
+    turbolinks_animate 'fadeinright'
 
-    def index
-        turbolinks_animate 'fadeinright'
-        @tab = params[:tab] || 'calculation'
-        if params.has_key?(:content) && params[:content].is_a?(Array)
-            @results = []
-            case @tab
-            when 'calculation'
-                params[:content].each do |id|
-                    calculation = Calculation.find(id)
-                    @results << calculation if can?(:read, calculation)
-                end
-            when 'quantity'
-                params[:content].each do |id|
-                    quantity = Quantity.find(id)
-                    @results << quantity if can?(:read, quantity)
-                end
-            when 'constant'
-                params[:content].each do |id|
-                    constant = Constant.find(id)
-                    @results << constant if can?(:read, constant)
-                end
-            when 'pack'
-                params[:content].each do |id|
-                    pack = Pack.find(id)
-                    @results << pack if can?(:read, pack)
-                end
-            end
-        end
-        respond_to do |format|
-            format.html
-            format.js
-        end
+    respond_to do |format|
+      format.html
+      format.js
     end
+  end
 
+  private
+
+  def set_tab
+    @tab = params[:tab] || 'calculation'
+  end
+
+  def set_results
+    return unless params[:content]&.is_a?(Array)
+
+    params[:content].map do |id|
+      current_class.find(id)
+    end.compact
+    @results = params[:content].select { |record| can?(:read, record) }
+  end
+
+  def current_class
+    @tab.camelize.constantize
+  end
 end

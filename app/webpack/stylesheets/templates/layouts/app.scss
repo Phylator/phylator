@@ -1,0 +1,89 @@
+#app.myg-layout {
+  .myg-content {
+    h1:first-of-type,
+    .title h1 {
+      margin-top: 0;
+    }
+
+    .title {
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: myg__px(20);
+
+      @include myg-grid__flex;
+
+      h1 {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: myg-theme__color(text, base);
+
+        @include myg-animate__transition(color);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: myg-theme__color(text, darker);
+        }
+      }
+    }
+
+    .myg-grid__grid {
+      &:not(:last-child) {
+        margin-bottom: myg__px(35);
+      }
+
+      & > * {
+        @include myg-grid__grid-span(4);
+      }
+    }
+  }
+
+  .myg-toolbar {
+    .mdc-toolbar__row {
+      align-items: center;
+      justify-content: space-evenly;
+
+      @include myg-grid__flex;
+
+      a {
+        color: myg-theme__color(text, base);
+        text-decoration: none !important;
+
+        @include myg-grid__flex;
+        @include myg-animate__transition(color);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: myg-theme__color(text, darker);
+        }
+
+        &:nth-child(3) {
+          color: myg-theme__color(text, darker);
+
+          i {
+            font-size: myg__px(20);
+          }
+        }
+      }
+    }
+  }
+}
+
+body.calculations.index .mdc-toolbar__row a:first-child {
+  color: myg-theme__color(text, darker) !important;
+}
+
+body.quantities .mdc-toolbar__row a:nth-child(2) {
+  color: myg-theme__color(text, darker) !important;
+}
+
+body.categories .mdc-toolbar__row a:nth-child(4) {
+  color: myg-theme__color(text, darker) !important;
+}
+
+body.users .mdc-toolbar__row a:last-child {
+  color: myg-theme__color(text, darker) !important;
+}

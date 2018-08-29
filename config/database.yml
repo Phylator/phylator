@@ -1,17 +1,24 @@
-development:
-    adapter: mysql2
-    encoding: utf8
-    pool: 5
-    database: phylator_development
-    username: root
-    password: 0402Jonas
-    port: 3306
+default: &default
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
+development:
+  <<: *default
+  adapter: postgresql
+  database: phylator_development
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
-    adapter: mysql2
-    encoding: utf8
-    pool: 5
-    database: phylator_test
-    username: root
-    password: 0402Jonas
-    port: 3306
+  <<: *default
+  adapter: postgresql
+  database: phylator_test
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+
+production:
+  <<: *default
