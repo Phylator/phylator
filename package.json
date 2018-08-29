@@ -10,7 +10,7 @@
     "jquery": "^3.3.1",
     "myg": "^0.13.6",
     "pwa-rails": "^4.0.5",
-    "rails-erb-loader": "^5.4.2",
+    "rails-erb-loader": "^5.5.0",
     "rails-ujs": "^5.2.1",
     "sass-loader": "^7.1.0",
     "turbolinks": "^5.2.0",
