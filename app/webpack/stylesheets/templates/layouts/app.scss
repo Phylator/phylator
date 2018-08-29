@@ -8,34 +8,34 @@
     .title {
       align-items: center;
       justify-content: space-between;
-      margin-bottom: px(20);
+      margin-bottom: myg__px(20);
 
-      @include flex;
+      @include myg-grid__flex;
 
       h1 {
         margin-bottom: 0;
       }
 
       a {
-        color: color(text, base);
+        color: myg-theme__color(text, base);
 
-        @include transition(color);
+        @include myg-animate__transition(color);
 
         &:hover,
         &:focus,
         &:active {
-          color: color(text, darker);
+          color: myg-theme__color(text, darker);
         }
       }
     }
 
-    .myg-grid {
+    .myg-grid__grid {
       &:not(:last-child) {
-        margin-bottom: px(35);
+        margin-bottom: myg__px(35);
       }
 
       & > * {
-        @include myg-grid-span(4);
+        @include myg-grid__grid-span(4);
       }
     }
   }
@@ -45,26 +45,26 @@
       align-items: center;
       justify-content: space-evenly;
 
-      @include flex;
+      @include myg-grid__flex;
 
       a {
-        color: color(text, base);
+        color: myg-theme__color(text, base);
         text-decoration: none !important;
 
-        @include flex;
-        @include transition(color);
+        @include myg-grid__flex;
+        @include myg-animate__transition(color);
 
         &:hover,
         &:focus,
         &:active {
-          color: color(text, darker);
+          color: myg-theme__color(text, darker);
         }
 
         &:nth-child(3) {
-          color: color(text, darker);
+          color: myg-theme__color(text, darker);
 
           i {
-            font-size: px(20);
+            font-size: myg__px(20);
           }
         }
       }
@@ -73,17 +73,17 @@
 }
 
 body.calculations.index .mdc-toolbar__row a:first-child {
-  color: color(text, darker) !important;
+  color: myg-theme__color(text, darker) !important;
 }
 
 body.quantities .mdc-toolbar__row a:nth-child(2) {
-  color: color(text, darker) !important;
+  color: myg-theme__color(text, darker) !important;
 }
 
 body.categories .mdc-toolbar__row a:nth-child(4) {
-  color: color(text, darker) !important;
+  color: myg-theme__color(text, darker) !important;
 }
 
 body.users .mdc-toolbar__row a:last-child {
-  color: color(text, darker) !important;
+  color: myg-theme__color(text, darker) !important;
 }

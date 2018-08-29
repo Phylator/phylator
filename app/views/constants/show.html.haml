@@ -17,16 +17,16 @@
 %p= link_to t('constants.show.learn_more'), @constant.wikipedia, target: '_blank', class: 'hyperlink--inherit' if @constant.wikipedia
 
 %h2= t('d.pack')
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   = render @constant.pack, animation: 'fadeout'
 
 - if @constant.unit_of_measurement
   %h2= t('d.unit')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     = render @constant.unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
   %h2= t('d.calculations')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @calculations.each do |calculation|
       = render calculation, animation: 'fadeout'

@@ -1,11 +1,11 @@
 body.welcome.index {
   .myg-content {
-    @include smaller-than(phone) {
+    @include myg-grid__smaller-than(phone) {
       align-items: center;
       flex-direction: column;
       justify-content: center;
 
-      @include flex;
+      @include myg-grid__flex;
     }
 
     section#head {
@@ -13,46 +13,46 @@ body.welcome.index {
       justify-content: space-evenly;
       margin: 0 auto;
       max-width: 85%;
-      padding: px(50) 0;
-      width: px(1500);
+      padding: myg__px(50) 0;
+      width: myg__px(1500);
 
-      @include flex;
+      @include myg-grid__flex;
 
       .content-wrapper {
-        margin-right: px(50);
+        margin-right: myg__px(50);
 
-        @include smaller-than(phone) {
+        @include myg-grid__smaller-than(phone) {
           align-items: center;
           flex-direction: column;
           margin-right: 0;
           text-align: center;
 
-          @include flex;
+          @include myg-grid__flex;
         }
 
         h1 {
-          margin: 0 0 px(10);
+          margin: 0 0 myg__px(10);
         }
 
         h2 {
-          color: color(text, light);
-          margin: 0 0 px(40);
+          color: myg-theme__color(text, light);
+          margin: 0 0 myg__px(40);
         }
 
-        .myg-button--container {
-          margin-bottom: px(25);
+        .myg-button__container {
+          margin-bottom: myg__px(25);
         }
       }
 
       .image-wrapper {
-        @include smaller-than(phone) {
+        @include myg-grid__smaller-than(phone) {
           display: none;
         }
 
         img {
           height: 75vh;
-          max-height: px(500);
-          min-height: px(350);
+          max-height: myg__px(500);
+          min-height: myg__px(350);
         }
       }
     }

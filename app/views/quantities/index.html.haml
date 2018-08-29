@@ -11,7 +11,7 @@
     = link_to search_url(tab: 'quantity') do
       %i.nc-icon.nc-zoom-2
 
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @quantities.each do |quantity|
       = render quantity
 
@@ -20,6 +20,6 @@
     = link_to search_url(tab: 'quantity') do
       %i.nc-icon.nc-zoom-2
 
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @constants.each do |constant|
       = render constant

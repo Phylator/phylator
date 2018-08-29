@@ -1,15 +1,15 @@
 #application.myg-layout {
   .myg-toolbar {
-    background: color(background, base);
+    background: myg-theme__color(background, base);
     border: none;
-    padding: 0 px(20) 0 px(6);
+    padding: 0 myg__px(20) 0 myg__px(6);
 
-    @include smaller-than(phone) {
-      padding: 0 px(20);
+    @include myg-grid__smaller-than(phone) {
+      padding: 0 myg__px(20);
 
       .mdc-toolbar__section--align-start {
         justify-content: center;
-        margin-top: px(35);
+        margin-top: myg__px(35);
       }
 
       .mdc-toolbar__section--align-end {
@@ -18,24 +18,24 @@
     }
 
     svg {
-      height: px(50);
+      height: myg__px(50);
     }
 
     a {
-      color: color(text, base);
-      font-size: px(15);
+      color: myg-theme__color(text, base);
+      font-size: myg__px(15);
       text-decoration: none !important;
 
-      @include transition(color);
+      @include myg-animate__transition(color);
 
       &:not(:first-child) {
-        margin-left: px(20);
+        margin-left: myg__px(20);
       }
 
       &:hover,
       &:focus,
       &:active {
-        color: color(accent, base);
+        color: myg-theme__color(accent, base);
       }
     }
   }

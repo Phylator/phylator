@@ -5,7 +5,7 @@ body.pwa.offline {
 
   .myg-content {
     align-items: center;
-    background: color(background, base);
+    background: myg-theme__color(background, base);
     flex-direction: column;
     height: 100vh;
     justify-content: center;
@@ -14,10 +14,10 @@ body.pwa.offline {
     top: 0;
     width: 100%;
 
-    @include flex;
+    @include myg-grid__flex;
 
     svg {
-      height: px(70);
+      height: myg__px(70);
     }
 
     h2,
@@ -27,7 +27,7 @@ body.pwa.offline {
     }
 
     h2 {
-      margin: px(40) 0 px(10);
+      margin: myg__px(40) 0 myg__px(10);
     }
 
     p {

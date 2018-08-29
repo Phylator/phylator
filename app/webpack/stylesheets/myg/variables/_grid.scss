@@ -1,4 +1,4 @@
-$myg-grid--breakpoints: (
+$myg-grid__breakpoints: (
   phone: 512px,
   tablet: 768px,
   laptop: 1024px,
@@ -6,7 +6,7 @@ $myg-grid--breakpoints: (
   desktop: 1920px
 );
 
-$myg-grid--columns: (
+$myg-grid__grid--default-columns: (
   phone: 4,
   tablet: 4,
   laptop: 8,

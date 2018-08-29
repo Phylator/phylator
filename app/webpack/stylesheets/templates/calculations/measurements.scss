@@ -1,15 +1,15 @@
 body.calculations.measurements:not(.show) {
   .myg-content {
-    padding: myg-spacing(md);
+    padding: myg-spacing(2);
 
     form {
       .measurement {
-        border-bottom: px(1) solid color(border);
-        padding: px(25) 0;
+        border-bottom: myg__px(1) solid myg-theme__color(border);
+        padding: myg__px(25) 0;
 
         .myg-form-field--inline-container {
           .myg-form-field {
-            margin-top: px(20);
+            margin-top: myg__px(20);
 
             &:first-child {
               flex: 1;
@@ -22,9 +22,9 @@ body.calculations.measurements:not(.show) {
         }
       }
 
-      .myg-button--container.reverse {
+      .myg-button__container.reverse {
         flex-direction: row-reverse;
-        margin-top: px(15);
+        margin-top: myg__px(15);
       }
     }
   }

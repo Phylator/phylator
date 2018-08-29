@@ -17,5 +17,5 @@
     %span= time_ago_in_words @measurement.created_at
 
 %h2 Unit
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   = render 'unit_of_measurements/unit_of_measurement', unit_of_measurement: @measurement.unit_of_measurement, animation: 'fadeout'

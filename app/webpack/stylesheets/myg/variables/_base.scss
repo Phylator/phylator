@@ -3,7 +3,7 @@ $myg-base: (
   pwa-display-mode: standalone
 );
 
-$myg--cursors: (
+$myg__cursor: (
   default: default,
   text: text,
   pointer: pointer,
@@ -11,5 +11,6 @@ $myg--cursors: (
   move: move,
   grab: grab,
   progress: progress,
-  wait: wait
+  wait: wait,
+  not-allowed: not-allowed
 );

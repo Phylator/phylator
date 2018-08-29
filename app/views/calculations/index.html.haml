@@ -5,7 +5,7 @@
   = link_to search_url do
     %i.nc-icon.nc-zoom-2
 
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   - if @calculations.any?
     - @calculations.each do |calculation|
       = render calculation

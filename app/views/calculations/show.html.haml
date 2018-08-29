@@ -63,13 +63,13 @@
     = component 'myg/form-field', as: :input, attribute: :unit_of_measurement_id, class_name: 'calculation', input_html: { required: true, placeholder: t('calculations.show.unit_conversion.placeholder'), class: 'flexdatalist', data: { data: "/app/quantities/#{@calculation.quantity.id}/units_of_measurement.json?locale=#{I18n.locale}", search_in: ['sym', 'name'], text_property: 'sym', visible_properties: ['sym', 'name'], selection_required: 'true', value_property: 'id', min_length: '0' } }
 
 %h2= t('d.measurements')
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   - @measurements.each do |measurement|
     = render 'calculations/measurements/measurement', measurement: measurement, animation: 'fadeout'
 
 - if @constants.any?
   %h2= t('d.constants')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @constants.each do |constant|
       = render constant, animation: 'fadeout'
 
@@ -81,10 +81,10 @@
 
 - if @equations.any?
   %h2= t('d.equations')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @equations.each do |equation|
       = render equation, animation: 'fadeout'
 
 %h2= t('d.unit')
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   = render @calculation.unit_of_measurement, animation: 'fadeout'

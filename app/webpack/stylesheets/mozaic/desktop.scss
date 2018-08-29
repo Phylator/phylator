@@ -8,7 +8,7 @@ body.myg-layout {
     width: 100%;
 
     svg {
-      height: px(70);
+      height: myg__px(70);
     }
 
     h2,
@@ -18,15 +18,15 @@ body.myg-layout {
     }
 
     h2 {
-      margin: px(40) 0 px(10);
+      margin: myg__px(40) 0 myg__px(10);
     }
 
     p {
-      margin: 0 0 px(30);
+      margin: 0 0 myg__px(30);
     }
   }
 
-  @include bigger-than(phone) {
+  @include myg-grid__bigger-than(phone) {
     &:not(.welcome) {
       & > * {
         display: none;

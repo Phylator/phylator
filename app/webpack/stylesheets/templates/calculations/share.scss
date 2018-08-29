@@ -9,15 +9,15 @@
     }
 
     a {
-      color: color(text, base);
+      color: myg-theme__color(text, base);
       text-decoration: none !important;
 
-      @include transition;
+      @include myg-animate__transition;
 
       &:hover,
       &:focus,
       &:active {
-        color: color(accent, base);
+        color: myg-theme__color(accent, base);
       }
     }
   }

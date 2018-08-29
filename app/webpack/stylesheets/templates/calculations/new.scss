@@ -1,18 +1,18 @@
 body.calculations.new {
   form {
-    padding: myg-spacing(md);
+    padding: myg-spacing(2);
 
     .myg-form-field {
       &:not(:first-of-type) {
-        margin-top: px(25);
+        margin-top: myg__px(25);
       }
 
       label {
-        color: color(text, base);
-        font-size: px(16);
+        color: myg-theme__color(text, base);
+        font-size: myg__px(16);
         font-weight: normal;
         line-height: 1.75;
-        margin-bottom: px(15);
+        margin-bottom: myg__px(15);
       }
 
       input {
@@ -21,7 +21,7 @@ body.calculations.new {
     }
 
     .flex.reverse {
-      margin-top: px(35);
+      margin-top: myg__px(35);
     }
   }
 }

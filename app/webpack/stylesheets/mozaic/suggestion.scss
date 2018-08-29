@@ -1,27 +1,27 @@
 #suggestion {
-  background: color(background, light);
+  background: myg-theme__color(background, light);
   margin-top: 0;
-  padding: myg-spacing(md);
+  padding: myg-spacing(2);
 
-  @include transition(margin-top);
+  @include myg-animate__transition(margin-top);
 
   h3 {
     margin-top: 0;
   }
 
-  .myg-button--container {
-    margin-top: px(15);
+  .myg-button__container {
+    margin-top: myg__px(15);
 
     p > a {
-      color: color(text, base);
+      color: myg-theme__color(text, base);
       text-decoration: none !important;
 
-      @include transition(color);
+      @include myg-animate__transition(color);
 
       &:hover,
       &:focus,
       &:active {
-        color: color(accent, base);
+        color: myg-theme__color(accent, base);
       }
     }
   }

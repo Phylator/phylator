@@ -1,41 +1,41 @@
 ul.flexdatalist-results {
-  background: color(background, light) !important;
-  border: px(1) solid color(border) !important;
-  margin: px(15) 0;
+  background: myg-theme__color(background, light) !important;
+  border: myg__px(1) solid myg-theme__color(border) !important;
+  margin: myg__px(15) 0;
 
-  @include border-radius(sm);
-  @include scrollbar;
-  @include myg-elevation(sm);
+  @include myg-theme__border-radius(2);
+  @include myg-theme__scrollbar;
+  @include myg-elevation(2);
 
   li {
-    background: color(background, light);
-    border-color: color(border);
-    color: color(text, base);
-    font-size: px(15);
-    padding: px(15);
+    background: myg-theme__color(background, light);
+    border-color: myg-theme__color(border);
+    color: myg-theme__color(text, base);
+    font-size: myg__px(15);
+    padding: myg__px(15);
 
-    @include transition(background);
+    @include myg-animate__transition(background);
 
     &:last-child {
       border: none;
     }
 
     &.active {
-      background: color(background, lighter);
-      color: color(text, darker);
+      background: myg-theme__color(background, lighter);
+      color: myg-theme__color(text, darker);
     }
 
     span {
       text-decoration: none !important;
 
       &.item-sym {
-        color: color(text, light);
+        color: myg-theme__color(text, light);
         float: left;
         font-style: italic;
-        min-width: px(30);
-        padding-right: px(10);
+        min-width: myg__px(30);
+        padding-right: myg__px(10);
 
-        @include font(serif);
+        @include myg-font(serif);
       }
     }
   }

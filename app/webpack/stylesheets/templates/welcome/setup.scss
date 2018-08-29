@@ -1,18 +1,18 @@
 body.welcome.setup {
   .flickity-page-dots {
-    bottom: px(35);
+    bottom: myg__px(35);
 
     .dot {
       background: transparent;
-      border: px(2) solid color(background, darker);
-      height: px(12);
+      border: myg__px(2) solid myg-theme__color(background, darker);
+      height: myg__px(12);
       opacity: 1;
-      width: px(12);
+      width: myg__px(12);
 
-      @include transition;
+      @include myg-animate__transition;
 
       &.is-selected {
-        background: color(background, darker);
+        background: myg-theme__color(background, darker);
       }
     }
   }
@@ -25,7 +25,7 @@ body.welcome.setup {
     text-align: center;
     width: 100%;
 
-    @include flex;
+    @include myg-grid__flex;
 
     h1,
     p {
@@ -37,11 +37,11 @@ body.welcome.setup {
     }
 
     p {
-      margin-bottom: px(100);
+      margin-bottom: myg__px(100);
     }
 
-    .myg-button--container {
-      margin: px(-75) 0 px(75);
+    .myg-button__container {
+      margin: myg__px(-75) 0 myg__px(75);
     }
   }
 }

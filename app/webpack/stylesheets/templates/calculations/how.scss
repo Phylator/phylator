@@ -1,9 +1,9 @@
 body.calculations.how {
   .myg-content {
-    padding: myg-spacing(md);
+    padding: myg-spacing(2);
 
     & > p {
-      margin-bottom: px(35);
+      margin-bottom: myg__px(35);
     }
 
     .flex.center {
@@ -18,14 +18,14 @@ body.calculations.how {
         &:focus,
         &:active {
           p {
-            color: color(text, darker) !important;
+            color: myg-theme__color(text, darker) !important;
           }
         }
 
         p {
-          color: color(text, base);
+          color: myg-theme__color(text, base);
 
-          @include transition(color);
+          @include myg-animate__transition(color);
 
           &:first-child {
             margin-top: 0;

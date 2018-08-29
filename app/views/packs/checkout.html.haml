@@ -5,5 +5,5 @@
   %input{ type: 'hidden', name: 'stripeToken' }
   #card-element
   #card-errors{ role: 'alert' }
-  .myg-button--container.flex.reverse
+  .myg-button__container.flex.reverse
     = component 'myg/button', value: t('packs.checkout.buy', price: number_to_currency(@pack.price, unit: '$'))

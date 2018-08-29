@@ -8,9 +8,9 @@
   .carousel-cell
     %h1.sm= t('welcome.setup.slide3.title')
     %p.lg= t('welcome.setup.slide3.content')
-    .myg-button--container
+    .myg-button__container
       - if current_user
         = link_to t('welcome.setup.slide3.get_started'), app_root_url, class: 'myg-button'
       - else
         = link_to t('d.signin'), new_user_session_url, class: 'myg-button'
-        = link_to t('welcome.setup.slide3.get_started'), app_root_url, class: 'myg-button myg-button--secondary'
+        = link_to t('welcome.setup.slide3.get_started'), app_root_url, class: 'myg-button--secondary'

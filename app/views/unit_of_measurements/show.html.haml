@@ -17,24 +17,24 @@
 
 - if @quantities.any?
   %h2= t('d.quantities')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @quantities.each do |quantity|
       = render quantity, animation: 'fadeout', link: quantity.pack.purchased?(current_user)
 
 - if @constants.any?
   %h2= t('d.constants')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @constants.each do |constant|
       = render constant, animation: 'fadeout', link: constant.pack.purchased?(current_user)
 
 - if @si_prefixes.any?
   %h2= t('unit_of_measurements.show.si_prefixes')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @si_prefixes.each do |unit_of_measurement|
       = render unit_of_measurement, animation: 'fadeout'
 
 - if @calculations.any?
   %h2= t('d.calculations')
-  .myg-grid.myg-wrap--phone
+  .myg-grid__grid.myg-grid__wrap--phone
     - @calculations.each do |calculation|
       = render calculation, animation: 'fadeout'

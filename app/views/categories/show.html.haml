@@ -6,6 +6,6 @@
 %p= @category.description
 
 %h2= t('d.packs')
-.myg-grid.myg-wrap--phone
+.myg-grid__grid.myg-grid__wrap--phone
   - @packs.each do |pack|
     = render pack, animation: 'fadeout'

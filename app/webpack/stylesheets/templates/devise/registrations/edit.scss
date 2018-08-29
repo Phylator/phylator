@@ -1,10 +1,10 @@
 body.users.registrations.edit {
   .myg-content {
-    padding: myg-spacing(md);
+    padding: myg-spacing(2);
 
     .myg-list--item > a {
       p {
-        @include transition(color);
+        @include myg-animate__transition(color);
 
         &:first-child {
           margin-top: 0;
@@ -19,13 +19,13 @@ body.users.registrations.edit {
       &:focus,
       &:active {
         p {
-          color: color(text, darker);
+          color: myg-theme__color(text, darker);
         }
       }
     }
 
-    .myg-button--container {
-      margin-top: px(10);
+    .myg-button__container {
+      margin-top: myg__px(10);
     }
   }
 }
