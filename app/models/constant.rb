@@ -33,10 +33,10 @@ class Constant < ApplicationRecord
   validates :symbol, presence: true
   validates :name, presence: true
 
-  scope :purchased, lambda do |user|
+  scope :purchased, lambda { |user|
     includes(pack: :purchases)
       .where(packs: { purchases: { user_id: user&.id } })
-  end
+  }
   scope :free, -> { includes(:pack).where(packs: { price: 0 }) }
 
   def sym

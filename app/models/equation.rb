@@ -18,9 +18,9 @@ class Equation < ApplicationRecord
 
   validates :equation, presence: true
 
-  scope :free, lambda do
+  scope :free, lambda {
     includes(quantity: :pack).where(quantities: { packs: { price: 0 } })
-  end
+  }
 
   def pure_equation
     equation.tr("'", '')
