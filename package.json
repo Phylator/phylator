@@ -8,7 +8,7 @@
     "clipboard": "^1.7.1",
     "izimodal": "^1.5.1",
     "jquery": "^3.3.1",
-    "myg": "^0.13.7",
+    "myg": "^0.13.8",
     "pwa-rails": "^4.0.5",
     "rails-erb-loader": "^5.5.0",
     "rails-ujs": "^5.2.1",
