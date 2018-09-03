@@ -13,16 +13,17 @@ module Fetch
     private
 
     def find_or_create(dataset)
-      category = Category.find_by(name: dataset.delete('category'))
+      category = ::Category.find_by(name: dataset.delete('category'))
       dataset['pack'] =
-        Pack.find_by(name: dataset.delete('pack'), category: category)
+        ::Pack.find_by(name: dataset.delete('pack'), category: category)
       dataset['parent_quantity'] =
-        Quantity.find_by(name: dataset.delete('parent_quantity'))
+        ::Quantity.find_by(name: dataset.delete('parent_quantity'))
 
-      if (quantity = Quantity.find_by(name: dataset['name']))
+      if (quantity = ::Quantity.find_by(name: dataset['name']))
         quantity.update!(dataset)
+        quantity
       else
-        Quantity.create!(dataset)
+        ::Quantity.create!(dataset)
       end
     end
 

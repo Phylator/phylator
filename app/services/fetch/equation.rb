@@ -4,7 +4,7 @@ module Fetch
   class Equation < Base
     def perform
       super do |dataset|
-        quantity = Quantity.find_by(name: dataset['quantity'])
+        quantity = ::Quantity.find_by(name: dataset['quantity'])
         dataset['categories'].each do |category_dataset|
           handle_category(category_dataset, quantity)
         end
@@ -30,12 +30,13 @@ module Fetch
     def find_or_create(dataset, quantity, title)
       dataset = { equation: dataset['equation'], title: title,
                   conditions: dataset['conditions'], quantity: quantity }
-      equation = Equation.find_by(equation: dataset[:equation],
+      equation = ::Equation.find_by(equation: dataset[:equation],
                                   quantity: dataset[:quantity])
       if equation.present?
         equation.update!(dataset)
+        equation
       else
-        Equation.create!(dataset)
+        ::Equation.create!(dataset)
       end
     end
 

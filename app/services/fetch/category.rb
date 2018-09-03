@@ -13,12 +13,13 @@ module Fetch
     private
 
     def find_or_create(dataset)
-      category = Category.find_by(name: dataset['name'])
+      category = ::Category.find_by(name: dataset['name'])
 
       if category.present?
         category.update!(dataset)
+        category
       else
-        Category.create!(dataset)
+        ::Category.create!(dataset)
       end
     end
 

@@ -16,17 +16,18 @@ module Fetch
 
     # rubocop:disable Metrics/MethodLength
     def find_or_create(dataset)
-      category = Category.find_by(name: dataset.delete('category'))
+      category = ::Category.find_by(name: dataset.delete('category'))
       dataset[:pack] =
-        Pack.find_by(name: dataset.delete('pack'), category: category)
+        ::Pack.find_by(name: dataset.delete('pack'), category: category)
       dataset[:unit_of_measurement] =
-        UnitOfMeasurement.find_by(name: dataset.delete('unit'))
-      constant = Constant.find_by(name: dataset['name'])
+        ::UnitOfMeasurement.find_by(name: dataset.delete('unit'))
+      constant = ::Constant.find_by(name: dataset['name'])
 
       if constant.present?
         constant.update!(dataset)
+        constant
       else
-        Constant.create!(dataset)
+        ::Constant.create!(dataset)
       end
     end
     # rubocop:enable Metrics/MethodLength
