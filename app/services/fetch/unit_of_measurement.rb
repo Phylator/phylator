@@ -18,18 +18,19 @@ module Fetch
     private
 
     def find_or_create(dataset)
-      unit = UnitOfMeasurement.find_by(name: unit['name'])
+      unit = ::UnitOfMeasurement.find_by(name: dataset['name'])
 
       if unit.present?
         unit.update!(dataset)
+        unit
       else
-        UnitOfMeasurement.create!(dataset)
+        ::UnitOfMeasurement.create!(dataset)
       end
     end
 
     def add_to_quantities(unit, quantities)
       quantities&.each do |quantity|
-        quantity = Quantity.find_by(name: quantity)
+        quantity = ::Quantity.find_by(name: quantity)
         next if unit.quantities.include?(quantity)
 
         unit.add_to_belonger!(quantity)
@@ -39,6 +40,7 @@ module Fetch
     def update_translations(unit, locals)
       locals.each do |locale, translation|
         translation[:locale] = locale.to_sym
+        translation.delete('base_name')
         unit.update!(translation)
       end
     end

@@ -14,14 +14,15 @@ module Fetch
 
     def find_or_create(dataset)
       dataset['category'] =
-        Category.find_by(name: dataset.delete('category'))
+        ::Category.find_by(name: dataset.delete('category'))
       pack =
-        Pack.find_by(name: dataset['name'], category: dataset['category'])
+        ::Pack.find_by(name: dataset['name'], category: dataset['category'])
 
       if pack.present?
         pack.update!(dataset)
+        pack
       else
-        Pack.create!(dataset)
+        ::Pack.create!(dataset)
       end
     end
 
