@@ -12,7 +12,7 @@ module Fetch
 
     private
 
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:enable Metrics/MethodLength
     def find_or_create(dataset)
       category = ::Category.find_by(name: dataset.delete('category'))
       dataset['pack'] =
