@@ -12,6 +12,7 @@ module Fetch
 
     private
 
+    # rubocop:disable Metrics/MethodLength
     def find_or_create(dataset)
       category = ::Category.find_by(name: dataset.delete('category'))
       dataset['pack'] =
@@ -26,7 +27,7 @@ module Fetch
         ::Quantity.create!(dataset)
       end
     end
-    # rubocop:enable Metrics/LineLength
+    # rubocop:disable Metrics/MethodLength
 
     def update_translations(quantity, locals)
       locals.each do |locale, translation|
