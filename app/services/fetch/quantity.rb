@@ -26,6 +26,7 @@ module Fetch
         ::Quantity.create!(dataset)
       end
     end
+    # rubocop:enable Metrics/LineLength
 
     def update_translations(quantity, locals)
       locals.each do |locale, translation|

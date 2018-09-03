@@ -31,7 +31,7 @@ module Fetch
       dataset = { equation: dataset['equation'], title: title,
                   conditions: dataset['conditions'], quantity: quantity }
       equation = ::Equation.find_by(equation: dataset[:equation],
-                                  quantity: dataset[:quantity])
+                                    quantity: dataset[:quantity])
       if equation.present?
         equation.update!(dataset)
         equation
