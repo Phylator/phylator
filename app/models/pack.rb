@@ -34,6 +34,7 @@ class Pack < ApplicationRecord
 
   def purchased?(user)
     return true if purchases.where(user_id: user.id).any? || price.zero?
+
     false
   end
 end

@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
   def store_locale
     session[:locale] = I18n.locale
     return unless current_user && I18n.locale != current_user.locale
+
     current_user.locale = I18n.locale
     current_user.save!
   end
