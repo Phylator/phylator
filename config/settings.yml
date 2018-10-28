@@ -3,8 +3,9 @@ phylator:
     - en
     - de
   socials:
-    twitter: https://twitter.com/phylator
     github: https://github.com/Phylator/phylator
+    nativegap: https://nativegap.com/phylator
+    twitter: https://twitter.com/phylator
 
 mailgun:
   emails:
