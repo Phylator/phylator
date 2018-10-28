@@ -39,6 +39,8 @@ Dependencies are listed in the [.tool-versions](.tool-versions) file.
     Customize [credentials.yml.sample](config/credentials.yml.sample)
     `EDITOR=vim be rails credentials:edit`
 
+    Copy [.env.sample](.env.sample) to `.env` and customize
+
 4. Database setup
 
     `$ rails db:setup`
