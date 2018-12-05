@@ -118,7 +118,7 @@ GEM
     crass (1.0.4)
     debug_inspector (0.0.3)
     deep_merge (1.2.1)
-    dentaku (3.2.1)
+    dentaku (3.3.0)
     device_detector (1.0.1)
     devise (4.5.0)
       bcrypt (~> 3.0)
