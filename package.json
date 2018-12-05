@@ -11,7 +11,7 @@
     "myg": "^0.13.8",
     "pwa-rails": "^4.0.5",
     "rails-erb-loader": "^5.5.0",
-    "rails-ujs": "^5.2.1",
+    "rails-ujs": "^5.2.2",
     "sass-loader": "^7.1.0",
     "turbolinks": "^5.2.0",
     "turbolinks-animate": "^3.1.1"
