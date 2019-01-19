@@ -21,7 +21,7 @@
     "eslint": "eslint app/webpack/javascripts/mozaic/**/*.js app/webpack/javascripts/myg/**/*.js app/webpack/javascripts/templates/**/*.js app/webpack/packs/webpack.js.erb"
   },
   "devDependencies": {
-    "eslint": "^5.12.0",
+    "eslint": "^5.12.1",
     "stylelint": "^9.10.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.1",
