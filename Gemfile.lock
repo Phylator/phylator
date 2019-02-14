@@ -70,10 +70,10 @@ GEM
       request_store
       safely_block (>= 0.2.1)
       user_agent_parser
-    algoliasearch (1.24.0)
+    algoliasearch (1.26.0)
       httpclient (~> 2.8, >= 2.8.3)
       json (>= 1.5.1)
-    algoliasearch-rails (1.20.6)
+    algoliasearch-rails (1.21.0)
       algoliasearch (>= 1.17.0, < 2.0.0)
       json (>= 1.5.1)
     arel (9.0.0)
